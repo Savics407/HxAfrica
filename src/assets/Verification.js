@@ -1,6 +1,6 @@
 import { FaCheck } from 'react-icons/fa'
 
-function Verification({formData , setFormData}) {
+function Verification({ formData , setFormData }) {
     return (
         <>
             <div className="flex items-center justify-between mb-12 rule relative create text-base">
@@ -22,13 +22,21 @@ function Verification({formData , setFormData}) {
             <form className="form">
                 <div>
                     <h1 className="page-text">OTP Verification</h1>
-                    <p className="description">Enter the 5digit code sent to <b>email....@gmail.com</b> for verification</p>
+                    <p className="description">Enter the 5digit code sent to <b>{formData.email}</b> for verification</p>
                 </div>
                 <div className="input">
                     <label className="">Enter Code </label>
-                    <input required type="number" placeholder="5 digit code" className="box" 
-                    value={formData.OTPCode}
-                        onChange={(event) => setFormData({...formData, OTPCode: event.target.value})}/>
+                    <input 
+                        required 
+                        type="number" 
+                        placeholder="5 digit code" 
+                        className="box" 
+                        value={formData.otp}
+                        onChange={(event) => 
+                            setFormData({...formData, otp: 
+                            event.target.value})
+                        }
+                    />
                 </div>
                 
                 <div className=" flex items-start mb-7">
@@ -43,4 +51,4 @@ function Verification({formData , setFormData}) {
     )
 }
 
-export default Verification
+export default Verification;

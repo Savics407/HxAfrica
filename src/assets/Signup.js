@@ -26,14 +26,14 @@ function Auth() {
         email: "",
         phone: "",
         password : "",
-        terms: ""
-        // confirmPassword: "",
-        // OTPCode: "",
-        // FullName: "",
-        // state: "",
-        // city: "",
-        // address: "",
-        // dateOfBirth: new Date(""),
+        terms: "",
+        confirmPassword: "",
+        otp: "",
+        name: "",
+        state: "",
+        city: "",
+        address: "",
+        dob:"",
     })
 
     async function signup() {
@@ -54,8 +54,48 @@ function Auth() {
         const result = await response.json()
         console.log(result)
         localStorage.setItem("user-info", JSON.stringify(response))
-
     }
+
+      async function verifyOTP() {
+        // console.log(formData);
+        const otpLoad = {
+            email: formData.email,
+            otp:formData.otp,
+            }
+        const response = await fetch("http://reic-app.com/api/verify-otp", {
+            method:'POST',
+            body:JSON.stringify(otpLoad),
+            headers: {
+                "Content-type" : "application/json"
+            }
+        })
+        const result = await response.json()
+        console.log(result)
+        localStorage.setItem("user-info", JSON.stringify(response))
+    }
+
+    async function create() {
+        // console.log(formData);
+        const setupLoad = {
+            name: formData.name,
+            phone:formData.phone,
+            address: formData.address,
+            city: formData.city,
+            state: formData.state,
+            dob: formData.dob,
+            }
+        const response = await fetch("http://reic-app.com/api/investor/setup", {
+            method:'POST',
+            body:JSON.stringify(setupLoad),
+            headers: {
+                "Content-type" : "application/json"
+            }
+        })
+        const result = await response.json()
+        console.log(result)
+        localStorage.setItem("user-info", JSON.stringify(response))
+    }
+
     const FormTitles = ["UserDetails", "Verification", "Setup"];
 
     const PageView = () => {
@@ -75,11 +115,13 @@ function Auth() {
                     {PageView()}
                     <div className="lg:w-80 mb-16">
                         <button type="submit" className="bg-green text-white w-full p-3 rounded-xl mt-6 font-medium"
+                        id="button"
                         onClick={() => {
                             if(step === FormTitles.length -1) {
-                                alert("Form Submitted");
+                                create()
                             } else if (step === FormTitles.length -2 ){
-                                alert("This is page2")
+                                verifyOTP();
+                                console.log('OTP verified');
                                 setStep((currentPage) => currentPage + 1)
                             } else {
                                 signup();

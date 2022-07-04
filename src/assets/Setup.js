@@ -1,7 +1,7 @@
 
 import { FaCheck } from 'react-icons/fa'
 
-function Form({formData , setFormData}) {
+function Setup({ formData , setFormData }) {
     return (
         <>
             <div className="flex items-center justify-between mb-12 rule  setup relative text-base">
@@ -29,16 +29,30 @@ function Form({formData , setFormData}) {
                 </div>
                 <div className="input">
                     <label className="">Full Name </label>
-                    <input required type="text" placeholder="enter full name" className="box" 
-                    value={formData.FullName}
-                        onChange={(event) => setFormData({...formData, FullName: event.target.value})}/>
+                    <input 
+                    required 
+                    type="text" 
+                    placeholder="enter full name" 
+                    className="box" 
+                    value={formData.name}
+                    onChange={(event) => 
+                        setFormData({...formData, name: event.target.value})
+                        }
+                    />
                 </div>
                 
                 <div className="input">
                     <label>Phone Number</label>
-                    <input required type="tel" placeholder="enter phone number" className="box" disabled
-                    value={formData.phone}
-                        onChange={(event) => setFormData({...formData, phone: event.target.value})}/>
+                    <input 
+                        required 
+                        type="tel" placeholder="enter phone number" 
+                        className="box" 
+                        disabled
+                        value={formData.phone}
+                        onChange={(event) => 
+                            setFormData({...formData, phone: event.target.value})
+                        }
+                    />
                 </div>
                 <div className="input">
                     <label>State</label>
@@ -88,17 +102,42 @@ function Form({formData , setFormData}) {
                 </div>
                 <div className="input">
                     <label>City</label>
-                    <input required type="option" placeholder="enter city" className="box"/>
+                    <input 
+                    required 
+                    type="text" 
+                    placeholder="enter city" 
+                    className="box"
+                    value={formData.city}
+                    onChange={(event) => 
+                        setFormData({...formData, city: event.target.value})
+                    }
+                />
                 </div>
                 <div className="input">
                     <label>Address</label>
-                    <input required type="text" placeholder="enter home address" className="box"  value={formData.address} onChange={(event) => setFormData({...formData, address: event.target.value})}/>
+                    <input 
+                    required 
+                    type="text" 
+                    placeholder="enter home address" 
+                    className="box"  
+                    value={formData.address} 
+                    onChange={(event) => 
+                        setFormData({...formData, address: event.target.value})
+                    }
+                />
                 </div>
                 <div className="input">
                     <label>Date Of Birth</label>
-                    <input required type="date" placeholder="" className="box text-grey" 
-                     value={formData.dateOfBirth}
-                        onChange={(event) => setFormData({...formData, dateOfBirth: event.target.value})}/>
+                    <input 
+                    required 
+                    type="date" 
+                    placeholder="" 
+                    className="box text-grey" 
+                    value={formData.dob}
+                    onChange={(event) => 
+                        setFormData({...formData, dob: event.target.value})
+                    }
+                />
                 </div>
                 {/* <div>
                     <button className="bg-green text-white w-full p-3 rounded-xl mt-6 font-medium">Create Account</button>
@@ -108,4 +147,4 @@ function Form({formData , setFormData}) {
     )
 }
 
-export default Form
+export default Setup;
