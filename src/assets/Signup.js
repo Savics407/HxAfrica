@@ -62,7 +62,7 @@ function Auth() {
             email: formData.email,
             otp:formData.otp,
             }
-        const response = await fetch("https://reic-app.com/api/verify-otp", {
+        const response = await fetch("https://reic.api.simpoo.biz/api/verify-otp", {
             method:'POST',
             body:JSON.stringify(otpLoad),
             headers: {
@@ -71,6 +71,7 @@ function Auth() {
         })
         const result = await response.json()
         console.log(result)
+        console.log(otpLoad);
         localStorage.setItem("user-info", JSON.stringify(response))
     }
 
