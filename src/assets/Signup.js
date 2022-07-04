@@ -66,7 +66,7 @@ function Auth() {
             method:'POST',
             body:JSON.stringify(otpLoad),
             headers: {
-                "Content-type" : "application/json"
+                "Access" : "application/json"
             }
         })
         const result = await response.json()
