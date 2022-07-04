@@ -62,7 +62,7 @@ function Auth() {
             email: formData.email,
             otp:formData.otp,
             }
-        const response = await fetch("http://reic-app.com/api/verify-otp", {
+        const response = await fetch("https://reic-app.com/api/verify-otp", {
             method:'POST',
             body:JSON.stringify(otpLoad),
             headers: {
@@ -84,7 +84,7 @@ function Auth() {
             state: formData.state,
             dob: formData.dob,
             }
-        const response = await fetch("http://reic-app.com/api/investor/setup", {
+        const response = await fetch("https://reic-app.com/api/investor/setup", {
             method:'POST',
             body:JSON.stringify(setupLoad),
             headers: {
