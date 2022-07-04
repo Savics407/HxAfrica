@@ -10,6 +10,7 @@
   box-sizing: border-box;
 }
 
+
 .rule::before {
   content: " ";
   position: absolute;
@@ -109,4 +110,10 @@
       padding: 10px;
     }
 
+    .notify {
+      @apply w-2 h-2 bg-red rounded-full absolute top-2.5 right-2.5 border border-white
+    }
 
+    .online {
+        @apply w-2 h-2 bg-on rounded-full absolute bottom-0 right-0
+    }
