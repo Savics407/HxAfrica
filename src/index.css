@@ -117,3 +117,23 @@
     .online {
         @apply w-2 h-2 bg-on rounded-full absolute bottom-0 right-0
     }
+
+    .ds-icons {
+      @apply text-2xl mr-2 
+    }
+
+    .nav-items {
+      @apply flex py-4 items-center rounded px-2 hover:text-green hover:cursor-pointer hover:border-b-4 hover:border-green border-b-4 border-transparent duration-500
+    }
+
+    .active {
+      @apply border-b-4 border-green text-green
+    }
+
+    .welcome {
+      background-image:url(../src/assets/images/frame.png);
+      background-repeat: no-repeat;
+      background-size: auto;
+      background-position: 100% 5px;
+      /* background-clip: content; */
+    }

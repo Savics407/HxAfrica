@@ -24,7 +24,14 @@ module.exports = {
         dark: '#1E2335',
         red: '#FF4438',
         on: "#53F3C3",
-        mainbg: "#F8F8F9"
+        mainbg: "#F8F8F9", 
+        navbar: "#8E8E8E",
+        dashbg: "#FCFCFD", 
+        welcome: "#FBFFFF",
+        earnings: "#69A2F9", 
+        'light-blue': "#7281FF4F", 
+        token: '#7E7E99', 
+        media: '#58BD7D'
       },
     },
   },
