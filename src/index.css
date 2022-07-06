@@ -13,7 +13,9 @@
 body {
   @apply bg-mainbg
 }
-
+.notification {
+  @apply absolute py-4 text-neutral px-6 w-128 right-72 top-20 -mt-2 rounded-xl shadow-2xl bg-dashbg text-left invisible
+}
 .show-note {
   @apply top-20 visible 
   

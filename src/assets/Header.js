@@ -27,7 +27,7 @@ function Tab() {
                             <div className='online'></div>
                         </div>
                     </div>
-                    <div className='absolute py-4 text-neutral px-6 w-128 right-72 top-20 -mt-2 rounded-xl shadow-2xl bg-dashbg text-left invisible'>
+                    <div className={`notification ${isClick ? 'show-note' : 'remove-note'}`}>
                         <div className="arrow relative">
                             <h1 className="text-2xl font-semibold">Notifications</h1>
                         </div>
