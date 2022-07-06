@@ -4,15 +4,15 @@ module.exports = {
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
-     fontFamily: {
-      'sans': ['ui-sans-serif', 'system-ui'],
-      'serif': ['ui-serif', 'Georgia'],
-      'mono': ['ui-monospace', 'SFMono-Regular'],
-      'display': ['Oswald',],
-      'body': ['"Open Sans"'],
-      'family': ['Poppins'],
-     },
-    extend: {
+    // //  fontFamily: {
+    //   'sans': ['ui-sans-serif', 'system-ui'],
+    //   'serif': ['ui-serif', 'Georgia'],
+    //   'mono': ['ui-monospace', 'SFMono-Regular'],
+    //   'display': ['Oswald',],
+    //   'body': ['"Open Sans"'],
+    //   'family': ['Poppins'],
+    //  },
+    extend: { 
       colors: {
         primary: "#EDFDFD",
         green: "#008E10",
@@ -31,7 +31,11 @@ module.exports = {
         earnings: "#69A2F9", 
         'light-blue': "#7281FF4F", 
         token: '#7E7E99', 
-        media: '#58BD7D'
+        media: '#58BD7D',
+        stroke: "rgba(114, 129, 255, 0.15)", 
+        secondary:"#555860", 
+        links: "#2360FF", 
+        'light-purple': 'rgba(235, 189, 221, 0.44)'
       },
     },
   },

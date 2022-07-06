@@ -137,3 +137,36 @@
       background-position: 100% 5px;
       /* background-clip: content; */
     }
+    .income {
+      @apply w-1/2 p-3
+    }
+    .income h1{
+      @apply font-bold text-sm mb-2 text-secondary
+    }
+
+    .income p {
+      @apply text-secondary font-normal text-xs
+    }
+
+    circle {
+      fill: none;
+      stroke: url(#GradientColor);
+      stroke-width: 25px;
+      stroke-dasharray: 472;
+      stroke-dashoffset: 300;
+      animation-name: anim;
+      animation-duration:2s;
+      animation-timing-function: linear;
+    }
+    .svg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform: rotate(-80deg);
+    }
+
+    @keyframes anim {
+      100% {
+        /* stroke-dashoffset: 165; */
+      }
+    }
