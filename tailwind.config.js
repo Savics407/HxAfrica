@@ -4,14 +4,14 @@ module.exports = {
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
-    // //  fontFamily: {
-    //   'sans': ['ui-sans-serif', 'system-ui'],
-    //   'serif': ['ui-serif', 'Georgia'],
-    //   'mono': ['ui-monospace', 'SFMono-Regular'],
-    //   'display': ['Oswald',],
-    //   'body': ['"Open Sans"'],
-    //   'family': ['Poppins'],
-    //  },
+     fontFamily: {
+      'sans': ['ui-sans-serif', 'system-ui'],
+      'serif': ['ui-serif', 'Georgia'],
+      'mono': ['ui-monospace', 'SFMono-Regular'],
+      'display': ['Oswald',],
+      'body': ['"Open Sans"'],
+      'family': ['Poppins'],
+     },
     extend: { 
       colors: {
         primary: "#EDFDFD",
@@ -35,7 +35,17 @@ module.exports = {
         stroke: "rgba(114, 129, 255, 0.15)", 
         secondary:"#555860", 
         links: "#2360FF", 
-        'light-purple': 'rgba(235, 189, 221, 0.44)'
+        'light-purple': 'rgba(235, 189, 221, 0.44)', 
+        'light-blue': 'rgba(1, 86, 255, 0.25)',
+        'light-orange': 'rgba(255, 184, 0, 0.22)',  
+        mainsec:'rgba(190, 190, 255, 0.15)',
+        pink: "#FF62A5", 
+        grayy:"#686868",
+        darkgray: "#263238"
+      },
+      fontSize: {
+      'tiny': '10px',
+      'xxm': '8px'
       },
     },
   },

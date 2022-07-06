@@ -148,7 +148,7 @@
       @apply text-secondary font-normal text-xs
     }
 
-    circle {
+    .circle {
       fill: none;
       stroke: url(#GradientColor);
       stroke-width: 25px;
@@ -169,4 +169,16 @@
       100% {
         /* stroke-dashoffset: 165; */
       }
+    }
+
+    .section {
+      @apply w-1/2
+    }
+
+    .section h1 {
+      @apply text-sm font-semibold text-dark mb-3
+    }
+
+    .real-estate {
+      @apply p-4 bg-mainbg rounded-2xl flex items-center
     }

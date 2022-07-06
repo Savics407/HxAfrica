@@ -12,7 +12,8 @@ import dollar from './images/Vector.png'
 import coin from './images/coin.png'
 import reictoken from './images/Reic_Token.png'
 import media from './images/media.png'
-import invest_icon from './images/investment.png'
+import Investments from './Investments'
+
 
 
 
@@ -21,7 +22,7 @@ function Tab() {
     return (
         <>
             <div className="bg-green text-center text-white py-4 ">
-                <div className='w-4/5 m-auto flex items-center justify-between hidden md:flex'>
+                <div className='w-10/12 m-auto flex items-center justify-between hidden md:flex'>
                     <div className="bg-white w-48 h-12"></div>
                     <div className=" border-white flex items-center">
                         <div className="bg-white text-dark rounded-full px-3 py-2.5 relative" >
@@ -73,7 +74,7 @@ function Dashboard () {
                     <h1>Settings</h1>
                 </div>
             </div>
-            <div className='w-4/5 m-auto mt-20 bg-dashbg rounded-lg py-8 px-4 flex'>
+            <div className='w-10/12 m-auto mt-20 bg-dashbg rounded-lg py-8 px-4 flex'>
                 <div className='w-4/6 pr-4'>
                     <div className='welcome bg-welcome p-10 rounded-lg border'>
                         <h1 className='text-green font-black text-2xl mb-3'>Hi, <span className='text-dark ml-2'>Philip Chris</span></h1>
@@ -137,44 +138,14 @@ function Dashboard () {
                                             <stop offset="100%" stop-color="#008E10" />
                                             </linearGradient>
                                         </defs>
-                                        <circle cx="95" cy="95" r="83" stroke-linecap="round" />
+                                        <circle className='circle' cx="95" cy="95" r="83" stroke-linecap="round" />
                                      </svg>                                 
                                 </div>
                                 
                             </div>
                         </div>
                     </div>
-                    <div className='rounded-lg bg-white my-5'>
-                        <div className='border-b border-stroke px-10 py-5 text-lg font-semibold flex justify-between items-center cursor-pointer'>
-                            <h1>Investments</h1>
-                            <h1 className='text-links text-xs font-normal'>View all investment</h1>
-                        </div>
-                        <div className='p-10 flex justify-between'>
-                            <div className='p-4 bg-light-purple rounded-lg w-80'>
-                                <div className='flex text-dark py-3'>
-                                    <div className='mr-3'>
-                                        <img src={invest_icon} alt="investment_icon" />
-                                    </div>
-                                    <div>
-                                        <h1 className='text-sm font-medium'>Tech Startups</h1>
-                                        <h1 className='text-xs font-medium'>New Investments</h1>
-                                    </div>
-                                </div>
-                                <div>
-                                    <p className='text-xs'>Startup investors are essentially buying a piece of the company with their investment. Putting down capital, in exchange for equity</p>
-                                </div>
-                                <div>
-                                    <button className='text-links text-sm font-medium pt-4 pb-2 cursor-pointer'>VIEW ALL</button>
-                                </div>
-                            </div>
-                            <div className=' p-4 border w-1/3'>
-                                
-                            </div>
-                            <div className='p-4 border w-1/3'>
-                                
-                            </div>
-                        </div>
-                    </div>
+                    <Investments />
                      {/* Let's do some coding thingy */}
                 </div>
                 {/* side panel */}
