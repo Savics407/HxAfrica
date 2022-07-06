@@ -10,6 +10,30 @@
   box-sizing: border-box;
 }
 
+body {
+  @apply bg-mainbg
+}
+
+.show-note {
+  @apply top-20 visible 
+  
+}
+
+.remove-note {
+  @apply top-24 invisible
+}
+.arrow::before {
+    content: "";
+    position: absolute;
+    right:3px;
+    width: 20px;
+    height: 20px;
+    /* border: 1px solid; */
+    background-color:#FCFCFD ;
+    border-radius: 5px;
+    top: -23px;
+    transform: rotate(-45deg);
+}
 
 .rule::before {
   content: " ";
@@ -17,7 +41,7 @@
   width: 100%;
   border-top: 2.5px solid #CCCCCc;
   top: 20px;
-  z-index: -1;
+  z-index: 1;
 }
 
 .rule::after {
@@ -26,7 +50,7 @@
   width: 12%;
   border-top: 2.5px solid #008E10;
   top: 20px;
-  z-index: -1;
+  z-index: 1;
 }
 .create::after {
   content: "";
@@ -35,7 +59,7 @@
   border-top: 2.5px solid #008E10;
   top: 20px;
   left: 0;
-  z-index:-1;
+  z-index:1;
 }
 
 /* 
@@ -58,14 +82,14 @@
   border-top: 2.5px solid #008E10;
   top: 20px;
   left: 0;
-  z-index: -1;
+  z-index: 2;
 
   /* @apply lg:w-72 */
 }
 
 
 .tabs {
-  @apply flex flex-col text-center items-center relative;
+  @apply flex flex-col text-center items-center relative z-10;
   /* z-index: 2; */
   
 }

@@ -41,11 +41,20 @@ module.exports = {
         mainsec:'rgba(190, 190, 255, 0.15)',
         pink: "#FF62A5", 
         grayy:"#686868",
-        darkgray: "#263238"
+        darkgray: "#263238",
+        join: '#4B4B4B', 
+        footer : '#777E90',
+        neutral: '#23262F'
       },
       fontSize: {
       'tiny': '10px',
       'xxm': '8px'
+      },
+       width: {
+        '128': '452px',
+      },
+      boxShadow: {
+        '3xl': '0px 16px 64px -48px rgba(31, 47, 70, 0.15)',
       },
     },
   },

@@ -1,76 +1,47 @@
 // import logo from "./images/polygon.png";
-import { FaBell } from 'react-icons/fa'
 import { FaAngleDown } from 'react-icons/fa'
-import user from "./images/user_icon.png"
-import { BsGrid } from 'react-icons/bs'
-import { BiTransfer } from 'react-icons/bi'
-import { TbClipboardList } from 'react-icons/tb'
-import { AiOutlineUser } from 'react-icons/ai'
-import { TbCoin } from 'react-icons/tb'
-import { FiSettings } from 'react-icons/fi'
+import status from "./images/status.png"
+import { MdDashboard } from 'react-icons/md'
+import { MdInsertChart } from 'react-icons/md'
+import { AiFillDollarCircle } from 'react-icons/ai'
+import { RiSettings3Fill } from 'react-icons/ri'
 import dollar from './images/Vector.png'
 import coin from './images/coin.png'
 import reictoken from './images/Reic_Token.png'
 import media from './images/media.png'
 import Investments from './Investments'
+import Myinvests from './Myinvestments'
+import diamond from './images/diamond.png'
+import Tab from './Header'
 
-
-
-
-
-function Tab() {
-    return (
-        <>
-            <div className="bg-green text-center text-white py-4 ">
-                <div className='w-10/12 m-auto flex items-center justify-between hidden md:flex'>
-                    <div className="bg-white w-48 h-12"></div>
-                    <div className=" border-white flex items-center">
-                        <div className="bg-white text-dark rounded-full px-3 py-2.5 relative" >
-                            <FaBell className='w-4 h-5'/>
-                            <div className='notify'></div>
-                        </div>
-                        <div className='flex items flex items-center  text-sm ml-6 mr-7'>
-                            <h1 className="font-semibold mr-1">John Doe</h1>
-                            <FaAngleDown />
-                        </div>
-                        <div className='relative'>
-                        <img src={user} alt="User-Icon" />  
-                            <div className='online'></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </>
-    )
-}
 
 function Dashboard () {
     return (
         <div className='font-family bg-mainbg'>
             <Tab />
-            <div className='bg-white px-64 border flex justify-between items-center text-navbar text-base font-semibold'>
+            <div className='bg-white px-80 border flex justify-between items-center text-navbar text-base font-semibold'>
                 <div className='nav-items active'>
-                    <BsGrid className='ds-icons'/>
+                    <MdDashboard className='ds-icons'/>
                     <h1>Dashboard</h1>
                 </div>
-                <div className='nav-items'>
+                {/* <div className='nav-items'>
                     <BiTransfer className='ds-icons' />
                     <h1>Transaction</h1>
                 </div>
                 <div className='nav-items'>
                     <TbClipboardList className='ds-icons' />
                     <h1>KYC List</h1>
-                </div>
+                </div> */}
                 <div className='nav-items'>
-                    <AiOutlineUser className='ds-icons' />
+                    <MdInsertChart className='ds-icons' />
                     <h1>Investment</h1>
                 </div>
                 <div className='nav-items'>
-                    <TbCoin className='ds-icons' />
-                    <h1>Presales Stages & Prices</h1>
+                    <AiFillDollarCircle className='ds-icons' />
+                    <h1>Token</h1>
                 </div>
                 <div className='nav-items'>
-                    <FiSettings className='ds-icons' />
+                    <RiSettings3Fill className='ds-icons' />
                     <h1>Settings</h1>
                 </div>
             </div>
@@ -168,10 +139,19 @@ function Dashboard () {
                         <h1 className='bg-media p-1.5 rounded text-xs my-5 text-white w-fit text-center'>NEW INVESTMENTS</h1>
                         <p className='text-sm text-dark font-semibold'>Submit your watchlist and win USDT</p>
                     </div>
+                    <Myinvests />
+
+                    <div className='border rounded-3xl p-4 px-10 bg-primary text-center'>
+                        <img src={diamond} alt="diamond" className='m-auto' />
+                        <h1 className='text-neutral font-semibold text-xl'>Best for investments</h1>
+                        <h1 className='text-footer font-normal text-sm'>Put your CHSB in the Yield Program and get rewarded daily with new CHSB.</h1>
+                    </div>
+
                 </div>
-               
             </div>
-            <div>Another session</div>
+            <div className='mt-6 pb-10 text-center'>
+                <h1 className='text-base font-semibold text-footer'>© 2022 REIC. All rights reserved.</h1>
+            </div>
         </div>
     )
 }

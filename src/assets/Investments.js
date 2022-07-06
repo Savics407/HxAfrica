@@ -7,12 +7,13 @@ import users1 from './images/Frame 14.png'
 import users2 from './images/Frame 18.png'
 import users3 from './images/Frame 19.png'
 import users4 from './images/Frame 20.png'
+import { FaInfoCircle } from 'react-icons/fa'
 
 
 function Investments() {
     return(
         <>
-            <div className='rounded-lg bg-white my-5'>
+            <div className='rounded-lg bg-white my-5 pb-4'>
                         <div className='border-b border-stroke px-10 py-5 text-lg font-semibold flex justify-between items-center cursor-pointer'>
                             <h1>Investments</h1>
                             <h1 className='text-links text-xs font-normal'>View all investment</h1>
@@ -137,6 +138,9 @@ function Investments() {
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                        <div className='flex items-center p-4'>
+                           <FaInfoCircle className='text-join text-sm mr-1'/> <h1 className='text-join text-sm'>Join the early investors and earn better</h1>
                         </div>
                     </div>
         </>
