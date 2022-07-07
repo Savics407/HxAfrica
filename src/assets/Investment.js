@@ -16,7 +16,7 @@ import BuyToken from './BuyToken'
 import { useState } from 'react'
 
 
-function Dashboard () {
+function Investment () {
     const [buyToken, setBuyToken] = useState(false)
 
     return (
