@@ -25,12 +25,12 @@ function Investments() {
                                         <img src={invest_icon} alt="investment_icon" />
                                     </div>
                                     <div>
-                                        <h1 className='text-sm font-semibold'>Tech Startups</h1>
+                                        <h1 className='text-sm font-medium'>Tech Startups</h1>
                                         <h1 className='text-tiny font-medium'>New Investments</h1>
                                     </div>
                                 </div>
                                 <div>
-                                    <p className='text-tiny'>Startup investors are essentially buying a piece of the company with their investment. Putting down capital, in exchange for equity</p>
+                                    <p className='text-tiny font-normal'>Startup investors are essentially buying a piece of the company with their investment. Putting down capital, in exchange for equity</p>
                                 </div>
                                 <div>
                                     <button className='text-links text-sm font-medium pt-4 pb-2 cursor-pointer'>VIEW ALL</button>
@@ -42,12 +42,12 @@ function Investments() {
                                         <img src={crowd} alt="investment_icon" />
                                     </div>
                                     <div>
-                                        <h1 className='text-sm font-semibold'>Crowdfunding</h1>
+                                        <h1 className='text-sm font-medium'>Crowdfunding</h1>
                                         <h1 className='text-tiny font-medium'>Ongoing Investments</h1>
                                     </div>
                                 </div>
                                 <div>
-                                    <p className='text-tiny'>Startup investors are essentially buying a piece of the company with their investment. Putting down capital, in exchange for equity</p>
+                                    <p className='text-tiny font-normal'>Startup investors are essentially buying a piece of the company with their investment. Putting down capital, in exchange for equity</p>
                                 </div>
                                 <div>
                                     <button className='text-links text-sm font-medium pt-4 pb-2 cursor-pointer'>VIEW ALL</button>
@@ -59,12 +59,12 @@ function Investments() {
                                         <img src={vest} alt="investment_icon" />
                                     </div>
                                     <div>
-                                        <h1 className='text-sm font-semibold'>Tech Startups</h1>
+                                        <h1 className='text-sm font-medium'>Tech Startups</h1>
                                         <h1 className='text-tiny font-medium'>Completed Investments</h1>
                                     </div>
                                 </div>
                                 <div>
-                                    <p className='text-tiny'>Startup investors are essentially buying a piece of the company with their investment. Putting down capital, in exchange for equity</p>
+                                    <p className='text-tiny font-normal'>Startup investors are essentially buying a piece of the company with their investment. Putting down capital, in exchange for equity</p>
                                 </div>
                                 <div>
                                     <button className='text-links text-sm font-medium pt-4 pb-2 cursor-pointer'>VIEW ALL</button>
@@ -75,7 +75,7 @@ function Investments() {
                             <div className='section pr-4'>
                                 <h1>Ongoing Investments</h1>
                                 <div className='real-estate'>
-                                    <div className='mr-1.5 w-1/3'>
+                                    <div className='mr-1.5 w-1/3 h-full'>
                                         <img src={raw} alt="rawland" />
                                     </div>
                                     <div className='w-2/3'>
@@ -83,12 +83,12 @@ function Investments() {
                                             <h1 className='!mb-0'>Raw Land - Real Estate</h1>
                                             <h2 className='text-pink text-xs'>30% Interest Rate</h2>
                                         </div> 
-                                        <div className='text-tiny text-grayy mb-3'>
+                                        <div className='text-tiny text-grayy mb-2'>
                                             <p className='!mb-0'>Time Frame: <span className='text-darkgray'>4 months</span></p>
                                             <p className=''>Expires - <span className='text-darkgray'>Dec 23, 2022</span></p>
                                         </div> 
-                                        <div className='text-grayy text-tiny bg-mainsec p-2 rounded-lg mb-3 w-48'>
-                                            <p className=''>Property Worth <span className='text-darkgray text-xs font-semibold ml-2'>N200,000,000</span></p>
+                                        <div className='text-grayy text-tiny bg-mainsec p-2 rounded-lg mb-2 w-48'>
+                                            <p className=''>Property Worth <span className='text-darkgray text-xs font-medium ml-2'>N200,000,000</span></p>
                                         </div>
                                         <div className='flex justify-between w-full'>
                                             <div className='flex items-center'>
@@ -121,7 +121,7 @@ function Investments() {
                                             <p className=''>Expires - <span className='text-darkgray'>Dec 23, 2022</span></p>
                                         </div> 
                                         <div className='text-grayy text-tiny bg-mainsec p-2 rounded-lg mb-3 w-48'>
-                                            <p className=''>Property Worth <span className='text-darkgray text-xs font-semibold ml-2'>N200,000,000</span></p>
+                                            <p className=''>Property Worth <span className='text-darkgray text-xs font-medium ml-2'>N200,000,000</span></p>
                                         </div>
                                         {/* <div className='flex justify-between w-full'>
                                             <div className='flex items-center'>

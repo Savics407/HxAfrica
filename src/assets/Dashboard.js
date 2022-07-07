@@ -70,7 +70,7 @@ function Dashboard () {
                         </div>
                     </div>
                     <div className='rounded-lg bg-white'>
-                        <div className='border-b border-stroke px-10 py-5 text-lg font-semibold'>
+                        <div className='border-b border-stroke px-10 py-5 text-lg font-medium'>
                             <h1>Incoming ROI</h1>
                         </div>
                         <div className='px-10 py-5 flex justify-between'>
@@ -121,16 +121,16 @@ function Dashboard () {
                 </div>
                 {/* side panel */}
                 <div className='w-4/12 px-2'>
-                    <div className='bg-white p-8 rounded-lg flex'>
+                    <div className='bg-white p-8 rounded-lg flex items-center'>
                         <div className='w-1/2 px-4 border-r border-light-blue '>
-                            <img src={dollar} alt="dollar-icon" className='mb-4'/>
+                            <img src={dollar} alt="dollar-icon" className='mb-4 h-6 w-6'/>
                             <p className='text-earnings font-medium text-xs mb-1'>Total Earnings Reic</p>
-                            <h1 className='text-dark text-2xl font-semibold'>$200,000</h1>    
+                            <h1 className='text-dark text-2xl font-medium'>$200,000</h1>    
                         </div>
                         <div className='w-1/2 px-4'>
-                            <img src={coin} alt="dollar-icon" className='mb-4'/>
+                            <img src={coin} alt="dollar-icon" className='mb-4 h-6 w-6'/>
                             <p className='text-earnings font-medium text-xs mb-1'>Total Earnings Reic</p>
-                            <h1 className='text-dark text-2xl font-semibold'>$200,000</h1>    
+                            <h1 className='text-dark text-2xl font-medium'>$200,000</h1>    
                         </div>
                         
                     </div>
@@ -143,7 +143,7 @@ function Dashboard () {
 
                     <div className='border rounded-3xl p-4 px-10 bg-primary text-center'>
                         <img src={diamond} alt="diamond" className='m-auto' />
-                        <h1 className='text-neutral font-semibold text-xl'>Best for investments</h1>
+                        <h1 className='text-neutral font-medium text-xl'>Best for investments</h1>
                         <h1 className='text-footer font-normal text-sm'>Put your CHSB in the Yield Program and get rewarded daily with new CHSB.</h1>
                     </div>
 

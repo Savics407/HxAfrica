@@ -14,15 +14,16 @@ body {
   @apply bg-mainbg
 }
 .notification {
-  @apply absolute py-4 text-neutral px-6 w-128 right-72 top-20 -mt-2 rounded-xl shadow-2xl bg-dashbg text-left invisible
+  @apply absolute py-4 text-neutral px-6 w-128 right-40 top-20 -mt-2 rounded-xl shadow-3xl bg-dashbg text-left invisible duration-300;
+  box-shadow: 0px 16px 64px 5px #1f304726;
 }
 .show-note {
-  @apply top-20 visible 
+  @apply top-16 visible 
   
 }
 
 .remove-note {
-  @apply top-24 invisible
+  @apply top-28 invisible duration-300 opacity-0
 }
 .arrow::before {
     content: "";
@@ -202,9 +203,38 @@ body {
     }
 
     .section h1 {
-      @apply text-sm font-semibold text-dark mb-3
+      @apply text-sm font-medium text-dark mb-3
     }
 
     .real-estate {
-      @apply p-4 bg-mainbg rounded-2xl flex items-center
+      @apply p-3 bg-mainbg rounded-2xl flex items-center justify-between
     }
+
+
+    .income2 {
+      @apply w-1/2 py-3
+    }
+    .income2 h1{
+      @apply font-bold text-xl mb-2 text-secondary
+    }
+
+    .income2 p {
+      @apply text-secondary font-medium text-lg
+    }
+
+    /* .open-modal {
+      @apply visible duration-300
+    }
+
+    .close-modal {
+      @apply invisible duration-300
+    } */
+
+/* .show-note {
+  @apply top-16 visible 
+  
+}
+
+.remove-note {
+  @apply top-28 invisible duration-300 opacity-0
+} */

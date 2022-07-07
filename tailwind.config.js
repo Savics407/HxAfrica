@@ -13,6 +13,9 @@ module.exports = {
       'family': ['Poppins'],
      },
     extend: { 
+        boxShadow: {
+        '3xl': '0 16px 64px -48px rgba(31, 47, 70, 0.15)',
+      },
       colors: {
         primary: "#EDFDFD",
         green: "#008E10",
@@ -44,7 +47,10 @@ module.exports = {
         darkgray: "#263238",
         join: '#4B4B4B', 
         footer : '#777E90',
-        neutral: '#23262F'
+        neutral: '#23262F',
+        overlay: 'rgba(0, 0, 0, 0.3)', 
+        modal:"#342D6E",
+        strek: "#7281FF26"
       },
       fontSize: {
       'tiny': '10px',
@@ -53,9 +59,9 @@ module.exports = {
        width: {
         '128': '452px',
       },
-      boxShadow: {
-        '3xl': '0px 16px 64px -48px rgba(31, 47, 70, 0.15)',
-      },
+      // boxShadow: {
+      //   '3xl': '0px 16px 64px -48px rgba(31, 47, 70, 0.15)',
+      // },
     },
   },
   plugins: [],
