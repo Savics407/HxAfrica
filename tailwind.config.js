@@ -50,7 +50,9 @@ module.exports = {
         neutral: '#23262F',
         overlay: 'rgba(0, 0, 0, 0.3)', 
         modal:"#342D6E",
-        strek: "#7281FF26"
+        strek: "#7281FF26",
+        tokentext: "#353945",
+        payment: "#777E91"
       },
       fontSize: {
       'tiny': '10px',

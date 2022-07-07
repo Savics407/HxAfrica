@@ -13,11 +13,17 @@ import Investments from './Investments'
 import Myinvests from './Myinvestments'
 import diamond from './images/diamond.png'
 import Tab from './Header'
+import BuyToken from './BuyToken'
+import { useState } from 'react'
 
 
 function Dashboard () {
+    const [buyToken, setBuyToken] = useState(false)
+
     return (
         <div className='font-family bg-mainbg'>
+            {buyToken && <BuyToken className="z-10" closeToken={setBuyToken}/>}
+
             <Tab />
             <div className='bg-white px-80 border flex justify-between items-center text-navbar text-base font-semibold'>
                 <div className='nav-items active'>
@@ -65,7 +71,10 @@ function Dashboard () {
                                 </div>
                             </div>
                             <div>
-                                <button className='bg-green font-medium text-bases text-white rounded-full px-8 py-4'>Buy Token</button>
+                                <button className='bg-green font-medium text-bases text-white rounded-full px-8 py-4'
+                                    onClick={() => {
+                                        setBuyToken(true)
+                                    }}>Buy Token</button>
                             </div>
                         </div>
                     </div>

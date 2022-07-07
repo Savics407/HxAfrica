@@ -2,9 +2,13 @@ import { MdClose } from 'react-icons/md'
 import hdimage from './images/invest_image.png'
 import { motion} from "framer-motion"
 import { useState } from 'react'
+// import { TbLoader } from 'react-icons/tb'
 
 function Details({ closeDetails }) {
     const [authPullOut, setAuthPullOut] = useState(false)
+    const [isClick, setIsClick] = useState(0);
+    // const [details, setDetails] = useState(true)
+    
 
     return(
         <>
@@ -24,12 +28,11 @@ function Details({ closeDetails }) {
                         delay: 0.5
                     }
                 }}
-                className='flex items-center justify-center fixed top-0 right-0 bottom-0 left-0 bg-overlay'
+                className='flex items-center justify-center fixed top-0 right-0 bottom-0 left-0 bg-overlay z-50'
                 // onClick={() => {
                 //         closeDetails(false)
                 //     }}
                 >
-            {authPullOut && <Warning className="z-10"/> }
                 <motion.div 
                     initial = {{
                         scale: 0
@@ -47,7 +50,7 @@ function Details({ closeDetails }) {
                             delay: 0.5
                         }
                     }}
-                    className="bg-white rounded-xl border w-1/2 z-10">
+                    className={`bg-white rounded-xl border w-1/2 ${isClick ? 'hide' : 'display'}`}>
                     <div className='border-b border-stroke px-10 py-5 text-2xl font-semibold flex justify-between items-center text-modal'>
                             <h1>Investments</h1>
                             <MdClose className='cursor-pointer'
@@ -90,10 +93,13 @@ function Details({ closeDetails }) {
                             <button className='border rounded-full w-44 h-12 text-dashbg bg-red'
                                 onClick={() => {
                                     setAuthPullOut(true)
+                                    setIsClick(!isClick)
                                 }}>Pull Out</button>
                         </div>
                     </div>
+
                 </motion.div>
+                {authPullOut && <Warning closeWarning={setIsClick} />}
             </motion.div>
             {/* <div className="fixed top-0 right-0 bottom-0 left-0 bg-overlay -z-10"></div> */}
 
@@ -101,23 +107,79 @@ function Details({ closeDetails }) {
     )
 }
 
-function Warning(){
+function Warning({closeWarning}){
+    const [warning, setWarning] = useState(true)
     return(
         <>
-            <div className='w-1/3 bg-white rounded-xl'>
+            <motion.div 
+                initial = {{
+                    opacity: 0
+                }}
+                animate = {{
+                    opacity: 1,
+                    transition: {
+                        duration: 0.5
+                    }
+                }}
+                exit = {{
+                    opacity: 0,
+                    transition: {
+                        delay: 0.5
+                    }
+                }}
+                className={`w-128 bg-white rounded-xl absolute border-green p-6 text-center ${warning ? 'display' : 'hide'} `}>
                 <div>
-                    <h1>Warning!</h1>
+                    <h1 className='font-bold text-neutral text-3xl'>Warning!</h1>
                 </div>
-                <div>
-                    <p>Are you sure you want to pull our from the “Crowdfunding” investments?</p>
+                <div className='font-semibold text-base text-neutral my-8'>
+                    <p>Are you sure you want to pull our from the <span className='text-green'>“Crowdfunding” </span> investments?</p>
                 </div>
-                <div>
-                    <button>No, Cancel</button>
-                    <button>Yes, Pull Out</button>
+                <div className='flex justify-between'>
+                    <button className='border rounded-full w-44 h-12 text-neutral bg-dashbg'
+                        onClick={() => {
+                            closeWarning(false)
+                            setWarning(!warning)
+                        }}>No, Cancel</button>
+                    <button className='rounded-full w-44 h-12 text-dashbg bg-red'>Yes, Pull Out</button>
                 </div>
-            </div>
+            </motion.div>
+            
         </>
     )
 }
- 
+
+// function Processing(){
+//     return(
+//         <>
+//             <motion.div 
+//                 initial = {{
+//                     opacity: 0
+//                 }}
+//                 animate = {{
+//                     opacity: 1,
+//                     transition: {
+//                         duration: 0.5
+//                     }
+//                 }}
+//                 exit = {{
+//                     opacity: 0,
+//                     transition: {
+//                         delay: 0.5
+//                     }
+//                 }}
+//                 className="w-128 bg-white rounded-xl absolute border-green p-6 text-center">
+//                 <div>
+//                     <h1 className='font-bold text-neutral text-3xl'>Processing BVN</h1>
+//                 </div>
+//                 <div className='font-semibold text-base text-neutral my-8'>
+//                     <p>Please wait while we process your BVN. This will take few seconds.</p>
+//                 </div>
+//                 <div className='flex justify-center'>
+//                     <button className='rounded-full w-28 h-12 text-neutral flex justify-around items-center'><TbLoader /> Processing</button>
+//                 </div>
+//             </motion.div>
+//         </>
+//     )
+// }
+
 export default Details;

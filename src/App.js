@@ -5,6 +5,8 @@ import Auth from './assets/Signup';
 import Dashboard from './assets/Dashboard'
 import Details from './assets/Investment_Details'
 import { Routes, Route, Link} from 'react-router-dom'
+import Processing from './assets/ProcessingBvn';
+import Investment from './assets/Investment';
 
 function App() {
   return (
@@ -14,6 +16,8 @@ function App() {
           {/* <Route path="/login" element={<Login />} /> */}
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/details" element={<Details />} />
+          <Route path="/bvn" element={<Processing />} />
+          <Route path="/investment" element={<Investment />} />
         </Routes> 
       </div>
   );

@@ -13,6 +13,17 @@
 body {
   @apply bg-mainbg
 }
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
 .notification {
   @apply absolute py-4 text-neutral px-6 w-128 right-40 top-20 -mt-2 rounded-xl shadow-3xl bg-dashbg text-left invisible duration-300;
   box-shadow: 0px 16px 64px 5px #1f304726;
@@ -222,13 +233,13 @@ body {
       @apply text-secondary font-medium text-lg
     }
 
-    /* .open-modal {
+    .display{
       @apply visible duration-300
     }
 
-    .close-modal {
+    .hide {
       @apply invisible duration-300
-    } */
+    }
 
 /* .show-note {
   @apply top-16 visible 

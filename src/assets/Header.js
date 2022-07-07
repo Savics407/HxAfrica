@@ -2,7 +2,7 @@ import user from "./images/user_icon.png"
 import { FaAngleDown } from 'react-icons/fa'
 import { FaBell } from 'react-icons/fa'
 import { useState } from "react"
-
+import logo from './images/REICLogo.png'
 
 function Tab() {
 
@@ -11,7 +11,9 @@ function Tab() {
         <>
             <div className="bg-green text-center text-white py-4 ">
                 <div className='w-10/12 m-auto flex items-center justify-between hidden md:flex'>
-                    <div className="bg-media w-48 h-12"></div>
+                    <div className="w-48 h-12">
+                        <img src={logo} alt="REIC Logo" />
+                    </div>
                     <div className=" border-white flex items-center">
                         <div 
                             className="bg-primary text-dark rounded-full px-3 py-2.5 relative cursor-pointer"
