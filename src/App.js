@@ -12,6 +12,8 @@ import Completed from './assets/Completed';
 import Mine from './assets/Mine';
 import Relisted from './assets/Relisted';
 import Token from './assets/Token';
+import AddBank from './assets/AddBank';
+import Notification from './assets/Notification';
 
 function App() {
   return (
@@ -22,7 +24,9 @@ function App() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/token" element={<Token />} />
           <Route path="/details" element={<Details />} />
+          <Route path="/addbank" element={<AddBank />} />
           <Route path="/bvn" element={<Processing />} />
+          <Route path="/notification" element={<Notification />} />
           <Route path="/investment" element={<Investment />} />
           <Route path="/investments/ongoing" element={<Ongoing />} />
           <Route path="/investments/completed" element={<Completed />} />

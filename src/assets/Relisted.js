@@ -18,7 +18,7 @@ function Relisted() {
                     </div>
                     <InvestTabs />
                     <div className='mb-8 mine'>
-                        <div className='bg-dashbg w-full px-5 py-1 flex justify-between my-8'>
+                        <div className='bg-dashbg w-full px-5 py-1 flex justify-between my-7'>
                             <div className='text-head font-semibold text-sm table'><h1>Investments</h1></div>
                             <div className='text-head font-semibold text-sm table'><h1>Duration</h1></div>
                             <div className='text-head font-semibold text-sm table'><h1>Property Worth</h1></div>
@@ -27,188 +27,191 @@ function Relisted() {
                             <div className='text-head font-semibold text-sm table'><h1>Ends in</h1></div>
                             <div className='text-head font-semibold text-sm table text-center'><h1>Action</h1></div>
                         </div>
-                        <div className='w-full flex justify-between px-5 border-b py-8 border-statusborder'>
-                            <div className='text-footer font-bold text-sm flex'>
-                                <img src={crowd} alt="crowdfunding" />
-                                <div className='ml-3'>
-                                    <h1>Investments</h1><h2 className='font-medium font-xs'>Real-Estate</h2>
+                        <div className='px-2'>
+                            <div className='w-full flex justify-between border-b py-8 border-statusborder'>
+                                <div className='text-footer font-bold text-sm flex'>
+                                    <img src={crowd} alt="crowdfunding" />
+                                    <div className='ml-2'>
+                                        <h1>Investments</h1><h2 className='font-medium font-xs'>Real-Estate</h2>
+                                    </div>
+                                </div>
+                                <div className='text-footer font-bold text-sm table'>
+                                    <h1>4 Months</h1>
+                                </div>
+                                <div className='text-footer font-bold text-sm table'>
+                                    <h1>N200,000,000</h1>
+                                </div>
+                                <div className='text-footer font-bold text-sm table'>
+                                    <h1>N40,000.00</h1>
+                                </div>
+                                <div className='text-footer font-bold text-sm table'>
+                                    <h1>N40,000.00</h1><h2 className='font-medium font-xs'>100% Interest</h2>
+                                </div>
+                                <div className='text-footer font-bold text-sm table'>
+                                    <h1>18 days</h1>
+                                </div>
+                                <div className='table text-right table'>
+                                    <button className='bg-pending text-xs text-red w-28 h-9 rounded-full font-medium'>Pull Out</button>
                                 </div>
                             </div>
-                            <div className='text-footer font-bold text-sm table'>
-                                <h1>4 Months</h1>
-                            </div>
-                            <div className='text-footer font-bold text-sm table'>
-                                <h1>N200,000,000</h1>
-                            </div>
-                            <div className='text-footer font-bold text-sm table'>
-                                <h1>N40,000.00</h1>
-                            </div>
-                            <div className='text-footer font-bold text-sm table'>
-                                <h1>N40,000.00</h1><h2 className='font-medium font-xs'>100% Interest</h2>
-                            </div>
-                            <div className='text-footer font-bold text-sm table'>
-                                <h1>18 days</h1>
-                            </div>
-                            <div className='table text-right table'>
-                                <button className='bg-pending text-xs text-red w-28 h-9 rounded-full font-medium'>Pull Out</button>
-                            </div>
-                        </div>
-                        <div className='w-full flex justify-between px-5 border-b py-8 border-statusborder'>
-                            <div className='text-footer font-bold text-sm flex'>
-                                <img src={crowd} alt="crowdfunding" />
-                                <div className='ml-3'>
-                                    <h1>Investments</h1><h2 className='font-medium font-xs'>Real-Estate</h2>
+                            <div className='w-full flex justify-between border-b py-8 border-statusborder'>
+                                <div className='text-footer font-bold text-sm flex'>
+                                    <img src={crowd} alt="crowdfunding" />
+                                    <div className='ml-2'>
+                                        <h1>Investments</h1><h2 className='font-medium font-xs'>Real-Estate</h2>
+                                    </div>
+                                </div>
+                                <div className='text-footer font-bold text-sm table'>
+                                    <h1>4 Months</h1>
+                                </div>
+                                <div className='text-footer font-bold text-sm table'>
+                                    <h1>N200,000,000</h1>
+                                </div>
+                                <div className='text-footer font-bold text-sm table'>
+                                    <h1>N40,000.00</h1>
+                                </div>
+                                <div className='text-footer font-bold text-sm table'>
+                                    <h1>N40,000.00</h1><h2 className='font-medium font-xs'>100% Interest</h2>
+                                </div>
+                                <div className='text-footer font-bold text-sm table'>
+                                    <h1>18 days</h1>
+                                </div>
+                                <div className='table text-right table'>
+                                    <button className='bg-pending text-xs text-red w-28 h-9 rounded-full font-medium'>Pull Out</button>
                                 </div>
                             </div>
-                            <div className='text-footer font-bold text-sm table'>
-                                <h1>4 Months</h1>
-                            </div>
-                            <div className='text-footer font-bold text-sm table'>
-                                <h1>N200,000,000</h1>
-                            </div>
-                            <div className='text-footer font-bold text-sm table'>
-                                <h1>N40,000.00</h1>
-                            </div>
-                            <div className='text-footer font-bold text-sm table'>
-                                <h1>N40,000.00</h1><h2 className='font-medium font-xs'>100% Interest</h2>
-                            </div>
-                            <div className='text-footer font-bold text-sm table'>
-                                <h1>18 days</h1>
-                            </div>
-                            <div className='table text-right table'>
-                                <button className='bg-pending text-xs text-red w-28 h-9 rounded-full font-medium'>Pull Out</button>
-                            </div>
-                        </div>
-                        <div className='w-full flex justify-between px-5 border-b py-8 border-statusborder'>
-                            <div className='text-footer font-bold text-sm flex'>
-                                <img src={crowd} alt="crowdfunding" />
-                                <div className='ml-3'>
-                                    <h1>Investments</h1><h2 className='font-medium font-xs'>Real-Estate</h2>
+                            <div className='w-full flex justify-between border-b py-8 border-statusborder'>
+                                <div className='text-footer font-bold text-sm flex'>
+                                    <img src={crowd} alt="crowdfunding" />
+                                    <div className='ml-2'>
+                                        <h1>Investments</h1><h2 className='font-medium font-xs'>Real-Estate</h2>
+                                    </div>
+                                </div>
+                                <div className='text-footer font-bold text-sm table'>
+                                    <h1>4 Months</h1>
+                                </div>
+                                <div className='text-footer font-bold text-sm table'>
+                                    <h1>N200,000,000</h1>
+                                </div>
+                                <div className='text-footer font-bold text-sm table'>
+                                    <h1>N40,000.00</h1>
+                                </div>
+                                <div className='text-footer font-bold text-sm table'>
+                                    <h1>N40,000.00</h1><h2 className='font-medium font-xs'>100% Interest</h2>
+                                </div>
+                                <div className='text-footer font-bold text-sm table'>
+                                    <h1>18 days</h1>
+                                </div>
+                                <div className='table text-right table'>
+                                    <button className='bg-pending text-xs text-red w-28 h-9 rounded-full font-medium'>Pull Out</button>
                                 </div>
                             </div>
-                            <div className='text-footer font-bold text-sm table'>
-                                <h1>4 Months</h1>
-                            </div>
-                            <div className='text-footer font-bold text-sm table'>
-                                <h1>N200,000,000</h1>
-                            </div>
-                            <div className='text-footer font-bold text-sm table'>
-                                <h1>N40,000.00</h1>
-                            </div>
-                            <div className='text-footer font-bold text-sm table'>
-                                <h1>N40,000.00</h1><h2 className='font-medium font-xs'>100% Interest</h2>
-                            </div>
-                            <div className='text-footer font-bold text-sm table'>
-                                <h1>18 days</h1>
-                            </div>
-                            <div className='table text-right table'>
-                                <button className='bg-pending text-xs text-red w-28 h-9 rounded-full font-medium'>Pull Out</button>
-                            </div>
-                        </div>
-                        <div className='w-full flex justify-between px-5 border-b py-8 border-statusborder'>
-                            <div className='text-footer font-bold text-sm flex'>
-                                <img src={crowd} alt="crowdfunding" />
-                                <div className='ml-3'>
-                                    <h1>Investments</h1><h2 className='font-medium font-xs'>Real-Estate</h2>
+                            <div className='w-full flex justify-between border-b py-8 border-statusborder'>
+                                <div className='text-footer font-bold text-sm flex'>
+                                    <img src={crowd} alt="crowdfunding" />
+                                    <div className='ml-2'>
+                                        <h1>Investments</h1><h2 className='font-medium font-xs'>Real-Estate</h2>
+                                    </div>
+                                </div>
+                                <div className='text-footer font-bold text-sm table'>
+                                    <h1>4 Months</h1>
+                                </div>
+                                <div className='text-footer font-bold text-sm table'>
+                                    <h1>N200,000,000</h1>
+                                </div>
+                                <div className='text-footer font-bold text-sm table'>
+                                    <h1>N40,000.00</h1>
+                                </div>
+                                <div className='text-footer font-bold text-sm table'>
+                                    <h1>N40,000.00</h1><h2 className='font-medium font-xs'>100% Interest</h2>
+                                </div>
+                                <div className='text-footer font-bold text-sm table'>
+                                    <h1>18 days</h1>
+                                </div>
+                                <div className='table text-right table'>
+                                    <button className='bg-pending text-xs text-red w-28 h-9 rounded-full font-medium'>Pull Out</button>
                                 </div>
                             </div>
-                            <div className='text-footer font-bold text-sm table'>
-                                <h1>4 Months</h1>
-                            </div>
-                            <div className='text-footer font-bold text-sm table'>
-                                <h1>N200,000,000</h1>
-                            </div>
-                            <div className='text-footer font-bold text-sm table'>
-                                <h1>N40,000.00</h1>
-                            </div>
-                            <div className='text-footer font-bold text-sm table'>
-                                <h1>N40,000.00</h1><h2 className='font-medium font-xs'>100% Interest</h2>
-                            </div>
-                            <div className='text-footer font-bold text-sm table'>
-                                <h1>18 days</h1>
-                            </div>
-                            <div className='table text-right table'>
-                                <button className='bg-pending text-xs text-red w-28 h-9 rounded-full font-medium'>Pull Out</button>
-                            </div>
-                        </div>
-                        <div className='w-full flex justify-between px-5 border-b py-8 border-statusborder'>
-                            <div className='text-footer font-bold text-sm flex'>
-                                <img src={crowd} alt="crowdfunding" />
-                                <div className='ml-3'>
-                                    <h1>Investments</h1><h2 className='font-medium font-xs'>Real-Estate</h2>
+                            <div className='w-full flex justify-between border-b py-8 border-statusborder'>
+                                <div className='text-footer font-bold text-sm flex'>
+                                    <img src={crowd} alt="crowdfunding" />
+                                    <div className='ml-2'>
+                                        <h1>Investments</h1><h2 className='font-medium font-xs'>Real-Estate</h2>
+                                    </div>
+                                </div>
+                                <div className='text-footer font-bold text-sm table'>
+                                    <h1>4 Months</h1>
+                                </div>
+                                <div className='text-footer font-bold text-sm table'>
+                                    <h1>N200,000,000</h1>
+                                </div>
+                                <div className='text-footer font-bold text-sm table'>
+                                    <h1>N40,000.00</h1>
+                                </div>
+                                <div className='text-footer font-bold text-sm table'>
+                                    <h1>N40,000.00</h1><h2 className='font-medium font-xs'>100% Interest</h2>
+                                </div>
+                                <div className='text-footer font-bold text-sm table'>
+                                    <h1>18 days</h1>
+                                </div>
+                                <div className='table text-right table'>
+                                    <button className='bg-pending text-xs text-red w-28 h-9 rounded-full font-medium'>Pull Out</button>
                                 </div>
                             </div>
-                            <div className='text-footer font-bold text-sm table'>
-                                <h1>4 Months</h1>
-                            </div>
-                            <div className='text-footer font-bold text-sm table'>
-                                <h1>N200,000,000</h1>
-                            </div>
-                            <div className='text-footer font-bold text-sm table'>
-                                <h1>N40,000.00</h1>
-                            </div>
-                            <div className='text-footer font-bold text-sm table'>
-                                <h1>N40,000.00</h1><h2 className='font-medium font-xs'>100% Interest</h2>
-                            </div>
-                            <div className='text-footer font-bold text-sm table'>
-                                <h1>18 days</h1>
-                            </div>
-                            <div className='table text-right table'>
-                                <button className='bg-pending text-xs text-red w-28 h-9 rounded-full font-medium'>Pull Out</button>
-                            </div>
-                        </div>
-                        <div className='w-full flex justify-between px-5 border-b py-8 border-statusborder'>
-                            <div className='text-footer font-bold text-sm flex'>
-                                <img src={crowd} alt="crowdfunding" />
-                                <div className='ml-3'>
-                                    <h1>Investments</h1><h2 className='font-medium font-xs'>Real-Estate</h2>
+                            <div className='w-full flex justify-between border-b py-8 border-statusborder'>
+                                <div className='text-footer font-bold text-sm flex'>
+                                    <img src={crowd} alt="crowdfunding" />
+                                    <div className='ml-2'>
+                                        <h1>Investments</h1><h2 className='font-medium font-xs'>Real-Estate</h2>
+                                    </div>
+                                </div>
+                                <div className='text-footer font-bold text-sm table'>
+                                    <h1>4 Months</h1>
+                                </div>
+                                <div className='text-footer font-bold text-sm table'>
+                                    <h1>N200,000,000</h1>
+                                </div>
+                                <div className='text-footer font-bold text-sm table'>
+                                    <h1>N40,000.00</h1>
+                                </div>
+                                <div className='text-footer font-bold text-sm table'>
+                                    <h1>N40,000.00</h1><h2 className='font-medium font-xs'>100% Interest</h2>
+                                </div>
+                                <div className='text-footer font-bold text-sm table'>
+                                    <h1>18 days</h1>
+                                </div>
+                                <div className='table text-right table'>
+                                    <button className='bg-pending text-xs text-red w-28 h-9 rounded-full font-medium'>Pull Out</button>
                                 </div>
                             </div>
-                            <div className='text-footer font-bold text-sm table'>
-                                <h1>4 Months</h1>
-                            </div>
-                            <div className='text-footer font-bold text-sm table'>
-                                <h1>N200,000,000</h1>
-                            </div>
-                            <div className='text-footer font-bold text-sm table'>
-                                <h1>N40,000.00</h1>
-                            </div>
-                            <div className='text-footer font-bold text-sm table'>
-                                <h1>N40,000.00</h1><h2 className='font-medium font-xs'>100% Interest</h2>
-                            </div>
-                            <div className='text-footer font-bold text-sm table'>
-                                <h1>18 days</h1>
-                            </div>
-                            <div className='table text-right table'>
-                                <button className='bg-pending text-xs text-red w-28 h-9 rounded-full font-medium'>Pull Out</button>
-                            </div>
-                        </div>
-                        <div className='w-full flex justify-between px-5 border-b py-8 border-statusborder'>
-                            <div className='text-footer font-bold text-sm flex'>
-                                <img src={crowd} alt="crowdfunding" />
-                                <div className='ml-3'>
-                                    <h1>Investments</h1><h2 className='font-medium font-xs'>Real-Estate</h2>
+                            <div className='w-full flex justify-between border-b py-8 border-statusborder'>
+                                <div className='text-footer font-bold text-sm flex'>
+                                    <img src={crowd} alt="crowdfunding" />
+                                    <div className='ml-2'>
+                                        <h1>Investments</h1><h2 className='font-medium font-xs'>Real-Estate</h2>
+                                    </div>
+                                </div>
+                                <div className='text-footer font-bold text-sm table'>
+                                    <h1>4 Months</h1>
+                                </div>
+                                <div className='text-footer font-bold text-sm table'>
+                                    <h1>N200,000,000</h1>
+                                </div>
+                                <div className='text-footer font-bold text-sm table'>
+                                    <h1>N40,000.00</h1>
+                                </div>
+                                <div className='text-footer font-bold text-sm table'>
+                                    <h1>N40,000.00</h1><h2 className='font-medium font-xs'>100% Interest</h2>
+                                </div>
+                                <div className='text-footer font-bold text-sm table'>
+                                    <h1>18 days</h1>
+                                </div>
+                                <div className='table text-right table'>
+                                    <button className='bg-pending text-xs text-red w-28 h-9 rounded-full font-medium'>Pull Out</button>
                                 </div>
                             </div>
-                            <div className='text-footer font-bold text-sm table'>
-                                <h1>4 Months</h1>
-                            </div>
-                            <div className='text-footer font-bold text-sm table'>
-                                <h1>N200,000,000</h1>
-                            </div>
-                            <div className='text-footer font-bold text-sm table'>
-                                <h1>N40,000.00</h1>
-                            </div>
-                            <div className='text-footer font-bold text-sm table'>
-                                <h1>N40,000.00</h1><h2 className='font-medium font-xs'>100% Interest</h2>
-                            </div>
-                            <div className='text-footer font-bold text-sm table'>
-                                <h1>18 days</h1>
-                            </div>
-                            <div className='table text-right table'>
-                                <button className='bg-pending text-xs text-red w-28 h-9 rounded-full font-medium'>Pull Out</button>
-                            </div>
                         </div>
+                        
                     </div>
                 </div>
             </div>

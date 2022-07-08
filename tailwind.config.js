@@ -11,6 +11,7 @@ module.exports = {
       'display': ['Oswald',],
       'body': ['"Open Sans"'],
       'family': ['Poppins'],
+      'inter': ['Inter'],
      },
     extend: { 
         boxShadow: {
@@ -36,6 +37,7 @@ module.exports = {
         token: '#7E7E99', 
         media: '#58BD7D',
         stroke: "rgba(114, 129, 255, 0.15)", 
+        strokegrey: 'rgba(0, 0, 0, 0.19);',
         secondary:"#555860", 
         links: "#2360FF", 
         'light-purple': 'rgba(235, 189, 221, 0.44)', 
@@ -65,13 +67,14 @@ module.exports = {
       },
       fontSize: {
       'tiny': '10px',
-      'xxm': '8px'
+      'xxm': '8px',
+      '4l': '28px'
       },
        width: {
         '128': '452px',
         '2/6': '32%',
         '6x' : "13%",
-        '7x' : "12%"
+        '7x' : "130px"
       },
       // boxShadow: {
       //   '3xl': '0px 16px 64px -48px rgba(31, 47, 70, 0.15)',

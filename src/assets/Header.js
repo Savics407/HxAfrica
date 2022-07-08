@@ -8,7 +8,7 @@ import { MdDashboard } from 'react-icons/md'
 import { MdInsertChart } from 'react-icons/md'
 import { AiFillDollarCircle } from 'react-icons/ai'
 import { RiSettings3Fill } from 'react-icons/ri'
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 function Header() {
 
@@ -64,7 +64,9 @@ function Header() {
                                 </div>
                                 <div className="flex items-center justify-between">
                                     <div className="">
-                                        <button className="bg-green rounded-full text-dashbg w-48 h-10 text-sm">View all</button>
+                                        <Link to="/notification">
+                                            <button className="bg-green rounded-full text-dashbg w-48 h-10 text-sm">View all</button>
+                                        </Link>
                                     </div>
                                     <div>
                                         <button className="border rounded-full text-neutral w-48 h-10 text-sm">Clear all</button>
