@@ -3,8 +3,14 @@ import { FaAngleDown } from 'react-icons/fa'
 import { FaBell } from 'react-icons/fa'
 import { useState } from "react"
 import logo from './images/REICLogo.png'
+import status from "./images/status.png"
+import { MdDashboard } from 'react-icons/md'
+import { MdInsertChart } from 'react-icons/md'
+import { AiFillDollarCircle } from 'react-icons/ai'
+import { RiSettings3Fill } from 'react-icons/ri'
+import { NavLink } from "react-router-dom";
 
-function Tab() {
+function Header() {
 
     const [isClick, setIsClick] = useState(false)
     return (
@@ -69,8 +75,34 @@ function Tab() {
                     </div>
                 </div>
             </div>
+            <div className='bg-white px-80 border flex justify-between items-center text-navbar text-base font-semibold'>
+                <NavLink to="/dashboard">
+                    <div className='nav-items'>
+                        <MdDashboard className='ds-icons'/>
+                        <h1>Dashboard</h1>
+                    </div>
+                </NavLink>
+                <NavLink to="/investment">
+                    <div className='nav-items'>
+                        <MdInsertChart className='ds-icons' />
+                        <h1>Investment</h1>
+                    </div>
+                </NavLink>
+                <NavLink to="/dashboard">
+                    <div className='nav-items'>
+                        <AiFillDollarCircle className='ds-icons' />
+                        <h1>Token</h1>
+                    </div>
+                </NavLink>
+                <NavLink to="/dashboard">
+                    <div className='nav-items'>
+                        <RiSettings3Fill className='ds-icons' />
+                        <h1>Settings</h1>
+                    </div>
+                </NavLink>
+            </div>
         </>
     )
 }
 
-export default Tab;
+export default Header;

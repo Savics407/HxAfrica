@@ -13,17 +13,6 @@
 body {
   @apply bg-mainbg
 }
-
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-
-/* Firefox */
-input[type=number] {
-  -moz-appearance: textfield;
-}
 .notification {
   @apply absolute py-4 text-neutral px-6 w-128 right-40 top-20 -mt-2 rounded-xl shadow-3xl bg-dashbg text-left invisible duration-300;
   box-shadow: 0px 16px 64px 5px #1f304726;
@@ -161,13 +150,20 @@ input[type=number] {
     }
 
     .nav-items {
-      @apply flex py-4 items-center rounded px-2 hover:text-green hover:cursor-pointer hover:border-b-4 hover:border-green border-b-4 border-transparent duration-500
+      @apply flex py-2.5 items-center rounded px-2 hover:text-green hover:cursor-pointer border-b-4 border-transparent duration-500
     }
 
     .active {
-      @apply border-b-4 border-green text-green
+      @apply border-b-4 border-green text-green rounded
     }
 
+    .vestabs {
+        @apply py-2.5 hover:text-green hover:cursor-pointer font-semibold duration-500 uppercase
+    }
+
+    .tab .active {
+      @apply border-b-2 border-green text-green rounded-none
+    }
     .welcome {
       background-image:url(../src/assets/images/frame.png);
       background-repeat: no-repeat;
@@ -233,13 +229,13 @@ input[type=number] {
       @apply text-secondary font-medium text-lg
     }
 
-    .display{
+    /* .open-modal {
       @apply visible duration-300
     }
 
-    .hide {
+    .close-modal {
       @apply invisible duration-300
-    }
+    } */
 
 /* .show-note {
   @apply top-16 visible 

@@ -52,7 +52,10 @@ module.exports = {
         modal:"#342D6E",
         strek: "#7281FF26",
         tokentext: "#353945",
-        payment: "#777E91"
+        payment: "#777E91",
+        vestabs: '#7D8698',
+        vestabsborder: '#C6C6C6',
+        more : '#E6E8EC'
       },
       fontSize: {
       'tiny': '10px',
