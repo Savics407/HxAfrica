@@ -32,8 +32,8 @@ function Token() {
                             </div>
                         </div>
                         
-                        <div className='p-8 flex items-center border w-3/5'>
-                            <div className='w-1/2 px-4 border-r border-light-blue '>
+                        <div className='px-8 flex items-center justify-between w-3/5'>
+                            <div className='w-1/2 px-4 border-l border-light-blue '>
                                 <img src={dollar} alt="dollar-icon" className='mb-4 h-6 w-6'/>
                                 <p className='text-earnings font-medium text-xs mb-1'>Total Earnings Reic</p>
                                 <h1 className='text-dark text-2xl font-medium'>$200,000</h1>    
@@ -43,7 +43,11 @@ function Token() {
                                 <p className='text-earnings font-medium text-xs mb-1'>Total Earnings Reic</p>
                                 <h1 className='text-dark text-2xl font-medium'>$200,000</h1>    
                             </div>
-                            
+                            <div className='w-1/2 px-4'>
+                                <img src={coin} alt="dollar-icon" className='mb-4 h-6 w-6'/>
+                                <p className='text-earnings font-medium text-xs mb-1'>Total Earnings Reic</p>
+                                <h1 className='text-dark text-2xl font-medium'>$200,000</h1>    
+                            </div>
                         </div>
                         
                     </div>
