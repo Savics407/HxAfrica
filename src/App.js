@@ -14,6 +14,9 @@ import Relisted from './assets/Relisted';
 import Token from './assets/Token';
 import AddBank from './assets/AddBank';
 import Notification from './assets/Notification';
+import Profile from './assets/Settings';
+import ChangePassword from './assets/ChangePassword';
+import Activity from './assets/Activity';
 
 function App() {
   return (
@@ -22,6 +25,9 @@ function App() {
           <Route path="/" element={<Auth />} />
           {/* <Route path="/login" element={<Login />} /> */}
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/settings" element={<Profile />} />
+          <Route path="/change-password" element={<ChangePassword />} />
+          <Route path="/activities" element={<Activity />} />
           <Route path="/token" element={<Token />} />
           <Route path="/details" element={<Details />} />
           <Route path="/addbank" element={<AddBank />} />

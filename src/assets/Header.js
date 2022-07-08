@@ -96,7 +96,7 @@ function Header() {
                         <h1>Token</h1>
                     </div>
                 </NavLink>
-                <NavLink to="/dashboard">
+                <NavLink to="/settings">
                     <div className='nav-items'>
                         <RiSettings3Fill className='ds-icons' />
                         <h1>Settings</h1>

@@ -63,7 +63,8 @@ module.exports = {
         status: '#F8F8F8',
         statusborder: '#ECF3FC',
         pendingtext: '#FFA500',
-        pending: '#fff8eb'
+        pending: '#fff8eb',
+        change: '#0177FB'
       },
       fontSize: {
       'tiny': '10px',
