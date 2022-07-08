@@ -88,7 +88,7 @@ function Header() {
                         <h1>Investment</h1>
                     </div>
                 </NavLink>
-                <NavLink to="/dashboard">
+                <NavLink to="/token">
                     <div className='nav-items'>
                         <AiFillDollarCircle className='ds-icons' />
                         <h1>Token</h1>

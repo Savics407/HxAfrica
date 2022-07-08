@@ -25,10 +25,10 @@ function Investment () {
                         <h1 className='text-modal text-2xl font-semibold'>Investments</h1>
                     </div>
                     <div>
-                        <img src={banner} alt="Buy_REIC_Token" cla/>
+                        <img src={banner} alt="Buy_REIC_Token" className='w-full'/>
                     </div>
                     <InvestTabs />
-                    <div className=''>
+                    <div className='investlists'>
                         <div className='flex justify-between mb-4'>
                             <div className='real-estate'>
                                     <div className='mr-1.5 w-1/3 h-full'>

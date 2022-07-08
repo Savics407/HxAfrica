@@ -55,7 +55,13 @@ module.exports = {
         payment: "#777E91",
         vestabs: '#7D8698',
         vestabsborder: '#C6C6C6',
-        more : '#E6E8EC'
+        more : '#E6E8EC',
+        head: '#979797',
+        statustext: '#667085',
+        status: '#F8F8F8',
+        statusborder: '#ECF3FC',
+        pendingtext: '#FFA500',
+        pending: '#fff8eb'
       },
       fontSize: {
       'tiny': '10px',
@@ -63,6 +69,9 @@ module.exports = {
       },
        width: {
         '128': '452px',
+        '2/6': '32%',
+        '6x' : "13%",
+        '7x' : "12%"
       },
       // boxShadow: {
       //   '3xl': '0px 16px 64px -48px rgba(31, 47, 70, 0.15)',

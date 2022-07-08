@@ -14,26 +14,34 @@ function InvestTabs() {
                             </NavLink>
                         </div>
                         <div className='tabs mr-8'>
-                            <NavLink to="/ongoing">
+                            <NavLink to="/investments/ongoing">
                                 <div className='vestabs'>
                                     <h1>Ongoing</h1>
                                 </div>
                             </NavLink>
                         </div>
                         <div className='tabs mr-8'>
-                            <NavLink to="/#">
+                            <NavLink to="/investments/completed">
                                 <div className='vestabs'>
                                     <h1>completed</h1>
                                 </div>
                             </NavLink>
                         </div>
                         <div className='tabs mr-8'>
-                            <NavLink to="/#">
+                            <NavLink to="/investments/my-investment">
                                 <div className='vestabs'>
                                     <h1>My investments</h1>
                                 </div>
                             </NavLink>
                         </div>
+                        <div className='tabs mr-8'>
+                            <NavLink to="/investments/relisted-investment">
+                                <div className='vestabs'>
+                                    <h1>Relisted investments</h1>
+                                </div>
+                            </NavLink>
+                        </div>
+                        
                     </div>
     </div>
   )

@@ -213,6 +213,10 @@ body {
       @apply text-sm font-medium text-dark mb-3
     }
 
+    .investlists .real-estate {
+      @apply w-2/6
+    }
+
     .real-estate {
       @apply p-3 bg-mainbg rounded-2xl flex items-center justify-between
     }
@@ -229,6 +233,13 @@ body {
       @apply text-secondary font-medium text-lg
     }
 
+    .table {
+      @apply w-6x
+    }
+
+    .mine .table {
+      @apply w-7x
+    }
     /* .open-modal {
       @apply visible duration-300
     }
