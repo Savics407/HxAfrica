@@ -3,6 +3,7 @@ import invest1 from './images/invest1.png'
 import invest2 from './images/invest2.png'
 import { useState } from 'react'
 import Details from './Investment_Details'
+import { Link } from "react-router-dom";
 
 
 
@@ -17,7 +18,9 @@ function Myinvests() {
             <div className='rounded-lg bg-white my-5 pb-4'>
                         <div className='border-b border-stroke px-10 py-5 text-lg font-medium flex justify-between items-center cursor-pointer'>
                             <h1>My Investments</h1>
-                            <h1 className='text-dark text-xs font-normal'>View all</h1>
+                            <Link to="/investments/my-investment">
+                                <h1 className='text-dark text-xs font-normal'>View all</h1>
+                            </Link>
                         </div>
                         <div className='pt-8 px-2'>
                             <div className='p-2 bg-welcome flex items-center justify-between rounded-lg mb-4'>
