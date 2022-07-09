@@ -8,6 +8,7 @@ import users2 from './images/Frame 18.png'
 import users3 from './images/Frame 19.png'
 import users4 from './images/Frame 20.png'
 import { FaInfoCircle } from 'react-icons/fa'
+import { Link } from "react-router-dom";
 
 
 function Investments() {
@@ -16,7 +17,9 @@ function Investments() {
             <div className='rounded-lg bg-white my-5 pb-4'>
                         <div className='border-b border-stroke px-10 py-5 text-lg font-semibold flex justify-between items-center cursor-pointer'>
                             <h1>Investments</h1>
-                            <h1 className='text-links text-xs font-normal'>View all investment</h1>
+                            <Link to='/investment'>
+                                <h1 className='text-links text-xs font-normal'>View all investment</h1>
+                            </Link>
                         </div>
                         <div className='p-5 flex justify-between'>
                             <div className='p-4 bg-light-purple rounded-2xl w-80 mr-3'>
@@ -33,7 +36,9 @@ function Investments() {
                                     <p className='text-tiny font-normal'>Startup investors are essentially buying a piece of the company with their investment. Putting down capital, in exchange for equity</p>
                                 </div>
                                 <div>
-                                    <button className='text-links text-sm font-medium pt-4 pb-2 cursor-pointer'>VIEW ALL</button>
+                                    <Link to='/investment'>
+                                        <button className='text-links text-sm font-medium pt-4 pb-2 cursor-pointer'>VIEW ALL</button>
+                                    </Link>
                                 </div>
                             </div>
                             <div className='p-4 bg-light-blue rounded-2xl w-80 mr-3'>
@@ -50,7 +55,9 @@ function Investments() {
                                     <p className='text-tiny font-normal'>Startup investors are essentially buying a piece of the company with their investment. Putting down capital, in exchange for equity</p>
                                 </div>
                                 <div>
-                                    <button className='text-links text-sm font-medium pt-4 pb-2 cursor-pointer'>VIEW ALL</button>
+                                    <Link to='/investment'>
+                                        <button className='text-links text-sm font-medium pt-4 pb-2 cursor-pointer'>VIEW ALL</button>
+                                    </Link>
                                 </div>
                             </div>
                             <div className='p-4 bg-light-orange rounded-2xl w-80'>
@@ -67,7 +74,9 @@ function Investments() {
                                     <p className='text-tiny font-normal'>Startup investors are essentially buying a piece of the company with their investment. Putting down capital, in exchange for equity</p>
                                 </div>
                                 <div>
-                                    <button className='text-links text-sm font-medium pt-4 pb-2 cursor-pointer'>VIEW ALL</button>
+                                    <Link to='/investment'>
+                                        <button className='text-links text-sm font-medium pt-4 pb-2 cursor-pointer'>VIEW ALL</button>
+                                    </Link>
                                 </div>
                             </div>
                         </div>

@@ -31,7 +31,10 @@ function Myinvests() {
                                     </div>
                                 </div>
                                 <div>
-                                    <h1 className='text-links text-xs font-normal'>See details</h1>
+                                    <h1 className='text-links text-xs font-normal cursor-pointer'
+                                    onClick={() => {
+                                            setOpenDetails(true)
+                                        }}>See details</h1>
                                 </div>
                             </div>
 
@@ -66,7 +69,10 @@ function Myinvests() {
                                     </div>
                                 </div>
                                 <div>
-                                    <h1 className='text-links text-xs font-normal'>See details</h1>
+                                    <h1 className='text-links text-xs font-normal cursor-pointer'
+                                    onClick={() => {
+                                            setOpenDetails(true)
+                                        }}>See details</h1>
                                 </div>
                             </div>
 
@@ -81,7 +87,10 @@ function Myinvests() {
                                     </div>
                                 </div>
                                 <div>
-                                    <h1 className='text-links text-xs font-normal'>See details</h1>
+                                    <h1 className='text-links text-xs font-normal cursor-pointer'
+                                    onClick={() => {
+                                            setOpenDetails(true)
+                                        }}>See details</h1>
                                 </div>
                             </div>
 
@@ -96,7 +105,10 @@ function Myinvests() {
                                     </div>
                                 </div>
                                 <div>
-                                    <h1 className='text-links text-xs font-normal'>See details</h1>
+                                    <h1 className='text-links text-xs font-normal cursor-pointer'
+                                    onClick={() => {
+                                            setOpenDetails(true)
+                                        }}>See details</h1>
                                 </div>
                             </div>
                         </div>
