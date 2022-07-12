@@ -9,15 +9,18 @@ import Myinvests from './Myinvestments'
 import diamond from './images/diamond.png'
 import Header from './Header'
 import BuyToken from './BuyToken'
+import TokenSuccess from './tokenSuccess'
 import { useState } from 'react'
 
 
 function Dashboard () {
     const [buyToken, setBuyToken] = useState(false)
+    const [tokenSuccess, setTokenSuccess] = useState(false)
 
     return (
         <div className='font-family bg-mainbg'>
             {buyToken && <BuyToken className="z-10" closeToken={setBuyToken}/>}
+            {tokenSuccess && <TokenSuccess className="z-10" tokenOnClose={setTokenSuccess}/>}
 
             <Header />
             
@@ -36,7 +39,9 @@ function Dashboard () {
                             <div className='flex items-center justify-between '>
                                 <h1 className='text-base font-medium mr-4 text-dark text-4xl'>20 REIC</h1>
                                 <div className='flex items-center border rounded-full py-2.5 px-5'>
-                                    <span className='mr-1'>REIC Coin</span>
+                                    <span className='mr-1' onClick={() => {
+                                        setTokenSuccess(true)
+                                    }}>REIC Coin</span>
                                     <FaAngleDown />
                                 </div>
                             </div>

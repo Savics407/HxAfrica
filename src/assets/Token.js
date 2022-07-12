@@ -97,8 +97,8 @@ function Token() {
                                         <div className='py-10'>
                                             <p className='text-payment text-base font-normal mb-2.5'>Payment Method</p>
                                             <div className='flex justify-between '>
-                                                <button className='border-2 border-border rounded-lg w-1/2 h-12 text-token text-base font-semibold mr-1'>Card payment</button>
-                                                <button className='border-2 border-border rounded-lg w-1/2 h-12 text-token text-base font-semibold ml-1'>Bank Transfer</button>
+                                                <button className='border-2 border-border rounded-lg w-1/2 h-12 text-token text-base font-semibold mr-1 hover:bg-green hover:text-dashbg duration-300'>Card payment</button>
+                                                <button className='border-2 border-border rounded-lg w-1/2 h-12 text-token text-base font-semibold ml-1 hover:bg-green hover:text-dashbg duration-300'>Bank Transfer</button>
                                             </div>
                                         </div>
 
@@ -109,7 +109,7 @@ function Token() {
                                                     type="number" 
                                                     placeholder="enter amount" 
                                                     className="text-neutral font-bold text-4xl text-center bg-transparent outline-0"
-                                                    // value="50,000"
+                                                    defaultValue="50000"
                                                 />
                                             </div>
                                         </div>

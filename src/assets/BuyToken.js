@@ -2,12 +2,30 @@ import { MdClose } from 'react-icons/md'
 import reictoken from './images/Reic_Token.png'
 import { motion} from "framer-motion"
 import { useState } from 'react'
+import { PaystackButton } from "react-paystack"
+import TokenSuccess from './tokenSuccess'
+
 // import { TbLoader } from 'react-icons/tb'
 
-function Details({ closeToken }) {
+function Details({closeToken }) {
     // const [authPullOut, setAuthPullOut] = useState(false)
-    const [isClick, setIsClick] = useState(0);
-    // // const [details, setDetails] = useState(true)
+    const [isCardPay, setIsCardPay] = useState(false);
+    const publicKey = 'pk_test_5cfe987cedc5bbda3e2982583ad55bd3eeb1af0f'
+  const email = 'usersmail@gmail.com'
+  const [amount, setAmount] = useState(50000);
+  const componentProps = {
+    email,
+    amount: amount * 100,
+    publicKey,
+    text: "Pay with Card",
+    onSuccess(){
+        closeToken(false)
+        // tokenOnClose(true)
+        // {<Success />}
+    },
+    //   alert("Thanks for doing business with us! Come back soon!!"),
+    onClose: () => alert("You are about to close the transaction"),
+  }
     
 
     return(
@@ -72,19 +90,25 @@ function Details({ closeToken }) {
                         <div className='pt-5 pb-9'>
                             <p className='text-payment text-base font-normal mb-2.5'>Payment Method</p>
                             <div className='flex justify-between'>
-                                <button className='border-2 border-border rounded-lg w-72 h-12 text-token text-base font-semibold'>Card payment</button>
-                                <button className='border-2 border-border rounded-lg w-72 h-12 text-token text-base font-semibold'>Bank Transfer</button>
+                                <button 
+                                    className='border-2 border-border rounded-lg w-72 h-12 mr-5 text-token text-base font-semibold hover:bg-green hover:text-dashbg duration-300' 
+                                    onClick=
+                                        {() => setIsCardPay(true)}>Card payment</button>
+                                <button
+                                    className='border-2 border-border rounded-lg w-72 h-12 text-token text-base font-semibold hover:bg-green hover:text-dashbg duration-300'>Bank Transfer</button>
                             </div>
                         </div>
 
                         <div className='pt-5 pb-9'>
                             <p className='text-payment text-base font-normal mb-2.5'>Amount</p>
-                            <div className='before:content-["N"] text-nuetral font-bold text-lg flex justify-center py-6 rounded-lg bg-mainbg relative'>
+                            <div className='text-nuetral font-bold text-lg flex justify-center py-6 rounded-lg bg-mainbg relative'>
                                 <input 
                                     type="number" 
                                     placeholder="enter amount" 
                                     className="text-neutral font-bold text-4xl text-center bg-transparent outline-0"
                                     // value="50,000"
+                                    onChange={e => setAmount(e.target.value)}
+                                    defaultValue="50000"
                                 />
                             </div>
                         </div>
@@ -100,11 +124,15 @@ function Details({ closeToken }) {
                                     Save method as default
                                 </p>
                             </div>
-                            <button className='rounded-full w-44 h-12 text-dashbg bg-green'
+                            {/* <button className='rounded-full w-44 h-12 text-dashbg bg-green'
                                 onClick={() => {
                                     // setAuthPullOut(true)
+                                    // closeToken  (false)
+                                    console.log(amount * 100);
                                     // setIsClick(!isClick)
-                                }}>Continue</button>
+                                }}>Continue</button> */}
+                            {isCardPay ? <PaystackButton className="rounded-full w-44 h-12 text-dashbg bg-green" {...componentProps} /> : <span className='text-red h-22 '>Select Payment Method</span>}
+
                         </div>
                     </div>
 
@@ -118,41 +146,7 @@ function Details({ closeToken }) {
     )
 }
 
-function Success(){
-    // const [warning, setWarning] = useState(true)
-    return(
-        <>
-            <motion.div 
-                initial = {{
-                    opacity: 0
-                }}
-                animate = {{
-                    opacity: 1,
-                    transition: {
-                        duration: 0.5
-                    }
-                }}
-                exit = {{
-                    opacity: 0,
-                    transition: {
-                        delay: 0.5
-                    }
-                }}
-                className='w-128 bg-white rounded-xl absolute border-green p-12 text-center'>
-                <div>
-                    <h1 className='font-bold text-neutral text-3xl'>Success!</h1>
-                </div>
-                <div className='font-medium text-base text-neutral my-8'>
-                    <p>You successfully made a payment of <span className='text-green'>N50,000</span> to purchase REIC Token</p>
-                </div>
-                <div className='text-neutral text-xs text-center'>
-                    <span>Redirecting...</span>
-                </div>
-            </motion.div>
-            
-        </>
-    )
-}
+
 
 // function Processing(){
 //     return(

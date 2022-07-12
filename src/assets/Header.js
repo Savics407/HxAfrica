@@ -34,7 +34,7 @@ function Header() {
                         <div className='relative'>
                             <img src={user} alt="User-Icon" />  
                             <div className='online'></div>
-                            <div className={`notification ${isClick ? 'show-note' : 'remove-note'}`}>
+                            <div className={`notification z-50 ${isClick ? 'show-note' : 'remove-note'}`}>
                                 <div className="arrow relative">
                                     <h1 className="text-2xl font-semibold">Notifications</h1>
                                 </div>
@@ -72,7 +72,10 @@ function Header() {
                                         <button className="border rounded-full text-neutral w-48 h-10 text-sm">Clear all</button>
                                     </div>
                                 </div>
+                                
                             </div>
+                            <div className={`fixed top-0 left-0 bottom-0 right-0 cursor-pointer z-10 ${isClick ? 'show-note' : 'remove-note'}`} 
+                                    onClick={() => setIsClick(!isClick)}></div>
                         </div>
                     </div>
                 </div>
