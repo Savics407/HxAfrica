@@ -18,8 +18,13 @@ function Details({closeToken }) {
     amount: amount * 100,
     publicKey,
     text: "Pay with Card",
+    // callback: (response) => {
+    //     window.location = "https://reic-frontend.vercel.app/token" + response.reference;
+    //     },
     onSuccess(){
-        closeToken(false)
+        // closeToken(false)
+        window.location = "/token"
+        // window.location = "/dashboard"
         // tokenOnClose(true)
         // {<Success />}
     },
