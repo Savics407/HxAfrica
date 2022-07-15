@@ -44,11 +44,13 @@ function UserDetails({ formData, setFormData, nextPage, signup }) {
         },
       });
       const result = await response.json();
+      console.log(result.data.api_token);
 
-      console.log(result?.status);
       if (result?.status === "success") {
-        localStorage.setItem("user-token", result.api_token);
-        console.log(result.api_token);
+        localStorage.setItem("user-token", result?.data.api_token);
+        // localStorage.setItem("user-info", JSON.stringify(response));
+        // console.log(result.api_token);
+
         nextPage();
       } else {
         if (result.status === "error") {
@@ -203,10 +205,10 @@ function UserDetails({ formData, setFormData, nextPage, signup }) {
             // required
             type={!confirmPasswordEye ? "password" : "text"}
             placeholder="confirm password"
-            onPaste={(e) => {
-              e.preventDefault();
-              return alert("sorry... copy and paste not supported");
-            }}
+            // onPaste={(e) => {
+            //   e.preventDefault();
+            //   return alert("sorry... copy and paste not supported");
+            // }}
             className="box"
             id="confirm"
             {...register("confirmPassword", {

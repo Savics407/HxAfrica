@@ -15,29 +15,29 @@ function Setup({ formData, setFormData }) {
       dob: formData.dob,
     };
     // const token = JSON.parse(sessionStorage.getItem("data"));
+    const token = localStorage.getItem("user-token");
+    const response = await fetch(
+      "https://reic.api.simpoo.biz/api/investor/setup",
+      {
+        method: "POST",
+        body: JSON.stringify(setupLoad),
+        headers: {
+          "Content-type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    const result = await response.json();
 
-    try {
-      const response = await fetch(
-        "https://reic.api.simpoo.biz/api/investor/setup",
-        {
-          method: "POST",
-          body: JSON.stringify(setupLoad),
-          headers: {
-            "Content-type": "application/json",
-            Authorization: `Bearer ${localStorage.setItem(
-              "user-token",
-              result.api_token
-            )}`,
-          },
-        }
-      );
-      alert("create clicked");
-      const result = await response.json();
-      console.log(result);
-      localStorage.setItem("user-info", JSON.stringify(response));
+    console.log(result?.status);
+    if (result?.status === "success") {
       navigate("/login");
-    } catch (error) {
-      return;
+    } else {
+      if (result.status === "error") {
+        // setError(result.data);
+        console.log(result.data);
+        alert(result.data);
+      }
     }
   }
 
