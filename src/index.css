@@ -117,11 +117,11 @@ body {
   @apply lg:text-base text-sm mb-10 font-normal lg:w-72 text-center lg:text-left
 }
    .input {
-      @apply flex flex-col
+      @apply flex flex-col mb-5
     }
   
     .box {
-      @apply border rounded-xl border-border bg-input p-3 mb-5 text-sm focus-within:shadow-lg;
+      @apply border rounded-xl border-border bg-input p-3 text-sm focus-within:shadow-lg;
       outline: none
     }
     
