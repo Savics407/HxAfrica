@@ -2,8 +2,9 @@ import logo from "./images/polygon.png";
 // import bg from "./images/build.jpeg";
 // import Form from "./UserDetails";
 import { FaRegEyeSlash } from "react-icons/fa";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
+import axios from "axios";
 
 function Tab() {
   return (
@@ -37,7 +38,6 @@ function Login() {
       },
     });
     const result = await response.json();
-    alert("Clicked");
     console.log(result?.status);
     if (result?.status === "success") {
       // Route to Dashbaord
@@ -45,18 +45,12 @@ function Login() {
     } else {
       if (result.status === "error") {
         // setError(result.data);
-        console.log(result.data);
-        alert(result.data);
+        console.log(result);
+        alert(result.message);
       }
     }
-
-    // localStorage.setItem("user-info", JSON.stringify(response));
   }
 
-  //   const navigateTo = () => {
-  //     alert("Clicked");
-  //     navigate("/dashboard");
-  //   };
   return (
     <div className="font-family">
       <Tab />
@@ -108,7 +102,6 @@ function Login() {
             </div>
 
             <div className=" flex items-start">
-              {/* <input required type="checkbox"  className="border mr-2"/> */}
               <p className="text-xs tracking-wide">Forgot Password?</p>
             </div>
           </form>
@@ -121,7 +114,10 @@ function Login() {
             />
           </div>
           <p className="text-sm font-medium text-sec mt-8 mb-48 text-center md:text-left">
-            You are new ? <span className="text-green">sign up</span>
+            You are new ?{" "}
+            <Link to="/">
+              <span className="text-green">sign up</span>
+            </Link>
           </p>
         </div>
         <div className=" bg-[url('../src/assets/images/build.jpeg')] bg-black lg:w-1/2 relative bg-cover bg-center build hidden lg:block">

@@ -1,3 +1,6 @@
+// import { useState } from "react";
+import { useEffect, useState } from "react";
+// import { appendErrors } from "react-hook-form";
 import { FaCheck } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
@@ -11,9 +14,13 @@ function Setup({ formData, setFormData }) {
       phone: formData.phone,
       address: formData.address,
       city: formData.city,
-      state: formData.state,
+      state_id: formData.state,
       dob: formData.dob,
     };
+
+    // const cors = require("cors");
+    // app.use(cors());
+
     // const token = JSON.parse(sessionStorage.getItem("data"));
     const token = localStorage.getItem("user-token");
     const response = await fetch(
@@ -22,7 +29,8 @@ function Setup({ formData, setFormData }) {
         method: "POST",
         body: JSON.stringify(setupLoad),
         headers: {
-          "Content-type": "application/json",
+          "Content-Type": "application/json",
+          Accept: "application/json",
           Authorization: `Bearer ${token}`,
         },
       }
@@ -34,12 +42,29 @@ function Setup({ formData, setFormData }) {
       navigate("/login");
     } else {
       if (result.status === "error") {
-        // setError(result.data);
-        console.log(result.data);
-        alert(result.data);
+        console.log(result);
+        alert(result);
       }
     }
   }
+
+  // const [st, setSt] = useState([]);
+  // useEffect(() => {
+  //   const getState = async () => {
+  //     const responseSt = await fetch("https://reic.api.simpoo.biz/api/states", {
+  //       method: "POST",
+  //       // body: JSON.stringify(setupLoad),
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //         // Accept: "application/json",
+  //         // Authorization: `Bearer ${token}`,
+  //       },
+  //     });
+  //     const getSt = await responseSt.json();
+  //     setSt(await getSt);
+  //   };
+  //   getState();
+  // }, []);
 
   return (
     <>
@@ -99,48 +124,60 @@ function Setup({ formData, setFormData }) {
         <div className="input">
           <label>State</label>
           {/* <input required type="option" placeholder="Choose State" className="box"/> */}
-          <select className="box text-green">
+          <h1>{formData.state}</h1>
+          <select
+            className="box text-green"
+            value={formData.state}
+            onChange={(event) =>
+              setFormData({ ...formData, state: event.target.value })
+            }
+          >
             {/* <option value="" className='text-grey'>--Choose State--</option> */}
-            <option disabled defaultValue="selected" hidden>
+            <option disabled selected>
               --Choose State--
             </option>
-            <option value="Abia">Abia</option>
-            <option value="Adamawa">Adamawa</option>
-            <option value="Akwa Ibom">Akwa Ibom</option>
-            <option value="Anambra">Anambra</option>
-            <option value="Bauchi">Bauchi</option>
-            <option value="Bayelsa">Bayelsa</option>
-            <option value="Benue">Benue</option>
-            <option value="Borno">Borno</option>
-            <option value="Cross River">Cross River</option>
-            <option value="Delta">Delta</option>
-            <option value="Ebonyi">Ebonyi</option>
-            <option value="Edo">Edo</option>
-            <option value="Ekiti">Ekiti</option>
-            <option value="Enugu">Enugu</option>
-            <option value="FCT">Federal Capital Territory</option>
-            <option value="Gombe">Gombe</option>
-            <option value="Imo">Imo</option>
-            <option value="Jigawa">Jigawa</option>
-            <option value="Kaduna">Kaduna</option>
-            <option value="Kano">Kano</option>
-            <option value="Katsina">Katsina</option>
-            <option value="Kebbi">Kebbi</option>
-            <option value="Kogi">Kogi</option>
-            <option value="Kwara">Kwara</option>
-            <option value="Lagos">Lagos</option>
-            <option value="Nasarawa">Nasarawa</option>
-            <option value="Niger">Niger</option>
-            <option value="Ogun">Ogun</option>
-            <option value="Ondo">Ondo</option>
-            <option value="Osun">Osun</option>
-            <option value="Oyo">Oyo</option>
-            <option value="Plateau">Plateau</option>
-            <option value="Rivers">Rivers</option>
-            <option value="Sokoto">Sokoto</option>
-            <option value="Taraba">Taraba</option>
-            <option value="Yobe">Yobe</option>
-            <option value="Zamfara">Zamfara</option>
+            {/* {st.map((responseSt) => (
+              <option key={responseSt.states.id}>
+                {responseSt.states.name}
+              </option>
+            ))} */}
+            <option value="303">Abia</option>
+            <option value="320">Adamawa</option>
+            <option value="304">Akwa Ibom</option>
+            <option value="315">Anambra</option>
+            <option value="312">Bauchi</option>
+            <option value="305">Bayelsa</option>
+            <option value="291">Benue</option>
+            <option value="307">Borno</option>
+            <option value="314">Cross River</option>
+            <option value="316">Delta</option>
+            <option value="311">Ebonyi</option>
+            <option value="318">Edo</option>
+            <option value="309">Ekiti</option>
+            <option value="289">Enugu</option>
+            <option value="293">Federal Capital Territory</option>
+            <option value="310">Gombe</option>
+            <option value="308">Imo</option>
+            <option value="288">Jigawa</option>
+            <option value="294">Kaduna</option>
+            <option value="300">Kano</option>
+            <option value="313">Katsina</option>
+            <option value="290">Kebbi</option>
+            <option value="298">Kogi</option>
+            <option value="295">Kwara</option>
+            <option value="306">Lagos</option>
+            <option value="301">Nasarawa</option>
+            <option value="317">Niger</option>
+            <option value="323">Ogun</option>
+            <option value="321">Ondo</option>
+            <option value="322">Osun</option>
+            <option value="296">Oyo</option>
+            <option value="302">Plateau</option>
+            <option value="100">Rivers</option>
+            <option value="292">Sokoto</option>
+            <option value="319">Taraba</option>
+            <option value="297">Yobe</option>
+            <option value="299">Zamfara</option>
           </select>
         </div>
         <div className="input">

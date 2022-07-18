@@ -8,7 +8,7 @@ import { useForm } from "react-hook-form";
 function UserDetails({ formData, setFormData, nextPage, signup }) {
   // const [step, setStep] = useState(0);
   const [passwordEye, setPasswordEye] = useState(false);
-  const [errorMessage, setError] = useState([]);
+  // const [errorMessage, setError] = useState([]);
   const handlePasswordClick = () => setPasswordEye(!passwordEye);
   const [confirmPasswordEye, setConfirmPasswordEye] = useState(false);
   const handleConfirmPasswordClick = () =>
@@ -54,7 +54,7 @@ function UserDetails({ formData, setFormData, nextPage, signup }) {
         nextPage();
       } else {
         if (result.status === "error") {
-          setError(result.data);
+          // setError(result.data);
           console.log(result.data);
           alert(result.data);
         }

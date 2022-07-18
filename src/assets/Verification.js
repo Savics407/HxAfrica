@@ -1,6 +1,8 @@
+// import { useState } from "react";
 import { FaCheck } from "react-icons/fa";
 
 function Verification({ formData, setFormData, nextPage }) {
+  // const [errorMessage, setError] = useState([]);
   async function verifyOTP(e) {
     // console.log(formData);
     e.preventDefault();
@@ -17,9 +19,16 @@ function Verification({ formData, setFormData, nextPage }) {
     });
     const result = await response.json();
     console.log(result);
-    console.log(otpLoad);
-    nextPage();
-    localStorage.setItem("user-info", JSON.stringify(response));
+    if (result?.status === "success") {
+      alert(result.message);
+      nextPage();
+    } else {
+      if (result.status === "error") {
+        // setError(result.data);
+        console.log(result.data);
+        alert(result.message);
+      }
+    }
   }
 
   return (
