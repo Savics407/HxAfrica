@@ -3,6 +3,7 @@ import { useState } from "react";
 import { FaRegEyeSlash } from "react-icons/fa";
 import { FaRegEye } from "react-icons/fa";
 import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 // import axios from "axios";
 
 function UserDetails({ formData, setFormData, nextPage, signup }) {
@@ -48,6 +49,7 @@ function UserDetails({ formData, setFormData, nextPage, signup }) {
 
       if (result?.status === "success") {
         localStorage.setItem("user-token", result?.data.api_token);
+        localStorage.setItem("user-id", result?.data.id);
         // localStorage.setItem("user-info", JSON.stringify(response));
         // console.log(result.api_token);
 
@@ -56,7 +58,27 @@ function UserDetails({ formData, setFormData, nextPage, signup }) {
         if (result.status === "error") {
           // setError(result.data);
           console.log(result.data);
-          alert(result.data);
+          // alert(result.data);
+          // toast.error(`${result.data}`);
+          toast.error(`${result.data}`, {
+            position: "top-center",
+            autoClose: 2000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            // toastId: "customId",
+          });
+          toast.error(`${result.message}`, {
+            position: "bottom-left",
+            autoClose: 300,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
         }
       }
 

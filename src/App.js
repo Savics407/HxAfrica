@@ -1,5 +1,7 @@
 // import logo from './logo.svg';
 import "./App.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import Login from "./assets/Login";
 import Auth from "./assets/Signup";
 import Dashboard from "./assets/Dashboard";
@@ -39,6 +41,7 @@ function App() {
         <Route path="/investments/relisted-investment" element={<Relisted />} />
         <Route path="/investments/my-investment" element={<Mine />} />
       </Routes>
+      <ToastContainer />
     </div>
   );
 }

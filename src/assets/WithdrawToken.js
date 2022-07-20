@@ -8,7 +8,7 @@ import TokenSuccess from "./tokenSuccess";
 
 // import { TbLoader } from 'react-icons/tb'
 
-function Details({ closeToken }) {
+function Withdraw({ closeToken }) {
   const navigate = useNavigate();
   // const [authPullOut, setAuthPullOut] = useState(false)
   const [isCardPay, setIsCardPay] = useState(false);
@@ -83,7 +83,7 @@ function Details({ closeToken }) {
           className="bg-white rounded-xl border w-1/2"
         >
           <div className="border-b border-stroke uppercase px-10 py-5 text-2xl font-semibold flex justify-between items-center text-modal">
-            <h1>Buy Token</h1>
+            <h1>Add Bank</h1>
             <MdClose
               className="cursor-pointer"
               onClick={() => {
@@ -177,46 +177,9 @@ function Details({ closeToken }) {
             </div>
           </div>
         </motion.div>
-        {/* {authPullOut && <Warning closeWarning={setIsClick} />} */}
-        {/* <Success /> */}
       </motion.div>
-      {/* <div className="fixed top-0 right-0 bottom-0 left-0 bg-overlay -z-10"></div> */}
     </>
   );
 }
 
-// function Processing(){
-//     return(
-//         <>
-//             <motion.div
-//                 initial = {{
-//                     opacity: 0
-//                 }}
-//                 animate = {{
-//                     opacity: 1,
-//                     transition: {
-//                         duration: 0.5
-//                     }
-//                 }}
-//                 exit = {{
-//                     opacity: 0,
-//                     transition: {
-//                         delay: 0.5
-//                     }
-//                 }}
-//                 className="w-128 bg-white rounded-xl absolute border-green p-6 text-center">
-//                 <div>
-//                     <h1 className='font-bold text-neutral text-3xl'>Processing BVN</h1>
-//                 </div>
-//                 <div className='font-semibold text-base text-neutral my-8'>
-//                     <p>Please wait while we process your BVN. This will take few seconds.</p>
-//                 </div>
-//                 <div className='flex justify-center'>
-//                     <button className='rounded-full w-28 h-12 text-neutral flex justify-around items-center'><TbLoader /> Processing</button>
-//                 </div>
-//             </motion.div>
-//         </>
-//     )
-// }
-
-export default Details;
+export default Withdraw;

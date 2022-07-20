@@ -243,6 +243,13 @@ body {
       @apply w-7x
     }
 
+    .withd-button {
+      @apply border-2 border-more py-2 rounded-full text-sm font-bold text-footer px-6 mx-5 hover:bg-neutral hover:text-dashbg hover:border-neutral duration-300
+    }
+
+    .with-dark {
+      @apply bg-neutral text-dashbg border-neutral
+    }
     /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {

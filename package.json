@@ -2,6 +2,7 @@
   "name": "reic",
   "version": "0.1.0",
   "private": true,
+  "proxy" : "https://reic.api.simpoo.biz",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.3.0",
@@ -15,6 +16,7 @@
     "react-paystack": "^3.0.5",
     "react-router-dom": "^6.3.0",
     "react-scripts": "^5.0.1",
+    "react-toastify": "^9.0.7",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

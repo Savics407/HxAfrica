@@ -1,5 +1,6 @@
 // import { useState } from "react";
 import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 // import { appendErrors } from "react-hook-form";
 import { FaCheck } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
@@ -39,11 +40,27 @@ function Setup({ formData, setFormData }) {
 
     console.log(result?.status);
     if (result?.status === "success") {
+      toast.success(`${result.message}`, {
+        position: "top-left",
+        autoClose: 300,
+        hideProgressBar: true,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
       navigate("/login");
     } else {
       if (result.status === "error") {
-        console.log(result);
-        alert(result);
+        toast.error(`${result.message}`, {
+          position: "top-left",
+          autoClose: 300,
+          hideProgressBar: true,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
       }
     }
   }
@@ -124,7 +141,7 @@ function Setup({ formData, setFormData }) {
         <div className="input">
           <label>State</label>
           {/* <input required type="option" placeholder="Choose State" className="box"/> */}
-          <h1>{formData.state}</h1>
+          {/* <h1>{formData.state}</h1> */}
           <select
             className="box text-green"
             value={formData.state}
@@ -133,9 +150,7 @@ function Setup({ formData, setFormData }) {
             }
           >
             {/* <option value="" className='text-grey'>--Choose State--</option> */}
-            <option disabled selected>
-              --Choose State--
-            </option>
+            <option selected>--Choose State--</option>
             {/* {st.map((responseSt) => (
               <option key={responseSt.states.id}>
                 {responseSt.states.name}

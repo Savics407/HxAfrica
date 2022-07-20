@@ -4,6 +4,7 @@ import logo from "./images/polygon.png";
 import { FaRegEyeSlash } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import { toast } from "react-toastify";
 import axios from "axios";
 
 function Tab() {
@@ -40,13 +41,38 @@ function Login() {
     const result = await response.json();
     console.log(result?.status);
     if (result?.status === "success") {
+      localStorage.setItem("user-token", result?.data.api_token);
+      localStorage.setItem("user-email", result?.data.email);
+      localStorage.setItem("user-name", result?.data.name);
+      localStorage.setItem("user-phone", result?.data.phone);
+      localStorage.setItem("user-dob", result?.data.dob);
+      localStorage.setItem("user-city", result?.data.city);
+      localStorage.setItem("user-state", result?.data.state);
       // Route to Dashbaord
+      toast.success(`${result.message}`, {
+        position: "top-left",
+        autoClose: 300,
+        hideProgressBar: true,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
       navigate("/dashboard");
     } else {
       if (result.status === "error") {
         // setError(result.data);
         console.log(result);
-        alert(result.message);
+        // alert(result.message);
+        toast.error(`${result.message}`, {
+          position: "top-left",
+          autoClose: 500,
+          hideProgressBar: true,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
       }
     }
   }

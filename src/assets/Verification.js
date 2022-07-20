@@ -1,4 +1,5 @@
 // import { useState } from "react";
+import { toast } from "react-toastify";
 import { FaCheck } from "react-icons/fa";
 
 function Verification({ formData, setFormData, nextPage }) {
@@ -20,17 +21,83 @@ function Verification({ formData, setFormData, nextPage }) {
     const result = await response.json();
     console.log(result);
     if (result?.status === "success") {
-      alert(result.message);
+      // alert(result.message);
+      toast.success(`${result.message}`, {
+        position: "top-left",
+        autoClose: 300,
+        hideProgressBar: true,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
       nextPage();
     } else {
       if (result.status === "error") {
         // setError(result.data);
         console.log(result.data);
-        alert(result.message);
+        // alert(result.message);
+        toast.error(`${result.message}`, {
+          position: "top-left",
+          autoClose: 500,
+          hideProgressBar: true,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
       }
     }
   }
 
+  async function resendOTP() {
+    const token = localStorage.getItem("user-token");
+    const id = localStorage.getItem("user-id");
+    const resendLoad = {
+      email: formData.email,
+      user_id: id,
+    };
+    const response = await fetch("https://reic.api.simpoo.biz/api/resend-otp", {
+      method: "POST",
+      body: JSON.stringify(resendLoad),
+      headers: {
+        "Content-type": "application/json",
+        Accept: "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    const result = await response.json();
+    console.log(result);
+    if (result?.status === "success") {
+      // alert(result.message);
+      // alert(result.message);
+      toast.success(`${result.message}`, {
+        position: "top-left",
+        autoClose: 300,
+        hideProgressBar: true,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      // nextPage();
+    } else {
+      if (result.status === "error") {
+        // setError(result.data);
+        console.log(result.data);
+        // alert(result.message);
+        toast.error(`${result.message}`, {
+          position: "top-left",
+          autoClose: 500,
+          hideProgressBar: true,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      }
+    }
+  }
   return (
     <>
       <div className="flex items-center justify-between mb-12 rule relative create text-base">
@@ -75,7 +142,12 @@ function Verification({ formData, setFormData, nextPage }) {
           {/* <input required type="checkbox"  className="border mr-2"/> */}
           <p className="text-xs tracking-wide">
             Didn’t get an code?{" "}
-            <span className="text-green font-semibold">Resend </span>{" "}
+            <span
+              className="text-green font-semibold cursor-pointer"
+              onClick={resendOTP}
+            >
+              Resend{" "}
+            </span>{" "}
           </p>
         </div>
         {/* <div>
