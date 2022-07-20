@@ -45,6 +45,7 @@ function Token() {
   const [buyToken, setBuyToken] = useState(false);
 
   //token balance
+  const [ngn, setNgn] = useState();
   const [token, setToken] = useState();
   async function wallet() {
     // console.log(formData);
@@ -63,6 +64,7 @@ function Token() {
     const result = await response.json();
     console.log(result?.status);
     // alert(result.data.token);
+    setNgn(result.data.balance);
     setToken(result.data.token);
   }
 
