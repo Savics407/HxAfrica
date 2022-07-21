@@ -11,6 +11,7 @@ function Profile() {
   const userDob = localStorage.getItem("user-dob");
   const userCity = localStorage.getItem("user-city");
   const userState = localStorage.getItem("user-state");
+  const userAddress = localStorage.getItem("user-address");
 
   return (
     <div className="font-family bg-mainbg">
@@ -178,9 +179,7 @@ function Profile() {
                   </h1>
                 </td>
                 <td className="w-2/3 border px-5">
-                  <h1 className="font-medium text-sm">
-                    No 2 wuse II, Abuja , Nigeria
-                  </h1>
+                  <h1 className="font-medium text-sm">{userAddress}</h1>
                 </td>
               </tr>
               <tr>

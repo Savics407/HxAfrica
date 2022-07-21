@@ -12,6 +12,8 @@
 body {
   @apply bg-mainbg
 }
+
+
 .notification {
   @apply absolute py-4 text-neutral px-6 w-128 right-40 top-20 -mt-2 rounded-xl shadow-3xl bg-dashbg text-left invisible duration-300;
   box-shadow: 0px 16px 64px 5px #1f304726;
@@ -92,7 +94,9 @@ body {
   /* @apply lg:w-72 */
 }
 
-
+.container {
+  @apply lg:w-10/12 w-full m-auto lg:mt-20 bg-dashbg rounded-lg lg:py-8 lg:px-4 lg:flex
+}
 .tabs {
   @apply flex flex-col text-center items-center relative z-10;
   /* z-index: 2; */
@@ -148,17 +152,17 @@ body {
     }
 
     .ds-icons {
-      @apply text-2xl mr-2 
+      @apply lg:text-2xl text-xl lg:mr-2 mb-1 lg:mb-0 
     }
-
+    .navbar {
+      @apply bg-white fixed lg:relative bottom-0 lg:px-80 lg:border flex justify-between items-center lg:text-navbar w-full z-20 border-0 px-6 text-mobile-nav
+    }
     .nav-items {
-      @apply flex py-2.5 items-center rounded px-2 hover:text-green hover:cursor-pointer border-b-4 border-transparent duration-500
+      @apply flex lg:flex-row flex-col pt-3 pb-2.5 items-center rounded px-2 hover:text-green hover:cursor-pointer border-b-4 border-transparent duration-500 border lg:text-base text-xxm font-normal lg:font-semibold
     }
-
     .active {
-      @apply border-b-4 border-green text-green rounded
+      @apply  text-green lg:rounded relative before:content-[''] before:w-full before:h-4 before:bg-green before:absolute before:rounded-t before:rounded-r before:-bottom-3 overflow-hidden lg:before:-bottom-5 lg:border-b-4 border-green
     }
-
     .vestabs {
         @apply py-2.5 hover:text-green hover:cursor-pointer font-semibold duration-500 uppercase
     }
@@ -167,21 +171,35 @@ body {
       @apply border-b-2 border-green text-green rounded-none
     }
     .welcome {
-      background-image:url(../src/assets/images/frame.png);
-      background-repeat: no-repeat;
-      background-size: auto;
-      background-position: 100% 5px;
+      background-image:url(../src/assets/images/frame.png), url(../src/assets/images/reicNGN.png);
+      background-repeat: no-repeat, no-repeat;
+      background-size: auto, auto;
+      background-position: 100% 5px, 95% 100%;
       /* background-clip: content; */
     }
+    .banner {
+      background-image: url(../src/assets/images/bannerWiggle.png), url(../src/assets/images/reicCoin.png), url(../src/assets/images/reicCoin.png), url(../src/assets/images/reicCoin.png);
+        background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
+        background-size: auto, auto, auto, auto;
+        background-position: 60% -20px, 64% 60px, 100% 60px, 80% 20px;
+    }
+
+    .mobile-banner {
+      background-image:url(../src/assets/images/mobileReic.png) ,url(../src/assets/images/mobileRed.png),url(../src/assets/images/mobileGrey.png),url(../src/assets/images/mobileWiggle.png), linear-gradient(to right,#1e1e1e 30%, #008e10);
+        background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
+        background-size: auto, auto, auto, auto;
+        background-position:100% 100%, 78% 100%, 65% 100%, 100% 10%;
+    }
+
     .income {
-      @apply w-1/2 p-3
+      @apply w-1/2 lg:p-3 p-1
     }
     .income h1{
-      @apply font-bold text-sm mb-2 text-secondary
+      @apply font-medium lg:text-sm mb-2 text-secondary text-tiny
     }
 
     .income p {
-      @apply text-secondary font-normal text-xs
+      @apply text-secondary font-normal lg:text-xs text-xxm
     }
 
     .circle {
@@ -200,7 +218,24 @@ body {
       left: 0;
       transform: rotate(-80deg);
     }
-
+        .circle2 {
+          fill: none;
+          stroke: url(#GradientColor);
+          stroke-width: 15px;
+          stroke-dasharray: 472;
+          stroke-dashoffset: 380;
+          animation-name: anim;
+          animation-duration: 2s;
+          animation-timing-function: linear;
+        }
+    
+        .svg2 {
+          position: absolute;
+          top: 0;
+          left: 0;
+          transform: rotate(-80deg);
+        }
+  
     @keyframes anim {
       100% {
         /* stroke-dashoffset: 165; */

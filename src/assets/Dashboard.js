@@ -12,6 +12,8 @@ import BuyToken from "./BuyToken";
 import TokenSuccess from "./tokenSuccess";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import Mobile from "./mobileHeader";
+import { Link, NavLink } from "react-router-dom";
 
 function Dashboard() {
   const [buyToken, setBuyToken] = useState(false);
@@ -53,42 +55,58 @@ function Dashboard() {
       )}
 
       <Header />
+      <Mobile />
 
-      <div className="w-10/12 m-auto mt-20 bg-dashbg rounded-lg py-8 px-4 flex">
-        <div className="w-4/6 pr-4">
-          <div className="welcome bg-welcome p-10 rounded-lg border">
+      <div className="container">
+        <div className="lg:w-4/6 w-full lg:pr-4">
+          <div className="welcome bg-welcome p-10 rounded-lg border lg:block hidden">
             <h1 className="text-green font-black text-2xl mb-3">
               Hi, <span className="text-dark ml-2">{userName}</span>
             </h1>
             <p className="font-normal text-lg text-dark">You are welcome</p>
           </div>
-          <div className="p-10 bg-white rounded-lg my-5">
-            <div className="flex items-center">
+          <div className="lg:p-10 px-5 pt-10 pb-4 bg-white rounded-lg lg:my-5">
+            <div className="flex items-center hidden lg:flex">
               <img src={reictoken} alt="REIC TOKEN" />
               <h1 className="text-base text-token font-semibold ml-2">
                 REIC TOKEN
               </h1>
             </div>
-            <div className="flex items-center mt-8 justify-between">
-              <div className="flex items-center justify-between ">
-                <h1 className="text-base font-medium mr-4 text-dark text-4xl">
-                  <span>{JSON.stringify(token)}</span> REIC
-                </h1>
-                <div className="flex items-center border rounded-full py-2.5 px-5">
+            <div className="flex items-center lg:mt-8 lg:justify-between">
+              <div className="flex items-center justify-between w-full lg:w-auto">
+                <div className="flex items-center">
+                  <div>
+                    <img
+                      src={reictoken}
+                      alt="REIC TOKEN"
+                      className="lg:hidden mr-2"
+                    />
+                  </div>
+                  <div>
+                    <h1 className="text-tiny text-token font-semibold mb-1.5 lg:hidden">
+                      REIC TOKEN
+                    </h1>
+                    <h1 className="text-base font-medium mr-4 text-dark text-4l">
+                      <span>{JSON.stringify(token)}</span> REIC
+                    </h1>
+                  </div>
+                </div>
+
+                <div className="flex items-center border rounded-full lg:py-2.5 lg:px-5 px-3 py-1.5 text-footer lg:text-xs text-xxm">
                   <span
                     className="mr-1"
-                    onClick={() => {
-                      setTokenSuccess(true);
-                    }}
+                    // onClick={() => {
+                    //   setTokenSuccess(true);
+                    // }}
                   >
                     REIC Coin
                   </span>
                   <FaAngleDown />
                 </div>
               </div>
-              <div>
+              <div className="hidden lg:block">
                 <button
-                  className="bg-green font-medium text-bases text-white rounded-full px-8 py-4"
+                  className="bg-green font-medium text-bases text-white rounded-full px-8 py-4 hidden lg:block"
                   onClick={() => {
                     setBuyToken(true);
                   }}
@@ -97,13 +115,32 @@ function Dashboard() {
                 </button>
               </div>
             </div>
+            <div className="lg:hidden mobile-banner p-4 rounded-lg mt-10">
+              <h1 className="text-white text-sm font-semibold">
+                Invest and earn BIG!!!
+              </h1>
+              <div className="flex">
+                <h1 className="text-xs font-semibold text-mobile-banner w-fit py-1">
+                  1{" "}
+                  <span className="uppercase font-semibold text-tiny">
+                    reic token{" "}
+                  </span>{" "}
+                  = N50,000
+                </h1>
+              </div>
+              <Link to="/token">
+                <button className="bg-white text-green text-tiny font-normal rounded-full py-1 px-5">
+                  Buy Token
+                </button>
+              </Link>
+            </div>
           </div>
-          <div className="rounded-lg bg-white">
-            <div className="border-b border-stroke px-10 py-5 text-lg font-medium">
+          <div className="rounded-lg bg-white mt-3 lg:mt-0">
+            <div className="border-b border-stroke px-6 py-3 lg:px-10 lg:py-5 lg:text-lg text-xs text-dark font-medium">
               <h1>Incoming ROI</h1>
             </div>
-            <div className="px-10 py-5 flex justify-between">
-              <div className="w-3/5 py-10">
+            <div className="lg:px-10 lg:py-5 px-6 py-3 flex flex-row justify-between">
+              <div className="lg:w-3/5 lg:py-10 py-5 w-fit">
                 <div className="flex justify-between ">
                   <div className="income">
                     <h1>Return Duration</h1>
@@ -125,15 +162,15 @@ function Dashboard() {
                   </div>
                 </div>
               </div>
-              <div className="w-2/5 p-4">
-                <div className="bg-mainbg rounded-full w-48 h-48 m-auto flex items-center justify-around relative">
-                  <div className="bg-white w-36 h-36 rounded-full flex items-center justify-center">
-                    <h1 className="text-center text-sm font-semibold">
+              <div className="lg:w-2/5 lg:p-4 py-4 px-1">
+                <div className="bg-mainbg rounded-full w-24 h-24 lg:w-48 lg:h-48 m-auto flex items-center justify-around relative">
+                  <div className="bg-white w-16 h-16 lg:w-36 lg:h-36 rounded-full flex items-center justify-center">
+                    <h1 className="text-center text-xxm lg:text-sm font-semibold text-dark">
                       18 Day's left
                     </h1>
                   </div>
                   <svg
-                    className="svg"
+                    className="svg lg:block"
                     xmlns="http://www.w3.org/2000/svg"
                     version="1.1"
                     width="192px"
@@ -146,16 +183,49 @@ function Dashboard() {
                       </linearGradient>
                     </defs>
                     <circle
-                      className="circle"
+                      className="circle hidden lg:block"
                       cx="95"
                       cy="95"
                       r="83"
                       stroke-linecap="round"
                     />
+                    <circle
+                      className="circle2 lg:hidden"
+                      cx="135"
+                      cy="40"
+                      r="40"
+                      stroke-linecap="round"
+                    />
                   </svg>
+                  {/* <svg
+                    className="svg2 lg:hidden"
+                    xmlns="http://www.w3.org/2000/svg"
+                    version="1.1"
+                    width="115px"
+                    height="115px"
+                  >
+                    <defs>
+                      <linearGradient id="GradientColor">
+                        <stop offset="100%" stop-color="#008E10" />
+                      </linearGradient>
+                    </defs>
+                    <circle
+                      className="circle2"
+                      cx="63"
+                      cy="46"
+                      r="40"
+                      stroke-linecap="round"
+                    />
+                  </svg> */}
                 </div>
               </div>
             </div>
+          </div>
+          <div className="rounded-lg bg-white mt-3 lg:hidden">
+            <div className="border-b border-stroke px-6 py-3 text-dark text-xs font-medium">
+              <h1>My portfolio growth</h1>
+            </div>
+            <div className="lg:px-10 lg:py-5 px-6 py-3 flex flex-row justify-between"></div>
           </div>
           <Investments />
           {/* Let's do some coding thingy */}

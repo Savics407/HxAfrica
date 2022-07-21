@@ -15,9 +15,9 @@ function Relisted() {
           <div className="mb-10">
             <h1 className="text-modal text-2xl font-semibold">Investments</h1>
           </div>
-          <div>
+          {/* <div>
             <img src={banner} alt="Buy_REIC_Token" className="w-full" />
-          </div>
+          </div> */}
           <InvestTabs />
           <div className="mb-8 mine">
             <div className="flex justify-between mb-4">

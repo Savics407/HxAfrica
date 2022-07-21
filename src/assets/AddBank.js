@@ -8,6 +8,8 @@ function AddBank({ closeToken }) {
   // const [authPullOut, setAuthPullOut] = useState(false)
   const [amount, setAmount] = useState(50000);
   const [click1, isClick1] = useState(true);
+  const [click2, isClick2] = useState(true);
+  const [click3, isClick3] = useState(true);
 
   // // const [details, setDetails] = useState(true)
 
@@ -108,23 +110,31 @@ function AddBank({ closeToken }) {
                   //   {`notification z-50 ${isClick ? 'show-note' : 'remove-note'}`}
                   onClick={() => {
                     setAmount(50000);
+                    isClick1(true);
+                    isClick2(true);
+                    isClick3(true);
                   }}
                 >
                   N50,000
                 </button>
                 <button
-                  className={`withd-button`}
+                  className={`withd-button ${!click2 && "with-dark"}`}
                   onClick={() => {
                     setAmount(100000);
-                    isClick1(!click1);
+                    isClick1(false);
+                    isClick2(!isClick2);
+                    isClick3(true);
                   }}
                 >
                   N100,000
                 </button>
                 <button
-                  className="withd-button"
+                  className={`withd-button ${!click3 && "with-dark"}`}
                   onClick={() => {
                     setAmount(200000);
+                    isClick1(false);
+                    isClick2(true);
+                    isClick3(!isClick3);
                   }}
                 >
                   N200,000

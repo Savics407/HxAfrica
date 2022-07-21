@@ -19,6 +19,7 @@ import Notification from "./assets/Notification";
 import Profile from "./assets/Settings";
 import ChangePassword from "./assets/ChangePassword";
 import Activity from "./assets/Activity";
+import Header from "./assets/Header";
 
 function App() {
   return (
@@ -40,6 +41,7 @@ function App() {
         <Route path="/investments/completed" element={<Completed />} />
         <Route path="/investments/relisted-investment" element={<Relisted />} />
         <Route path="/investments/my-investment" element={<Mine />} />
+        <Route path="/header" element={<Header />} />
       </Routes>
       <ToastContainer />
     </div>

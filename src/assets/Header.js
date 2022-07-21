@@ -29,7 +29,7 @@ function Header() {
   //   });
   return (
     <>
-      <div className="bg-green text-center text-white py-4 ">
+      <div className="bg-green text-center text-white py-4 hidden lg:block ">
         <div className="w-10/12 m-auto flex items-center justify-between hidden md:flex">
           <Link to="/">
             <div className="w-48 h-12">
@@ -125,7 +125,7 @@ function Header() {
           </div>
         </div>
       </div>
-      <div className="bg-white px-80 border flex justify-between items-center text-navbar text-base font-semibold">
+      <div className="navbar">
         <NavLink to="/dashboard">
           <div className="nav-items">
             <MdDashboard className="ds-icons" />
