@@ -150,12 +150,14 @@ body {
     .online {
         @apply w-2 h-2 bg-on rounded-full absolute bottom-0 right-0
     }
-
+    .footer {
+      @apply mt-6 pb-10 text-center hidden lg:block
+    }
     .ds-icons {
       @apply lg:text-2xl text-xl lg:mr-2 mb-1 lg:mb-0 
     }
     .navbar {
-      @apply bg-white fixed lg:relative bottom-0 lg:px-80 lg:border flex justify-between items-center lg:text-navbar w-full z-20 border-0 px-6 text-mobile-nav
+      @apply bg-white fixed lg:relative bottom-0 lg:px-80 lg:border flex justify-between items-center lg:text-navbar w-full z-20 border-0 px-6 text-mobile-nav 
     }
     .nav-items {
       @apply flex lg:flex-row flex-col pt-3 pb-2.5 items-center rounded px-2 hover:text-green hover:cursor-pointer border-b-4 border-transparent duration-500 border lg:text-base text-xxm font-normal lg:font-semibold
@@ -214,9 +216,10 @@ body {
     }
     .svg {
       position: absolute;
-      top: 0;
+      bottom: 0;
       left: 0;
       transform: rotate(-80deg);
+      @apply lg:w-48 lg:h-52 w-28 h-28 ;
     }
         .circle2 {
           fill: none;
@@ -231,8 +234,8 @@ body {
     
         .svg2 {
           position: absolute;
-          top: 0;
-          left: 0;
+          bottom: 0;
+          right: 0;
           transform: rotate(-80deg);
         }
   
@@ -243,11 +246,11 @@ body {
     }
 
     .section {
-      @apply w-1/2
+      @apply lg:w-1/2 w-full
     }
 
     .section h1 {
-      @apply text-sm font-medium text-dark mb-3
+      @apply lg:text-sm text-xs font-medium text-dark mb-3 lg:mt-0 mt-6
     }
 
     .investlists .real-estate {
@@ -304,11 +307,33 @@ input[type=number] {
       @apply invisible duration-300
     } */
 
-/* .show-note {
-  @apply top-16 visible 
+    .cat {
+      @apply p-3 flex flex-row relative flex-nowrap overflow-scroll justify-between w-full cursor-all-scroll
+    }
+
+    .cat::-webkit-scrollbar {
+      display: none;
+    }
+    .categories {
+      @apply rounded-2xl mr-3 p-4  relative
+    }
+
+.cate-block {
+  @apply w-60  
+}
+
+.cate-block p {
+  @apply text-tiny font-normal
+}
+
+.cate-block button {
+  @apply text-xs
+}
+.show {
+  @apply flex
   
 }
 
-.remove-note {
-  @apply top-28 invisible duration-300 opacity-0
-} */
+.remove {
+  @apply hidden
+}

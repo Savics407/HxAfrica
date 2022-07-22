@@ -16,6 +16,7 @@ import Mobile from "./mobileHeader";
 import { Link, NavLink } from "react-router-dom";
 
 function Dashboard() {
+  const [click, setClick] = useState(false);
   const [buyToken, setBuyToken] = useState(false);
   const [tokenSuccess, setTokenSuccess] = useState(false);
   const [token, setToken] = useState();
@@ -173,8 +174,8 @@ function Dashboard() {
                     className="svg lg:block"
                     xmlns="http://www.w3.org/2000/svg"
                     version="1.1"
-                    width="192px"
-                    height="192px"
+                    // width="192px"
+                    // height="192px"
                   >
                     <defs>
                       <linearGradient id="GradientColor">
@@ -184,15 +185,15 @@ function Dashboard() {
                     </defs>
                     <circle
                       className="circle hidden lg:block"
-                      cx="95"
-                      cy="95"
+                      cx="90"
+                      cy="105"
                       r="83"
                       stroke-linecap="round"
                     />
                     <circle
                       className="circle2 lg:hidden"
-                      cx="135"
-                      cy="40"
+                      cx="46"
+                      cy="50"
                       r="40"
                       stroke-linecap="round"
                     />
@@ -222,18 +223,47 @@ function Dashboard() {
             </div>
           </div>
           <div className="rounded-lg bg-white mt-3 lg:hidden">
-            <div className="border-b border-stroke px-6 py-3 text-dark text-xs font-medium">
+            <div className=" px-6 py-5 text-dark text-xs font-medium flex justify-between items-center">
               <h1>My portfolio growth</h1>
+              <button
+                className="bg-green text-tiny text-white rounded-full py-1.5 px-6"
+                onClick={() => {
+                  setClick(!click);
+                }}
+              >
+                View
+              </button>
             </div>
-            <div className="lg:px-10 lg:py-5 px-6 py-3 flex flex-row justify-between"></div>
+            <div
+              className={`px-6 py-8 flex items-center justify-between border-t border-stroke hidden ${
+                click ? "remove" : "show"
+              }`}
+            >
+              <div className="w-1/2 px-4 border-r border-border-grey ">
+                <img src={dollar} alt="dollar-icon" className="mb-4 h-6 w-6" />
+                <p className="text-earnings font-medium text-xs mb-1">
+                  Total Earnings Reic
+                </p>
+                <h1 className="text-dark text-xl font-medium">N200,000</h1>
+              </div>
+              <div className="w-1/2 px-4">
+                <img src={coin} alt="dollar-icon" className="mb-4 h-6 w-6" />
+                <p className="text-earnings font-medium text-xs mb-1">
+                  Total Earnings Reic
+                </p>
+                <h1 className="text-dark text-xl font-medium">N200,000</h1>
+              </div>
+            </div>
           </div>
           <Investments />
+          {/* <Myinvests/> */}
+
           {/* Let's do some coding thingy */}
         </div>
         {/* side panel */}
-        <div className="w-4/12 px-2">
-          <div className="bg-white p-8 rounded-lg flex items-center">
-            <div className="w-1/2 px-4 border-r border-light-blue ">
+        <div className="lg:w-4/12 w-full lg:px-2 lg:block">
+          <div className="bg-white p-8 rounded-lg flex items-center hidden lg:flex">
+            <div className="w-1/2 px-4 border-r border-light-blue">
               <img src={dollar} alt="dollar-icon" className="mb-4 h-6 w-6" />
               <p className="text-earnings font-medium text-xs mb-1">
                 Total Earnings Reic
@@ -248,7 +278,7 @@ function Dashboard() {
               <h1 className="text-dark text-2xl font-medium">N200,000</h1>
             </div>
           </div>
-          <div className="my-5 bg-white rounded-lg pt-4 pb-20 px-4">
+          <div className="my-5 bg-white rounded-lg pt-4 pb-20 px-4 hidden lg:block">
             <img src={media} alt="media" className="w-full" />
             <h1 className="bg-media p-1.5 rounded text-xs my-5 text-white w-fit text-center">
               NEW INVESTMENTS
@@ -259,7 +289,7 @@ function Dashboard() {
           </div>
           <Myinvests />
 
-          <div className="border rounded-3xl p-4 px-10 bg-primary text-center">
+          <div className="border rounded-3xl p-4 px-10 bg-primary text-center hidden lg:block">
             <img src={diamond} alt="diamond" className="m-auto" />
             <h1 className="text-neutral font-medium text-xl">
               Best for investments
@@ -271,7 +301,7 @@ function Dashboard() {
           </div>
         </div>
       </div>
-      <div className="mt-6 pb-10 text-center">
+      <div className="footer">
         <h1 className="text-base font-semibold text-footer">
           © 2022 REIC. All rights reserved.
         </h1>

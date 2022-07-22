@@ -13,92 +13,107 @@ import { Link } from "react-router-dom";
 function Investments() {
   return (
     <>
-      <div className="rounded-lg bg-white w-full my-5 pb-4 border border-red">
-        <div className="border-b border-stroke lg:px-10 lg:py-5 text-lg font-semibold flex justify-between items-center cursor-pointer">
-          <h1>Investments</h1>
+      <div className="rounded-lg bg-white w-full lg:my-5 my-3 pb-4">
+        <div className="lg:border-b border-stroke lg:px-10 lg:py-5 px-6 py-5 lg:text-lg text-xs font-semibold flex justify-between items-center cursor-pointer">
+          <h1 className="text-dark">Investments</h1>
           <Link to="/investment">
-            <h1 className="text-links text-xs font-normal">
+            <h1 className="text-links lg:text-xs text-tiny font-normal">
               View all investment
             </h1>
           </Link>
         </div>
-        <div className="p-5 flex flex-col lg:flex-row justify-between">
-          <div className="p-4 bg-light-purple rounded-2xl w-80 mr-3">
-            <div className="flex text-dark py-3">
-              <div className="mr-3">
-                <img src={invest_icon} alt="investment_icon" />
-              </div>
-              <div>
-                <h1 className="text-sm font-medium">Tech Startups</h1>
-                <h1 className="text-tiny font-medium">New Investments</h1>
-              </div>
-            </div>
-            <div>
-              <p className="text-tiny font-normal">
-                Startup investors are essentially buying a piece of the company
-                with their investment. Putting down capital, in exchange for
-                equity
-              </p>
-            </div>
-            <div>
-              <Link to="/investment">
-                <button className="text-links text-sm font-medium pt-4 pb-2 cursor-pointer">
-                  VIEW ALL
-                </button>
-              </Link>
-            </div>
-          </div>
-          <div className="p-4 bg-light-blue rounded-2xl w-80 mr-3">
-            <div className="flex text-dark py-3">
-              <div className="mr-3">
-                <img src={crowd} alt="investment_icon" />
-              </div>
-              <div>
-                <h1 className="text-sm font-medium">Crowdfunding</h1>
-                <h1 className="text-tiny font-medium">Ongoing Investments</h1>
+        <div className="overflow-hidden">
+          <div className="cat">
+            <div className="categories bg-light-purple ">
+              <div className="cate-block">
+                <div className="flex text-dark py-3">
+                  <div className="mr-3">
+                    <img src={invest_icon} alt="investment_icon" />
+                  </div>
+                  <div>
+                    <h1 className="text-sm font-medium">Tech Startups</h1>
+                    <h1 className="text-tiny font-medium">New Investments</h1>
+                  </div>
+                </div>
+                <div>
+                  <p>
+                    Startup investors are essentially buying a piece of the
+                    company with their investment. Putting down capital, in
+                    exchange for equity
+                  </p>
+                </div>
+                <div>
+                  <Link to="/investment">
+                    <button className="text-links font-medium pt-4 pb-2 cursor-pointer">
+                      VIEW ALL
+                    </button>
+                  </Link>
+                </div>
               </div>
             </div>
-            <div>
-              <p className="text-tiny font-normal">
-                Startup investors are essentially buying a piece of the company
-                with their investment. Putting down capital, in exchange for
-                equity
-              </p>
-            </div>
-            <div>
-              <Link to="/investment">
-                <button className="text-links text-sm font-medium pt-4 pb-2 cursor-pointer">
-                  VIEW ALL
-                </button>
-              </Link>
-            </div>
-          </div>
-          <div className="p-4 bg-light-orange rounded-2xl w-80">
-            <div className="flex text-dark py-3">
-              <div className="mr-3">
-                <img src={vest} alt="investment_icon" />
+
+            <div className="bg-light-blue categories">
+              <div className="cate-block">
+                <div className="flex text-dark py-3">
+                  <div className="mr-3">
+                    <img src={crowd} alt="investment_icon" />
+                  </div>
+                  <div>
+                    <h1 className="text-sm font-medium">Crowdfunding</h1>
+                    <h1 className="text-tiny font-medium">
+                      Ongoing Investments
+                    </h1>
+                  </div>
+                </div>
+                <div>
+                  <p>
+                    Startup investors are essentially buying a piece of the
+                    company with their investment. Putting down capital, in
+                    exchange for equity
+                  </p>
+                </div>
+                <div>
+                  <Link to="/investment">
+                    <button className="text-links font-medium pt-4 pb-2 cursor-pointer">
+                      VIEW ALL
+                    </button>
+                  </Link>
+                </div>
               </div>
-              <div>
-                <h1 className="text-sm font-medium">Tech Startups</h1>
-                <h1 className="text-tiny font-medium">Completed Investments</h1>
+            </div>
+
+            <div className="bg-light-orange categories">
+              <div className="cate-block">
+                <div className="flex text-dark py-3">
+                  <div className="mr-3">
+                    <img src={vest} alt="investment_icon" />
+                  </div>
+                  <div>
+                    <h1 className="text-sm font-medium">Tech Startups</h1>
+                    <h1 className="text-tiny font-medium">
+                      Completed Investments
+                    </h1>
+                  </div>
+                </div>
+                <div>
+                  <p>
+                    Startup investors are essentially buying a piece of the
+                    company with their investment. Putting down capital, in
+                    exchange for equity
+                  </p>
+                </div>
+                <div>
+                  <Link to="/investment">
+                    <button className="text-links font-medium pt-4 pb-2 cursor-pointer">
+                      VIEW ALL
+                    </button>
+                  </Link>
+                </div>
               </div>
-            </div>
-            <div>
-              <p className="text-tiny font-normal">
-                Startup investors are essentially buying a piece of the company
-                with their investment. Putting down capital, in exchange for
-                equity
-              </p>
-            </div>
-            <div>
-              <Link to="/investment">
-                <button className="text-links text-sm font-medium pt-4 pb-2 cursor-pointer">
-                  VIEW ALL
-                </button>
-              </Link>
             </div>
           </div>
         </div>
+
         <div className="px-4 py-6 flex flex-col lg:flex-row">
           <div className="section pr-4">
             <h1>Ongoing Investments</h1>
@@ -191,7 +206,7 @@ function Investments() {
             </div>
           </div>
         </div>
-        <div className="flex items-center p-4">
+        <div className="flex items-center p-4 hidden lg:flex">
           <FaInfoCircle className="text-join text-sm mr-1" />{" "}
           <h1 className="text-join text-sm">
             Join the early investors and earn better

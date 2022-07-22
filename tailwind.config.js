@@ -70,6 +70,7 @@ module.exports = {
         pending: "#fff8eb",
         change: "#0177FB",
         blue: "#3772FF",
+        "border-gray": "rgba(114, 129, 255, 0.1)",
       },
       fontSize: {
         tiny: "10px",

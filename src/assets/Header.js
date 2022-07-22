@@ -29,7 +29,7 @@ function Header() {
   //   });
   return (
     <>
-      <div className="bg-green text-center text-white py-4 hidden lg:block ">
+      <div className="bg-green text-center text-white py-4 hidden lg:block">
         <div className="w-10/12 m-auto flex items-center justify-between hidden md:flex">
           <Link to="/">
             <div className="w-48 h-12">
