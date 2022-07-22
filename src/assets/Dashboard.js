@@ -236,7 +236,7 @@ function Dashboard() {
             </div>
             <div
               className={`px-6 py-8 flex items-center justify-between border-t border-stroke hidden ${
-                click ? "remove" : "show"
+                !click ? "remove" : "show"
               }`}
             >
               <div className="w-1/2 px-4 border-r border-border-grey ">
