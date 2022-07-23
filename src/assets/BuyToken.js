@@ -133,11 +133,12 @@ function Details({ closeToken }) {
               <p className="text-payment text-base font-normal mb-2.5">
                 Amount
               </p>
-              <div className="text-nuetral font-bold text-lg flex justify-center py-6 rounded-lg bg-mainbg relative">
+              <div className="text-nuetral font-bold text-lg flex items-center justify-center py-6 rounded-lg bg-mainbg relative">
+                <sup className="w-2/5 text-right">N</sup>
                 <input
                   type="number"
                   placeholder="enter amount"
-                  className="text-neutral font-bold text-4xl text-center bg-transparent outline-0"
+                  className="text-neutral font-bold text-4xl w-3/5 bg-transparent outline-0"
                   // value="50,000"
                   onChange={(e) => setAmount(e.target.value)}
                   defaultValue="50000"

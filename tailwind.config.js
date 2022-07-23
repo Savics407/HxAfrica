@@ -71,6 +71,7 @@ module.exports = {
         change: "#0177FB",
         blue: "#3772FF",
         "border-gray": "rgba(114, 129, 255, 0.1)",
+        total: "#F1F4F7",
       },
       fontSize: {
         tiny: "10px",
@@ -82,6 +83,11 @@ module.exports = {
         "2/6": "32%",
         "6x": "13%",
         "7x": "130px",
+      },
+      height: {
+        128: "500px",
+        "7x": "410px",
+        100: "725px",
       },
       // boxShadow: {
       //   '3xl': '0px 16px 64px -48px rgba(31, 47, 70, 0.15)',

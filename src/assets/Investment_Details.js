@@ -2,11 +2,11 @@ import { MdClose } from "react-icons/md";
 import hdimage from "./images/invest_image.png";
 import { motion } from "framer-motion";
 import { useState } from "react";
-// import { TbLoader } from 'react-icons/tb'
+import { TbLoader } from "react-icons/tb";
 
 function Details({ closeDetails }) {
   const [authPullOut, setAuthPullOut] = useState(false);
-  const [isClick, setIsClick] = useState(0);
+  const [isClick, setIsClick] = useState(false);
   // const [details, setDetails] = useState(true)
 
   return (
@@ -28,10 +28,14 @@ function Details({ closeDetails }) {
           },
         }}
         className="flex items-center justify-center fixed top-0 right-0 bottom-0 left-0 bg-overlay z-50 backdrop-blur-xs"
-        // onClick={() => {
-        //         closeDetails(false)
-        //     }}
       >
+        <div
+          className="fixed top-0 right-0 bottom-0 left-0 cursor-pointer"
+          onClick={() => {
+            closeDetails(false);
+          }}
+        ></div>
+
         <motion.div
           initial={{
             scale: 0,
@@ -48,8 +52,8 @@ function Details({ closeDetails }) {
               delay: 0.5,
             },
           }}
-          className={`bg-white rounded-xl border w-1/2 ${
-            isClick ? "hide" : "display"
+          className={`bg-white rounded-xl border w-1/2 z-10 ${
+            isClick ? "hidden" : "block"
           }`}
         >
           <div className="border-b border-stroke px-10 py-5 text-2xl font-semibold flex justify-between items-center text-modal">
@@ -101,6 +105,7 @@ function Details({ closeDetails }) {
                 onClick={() => {
                   setAuthPullOut(true);
                   setIsClick(!isClick);
+                  // alert("clicked on");
                 }}
               >
                 Pull Out
@@ -117,6 +122,7 @@ function Details({ closeDetails }) {
 
 function Warning({ closeWarning }) {
   const [warning, setWarning] = useState(true);
+  const [processing, setProcessing] = useState(false);
   return (
     <>
       <motion.div
@@ -136,7 +142,7 @@ function Warning({ closeWarning }) {
           },
         }}
         className={`w-128 bg-white rounded-xl absolute border-green p-6 text-center ${
-          warning ? "display" : "hide"
+          warning ? "block" : "hidden"
         } `}
       >
         <div>
@@ -144,7 +150,7 @@ function Warning({ closeWarning }) {
         </div>
         <div className="font-semibold text-base text-neutral my-8">
           <p>
-            Are you sure you want to pull our from the{" "}
+            Are you sure you want to pull out from the{" "}
             <span className="text-green">“Crowdfunding” </span> investments?
           </p>
         </div>
@@ -153,16 +159,57 @@ function Warning({ closeWarning }) {
             className="border rounded-full w-44 h-12 text-neutral bg-dashbg"
             onClick={() => {
               closeWarning(false);
-              setWarning(!warning);
+              // setWarning(!warning);
             }}
           >
             No, Cancel
           </button>
-          <button className="rounded-full w-44 h-12 text-dashbg bg-red">
+          <button
+            className="rounded-full w-44 h-12 text-dashbg bg-red"
+            onClick={() => {
+              // closeWarning(false);
+              setWarning(!warning);
+              setProcessing(true);
+            }}
+          >
             Yes, Pull Out
           </button>
         </div>
       </motion.div>
+      {processing && (
+        <motion.div
+          initial={{
+            opacity: 0,
+          }}
+          animate={{
+            opacity: 1,
+            transition: {
+              duration: 0.5,
+            },
+          }}
+          exit={{
+            opacity: 0,
+            transition: {
+              delay: 0.5,
+            },
+          }}
+          className="w-128 bg-white rounded-xl absolute border-green p-6 text-center"
+        >
+          <div>
+            <h1 className="font-bold text-neutral text-3xl">Processing BVN</h1>
+          </div>
+          <div className="font-semibold text-base text-neutral my-8">
+            <p>
+              Please wait while we process your BVN. This will take few seconds.
+            </p>
+          </div>
+          <div className="flex justify-center">
+            <button className="rounded-full w-28 h-12 text-neutral flex justify-around items-center">
+              <TbLoader /> Processing
+            </button>
+          </div>
+        </motion.div>
+      )}
     </>
   );
 }

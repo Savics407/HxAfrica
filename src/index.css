@@ -15,7 +15,7 @@ body {
 
 
 .notification {
-  @apply absolute py-4 text-neutral px-6 w-128 right-40 top-20 -mt-2 rounded-xl shadow-3xl bg-dashbg text-left invisible duration-300;
+  @apply absolute py-4 text-neutral px-6 w-128 right-44 top-20 -mt-2 rounded-xl shadow-3xl bg-dashbg text-left invisible duration-300;
   box-shadow: 0px 16px 64px 5px #1f304726;
 }
 .show-note {
@@ -163,14 +163,14 @@ body {
       @apply flex lg:flex-row flex-col pt-3 pb-2.5 items-center rounded px-2 hover:text-green hover:cursor-pointer border-b-4 border-transparent duration-500 border lg:text-base text-xxm font-normal lg:font-semibold
     }
     .active {
-      @apply  text-green lg:rounded relative before:content-[''] before:w-full before:h-4 before:bg-green before:absolute before:rounded-t before:rounded-r before:-bottom-3 overflow-hidden lg:before:-bottom-5 lg:border-b-4 border-green
+      @apply  text-green lg:rounded relative before:content-[''] before:w-full before:h-4 before:bg-green before:absolute before:rounded-t before:rounded-r before:-bottom-3 overflow-hidden lg:before:-bottom-6 lg:border-b-4 border-green
     }
     .vestabs {
         @apply py-2.5 hover:text-green hover:cursor-pointer font-semibold duration-500 uppercase
     }
 
     .tab .active {
-      @apply border-b-2 border-green text-green rounded-none
+      @apply border-b-2 border-green text-green rounded-none before:hidden
     }
     .welcome {
       background-image:url(../src/assets/images/frame.png), url(../src/assets/images/reicNGN.png);
@@ -254,11 +254,11 @@ body {
     }
 
     .investlists .real-estate {
-      @apply w-2/6
+      @apply w-80 mr-3
     }
 
     .real-estate {
-      @apply p-3 bg-mainbg rounded-2xl flex items-center justify-between
+      @apply p-3 mb-4 bg-mainbg rounded-2xl flex items-center justify-between
     }
 
 
@@ -276,11 +276,16 @@ body {
     .table {
       @apply w-6x
     }
-
-    .mine .table {
-      @apply w-7x
+    .header {
+      @apply w-52 mr-2
     }
 
+    .mine .table {
+      @apply w-7x mr-2
+    }
+    .dur {
+      @apply w-20 mr-5
+    }
     .withd-button {
       @apply border-2 border-more py-2 rounded-full text-sm font-bold text-footer px-6 mx-5 hover:bg-neutral hover:text-dashbg hover:border-neutral duration-300
     }

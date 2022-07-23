@@ -36,7 +36,7 @@ function Header() {
               <img src={logo} alt="REIC Logo" />
             </div>
           </Link>
-          <div className=" border-white flex items-center">
+          <div className=" border-white flex items-center relative">
             <div
               className="bg-primary text-dark rounded-full px-3 py-2.5 relative cursor-pointer"
               onClick={() => setIsClick(!isClick)}
@@ -44,8 +44,55 @@ function Header() {
               <FaBell className="w-4 h-5" />
               <div className="notify"></div>
             </div>
+            <div
+              className={`notification z-50 ${
+                isClick ? "show-note" : "remove-note"
+              }`}
+            >
+              <div className="arrow relative">
+                <h1 className="text-2xl font-semibold">Notifications</h1>
+              </div>
+              <div className="text-sm  my-4">
+                <h1>Login attempted from new IP</h1>
+                <p className="text-footer text-xs mt-1">2021-03-10 20:19:15</p>
+              </div>
+              <div className="text-sm  my-4">
+                <h1>Login attempted from new IP</h1>
+                <p className="text-footer text-xs mt-1">2021-03-10 20:19:15</p>
+              </div>
+              <div className="text-sm  my-4">
+                <h1>Request to reset security</h1>
+                <p className="text-footer text-xs mt-1">2021-03-10 20:19:15</p>
+              </div>
+              <div className="text-sm  my-4">
+                <h1>Login attempted from new IP</h1>
+                <p className="text-footer text-xs mt-1">2021-03-10 20:19:15</p>
+              </div>
+              <div className="text-sm  my-4">
+                <h1>Request to reset security</h1>
+                <p className="text-footer text-xs mt-1">2021-03-10 20:19:15</p>
+              </div>
+              <div className="text-sm  my-4">
+                <h1>Login attempted from new IP</h1>
+                <p className="text-footer text-xs mt-1">2021-03-10 20:19:15</p>
+              </div>
+              <div className="flex items-center justify-between">
+                <div className="">
+                  <Link to="/notification">
+                    <button className="bg-green rounded-full text-dashbg w-48 h-10 text-sm">
+                      View all
+                    </button>
+                  </Link>
+                </div>
+                <div>
+                  <button className="border rounded-full text-neutral w-48 h-10 text-sm">
+                    Clear all
+                  </button>
+                </div>
+              </div>
+            </div>
             <Link to="/settings">
-              <div className="flex items flex items-center text-sm ml-6 mr-7">
+              <div className="flex items flex items-center text-sm mx-6">
                 <h1 className="font-semibold mr-1">{userName}</h1>
                 <FaAngleDown />
               </div>
@@ -56,65 +103,7 @@ function Header() {
                 <img src={user} alt="User-Icon" className="" />
               </Link>
               <div className="online"></div>
-              <div
-                className={`notification z-50 ${
-                  isClick ? "show-note" : "remove-note"
-                }`}
-              >
-                <div className="arrow relative">
-                  <h1 className="text-2xl font-semibold">Notifications</h1>
-                </div>
-                <div className="text-sm  my-4">
-                  <h1>Login attempted from new IP</h1>
-                  <p className="text-footer text-xs mt-1">
-                    2021-03-10 20:19:15
-                  </p>
-                </div>
-                <div className="text-sm  my-4">
-                  <h1>Login attempted from new IP</h1>
-                  <p className="text-footer text-xs mt-1">
-                    2021-03-10 20:19:15
-                  </p>
-                </div>
-                <div className="text-sm  my-4">
-                  <h1>Request to reset security</h1>
-                  <p className="text-footer text-xs mt-1">
-                    2021-03-10 20:19:15
-                  </p>
-                </div>
-                <div className="text-sm  my-4">
-                  <h1>Login attempted from new IP</h1>
-                  <p className="text-footer text-xs mt-1">
-                    2021-03-10 20:19:15
-                  </p>
-                </div>
-                <div className="text-sm  my-4">
-                  <h1>Request to reset security</h1>
-                  <p className="text-footer text-xs mt-1">
-                    2021-03-10 20:19:15
-                  </p>
-                </div>
-                <div className="text-sm  my-4">
-                  <h1>Login attempted from new IP</h1>
-                  <p className="text-footer text-xs mt-1">
-                    2021-03-10 20:19:15
-                  </p>
-                </div>
-                <div className="flex items-center justify-between">
-                  <div className="">
-                    <Link to="/notification">
-                      <button className="bg-green rounded-full text-dashbg w-48 h-10 text-sm">
-                        View all
-                      </button>
-                    </Link>
-                  </div>
-                  <div>
-                    <button className="border rounded-full text-neutral w-48 h-10 text-sm">
-                      Clear all
-                    </button>
-                  </div>
-                </div>
-              </div>
+
               <div
                 className={`fixed top-0 left-0 bottom-0 right-0 cursor-pointer z-10 ${
                   isClick ? "show-note" : "remove-note"

@@ -10,6 +10,41 @@ import status from "./images/status-up.png";
 import { MdClose } from "react-icons/md";
 import { motion } from "framer-motion";
 import Withdraw from "./AddBank";
+import RecentActivity from "./recentActivity";
+
+class ErrorBoundary extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { error: null, errorInfo: null };
+  }
+
+  componentDidCatch(error, errorInfo) {
+    // Catch errors in any components below and re-render with error message
+    this.setState({
+      error: error,
+      errorInfo: errorInfo,
+    });
+    // You can also log error messages to an error reporting service here
+  }
+
+  render() {
+    if (this.state.errorInfo) {
+      // Error path
+      return (
+        <div>
+          <h2>Something went wrong.</h2>
+          <details style={{ whiteSpace: "pre-wrap" }}>
+            {this.state.error && this.state.error.toString()}
+            <br />
+            {this.state.errorInfo.componentStack}
+          </details>
+        </div>
+      );
+    }
+    // Normally, just render children
+    return this.props.children;
+  }
+}
 
 function Token() {
   const [isCardPay, setIsCardPay] = useState(false);
@@ -62,7 +97,7 @@ function Token() {
       }
     );
     const result = await response.json();
-    console.log(result?.status);
+    console.log(result.status);
     // alert(result.data.token);
     setNgn(result.data.balance);
     setToken(result.data.token);
@@ -210,11 +245,13 @@ function Token() {
                       <p className="text-payment text-base font-normal mb-2.5">
                         Amount
                       </p>
-                      <div className="text-nuetral font-bold text-lg flex justify-center py-6 rounded-lg bg-mainbg relative">
+                      <div className="text-nuetral font-bold text-lg flex items-center justify-center py-6 rounded-lg bg-mainbg relative">
+                        <sup className="w-2/5 text-right">N</sup>
+
                         <input
                           type="number"
                           placeholder="enter amount"
-                          className="text-neutral font-bold text-4xl text-center bg-transparent outline-0"
+                          className="text-neutral font-bold text-4xl w-3/5 bg-transparent outline-0"
                           onChange={(e) => setAmount(e.target.value)}
                           defaultValue="50000"
                         />
@@ -256,141 +293,9 @@ function Token() {
               </div>
             </div>
             <div className="w-1/2 ml-2 font-inter">
-              <motion.div
-                initial={{
-                  scale: 0,
-                }}
-                animate={{
-                  scale: 1,
-                  transition: {
-                    duration: 0.5,
-                  },
-                }}
-                exit={{
-                  scale: 0,
-                  transition: {
-                    delay: 0.5,
-                  },
-                }}
-                className="bg-white rounded-xl"
-              >
-                <div className="border-b border-stroke px-10 py-5 font-semibold flex justify-between items-center text-dark text-lg">
-                  <h1>Recent Transactions</h1>
-                  <button className="font-medium text-sm border rounded-full py-1 px-4">
-                    Clear All
-                  </button>
-                </div>
-                <div className="px-10 py-3 recent">
-                  <h1 className="text-green text-lg font-semibold mb-3">
-                    Token Purchase
-                  </h1>
-                  <div className="flex">
-                    <p className="w-2/3 font-normal text-sm text-footer">
-                      <span>You</span> made a deposit of{" "}
-                      <span className="">N20,000</span> purchase of{" "}
-                      <span>REIC Token</span>, Transaction ID:{" "}
-                      <span>UTTA005129</span>
-                    </p>
-                    <p className="w-1/3 font-bold text-xs text-footer text-right">
-                      Jul 22, 2:45pm
-                    </p>
-                  </div>
-                </div>
-                <div className="px-10 py-3 recent">
-                  <h1 className="text-green text-lg font-semibold mb-3">
-                    Token Purchase
-                  </h1>
-                  <div className="flex">
-                    <p className="w-2/3 font-normal text-sm text-footer">
-                      <span>You</span> made a deposit of{" "}
-                      <span className="">N20,000</span> purchase of{" "}
-                      <span>REIC Token</span>, Transaction ID:{" "}
-                      <span>UTTA005129</span>
-                    </p>
-                    <p className="w-1/3 font-bold text-xs text-footer text-right">
-                      Jul 22, 2:45pm
-                    </p>
-                  </div>
-                </div>
-                <div className="px-10 py-3 recent">
-                  <h1 className="text-green text-lg font-semibold mb-3">
-                    Withdrawal
-                  </h1>
-                  <div className="flex">
-                    <p className="w-2/3 font-normal text-sm text-footer">
-                      <span>You</span> made a Withdrawal of{" "}
-                      <span className="">N20,000</span> to your bank,
-                      Transaction ID: <span>UTTA005129</span>
-                    </p>
-                    <p className="w-1/3 font-bold text-xs text-footer text-right">
-                      Jul 22, 2:45pm
-                    </p>
-                  </div>
-                </div>
-                <div className="px-10 py-3 recent">
-                  <h1 className="text-green text-lg font-semibold mb-3">
-                    Token Purchase
-                  </h1>
-                  <div className="flex">
-                    <p className="w-2/3 font-normal text-sm text-footer">
-                      <span>You</span> made a deposit of{" "}
-                      <span className="">N20,000</span> purchase of{" "}
-                      <span>REIC Token</span>, Transaction ID:{" "}
-                      <span>UTTA005129</span>
-                    </p>
-                    <p className="w-1/3 font-bold text-xs text-footer text-right">
-                      Jul 22, 2:45pm
-                    </p>
-                  </div>
-                </div>
-                <div className="px-10 py-3 recent">
-                  <h1 className="text-green text-lg font-semibold mb-3">
-                    Withdrawal
-                  </h1>
-                  <div className="flex">
-                    <p className="w-2/3 font-normal text-sm text-footer">
-                      <span>You</span> made a Withdrawal of{" "}
-                      <span className="">N20,000</span> to your bank,
-                      Transaction ID: <span>UTTA005129</span>
-                    </p>
-                    <p className="w-1/3 font-bold text-xs text-footer text-right">
-                      Jul 22, 2:45pm
-                    </p>
-                  </div>
-                </div>
-                <div className="px-10 py-3 recent">
-                  <h1 className="text-green text-lg font-semibold mb-3">
-                    Token Purchase
-                  </h1>
-                  <div className="flex">
-                    <p className="w-2/3 font-normal text-sm text-footer">
-                      <span>You</span> made a deposit of{" "}
-                      <span className="">N20,000</span> purchase of{" "}
-                      <span>REIC Token</span>, Transaction ID:{" "}
-                      <span>UTTA005129</span>
-                    </p>
-                    <p className="w-1/3 font-bold text-xs text-footer text-right">
-                      Jul 22, 2:45pm
-                    </p>
-                  </div>
-                </div>
-                <div className="px-10 py-3 recent">
-                  <h1 className="text-green text-lg font-semibold mb-3">
-                    Token Purchase
-                  </h1>
-                  <div className="flex">
-                    <p className="w-2/3 font-normal text-sm text-footer">
-                      <span>You</span> made a deposit of{" "}
-                      <span className="">N20,000</span> purchase of{" "}
-                      <span>REIC Token</span>, Transaction ID:{" "}
-                      <span>UTTA005129</span>
-                    </p>
-                    <p className="w-1/3 font-bold text-xs text-footer text-right">
-                      Jul 22, 2:45pm
-                    </p>
-                  </div>
-                </div>
-              </motion.div>
+              <ErrorBoundary>
+                <RecentActivity />
+              </ErrorBoundary>
             </div>
           </div>
         </div>

@@ -10,12 +10,17 @@ import users2 from "./images/Frame 18.png";
 import users3 from "./images/Frame 19.png";
 import users4 from "./images/Frame 20.png";
 import { TbLoader } from "react-icons/tb";
+import JoinInvestment from "./JoinInvestment";
 
 function Investment() {
+  const [joinInvest, setJoinInvest] = useState(false);
   const [buyToken, setBuyToken] = useState(false);
 
   return (
     <div className="font-family bg-mainbg">
+      {joinInvest && (
+        <JoinInvestment className="z-10" closeModal={setJoinInvest} />
+      )}
       <Header />
       <div className="w-10/12 m-auto mt-20 bg-dashbg rounded-lg py-8 px-4">
         <div className="bg-white p-10 w-full rounded-lg">
@@ -26,7 +31,7 @@ function Investment() {
                         <img src={banner} alt="Buy_REIC_Token" className='w-full'/>
                     </div> */}
           <InvestTabs />
-          <div className="investlists">
+          <div className="investlists border-4">
             <div className="flex justify-between mb-4">
               <div className="real-estate">
                 <div className="mr-1.5 w-1/3 h-full">
@@ -66,7 +71,12 @@ function Investment() {
                       </div>
                     </div>
                     <div>
-                      <button className="bg-white text-green text-tiny font-normal w-24 h-7 rounded-2xl">
+                      <button
+                        className="bg-white text-green text-tiny font-normal w-24 h-7 rounded-2xl"
+                        onClick={() => {
+                          setJoinInvest(true);
+                        }}
+                      >
                         Join Now
                       </button>
                     </div>
