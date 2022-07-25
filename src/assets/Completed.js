@@ -113,7 +113,7 @@ function Completed() {
             ) : (
               <div className="flex flex-col items-center justify-center h-128">
                 <div className="flex flex-col justify-center items-center">
-                  <img src={box} alt="No relisted investment" />
+                  <img src={box} alt="No Completed investment" />
                 </div>
                 <h1 className="font-semibold text-xs text-statustext text-center -ml-10">
                   Oh oh! You have no completed
