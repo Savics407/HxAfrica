@@ -37,6 +37,7 @@ function Details({ closeToken }) {
     //use toaster and display redirecting to paystack
     // alert(result?.data.data.authorization_url);
     console.log(result?.data.data.authorization_url);
+    // try to load this url on the same page
     window.location.href = result?.data.data.authorization_url;
     return null;
   }

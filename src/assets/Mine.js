@@ -29,7 +29,7 @@ function Mine() {
     setPosts(result.data);
     if (result?.data.length === 0) {
       setAvailable(false);
-      alert("fetched Successfully");
+      // alert("fetched Successfully");
     } else {
       setAvailable(true);
     }
@@ -85,32 +85,31 @@ function Mine() {
                       <div className="text-footer font-bold text-sm flex header">
                         <img src={crowd} alt="crowdfunding" className="h-10" />
                         <div className="ml-2">
-                          <h1>{post.title}</h1>
+                          <h1>{post.product.title}</h1>
                           <h2 className="font-medium font-xs">
-                            {post.product_category.product_category}
+                            {post.product.product_category}
                           </h2>
                         </div>
                       </div>
                       <div className="text-footer font-bold text-sm dur">
-                        <h1>{post.duration} Months</h1>
+                        <h1>{post.duration} Days</h1>
                       </div>
                       <div className="text-footer font-bold text-sm table">
-                        <h1>N{post.cost}</h1>
+                        <h1>N{post.product.cost}</h1>
                       </div>
                       <div className="text-footer font-bold text-sm table">
                         {/* <h1>N{post.investments}</h1> */}
-                        <h1>N{post.cost}</h1>
+                        <h1>N{post.amount}</h1>
                       </div>
                       <div className="text-footer font-bold text-sm table">
                         <h1>N40,000.00</h1>
                         <h2 className="font-medium font-xs">
-                          {post.interest_rate}% Interest
+                          {post.interest}% Interest
                         </h2>
                       </div>
                       <div className="text-footer font-bold text-sm table">
                         <h1>
-                          {moment(post.expiry_date).diff(new Date(), "Days")}{" "}
-                          Days
+                          {moment(post.due_date).diff(new Date(), "Days")} Days
                         </h1>
                       </div>
                       <div className="text-right table">

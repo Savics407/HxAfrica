@@ -1,5 +1,5 @@
 // import logo from "./images/polygon.png";
-import { FaAngleDown } from "react-icons/fa";
+import { FaAngleDown, FaWindows } from "react-icons/fa";
 import dollar from "./images/Vector.png";
 import coin from "./images/coin.png";
 import reictoken from "./images/Reic_Token.png";
@@ -42,11 +42,18 @@ function Dashboard() {
     // alert(result.data.token);
     setToken(result.data.token);
     setNgn(result.data.balance);
+    localStorage.setItem("user-wallet", result?.data.token);
   }
 
   useEffect(() => {
     wallet();
   });
+
+  // function redirect() {
+  //   window.location = "http://localhost:3000/investment";
+  // }
+
+  // setTimeout(redirect(), 4000);
 
   return (
     <div className="font-family bg-mainbg">

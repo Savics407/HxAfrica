@@ -1,6 +1,8 @@
 import invest from "./images/invests.png";
 import invest1 from "./images/invest1.png";
 import invest2 from "./images/invest2.png";
+import box from "./images/Box.png";
+
 import { useState, useEffect } from "react";
 import Details from "./Investment_Details";
 import { Link } from "react-router-dom";
@@ -8,6 +10,9 @@ import moment from "moment";
 
 function Myinvests() {
   const [openDetails, setOpenDetails] = useState(false);
+  const [available, setAvailable] = useState(false);
+  const [itemId, setItemID] = useState("");
+
   const [posts, setPosts] = useState();
   async function fetchData() {
     const token = localStorage.getItem("user-token");
@@ -27,6 +32,12 @@ function Myinvests() {
     // alert(result.data[0].id);
 
     setPosts(result.data);
+    if (result?.data.length === 0) {
+      setAvailable(false);
+      // alert("fetched Successfully");
+    } else {
+      setAvailable(true);
+    }
   }
 
   useEffect(() => {
@@ -34,10 +45,22 @@ function Myinvests() {
     fetchData();
   }, []);
 
+  function productDetails(id) {
+    setItemID(id);
+    // alert(itemId);
+    // console.log(id);
+    setOpenDetails(true);
+  }
+
   return (
     <>
       {openDetails && (
-        <Details className="z-10" closeDetails={setOpenDetails} />
+        <Details
+          className="z-10"
+          closeDetails={setOpenDetails}
+          itemId={itemId}
+          setItemID={setItemID}
+        />
       )}
 
       <div className="rounded-lg bg-white mt-2 lg:mb-3 lg:pb-4 pb-28">
@@ -49,65 +72,55 @@ function Myinvests() {
             </h1>
           </Link>
         </div>
-        <div className="pt-8 px-2 h-7x overflow-y-scroll">
-          {posts?.map((post) => (
-            <div
-              key={post.id}
-              className="p-2 bg-welcome flex items-center justify-between rounded-lg mb-4"
-            >
-              <div className="flex items-center w-56">
-                <div className="mr-3">
-                  <img
-                    src={invest}
-                    alt="investment-icon"
-                    className="h-10 w-10"
-                  />
-                </div>
-                <div className="">
-                  <h1 className="text-dark font-medium text-base">
-                    {post.title}
-                  </h1>
-                  <p className="text-xs text-green">
-                    {post.product_category.product_category}
-                  </p>
-                </div>
-              </div>
-              <div className="w-18">
-                <h1
-                  className="text-links text-tiny lg:text-xs font-normal cursor-pointer"
-                  onClick={() => {
-                    setOpenDetails(true);
-                  }}
-                >
-                  See details
-                </h1>
-              </div>
-            </div>
-          ))}
-          {/* <div className="p-2 bg-welcome flex items-center justify-between rounded-lg mb-4">
-            <div className="flex items-center">
-              <div className="mr-5">
-                <img src={invest1} alt="investment-icon" />
-              </div>
-              <div>
-                <h1 className="text-dark font-medium text-base">
-                  Crowdfunding
-                </h1>
-                <p className="text-xs text-green">Software</p>
-              </div>
-            </div>
-            <div>
-              <h1
-                className="text-links text-tiny lg:text-xs font-normal cursor-pointer"
-                onClick={() => {
-                  setOpenDetails(true);
-                }}
+        {available ? (
+          <div className="pt-8 px-2 h-7x overflow-y-scroll">
+            {posts?.map((post) => (
+              <div
+                key={post.id}
+                className="p-2 bg-welcome flex items-center justify-between rounded-lg mb-4"
               >
-                See details
-              </h1>
-            </div>
-          </div> */}
-        </div>
+                <div className="flex items-center w-56">
+                  <div className="mr-3">
+                    <img
+                      src={invest}
+                      alt="investment-icon"
+                      className="h-10 w-10"
+                    />
+                  </div>
+                  <div className="">
+                    <h1 className="text-dark font-medium text-base">
+                      {post.product.title}
+                    </h1>
+                    <p className="text-xs text-green">
+                      {post.product.product_category}
+                    </p>
+                  </div>
+                </div>
+                <div className="w-18">
+                  <h1
+                    className="text-links text-tiny lg:text-xs font-normal cursor-pointer"
+                    onClick={() => {
+                      productDetails(post.id);
+                    }}
+                  >
+                    See details
+                  </h1>
+                </div>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div className="flex flex-col items-center justify-center h-128">
+            {/* <div className="flex flex-col justify-center items-center">
+              <img src={box} alt="No relisted investment" />
+            </div> */}
+            <h1 className="font-semibold text-sm text-statustext text-center">
+              Oh oh! You have no active
+              <br />
+              investments at this time
+            </h1>
+          </div>
+        )}
       </div>
     </>
   );

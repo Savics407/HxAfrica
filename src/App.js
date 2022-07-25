@@ -20,6 +20,7 @@ import Profile from "./assets/Settings";
 import ChangePassword from "./assets/ChangePassword";
 import Activity from "./assets/Activity";
 import Header from "./assets/Header";
+import PrivateRoutes from "./util/PrivateRoutes";
 
 function App() {
   return (
@@ -27,21 +28,26 @@ function App() {
       <Routes>
         <Route path="/" element={<Auth />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/settings" element={<Profile />} />
-        <Route path="/change-password" element={<ChangePassword />} />
-        <Route path="/activities" element={<Activity />} />
-        <Route path="/token" element={<Token />} />
-        <Route path="/details" element={<Details />} />
-        <Route path="/addbank" element={<AddBank />} />
-        <Route path="/bvn" element={<Processing />} />
-        <Route path="/notification" element={<Notification />} />
-        <Route path="/investment" element={<Investment />} />
-        <Route path="/investments/ongoing" element={<Ongoing />} />
-        <Route path="/investments/completed" element={<Completed />} />
-        <Route path="/investments/relisted-investment" element={<Relisted />} />
-        <Route path="/investments/my-investment" element={<Mine />} />
-        <Route path="/header" element={<Header />} />
+        <Route element={<PrivateRoutes />}>
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/settings" element={<Profile />} />
+          <Route path="/change-password" element={<ChangePassword />} />
+          <Route path="/activities" element={<Activity />} />
+          <Route path="/token" element={<Token />} />
+          <Route path="/details" element={<Details />} />
+          <Route path="/addbank" element={<AddBank />} />
+          <Route path="/bvn" element={<Processing />} />
+          <Route path="/notification" element={<Notification />} />
+          <Route path="/investment" element={<Investment />} />
+          <Route path="/investments/ongoing" element={<Ongoing />} />
+          <Route path="/investments/completed" element={<Completed />} />
+          <Route
+            path="/investments/relisted-investment"
+            element={<Relisted />}
+          />
+          <Route path="/investments/my-investment" element={<Mine />} />
+          {/* <Route path="/header" element={<Header />} /> */}
+        </Route>
       </Routes>
       <ToastContainer />
     </div>

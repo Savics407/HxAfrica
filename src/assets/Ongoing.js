@@ -3,6 +3,7 @@ import Header from "./Header";
 import InvestTabs from "./InvestTabs";
 import banner from "./images/banner.png";
 import land from "./images/rawland2.png";
+import box from "./images/Box.png";
 import { TbLoader } from "react-icons/tb";
 import moment from "moment";
 
@@ -27,12 +28,12 @@ function Ongoing() {
     // alert(result.data[0].duration);
 
     setPosts(result.data);
-    // if (result?.data.length === 0) {
-    //   setOngoing(false);
-    //   alert(result.data);
-    // } else {
-    //   setOngoing(true);
-    // }
+    if (result?.data.length === 0) {
+      setOngoing(false);
+      // alert(result.data);
+    } else {
+      setOngoing(true);
+    }
   }
 
   useEffect(() => {
@@ -52,45 +53,58 @@ function Ongoing() {
                     </div> */}
           <InvestTabs />
           <div className="investlists">
-            <div className="flex flex-wrap mb-4">
-              {posts?.map((post) => (
-                <div key={post.id} className="real-estate">
-                  <div className="mr-1.5 w-1/3">
-                    <img src={land} alt="rawland" />
+            {ongoing ? (
+              <div className="flex flex-wrap mb-4">
+                {posts?.map((post) => (
+                  <div key={post.id} className="real-estate">
+                    <div className="mr-1.5 w-1/3">
+                      <img src={land} alt="rawland" />
+                    </div>
+                    <div className="w-2/3">
+                      <div className="mb-2">
+                        <h1 className="!mb-0">{post.product.title}</h1>
+                        <h2 className="text-green text-xs">
+                          {post.interest}% Interest Rate
+                        </h2>
+                      </div>
+                      <div className="text-tiny text-grayy mb-3">
+                        <p className="!mb-0">
+                          Time Frame:{" "}
+                          <span className="text-darkgray">
+                            {post.duration} months
+                          </span>
+                        </p>
+                        <p className="">
+                          Expires -{" "}
+                          <span className="text-darkgray">
+                            {moment(post.due_date).format("MMM DD, yyyy")}
+                          </span>
+                        </p>
+                      </div>
+                      <div className="text-grayy text-tiny bg-mainsec p-2 rounded-lg mb-3 w-48">
+                        <p className="">
+                          Property Worth{" "}
+                          <span className="text-darkgray text-xs font-medium ml-2">
+                            N{post.product.cost}
+                          </span>
+                        </p>
+                      </div>
+                    </div>
                   </div>
-                  <div className="w-2/3">
-                    <div className="mb-2">
-                      <h1 className="!mb-0">{post.product.title}</h1>
-                      <h2 className="text-green text-xs">
-                        {post.interest}% Interest Rate
-                      </h2>
-                    </div>
-                    <div className="text-tiny text-grayy mb-3">
-                      <p className="!mb-0">
-                        Time Frame:{" "}
-                        <span className="text-darkgray">
-                          {post.duration} months
-                        </span>
-                      </p>
-                      <p className="">
-                        Expires -{" "}
-                        <span className="text-darkgray">
-                          {moment(post.due_date).calendar()}
-                        </span>
-                      </p>
-                    </div>
-                    <div className="text-grayy text-tiny bg-mainsec p-2 rounded-lg mb-3 w-48">
-                      <p className="">
-                        Property Worth{" "}
-                        <span className="text-darkgray text-xs font-medium ml-2">
-                          N{post.product.cost}
-                        </span>
-                      </p>
-                    </div>
-                  </div>
+                ))}
+              </div>
+            ) : (
+              <div className="flex flex-col items-center justify-center h-128">
+                <div className="flex flex-col justify-center items-center">
+                  <img src={box} alt="No relisted investment" />
                 </div>
-              ))}
-            </div>
+                <h1 className="font-semibold text-xs text-statustext text-center -ml-10">
+                  Oh oh! You have no active
+                  <br />
+                  investments at this time
+                </h1>
+              </div>
+            )}
           </div>
           <div className="flex justify-center p-10 hidden">
             <button className="border border-more font-medium rounded-full w-40 h-10 text-neutral flex justify-center items-center">
