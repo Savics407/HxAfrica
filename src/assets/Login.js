@@ -49,6 +49,7 @@ function Login() {
       localStorage.setItem("user-city", result?.data.city);
       localStorage.setItem("user-state", result?.data.state);
       localStorage.setItem("user-address", result?.data.address);
+      localStorage.setItem("user-id", result?.data.id);
       // Route to Dashbaord
       toast.success(`${result.message}`, {
         position: "top-left",
