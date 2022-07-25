@@ -61,7 +61,12 @@ function Profile() {
                   </h1>
                 </td>
                 <td className="w-2/3 border px-5">
-                  <h1 className="font-medium text-sm ">{userName}</h1>
+                  {/* <h1 className="font-medium text-sm ">{userName}</h1> */}
+                  <input
+                    type="text"
+                    defaultValue={userName}
+                    className="font-medium text-sm outline-none w-full"
+                  />
                 </td>
               </tr>
               <tr>
@@ -71,7 +76,12 @@ function Profile() {
                   </h1>
                 </td>
                 <td className="w-2/3 border px-5">
-                  <h1 className="font-medium text-sm italic">Not added yet</h1>
+                  {/* <h1 className="font-medium text-sm italic">Not added yet</h1> */}
+                  <input
+                    type="text"
+                    placeholder="Not Added yet"
+                    className="font-medium text-sm outline-none w-full"
+                  />
                 </td>
               </tr>
               <tr>
@@ -81,7 +91,12 @@ function Profile() {
                   </h1>
                 </td>
                 <td className="w-2/3 border px-5">
-                  <h1 className="font-medium text-sm">{userEmail}</h1>
+                  {/* <h1 className="font-medium text-sm">{userEmail}</h1> */}
+                  <input
+                    type="text"
+                    defaultValue={userEmail}
+                    className="font-medium text-sm outline-none w-full"
+                  />
                 </td>
               </tr>
               <tr>
@@ -91,7 +106,12 @@ function Profile() {
                   </h1>
                 </td>
                 <td className="w-2/3 border px-5">
-                  <h1 className="font-medium text-sm">{userPhone}</h1>
+                  {/* <h1 className="font-medium text-sm">{userPhone}</h1> */}
+                  <input
+                    type="text"
+                    defaultValue={userPhone}
+                    className="font-medium text-sm outline-none w-full"
+                  />
                 </td>
               </tr>
               <tr>
@@ -101,7 +121,12 @@ function Profile() {
                   </h1>
                 </td>
                 <td className="w-2/3 border px-5">
-                  <h1 className="font-medium text-sm">{userDob}</h1>
+                  {/* <h1 className="font-medium text-sm">{userDob}</h1> */}
+                  <input
+                    type="text"
+                    defaultValue={userDob}
+                    className="font-medium text-sm outline-none w-full"
+                  />
                 </td>
               </tr>
               <tr>
@@ -109,7 +134,12 @@ function Profile() {
                   <h1 className="text-footer font-semibold text-base">State</h1>
                 </td>
                 <td className="w-2/3 border px-5">
-                  <h1 className="font-medium text-sm">{userState}</h1>
+                  {/* <h1 className="font-medium text-sm">{userState}</h1> */}
+                  <input
+                    type="text"
+                    defaultValue={userState}
+                    className="font-medium text-sm outline-none w-full"
+                  />
                 </td>
               </tr>
               <tr>
@@ -117,7 +147,12 @@ function Profile() {
                   <h1 className="text-footer font-semibold text-base">City</h1>
                 </td>
                 <td className="w-2/3 border px-5">
-                  <h1 className="font-medium text-sm">{userCity}</h1>
+                  {/* <h1 className="font-medium text-sm">{userCity}</h1> */}
+                  <input
+                    type="text"
+                    defaultValue={userCity}
+                    className="font-medium text-sm outline-none w-full"
+                  />
                 </td>
               </tr>
             </table>
@@ -134,9 +169,11 @@ function Profile() {
                   </h1>
                 </td>
                 <td className="w-2/3 border px-5">
-                  <h1 className="font-normal text-head italic text-sm ">
-                    Not Added yet
-                  </h1>
+                  <input
+                    type="text"
+                    placeholder="Not Added yet"
+                    className="font-medium text-sm outline-none w-full"
+                  />
                 </td>
               </tr>
               <tr>
@@ -146,9 +183,11 @@ function Profile() {
                   </h1>
                 </td>
                 <td className="w-2/3 border px-5">
-                  <h1 className="font-normal text-head italic text-sm ">
-                    Not Added yet
-                  </h1>
+                  <input
+                    type="text"
+                    placeholder="Not Added yet"
+                    className="font-medium text-sm outline-none w-full"
+                  />
                 </td>
               </tr>
               <tr>
@@ -179,7 +218,12 @@ function Profile() {
                   </h1>
                 </td>
                 <td className="w-2/3 border px-5">
-                  <h1 className="font-medium text-sm">{userAddress}</h1>
+                  {/* <h1 className="font-medium text-sm">{userAddress}</h1> */}
+                  <input
+                    type="text"
+                    defaultValue={userAddress}
+                    className="font-medium text-sm outline-none w-full"
+                  />
                 </td>
               </tr>
               <tr>
@@ -187,9 +231,14 @@ function Profile() {
                   <h1 className="text-footer font-semibold text-base">BVN</h1>
                 </td>
                 <td className="w-2/3 border px-5">
-                  <h1 className="font-normal text-head italic text-sm ">
+                  {/* <h1 className="font-normal text-head italic text-sm ">
                     Not Added yet
-                  </h1>
+                  </h1> */}
+                  <input
+                    type="text"
+                    placeholder="Not Added yet"
+                    className="font-medium text-sm outline-none w-full"
+                  />
                 </td>
               </tr>
             </table>

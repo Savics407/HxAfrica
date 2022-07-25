@@ -4,11 +4,14 @@ import InvestTabs from "./InvestTabs";
 import banner from "./images/banner.png";
 import land from "./images/rawland2.png";
 import box from "./images/Box.png";
+import Details from "./Investment_Details";
 import { TbLoader } from "react-icons/tb";
 import moment from "moment";
 
 function Ongoing() {
   const [posts, setPosts] = useState();
+  const [itemId, setItemID] = useState("");
+  const [openDetails, setOpenDetails] = useState(false);
   const [ongoing, setOngoing] = useState(true);
   async function fetchData() {
     const token = localStorage.getItem("user-token");
@@ -40,8 +43,23 @@ function Ongoing() {
     // activities();
     fetchData();
   }, []);
+
+  function productDetails(id) {
+    setItemID(id);
+    // alert(itemId);
+    // console.log(id);
+    setOpenDetails(true);
+  }
   return (
     <div className="font-family bg-mainbg">
+      {openDetails && (
+        <Details
+          className="z-10"
+          closeDetails={setOpenDetails}
+          itemId={itemId}
+          setItemID={setItemID}
+        />
+      )}
       <Header />
       <div className="w-10/12 m-auto mt-20 bg-dashbg rounded-lg py-8 px-4">
         <div className="bg-white p-10 w-full rounded-lg">
@@ -56,7 +74,13 @@ function Ongoing() {
             {ongoing ? (
               <div className="flex flex-wrap mb-4">
                 {posts?.map((post) => (
-                  <div key={post.id} className="real-estate">
+                  <div
+                    key={post.id}
+                    className="real-estate cursor-pointer"
+                    onClick={() => {
+                      productDetails(post.id);
+                    }}
+                  >
                     <div className="mr-1.5 w-1/3">
                       <img src={land} alt="rawland" />
                     </div>

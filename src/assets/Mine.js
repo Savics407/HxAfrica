@@ -3,10 +3,13 @@ import Header from "./Header";
 import InvestTabs from "./InvestTabs";
 import box from "./images/Box.png";
 import moment from "moment";
+import Details from "./Investment_Details";
 import crowd from "./images/crowdfund.png";
 
 function Mine() {
+  const [openDetails, setOpenDetails] = useState(false);
   const [posts, setPosts] = useState();
+  const [itemId, setItemID] = useState("");
   const [available, setAvailable] = useState(false);
 
   async function fetchData() {
@@ -40,8 +43,23 @@ function Mine() {
     fetchData();
   }, []);
 
+  function productDetails(id) {
+    setItemID(id);
+    // alert(itemId);
+    // console.log(id);
+    setOpenDetails(true);
+  }
+
   return (
     <div className="font-family bg-mainbg">
+      {openDetails && (
+        <Details
+          className="z-10"
+          closeDetails={setOpenDetails}
+          itemId={itemId}
+          setItemID={setItemID}
+        />
+      )}
       <Header />
       <div className="w-10/12 m-auto mt-20 bg-dashbg rounded-lg py-8 px-4">
         <div className="bg-white p-10 w-full rounded-lg">
@@ -113,7 +131,12 @@ function Mine() {
                         </h1>
                       </div>
                       <div className="text-right table">
-                        <button className="bg-pending text-xs text-red w-28 h-9 rounded-full font-medium">
+                        <button
+                          className="bg-pending text-xs text-red w-28 h-9 rounded-full font-medium"
+                          onClick={() => {
+                            productDetails(post.id);
+                          }}
+                        >
                           Pull Out
                         </button>
                       </div>

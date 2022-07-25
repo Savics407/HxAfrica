@@ -267,7 +267,7 @@ function JoinInvestment({ closeModal, itemId }) {
 
 export function Warning({ closeWarning, closeModal, reic, title, productID }) {
   function redirect() {
-    window.location = "/token";
+    window.location = "/investment";
   }
 
   const [processing, setProcessing] = useState(false);
