@@ -15,7 +15,7 @@ body {
 
 
 .notification {
-  @apply absolute py-4 text-neutral px-6 w-128 right-48 top-20 -mt-2 rounded-xl shadow-3xl bg-dashbg text-left invisible duration-300;
+  @apply absolute py-4 text-neutral px-6 w-128 -right-4 top-20 -mt-2 rounded-xl shadow-3xl bg-dashbg text-left invisible duration-300;
   box-shadow: 0px 16px 64px 5px #1f304726;
 }
 .show-note {

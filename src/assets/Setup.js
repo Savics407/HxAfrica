@@ -107,7 +107,7 @@ function Setup({ formData, setFormData }) {
         <div>
           <h1 className="page-text">Account Setup</h1>
           <p className="description">
-            Kindly provide accurate details and fill every requires below
+            Kindly provide accurate details and fill every required field below
           </p>
         </div>
         <div className="input">
