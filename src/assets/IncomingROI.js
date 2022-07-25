@@ -47,7 +47,10 @@ function IncomingROI() {
             {posts
               ?.filter((post) => post.id === 1)
               .map((post) => (
-                <div className="lg:px-10 lg:py-5 px-6 py-3 flex flex-row justify-between">
+                <div
+                  key={post.id}
+                  className="lg:px-10 lg:py-5 px-6 py-3 flex flex-row justify-between"
+                >
                   <div className="lg:w-3/5 lg:py-10 py-5 w-fit">
                     <div className="flex justify-between ">
                       <div className="income">

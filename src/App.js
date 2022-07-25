@@ -21,13 +21,16 @@ import ChangePassword from "./assets/ChangePassword";
 import Activity from "./assets/Activity";
 import Header from "./assets/Header";
 import PrivateRoutes from "./util/PrivateRoutes";
+import UseNetworkStatus from "./useNetworkStatus";
 
 function App() {
   return (
     <div>
+      {/* <UseNetworkStatus /> */}
       <Routes>
         <Route path="/" element={<Auth />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/status" element={<UseNetworkStatus />} />
         <Route element={<PrivateRoutes />}>
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/settings" element={<Profile />} />

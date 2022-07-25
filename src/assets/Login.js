@@ -5,6 +5,8 @@ import { FaRegEyeSlash } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { toast } from "react-toastify";
+import { useForm } from "react-hook-form";
+import { TbLoader } from "react-icons/tb";
 import axios from "axios";
 
 function Tab() {
@@ -19,7 +21,16 @@ function Tab() {
 }
 
 function Login() {
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm({
+    mode: "onTouched",
+  });
   const navigate = useNavigate();
+  const [process, setProcess] = useState(false);
   const [loginData, setLoginData] = useState({
     email: "",
     password: "",
@@ -27,6 +38,8 @@ function Login() {
   async function login(e) {
     // console.log(formData);
     // e.preventDefault();
+    setProcess(true);
+
     const loginLoad = {
       email: loginData.email,
       password: loginData.password,
@@ -65,6 +78,7 @@ function Login() {
       if (result.status === "error") {
         // setError(result.data);
         console.log(result);
+        setProcess(false);
         // alert(result.message);
         toast.error(`${result.message}`, {
           position: "top-left",
@@ -84,7 +98,7 @@ function Login() {
       <Tab />
       <div className="lg:flex justify-between">
         <div className="lg:px-24 md:px-24 px-10 lg:pt-20 pt-14 pb-5 w-full lg:w-1/2">
-          <form className="form">
+          <form className="form" onSubmit={handleSubmit(login)}>
             <div>
               <h1 className="page-text">Welcome Back</h1>
               <p className="description">Login to your account</p>
@@ -92,30 +106,58 @@ function Login() {
             <div className="input">
               <label className="">Email Address</label>
               <input
-                required
+                // required
                 type="email"
                 placeholder="enter email address"
-                className="box"
+                className={`box ${
+                  errors.password &&
+                  "focus:border-red focus:ring-red border-red"
+                }`}
+                {...register("email", {
+                  required: "email is required",
+                  pattern: {
+                    value: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
+                    message: "Please enter a valid email.",
+                  },
+                })}
                 value={loginData.email}
                 onChange={(event) =>
                   setLoginData({ ...loginData, email: event.target.value })
                 }
               />
+              {errors.email && (
+                <span className="text-red text-xs">
+                  {" "}
+                  {errors.email.message}
+                </span>
+              )}
             </div>
 
             <div className="input relative">
               <label>Password</label>
               <input
-                required
+                // required
                 type="password"
                 placeholder="enter password"
-                className="box"
+                className={`box ${
+                  errors.password &&
+                  "focus:border-red focus:ring-red border-red"
+                }`}
+                {...register("password", {
+                  required: "Password is required",
+                })}
                 id="pass"
                 value={loginData.password}
                 onChange={(event) =>
                   setLoginData({ ...loginData, password: event.target.value })
                 }
               />
+              {errors.password && (
+                <span className="text-red text-xs">
+                  {" "}
+                  {errors.password.message}
+                </span>
+              )}
               <FaRegEyeSlash
                 className="text-grey absolute top-11 right-4 cursor-pointer"
                 onClick={() => {
@@ -132,15 +174,19 @@ function Login() {
             <div className=" flex items-start">
               <p className="text-xs tracking-wide">Forgot Password?</p>
             </div>
+
+            <div
+              className="lg:w-80 bg-green text-white flex justify-center items-center w-full p-3 rounded-xl mt-6 font-medium cursor-pointer"
+              onClick={handleSubmit(login)}
+            >
+              {process && <TbLoader />}
+              <input
+                type="submit"
+                className="  ml-2 cursor-pointer"
+                value="Log in"
+              />
+            </div>
           </form>
-          <div className="lg:w-80">
-            <input
-              type="submit"
-              className="bg-green text-white w-full p-3 rounded-xl mt-6 font-medium cursor-pointer"
-              value="Log in"
-              onClick={login}
-            />
-          </div>
           <p className="text-sm font-medium text-sec mt-8 mb-48 text-center md:text-left">
             You are new ?{" "}
             <Link to="/">
