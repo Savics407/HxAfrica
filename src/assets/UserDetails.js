@@ -3,6 +3,7 @@ import { useState } from "react";
 import { FaRegEyeSlash } from "react-icons/fa";
 import { FaRegEye } from "react-icons/fa";
 import { useForm } from "react-hook-form";
+import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 // import axios from "axios";
 
@@ -290,6 +291,12 @@ function UserDetails({ formData, setFormData, nextPage, signup }) {
             type="submit"
             value="Submit"
           />
+          <p className="text-sm font-medium text-sec mt-5 mb-48 text-center md:text-left">
+            Existing user ?{" "}
+            <Link to="/login">
+              <span className="text-green">Login</span>
+            </Link>
+          </p>
         </div>
       </form>
     </>
