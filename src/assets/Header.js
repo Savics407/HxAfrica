@@ -128,7 +128,7 @@ function Header() {
             </div>
 
             <div
-              className="flex items flex items-center text-sm mx-6 relative cursor-pointer"
+              className="flex items flex items-center text-sm ml-6 mr-3 relative cursor-pointer"
               onClick={() => {
                 setLogout(!logout);
                 setIsClick(false);
