@@ -1,4 +1,4 @@
-import user from "./images/user_icon.png";
+import user from "./images/default_profile.svg";
 import { FaAngleDown } from "react-icons/fa";
 import { FaBell } from "react-icons/fa";
 import { useState } from "react";
@@ -22,7 +22,7 @@ function Header() {
   const userEmail = localStorage.getItem("user-email");
   const userIcon = localStorage.getItem("user-profile");
   const logOut = () => {
-    window.localStorage.clear();
+    window.localStorage.removeItem("user-token");
     toast.success(`User logged out Successfully`, {
       position: "top-left",
       autoClose: 1500,
@@ -159,9 +159,17 @@ function Header() {
               </div>
             </div>
 
-            <div className="relative w-12 bg-mainbg rounded-full h-12">
+            <div className="relative w-10 bg-mainbg rounded-full h-10">
               <Link to="/settings">
-                <img src={userIcon} alt="User-Icon" className="object-cover" />
+                {!!userIcon ? (
+                  <img
+                    src={userIcon}
+                    alt="User-Icon"
+                    className="object-fill  "
+                  />
+                ) : (
+                  <img src={user} alt="User-Icon" className="object-cover" />
+                )}
               </Link>
               <div className="online"></div>
 

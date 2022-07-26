@@ -11,6 +11,7 @@ import avater7 from "./images/7.svg";
 import avater8 from "./images/8.svg";
 import avater9 from "./images/9.svg";
 import { motion } from "framer-motion";
+import { useNavigate, Link } from "react-router-dom";
 
 function Tab() {
   return (
@@ -25,6 +26,7 @@ function Tab() {
 
 function Congratulations() {
   const userIcon = localStorage.getItem("user-profile");
+  const navigate = useNavigate();
 
   return (
     <>
@@ -65,19 +67,23 @@ function Congratulations() {
               delay: 0.5,
             },
           }}
-          className="bg-white rounded-2xl w-1/2 flex justify-center flex-col"
+          className="bg-white rounded-2xl w-1/2  flex justify-center flex-col py-10 px-10"
         >
-          <div>
+          <div className="flex justify-center mb-5">
             <img src={userIcon} alt="userAvater" />
           </div>
-          <div>
+          <div className="text-center">
             <h1 className="font-semibold text-banner text-2xl">
               Congratulations
             </h1>
-            <h1 className="text-sm font-normal text-black">
-              Your profile avatar has been set successfully.
+            <h1 className="text-sm font-normal text-black mt-3 mb-10">
+              Your profile avatar has been set <br />
+              successfully.
             </h1>
-            <button className="bg-green px-10 py-3 text-white ">
+            <button
+              className="bg-green px-20 py-3 text-white rounded-lg"
+              onClick={() => navigate("/dashboard")}
+            >
               Continue
             </button>
           </div>
@@ -104,14 +110,16 @@ function SelectAvater() {
   const [userIcon, setUserIcon] = useState(avater);
   const [isClick, setIsClick] = useState(false);
   const [available, setAvailable] = useState(false);
+  const navigate = useNavigate();
 
   const updateProfile = () => {
     localStorage.setItem("user-profile", userIcon);
-    alert("updating profile");
+    setAvailable(true);
+    // alert("updating profile");
   };
   return (
     <div className="bg-white">
-      {!available && <Congratulations />}
+      {available && <Congratulations />}
       <Tab />
       <div className="justify-center py-28 flex">
         <div className=" w-96">
@@ -213,7 +221,10 @@ function SelectAvater() {
             </div>
           </div>
           <div className=" text-sm font-medium flex justify-center my-10">
-            <button className="text-green border border-green rounded-xl px-7 py-3 mr-3">
+            <button
+              className="text-green border border-green rounded-xl px-7 py-3 mr-3"
+              onClick={() => navigate("/dashboard")}
+            >
               Skip for now
             </button>
 

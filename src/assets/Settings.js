@@ -5,7 +5,204 @@ import Protabs from "./Protabs";
 import profile from "./images/Frame 17.png";
 import { BiLogOut } from "react-icons/bi";
 import { useNavigate, Link } from "react-router-dom";
+import avater from "./images/default_profile.svg";
 import { toast } from "react-toastify";
+import avater1 from "./images/1.svg";
+import avater2 from "./images/2.svg";
+import avater3 from "./images/3.svg";
+import avater4 from "./images/4.svg";
+import avater5 from "./images/5.svg";
+import avater6 from "./images/6.svg";
+import avater7 from "./images/7.svg";
+import avater8 from "./images/8.svg";
+import avater9 from "./images/9.svg";
+import { useState } from "react";
+
+function SelectAvater({ setAvailable }) {
+  const images = {
+    avater: avater,
+    avater1: avater1,
+    avater2: avater2,
+    avater3: avater3,
+    avater4: avater4,
+    avater5: avater5,
+    avater6: avater6,
+    avater7: avater7,
+    avater8: avater8,
+    avater9: avater9,
+  };
+
+  const [userIcon, setUserIcon] = useState(avater);
+  const [isClick, setIsClick] = useState(false);
+
+  const updateProfile = () => {
+    localStorage.setItem("user-profile", userIcon);
+    // alert("updating profile");
+    setAvailable(false);
+  };
+  return (
+    <motion.div
+      initial={{
+        opacity: 0,
+      }}
+      animate={{
+        opacity: 1,
+        transition: {
+          duration: 0.5,
+        },
+      }}
+      exit={{
+        opacity: 0,
+        transition: {
+          delay: 0.5,
+        },
+      }}
+      className="flex items-center justify-center fixed top-0 right-0 bottom-0 left-0 bg-overlay z-50 backdrop-blur-xs"
+      // onClick={() => {
+      //         closeDetails(false)
+      //     }}
+    >
+      <motion.div
+        initial={{
+          scale: 0,
+        }}
+        animate={{
+          scale: 1,
+          transition: {
+            duration: 0.5,
+          },
+        }}
+        exit={{
+          scale: 0,
+          transition: {
+            delay: 0.5,
+          },
+        }}
+        className="justify-center p-10 rounded-xl flex bg-white"
+      >
+        <div className=" w-96">
+          <div>
+            <h1 className="text-green text-2xl lg:text-4xl font-semibold mb-3 text-center">
+              Select Avater
+            </h1>
+          </div>
+          <div className="flex justify-center mb-5">
+            <img src={userIcon} alt="userAvater" />
+          </div>
+          <div className="flex justify-around w-full px-4 flex-wrap mb-4">
+            <div
+              className="avater"
+              onClick={() => {
+                setUserIcon(avater1);
+                setIsClick(true);
+              }}
+            >
+              <img src={images.avater1} alt="Users Avater" />
+            </div>
+            <div
+              className="avater"
+              onClick={() => {
+                setUserIcon(avater2);
+                setIsClick(true);
+              }}
+            >
+              <img src={images.avater2} alt="Users Avater" />
+            </div>
+            <div
+              className="avater"
+              onClick={() => {
+                setUserIcon(avater3);
+                setIsClick(true);
+              }}
+            >
+              <img src={images.avater3} alt="Users Avater" />
+            </div>
+            <div
+              className="avater"
+              onClick={() => {
+                setUserIcon(avater4);
+                setIsClick(true);
+              }}
+            >
+              <img src={images.avater4} alt="Users Avater" />
+            </div>
+          </div>
+          <div className="flex justify-around w-full px-4 flex-wrap">
+            <div
+              className="avater"
+              onClick={() => {
+                setUserIcon(avater5);
+                setIsClick(true);
+              }}
+            >
+              <img src={images.avater5} alt="Users Avater" />
+            </div>
+            <div
+              className="avater"
+              onClick={() => {
+                setUserIcon(avater6);
+                setIsClick(true);
+              }}
+            >
+              <img src={images.avater6} alt="Users Avater" />
+            </div>
+            <div
+              className="avater"
+              onClick={() => {
+                setUserIcon(avater7);
+                setIsClick(true);
+              }}
+            >
+              <img src={images.avater7} alt="Users Avater" />
+            </div>
+            <div
+              className="avater"
+              onClick={() => {
+                setUserIcon(avater8);
+                setIsClick(true);
+              }}
+            >
+              <img src={images.avater8} alt="Users Avater" />
+            </div>
+            <div
+              className="mt-4 avater"
+              onClick={() => {
+                setUserIcon(avater9);
+                setIsClick(true);
+              }}
+            >
+              <img src={images.avater9} alt="Users Avater" />
+            </div>
+          </div>
+          <div className=" text-sm font-medium flex justify-center my-10">
+            <button
+              className="text-green border border-green rounded-xl px-12 py-3 mr-3"
+              onClick={() => setAvailable(false)}
+            >
+              Cancel
+            </button>
+
+            {isClick ? (
+              <button
+                className="text-white bg-green hover:opacity-100 rounded-xl px-7 py-3"
+                onClick={updateProfile}
+              >
+                Set as avater
+              </button>
+            ) : (
+              <button
+                className="text-white bg-green opacity-50 hover:opacity-100 rounded-xl px-7 py-3"
+                onClick={() => alert("select an avater")}
+              >
+                Set as avater
+              </button>
+            )}
+          </div>
+        </div>
+      </motion.div>
+    </motion.div>
+  );
+}
 
 function Profile() {
   const userName = localStorage.getItem("user-name");
@@ -15,9 +212,16 @@ function Profile() {
   const userCity = localStorage.getItem("user-city");
   const userState = localStorage.getItem("user-state");
   const userAddress = localStorage.getItem("user-address");
+  const [available, setAvailable] = useState(false);
 
   const navigate = useNavigate();
   const userIcon = localStorage.getItem("user-profile");
+
+  const remove = () => {
+    window.localStorage.removeItem("user-profile");
+    alert("updating profile");
+    window.location.reload(true);
+  };
 
   const logOut = () => {
     window.localStorage.clear();
@@ -35,6 +239,8 @@ function Profile() {
 
   return (
     <div className="font-family bg-mainbg">
+      {available && <SelectAvater setAvailable={setAvailable} />}
+
       <Header />
 
       <div className="w-10/12 m-auto mt-20 bg-white rounded-lg py-8 px-10">
@@ -62,11 +268,25 @@ function Profile() {
           <Protabs />
           <div className="">
             <div className="flex items-center flex-col pt-5">
-              <img src={userIcon} alt="Profile Picture" className="w-28 h-28" />
-              <button className="text-blue border rounded-full py-1 px-4 font-bold text-sm my-3">
+              {!!userIcon ? (
+                <img
+                  src={userIcon}
+                  alt="Profile Picture"
+                  className="w-28 h-28"
+                />
+              ) : (
+                <img src={avater} alt="Profile Picture" className="w-28 h-28" />
+              )}
+              {/* <img src={userIcon} alt="Profile Picture" className="w-28 h-28" /> */}
+              <button
+                className="text-blue border rounded-full py-1 px-4 font-bold text-sm my-3"
+                onClick={() => setAvailable(true)}
+              >
                 Change Profile Picture
               </button>
-              <h1 className="text-red text-sm">Remove Picture</h1>
+              <h1 className="text-red text-sm cursor-pointer" onClick={remove}>
+                Remove Picture
+              </h1>
             </div>
           </div>
           <div className="my-14 text-footer">

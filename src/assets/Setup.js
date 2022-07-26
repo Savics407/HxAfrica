@@ -49,7 +49,7 @@ function Setup({ formData, setFormData }) {
         draggable: true,
         progress: undefined,
       });
-      navigate("/login");
+      navigate("/select-avatar");
     } else {
       if (result.status === "error") {
         toast.error(`${result.message}`, {
