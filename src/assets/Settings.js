@@ -219,7 +219,16 @@ function Profile() {
 
   const remove = () => {
     window.localStorage.removeItem("user-profile");
-    alert("updating profile");
+    // alert("updating profile");
+    toast.success("Updating Profile Avater", {
+      position: "top-right",
+      autoClose: 1500,
+      hideProgressBar: true,
+      closeOnClick: false,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
     window.location.reload(true);
   };
 
