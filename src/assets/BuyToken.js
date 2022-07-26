@@ -3,7 +3,7 @@ import reictoken from "./images/Reic_Token.png";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { PaystackButton } from "react-paystack";
+// import { PaystackButton, usePaystackPayment } from "react-paystack";
 import TokenSuccess from "./tokenSuccess";
 
 // import { TbLoader } from 'react-icons/tb'
@@ -11,6 +11,8 @@ import TokenSuccess from "./tokenSuccess";
 function Details({ closeToken }) {
   const navigate = useNavigate();
   // const [authPullOut, setAuthPullOut] = useState(false)
+  const [card, setCard] = useState(false);
+  const [card2, setCard2] = useState(false);
   const [isCardPay, setIsCardPay] = useState(false);
   const [amount, setAmount] = useState(50000);
   async function buy(e) {
@@ -116,14 +118,27 @@ function Details({ closeToken }) {
               </p>
               <div className="flex justify-between">
                 <button
-                  className="border-2 border-border rounded-lg w-72 h-12 mr-5 text-token text-base font-semibold hover:bg-green hover:text-dashbg duration-300"
-                  onClick={() => setIsCardPay(true)}
+                  className={`border-2 border-border rounded-lg w-72 h-12 mr-5 text-token text-base font-semibold hover:bg-green hover:text-dashbg duration-300 ${
+                    card && "bg-green !text-dashbg"
+                  }`}
+                  onClick={() => {
+                    setIsCardPay(true);
+                    setCard(true);
+                    setCard2(false);
+                  }}
                 >
                   Card payment
                 </button>
                 <button
-                  className="border-2 border-border rounded-lg w-72 h-12 text-token text-base font-semibold hover:bg-green hover:text-dashbg duration-300"
-                  onClick={() => alert("NO Bank added yet")}
+                  className={`border-2 border-border rounded-lg w-72 h-12 text-token text-base font-semibold hover:bg-green hover:text-dashbg duration-300 ${
+                    card2 && "bg-green !text-dashbg"
+                  }`}
+                  onClick={() => {
+                    alert("NO Bank added yet");
+                    setCard2(false);
+                    setIsCardPay(false);
+                    setCard(false);
+                  }}
                 >
                   Bank Transfer
                 </button>
@@ -145,6 +160,7 @@ function Details({ closeToken }) {
                   defaultValue="50000"
                 />
               </div>
+              <span className="text-green text-xs">{amount / 50000} REIC</span>
             </div>
             <div className="text-right pt-5 pb-8 flex justify-between items-center">
               <div className=" flex items-center">

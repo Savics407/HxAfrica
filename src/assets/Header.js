@@ -8,12 +8,32 @@ import { MdDashboard } from "react-icons/md";
 import { MdInsertChart } from "react-icons/md";
 import { AiFillDollarCircle } from "react-icons/ai";
 import { RiSettings3Fill } from "react-icons/ri";
+import { BiLogOut } from "react-icons/bi";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 // import { toast } from "react-toastify";
 import { Link, NavLink } from "react-router-dom";
 
 function Header() {
   const [isClick, setIsClick] = useState(false);
+  const [logout, setLogout] = useState(false);
   const userName = localStorage.getItem("user-name");
+  const navigate = useNavigate();
+  const userEmail = localStorage.getItem("user-email");
+  const userIcon = localStorage.getItem("user-profile");
+  const logOut = () => {
+    window.localStorage.clear();
+    toast.success(`User logged out Successfully`, {
+      position: "top-left",
+      autoClose: 1500,
+      hideProgressBar: true,
+      closeOnClick: false,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+    navigate("/login");
+  };
 
   // const notify = () =>
   //   toast.warn("Wow so easy!", {
@@ -31,7 +51,7 @@ function Header() {
     <>
       <div className="bg-green text-center text-white py-4 hidden lg:block">
         <div className="w-10/12 m-auto flex items-center justify-between hidden md:flex">
-          <Link to="/">
+          <Link to="/dashboard">
             <div className="w-48 h-12">
               <img src={logo} alt="REIC Logo" />
             </div>
@@ -39,7 +59,10 @@ function Header() {
           <div className=" border-white flex items-center relative">
             <div
               className="bg-primary text-dark rounded-full px-3 py-2.5 relative cursor-pointer"
-              onClick={() => setIsClick(!isClick)}
+              onClick={() => {
+                setIsClick(!isClick);
+                setLogout(false);
+              }}
             >
               <FaBell className="w-4 h-5" />
               <div className="notify"></div>
@@ -104,16 +127,41 @@ function Header() {
               </div>
             </div>
 
-            <Link to="/settings">
-              <div className="flex items flex items-center text-sm mx-6">
-                <h1 className="font-semibold mr-1">{userName}</h1>
-                <FaAngleDown />
-              </div>
-            </Link>
+            <div
+              className="flex items flex items-center text-sm mx-6 relative cursor-pointer"
+              onClick={() => {
+                setLogout(!logout);
+                setIsClick(false);
+              }}
+            >
+              <h1 className="font-semibold mr-1">{userName}</h1>
+              <FaAngleDown />
+              <div
+                className={`absolute py-6 text-neutral px-16 -right-5 top-20 -mt-2 rounded-xl shadow-2xl bg-dashbg text-left invisible  flex flex-col items-center duration-300 z-50 ${
+                  logout ? "show-note !top-12" : "remove-note"
+                }`}
+              >
+                <div className="arrow3 relative text-center mb-5">
+                  <h1 className="text-2xl font-semibold mb-3">{userName}</h1>
+                  <h1 className="text-sm text-footer font-normal">
+                    {userEmail}
+                  </h1>
+                </div>
 
-            <div className="relative">
+                <div className="">
+                  <button
+                    className="bg-green rounded text-dashbg py-3 px-10 text-sm font-bold flex items-center justify-center"
+                    onClick={logOut}
+                  >
+                    <BiLogOut className="mr-1 text-lg" /> Log Out
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div className="relative w-12 bg-mainbg rounded-full h-12">
               <Link to="/settings">
-                <img src={user} alt="User-Icon" className="" />
+                <img src={userIcon} alt="User-Icon" className="object-cover" />
               </Link>
               <div className="online"></div>
 

@@ -9,7 +9,7 @@ function IncomingROI() {
     const token = localStorage.getItem("user-token");
     // e.preventDefault();
     const response = await fetch(
-      "https://reic.api.simpoo.biz/api/investment/fetch_my_investment",
+      "https://reic.api.simpoo.biz/api/investment/fetch_ongoing_investment",
       {
         method: "POST",
         headers: {
@@ -65,11 +65,14 @@ function IncomingROI() {
                     <div className="flex justify-between">
                       <div className="income">
                         <h1>Expected Returns</h1>
-                        <p>500,000</p>
+                        <p>{(post.amount / 100) * 10 + post.amount}</p>
                       </div>
                       <div className="income">
                         <h1>Amount in Reic Token</h1>
-                        <p>10 REIC</p>
+                        <p>
+                          {((post.amount / 100) * 10 + post.amount) / 50000}{" "}
+                          REIC
+                        </p>
                       </div>
                     </div>
                   </div>

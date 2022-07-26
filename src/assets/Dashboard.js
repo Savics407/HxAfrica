@@ -1,12 +1,12 @@
 // import logo from "./images/polygon.png";
 import { FaAngleDown, FaWindows } from "react-icons/fa";
-import dollar from "./images/Vector.png";
-import coin from "./images/coin.png";
+import dollar from "./images/money-recive.svg";
+import coin from "./images/coin.svg";
 import reictoken from "./images/Reic_Token.png";
-import media from "./images/media.png";
+import media from "./images/media container.svg";
 import Investments from "./Investments";
 import Myinvests from "./Myinvestments";
-import diamond from "./images/diamond.png";
+import diamond from "./images/IMAGE.svg";
 import Header from "./Header";
 import BuyToken from "./BuyToken";
 import TokenSuccess from "./tokenSuccess";
@@ -21,7 +21,9 @@ function Dashboard() {
   const [buyToken, setBuyToken] = useState(false);
   const [tokenSuccess, setTokenSuccess] = useState(false);
   const [token, setToken] = useState();
+  const [drop, setDrop] = useState(false);
   const [ngn, setNgn] = useState();
+  const [reic, setReic] = useState(true);
   const userName = localStorage.getItem("user-name");
 
   async function wallet() {
@@ -96,21 +98,48 @@ function Dashboard() {
                       REIC TOKEN
                     </h1>
                     <h1 className="text-base font-medium mr-4 text-dark text-4l">
-                      <span>{JSON.stringify(token)}</span> REIC
+                      {reic ? (
+                        <span>{JSON.stringify(token)}</span>
+                      ) : (
+                        <span>N{JSON.stringify(ngn)}</span>
+                      )}{" "}
+                      {reic && "REIC"}
                     </h1>
                   </div>
                 </div>
 
-                <div className="flex items-center border rounded-full lg:py-2.5 lg:px-5 px-3 py-1.5 text-footer lg:text-xs text-xxm">
+                <div
+                  className="flex items-center border rounded-full lg:px-5 px-3 lg:py-2.5  py-1.5 text-footer lg:text-xs text-xxm cursor-pointer relative"
+                  onClick={() => setDrop(!drop)}
+                >
                   <span
                     className="mr-1"
                     // onClick={() => {
                     //   setTokenSuccess(true);
                     // }}
                   >
-                    REIC Coin
+                    {reic ? "REIC Coin" : "NGN"}
                   </span>
                   <FaAngleDown />
+                  <div
+                    className={`absolute text-neutral  left-0 top-28 -mt-2 rounded-xl shadow-2xl bg-dashbg text-left w-28 invisible duration-300 z-50 ${
+                      drop ? "show-note !top-10" : "remove-note"
+                    }`}
+                  >
+                    <div
+                      className="arrow2 relative border-b px-4 py-2 hover:bg-mainbg rounded-t-xl "
+                      onClick={() => setReic(true)}
+                    >
+                      <h1 className="text-base font-normal">REIC</h1>
+                    </div>
+
+                    <div
+                      className="text-base px-4 py-2 hover:bg-mainbg rounded-b-xl "
+                      onClick={() => setReic(false)}
+                    >
+                      <h1>NGN</h1>
+                    </div>
+                  </div>
                 </div>
               </div>
               <div className="hidden lg:block">
@@ -172,7 +201,7 @@ function Dashboard() {
               <div className="w-1/2 px-4">
                 <img src={coin} alt="dollar-icon" className="mb-4 h-6 w-6" />
                 <p className="text-earnings font-medium text-xs mb-1">
-                  Total Earnings Reic
+                  Total Investments
                 </p>
                 <h1 className="text-dark text-xl font-medium">N200,000</h1>
               </div>

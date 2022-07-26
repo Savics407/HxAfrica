@@ -3,6 +3,9 @@ import { motion } from "framer-motion";
 import { NavLink } from "react-router-dom";
 import Protabs from "./Protabs";
 import profile from "./images/Frame 17.png";
+import { BiLogOut } from "react-icons/bi";
+import { useNavigate, Link } from "react-router-dom";
+import { toast } from "react-toastify";
 
 function Profile() {
   const userName = localStorage.getItem("user-name");
@@ -12,6 +15,23 @@ function Profile() {
   const userCity = localStorage.getItem("user-city");
   const userState = localStorage.getItem("user-state");
   const userAddress = localStorage.getItem("user-address");
+
+  const navigate = useNavigate();
+  const userIcon = localStorage.getItem("user-profile");
+
+  const logOut = () => {
+    window.localStorage.clear();
+    toast.success(`User logged out Successfully`, {
+      position: "top-left",
+      autoClose: 1500,
+      hideProgressBar: true,
+      closeOnClick: false,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+    navigate("/login");
+  };
 
   return (
     <div className="font-family bg-mainbg">
@@ -42,7 +62,7 @@ function Profile() {
           <Protabs />
           <div className="">
             <div className="flex items-center flex-col pt-5">
-              <img src={profile} alt="Profile Picture" />
+              <img src={userIcon} alt="Profile Picture" className="w-28 h-28" />
               <button className="text-blue border rounded-full py-1 px-4 font-bold text-sm my-3">
                 Change Profile Picture
               </button>
@@ -204,9 +224,11 @@ function Profile() {
                       value="12345628"
                       className="bg-transparent"
                     />
-                    <h1 className="font-medium text-xs cursor-pointer text-change">
-                      Change password
-                    </h1>
+                    <Link to="/change-password">
+                      <h1 className="font-medium text-xs cursor-pointer text-change">
+                        Change password
+                      </h1>
+                    </Link>
                   </div>
                 </td>
               </tr>
@@ -243,7 +265,15 @@ function Profile() {
               </tr>
             </table>
           </div>
-          <div className="text-right font-family mb-12">
+          <div className="text-right font-family mb-12 flex justify-between ">
+            <div className="">
+              <button
+                className="bg-green rounded-full text-dashbg py-3 px-10 text-sm font-bold flex items-center justify-center"
+                onClick={logOut}
+              >
+                <BiLogOut className="mr-1 text-lg" /> Log Out
+              </button>
+            </div>
             <button className="rounded-full bg-green text-dashbg font-medium text-sm py-3 px-12">
               Update
             </button>

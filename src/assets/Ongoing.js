@@ -95,7 +95,7 @@ function Ongoing() {
                         <p className="!mb-0">
                           Time Frame:{" "}
                           <span className="text-darkgray">
-                            {post.duration} months
+                            {post.duration} Days
                           </span>
                         </p>
                         <p className="">

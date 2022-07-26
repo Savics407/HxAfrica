@@ -48,6 +48,8 @@ class ErrorBoundary extends React.Component {
 
 function Token() {
   const [isCardPay, setIsCardPay] = useState(false);
+  const [card, setCard] = useState(false);
+  const [card2, setCard2] = useState(false);
   const [amount, setAmount] = useState(50000);
   async function buy(e) {
     e.preventDefault();
@@ -81,6 +83,8 @@ function Token() {
 
   //token balance
   const [ngn, setNgn] = useState();
+  const [drop, setDrop] = useState(false);
+  const [reic, setReic] = useState(true);
   const [token, setToken] = useState();
   async function wallet() {
     // console.log(formData);
@@ -126,11 +130,38 @@ function Token() {
               <div className="flex items-center mt-8 justify-between">
                 <div className="flex items-center justify-between ">
                   <h1 className="font-medium mr-4 text-dark text-4xl">
-                    <span>{JSON.stringify(token)}</span> REIC
+                    {reic ? (
+                      <span>{JSON.stringify(token)}</span>
+                    ) : (
+                      <span>N{JSON.stringify(ngn)}</span>
+                    )}{" "}
+                    {reic && "REIC"}
                   </h1>
-                  <div className="flex items-center border rounded-full py-2.5 px-5">
-                    <span className="mr-1">REIC Coin</span>
+                  <div
+                    className="flex items-center border rounded-full py-2.5 px-5 relative cursor-pointer"
+                    onClick={() => setDrop(!drop)}
+                  >
+                    <span className="mr-1">{reic ? "REIC Coin" : "NGN"}</span>
                     <FaAngleDown />
+                    <div
+                      className={`absolute text-neutral  left-0 top-28 -mt-2 rounded-xl shadow-2xl bg-dashbg text-left w-28 invisible duration-300 z-50 ${
+                        drop ? "show-note !top-10" : "remove-note"
+                      }`}
+                    >
+                      <div
+                        className="arrow2 relative border-b px-4 py-2 hover:bg-mainbg rounded-t-xl "
+                        onClick={() => setReic(true)}
+                      >
+                        <h1 className="text-base font-normal">REIC</h1>
+                      </div>
+
+                      <div
+                        className="text-base px-4 py-2 hover:bg-mainbg rounded-b-xl "
+                        onClick={() => setReic(false)}
+                      >
+                        <h1>NGN</h1>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -227,14 +258,27 @@ function Token() {
                       </p>
                       <div className="flex justify-between ">
                         <button
-                          className="border-2 border-border rounded-lg w-1/2 h-12 text-token text-base font-semibold mr-1 hover:bg-green hover:text-dashbg duration-300"
-                          onClick={() => setIsCardPay(true)}
+                          className={`border-2 border-border rounded-lg w-1/2 h-12 text-token text-base font-semibold mr-1 hover:bg-green hover:text-dashbg duration-300 ${
+                            card && "bg-green !text-dashbg"
+                          }`}
+                          onClick={() => {
+                            setIsCardPay(true);
+                            setCard(true);
+                            setCard2(false);
+                          }}
                         >
                           Card payment
                         </button>
                         <button
-                          className="border-2 border-border rounded-lg w-1/2 h-12 text-token text-base font-semibold ml-1 hover:bg-green hover:text-dashbg duration-300"
-                          onClick={() => alert("NO Bank added yet")}
+                          className={`border-2 border-border rounded-lg w-1/2 h-12 text-token text-base font-semibold ml-1 hover:bg-green hover:text-dashbg duration-300 ${
+                            card2 && "bg-green !text-dashbg"
+                          }`}
+                          onClick={() => {
+                            alert("No Bank added yet");
+                            setCard(false);
+                            setIsCardPay(false);
+                            setCard2(false);
+                          }}
                         >
                           Bank Transfer
                         </button>
@@ -256,6 +300,9 @@ function Token() {
                           defaultValue="50000"
                         />
                       </div>
+                      <span className="text-green text-xs">
+                        {amount / 50000} REIC
+                      </span>
                     </div>
                     <div className="text-right py-8 flex justify-between items-center">
                       <div className=" flex items-center">

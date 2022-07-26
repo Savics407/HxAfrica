@@ -60,12 +60,12 @@ function RecentActivity() {
       >
         <div className="border-b border-stroke px-10 py-5 font-semibold flex justify-between items-center text-dark text-lg">
           <h1>Recent Activity</h1>
-          <button
+          {/* <button
             className="font-medium text-sm border rounded-full py-1 px-4"
             onClick={""}
           >
             Clear All
-          </button>
+          </button> */}
         </div>
         {activities ? (
           <div className="h-100 overflow-y-auto">

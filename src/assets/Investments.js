@@ -1,6 +1,7 @@
 import invest_icon from "./images/investment.png";
 import crowd from "./images/crowd.png";
-import vest from "./images/vest.png";
+import renovate from "./images/renovate.svg";
+import sales from "./images/sales.svg";
 import raw from "./images/rawland.png";
 import land from "./images/rawland2.png";
 import users1 from "./images/Frame 14.png";
@@ -22,32 +23,20 @@ function Investments() {
             </h1>
           </Link>
         </div>
-        <div className="overflow-hidden">
+        <div className="overflow-hidden mt-5 flex">
           <div className="cat">
-            <div className="categories bg-light-purple ">
+            <div className="categories bg-light-orange ">
               <div className="cate-block">
                 <div className="flex text-dark py-3">
                   <div className="mr-3">
-                    <img src={invest_icon} alt="investment_icon" />
+                    <img src={renovate} alt="investment_icon" />
                   </div>
                   <div>
-                    <h1 className="text-sm font-medium">Tech Startups</h1>
-                    <h1 className="text-tiny font-medium">New Investments</h1>
+                    <h1 className="text-sm font-medium text-dark">Renovate</h1>
+                    <h1 className="text-tiny font-medium text-dark">
+                      34 Investments Ongoing
+                    </h1>
                   </div>
-                </div>
-                <div>
-                  <p>
-                    Startup investors are essentially buying a piece of the
-                    company with their investment. Putting down capital, in
-                    exchange for equity
-                  </p>
-                </div>
-                <div>
-                  <Link to="/investment">
-                    <button className="text-links font-medium pt-4 pb-2 cursor-pointer">
-                      VIEW ALL
-                    </button>
-                  </Link>
                 </div>
               </div>
             </div>
@@ -59,55 +48,46 @@ function Investments() {
                     <img src={crowd} alt="investment_icon" />
                   </div>
                   <div>
-                    <h1 className="text-sm font-medium">Crowdfunding</h1>
-                    <h1 className="text-tiny font-medium">
-                      Ongoing Investments
+                    <h1 className="text-sm font-medium text-dark">Morgage</h1>
+                    <h1 className="text-tiny font-medium text-dark">
+                      12 Investments ongoing
                     </h1>
                   </div>
                 </div>
-                <div>
-                  <p>
-                    Startup investors are essentially buying a piece of the
-                    company with their investment. Putting down capital, in
-                    exchange for equity
-                  </p>
-                </div>
-                <div>
-                  <Link to="/investment">
-                    <button className="text-links font-medium pt-4 pb-2 cursor-pointer">
-                      VIEW ALL
-                    </button>
-                  </Link>
+              </div>
+            </div>
+          </div>
+          <div className="cat">
+            <div className="categories bg-light-purple ">
+              <div className="cate-block">
+                <div className="flex text-dark py-3">
+                  <div className="mr-3">
+                    <img src={invest_icon} alt="investment_icon" />
+                  </div>
+                  <div>
+                    <h1 className="text-sm font-medium text-dark">
+                      Rent Financing
+                    </h1>
+                    <h1 className="text-tiny font-medium text-dark">
+                      12 new Investments
+                    </h1>
+                  </div>
                 </div>
               </div>
             </div>
 
-            <div className="bg-light-orange categories">
+            <div className="bg-sky-blue categories">
               <div className="cate-block">
                 <div className="flex text-dark py-3">
                   <div className="mr-3">
-                    <img src={vest} alt="investment_icon" />
+                    <img src={sales} alt="investment_icon" />
                   </div>
                   <div>
-                    <h1 className="text-sm font-medium">Tech Startups</h1>
-                    <h1 className="text-tiny font-medium">
-                      Completed Investments
+                    <h1 className="text-sm font-medium text-dark">Sales</h1>
+                    <h1 className="text-tiny font-medium text-dark">
+                      6 Investments ongoing
                     </h1>
                   </div>
-                </div>
-                <div>
-                  <p>
-                    Startup investors are essentially buying a piece of the
-                    company with their investment. Putting down capital, in
-                    exchange for equity
-                  </p>
-                </div>
-                <div>
-                  <Link to="/investment">
-                    <button className="text-links font-medium pt-4 pb-2 cursor-pointer">
-                      VIEW ALL
-                    </button>
-                  </Link>
                 </div>
               </div>
             </div>

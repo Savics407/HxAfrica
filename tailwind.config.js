@@ -21,6 +21,7 @@ module.exports = {
       colors: {
         primary: "#EDFDFD",
         green: "#008E10",
+        opacity: "#008e1191",
         border: "rgba(0, 142, 16, 0.46);",
         input: "#F9FFFF",
         ccc: "#cccccc",
@@ -47,6 +48,7 @@ module.exports = {
         "light-purple": "rgba(235, 189, 221, 0.44)",
         "light-blue": "rgba(1, 86, 255, 0.25)",
         "light-orange": "rgba(255, 184, 0, 0.22)",
+        "sky-blue": "rgba(134, 223, 247, 0.4)",
         mainsec: "rgba(190, 190, 255, 0.15)",
         pink: "#FF62A5",
         grayy: "#686868",
@@ -85,8 +87,8 @@ module.exports = {
         "7x": "130px",
       },
       height: {
-        128: "500px",
-        "7x": "410px",
+        128: "465px",
+        "7x": "465px",
         100: "725px",
       },
       // boxShadow: {
