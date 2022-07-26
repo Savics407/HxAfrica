@@ -150,7 +150,7 @@ function Header() {
 
                 <div className="">
                   <button
-                    className="bg-green rounded text-dashbg py-3 px-10 text-sm font-bold flex items-center justify-center"
+                    className="bg-green rounded text-dashbg py-3 px-5 w-44 text-sm font-bold flex items-center justify-center"
                     onClick={logOut}
                   >
                     <BiLogOut className="mr-1 text-lg" /> Log Out
