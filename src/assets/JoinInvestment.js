@@ -402,7 +402,7 @@ export function Warning({ closeWarning, closeModal, reic, title, productID }) {
           </div>
           <div className="flex justify-center">
             <button className="rounded-full w-28 h-12 text-neutral flex justify-around items-center">
-              <TbLoader /> Processing
+              <TbLoader className="animate-spin" /> Processing
             </button>
           </div>
         </motion.div>

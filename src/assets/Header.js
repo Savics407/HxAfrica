@@ -65,6 +65,7 @@ function Header() {
               }}
             >
               <FaBell className="w-4 h-5" />
+              <div className="notify animate-ping"></div>
               <div className="notify"></div>
               <div
                 className={`notification z-50 ${

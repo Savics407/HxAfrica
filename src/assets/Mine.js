@@ -71,77 +71,85 @@ function Mine() {
           <div className="mb-8 mine">
             {available ? (
               <>
-                <div className="bg-dashbg w-full px-5 py-1 flex justify-between my-7">
-                  <div className="text-head font-semibold text-sm header !mr-0">
-                    <h1>Investments</h1>
-                  </div>
-                  <div className="text-head font-semibold text-sm dur">
-                    <h1>Duration</h1>
-                  </div>
-                  <div className="text-head font-semibold text-sm table">
-                    <h1>Property Worth</h1>
-                  </div>
-                  <div className="text-head font-semibold text-sm table">
-                    <h1>Amount Invested</h1>
-                  </div>
-                  <div className="text-head font-semibold text-sm table">
-                    <h1>Interest Gained</h1>
-                  </div>
-                  <div className="text-head font-semibold text-sm table">
-                    <h1>Ends in</h1>
-                  </div>
-                  <div className="text-head font-semibold text-sm table text-center">
-                    <h1>Action</h1>
-                  </div>
-                </div>
-                <div className="px-2">
-                  {posts?.map((post) => (
-                    <div
-                      key={post.id}
-                      className="w-full flex justify-between border-b py-8 border-statusborder"
-                    >
-                      <div className="text-footer font-bold text-sm flex header">
-                        <img src={crowd} alt="crowdfunding" className="h-10" />
-                        <div className="ml-2">
-                          <h1>{post.product.title}</h1>
+                <div>
+                  <table className=" w-full table-auto">
+                    <thead className="">
+                      <tr className="text-left bg-dashbg">
+                        <th className="py-2 text-head font-semibold text-sm pl-5 ">
+                          Investments
+                        </th>
+                        <th className="py-2 pr-7 text-head font-semibold text-sm ">
+                          Duration
+                        </th>
+                        <th className="py-2 pr-7 text-head font-semibold text-sm ">
+                          Property Worth
+                        </th>
+                        <th className="py-2 pr-7 text-head font-semibold text-sm ">
+                          Amount Invested
+                        </th>
+                        <th className="py-2 pr-7 text-head font-semibold text-sm ">
+                          Interest Gained
+                        </th>
+                        <th className="py-2 pr-7 text-head font-semibold text-sm">
+                          Ends in
+                        </th>
+                        <th className="py-2 text-head font-semibold text-sm ">
+                          Action
+                        </th>
+                      </tr>
+                    </thead>
+                    <tr className="">
+                      <td className="p-3"></td>
+                    </tr>
+                    {posts?.map((post) => (
+                      <tr className="border-b" key={post.id}>
+                        <td className=" py-8 text-footer font-bold text-sm flex ">
+                          <img
+                            src={crowd}
+                            alt="crowdfunding"
+                            className="h-10"
+                          />
+                          <div className="ml-2 ">
+                            <h1 className="mb-1">{post.product.title}</h1>
+                            <h2 className="font-medium font-xs">
+                              {post.product.product_category}
+                            </h2>
+                          </div>
+                        </td>
+                        <td className=" py-8 text-footer font-bold text-sm">
+                          <h1>{post.duration} Days</h1>
+                        </td>
+                        <td className=" py-8 text-footer font-bold text-sm">
+                          <h1>N{post.product.cost}</h1>
+                        </td>
+                        <td className=" py-8 text-footer font-bold text-sm">
+                          <h1>N{post.amount}</h1>
+                        </td>
+                        <td className=" py-8 text-footer font-bold text-sm">
+                          <h1>N40,000.00</h1>
                           <h2 className="font-medium font-xs">
-                            {post.product.product_category}
+                            {post.interest}% Interest
                           </h2>
-                        </div>
-                      </div>
-                      <div className="text-footer font-bold text-sm dur">
-                        <h1>{post.duration} Days</h1>
-                      </div>
-                      <div className="text-footer font-bold text-sm table">
-                        <h1>N{post.product.cost}</h1>
-                      </div>
-                      <div className="text-footer font-bold text-sm table">
-                        {/* <h1>N{post.investments}</h1> */}
-                        <h1>N{post.amount}</h1>
-                      </div>
-                      <div className="text-footer font-bold text-sm table">
-                        <h1>N40,000.00</h1>
-                        <h2 className="font-medium font-xs">
-                          {post.interest}% Interest
-                        </h2>
-                      </div>
-                      <div className="text-footer font-bold text-sm table">
-                        <h1>
-                          {moment(post.due_date).diff(new Date(), "Days")} Days
-                        </h1>
-                      </div>
-                      <div className="text-right table">
-                        <button
-                          className="bg-pending text-xs text-red w-28 h-9 rounded-full font-medium"
-                          onClick={() => {
-                            productDetails(post.id);
-                          }}
-                        >
-                          Pull Out
-                        </button>
-                      </div>
-                    </div>
-                  ))}
+                        </td>
+                        <td className=" py-8 text-footer font-bold text-sm">
+                          <h1>
+                            {moment(post.due_date).diff(new Date(), "Days")}{" "}
+                            Days
+                          </h1>
+                        </td>
+                        <td className=" py-8">
+                          <button
+                            className="bg-pending text-xs text-red w-28 h-9 rounded-full font-medium"
+                            onClick={() => {
+                              productDetails(post.id);
+                            }}
+                          >
+                            Pull Out
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
+                  </table>
                 </div>
               </>
             ) : (

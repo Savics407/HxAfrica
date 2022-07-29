@@ -179,7 +179,7 @@ function Login() {
               className="lg:w-80 bg-green text-white flex justify-center items-center w-full p-3 rounded-xl mt-6 font-medium cursor-pointer"
               onClick={handleSubmit(login)}
             >
-              {process && <TbLoader />}
+              {process && <TbLoader className="animate-spin" />}
               <input
                 type="submit"
                 className="  ml-2 cursor-pointer"

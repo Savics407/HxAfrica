@@ -73,8 +73,12 @@ function RecentActivity() {
               ?.sort((a, b) => (a.created_at < b.created_at ? 1 : -1))
               .map((post) => (
                 <div key={post.transaction_id} className="px-10 py-3 recent">
-                  <h1 className="text-green text-lg font-semibold mb-3">
-                    {post.type === "buytoken" ? "Token Purchase" : post.type}
+                  <h1 className="text-green text-lg font-semibold mb-3 capitalize">
+                    {post.type === "buytoken"
+                      ? "Token Purchase"
+                      : post.type === "pullout"
+                      ? "Token Pulled Out"
+                      : post.type}
                   </h1>
                   <div className="flex">
                     <p className="w-2/3 font-normal text-sm text-footer">
@@ -87,6 +91,7 @@ function RecentActivity() {
                       <span>REIC Token</span>, Transaction ID:{" "}
                       <span>{post.transaction_id}</span>
                     </p>
+
                     <p className="w-1/3 font-bold text-xs text-footer text-right">
                       {moment(post.created_at).calendar()}
                     </p>

@@ -4,13 +4,17 @@ import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import moment from "moment";
 import { TbLoader } from "react-icons/tb";
+import { toast } from "react-toastify";
+import sad from "./images/sad.svg";
+import { useNavigate } from "react-router-dom";
 
 function Details({ closeDetails, itemId }) {
   const [authPullOut, setAuthPullOut] = useState(false);
   const [isClick, setIsClick] = useState(false);
   // const [details, setDetails] = useState(true)
+
   const [posts, setPosts] = useState();
-  const productID = itemId;
+  // const productID = itemId;
   async function fetchData() {
     const token = localStorage.getItem("user-token");
 
@@ -33,6 +37,10 @@ function Details({ closeDetails, itemId }) {
     // activities();
     fetchData();
   }, []);
+
+  const [title, setTitle] = useState("");
+  const [productId, setProductId] = useState("");
+
   return (
     <>
       <motion.div
@@ -131,7 +139,9 @@ function Details({ closeDetails, itemId }) {
                     onClick={() => {
                       setAuthPullOut(true);
                       setIsClick(!isClick);
-                      // alert("clicked on");
+                      setTitle(post.product.title);
+                      setProductId(itemId);
+                      localStorage.setItem("product_title", post.product.title);
                     }}
                   >
                     Pull Out
@@ -141,16 +151,24 @@ function Details({ closeDetails, itemId }) {
             </motion.div>
           ))}
 
-        {authPullOut && <Warning closeWarning={setIsClick} />}
+        {authPullOut && (
+          <Warning
+            closeWarning={setIsClick}
+            title={title}
+            productId={productId}
+          />
+        )}
       </motion.div>
       {/* <div className="fixed top-0 right-0 bottom-0 left-0 bg-overlay -z-10"></div> */}
     </>
   );
 }
 
-function Warning({ closeWarning }) {
+function Warning({ closeWarning, title, productId }) {
   const [warning, setWarning] = useState(true);
   const [processing, setProcessing] = useState(false);
+  const product_id = productId;
+
   return (
     <>
       <motion.div
@@ -179,7 +197,8 @@ function Warning({ closeWarning }) {
         <div className="font-semibold text-base text-neutral my-8">
           <p>
             Are you sure you want to pull out from the{" "}
-            <span className="text-green">“Crowdfunding” </span> investments?
+            <span className="text-green">{title}</span> investments? <br />
+            This action will incur charges of N25,000
           </p>
         </div>
         <div className="flex justify-between">
@@ -204,76 +223,144 @@ function Warning({ closeWarning }) {
           </button>
         </div>
       </motion.div>
-      {processing && (
-        <motion.div
-          initial={{
-            opacity: 0,
-          }}
-          animate={{
-            opacity: 1,
-            transition: {
-              duration: 0.5,
-            },
-          }}
-          exit={{
-            opacity: 0,
-            transition: {
-              delay: 0.5,
-            },
-          }}
-          className="w-128 bg-white rounded-xl absolute border-green p-6 text-center"
-        >
-          <div>
-            <h1 className="font-bold text-neutral text-3xl">Processing BVN</h1>
-          </div>
-          <div className="font-semibold text-base text-neutral my-8">
-            <p>
-              Please wait while we process your BVN. This will take few seconds.
-            </p>
-          </div>
-          <div className="flex justify-center">
-            <button className="rounded-full w-28 h-12 text-neutral flex justify-around items-center">
-              <TbLoader /> Processing
-            </button>
-          </div>
-        </motion.div>
-      )}
+      {processing && <Processing productId={product_id} />}
     </>
   );
 }
 
-// function Processing(){
-//     return(
-//         <>
-//             <motion.div
-//                 initial = {{
-//                     opacity: 0
-//                 }}
-//                 animate = {{
-//                     opacity: 1,
-//                     transition: {
-//                         duration: 0.5
-//                     }
-//                 }}
-//                 exit = {{
-//                     opacity: 0,
-//                     transition: {
-//                         delay: 0.5
-//                     }
-//                 }}
-//                 className="w-128 bg-white rounded-xl absolute border-green p-6 text-center">
-//                 <div>
-//                     <h1 className='font-bold text-neutral text-3xl'>Processing BVN</h1>
-//                 </div>
-//                 <div className='font-semibold text-base text-neutral my-8'>
-//                     <p>Please wait while we process your BVN. This will take few seconds.</p>
-//                 </div>
-//                 <div className='flex justify-center'>
-//                     <button className='rounded-full w-28 h-12 text-neutral flex justify-around items-center'><TbLoader /> Processing</button>
-//                 </div>
-//             </motion.div>
-//         </>
-//     )
-// }
+function Processing({ productId }) {
+  const [sad, setSad] = useState(false);
+  const [bvn, setBvn] = useState(true);
+  const navigate = useNavigate();
+  async function pullout() {
+    const payLoad = {
+      investment_id: productId,
+    };
+    const token = localStorage.getItem("user-token");
+    const response = await fetch(
+      "https://reic.api.simpoo.biz/api/investment/pullout_investment",
+      {
+        method: "POST",
+        body: JSON.stringify(payLoad),
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    const result = await response.json();
+    console.log(result);
+    // alert(productId);
 
+    if (result?.status === "success") {
+      setSad(true);
+      setBvn(false);
+    } else {
+      if (result.status === "error") {
+        console.log(result.data);
+        alert(result.message);
+        toast.error(`${result.message}`, {
+          position: "top-left",
+          autoClose: 500,
+          hideProgressBar: true,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+        window.location.href = "/investments/my-investment";
+      }
+    }
+  }
+
+  useEffect(() => {
+    pullout();
+  }, []);
+  // function redirect() {
+  //   setTimeout((window.location = "/investment"), 10000);
+  // }
+
+  // useEffect(() => {
+  //   redirect();
+  // });
+  return (
+    <>
+      <motion.div
+        initial={{
+          opacity: 0,
+        }}
+        animate={{
+          opacity: 1,
+          transition: {
+            duration: 0.5,
+          },
+        }}
+        exit={{
+          opacity: 0,
+          transition: {
+            delay: 0.5,
+          },
+        }}
+        className={`w-128 bg-white rounded-xl absolute border-green p-6 text-center ${
+          bvn ? "block" : "hidden"
+        }`}
+      >
+        <div>
+          <h1 className="font-bold text-neutral text-3xl">Processing BVN</h1>
+        </div>
+        <div className="font-semibold text-base text-neutral my-8">
+          <p>
+            Please wait while we process your BVN. This will take few seconds.
+          </p>
+        </div>
+        <div className="flex justify-center">
+          <button className="rounded-full w-28 h-12 text-neutral flex justify-around items-center">
+            <TbLoader className="animate-spin duration-1000" /> Processing
+          </button>
+        </div>
+      </motion.div>
+      {sad && <Sad />}
+    </>
+  );
+}
+
+function Sad() {
+  const product_title = localStorage.getItem("product_title");
+  return (
+    <>
+      <motion.div
+        initial={{
+          opacity: 0,
+        }}
+        animate={{
+          opacity: 1,
+          transition: {
+            duration: 0.5,
+          },
+        }}
+        exit={{
+          opacity: 0,
+          transition: {
+            delay: 0.5,
+          },
+        }}
+        className="w-4/5 bg-white rounded-xl absolute border-green p-6 text-center"
+      >
+        <div className="flex justify-center flex-col border px-3">
+          <img src={sad} alt="sad to see you go" />
+          <h1 className="font-medium text-neutral text-2xl">
+            sad to see you go{" "}
+          </h1>
+        </div>
+        <div className="font-semibold text-xs text-neutral my-8">
+          <p>
+            You have just pulled out from the{" "}
+            <span className="text-green">{product_title}</span> investments.
+          </p>
+        </div>
+      </motion.div>
+    </>
+  );
+}
 export default Details;

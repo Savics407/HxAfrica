@@ -96,7 +96,7 @@ function Investments() {
 
         <div className="px-4 py-6 flex flex-col lg:flex-row">
           <div className="section pr-4">
-            <h1>Ongoing Investments</h1>
+            <h1>New Investments</h1>
             <div className="real-estate">
               <div className="mr-1.5 w-1/3 h-full">
                 <img src={raw} alt="rawland" />
@@ -143,7 +143,7 @@ function Investments() {
             </div>
           </div>
           <div className="section">
-            <h1>Completed Investments</h1>
+            <h1>Ongoing Investments</h1>
             <div className="real-estate">
               <div className="mr-1.5 w-1/3">
                 <img src={land} alt="rawland" />

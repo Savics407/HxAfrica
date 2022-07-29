@@ -308,7 +308,7 @@ body {
     }
 
     .table {
-      @apply w-6x
+      @apply w-6x border
     }
     .header {
       @apply w-52 mr-2
