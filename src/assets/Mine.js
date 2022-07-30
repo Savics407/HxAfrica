@@ -5,6 +5,7 @@ import box from "./images/Box.png";
 import moment from "moment";
 import Details from "./Investment_Details";
 import crowd from "./images/crowdfund.png";
+import * as CurrencyFormat from "react-currency-format";
 
 function Mine() {
   const [openDetails, setOpenDetails] = useState(false);
@@ -119,11 +120,25 @@ function Mine() {
                         <td className=" py-8 text-footer font-bold text-sm">
                           <h1>{post.duration} Days</h1>
                         </td>
-                        <td className=" py-8 text-footer font-bold text-sm">
-                          <h1>N{post.product.cost}</h1>
+                        <td className="py-8 text-footer font-bold text-sm">
+                          <h1>
+                            N
+                            <CurrencyFormat
+                              value={post.product.cost}
+                              displayType={"text"}
+                              thousandSeparator={true}
+                            />
+                          </h1>
                         </td>
                         <td className=" py-8 text-footer font-bold text-sm">
-                          <h1>N{post.amount}</h1>
+                          <h1>
+                            N
+                            <CurrencyFormat
+                              value={post.amount}
+                              displayType={"text"}
+                              thousandSeparator={true}
+                            />
+                          </h1>
                         </td>
                         <td className=" py-8 text-footer font-bold text-sm">
                           <h1>N40,000.00</h1>
@@ -138,14 +153,25 @@ function Mine() {
                           </h1>
                         </td>
                         <td className=" py-8">
-                          <button
-                            className="bg-pending text-xs text-red w-28 h-9 rounded-full font-medium"
-                            onClick={() => {
-                              productDetails(post.id);
-                            }}
-                          >
-                            Pull Out
-                          </button>
+                          {post.status === "ongoing" ? (
+                            <button
+                              className="bg-pending text-xs text-red w-28 h-9 rounded-full font-medium"
+                              onClick={() => {
+                                productDetails(post.id);
+                              }}
+                            >
+                              Pull Out
+                            </button>
+                          ) : (
+                            <button
+                              className="bg-input text-xs text-green w-28 h-9 rounded-full font-medium"
+                              onClick={() => {
+                                productDetails(post.id);
+                              }}
+                            >
+                              Completed
+                            </button>
+                          )}
                         </td>
                       </tr>
                     ))}

@@ -23,6 +23,7 @@ import Header from "./assets/Header";
 import PrivateRoutes from "./util/PrivateRoutes";
 import UseNetworkStatus from "./useNetworkStatus";
 import SelectAvater from "./assets/SelectAvater";
+import Success from "./assets/Success";
 
 function App() {
   return (
@@ -33,6 +34,8 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/status" element={<UseNetworkStatus />} />
         <Route element={<PrivateRoutes />}>
+          <Route path="/buytoken/success" element={<Success />} />
+
           <Route path="/select-avater" element={<SelectAvater />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/settings" element={<Profile />} />

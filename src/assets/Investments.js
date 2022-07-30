@@ -10,8 +10,65 @@ import users3 from "./images/Frame 19.png";
 import users4 from "./images/Frame 20.png";
 import { FaInfoCircle } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import moment from "moment";
+// import crowd from "./images/crowdfund.png";
+import * as CurrencyFormat from "react-currency-format";
 
 function Investments() {
+  const [posts, setPosts] = useState();
+  async function fetchData() {
+    const token = localStorage.getItem("user-token");
+
+    const response = await fetch(
+      "https://reic.api.simpoo.biz/api/investment/fetch_new_investment",
+      {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    const result = await response.json();
+    console.log(result.data);
+    setPosts(result.data);
+  }
+
+  const [available, setAvailable] = useState(false);
+  const [ongoing, setOngoing] = useState();
+  const [data, setData] = useState();
+  async function fetchOngoing() {
+    const token = localStorage.getItem("user-token");
+    // e.preventDefault();
+    const response = await fetch(
+      "https://reic.api.simpoo.biz/api/investment/fetch_ongoing_investment",
+      {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    const result = await response.json();
+    console.log(result.data);
+    // alert(result.data[0].due_date);
+
+    setData(result.data);
+    if (result?.data.length === 0) {
+      setOngoing(false);
+      // alert("fetched Successfully");
+    } else {
+      setOngoing(true);
+    }
+  }
+
+  useEffect(() => {
+    fetchData();
+    fetchOngoing();
+  }, []);
+
   return (
     <>
       <div className="rounded-lg bg-white w-full lg:my-5 my-3 pb-4">
@@ -97,93 +154,134 @@ function Investments() {
         <div className="px-4 py-6 flex flex-col lg:flex-row">
           <div className="section pr-4">
             <h1>New Investments</h1>
-            <div className="real-estate">
-              <div className="mr-1.5 w-1/3 h-full">
-                <img src={raw} alt="rawland" />
-              </div>
-              <div className="w-2/3">
-                <div className="mb-2">
-                  <h1 className="!mb-0">Raw Land - Real Estate</h1>
-                  <h2 className="text-pink text-xs">30% Interest Rate</h2>
-                </div>
-                <div className="text-tiny text-grayy mb-2">
-                  <p className="!mb-0">
-                    Time Frame: <span className="text-darkgray">4 months</span>
-                  </p>
-                  <p className="">
-                    Expires -{" "}
-                    <span className="text-darkgray">Dec 23, 2022</span>
-                  </p>
-                </div>
-                <div className="text-grayy text-tiny bg-mainsec p-2 rounded-lg mb-2 w-48">
-                  <p className="">
-                    Property Worth{" "}
-                    <span className="text-darkgray text-xs font-medium ml-2">
-                      N200,000,000
-                    </span>
-                  </p>
-                </div>
-                <div className="flex justify-between w-full">
-                  <div className="flex items-center">
-                    <img src={users1} alt="frame" className="z-0" />
-                    <img src={users2} alt="frame" className="-ml-3 z-10" />
-                    <img src={users3} alt="frame" className="-ml-3 z-10" />
-                    <img src={users4} alt="frame" className="-ml-3 z-10" />
-                    <div className="bg-green rounded-full w-6 h-6 text-xxm text-white flex items-center justify-center -ml-3 z-10">
-                      +24
+            {posts
+              ?.filter((post) => post.id === posts.length)
+              .map((post) => (
+                <div key={post.id} className="real-estate">
+                  <div className="mr-1.5 w-1/3 h-full rounded-full">
+                    <img
+                      src={raw}
+                      alt="rawland"
+                      className="w-full h-full object-cover rounded-2xl"
+                    />
+                  </div>
+                  <div className="w-2/3">
+                    <div className="mb-2">
+                      <h1 className="!mb-0">{post.title}</h1>
+                      <h2 className="text-pink text-xs">
+                        {" "}
+                        {post.interest_rate}% Interest Rate
+                      </h2>
+                    </div>
+                    <div className="text-tiny text-grayy mb-2">
+                      <p className="!mb-0">
+                        Time Frame:{" "}
+                        <span className="text-darkgray">
+                          {post.duration} Days
+                        </span>
+                      </p>
+                      <p className="">
+                        Expires -{" "}
+                        <span className="text-darkgray">
+                          {moment(post.expiry_date).format("MMM DD, yyyy")}
+                        </span>
+                      </p>
+                    </div>
+                    <div className="text-grayy text-tiny bg-mainsec p-2 rounded-lg mb-2 w-48">
+                      <p className="">
+                        Property Worth{" "}
+                        <span className="text-darkgray text-xs font-medium ml-2">
+                          N
+                          <CurrencyFormat
+                            value={post.cost}
+                            displayType={"text"}
+                            thousandSeparator={true}
+                          />
+                        </span>
+                      </p>
+                    </div>
+                    <div className="flex justify-between w-full">
+                      <div className="flex items-center">
+                        <img src={users1} alt="frame" className="z-0" />
+                        <img src={users2} alt="frame" className="-ml-3 z-10" />
+                        <img src={users3} alt="frame" className="-ml-3 z-10" />
+                        <img src={users4} alt="frame" className="-ml-3 z-10" />
+                        <div className="bg-green rounded-full w-6 h-6 text-xxm text-white flex items-center justify-center -ml-3 z-10">
+                          +24
+                        </div>
+                      </div>
+                      <div>
+                        <Link to="/investment">
+                          <button className="bg-white text-green text-tiny font-normal w-24 h-7 rounded-2xl">
+                            Join Now
+                          </button>
+                        </Link>
+                      </div>
                     </div>
                   </div>
-                  <div>
-                    <button className="bg-white text-green text-tiny font-normal w-24 h-7 rounded-2xl">
-                      Join Now
-                    </button>
-                  </div>
                 </div>
-              </div>
-            </div>
+              ))}
           </div>
           <div className="section">
             <h1>Ongoing Investments</h1>
-            <div className="real-estate">
-              <div className="mr-1.5 w-1/3">
-                <img src={land} alt="rawland" />
+            {!ongoing ? (
+              <div className="flex flex-wrap mb-4">
+                {data
+                  ?.filter((post) => post.id === 1)
+                  .map((post) => (
+                    <Link to="/investments/ongoing">
+                      <div key={post.id} className="real-estate cursor-pointer">
+                        <div className="mr-1.5 w-1/3">
+                          <img src={land} alt="rawland" />
+                        </div>
+                        <div className="w-2/3">
+                          <div className="mb-2">
+                            <h1 className="!mb-0">{post.product.title}</h1>
+                            <h2 className="text-green text-xs">
+                              {post.interest}% Interest Rate
+                            </h2>
+                          </div>
+                          <div className="text-tiny text-grayy mb-3">
+                            <p className="!mb-0">
+                              Time Frame:{" "}
+                              <span className="text-darkgray">
+                                {post.duration} Days
+                              </span>
+                            </p>
+                            <p className="">
+                              Expires -{" "}
+                              <span className="text-darkgray">
+                                {moment(post.due_date).format("MMM DD, yyyy")}
+                              </span>
+                            </p>
+                          </div>
+                          <div className="text-grayy text-tiny bg-mainsec p-2 rounded-lg mb-3 w-48">
+                            <p className="">
+                              Property Worth{" "}
+                              <span className="text-darkgray text-xs font-medium ml-2">
+                                N
+                                <CurrencyFormat
+                                  value={post.product.cost}
+                                  displayType={"text"}
+                                  thousandSeparator={true}
+                                />
+                              </span>
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </Link>
+                  ))}
               </div>
-              <div className="w-2/3">
-                <div className="mb-2">
-                  <h1 className="!mb-0">Raw Land - Real Estate</h1>
-                  <h2 className="text-green text-xs">30% Interest Rate</h2>
-                </div>
-                <div className="text-tiny text-grayy mb-3">
-                  <p className="!mb-0">
-                    Time Frame: <span className="text-darkgray">4 months</span>
-                  </p>
-                  <p className="">
-                    Expires -{" "}
-                    <span className="text-darkgray">Dec 23, 2022</span>
-                  </p>
-                </div>
-                <div className="text-grayy text-tiny bg-mainsec p-2 rounded-lg mb-3 w-48">
-                  <p className="">
-                    Property Worth{" "}
-                    <span className="text-darkgray text-xs font-medium ml-2">
-                      N200,000,000
-                    </span>
-                  </p>
-                </div>
-                {/* <div className='flex justify-between w-full'>
-                                            <div className='flex items-center'>
-                                                <img src={users1} alt="frame" className='z-0'/>
-                                                <img src={users2} alt="frame" className='-ml-3 z-10' />
-                                                <img src={users3} alt="frame" className='-ml-3 z-10' />
-                                                <img src={users4} alt="frame" className='-ml-3 z-10' />
-                                                <div className='bg-green rounded-full w-6 h-6 text-xxm text-white flex items-center justify-center -ml-3 z-10'>+24</div>
-                                            </div>
-                                            <div>
-                                                <button className='bg-white text-green text-tiny font-normal w-24 h-7 rounded-2xl'>Join Now</button>
-                                            </div>
-                                        </div> */}
+            ) : (
+              <div className="flex flex-col items-center justify-center h-full">
+                <h1 className="font-semibold text-xs text-statustext text-center -ml-10">
+                  Oh oh! You have no active
+                  <br />
+                  investments at this time
+                </h1>
               </div>
-            </div>
+            )}
           </div>
         </div>
         <div className="flex items-center p-4 hidden lg:flex">

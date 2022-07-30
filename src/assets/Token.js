@@ -11,6 +11,8 @@ import { MdClose } from "react-icons/md";
 import { motion } from "framer-motion";
 import Withdraw from "./AddBank";
 import RecentActivity from "./recentActivity";
+import * as CurrencyFormat from "react-currency-format";
+import * as NumberFormat from "react-currency-format";
 
 class ErrorBoundary extends React.Component {
   constructor(props) {
@@ -72,6 +74,8 @@ function Token() {
       }
     );
     const result = await response.json();
+    localStorage.setItem("bought-amount", amount);
+
     //use toaster and display redirecting to paystack
     // alert(result?.data.data.authorization_url);
     console.log(result?.data.data.authorization_url);
@@ -129,11 +133,18 @@ function Token() {
               </div>
               <div className="flex items-center mt-8 justify-between">
                 <div className="flex items-center justify-between ">
-                  <h1 className="font-medium mr-4 text-dark text-4xl">
+                  <h1 className="font-medium mr-4 text-dark text-3xl">
                     {reic ? (
                       <span>{JSON.stringify(token)}</span>
                     ) : (
-                      <span>N{JSON.stringify(ngn)}</span>
+                      <span>
+                        N
+                        <CurrencyFormat
+                          value={JSON.stringify(ngn)}
+                          displayType={"text"}
+                          thousandSeparator={true}
+                        />
+                      </span>
                     )}{" "}
                     {reic && "REIC"}
                   </h1>
@@ -297,6 +308,7 @@ function Token() {
                           placeholder="enter amount"
                           className="text-neutral font-bold text-4xl w-3/5 bg-transparent outline-0"
                           onChange={(e) => setAmount(e.target.value)}
+                          thousandSeparator={true}
                           defaultValue="50000"
                         />
                       </div>
@@ -304,6 +316,7 @@ function Token() {
                         {amount / 50000} REIC
                       </span>
                     </div>
+
                     <div className="text-right py-8 flex justify-between items-center">
                       <div className=" flex items-center">
                         <input

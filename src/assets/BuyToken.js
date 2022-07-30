@@ -36,6 +36,8 @@ function Details({ closeToken }) {
       }
     );
     const result = await response.json();
+    localStorage.setItem("bought-amount", amount);
+
     //use toaster and display redirecting to paystack
     // alert(result?.data.data.authorization_url);
     console.log(result?.data.data.authorization_url);

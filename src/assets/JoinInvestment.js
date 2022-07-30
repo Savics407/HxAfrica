@@ -10,6 +10,7 @@ import users4 from "./images/Frame 20.png";
 import { toast } from "react-toastify";
 import { TbLoader } from "react-icons/tb";
 import moment from "moment";
+import * as CurrencyFormat from "react-currency-format";
 
 function JoinInvestment({ closeModal, itemId }) {
   const [authPullOut, setAuthPullOut] = useState(false);
@@ -122,7 +123,7 @@ function JoinInvestment({ closeModal, itemId }) {
                     </h1>
                   </div>
                   <div className="flex items-center justify-between">
-                    <h1 className="text-neutral text-2xl font-semibold">
+                    <h1 className="text-neutral text-2xl font-semibold capitalize">
                       {post.product_category.product_category}
                     </h1>
                     <h1 className="text-darkgray text-sm">
@@ -148,7 +149,12 @@ function JoinInvestment({ closeModal, itemId }) {
                   </div>
                   <div className="flex justify-between items-center">
                     <h1 className="text-dark text-2xl font-medium">
-                      N{post.cost}
+                      N
+                      <CurrencyFormat
+                        value={post.cost}
+                        displayType={"text"}
+                        thousandSeparator={true}
+                      />
                     </h1>
                     <h1 className="text-navbar text-sm font-normal">
                       {post.investments.length === 0
@@ -165,7 +171,12 @@ function JoinInvestment({ closeModal, itemId }) {
                       Total Invested:
                     </h1>
                     <h1 className="text-secondary text-lg font-medium ">
-                      N{post.threshold}
+                      N
+                      <CurrencyFormat
+                        value={post.threshold}
+                        displayType={"text"}
+                        thousandSeparator={true}
+                      />
                     </h1>
                   </div>
                   <div className="flex justify-between items-center py-3 border-b">
@@ -173,7 +184,12 @@ function JoinInvestment({ closeModal, itemId }) {
                       Amount left:
                     </h1>
                     <h1 className="text-secondary text-lg font-medium ">
-                      N{post.cost - post.threshold}
+                      N
+                      <CurrencyFormat
+                        value={post.cost - post.threshold}
+                        displayType={"text"}
+                        thousandSeparator={true}
+                      />
                     </h1>
                   </div>
                   <div className="flex justify-between items-center py-5">
@@ -205,7 +221,12 @@ function JoinInvestment({ closeModal, itemId }) {
                   <div className="text-center h-1">
                     {reic > 0 && (
                       <span className="text-green text-xs">
-                        N{reic * 50000}
+                        N
+                        <CurrencyFormat
+                          value={reic * 50000}
+                          displayType={"text"}
+                          thousandSeparator={true}
+                        />
                       </span>
                     )}
                   </div>

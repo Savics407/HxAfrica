@@ -7,6 +7,7 @@ import { TbLoader } from "react-icons/tb";
 import { toast } from "react-toastify";
 import sad from "./images/sad.svg";
 import { useNavigate } from "react-router-dom";
+import * as CurrencyFormat from "react-currency-format";
 
 function Details({ closeDetails, itemId }) {
   const [authPullOut, setAuthPullOut] = useState(false);
@@ -100,9 +101,16 @@ function Details({ closeDetails, itemId }) {
                 />
               </div>
               <div className="px-10 ">
-                <img src={hdimage} alt="my-investment-image" />
+                <div>
+                  <img
+                    src={hdimage}
+                    alt="my-investment-image"
+                    className="w-full"
+                  />
+                </div>
+
                 <div className="border-b border-strek pb-4 ">
-                  <h1 className="bg-media p-2 rounded text-sm my-5 text-dashbg w-fit text-center font-semibold ">
+                  <h1 className="bg-media p-2 rounded text-sm my-5 capitalize text-dashbg w-fit text-center font-semibold ">
                     {post.product.product_category}
                   </h1>
                   <h1 className="text-neutral text-2xl font-semibold">
@@ -114,7 +122,16 @@ function Details({ closeDetails, itemId }) {
                     <div className="flex justify-between">
                       <div className="income2">
                         <h1>Expected Returns</h1>
-                        <p>N53,000,000</p>
+                        <p>
+                          N
+                          <CurrencyFormat
+                            value={
+                              (post.amount * post.interest) / 100 + post.amount
+                            }
+                            displayType={"text"}
+                            thousandSeparator={true}
+                          />
+                        </p>
                       </div>
                       <div className="income2">
                         <h1>Expected Date</h1>
@@ -128,7 +145,14 @@ function Details({ closeDetails, itemId }) {
                       </div>
                       <div className="income2">
                         <h1>Invested Amount</h1>
-                        <p>{post.amount}</p>
+                        <p>
+                          N
+                          <CurrencyFormat
+                            value={post.amount}
+                            displayType={"text"}
+                            thousandSeparator={true}
+                          />
+                        </p>
                       </div>
                     </div>
                   </div>
@@ -236,6 +260,7 @@ function Processing({ productId }) {
     const payLoad = {
       investment_id: productId,
     };
+
     const token = localStorage.getItem("user-token");
     const response = await fetch(
       "https://reic.api.simpoo.biz/api/investment/pullout_investment",
@@ -307,11 +332,12 @@ function Processing({ productId }) {
         }`}
       >
         <div>
-          <h1 className="font-bold text-neutral text-3xl">Processing BVN</h1>
+          <h1 className="font-bold text-neutral text-3xl">Processing</h1>
         </div>
         <div className="font-semibold text-base text-neutral my-8">
           <p>
-            Please wait while we process your BVN. This will take few seconds.
+            Please wait while we process your request. This will take few
+            seconds.
           </p>
         </div>
         <div className="flex justify-center">
@@ -345,19 +371,21 @@ function Sad() {
             delay: 0.5,
           },
         }}
-        className="w-4/5 bg-white rounded-xl absolute border-green p-6 text-center"
+        className="w-2/4 bg-white rounded-xl absolute border-green p-20 flex justify-center"
       >
-        <div className="flex justify-center flex-col border px-3">
-          <img src={sad} alt="sad to see you go" />
-          <h1 className="font-medium text-neutral text-2xl">
+        <div className="flex justify-center flex-col px-3 w-1/2">
+          <div className="flex justify-center mb-4">
+            <img src={sad} alt="sad to see you go" />
+          </div>
+          <h1 className="font-medium text-neutral text-center text-2xl">
             sad to see you go{" "}
           </h1>
-        </div>
-        <div className="font-semibold text-xs text-neutral my-8">
-          <p>
-            You have just pulled out from the{" "}
-            <span className="text-green">{product_title}</span> investments.
-          </p>
+          <div className="font-semibold text-xs text-neutral my-4 text-center">
+            <p>
+              You have just pulled out from the{" "}
+              <span className="text-green">{product_title}</span> investments.
+            </p>
+          </div>
         </div>
       </motion.div>
     </>

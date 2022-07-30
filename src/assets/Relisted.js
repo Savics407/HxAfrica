@@ -6,6 +6,7 @@ import land from "./images/rawland2.png";
 import { TbLoader } from "react-icons/tb";
 import New from "./images/new.png";
 import moment from "moment";
+import { toast } from "react-toastify";
 import relist from "./images/relisted.png";
 
 function Relisted() {
@@ -43,6 +44,54 @@ function Relisted() {
     fetchData();
   }, []);
 
+  async function inherit(id) {
+    const payLoad = {
+      pullout_id: id,
+    };
+    const token = localStorage.getItem("user-token");
+    const response = await fetch(
+      "https://reic.api.simpoo.biz/api/investment/inherit_investment",
+      {
+        method: "POST",
+        body: JSON.stringify(payLoad),
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    const result = await response.json();
+    console.log(result);
+
+    // alert(payLoad.pullout_id);
+    if (result?.status === "success") {
+      toast.success(`${result.message}`, {
+        position: "top-left",
+        autoClose: 3000,
+        hideProgressBar: true,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    } else {
+      if (result.status === "error") {
+        // console.log(result.data);
+        // alert(result.message);
+        toast.error(`${result.message}`, {
+          position: "top-left",
+          autoClose: 3000,
+          hideProgressBar: true,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      }
+    }
+  }
+
   return (
     <div className="font-family bg-mainbg">
       <Header />
@@ -56,8 +105,8 @@ function Relisted() {
             {relisted ? (
               <div className="flex flex-wrap  mb-4">
                 {posts?.map((post) => (
-                  <div className="real-estate mr-3">
-                    <div className="mr-1.5 w-1/3">
+                  <div className="real-estate mr-3" key={post.id}>
+                    <div className="mr-3 w-1/3">
                       <img src={land} alt="rawland" />
                     </div>
                     <div className="w-2/3">
@@ -72,13 +121,15 @@ function Relisted() {
                       </div>
                       <div className="text-tiny text-grayy mb-3">
                         <p className="!mb-0">
-                          Time Frame:{" "}
+                          Relisted Date:{" "}
                           <span className="text-darkgray">
-                            {post.duration} Days
+                            {moment(post.pullout.pullout_date).format(
+                              "MMM DD, yyyy"
+                            )}
                           </span>
                         </p>
                         <p className="">
-                          Expires -{" "}
+                          Due Date -{" "}
                           <span className="text-darkgray">
                             {" "}
                             {moment(post.due_date).format("MMM DD, yyyy")}
@@ -87,11 +138,21 @@ function Relisted() {
                       </div>
                       <div className="text-grayy text-tiny bg-mainsec p-2 rounded-lg mb-3 w-48">
                         <p className="">
-                          Property Worth{" "}
+                          Amount:{" "}
                           <span className="text-darkgray text-xs font-medium ml-2">
-                            N{post.product.cost}
+                            N{post.pullout.accumulated_amount}
                           </span>
                         </p>
+                      </div>
+                      <div className=" w-48">
+                        <button
+                          className="bg-white text-green text-tiny w-full p-2 rounded-full"
+                          onClick={() => {
+                            inherit(post.pullout.id);
+                          }}
+                        >
+                          Inherit Investment
+                        </button>
                       </div>
                     </div>
                   </div>

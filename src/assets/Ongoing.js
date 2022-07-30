@@ -6,6 +6,7 @@ import land from "./images/rawland2.png";
 import box from "./images/Box.png";
 import Details from "./Investment_Details";
 import { TbLoader } from "react-icons/tb";
+import * as CurrencyFormat from "react-currency-format";
 import moment from "moment";
 
 function Ongoing() {
@@ -109,7 +110,12 @@ function Ongoing() {
                         <p className="">
                           Property Worth{" "}
                           <span className="text-darkgray text-xs font-medium ml-2">
-                            N{post.product.cost}
+                            N
+                            <CurrencyFormat
+                              value={post.product.cost}
+                              displayType={"text"}
+                              thousandSeparator={true}
+                            />
                           </span>
                         </p>
                       </div>

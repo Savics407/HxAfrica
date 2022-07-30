@@ -15,6 +15,7 @@ import { toast } from "react-toastify";
 import Mobile from "./mobileHeader";
 import { Link, NavLink } from "react-router-dom";
 import IncomingROI from "./IncomingROI";
+import * as CurrencyFormat from "react-currency-format";
 
 function Dashboard() {
   const [click, setClick] = useState(false);
@@ -101,7 +102,15 @@ function Dashboard() {
                       {reic ? (
                         <span>{JSON.stringify(token)}</span>
                       ) : (
-                        <span>N{JSON.stringify(ngn)}</span>
+                        <span>
+                          N
+                          <CurrencyFormat
+                            value={JSON.stringify(ngn)}
+                            displayType={"text"}
+                            thousandSeparator={true}
+                          />
+                          {/* {JSON.stringify(ngn)} */}
+                        </span>
                       )}{" "}
                       {reic && "REIC"}
                     </h1>

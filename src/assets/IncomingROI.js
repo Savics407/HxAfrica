@@ -1,5 +1,6 @@
 import moment from "moment";
 import React, { useEffect, useState } from "react";
+import * as CurrencyFormat from "react-currency-format";
 import box from "./images/Box.png";
 
 function IncomingROI() {
@@ -65,7 +66,16 @@ function IncomingROI() {
                     <div className="flex justify-between">
                       <div className="income">
                         <h1>Expected Returns</h1>
-                        <p>{(post.amount / 100) * 10 + post.amount}</p>
+                        <p>
+                          {/* {(post.amount / 100) * 10 + post.amount} */}
+                          <CurrencyFormat
+                            value={
+                              (post.amount * post.interest) / 100 + post.amount
+                            }
+                            displayType={"text"}
+                            thousandSeparator={true}
+                          />
+                        </p>
                       </div>
                       <div className="income">
                         <h1>Amount in Reic Token</h1>

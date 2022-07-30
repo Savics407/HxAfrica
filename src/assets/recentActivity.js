@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import moment from "moment";
 import { toast } from "react-toastify";
 import opps from "./images/Artwork.png";
+import * as CurrencyFormat from "react-currency-format";
 
 function RecentActivity() {
   //   const [activity, setActivity] = useState();
@@ -59,7 +60,7 @@ function RecentActivity() {
         className="bg-white rounded-xl"
       >
         <div className="border-b border-stroke px-10 py-5 font-semibold flex justify-between items-center text-dark text-lg">
-          <h1>Recent Activity</h1>
+          <h1>Recent Transaction</h1>
           {/* <button
             className="font-medium text-sm border rounded-full py-1 px-4"
             onClick={""}
@@ -68,7 +69,7 @@ function RecentActivity() {
           </button> */}
         </div>
         {activities ? (
-          <div className="h-100 overflow-y-auto">
+          <div className="h-100 overflow-y-auto scroll">
             {posts
               ?.sort((a, b) => (a.created_at < b.created_at ? 1 : -1))
               .map((post) => (
@@ -86,7 +87,15 @@ function RecentActivity() {
                       {post.type === "investment"
                         ? "an investment"
                         : "a deposit"}{" "}
-                      of <span>N{post.amount}</span>{" "}
+                      of{" "}
+                      <span>
+                        N
+                        <CurrencyFormat
+                          value={post.amount}
+                          displayType={"text"}
+                          thousandSeparator={true}
+                        />
+                      </span>{" "}
                       {post.type === "investment" ? "worth" : "purchase"} of{" "}
                       <span>REIC Token</span>, Transaction ID:{" "}
                       <span>{post.transaction_id}</span>
