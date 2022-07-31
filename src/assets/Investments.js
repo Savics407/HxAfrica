@@ -64,9 +64,38 @@ function Investments() {
     }
   }
 
+  const [categories, setCategories] = useState();
+  async function fetchCategories() {
+    const token = localStorage.getItem("user-token");
+    // e.preventDefault();
+    const response = await fetch(
+      "https://reic.api.simpoo.biz/api/products/fetch_product_category",
+      {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    const result = await response.json();
+    console.log(result.data);
+    // alert(result.data[0].due_date);
+
+    setCategories(result.data);
+    // alert(result.data[0].product_category);
+    // if (result?.data.length === 0) {
+    //   setOngoing(false);
+    //   // alert("fetched Successfully");
+    // } else {
+    //   setOngoing(true);
+    // }
+  }
+
   useEffect(() => {
     fetchData();
     fetchOngoing();
+    fetchCategories();
   }, []);
 
   return (
@@ -89,9 +118,16 @@ function Investments() {
                     <img src={renovate} alt="investment_icon" />
                   </div>
                   <div>
-                    <h1 className="text-sm font-medium text-dark">Renovate</h1>
+                    <h1 className="text-sm font-medium text-dark capitalize">
+                      {" "}
+                      {categories[1].product_category}
+                    </h1>
                     <h1 className="text-tiny font-medium text-dark">
-                      34 Investments Ongoing
+                      {categories[1].products.length}{" "}
+                      {categories[1].products.length === 1
+                        ? "Investment"
+                        : "Investments"}{" "}
+                      Ongoing
                     </h1>
                   </div>
                 </div>
@@ -105,9 +141,16 @@ function Investments() {
                     <img src={crowd} alt="investment_icon" />
                   </div>
                   <div>
-                    <h1 className="text-sm font-medium text-dark">Morgage</h1>
+                    <h1 className="text-sm font-medium text-dark capitalize">
+                      {categories[2].product_category}
+                      {/* Morgage */}
+                    </h1>
                     <h1 className="text-tiny font-medium text-dark">
-                      12 Investments ongoing
+                      {categories[2].products.length}{" "}
+                      {categories[2].products.length === 1
+                        ? "Investment"
+                        : "Investments"}{" "}
+                      ongoing
                     </h1>
                   </div>
                 </div>
@@ -122,11 +165,17 @@ function Investments() {
                     <img src={invest_icon} alt="investment_icon" />
                   </div>
                   <div>
-                    <h1 className="text-sm font-medium text-dark">
-                      Rent Financing
+                    <h1 className="text-sm font-medium text-dark capitalize">
+                      {categories[0].product_category === "rent_financing" &&
+                        "Rent Financing"}
+                      {/* Rent Financing */}
                     </h1>
                     <h1 className="text-tiny font-medium text-dark">
-                      12 new Investments
+                      {categories[0].products.length}{" "}
+                      {categories[0].products.length === 1
+                        ? "Investment"
+                        : "Investments"}{" "}
+                      ongoing
                     </h1>
                   </div>
                 </div>
@@ -140,9 +189,16 @@ function Investments() {
                     <img src={sales} alt="investment_icon" />
                   </div>
                   <div>
-                    <h1 className="text-sm font-medium text-dark">Sales</h1>
+                    <h1 className="text-sm font-medium text-dark capitalize">
+                      {categories[3].product_category}
+                      {/* Sales */}
+                    </h1>
                     <h1 className="text-tiny font-medium text-dark">
-                      6 Investments ongoing
+                      {categories[3].products.length}{" "}
+                      {categories[3].products.length === 1
+                        ? "Investment"
+                        : "Investments"}{" "}
+                      ongoing
                     </h1>
                   </div>
                 </div>
@@ -224,7 +280,7 @@ function Investments() {
           </div>
           <div className="section">
             <h1>Ongoing Investments</h1>
-            {!ongoing ? (
+            {ongoing ? (
               <div className="flex flex-wrap mb-4">
                 {data
                   ?.filter((post) => post.id === 1)

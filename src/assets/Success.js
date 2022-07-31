@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { motion } from "framer-motion";
 import Dashboard from "./Dashboard";
 import { useNavigate } from "react-router-dom";
+import * as CurrencyFormat from "react-currency-format";
 
 function Success() {
   const amount = localStorage.getItem("bought-amount");
@@ -15,6 +16,7 @@ function Success() {
   useEffect(() => {
     redirect();
   }, []);
+
   return (
     <div>
       <Dashboard />
@@ -35,9 +37,6 @@ function Success() {
           },
         }}
         className="flex items-center justify-center fixed top-0 right-0 bottom-0 left-0 bg-overlay z-50 backdrop-blur-xs"
-        // onClick={() => {
-        //         closeDetails(false)
-        //     }}
       >
         <motion.div
           initial={{
@@ -63,14 +62,21 @@ function Success() {
           <div className="font-medium text-base text-neutral my-8">
             <p>
               You successfully made a payment of
-              <br /> <span className="text-green">N{amount} </span> to purchase
-              REIC Token
+              <br />
+              <span className="text-green">
+                N
+                <CurrencyFormat
+                  value={amount}
+                  displayType={"text"}
+                  thousandSeparator={true}
+                />
+              </span>{" "}
+              to purchase REIC Token
             </p>
           </div>
           <div>
             <p className="font-semibold text-xs">Redirecting ...</p>
           </div>
-          <div className="flex justify-between"></div>
         </motion.div>
       </motion.div>
     </div>
