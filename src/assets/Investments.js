@@ -109,101 +109,54 @@ function Investments() {
             </h1>
           </Link>
         </div>
-        <div className="overflow-hidden mt-5 flex">
-          <div className="cat">
-            <div className="categories bg-light-orange ">
-              <div className="cate-block">
-                <div className="flex text-dark py-3">
-                  <div className="mr-3">
-                    <img src={renovate} alt="investment_icon" />
-                  </div>
-                  <div>
-                    <h1 className="text-sm font-medium text-dark capitalize">
-                      {" "}
-                      {categories[1].product_category}
-                    </h1>
-                    <h1 className="text-tiny font-medium text-dark">
-                      {categories[1].products.length}{" "}
-                      {categories[1].products.length === 1
-                        ? "Investment"
-                        : "Investments"}{" "}
-                      Ongoing
-                    </h1>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="bg-light-blue categories">
-              <div className="cate-block">
-                <div className="flex text-dark py-3">
-                  <div className="mr-3">
-                    <img src={crowd} alt="investment_icon" />
-                  </div>
-                  <div>
-                    <h1 className="text-sm font-medium text-dark capitalize">
-                      {categories[2].product_category}
-                      {/* Morgage */}
-                    </h1>
-                    <h1 className="text-tiny font-medium text-dark">
-                      {categories[2].products.length}{" "}
-                      {categories[2].products.length === 1
-                        ? "Investment"
-                        : "Investments"}{" "}
-                      ongoing
-                    </h1>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="cat">
-            <div className="categories bg-light-purple ">
-              <div className="cate-block">
-                <div className="flex text-dark py-3">
-                  <div className="mr-3">
-                    <img src={invest_icon} alt="investment_icon" />
-                  </div>
-                  <div>
-                    <h1 className="text-sm font-medium text-dark capitalize">
-                      {categories[0].product_category === "rent_financing" &&
-                        "Rent Financing"}
-                      {/* Rent Financing */}
-                    </h1>
-                    <h1 className="text-tiny font-medium text-dark">
-                      {categories[0].products.length}{" "}
-                      {categories[0].products.length === 1
-                        ? "Investment"
-                        : "Investments"}{" "}
-                      ongoing
-                    </h1>
+        <div className="overflow-hidden mt-5 ">
+          <div className="cat flex flex-wrap ">
+            {categories?.map((post) => (
+              <div
+                className={`categories bg-light-purple ${
+                  post.product_category === "renovate"
+                    ? "bg-light-orange"
+                    : post.product_category === "mortgage"
+                    ? "bg-light-blue"
+                    : post.product_category === "sales"
+                    ? "bg-sky-blue"
+                    : "bg-light-purple"
+                }`}
+              >
+                <div className="cate-block">
+                  <div className="flex text-dark py-3">
+                    <div className="mr-3">
+                      {/* <img src={renovate} alt="investment_icon" /> */}
+                      {post.product_category === "renovate" ? (
+                        <img src={renovate} alt="investment_icon" />
+                      ) : post.product_category === "mortgage" ? (
+                        <img src={crowd} alt="investment_icon" />
+                      ) : post.product_category === "sales" ? (
+                        <img src={sales} alt="investment_icon" />
+                      ) : (
+                        <img src={invest_icon} alt="investment_icon" />
+                      )}
+                    </div>
+                    <div>
+                      <h1 className="text-sm font-medium text-dark capitalize">
+                        {/* {categories[0].product_category === "rent_financing" &&
+                        "Rent Financing"} */}
+                        {post.product_category === "rent_financing"
+                          ? "Rent Financing"
+                          : post.product_category}
+                      </h1>
+                      <h1 className="text-tiny font-medium text-dark">
+                        {post.products.length}{" "}
+                        {post.products.length === 1
+                          ? "Investment"
+                          : "Investments"}{" "}
+                        ongoing
+                      </h1>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-
-            <div className="bg-sky-blue categories">
-              <div className="cate-block">
-                <div className="flex text-dark py-3">
-                  <div className="mr-3">
-                    <img src={sales} alt="investment_icon" />
-                  </div>
-                  <div>
-                    <h1 className="text-sm font-medium text-dark capitalize">
-                      {categories[3].product_category}
-                      {/* Sales */}
-                    </h1>
-                    <h1 className="text-tiny font-medium text-dark">
-                      {categories[3].products.length}{" "}
-                      {categories[3].products.length === 1
-                        ? "Investment"
-                        : "Investments"}{" "}
-                      ongoing
-                    </h1>
-                  </div>
-                </div>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
 
@@ -282,52 +235,52 @@ function Investments() {
             <h1>Ongoing Investments</h1>
             {ongoing ? (
               <div className="flex flex-wrap mb-4">
-                {data
-                  ?.filter((post) => post.id === 1)
-                  .map((post) => (
-                    <Link to="/investments/ongoing">
-                      <div key={post.id} className="real-estate cursor-pointer">
-                        <div className="mr-1.5 w-1/3">
-                          <img src={land} alt="rawland" />
-                        </div>
-                        <div className="w-2/3">
-                          <div className="mb-2">
-                            <h1 className="!mb-0">{post.product.title}</h1>
-                            <h2 className="text-green text-xs">
-                              {post.interest}% Interest Rate
-                            </h2>
-                          </div>
-                          <div className="text-tiny text-grayy mb-3">
-                            <p className="!mb-0">
-                              Time Frame:{" "}
-                              <span className="text-darkgray">
-                                {post.duration} Days
-                              </span>
-                            </p>
-                            <p className="">
-                              Expires -{" "}
-                              <span className="text-darkgray">
-                                {moment(post.due_date).format("MMM DD, yyyy")}
-                              </span>
-                            </p>
-                          </div>
-                          <div className="text-grayy text-tiny bg-mainsec p-2 rounded-lg mb-3 w-48">
-                            <p className="">
-                              Property Worth{" "}
-                              <span className="text-darkgray text-xs font-medium ml-2">
-                                N
-                                <CurrencyFormat
-                                  value={post.product.cost}
-                                  displayType={"text"}
-                                  thousandSeparator={true}
-                                />
-                              </span>
-                            </p>
-                          </div>
-                        </div>
+                {/* {data
+                  ?.filter((post) => post.length)
+                  .map((post) => ( */}
+                <Link to="/investments/ongoing">
+                  <div key={data[0].id} className="real-estate cursor-pointer">
+                    <div className="mr-1.5 w-1/3">
+                      <img src={land} alt="rawland" />
+                    </div>
+                    <div className="w-2/3">
+                      <div className="mb-2">
+                        <h1 className="!mb-0">{data[0].product.title}</h1>
+                        <h2 className="text-green text-xs">
+                          {data[0].interest}% Interest Rate
+                        </h2>
                       </div>
-                    </Link>
-                  ))}
+                      <div className="text-tiny text-grayy mb-3">
+                        <p className="!mb-0">
+                          Time Frame:{" "}
+                          <span className="text-darkgray">
+                            {data[0].duration} Days
+                          </span>
+                        </p>
+                        <p className="">
+                          Expires -{" "}
+                          <span className="text-darkgray">
+                            {moment(data[0].due_date).format("MMM DD, yyyy")}
+                          </span>
+                        </p>
+                      </div>
+                      <div className="text-grayy text-tiny bg-mainsec p-2 rounded-lg mb-3 w-48">
+                        <p className="">
+                          Property Worth{" "}
+                          <span className="text-darkgray text-xs font-medium ml-2">
+                            N
+                            <CurrencyFormat
+                              value={data[0].product.cost}
+                              displayType={"text"}
+                              thousandSeparator={true}
+                            />
+                          </span>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </Link>
+                {/* ))} */}
               </div>
             ) : (
               <div className="flex flex-col items-center justify-center h-full">
