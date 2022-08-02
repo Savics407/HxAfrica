@@ -78,9 +78,9 @@ function SelectAvater({ setAvailable }) {
             delay: 0.5,
           },
         }}
-        className="justify-center p-10 rounded-xl flex bg-white"
+        className="justify-center lg:p-10 rounded-xl flex bg-white border-4 lg:w-auto w-full lg:h-auto h-full"
       >
-        <div className=" w-96">
+        <div className="w-96">
           <div>
             <h1 className="text-green text-2xl lg:text-4xl font-semibold mb-3 text-center">
               Select Avater
@@ -246,6 +246,71 @@ function Profile() {
     navigate("/login");
   };
 
+  const [profileData, setProfileData] = useState({
+    email: userEmail,
+    userName: userName,
+    name: userName,
+    phone: userPhone,
+    password: "",
+    state: userState,
+    bvn: "",
+    city: userCity,
+    address: userAddress,
+    dob: userDob,
+  });
+
+  async function update() {
+    const payLoad = {
+      name: profileData.name,
+      phone: profileData.phone,
+      address: profileData.address,
+      city: profileData.city,
+      state_id: profileData.state,
+      dob: profileData.dob,
+    };
+
+    const token = localStorage.getItem("user-token");
+    const response = await fetch(
+      "https://reic.api.simpoo.biz/api/investor/setup",
+      {
+        method: "POST",
+        body: JSON.stringify(payLoad),
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    const result = await response.json();
+
+    console.log(result?.status);
+    // if (result?.status === "success") {
+    //   toast.success(`${result.message}`, {
+    //     position: "top-left",
+    //     autoClose: 300,
+    //     hideProgressBar: true,
+    //     closeOnClick: false,
+    //     pauseOnHover: true,
+    //     draggable: true,
+    //     progress: undefined,
+    //   });
+    //   navigate("/select-avater");
+    // } else {
+    //   if (result.status === "error") {
+    //     toast.error(`${result.message}`, {
+    //       position: "top-left",
+    //       autoClose: 300,
+    //       hideProgressBar: true,
+    //       closeOnClick: false,
+    //       pauseOnHover: true,
+    //       draggable: true,
+    //       progress: undefined,
+    //     });
+    //   }
+    // }
+  }
+
   return (
     <div className="font-family bg-mainbg">
       {available && <SelectAvater setAvailable={setAvailable} />}
@@ -315,6 +380,13 @@ function Profile() {
                     type="text"
                     defaultValue={userName}
                     className="font-medium text-sm outline-none w-full"
+                    // value={profileData.name}
+                    onChange={(event) =>
+                      setProfileData({
+                        ...profileData,
+                        name: event.target.value,
+                      })
+                    }
                   />
                 </td>
               </tr>
@@ -330,6 +402,12 @@ function Profile() {
                     type="text"
                     placeholder="Not Added yet"
                     className="font-medium text-sm outline-none w-full"
+                    onChange={(event) =>
+                      setProfileData({
+                        ...profileData,
+                        userName: event.target.value,
+                      })
+                    }
                   />
                 </td>
               </tr>
@@ -345,6 +423,12 @@ function Profile() {
                     type="text"
                     defaultValue={userEmail}
                     className="font-medium text-sm outline-none w-full"
+                    onChange={(event) =>
+                      setProfileData({
+                        ...profileData,
+                        email: event.target.value,
+                      })
+                    }
                   />
                 </td>
               </tr>
@@ -360,6 +444,12 @@ function Profile() {
                     type="text"
                     defaultValue={userPhone}
                     className="font-medium text-sm outline-none w-full"
+                    onChange={(event) =>
+                      setProfileData({
+                        ...profileData,
+                        phone: event.target.value,
+                      })
+                    }
                   />
                 </td>
               </tr>
@@ -375,6 +465,12 @@ function Profile() {
                     type="text"
                     defaultValue={userDob}
                     className="font-medium text-sm outline-none w-full"
+                    onChange={(event) =>
+                      setProfileData({
+                        ...profileData,
+                        dob: event.target.value,
+                      })
+                    }
                   />
                 </td>
               </tr>
@@ -388,6 +484,12 @@ function Profile() {
                     type="text"
                     defaultValue={userState}
                     className="font-medium text-sm outline-none w-full"
+                    onChange={(event) =>
+                      setProfileData({
+                        ...profileData,
+                        state: event.target.value,
+                      })
+                    }
                   />
                 </td>
               </tr>
@@ -401,6 +503,12 @@ function Profile() {
                     type="text"
                     defaultValue={userCity}
                     className="font-medium text-sm outline-none w-full"
+                    onChange={(event) =>
+                      setProfileData({
+                        ...profileData,
+                        city: event.target.value,
+                      })
+                    }
                   />
                 </td>
               </tr>
@@ -474,6 +582,12 @@ function Profile() {
                     type="text"
                     defaultValue={userAddress}
                     className="font-medium text-sm outline-none w-full"
+                    onChange={(event) =>
+                      setProfileData({
+                        ...profileData,
+                        address: event.target.value,
+                      })
+                    }
                   />
                 </td>
               </tr>
@@ -489,6 +603,12 @@ function Profile() {
                     type="text"
                     placeholder="Not Added yet"
                     className="font-medium text-sm outline-none w-full"
+                    onChange={(event) =>
+                      setProfileData({
+                        ...profileData,
+                        bvn: event.target.value,
+                      })
+                    }
                   />
                 </td>
               </tr>
@@ -503,7 +623,12 @@ function Profile() {
                 <BiLogOut className="mr-1 text-lg" /> Log Out
               </button>
             </div>
-            <button className="rounded-full bg-green text-dashbg font-medium text-sm py-3 px-12">
+            <button
+              className="rounded-full bg-green text-dashbg font-medium text-sm py-3 px-12 "
+              onClick={() => {
+                alert(profileData.address);
+              }}
+            >
               Update
             </button>
           </div>

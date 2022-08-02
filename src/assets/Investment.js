@@ -156,11 +156,11 @@ function Investment() {
                 ))}
             </div>
 
-            <div className="flex justify-center p-10">
+            {/* <div className="flex justify-center p-10">
               <button className="border border-more font-medium rounded-full w-40 h-10 text-neutral flex justify-center items-center">
                 <TbLoader className="mr-3" /> Load more
               </button>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

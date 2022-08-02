@@ -125,7 +125,7 @@ body {
 }
 
 .avater {
-  @apply rounded-full border-4 border-transparent hover:border-4 cursor-pointer hover:border-opacity
+  @apply rounded-full border-4 border-transparent hover:border-4 cursor-pointer hover:border-opacity mb-3
 }
 
 .container {

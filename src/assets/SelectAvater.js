@@ -67,10 +67,10 @@ function Congratulations() {
               delay: 0.5,
             },
           }}
-          className="bg-white rounded-2xl w-1/2  flex justify-center flex-col py-10 px-10"
+          className="bg-white lg:rounded-2xl lg:w-1/2 w-full lg:h-auto h-full flex justify-center flex-col py-10 lg:px-10 px-20"
         >
           <div className="flex justify-center mb-5">
-            <img src={userIcon} alt="userAvater" />
+            <img src={userIcon} alt="userAvater" className="w-1/2 lg:w-24" />
           </div>
           <div className="text-center">
             <h1 className="font-semibold text-banner text-2xl">
@@ -81,7 +81,7 @@ function Congratulations() {
               successfully.
             </h1>
             <button
-              className="bg-green px-20 py-3 text-white rounded-lg"
+              className="bg-green lg:px-20 py-3 w-full lg:w-auto text-white rounded-full lg:rounded-lg"
               onClick={() => navigate("/login")}
             >
               Continue
@@ -121,8 +121,8 @@ function SelectAvater() {
     <div className="bg-white">
       {available && <Congratulations />}
       <Tab />
-      <div className="justify-center py-28 flex">
-        <div className=" w-96">
+      <div className="justify-center lg:py-28 py-10 flex">
+        <div className=" w-80 lg:w-96">
           <div>
             <h1 className="text-green text-2xl lg:text-4xl font-semibold mb-3 text-center">
               Set Avater
@@ -172,8 +172,7 @@ function SelectAvater() {
             >
               <img src={images.avater4} alt="Users Avater" />
             </div>
-          </div>
-          <div className="flex justify-around w-full px-4 flex-wrap">
+
             <div
               className="avater"
               onClick={() => {
@@ -211,7 +210,7 @@ function SelectAvater() {
               <img src={images.avater8} alt="Users Avater" />
             </div>
             <div
-              className="mt-4 avater"
+              className="avater"
               onClick={() => {
                 setUserIcon(avater9);
                 setIsClick(true);
@@ -220,9 +219,9 @@ function SelectAvater() {
               <img src={images.avater9} alt="Users Avater" />
             </div>
           </div>
-          <div className=" text-sm font-medium flex justify-center my-10">
+          <div className=" text-sm font-medium flex flex-wrap items-center justify-center my-10">
             <button
-              className="text-green border border-green rounded-xl px-7 py-3 mr-3"
+              className="text-green border border-green rounded-xl w-full lg:w-auto px-7 py-3 lg:mr-3 lg:mb-0 mb-5"
               onClick={() => navigate("/login")}
             >
               Skip for now
@@ -230,14 +229,14 @@ function SelectAvater() {
 
             {isClick ? (
               <button
-                className="text-white bg-green hover:opacity-100 rounded-xl px-7 py-3"
+                className="text-white bg-green border-green border hover:opacity-100 w-full lg:w-auto rounded-xl px-7 py-3"
                 onClick={updateProfile}
               >
                 Set as avater
               </button>
             ) : (
               <button
-                className="text-white bg-green opacity-50 hover:opacity-100 rounded-xl px-7 py-3"
+                className="text-white bg-green opacity-50 border-green border hover:opacity-100 w-full lg:w-auto rounded-xl px-7 py-3"
                 onClick={() => alert("select an avater")}
               >
                 Set as avater
