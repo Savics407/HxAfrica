@@ -40,6 +40,8 @@ module.exports = {
         earnings: "#69A2F9",
         "light-blue": "#7281FF4F",
         token: "#7E7E99",
+        darkButton: "#383B43",
+        yellow: "#E59D19",
         media: "#58BD7D",
         stroke: "rgba(114, 129, 255, 0.15)",
         strokegrey: "rgba(0, 0, 0, 0.19);",

@@ -5,6 +5,7 @@ import user from "./images/user_icon.png";
 
 function mobileHeader() {
   const userName = localStorage.getItem("user-name");
+  const userIcon = localStorage.getItem("user-profile");
 
   return (
     <>
@@ -24,7 +25,12 @@ function mobileHeader() {
           </Link>
           <div className="w-9 relative">
             <Link to="/settings">
-              <img src={user} alt="User-Icon" className="" />
+              {/* <img src={userIcon} alt="User-Icon" className="" /> */}
+              {!!userIcon ? (
+                <img src={userIcon} alt="User-Icon" className="object-fill  " />
+              ) : (
+                <img src={user} alt="User-Icon" className="object-cover" />
+              )}
             </Link>
             <div className="w-2 h-2 bg-on rounded-full absolute bottom-0 right-0"></div>
           </div>

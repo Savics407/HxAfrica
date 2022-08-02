@@ -5,6 +5,8 @@ import reictoken from "./images/Reic_Token.png";
 import Header from "./Header";
 import dollar from "./images/Vector.png";
 import coin from "./images/coin.png";
+import widthdraw from "./images/withdraw-token.svg";
+import send from "./images/moneysend.svg";
 import status from "./images/status-up.png";
 // import reictoken from './images/Reic_Token.png'
 import { MdClose } from "react-icons/md";
@@ -121,41 +123,60 @@ function Token() {
 
       <Header />
 
-      <div className="w-10/12 m-auto mt-20 bg-dashbg rounded-lg py-8 px-4">
+      <div className="lg:w-10/12 w-full m-auto lg:mt-20 bg-dashbg rounded-lg lg:py-8 lg:px-4">
+        <div className="lg:hidden py-8 px-4 bg-welcome text-dark text-lg font-semibold">
+          <h1 className="uppercase">my token wallet</h1>
+        </div>
         <div className="">
-          <div className="p-10 bg-white rounded-lg mb-5 flex">
-            <div className="w-2/5">
-              <div className="flex items-center">
+          <div className="lg:p-10 px-4 py-5 bg-white rounded-lg mb-5 flex flex-wrap ">
+            <div className="lg:w-2/5 w-full">
+              <div className="flex items-center hidden lg:flex">
                 <img src={reictoken} alt="REIC TOKEN" />
                 <h1 className="text-base text-token font-semibold ml-2">
                   REIC TOKEN
                 </h1>
               </div>
-              <div className="flex items-center mt-8 justify-between">
-                <div className="flex items-center justify-between ">
-                  <h1 className="font-medium mr-4 text-dark text-3xl">
-                    {reic ? (
-                      <span>{JSON.stringify(token)}</span>
-                    ) : (
-                      <span>
-                        N
-                        <CurrencyFormat
-                          value={JSON.stringify(ngn)}
-                          displayType={"text"}
-                          thousandSeparator={true}
-                        />
-                      </span>
-                    )}{" "}
-                    {reic && "REIC"}
-                  </h1>
+              <div className="flex items-center lg:mt-8 justify-between">
+                <div className="flex items-center justify-between w-full lg:w-auto">
+                  <div className="flex items-center">
+                    <img
+                      src={reictoken}
+                      alt="REIC TOKEN"
+                      className="lg:hidden mr-2"
+                    />
+
+                    <div className="">
+                      <h1 className="text-token uppercase text-tiny font-semibold lg:hidden">
+                        reic token
+                      </h1>
+                      <h1 className="font-medium mr-4 text-dark text-3xl">
+                        {reic ? (
+                          <span>{JSON.stringify(token)}</span>
+                        ) : (
+                          <span>
+                            N
+                            <CurrencyFormat
+                              value={JSON.stringify(ngn)}
+                              displayType={"text"}
+                              thousandSeparator={true}
+                            />
+                          </span>
+                        )}{" "}
+                        {reic && "REIC"}
+                      </h1>
+                    </div>
+                  </div>
+
                   <div
-                    className="flex items-center border rounded-full py-2.5 px-5 relative cursor-pointer"
+                    className="flex items-center border rounded-full py-2 px-5 lg:py-2.5 lg:px-5 relative cursor-pointer"
                     onClick={() => setDrop(!drop)}
                   >
-                    <span className="mr-1">{reic ? "REIC Coin" : "NGN"}</span>
+                    <span className="mr-1 lg:text-xs text-xxm">
+                      {reic ? "REIC Coin" : "NGN"}
+                    </span>
                     <FaAngleDown />
                     <div
-                      className={`absolute text-neutral  left-0 top-28 -mt-2 rounded-xl shadow-2xl bg-dashbg text-left w-28 invisible duration-300 z-50 ${
+                      className={`absolute text-neutral  left-0 top-28 -mt-2 rounded-xl shadow-2xl bg-dashbg text-left w-28 invisible duration-3#7E7E99#7E7E9900 z-50 ${
                         drop ? "show-note !top-10" : "remove-note"
                       }`}
                     >
@@ -178,7 +199,7 @@ function Token() {
               </div>
             </div>
 
-            <div className="px-8 flex items-center justify-between w-3/5">
+            <div className="px-8 flex items-center justify-between w-3/5 hidden lg:flex">
               <div className="pl-14 pr-4 border-l border-strokegrey ">
                 <img src={status} alt="dollar-icon" className="mb-4 h-6 w-6" />
                 <p className="text-earnings font-medium text-xs mb-1">
@@ -201,9 +222,18 @@ function Token() {
                 <h1 className="text-dark text-2xl font-medium">N200,000</h1>
               </div>
             </div>
+            <div className="flex py-5 pl-3 lg:hidden">
+              <h1 className="text-xs font-semibold text-black w-fit py-1">
+                1{" "}
+                <span className="uppercase font-semibold text-tiny">
+                  reic token{" "}
+                </span>{" "}
+                = N50,000
+              </h1>
+            </div>
           </div>
-          <div className="w-full flex">
-            <div className="w-1/2 mr-2">
+          <div className="w-full lg:flex">
+            <div className="w-1/2 mr-2 hidden lg:block">
               <div className="bg-welcome p-10 rounded-lg border flex justify-between items-center">
                 <p className="font-medium text-base text-dark">
                   Easy Withdrawal to Local Bank
@@ -352,7 +382,17 @@ function Token() {
                 </motion.div>
               </div>
             </div>
-            <div className="w-1/2 ml-2 font-inter">
+            <div className="bg-welcome px-4 py-5 lg:hidden flex justify-between mb-4">
+              <button className="font-normal text-dashbg bg-darkButton rounded-full text-tiny flex items-center py-3 px-5">
+                <img src={widthdraw} alt="withdraw token icon" />{" "}
+                <span className="ml-2">Withdraw Token </span>
+              </button>
+              <button className="font-normal text-dashbg bg-green rounded-full text-tiny flex items-center py-3 px-9">
+                <img src={send} alt="withdraw token icon" />{" "}
+                <span className="ml-2">Buy Token </span>
+              </button>
+            </div>
+            <div className="lg:w-1/2 lg:ml-2 font-inter">
               <ErrorBoundary>
                 <RecentActivity />
               </ErrorBoundary>
@@ -360,7 +400,7 @@ function Token() {
           </div>
         </div>
       </div>
-      <div className="mt-6 pb-10 text-center">
+      <div className="mt-6 pb-10 text-center hidden lg:block">
         <h1 className="text-base font-semibold text-footer">
           © 2022 REIC. All rights reserved.
         </h1>
