@@ -194,7 +194,7 @@ function Login() {
             </Link>
           </p>
         </div>
-        <div className=" bg-[url('../src/assets/images/build.jpeg')] bg-black lg:w-1/2 relative bg-cover bg-center build hidden lg:block">
+        <div className=" bg-[url('../src/assets/images/authImage.svg')] bg-welcome lg:w-1/2 relative bg-cover bg-center hidden lg:block">
           {/* <img src={bg} className=" w-full h-full object-cover absolute"/>     */}
         </div>
       </div>
