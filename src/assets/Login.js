@@ -189,7 +189,7 @@ function Login() {
           </form>
           <p className="text-sm font-medium text-sec mt-8 mb-48 text-center md:text-left">
             You are new ?{" "}
-            <Link to="/">
+            <Link to="/sign-up">
               <span className="text-green">sign up</span>
             </Link>
           </p>

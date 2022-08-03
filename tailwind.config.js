@@ -36,6 +36,7 @@ module.exports = {
         "mobile-nav": "#343C44",
         "mobile-banner": "#8BFF98",
         dashbg: "#FCFCFD",
+        endsin: "#C11574",
         welcome: "#FBFFFF",
         earnings: "#69A2F9",
         "light-blue": "#7281FF4F",

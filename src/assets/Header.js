@@ -32,7 +32,7 @@ function Header() {
       draggable: true,
       progress: undefined,
     });
-    navigate("/login");
+    navigate("/");
   };
 
   // const notify = () =>

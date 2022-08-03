@@ -14,6 +14,8 @@ import { useEffect, useState } from "react";
 import moment from "moment";
 // import crowd from "./images/crowdfund.png";
 import * as CurrencyFormat from "react-currency-format";
+import { FiArrowUp } from "react-icons/fi";
+import { HiDotsVertical } from "react-icons/hi";
 
 function Investments() {
   const [posts, setPosts] = useState();
@@ -244,11 +246,23 @@ function Investments() {
                       <img src={land} alt="rawland" />
                     </div>
                     <div className="w-2/3">
-                      <div className="mb-2">
+                      {/* <div className="mb-2">
                         <h1 className="!mb-0">{data[0].product.title}</h1>
                         <h2 className="text-green text-xs">
                           {data[0].interest}% Interest Rate
                         </h2>
+                      </div> */}
+                      <div className="mb-2 flex justify-between">
+                        <div>
+                          {" "}
+                          <h1 className="!mb-0">{data[0].product.title}</h1>
+                          <h2 className="text-green text-xs">
+                            {data[0].interest}% Interest Rate
+                          </h2>
+                        </div>
+                        <div>
+                          <HiDotsVertical className="text-lg" />
+                        </div>
                       </div>
                       <div className="text-tiny text-grayy mb-3">
                         <p className="!mb-0">
@@ -276,6 +290,13 @@ function Investments() {
                             />
                           </span>
                         </p>
+                      </div>
+                      <div className="text-endsin text-xxm font-medium flex items-end">
+                        <FiArrowUp className="text-base " />{" "}
+                        <span className="">
+                          {moment(data[0].due_date).diff(new Date(), "Days")}{" "}
+                          Days: {moment(data[0].due_date).format("h")}hrs to go
+                        </span>
                       </div>
                     </div>
                   </div>

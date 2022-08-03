@@ -30,8 +30,8 @@ function App() {
     <div>
       {/* <UseNetworkStatus /> */}
       <Routes>
-        <Route path="/" element={<Auth />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/sign-up" element={<Auth />} />
+        <Route path="/" element={<Login />} />
         <Route path="/status" element={<UseNetworkStatus />} />
         <Route element={<PrivateRoutes />}>
           <Route path="/buytoken/success" element={<Success />} />

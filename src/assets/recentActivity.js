@@ -148,24 +148,106 @@ function RecentActivity() {
                     </div>
 
                     <div className=" w-3/4 hidden lg:block">
-                      <p className="font-normal text-sm text-footer">
-                        <span>You</span> made{" "}
-                        {post.type === "investment"
-                          ? "an investment"
-                          : "a deposit"}{" "}
-                        of{" "}
-                        <span>
-                          N
-                          <CurrencyFormat
-                            value={post.amount}
-                            displayType={"text"}
-                            thousandSeparator={true}
-                          />
-                        </span>{" "}
-                        {post.type === "investment" ? "worth" : "purchase"} of{" "}
-                        <span>REIC Token</span>, Transaction ID:{" "}
-                        <span>{post.transaction_id}</span>
-                      </p>
+                      {post.type === "buytoken" || post.type === "deposit" ? (
+                        <p className="font-normal text-sm text-footer">
+                          <span>You</span> made a deposit of{" "}
+                          <span>
+                            N
+                            <CurrencyFormat
+                              value={post.amount}
+                              displayType={"text"}
+                              thousandSeparator={true}
+                            />
+                          </span>{" "}
+                          worth of <span>REIC Token</span>, Transaction ID:{" "}
+                          <span>{post.transaction_id}</span>
+                        </p>
+                      ) : post.type === "withdrawal" ? (
+                        <p className="font-normal text-sm text-footer">
+                          <span>You've</span> successfully withdrawn{" "}
+                          <span>
+                            N
+                            <CurrencyFormat
+                              value={post.amount}
+                              displayType={"text"}
+                              thousandSeparator={true}
+                            />
+                          </span>{" "}
+                          worth of <span>REIC Token</span> to your bank,
+                          Transaction ID: <span>{post.transaction_id}</span>
+                        </p>
+                      ) : post.type === "investment" ? (
+                        <p className="font-normal text-sm text-footer">
+                          <span>You</span> made an investment of{" "}
+                          <span>
+                            N
+                            <CurrencyFormat
+                              value={post.amount}
+                              displayType={"text"}
+                              thousandSeparator={true}
+                            />
+                          </span>{" "}
+                          worth of <span>REIC Token</span>, Transaction ID:{" "}
+                          <span>{post.transaction_id}</span>
+                        </p>
+                      ) : post.type === "reversal" ? (
+                        <p className="font-normal text-sm text-footer">
+                          {" "}
+                          <span>
+                            N
+                            <CurrencyFormat
+                              value={post.amount}
+                              displayType={"text"}
+                              thousandSeparator={true}
+                            />
+                          </span>{" "}
+                          worth of <span>REIC Token</span> was reversed back to
+                          your wallet, Transaction ID:{" "}
+                          <span>{post.transaction_id}</span>
+                        </p>
+                      ) : post.type === "pullout" ? (
+                        <p className="font-normal text-sm text-footer">
+                          <span>You've</span> successfully pulled out{" "}
+                          <span>
+                            N
+                            <CurrencyFormat
+                              value={post.amount}
+                              displayType={"text"}
+                              thousandSeparator={true}
+                            />
+                          </span>{" "}
+                          worth of <span>REIC Investment</span>, Transaction ID:{" "}
+                          <span>{post.transaction_id}</span>
+                        </p>
+                      ) : post.type === "inherited" ? (
+                        <p className="font-normal text-sm text-footer">
+                          <span>You,ve</span> successfully inherited{" "}
+                          <span>
+                            N
+                            <CurrencyFormat
+                              value={post.amount}
+                              displayType={"text"}
+                              thousandSeparator={true}
+                            />
+                          </span>{" "}
+                          worth of <span>REIC Investment</span>, Transaction ID:{" "}
+                          <span>{post.transaction_id}</span>
+                        </p>
+                      ) : (
+                        <p className="font-normal text-sm text-footer">
+                          <span>Your</span> purchase of{" "}
+                          <span>
+                            N
+                            <CurrencyFormat
+                              value={post.amount}
+                              displayType={"text"}
+                              thousandSeparator={true}
+                            />
+                          </span>{" "}
+                          worth of <span>REIC Token</span> failed, Transaction
+                          ID: <span>{post.transaction_id}</span>
+                        </p>
+                      )}
                     </div>
                     <div className="lg:hidden">
                       <h1 className="text-xs text-dark">{post.token} Reic</h1>

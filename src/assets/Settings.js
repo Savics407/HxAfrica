@@ -243,7 +243,7 @@ function Profile() {
       draggable: true,
       progress: undefined,
     });
-    navigate("/login");
+    navigate("/");
   };
 
   const [profileData, setProfileData] = useState({

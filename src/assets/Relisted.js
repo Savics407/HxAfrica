@@ -104,9 +104,9 @@ function Relisted() {
           <InvestTabs />
           <div className="mb-8 mine">
             {relisted ? (
-              <div className="flex flex-wrap  mb-4">
+              <div className="flex flex-wrap mb-4">
                 {posts?.map((post) => (
-                  <div className="real-estate w-2/6 mr-3" key={post.id}>
+                  <div className="real-estate w-80 mr-3" key={post.id}>
                     <div className="mr-3 w-1/3 h-full">
                       <img
                         src={land}

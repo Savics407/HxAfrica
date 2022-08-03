@@ -8,6 +8,8 @@ import Details from "./Investment_Details";
 import { TbLoader } from "react-icons/tb";
 import * as CurrencyFormat from "react-currency-format";
 import moment from "moment";
+import { FiArrowUp } from "react-icons/fi";
+import { HiDotsVertical } from "react-icons/hi";
 
 function Ongoing() {
   const [posts, setPosts] = useState();
@@ -86,11 +88,17 @@ function Ongoing() {
                       <img src={land} alt="rawland" />
                     </div>
                     <div className="w-2/3">
-                      <div className="mb-2">
-                        <h1 className="!mb-0">{post.product.title}</h1>
-                        <h2 className="text-green text-xs">
-                          {post.interest}% Interest Rate
-                        </h2>
+                      <div className="mb-2 flex justify-between">
+                        <div>
+                          {" "}
+                          <h1 className="!mb-0">{post.product.title}</h1>
+                          <h2 className="text-green text-xs">
+                            {post.interest}% Interest Rate
+                          </h2>
+                        </div>
+                        <div>
+                          <HiDotsVertical className="text-lg" />
+                        </div>
                       </div>
                       <div className="text-tiny text-grayy mb-3">
                         <p className="!mb-0">
@@ -106,7 +114,7 @@ function Ongoing() {
                           </span>
                         </p>
                       </div>
-                      <div className="text-grayy text-tiny bg-mainsec p-2 rounded-lg mb-3 w-48">
+                      <div className="text-grayy text-tiny bg-mainsec p-2 rounded-lg mb-2 w-48">
                         <p className="">
                           Property Worth{" "}
                           <span className="text-darkgray text-xs font-medium ml-2">
@@ -118,6 +126,13 @@ function Ongoing() {
                             />
                           </span>
                         </p>
+                      </div>
+                      <div className="text-endsin text-xxm font-medium flex items-end">
+                        <FiArrowUp className="text-base " />{" "}
+                        <span className="">
+                          {moment(post.due_date).diff(new Date(), "Days")} Days:{" "}
+                          {moment(post.due_date).format("h")}hrs to go
+                        </span>
                       </div>
                     </div>
                   </div>

@@ -82,7 +82,7 @@ function Congratulations() {
             </h1>
             <button
               className="bg-green lg:px-20 py-3 w-full lg:w-auto text-white rounded-full lg:rounded-lg"
-              onClick={() => navigate("/login")}
+              onClick={() => navigate("/")}
             >
               Continue
             </button>
@@ -222,7 +222,7 @@ function SelectAvater() {
           <div className=" text-sm font-medium flex flex-wrap items-center justify-center my-10">
             <button
               className="text-green border border-green rounded-xl w-full lg:w-auto px-7 py-3 lg:mr-3 lg:mb-0 mb-5"
-              onClick={() => navigate("/login")}
+              onClick={() => navigate("/")}
             >
               Skip for now
             </button>
