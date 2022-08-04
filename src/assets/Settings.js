@@ -323,12 +323,15 @@ function Profile() {
     );
     const result = await response.json();
     console.log(result.data);
-    alert(result.data.name);
+    // alert(result.data.name);
 
-    setPosts(result.data);
+    setPosts(result?.data);
 
   }
-  const userName = posts.username;
+
+  const data = { id: 3, name: "Noble Okechi", username: "noblefresh", email: "okechinoble@gmail.com" }
+
+  // const userName = posts.username;
   // const userEmail = localStorage.getItem("user-email");
   // const userPhone = localStorage.getItem("user-phone");
   // const userDob = localStorage.getItem("user-dob");
@@ -338,7 +341,7 @@ function Profile() {
   useEffect(() => {
     // activities();
     fetchData();
-  });
+  }, []);
 
   return (
     <div className="font-family bg-mainbg">
@@ -396,6 +399,7 @@ function Profile() {
             <h1 className="text-footer text-xs font-medium">
               User Information
             </h1>
+
             <table className="border w-full border-collapse mt-3 " >
               <tr>
                 <td className="w-1/3 px-5 py-2">
@@ -407,7 +411,7 @@ function Profile() {
                   {/* <h1 className="font-medium text-sm ">{userName}</h1> */}
                   <input
                     type="text"
-                    defaultValue={userName}
+                    defaultValue={posts?.name}
                     className="font-medium text-sm outline-none w-full"
                     // value={profileData.name}
                     onChange={(event) =>
@@ -429,7 +433,7 @@ function Profile() {
                   {/* <h1 className="font-medium text-sm italic">Not added yet</h1> */}
                   <input
                     type="text"
-                    defaultValue="{userName}"
+                    defaultValue={posts?.username}
                     className="font-medium text-sm outline-none w-full"
                     onChange={(event) =>
                       setProfileData({
@@ -450,7 +454,7 @@ function Profile() {
                   {/* <h1 className="font-medium text-sm">{userEmail}</h1> */}
                   <input
                     type="text"
-                    defaultValue="{userEmail}"
+                    defaultValue={posts?.email}
                     className="font-medium text-sm outline-none w-full"
                     onChange={(event) =>
                       setProfileData({
@@ -471,7 +475,7 @@ function Profile() {
                   {/* <h1 className="font-medium text-sm">{userPhone}</h1> */}
                   <input
                     type="text"
-                    defaultValue="{userPhone}"
+                    defaultValue={posts?.phone}
                     className="font-medium text-sm outline-none w-full"
                     onChange={(event) =>
                       setProfileData({
@@ -492,7 +496,7 @@ function Profile() {
                   {/* <h1 className="font-medium text-sm">{userDob}</h1> */}
                   <input
                     type="text"
-                    defaultValue="{userDob}"
+                    defaultValue={posts?.dob}
                     className="font-medium text-sm outline-none w-full"
                     onChange={(event) =>
                       setProfileData({
@@ -511,7 +515,7 @@ function Profile() {
                   {/* <h1 className="font-medium text-sm">{userState}</h1> */}
                   <input
                     type="text"
-                    defaultValue="{userState}"
+                    defaultValue={posts?.investor.state.name}
                     className="font-medium text-sm outline-none w-full"
                     onChange={(event) =>
                       setProfileData({
@@ -530,7 +534,7 @@ function Profile() {
                   {/* <h1 className="font-medium text-sm">{userCity}</h1> */}
                   <input
                     type="text"
-                    defaultValue="{userCity}"
+                    defaultValue={posts?.investor.city}
                     className="font-medium text-sm outline-none w-full"
                     onChange={(event) =>
                       setProfileData({
@@ -542,6 +546,7 @@ function Profile() {
                 </td>
               </tr>
             </table>
+
           </div>
           <div className="my-10 text-footer">
             <h1 className="text-footer text-xs font-medium">
@@ -609,7 +614,7 @@ function Profile() {
                   {/* <h1 className="font-medium text-sm">{userAddress}</h1> */}
                   <input
                     type="text"
-                    defaultValue="{userAddress}"
+                    defaultValue={posts?.investor.address}
                     className="font-medium text-sm outline-none w-full"
                     onChange={(event) =>
                       setProfileData({
