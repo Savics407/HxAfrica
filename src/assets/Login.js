@@ -56,7 +56,8 @@ function Login() {
     if (result?.status === "success") {
       localStorage.setItem("user-token", result?.data.api_token);
       localStorage.setItem("user-email", result?.data.email);
-      localStorage.setItem("user-name", result?.data.name);
+      localStorage.setItem("name", result?.data.name);
+      localStorage.setItem("user-name", result?.data.username);
       localStorage.setItem("user-phone", result?.data.phone);
       localStorage.setItem("user-dob", result?.data.dob);
       localStorage.setItem("user-city", result?.data.city);

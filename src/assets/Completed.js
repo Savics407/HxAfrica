@@ -71,9 +71,9 @@ function Completed() {
                   <div className="text-head font-semibold text-sm table">
                     <h1>Amount Gained</h1>
                   </div>
-                  <div className="text-head font-semibold text-sm table text-center">
+                  {/* <div className="text-head font-semibold text-sm table text-center">
                     <h1>Status</h1>
-                  </div>
+                  </div> */}
                 </div>
 
                 {posts?.map((post) => (
@@ -102,11 +102,11 @@ function Completed() {
                         {post.interest}% Interest
                       </h2>
                     </div>
-                    <div className="table text-right">
+                    {/* <div className="table text-right">
                       <button className="bg-status text-xs text-statustext w-28 h-9 rounded-full font-medium">
                         Claimed
                       </button>
-                    </div>
+                    </div> */}
                   </div>
                 ))}
               </>

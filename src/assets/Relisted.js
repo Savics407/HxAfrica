@@ -4,7 +4,7 @@ import InvestTabs from "./InvestTabs";
 import banner from "./images/banner.png";
 import land from "./images/rawland2.png";
 import { TbLoader } from "react-icons/tb";
-import New from "./images/new.png";
+import New from "./images/new.svg";
 import moment from "moment";
 import { toast } from "react-toastify";
 import relist from "./images/relisted.png";
