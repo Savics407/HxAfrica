@@ -16,7 +16,7 @@ import avater6 from "./images/6.svg";
 import avater7 from "./images/7.svg";
 import avater8 from "./images/8.svg";
 import avater9 from "./images/9.svg";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function SelectAvater({ setAvailable }) {
   const images = {
@@ -58,9 +58,9 @@ function SelectAvater({ setAvailable }) {
         },
       }}
       className="flex items-center justify-center fixed top-0 right-0 bottom-0 left-0 bg-overlay z-50 backdrop-blur-xs"
-      // onClick={() => {
-      //         closeDetails(false)
-      //     }}
+    // onClick={() => {
+    //         closeDetails(false)
+    //     }}
     >
       <motion.div
         initial={{
@@ -190,13 +190,13 @@ function SelectAvater({ setAvailable }) {
                 Set as avater
               </button>
             ) : (
-              <button
-                className="text-white bg-green opacity-50 hover:opacity-100 rounded-xl px-7 py-3"
-                onClick={() => alert("select an avater")}
-              >
-                Set as avater
-              </button>
-            )}
+                <button
+                  className="text-white bg-green opacity-50 hover:opacity-100 rounded-xl px-7 py-3"
+                  onClick={() => alert("select an avater")}
+                >
+                  Set as avater
+                </button>
+              )}
           </div>
         </div>
       </motion.div>
@@ -205,13 +205,7 @@ function SelectAvater({ setAvailable }) {
 }
 
 function Profile() {
-  const userName = localStorage.getItem("user-name");
-  const userEmail = localStorage.getItem("user-email");
-  const userPhone = localStorage.getItem("user-phone");
-  const userDob = localStorage.getItem("user-dob");
-  const userCity = localStorage.getItem("user-city");
-  const userState = localStorage.getItem("user-state");
-  const userAddress = localStorage.getItem("user-address");
+
   const [available, setAvailable] = useState(false);
 
   const navigate = useNavigate();
@@ -247,16 +241,16 @@ function Profile() {
   };
 
   const [profileData, setProfileData] = useState({
-    email: userEmail,
-    userName: userName,
-    name: userName,
-    phone: userPhone,
-    password: "",
-    state: userState,
-    bvn: "",
-    city: userCity,
-    address: userAddress,
-    dob: userDob,
+    // email: userEmail,
+    // userName: userName,
+    // name: userName,
+    // phone: userPhone,
+    // password: "",
+    // state: userState,
+    // bvn: "",
+    // city: userCity,
+    // address: userAddress,
+    // dob: userDob,
   });
 
   async function update() {
@@ -311,6 +305,41 @@ function Profile() {
     // }
   }
 
+
+  const [posts, setPosts] = useState();
+
+  async function fetchData() {
+    const token = localStorage.getItem("user-token");
+    // e.preventDefault();
+    const response = await fetch(
+      "https://reic.api.simpoo.biz/api/investor/fetch_user_profile",
+      {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    const result = await response.json();
+    console.log(result.data);
+    alert(result.data.name);
+
+    setPosts(result.data);
+
+  }
+  const userName = posts.username;
+  // const userEmail = localStorage.getItem("user-email");
+  // const userPhone = localStorage.getItem("user-phone");
+  // const userDob = localStorage.getItem("user-dob");
+  // const userCity = localStorage.getItem("user-city");
+  // const userState = localStorage.getItem("user-state");
+  // const userAddress = localStorage.getItem("user-address");
+  useEffect(() => {
+    // activities();
+    fetchData();
+  });
+
   return (
     <div className="font-family bg-mainbg">
       {available && <SelectAvater setAvailable={setAvailable} />}
@@ -349,8 +378,8 @@ function Profile() {
                   className="w-28 h-28"
                 />
               ) : (
-                <img src={avater} alt="Profile Picture" className="w-28 h-28" />
-              )}
+                  <img src={avater} alt="Profile Picture" className="w-28 h-28" />
+                )}
               {/* <img src={userIcon} alt="Profile Picture" className="w-28 h-28" /> */}
               <button
                 className="text-blue border rounded-full py-1 px-4 font-bold text-sm my-3"
@@ -367,7 +396,7 @@ function Profile() {
             <h1 className="text-footer text-xs font-medium">
               User Information
             </h1>
-            <table className="border w-full border-collapse mt-3 ">
+            <table className="border w-full border-collapse mt-3 " >
               <tr>
                 <td className="w-1/3 px-5 py-2">
                   <h1 className="text-footer font-semibold text-base">
@@ -400,7 +429,7 @@ function Profile() {
                   {/* <h1 className="font-medium text-sm italic">Not added yet</h1> */}
                   <input
                     type="text"
-                    placeholder="Not Added yet"
+                    defaultValue="{userName}"
                     className="font-medium text-sm outline-none w-full"
                     onChange={(event) =>
                       setProfileData({
@@ -421,7 +450,7 @@ function Profile() {
                   {/* <h1 className="font-medium text-sm">{userEmail}</h1> */}
                   <input
                     type="text"
-                    defaultValue={userEmail}
+                    defaultValue="{userEmail}"
                     className="font-medium text-sm outline-none w-full"
                     onChange={(event) =>
                       setProfileData({
@@ -442,7 +471,7 @@ function Profile() {
                   {/* <h1 className="font-medium text-sm">{userPhone}</h1> */}
                   <input
                     type="text"
-                    defaultValue={userPhone}
+                    defaultValue="{userPhone}"
                     className="font-medium text-sm outline-none w-full"
                     onChange={(event) =>
                       setProfileData({
@@ -463,7 +492,7 @@ function Profile() {
                   {/* <h1 className="font-medium text-sm">{userDob}</h1> */}
                   <input
                     type="text"
-                    defaultValue={userDob}
+                    defaultValue="{userDob}"
                     className="font-medium text-sm outline-none w-full"
                     onChange={(event) =>
                       setProfileData({
@@ -482,7 +511,7 @@ function Profile() {
                   {/* <h1 className="font-medium text-sm">{userState}</h1> */}
                   <input
                     type="text"
-                    defaultValue={userState}
+                    defaultValue="{userState}"
                     className="font-medium text-sm outline-none w-full"
                     onChange={(event) =>
                       setProfileData({
@@ -501,7 +530,7 @@ function Profile() {
                   {/* <h1 className="font-medium text-sm">{userCity}</h1> */}
                   <input
                     type="text"
-                    defaultValue={userCity}
+                    defaultValue="{userCity}"
                     className="font-medium text-sm outline-none w-full"
                     onChange={(event) =>
                       setProfileData({
@@ -580,7 +609,7 @@ function Profile() {
                   {/* <h1 className="font-medium text-sm">{userAddress}</h1> */}
                   <input
                     type="text"
-                    defaultValue={userAddress}
+                    defaultValue="{userAddress}"
                     className="font-medium text-sm outline-none w-full"
                     onChange={(event) =>
                       setProfileData({

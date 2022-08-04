@@ -2,6 +2,8 @@ import Header from "./Header";
 import InvestTabs from "./InvestTabs";
 import box from "./images/Box.png";
 import React, { useEffect, useState } from "react";
+import * as CurrencyFormat from "react-currency-format";
+import moment from "moment";
 import banner from "./images/banner.png";
 
 function Completed() {
@@ -53,9 +55,9 @@ function Completed() {
           <InvestTabs />
 
           <div className="mb-8">
-            {available ? (
+            {!available ? (
               <>
-                <div className="bg-dashbg w-full px-5 py-1 flex justify-between my-8">
+                {/* <div className="bg-dashbg w-full px-5 py-1 flex justify-between my-8">
                   <div className="text-head font-semibold text-sm table">
                     <h1>Investments</h1>
                   </div>
@@ -71,12 +73,10 @@ function Completed() {
                   <div className="text-head font-semibold text-sm table">
                     <h1>Amount Gained</h1>
                   </div>
-                  {/* <div className="text-head font-semibold text-sm table text-center">
-                    <h1>Status</h1>
-                  </div> */}
-                </div>
+                  
+                </div> */}
 
-                {posts?.map((post) => (
+                {/* {posts?.map((post) => (
                   <div
                     key={post.id}
                     className="w-full flex justify-between px-5 border-b py-8 border-statusborder"
@@ -102,26 +102,234 @@ function Completed() {
                         {post.interest}% Interest
                       </h2>
                     </div>
-                    {/* <div className="table text-right">
-                      <button className="bg-status text-xs text-statustext w-28 h-9 rounded-full font-medium">
-                        Claimed
-                      </button>
-                    </div> */}
+                    
                   </div>
-                ))}
+                ))} */}
+                <div>
+                  <table className=" w-full table-auto">
+                    <thead className="">
+                      <tr className="text-left bg-dashbg">
+                        <th className="py-2 text-head font-semibold text-sm pl-5 ">
+                          Investments
+                        </th>
+                        <th className="py-2 pr-7 text-head font-semibold text-sm ">
+                          Duration
+                        </th>
+                        <th className="py-2 pr-7 text-head font-semibold text-sm ">
+                          Property Worth
+                        </th>
+                        <th className="py-2 pr-7 text-head font-semibold text-sm ">
+                          Amount Invested
+                        </th>
+                        <th className="py-2 pr-7 text-head font-semibold text-sm ">
+                          Amount Gained
+                        </th>
+                        {/* <th className="py-2 pr-7 text-head font-semibold text-sm">
+                          Ends in
+                        </th>
+                        <th className="py-2 text-head font-semibold text-sm ">
+                          Action
+                        </th> */}
+                      </tr>
+                    </thead>
+                    <tr className="">
+                      <td className="p-3"></td>
+                    </tr>
+
+                    <tr className="border-b">
+                      <td className=" py-8 text-footer font-bold text-sm ">
+
+                        <div className="ml-2 ">
+                          <h1 className="mb-1">Crowdfunding</h1>
+                          <h2 className="font-medium font-xs">
+                            Real-Estate
+                          </h2>
+                        </div>
+                      </td>
+                      <td className=" py-8 text-footer font-bold text-sm">
+                        <h1>30 Days</h1>
+                      </td>
+                      <td className="py-8 text-footer font-bold text-sm">
+                        <h1>
+                          N
+                            <CurrencyFormat
+                            value="200000000"
+                            displayType={"text"}
+                            thousandSeparator={true}
+                          />
+                        </h1>
+                      </td>
+                      <td className=" py-8 text-footer font-bold text-sm">
+                        <h1>
+                          N
+                            <CurrencyFormat
+                            value="40000"
+                            displayType={"text"}
+                            thousandSeparator={true}
+                          />
+                        </h1>
+                      </td>
+                      <td className=" py-8 text-footer font-bold text-sm">
+                        <h1>N40,000.00</h1>
+                        <h2 className="font-medium font-xs">
+                          100% Interest
+                          </h2>
+                      </td>
+
+
+                    </tr>
+
+                    <tr className="border-b">
+                      <td className=" py-8 text-footer font-bold text-sm ">
+
+                        <div className="ml-2 ">
+                          <h1 className="mb-1">Crowdfunding</h1>
+                          <h2 className="font-medium font-xs">
+                            Real-Estate
+                          </h2>
+                        </div>
+                      </td>
+                      <td className=" py-8 text-footer font-bold text-sm">
+                        <h1>30 Days</h1>
+                      </td>
+                      <td className="py-8 text-footer font-bold text-sm">
+                        <h1>
+                          N
+                            <CurrencyFormat
+                            value="200000000"
+                            displayType={"text"}
+                            thousandSeparator={true}
+                          />
+                        </h1>
+                      </td>
+                      <td className=" py-8 text-footer font-bold text-sm">
+                        <h1>
+                          N
+                            <CurrencyFormat
+                            value="40000"
+                            displayType={"text"}
+                            thousandSeparator={true}
+                          />
+                        </h1>
+                      </td>
+                      <td className=" py-8 text-footer font-bold text-sm">
+                        <h1>N40,000.00</h1>
+                        <h2 className="font-medium font-xs">
+                          100% Interest
+                          </h2>
+                      </td>
+
+
+                    </tr>
+
+                    <tr className="border-b">
+                      <td className=" py-8 text-footer font-bold text-sm ">
+
+                        <div className="ml-2 ">
+                          <h1 className="mb-1">Crowdfunding</h1>
+                          <h2 className="font-medium font-xs">
+                            Real-Estate
+                          </h2>
+                        </div>
+                      </td>
+                      <td className=" py-8 text-footer font-bold text-sm">
+                        <h1>30 Days</h1>
+                      </td>
+                      <td className="py-8 text-footer font-bold text-sm">
+                        <h1>
+                          N
+                            <CurrencyFormat
+                            value="200000000"
+                            displayType={"text"}
+                            thousandSeparator={true}
+                          />
+                        </h1>
+                      </td>
+                      <td className=" py-8 text-footer font-bold text-sm">
+                        <h1>
+                          N
+                            <CurrencyFormat
+                            value="40000"
+                            displayType={"text"}
+                            thousandSeparator={true}
+                          />
+                        </h1>
+                      </td>
+                      <td className=" py-8 text-footer font-bold text-sm">
+                        <h1>N40,000.00</h1>
+                        <h2 className="font-medium font-xs">
+                          100% Interest
+                          </h2>
+                      </td>
+
+
+                    </tr>
+
+
+                    {posts?.map((post) => (
+                      <tr className="border-b" key={post.id}>
+                        <td className=" py-8 text-footer font-bold text-sm ">
+
+                          <div className="ml-2 ">
+                            <h1 className="mb-1">{post.product.title}</h1>
+                            <h2 className="font-medium font-xs">
+                              {post.product.product_category}
+                            </h2>
+                          </div>
+                        </td>
+                        <td className=" py-8 text-footer font-bold text-sm">
+                          <h1>{post.duration} Days</h1>
+                        </td>
+                        <td className="py-8 text-footer font-bold text-sm">
+                          <h1>
+                            N
+                            <CurrencyFormat
+                              value={post.product.cost}
+                              displayType={"text"}
+                              thousandSeparator={true}
+                            />
+                          </h1>
+                        </td>
+                        <td className=" py-8 text-footer font-bold text-sm">
+                          <h1>
+                            N
+                            <CurrencyFormat
+                              value={post.amount}
+                              displayType={"text"}
+                              thousandSeparator={true}
+                            />
+                          </h1>
+                        </td>
+                        <td className=" py-8 text-footer font-bold text-sm">
+                          <h1>N40,000.00</h1>
+                          <h2 className="font-medium font-xs">
+                            {post.interest}% Interest
+                          </h2>
+                        </td>
+                        <td className=" py-8 text-footer font-bold text-sm">
+                          <h1>
+                            {moment(post.due_date).diff(new Date(), "Days")}{" "}
+                            Days
+                          </h1>
+                        </td>
+
+                      </tr>
+                    ))}
+                  </table>
+                </div>
               </>
             ) : (
-              <div className="flex flex-col items-center justify-center h-128">
-                <div className="flex flex-col justify-center items-center">
-                  <img src={box} alt="No Completed investment" />
-                </div>
-                <h1 className="font-semibold text-xs text-statustext text-center -ml-10">
-                  Oh oh! You have no completed
+                <div className="flex flex-col items-center justify-center h-128">
+                  <div className="flex flex-col justify-center items-center">
+                    <img src={box} alt="No Completed investment" />
+                  </div>
+                  <h1 className="font-semibold text-xs text-statustext text-center -ml-10">
+                    Oh oh! You have no completed
                   <br />
                   investments at this time
                 </h1>
-              </div>
-            )}
+                </div>
+              )}
           </div>
 
           {/* <div className="w-full flex justify-between px-5 border-b py-8 border-statusborder">
