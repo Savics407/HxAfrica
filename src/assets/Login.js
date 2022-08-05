@@ -26,10 +26,7 @@ function Login() {
     handleSubmit,
     watch,
     formState: { errors },
-  } = useForm({
-    // mode: "onTouched",
-    mode: "onBlur",
-  });
+  } = useForm();
   const navigate = useNavigate();
   const [process, setProcess] = useState(false);
   const [loginData, setLoginData] = useState({
@@ -108,19 +105,19 @@ function Login() {
             <div className="input">
               <label className="">Email Address</label>
               <input
-                // required
+                required
                 type="email"
                 placeholder="enter email address"
                 className={`box ${errors.password &&
                   "focus:border-red focus:ring-red border-red"
                   }`}
-                {...register("email", {
-                  required: "email is required",
-                  pattern: {
-                    value: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
-                    message: "Please enter a valid email.",
-                  },
-                })}
+                // {...register("email", {
+                //   required: "email is required",
+                //   pattern: {
+                //     value: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
+                //     message: "Please enter a valid email.",
+                //   },
+                // })}
                 value={loginData.email}
                 onChange={(event) =>
                   setLoginData({ ...loginData, email: event.target.value })
@@ -137,15 +134,15 @@ function Login() {
             <div className="input relative">
               <label>Password</label>
               <input
-                // required
+                required
                 type="password"
                 placeholder="enter password"
                 className={`box ${errors.password &&
                   "focus:border-red focus:ring-red border-red"
                   }`}
-                {...register("password", {
-                  required: "Password is required",
-                })}
+                // {...register("password", {
+                //   required: "Password is required",
+                // })}
                 id="pass"
                 value={loginData.password}
                 onChange={(event) =>
@@ -176,14 +173,15 @@ function Login() {
             </div>
 
             <div
-              className="lg:w-80 bg-green text-white flex justify-center items-center w-full p-3 rounded-xl mt-6 font-medium cursor-pointer"
-              onClick={handleSubmit(login)}
+              className="lg:w-80 bg-green text-white flex justify-center items-center w-full rounded-xl mt-6 font-medium cursor-pointer"
+            // onClick={login}
             >
-              {process && <TbLoader className="animate-spin" />}
+              {/* value={process ? <TbLoader className="animate-spin" /> : "Log in"} */}
+
               <input
                 type="submit"
-                className="  ml-2 cursor-pointer"
-                value="Log in"
+                className=" cursor-pointer w-full p-3 outline-none"
+                value={process ? `Processing ...` : "Log in"}
               />
             </div>
           </form>

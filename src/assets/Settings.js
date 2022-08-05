@@ -498,7 +498,7 @@ function Profile() {
                   {/* <h1 className="font-medium text-sm">{userDob}</h1> */}
                   <input
                     type="text"
-                    defaultValue={posts?.dob}
+                    defaultValue={posts?.investor.dob}
                     className="font-medium text-sm outline-none w-full"
                     onChange={(event) =>
                       setProfileData({
