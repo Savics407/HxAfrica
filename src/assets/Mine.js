@@ -113,7 +113,7 @@ function Mine() {
                           <div className="ml-2 ">
                             <h1 className="mb-1">{post.product.title}</h1>
                             <h2 className="font-medium font-xs">
-                              {post.product.product_category}
+                              {post.product.category.product_category}
                             </h2>
                           </div>
                         </td>
@@ -163,15 +163,15 @@ function Mine() {
                               Pull Out
                             </button>
                           ) : (
-                            <button
-                              className="bg-input text-xs text-green w-28 h-9 rounded-full font-medium"
-                              onClick={() => {
-                                productDetails(post.id);
-                              }}
-                            >
-                              Completed
-                            </button>
-                          )}
+                              <button
+                                className="bg-input text-xs text-green w-28 h-9 rounded-full font-medium"
+                                onClick={() => {
+                                  productDetails(post.id);
+                                }}
+                              >
+                                Completed
+                              </button>
+                            )}
                         </td>
                       </tr>
                     ))}
@@ -179,17 +179,17 @@ function Mine() {
                 </div>
               </>
             ) : (
-              <div className="flex flex-col items-center justify-center h-128">
-                <div className="flex flex-col justify-center items-center">
-                  <img src={box} alt="No relisted investment" />
-                </div>
-                <h1 className="font-semibold text-xs text-statustext text-center -ml-10">
-                  Oh oh! You have no active
+                <div className="flex flex-col items-center justify-center h-128">
+                  <div className="flex flex-col justify-center items-center">
+                    <img src={box} alt="No relisted investment" />
+                  </div>
+                  <h1 className="font-semibold text-xs text-statustext text-center -ml-10">
+                    Oh oh! You have no active
                   <br />
                   investments at this time
                 </h1>
-              </div>
-            )}
+                </div>
+              )}
           </div>
         </div>
       </div>

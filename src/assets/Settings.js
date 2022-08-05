@@ -307,6 +307,7 @@ function Profile() {
 
 
   const [posts, setPosts] = useState();
+  const [image, setImage] = useState()
 
   async function fetchData() {
     const token = localStorage.getItem("user-token");
@@ -326,10 +327,11 @@ function Profile() {
     // alert(result.data.name);
 
     setPosts(result?.data);
+    setImage(result?.data.profile_photo_path)
 
   }
 
-  const data = { id: 3, name: "Noble Okechi", username: "noblefresh", email: "okechinoble@gmail.com" }
+  // const UserPicture = posts?.profile_photo_path
 
   // const userName = posts.username;
   // const userEmail = localStorage.getItem("user-email");

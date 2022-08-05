@@ -66,9 +66,9 @@ function JoinInvestment({ closeModal, itemId }) {
           },
         }}
         className="flex items-center justify-center relative z-50"
-        // onClick={() => {
-        //         closeDetails(false)
-        //     }}
+      // onClick={() => {
+      //         closeDetails(false)
+      //     }}
       >
         <div
           className="fixed top-0 right-0 bottom-0 left-0 bg-overlay backdrop-blur-xs"
@@ -95,9 +95,8 @@ function JoinInvestment({ closeModal, itemId }) {
                   delay: 0.5,
                 },
               }}
-              className={`bg-white rounded-xl border w-1/2 absolute top-12 ${
-                isClick ? "hidden" : "block"
-              }`}
+              className={`bg-white rounded-xl border w-1/2 absolute top-12 ${isClick ? "hidden" : "block"
+                }`}
             >
               <div className="border-b border-stroke px-10 py-5 text-2xl font-semibold flex justify-between items-center text-modal">
                 <h1>Investments</h1>
@@ -124,7 +123,7 @@ function JoinInvestment({ closeModal, itemId }) {
                   </div>
                   <div className="flex items-center justify-between">
                     <h1 className="text-neutral text-2xl font-semibold capitalize">
-                      {post.product_category.product_category}
+                      {post.category.product_category}
                     </h1>
                     <h1 className="text-darkgray text-sm">
                       <span className="text-secondary">Time:</span>{" "}
@@ -192,7 +191,7 @@ function JoinInvestment({ closeModal, itemId }) {
                       />
                     </h1>
                   </div>
-                  <div className="flex justify-between items-center py-5">
+                  <div className="flex justify-between items-ce4nter py-5">
                     <h1 className="text-darkgray text-sm font-normal">
                       <span className="text-secondary">Time Frame </span> -{" "}
                       {post.duration} Months
@@ -243,8 +242,7 @@ function JoinInvestment({ closeModal, itemId }) {
                         alert("kindly input reic amount to invest");
                       } else if (reic > token) {
                         toast.error(
-                          `Your balance is too small for this investment, kindly make a deposit of ${
-                            reic - token
+                          `Your balance is too small for this investment, kindly make a deposit of ${reic - token
                           } reic to continue`,
                           {
                             position: "top-left",
@@ -354,9 +352,8 @@ export function Warning({ closeWarning, closeModal, reic, title, productID }) {
             delay: 0.5,
           },
         }}
-        className={`w-128 bg-white rounded-xl fixed top-20 border-green p-6 text-center ${
-          warning ? "block" : "hidden"
-        } `}
+        className={`w-128 bg-white rounded-xl fixed top-20 border-green p-6 text-center ${warning ? "block" : "hidden"
+          } `}
       >
         <div>
           <h1 className="font-bold text-neutral text-3xl">Notice</h1>

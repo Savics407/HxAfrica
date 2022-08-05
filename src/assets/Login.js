@@ -27,7 +27,8 @@ function Login() {
     watch,
     formState: { errors },
   } = useForm({
-    mode: "onTouched",
+    // mode: "onTouched",
+    mode: "onBlur",
   });
   const navigate = useNavigate();
   const [process, setProcess] = useState(false);
@@ -110,10 +111,9 @@ function Login() {
                 // required
                 type="email"
                 placeholder="enter email address"
-                className={`box ${
-                  errors.password &&
+                className={`box ${errors.password &&
                   "focus:border-red focus:ring-red border-red"
-                }`}
+                  }`}
                 {...register("email", {
                   required: "email is required",
                   pattern: {
@@ -140,10 +140,9 @@ function Login() {
                 // required
                 type="password"
                 placeholder="enter password"
-                className={`box ${
-                  errors.password &&
+                className={`box ${errors.password &&
                   "focus:border-red focus:ring-red border-red"
-                }`}
+                  }`}
                 {...register("password", {
                   required: "Password is required",
                 })}
