@@ -240,72 +240,6 @@ function Profile() {
     navigate("/");
   };
 
-  const [profileData, setProfileData] = useState({
-    // email: userEmail,
-    // userName: userName,
-    // name: userName,
-    // phone: userPhone,
-    // password: "",
-    // state: userState,
-    // bvn: "",
-    // city: userCity,
-    // address: userAddress,
-    // dob: userDob,
-  });
-
-  async function update() {
-    const payLoad = {
-      name: profileData.name,
-      phone: profileData.phone,
-      address: profileData.address,
-      city: profileData.city,
-      state_id: profileData.state,
-      dob: profileData.dob,
-    };
-
-    const token = localStorage.getItem("user-token");
-    const response = await fetch(
-      "https://reic.api.simpoo.biz/api/investor/setup",
-      {
-        method: "POST",
-        body: JSON.stringify(payLoad),
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
-    const result = await response.json();
-
-    console.log(result?.status);
-    // if (result?.status === "success") {
-    //   toast.success(`${result.message}`, {
-    //     position: "top-left",
-    //     autoClose: 300,
-    //     hideProgressBar: true,
-    //     closeOnClick: false,
-    //     pauseOnHover: true,
-    //     draggable: true,
-    //     progress: undefined,
-    //   });
-    //   navigate("/select-avater");
-    // } else {
-    //   if (result.status === "error") {
-    //     toast.error(`${result.message}`, {
-    //       position: "top-left",
-    //       autoClose: 300,
-    //       hideProgressBar: true,
-    //       closeOnClick: false,
-    //       pauseOnHover: true,
-    //       draggable: true,
-    //       progress: undefined,
-    //     });
-    //   }
-    // }
-  }
-
-
   const [posts, setPosts] = useState();
   const [image, setImage] = useState()
 
@@ -327,7 +261,7 @@ function Profile() {
     // alert(result.data.name);
 
     setPosts(result?.data);
-    setImage(result?.data.profile_photo_path)
+    // setImage(result?.data.profile_photo_path)
 
   }
 
@@ -345,6 +279,70 @@ function Profile() {
     fetchData();
   }, []);
 
+  const [profileData, setProfileData] = useState({
+    // email: userEmail,
+    userName: posts?.username,
+    name: posts?.name,
+    phone: posts?.phone,
+    password: "",
+    state: posts?.investor.state.id,
+    bvn: "",
+    city: posts?.investor.city,
+    address: posts?.investor.address,
+    dob: posts?.investor.dob,
+  });
+
+  async function update() {
+    const payLoad = {
+      name: profileData.name,
+      username: profileData.userName,
+      address: profileData.address,
+      city: profileData.city,
+      state_id: profileData.state,
+      dob: profileData.dob,
+    };
+
+    const token = localStorage.getItem("user-token");
+    const response = await fetch(
+      "https://reic.api.simpoo.biz/api/investor/update_profile_info",
+      {
+        method: "POST",
+        body: JSON.stringify(payLoad),
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    const result = await response.json();
+
+    console.log(result?.status);
+    if (result?.status === "success") {
+      toast.success(`${result.message}`, {
+        position: "top-left",
+        autoClose: 300,
+        hideProgressBar: true,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      //   navigate("/select-avater");
+    } else {
+      if (result.status === "error") {
+        toast.error(`${result.message}`, {
+          position: "top-left",
+          autoClose: 300,
+          hideProgressBar: true,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      }
+    }
+  }
   return (
     <div className="font-family bg-mainbg">
       {available && <SelectAvater setAvailable={setAvailable} />}
@@ -661,9 +659,7 @@ function Profile() {
             </div>
             <button
               className="rounded-full bg-green text-dashbg font-medium text-sm py-3 px-12 "
-              onClick={() => {
-                alert(profileData.address);
-              }}
+              onClick={update}
             >
               Update
             </button>

@@ -4,7 +4,7 @@ import { Link, NavLink } from "react-router-dom";
 import user from "./images/user_icon.png";
 
 function mobileHeader() {
-  const userName = localStorage.getItem("user-name");
+  const userName = localStorage.getItem("name");
   const userIcon = localStorage.getItem("user-profile");
 
   return (
@@ -29,8 +29,8 @@ function mobileHeader() {
               {!!userIcon ? (
                 <img src={userIcon} alt="User-Icon" className="object-fill  " />
               ) : (
-                <img src={user} alt="User-Icon" className="object-cover" />
-              )}
+                  <img src={user} alt="User-Icon" className="object-cover" />
+                )}
             </Link>
             <div className="w-2 h-2 bg-on rounded-full absolute bottom-0 right-0"></div>
           </div>

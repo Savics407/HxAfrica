@@ -17,7 +17,7 @@ import { Link, NavLink } from "react-router-dom";
 function Header() {
   const [isClick, setIsClick] = useState(false);
   const [logout, setLogout] = useState(false);
-  const userName = localStorage.getItem("user-name");
+  const userName = localStorage.getItem("name");
   const navigate = useNavigate();
   const userEmail = localStorage.getItem("user-email");
   const userIcon = localStorage.getItem("user-profile");
@@ -68,9 +68,8 @@ function Header() {
               <div className="notify animate-ping"></div>
               <div className="notify"></div>
               <div
-                className={`notification z-50 ${
-                  isClick ? "show-note" : "remove-note"
-                }`}
+                className={`notification z-50 ${isClick ? "show-note" : "remove-note"
+                  }`}
               >
                 <div className="arrow relative">
                   <h1 className="text-2xl font-semibold">Notifications</h1>
@@ -138,9 +137,8 @@ function Header() {
               <h1 className="font-semibold mr-1">{userName}</h1>
               <FaAngleDown />
               <div
-                className={`absolute py-6 text-neutral px-16 -right-5 top-20 -mt-2 rounded-xl shadow-2xl bg-dashbg text-left invisible  flex flex-col items-center duration-300 z-50 ${
-                  logout ? "show-note !top-12" : "remove-note"
-                }`}
+                className={`absolute py-6 text-neutral px-16 -right-5 top-20 -mt-2 rounded-xl shadow-2xl bg-dashbg text-left invisible  flex flex-col items-center duration-300 z-50 ${logout ? "show-note !top-12" : "remove-note"
+                  }`}
               >
                 <div className="arrow3 relative text-center mb-5">
                   <h1 className="text-2xl font-semibold mb-3">{userName}</h1>
@@ -169,15 +167,14 @@ function Header() {
                     className="object-fill  "
                   />
                 ) : (
-                  <img src={user} alt="User-Icon" className="object-cover" />
-                )}
+                    <img src={user} alt="User-Icon" className="object-cover" />
+                  )}
               </Link>
               <div className="online"></div>
 
               <div
-                className={`fixed top-0 left-0 bottom-0 right-0 cursor-pointer z-10 ${
-                  isClick ? "show-note" : "remove-note"
-                }`}
+                className={`fixed top-0 left-0 bottom-0 right-0 cursor-pointer z-10 ${isClick ? "show-note" : "remove-note"
+                  }`}
                 onClick={() => setIsClick(!isClick)}
               ></div>
             </div>

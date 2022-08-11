@@ -2,6 +2,8 @@ import moment from "moment";
 import React, { useEffect, useState } from "react";
 import * as CurrencyFormat from "react-currency-format";
 import box from "./images/Box.png";
+import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
+import 'react-circular-progressbar/dist/styles.css';
 
 function IncomingROI() {
   const [available, setAvailable] = useState(false);
@@ -36,6 +38,9 @@ function IncomingROI() {
     // activities();
     fetchData();
   }, []);
+
+  const percentage = 10;
+
 
   return (
     <>
@@ -85,19 +90,51 @@ function IncomingROI() {
                 </div>
               </div>
               <div className="lg:w-2/5 lg:p-4 py-4 px-1 ">
-                <div className="bg-mainbg rounded-full lg:w-48 lg:h-48 w-24 h-24 m-auto flex items-center justify-around relative ">
-                  <div className="bg-white w-16 h-16 lg:w-36 lg:h-36 rounded-full flex items-center justify-center">
+                <div className=" rounded-full lg:w-48 lg:h-48 w-24 h-24 m-auto flex items-center justify-around relative font-semibold">
+                  {/* <div className="bg-white w-16 h-16 lg:w-36 lg:h-36 rounded-full flex items-center justify-center">
                     <h1 className="text-center text-xxm lg:text-sm font-semibold text-dark">
                       {moment(posts[0].due_date).diff(new Date(), "Days")} Day's
                       left
                     </h1>
-                  </div>
-                  <svg
+                  </div> */}
+                  <CircularProgressbar
+                    value={moment(posts[0].due_date).diff(new Date(), "Days")}
+                    text={`${moment(posts[0].due_date).diff(new Date(), "Days")} Days left`}
+                    // value={20}
+                    // text={10}
+                    strokeWidth={15}
+                    maxValue={posts[0].duration}
+                    // counterClockwise={true}s
+                    styles={buildStyles({
+                      // Rotation of path and trail, in number of turns (0-1)
+                      rotation: 0.04,
+
+                      // Whether to use rounded or flat corners on the ends - can use 'butt' or 'round'
+                      strokeLinecap: 'round',
+
+                      // Text size
+                      textSize: '9px',
+
+                      // How long animation takes to go from one percentage to another, in seconds
+                      pathTransitionDuration: 0.5,
+
+                      // Can specify path transition in more detail, or remove it entirely
+                      // pathTransition: 'none',
+
+                      // Colors
+                      pathColor: '#008E10',
+                      textColor: '#1E2335',
+                      trailColor: '#F8F8F9',
+                      backgroundColor: '#F8F8F9',
+                    })}
+                  />
+
+                  {/* <svg
                     className="svg lg:block"
                     xmlns="http://www.w3.org/2000/svg"
                     version="1.1"
-                    // width="192px"
-                    // height="192px"
+                  // width="192px"
+                  // height="192px"
                   >
                     <defs>
                       <linearGradient id="GradientColor">
@@ -119,20 +156,20 @@ function IncomingROI() {
                       r="40"
                       stroke-linecap="round"
                     />
-                  </svg>
+                  </svg> */}
                 </div>
               </div>
             </div>
           </>
         ) : (
-          <div className="flex flex-col items-center justify-center py-20">
-            <h1 className="font-semibold text-xs text-statustext text-center -ml-10">
-              Oh oh! You have no active
+            <div className="flex flex-col items-center justify-center py-20">
+              <h1 className="font-semibold text-xs text-statustext text-center -ml-10">
+                Oh oh! You have no active
               <br />
               investments at this time
             </h1>
-          </div>
-        )}
+            </div>
+          )}
       </div>
     </>
   );
