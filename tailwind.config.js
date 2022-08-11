@@ -20,6 +20,8 @@ module.exports = {
       },
       colors: {
         primary: "#EDFDFD",
+        arrow: "#5C6A77",
+        ongoing: "#FFF1F3",
         green: "#008E10",
         opacity: "#008e1191",
         border: "rgba(0, 142, 16, 0.46);",
@@ -36,7 +38,8 @@ module.exports = {
         "mobile-nav": "#343C44",
         "mobile-banner": "#8BFF98",
         dashbg: "#FCFCFD",
-        endsin: "#C11574",
+        endsin: "#C01048",
+        rose: "#F63D68",
         welcome: "#FBFFFF",
         earnings: "#69A2F9",
         "light-blue": "#7281FF4F",

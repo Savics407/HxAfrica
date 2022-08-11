@@ -22,7 +22,7 @@ function AddBank({ closeToken }) {
         animate={{
           opacity: 1,
           transition: {
-            duration: 0.5,
+            duration: 0.3,
           },
         }}
         exit={{
@@ -32,9 +32,9 @@ function AddBank({ closeToken }) {
           },
         }}
         className="flex items-center justify-center fixed top-0 right-0 bottom-0 left-0 bg-overlay z-50 backdrop-blur-xs"
-        // onClick={() => {
-        //         closeDetails(false)
-        //     }}
+      // onClick={() => {
+      //         closeDetails(false)
+      //     }}
       >
         <motion.div
           initial={{
@@ -43,7 +43,7 @@ function AddBank({ closeToken }) {
           animate={{
             scale: 1,
             transition: {
-              duration: 0.5,
+              duration: 0.3,
             },
           }}
           exit={{

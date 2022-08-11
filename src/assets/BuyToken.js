@@ -55,7 +55,7 @@ function Details({ closeToken }) {
         animate={{
           opacity: 1,
           transition: {
-            duration: 0.5,
+            duration: 0.3,
           },
         }}
         exit={{
@@ -65,9 +65,9 @@ function Details({ closeToken }) {
           },
         }}
         className="flex items-center justify-center fixed top-0 right-0 bottom-0 left-0 bg-overlay z-50 backdrop-blur-xs"
-        // onClick={() => {
-        //         closeDetails(false)
-        //     }}
+      // onClick={() => {
+      //         closeDetails(false)
+      //     }}
       >
         <motion.div
           initial={{
@@ -76,7 +76,7 @@ function Details({ closeToken }) {
           animate={{
             scale: 1,
             transition: {
-              duration: 0.5,
+              duration: 0.3,
             },
           }}
           exit={{
@@ -120,9 +120,8 @@ function Details({ closeToken }) {
               </p>
               <div className="flex justify-between">
                 <button
-                  className={`border-2 border-border rounded-lg w-72 h-12 mr-5 text-token text-base font-semibold hover:bg-green hover:text-dashbg duration-300 ${
-                    card && "bg-green !text-dashbg"
-                  }`}
+                  className={`border-2 border-border rounded-lg w-72 h-12 mr-5 text-token text-base font-semibold hover:bg-green hover:text-dashbg duration-300 ${card && "bg-green !text-dashbg"
+                    }`}
                   onClick={() => {
                     setIsCardPay(true);
                     setCard(true);
@@ -132,9 +131,8 @@ function Details({ closeToken }) {
                   Card payment
                 </button>
                 <button
-                  className={`border-2 border-border rounded-lg w-72 h-12 text-token text-base font-semibold hover:bg-green hover:text-dashbg duration-300 ${
-                    card2 && "bg-green !text-dashbg"
-                  }`}
+                  className={`border-2 border-border rounded-lg w-72 h-12 text-token text-base font-semibold hover:bg-green hover:text-dashbg duration-300 ${card2 && "bg-green !text-dashbg"
+                    }`}
                   onClick={() => {
                     alert("NO Bank added yet");
                     setCard2(false);
@@ -191,9 +189,9 @@ function Details({ closeToken }) {
                   Pay with Card
                 </button>
               ) : (
-                //   {...componentProps}
-                <span className="text-red h-22 ">Select Payment Method</span>
-              )}
+                  //   {...componentProps}
+                  <span className="text-red h-22 ">Select Payment Method</span>
+                )}
             </div>
           </div>
         </motion.div>
@@ -215,7 +213,7 @@ function Details({ closeToken }) {
 //                 animate = {{
 //                     opacity: 1,
 //                     transition: {
-//                         duration: 0.5
+//                         duration: 0.3
 //                     }
 //                 }}
 //                 exit = {{

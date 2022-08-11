@@ -51,7 +51,7 @@ function Details({ closeDetails, itemId }) {
         animate={{
           opacity: 1,
           transition: {
-            duration: 0.5,
+            duration: 0.3,
           },
         }}
         exit={{
@@ -78,7 +78,7 @@ function Details({ closeDetails, itemId }) {
               animate={{
                 scale: 1,
                 transition: {
-                  duration: 0.5,
+                  duration: 0.3,
                 },
               }}
               exit={{
@@ -87,9 +87,8 @@ function Details({ closeDetails, itemId }) {
                   delay: 0.5,
                 },
               }}
-              className={`bg-white rounded-xl border w-1/2 z-10 ${
-                isClick ? "hidden" : "block"
-              }`}
+              className={`bg-white rounded-xl border w-1/2 z-10 ${isClick ? "hidden" : "block"
+                }`}
             >
               <div className="border-b border-stroke px-10 py-5 text-2xl font-semibold flex justify-between items-center text-modal">
                 <h1>Investments</h1>
@@ -111,7 +110,7 @@ function Details({ closeDetails, itemId }) {
 
                 <div className="border-b border-strek pb-4 ">
                   <h1 className="bg-media p-2 rounded text-sm my-5 capitalize text-dashbg w-fit text-center font-semibold ">
-                    {post.product.product_category}
+                    {post.product.category.product_category}
                   </h1>
                   <h1 className="text-neutral text-2xl font-semibold">
                     {post.product.title}
@@ -202,7 +201,7 @@ function Warning({ closeWarning, title, productId }) {
         animate={{
           opacity: 1,
           transition: {
-            duration: 0.5,
+            duration: 0.3,
           },
         }}
         exit={{
@@ -211,9 +210,8 @@ function Warning({ closeWarning, title, productId }) {
             delay: 0.5,
           },
         }}
-        className={`w-128 bg-white rounded-xl absolute border-green p-6 text-center ${
-          warning ? "block" : "hidden"
-        } `}
+        className={`w-128 bg-white rounded-xl absolute border-green p-6 text-center ${warning ? "block" : "hidden"
+          } `}
       >
         <div>
           <h1 className="font-bold text-neutral text-3xl">Warning!</h1>
@@ -318,7 +316,7 @@ function Processing({ productId }) {
         animate={{
           opacity: 1,
           transition: {
-            duration: 0.5,
+            duration: 0.3,
           },
         }}
         exit={{
@@ -327,9 +325,8 @@ function Processing({ productId }) {
             delay: 0.5,
           },
         }}
-        className={`w-128 bg-white rounded-xl absolute border-green p-6 text-center ${
-          bvn ? "block" : "hidden"
-        }`}
+        className={`w-128 bg-white rounded-xl absolute border-green p-6 text-center ${bvn ? "block" : "hidden"
+          }`}
       >
         <div>
           <h1 className="font-bold text-neutral text-3xl">Processing</h1>
@@ -353,6 +350,10 @@ function Processing({ productId }) {
 
 function Sad() {
   const product_title = localStorage.getItem("product_title");
+  useEffect(() => {
+    setTimeout((window.location = "/token"), 10000);
+
+  }, []);
   return (
     <>
       <motion.div
@@ -362,7 +363,7 @@ function Sad() {
         animate={{
           opacity: 1,
           transition: {
-            duration: 0.5,
+            duration: 0.3,
           },
         }}
         exit={{

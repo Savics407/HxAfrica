@@ -27,7 +27,7 @@ function Success() {
         animate={{
           opacity: 1,
           transition: {
-            duration: 0.5,
+            duration: 0.3,
           },
         }}
         exit={{
@@ -45,7 +45,7 @@ function Success() {
           animate={{
             opacity: 1,
             transition: {
-              duration: 0.5,
+              duration: 0.3,
             },
           }}
           exit={{

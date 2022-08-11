@@ -55,7 +55,7 @@ function Completed() {
           <InvestTabs />
 
           <div className="mb-8">
-            {!available ? (
+            {available ? (
               <>
                 {/* <div className="bg-dashbg w-full px-5 py-1 flex justify-between my-8">
                   <div className="text-head font-semibold text-sm table">
@@ -106,7 +106,7 @@ function Completed() {
                   </div>
                 ))} */}
                 <div>
-                  <table className=" w-full table-auto">
+                  <table className=" w-full table-fixed">
                     <thead className="">
                       <tr className="text-left bg-dashbg">
                         <th className="py-2 text-head font-semibold text-sm pl-5 ">
@@ -136,134 +136,7 @@ function Completed() {
                       <td className="p-3"></td>
                     </tr>
 
-                    <tr className="border-b">
-                      <td className=" py-8 text-footer font-bold text-sm ">
 
-                        <div className="ml-2 ">
-                          <h1 className="mb-1">Crowdfunding</h1>
-                          <h2 className="font-medium font-xs">
-                            Real-Estate
-                          </h2>
-                        </div>
-                      </td>
-                      <td className=" py-8 text-footer font-bold text-sm">
-                        <h1>30 Days</h1>
-                      </td>
-                      <td className="py-8 text-footer font-bold text-sm">
-                        <h1>
-                          N
-                            <CurrencyFormat
-                            value="200000000"
-                            displayType={"text"}
-                            thousandSeparator={true}
-                          />
-                        </h1>
-                      </td>
-                      <td className=" py-8 text-footer font-bold text-sm">
-                        <h1>
-                          N
-                            <CurrencyFormat
-                            value="40000"
-                            displayType={"text"}
-                            thousandSeparator={true}
-                          />
-                        </h1>
-                      </td>
-                      <td className=" py-8 text-footer font-bold text-sm">
-                        <h1>N40,000.00</h1>
-                        <h2 className="font-medium font-xs">
-                          100% Interest
-                          </h2>
-                      </td>
-
-
-                    </tr>
-
-                    <tr className="border-b">
-                      <td className=" py-8 text-footer font-bold text-sm ">
-
-                        <div className="ml-2 ">
-                          <h1 className="mb-1">Crowdfunding</h1>
-                          <h2 className="font-medium font-xs">
-                            Real-Estate
-                          </h2>
-                        </div>
-                      </td>
-                      <td className=" py-8 text-footer font-bold text-sm">
-                        <h1>30 Days</h1>
-                      </td>
-                      <td className="py-8 text-footer font-bold text-sm">
-                        <h1>
-                          N
-                            <CurrencyFormat
-                            value="200000000"
-                            displayType={"text"}
-                            thousandSeparator={true}
-                          />
-                        </h1>
-                      </td>
-                      <td className=" py-8 text-footer font-bold text-sm">
-                        <h1>
-                          N
-                            <CurrencyFormat
-                            value="40000"
-                            displayType={"text"}
-                            thousandSeparator={true}
-                          />
-                        </h1>
-                      </td>
-                      <td className=" py-8 text-footer font-bold text-sm">
-                        <h1>N40,000.00</h1>
-                        <h2 className="font-medium font-xs">
-                          100% Interest
-                          </h2>
-                      </td>
-
-
-                    </tr>
-
-                    <tr className="border-b">
-                      <td className=" py-8 text-footer font-bold text-sm ">
-
-                        <div className="ml-2 ">
-                          <h1 className="mb-1">Crowdfunding</h1>
-                          <h2 className="font-medium font-xs">
-                            Real-Estate
-                          </h2>
-                        </div>
-                      </td>
-                      <td className=" py-8 text-footer font-bold text-sm">
-                        <h1>30 Days</h1>
-                      </td>
-                      <td className="py-8 text-footer font-bold text-sm">
-                        <h1>
-                          N
-                            <CurrencyFormat
-                            value="200000000"
-                            displayType={"text"}
-                            thousandSeparator={true}
-                          />
-                        </h1>
-                      </td>
-                      <td className=" py-8 text-footer font-bold text-sm">
-                        <h1>
-                          N
-                            <CurrencyFormat
-                            value="40000"
-                            displayType={"text"}
-                            thousandSeparator={true}
-                          />
-                        </h1>
-                      </td>
-                      <td className=" py-8 text-footer font-bold text-sm">
-                        <h1>N40,000.00</h1>
-                        <h2 className="font-medium font-xs">
-                          100% Interest
-                          </h2>
-                      </td>
-
-
-                    </tr>
 
 
                     {posts?.map((post) => (
@@ -272,8 +145,8 @@ function Completed() {
 
                           <div className="ml-2 ">
                             <h1 className="mb-1">{post.product.title}</h1>
-                            <h2 className="font-medium font-xs">
-                              {post.product.product_category}
+                            <h2 className="font-medium font-xs capitalize">
+                              {post.product.category.product_category}
                             </h2>
                           </div>
                         </td>
@@ -301,17 +174,23 @@ function Completed() {
                           </h1>
                         </td>
                         <td className=" py-8 text-footer font-bold text-sm">
-                          <h1>N40,000.00</h1>
+                          <h1>N
+                            <CurrencyFormat
+                              value={40000}
+                              displayType={"text"}
+                              thousandSeparator={true}
+                            />
+                          </h1>
                           <h2 className="font-medium font-xs">
                             {post.interest}% Interest
                           </h2>
                         </td>
-                        <td className=" py-8 text-footer font-bold text-sm">
+                        {/* <td className=" py-8 text-footer font-bold text-sm">
                           <h1>
                             {moment(post.due_date).diff(new Date(), "Days")}{" "}
                             Days
                           </h1>
-                        </td>
+                        </td> */}
 
                       </tr>
                     ))}
@@ -332,78 +211,7 @@ function Completed() {
               )}
           </div>
 
-          {/* <div className="w-full flex justify-between px-5 border-b py-8 border-statusborder">
-            <div className="text-footer font-bold text-sm table">
-              <h1>Investments</h1>
-              <h2 className="font-medium font-xs">Real-Estate</h2>
-            </div>
-            <div className="text-footer font-bold text-sm table">
-              <h1>4 Months</h1>
-            </div>
-            <div className="text-footer font-bold text-sm table">
-              <h1>N200,000,000</h1>
-            </div>
-            <div className="text-footer font-bold text-sm table">
-              <h1>N40,000.00</h1>
-            </div>
-            <div className="text-footer font-bold text-sm table">
-              <h1>N40,000.00</h1>
-              <h2 className="font-medium font-xs">100% Interest</h2>
-            </div>
-            <div className="table text-right">
-              <button className="bg-status text-xs text-statustext w-28 h-9 rounded-full font-medium">
-                Claimed
-              </button>
-            </div>
-          </div>
-          <div className="w-full flex justify-between px-5 border-b py-8 border-statusborder">
-            <div className="text-footer font-bold text-sm table">
-              <h1>Investments</h1>
-              <h2 className="font-medium font-xs">Real-Estate</h2>
-            </div>
-            <div className="text-footer font-bold text-sm table">
-              <h1>4 Months</h1>
-            </div>
-            <div className="text-footer font-bold text-sm table">
-              <h1>N200,000,000</h1>
-            </div>
-            <div className="text-footer font-bold text-sm table">
-              <h1>N40,000.00</h1>
-            </div>
-            <div className="text-footer font-bold text-sm table">
-              <h1>N40,000.00</h1>
-              <h2 className="font-medium font-xs">100% Interest</h2>
-            </div>
-            <div className="table text-right">
-              <button className="bg-status text-xs text-statustext w-28 h-9 rounded-full font-medium">
-                Claimed
-              </button>
-            </div>
-          </div>
-          <div className="w-full flex justify-between px-5 border-b py-8 border-statusborder">
-            <div className="text-footer font-bold text-sm table">
-              <h1>Investments</h1>
-              <h2 className="font-medium font-xs">Real-Estate</h2>
-            </div>
-            <div className="text-footer font-bold text-sm table">
-              <h1>4 Months</h1>
-            </div>
-            <div className="text-footer font-bold text-sm table">
-              <h1>N200,000,000</h1>
-            </div>
-            <div className="text-footer font-bold text-sm table">
-              <h1>N40,000.00</h1>
-            </div>
-            <div className="text-footer font-bold text-sm table">
-              <h1>N40,000.00</h1>
-              <h2 className="font-medium font-xs">100% Interest</h2>
-            </div>
-            <div className="table text-right">
-              <button className="bg-pending text-xs text-pendingtext w-28 h-9 rounded-full font-medium">
-                Not Claimed
-              </button>
-            </div>
-          </div> */}
+
         </div>
       </div>
       <div className="mt-6 pb-10 text-center">

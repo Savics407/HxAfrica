@@ -153,15 +153,15 @@ function Token() {
                         {reic ? (
                           <span>{JSON.stringify(token)}</span>
                         ) : (
-                          <span>
-                            N
-                            <CurrencyFormat
-                              value={JSON.stringify(ngn)}
-                              displayType={"text"}
-                              thousandSeparator={true}
-                            />
-                          </span>
-                        )}{" "}
+                            <span>
+                              N
+                              <CurrencyFormat
+                                value={JSON.stringify(ngn)}
+                                displayType={"text"}
+                                thousandSeparator={true}
+                              />
+                            </span>
+                          )}{" "}
                         {reic && "REIC"}
                       </h1>
                     </div>
@@ -176,9 +176,8 @@ function Token() {
                     </span>
                     <FaAngleDown />
                     <div
-                      className={`absolute text-neutral  left-0 top-28 -mt-2 rounded-xl shadow-2xl bg-dashbg text-left w-28 invisible duration-3#7E7E99#7E7E9900 z-50 ${
-                        drop ? "show-note !top-10" : "remove-note"
-                      }`}
+                      className={`absolute text-neutral  left-0 top-28 -mt-2 rounded-xl shadow-2xl bg-dashbg text-left w-28 invisible duration-3#7E7E99#7E7E9900 z-50 ${drop ? "show-note !top-10" : "remove-note"
+                        }`}
                     >
                       <div
                         className="arrow2 relative border-b px-4 py-2 hover:bg-mainbg rounded-t-xl "
@@ -257,7 +256,7 @@ function Token() {
                   animate={{
                     scale: 1,
                     transition: {
-                      duration: 0.5,
+                      duration: 0.3,
                     },
                   }}
                   exit={{
@@ -299,9 +298,8 @@ function Token() {
                       </p>
                       <div className="flex justify-between ">
                         <button
-                          className={`border-2 border-border rounded-lg w-1/2 h-12 text-token text-base font-semibold mr-1 hover:bg-green hover:text-dashbg duration-300 ${
-                            card && "bg-green !text-dashbg"
-                          }`}
+                          className={`border-2 border-border rounded-lg w-1/2 h-12 text-token text-base font-semibold mr-1 hover:bg-green hover:text-dashbg duration-300 ${card && "bg-green !text-dashbg"
+                            }`}
                           onClick={() => {
                             setIsCardPay(true);
                             setCard(true);
@@ -311,9 +309,8 @@ function Token() {
                           Card payment
                         </button>
                         <button
-                          className={`border-2 border-border rounded-lg w-1/2 h-12 text-token text-base font-semibold ml-1 hover:bg-green hover:text-dashbg duration-300 ${
-                            card2 && "bg-green !text-dashbg"
-                          }`}
+                          className={`border-2 border-border rounded-lg w-1/2 h-12 text-token text-base font-semibold ml-1 hover:bg-green hover:text-dashbg duration-300 ${card2 && "bg-green !text-dashbg"
+                            }`}
                           onClick={() => {
                             alert("No Bank added yet");
                             setCard(false);

@@ -48,7 +48,7 @@ function SelectAvater({ setAvailable }) {
       animate={{
         opacity: 1,
         transition: {
-          duration: 0.5,
+          duration: 0.3,
         },
       }}
       exit={{
@@ -69,7 +69,7 @@ function SelectAvater({ setAvailable }) {
         animate={{
           scale: 1,
           transition: {
-            duration: 0.5,
+            duration: 0.3,
           },
         }}
         exit={{
@@ -359,7 +359,7 @@ function Profile() {
           animate={{
             scale: 1,
             transition: {
-              duration: 0.5,
+              duration: 0.3,
             },
           }}
           exit={{

@@ -85,7 +85,7 @@ function Investment() {
                     </div>
                     <div className="w-2/3">
                       <div className="mb-2">
-                        <h1 className="!mb-0">{post.title}</h1>
+                        <abbr title={post.title} className="no-underline"><h1 className="!mb-0 truncate">{post.title}</h1></abbr>
                         <h2 className="text-pink text-xs">
                           {" "}
                           {post.interest_rate}% Interest Rate

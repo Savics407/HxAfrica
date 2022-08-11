@@ -9,7 +9,7 @@ import { TbLoader } from "react-icons/tb";
 import * as CurrencyFormat from "react-currency-format";
 import moment from "moment";
 import { FiArrowUp } from "react-icons/fi";
-import { HiDotsVertical } from "react-icons/hi";
+import { HiOutlineArrowRight } from "react-icons/hi";
 
 function Ongoing() {
   const [posts, setPosts] = useState();
@@ -79,26 +79,29 @@ function Ongoing() {
                 {posts?.map((post) => (
                   <div
                     key={post.id}
-                    className="real-estate cursor-pointer"
-                    onClick={() => {
-                      productDetails(post.id);
-                    }}
+                    className="real-estate"
+
                   >
-                    <div className="mr-1.5 w-1/3">
+                    <div className="mr-2 w-1/3">
                       <img src={land} alt="rawland" />
                     </div>
                     <div className="w-2/3">
                       <div className="mb-2 flex justify-between">
-                        <div>
+                        <div className="w-4/5">
                           {" "}
-                          <h1 className="!mb-0">{post.product.title}</h1>
+                          <abbr title={post.product.title} className="no-underline"><h1 className="!mb-0 truncate">{post.product.title}</h1></abbr>
                           <h2 className="text-green text-xs">
                             {post.interest}% Interest Rate
                           </h2>
                         </div>
-                        <div>
-                          <HiDotsVertical className="text-lg" />
-                        </div>
+                        {post.product.cost === post.product.threshold && <div
+                        // onClick={() => {
+                        //   productDetails(post.id);
+                        // }}
+                        >
+                          <HiOutlineArrowRight className="text-lg text-arrow cursor-pointer" />
+                        </div>}
+
                       </div>
                       <div className="text-tiny text-grayy mb-3">
                         <p className="!mb-0">
@@ -127,29 +130,40 @@ function Ongoing() {
                           </span>
                         </p>
                       </div>
-                      <div className="text-endsin text-xxm font-medium flex items-end">
-                        <FiArrowUp className="text-base " />{" "}
-                        <span className="">
-                          {moment(post.due_date).diff(new Date(), "Days")} Days:{" "}
-                          {moment(post.due_date).format("h")}hrs to go
+                      {post.product.cost > post.product.threshold ? <div>
+                        <button
+                          className="bg-white text-green text-tiny font-normal w-24 h-7 rounded-2xl"
+                        // onClick={() => {
+                        //   productDetails(post.id);
+                        // }}
+                        >
+                          Join Now
+                          </button>
+                      </div> : <h1 className="text-endsin text-xxm font-medium flex items-center bg-ongoing w-fit px-2.5 py-1.5 rounded-full">
+                          <FiArrowUp className="text-tiny text-rose mr-1 mb-1 " />{" "}
+                          <span className="">
+                            {moment(post.due_date).diff(new Date(), "Days")} Days:{" "}
+                            {/* {moment(post.due_date).format("h:m")} */}
+                           to go
                         </span>
-                      </div>
+                        </h1>}
+
                     </div>
                   </div>
                 ))}
               </div>
             ) : (
-              <div className="flex flex-col items-center justify-center h-128">
-                <div className="flex flex-col justify-center items-center">
-                  <img src={box} alt="No relisted investment" />
-                </div>
-                <h1 className="font-semibold text-xs text-statustext text-center -ml-10">
-                  Oh oh! You have no active
+                <div className="flex flex-col items-center justify-center h-128">
+                  <div className="flex flex-col justify-center items-center">
+                    <img src={box} alt="No relisted investment" />
+                  </div>
+                  <h1 className="font-semibold text-xs text-statustext text-center -ml-10">
+                    Oh oh! You have no active
                   <br />
                   investments at this time
                 </h1>
-              </div>
-            )}
+                </div>
+              )}
           </div>
           <div className="flex justify-center p-10 hidden">
             <button className="border border-more font-medium rounded-full w-40 h-10 text-neutral flex justify-center items-center">

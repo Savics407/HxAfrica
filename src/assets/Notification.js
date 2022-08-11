@@ -1,36 +1,36 @@
 import Header from './Header'
-import { motion} from "framer-motion"
+import { motion } from "framer-motion"
 import { TiFlashOutline } from 'react-icons/ti'
 import { TbLoader } from 'react-icons/tb'
 import { RiWallet3Line } from 'react-icons/ri'
 import { AiOutlineDollarCircle } from 'react-icons/ai'
 
-function Notification () {
+function Notification() {
     return (
         <div className='font-family bg-mainbg'>
             <Header />
-            
+
             <div className='w-10/12 m-auto mt-20 bg-white rounded-lg py-8 px-10'>
-                
-               <motion.div 
-                    initial = {{
+
+                <motion.div
+                    initial={{
                         scale: 0
                     }}
-                    animate = {{
+                    animate={{
                         scale: 1,
                         transition: {
-                           duration: 0.5
+                            duration: 0.3
                         }
                     }}
-                    exit = {{
+                    exit={{
                         scale: 0,
                         transition: {
-                        delay: 0.5
-                       }
+                            delay: 0.5
+                        }
                     }}
                     className='bg-white rounded-xl'>
                     <div className='border-b border-stroke py-10 font-medium flex justify-between items-center text-dark text-4l'>
-                        <h1>Notifications</h1> 
+                        <h1>Notifications</h1>
                         <div className='flex'>
                             <button className='font-medium text-sm border rounded-full py-1 px-4 mr-3'>Mark all as read</button>
                             <button className='font-medium text-sm border rounded-full py-1 px-4'>Clear All</button>
@@ -189,8 +189,8 @@ function Notification () {
                     </div>
                 </motion.div>
                 <div className='flex justify-center p-10'>
-                            <button className='border border-more font-medium rounded-full w-40 h-10 text-neutral flex justify-center items-center'>
-                                <TbLoader className='mr-3'/> Load more
+                    <button className='border border-more font-medium rounded-full w-40 h-10 text-neutral flex justify-center items-center'>
+                        <TbLoader className='mr-3' /> Load more
                             </button>
                 </div>
             </div>

@@ -76,25 +76,25 @@ function Mine() {
                   <table className=" w-full table-auto">
                     <thead className="">
                       <tr className="text-left bg-dashbg">
-                        <th className="py-2 text-head font-semibold text-sm pl-5 ">
+                        <th className="py-2 text-head font-semibold text-sm pl-5">
                           Investments
                         </th>
-                        <th className="py-2 pr-7 text-head font-semibold text-sm ">
+                        <th className="py-2 pr-7 text-head font-semibold text-sm">
                           Duration
                         </th>
-                        <th className="py-2 pr-7 text-head font-semibold text-sm ">
+                        <th className="py-2 pr-7 text-head font-semibold text-sm">
                           Property Worth
                         </th>
-                        <th className="py-2 pr-7 text-head font-semibold text-sm ">
+                        <th className="py-2 pr-7 text-head font-semibold text-sm">
                           Amount Invested
                         </th>
-                        <th className="py-2 pr-7 text-head font-semibold text-sm ">
+                        <th className="py-2 pr-7 text-head font-semibold text-sm">
                           Interest Gained
                         </th>
                         <th className="py-2 pr-7 text-head font-semibold text-sm">
                           Ends in
                         </th>
-                        <th className="py-2 text-head font-semibold text-sm ">
+                        <th className="py-2 text-head font-semibold text-sm">
                           Action
                         </th>
                       </tr>
@@ -164,11 +164,7 @@ function Mine() {
                             </button>
                           ) : (
                               <button
-                                className="bg-input text-xs text-green w-28 h-9 rounded-full font-medium"
-                                onClick={() => {
-                                  productDetails(post.id);
-                                }}
-                              >
+                                className="bg-input text-xs text-green w-28 h-9 rounded-full font-medium">
                                 Completed
                               </button>
                             )}

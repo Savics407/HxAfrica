@@ -1,6 +1,8 @@
 import { MdClose } from "react-icons/md";
 import hdimage from "./images/invest_image.png";
+import success from "./images/Success Icon.svg";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 // import { TbLoader } from 'react-icons/tb'
 import users1 from "./images/Frame 14.png";
@@ -56,7 +58,7 @@ function JoinInvestment({ closeModal, itemId }) {
         animate={{
           opacity: 1,
           transition: {
-            duration: 0.5,
+            duration: 0.3,
           },
         }}
         exit={{
@@ -86,7 +88,7 @@ function JoinInvestment({ closeModal, itemId }) {
               animate={{
                 scale: 1,
                 transition: {
-                  duration: 0.5,
+                  duration: 0.3,
                 },
               }}
               exit={{
@@ -286,10 +288,13 @@ function JoinInvestment({ closeModal, itemId }) {
 
 export function Warning({ closeWarning, closeModal, reic, title, productID }) {
   function redirect() {
-    window.location = "/investment";
+    setProcessing(false)
+    setCompleted(true)
   }
 
+  const navigate = useNavigate()
   const [processing, setProcessing] = useState(false);
+  const [completed, setCompleted] = useState(false);
   const [warning, setWarning] = useState(true);
   console.log(reic);
   const amount = reic * 50000;
@@ -316,7 +321,7 @@ export function Warning({ closeWarning, closeModal, reic, title, productID }) {
     if (result?.status === "success") {
       setWarning(!warning);
       setProcessing(true);
-      setTimeout(redirect, 5000);
+      setTimeout(redirect, 7000);
     } else {
       if (result.status === "error") {
         console.log(result.data);
@@ -343,7 +348,7 @@ export function Warning({ closeWarning, closeModal, reic, title, productID }) {
         animate={{
           opacity: 1,
           transition: {
-            duration: 0.5,
+            duration: 0.3,
           },
         }}
         exit={{
@@ -398,7 +403,7 @@ export function Warning({ closeWarning, closeModal, reic, title, productID }) {
           animate={{
             opacity: 1,
             transition: {
-              duration: 0.5,
+              duration: 0.3,
             },
           }}
           exit={{
@@ -421,6 +426,51 @@ export function Warning({ closeWarning, closeModal, reic, title, productID }) {
           <div className="flex justify-center">
             <button className="rounded-full w-28 h-12 text-neutral flex justify-around items-center">
               <TbLoader className="animate-spin" /> Processing
+            </button>
+          </div>
+        </motion.div>
+      )}
+
+      {completed && (
+        <motion.div
+          initial={{
+            opacity: 0,
+          }}
+          animate={{
+            opacity: 1,
+            transition: {
+              duration: 0.3,
+            },
+          }}
+          exit={{
+            opacity: 0,
+            transition: {
+              delay: 0.5,
+            },
+          }}
+          className="w-128 bg-white rounded-xl fixed top-20 border-green p-6 text-center"
+        >
+          <div className="flex flex-col items-center ">
+            <img src={success} alt="success" className="w-28 mb-5" />
+            <h1 className="font-bold text-neutral text-4xl">Success!</h1>
+          </div>
+          <div className="font-semibold text-base text-neutral my-8">
+            <p>
+              You made an investment of <span className="text-green">N<CurrencyFormat
+                value={reic * 50000}
+                displayType={"text"}
+                thousandSeparator={true}
+              /></span> worth <br /> of <span className="text-green">Reic </span> to the {title} Project.
+            </p>
+          </div>
+          <div className=" text-center w-11/12 mb-2 m-auto">
+            <button className="rounded-full w-full p-2 text-white bg-green flex justify-around items-center" onClick={() => navigate("/token")}>
+              Done
+            </button>
+          </div>
+          <div className=" text-center w-11/12 m-auto">
+            <button className="rounded-full w-full p-2 text-green border-green border flex justify-around items-center" onClick={() => navigate("/investments/my-investment")}>
+              Go to My Investments
             </button>
           </div>
         </motion.div>

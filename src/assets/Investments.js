@@ -15,7 +15,7 @@ import moment from "moment";
 // import crowd from "./images/crowdfund.png";
 import * as CurrencyFormat from "react-currency-format";
 import { FiArrowUp } from "react-icons/fi";
-import { HiDotsVertical } from "react-icons/hi";
+import { HiOutlineArrowRight } from "react-icons/hi";
 
 function Investments() {
   const [posts, setPosts] = useState();
@@ -115,15 +115,14 @@ function Investments() {
           <div className="cat flex flex-wrap ">
             {categories?.map((post) => (
               <div
-                className={`categories bg-light-purple ${
-                  post.product_category === "renovate"
-                    ? "bg-light-orange"
-                    : post.product_category === "mortgage"
+                className={`categories bg-light-purple ${post.product_category === "renovate"
+                  ? "bg-light-orange"
+                  : post.product_category === "mortgage"
                     ? "bg-light-blue"
                     : post.product_category === "sales"
-                    ? "bg-sky-blue"
-                    : "bg-light-purple"
-                }`}
+                      ? "bg-sky-blue"
+                      : "bg-light-purple"
+                  }`}
               >
                 <div className="cate-block">
                   <div className="flex text-dark py-3">
@@ -136,8 +135,8 @@ function Investments() {
                       ) : post.product_category === "sales" ? (
                         <img src={sales} alt="investment_icon" />
                       ) : (
-                        <img src={invest_icon} alt="investment_icon" />
-                      )}
+                              <img src={invest_icon} alt="investment_icon" />
+                            )}
                     </div>
                     <div>
                       <h1 className="text-sm font-medium text-dark capitalize">
@@ -166,7 +165,7 @@ function Investments() {
           <div className="section pr-4">
             <h1>New Investments</h1>
             {posts
-              ?.filter((post) => post.id === posts.length)
+              ?.filter((post) => post === posts[0])
               .map((post) => (
                 <div key={post.id} className="real-estate">
                   <div className="mr-1.5 w-1/3 h-full rounded-full">
@@ -178,7 +177,8 @@ function Investments() {
                   </div>
                   <div className="w-2/3">
                     <div className="mb-2">
-                      <h1 className="!mb-0">{post.title}</h1>
+                      {/* <h1 className="!mb-0">{post.title}</h1> */}
+                      <abbr title={post.title} className="no-underline"><h1 className="!mb-0 truncate">{post.title}</h1></abbr>
                       <h2 className="text-pink text-xs">
                         {" "}
                         {post.interest_rate}% Interest Rate
@@ -241,28 +241,32 @@ function Investments() {
                   ?.filter((post) => post.length)
                   .map((post) => ( */}
                 <Link to="/investments/ongoing">
-                  <div key={data[0].id} className="real-estate cursor-pointer">
-                    <div className="mr-1.5 w-1/3">
+
+                  <div
+                    key={data[0].id}
+                    className="real-estate"
+
+                  >
+                    <div className="mr-2 w-1/3">
                       <img src={land} alt="rawland" />
                     </div>
                     <div className="w-2/3">
-                      {/* <div className="mb-2">
-                        <h1 className="!mb-0">{data[0].product.title}</h1>
-                        <h2 className="text-green text-xs">
-                          {data[0].interest}% Interest Rate
-                        </h2>
-                      </div> */}
                       <div className="mb-2 flex justify-between">
-                        <div>
+                        <div className="w-4/5">
                           {" "}
-                          <h1 className="!mb-0">{data[0].product.title}</h1>
+                          <abbr title={data[0].product.title} className="no-underline"><h1 className="!mb-0 truncate">{data[0].product.title}</h1></abbr>
                           <h2 className="text-green text-xs">
                             {data[0].interest}% Interest Rate
                           </h2>
                         </div>
-                        <div>
-                          <HiDotsVertical className="text-lg" />
-                        </div>
+                        {data[0].product.cost === data[0].product.threshold && <div
+                        // onClick={() => {
+                        //   productDetails(post.id);
+                        // }}
+                        >
+                          <HiOutlineArrowRight className="text-lg text-arrow cursor-pointer" />
+                        </div>}
+
                       </div>
                       <div className="text-tiny text-grayy mb-3">
                         <p className="!mb-0">
@@ -278,7 +282,7 @@ function Investments() {
                           </span>
                         </p>
                       </div>
-                      <div className="text-grayy text-tiny bg-mainsec p-2 rounded-lg mb-3 w-48">
+                      <div className="text-grayy text-tiny bg-mainsec p-2 rounded-lg mb-2 w-48">
                         <p className="">
                           Property Worth{" "}
                           <span className="text-darkgray text-xs font-medium ml-2">
@@ -291,27 +295,38 @@ function Investments() {
                           </span>
                         </p>
                       </div>
-                      <div className="text-endsin text-xxm font-medium flex items-end">
-                        <FiArrowUp className="text-base " />{" "}
-                        <span className="">
-                          {moment(data[0].due_date).diff(new Date(), "Days")}{" "}
-                          Days: {moment(data[0].due_date).format("h")}hrs to go
+                      {data[0].product.cost > data[0].product.threshold ? <div>
+                        <button
+                          className="bg-white text-green text-tiny font-normal w-24 h-7 rounded-2xl"
+                        // onClick={() => {
+                        //   productDetails(post.id);
+                        // }}
+                        >
+                          Join Now
+                          </button>
+                      </div> : <h1 className="text-endsin text-xxm font-medium flex items-center bg-ongoing w-fit px-2.5 py-1.5 rounded-full">
+                          <FiArrowUp className="text-tiny text-rose mr-1 mb-1 " />{" "}
+                          <span className="">
+                            {moment(data[0].due_date).diff(new Date(), "Days")} Days:{" "}
+                            {/* {moment(post.due_date).format("h:m")} */}
+                           to go
                         </span>
-                      </div>
+                        </h1>}
+
                     </div>
                   </div>
                 </Link>
                 {/* ))} */}
               </div>
             ) : (
-              <div className="flex flex-col items-center justify-center h-full">
-                <h1 className="font-semibold text-xs text-statustext text-center -ml-10">
-                  Oh oh! You have no active
+                <div className="flex flex-col items-center justify-center h-full">
+                  <h1 className="font-semibold text-xs text-statustext text-center -ml-10">
+                    Oh oh! You have no active
                   <br />
                   investments at this time
                 </h1>
-              </div>
-            )}
+                </div>
+              )}
           </div>
         </div>
         <div className="flex items-center p-4 hidden lg:flex">

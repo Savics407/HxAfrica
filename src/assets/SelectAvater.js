@@ -37,7 +37,7 @@ function Congratulations() {
         animate={{
           opacity: 1,
           transition: {
-            duration: 0.5,
+            duration: 0.3,
           },
         }}
         exit={{
@@ -47,9 +47,9 @@ function Congratulations() {
           },
         }}
         className="flex items-center justify-center fixed top-0 right-0 bottom-0 left-0 bg-overlay z-50 backdrop-blur-xs"
-        // onClick={() => {
-        //         closeDetails(false)
-        //     }}
+      // onClick={() => {
+      //         closeDetails(false)
+      //     }}
       >
         <motion.div
           initial={{
@@ -58,7 +58,7 @@ function Congratulations() {
           animate={{
             scale: 1,
             transition: {
-              duration: 0.5,
+              duration: 0.3,
             },
           }}
           exit={{
@@ -235,13 +235,13 @@ function SelectAvater() {
                 Set as avater
               </button>
             ) : (
-              <button
-                className="text-white bg-green opacity-50 border-green border hover:opacity-100 w-full lg:w-auto rounded-xl px-7 py-3"
-                onClick={() => alert("select an avater")}
-              >
-                Set as avater
-              </button>
-            )}
+                <button
+                  className="text-white bg-green opacity-50 border-green border hover:opacity-100 w-full lg:w-auto rounded-xl px-7 py-3"
+                  onClick={() => alert("select an avater")}
+                >
+                  Set as avater
+                </button>
+              )}
           </div>
         </div>
       </div>
