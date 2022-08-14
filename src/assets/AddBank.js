@@ -178,8 +178,8 @@ function AddBank({ closeToken }) {
         draggable: true,
         progress: undefined,
       });
-      // setAddAmount(true)
-      // setAddAccount(false)
+      setAddAmount(true)
+      setAddAccount(false)
     } else {
       if (result.status === false) {
         // setProcess(false);
