@@ -157,7 +157,7 @@ function Details({ closeDetails, itemId }) {
                   </div>
                 </div>
                 <div className="text-right pt-5 pb-8">
-                  <button
+                  {post.status === "ongoing" ? <button
                     className="border rounded-full w-44 h-12 text-dashbg bg-red"
                     onClick={() => {
                       setAuthPullOut(true);
@@ -168,7 +168,16 @@ function Details({ closeDetails, itemId }) {
                     }}
                   >
                     Pull Out
-                  </button>
+                  </button> : post.status === "completed" ? <button
+                      className="border rounded-full w-44 h-12 text-dashbg bg-green"
+                    >
+                      Completed
+                  </button> : <button
+                        className="border rounded-full w-44 h-12 text-dashbg bg-red"
+                      >
+                        Status: Waiting
+                  </button>}
+
                 </div>
               </div>
             </motion.div>

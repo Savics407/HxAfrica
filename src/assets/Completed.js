@@ -175,8 +175,8 @@ function Completed() {
                         </td>
                         <td className=" py-8 text-footer font-bold text-sm">
                           <h1>N
-                            <CurrencyFormat
-                              value={40000}
+                             <CurrencyFormat
+                              value={(post.amount * post.interest) / 100 }
                               displayType={"text"}
                               thousandSeparator={true}
                             />

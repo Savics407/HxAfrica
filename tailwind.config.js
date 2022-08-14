@@ -97,6 +97,7 @@ module.exports = {
         128: "465px",
         "7x": "465px",
         100: "725px",
+        90: "350px"
       },
       // boxShadow: {
       //   '3xl': '0px 16px 64px -48px rgba(31, 47, 70, 0.15)',

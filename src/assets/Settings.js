@@ -433,6 +433,7 @@ function Profile() {
                   {/* <h1 className="font-medium text-sm italic">Not added yet</h1> */}
                   <input
                     type="text"
+                    placeholder="Not Added yet"
                     defaultValue={posts?.username}
                     className="font-medium text-sm outline-none w-full"
                     onChange={(event) =>

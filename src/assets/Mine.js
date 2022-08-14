@@ -130,7 +130,7 @@ function Mine() {
                             />
                           </h1>
                         </td>
-                        <td className=" py-8 text-footer font-bold text-sm">
+                        <td className="py-8 text-footer font-bold text-sm">
                           <h1>
                             N
                             <CurrencyFormat
@@ -141,7 +141,14 @@ function Mine() {
                           </h1>
                         </td>
                         <td className=" py-8 text-footer font-bold text-sm">
-                          <h1>N40,000.00</h1>
+                          <h1>N
+
+                            <CurrencyFormat
+                              value={(post.amount * (post.interest * (post.duration - moment(post.due_date).diff(new Date(), "Days")) / post.duration)) / 100}
+                              displayType={"text"}
+                              thousandSeparator={true}
+                            />
+                          </h1>
                           <h2 className="font-medium font-xs">
                             {post.interest}% Interest
                           </h2>
@@ -162,12 +169,15 @@ function Mine() {
                             >
                               Pull Out
                             </button>
-                          ) : (
-                              <button
-                                className="bg-input text-xs text-green w-28 h-9 rounded-full font-medium">
-                                Completed
-                              </button>
-                            )}
+                          ) : post.status === "completed" ? (
+                            <button
+                              className="bg-input text-xs text-green w-28 h-9 rounded-full font-medium">
+                              Completed
+                            </button>
+                          ) : <button
+                            className="bg-status text-xs text-statustext w-28 h-9 rounded-full font-medium">
+                                Waiting
+                              </button>}
                         </td>
                       </tr>
                     ))}

@@ -9,6 +9,7 @@ import { TbLoader } from "react-icons/tb";
 import * as CurrencyFormat from "react-currency-format";
 import moment from "moment";
 import { FiArrowUp } from "react-icons/fi";
+import JoinInvestment from "./JoinOngoing";
 import { HiOutlineArrowRight } from "react-icons/hi";
 
 function Ongoing() {
@@ -49,9 +50,14 @@ function Ongoing() {
 
   function productDetails(id) {
     setItemID(id);
-    // alert(itemId);
-    // console.log(id);
     setOpenDetails(true);
+  }
+  const [joinInvest, setJoinInvest] = useState(false);
+
+  function joinNow(id) {
+    setItemID(id);
+    
+    setJoinInvest(true);
   }
   return (
     <div className="font-family bg-mainbg">
@@ -59,6 +65,15 @@ function Ongoing() {
         <Details
           className="z-10"
           closeDetails={setOpenDetails}
+          itemId={itemId}
+          setItemID={setItemID}
+        />
+      )}
+
+      {joinInvest && (
+        <JoinInvestment
+          className="z-10"
+          closeModal={setJoinInvest}
           itemId={itemId}
           setItemID={setItemID}
         />
@@ -95,9 +110,9 @@ function Ongoing() {
                           </h2>
                         </div>
                         {post.product.cost === post.product.threshold && <div
-                        // onClick={() => {
-                        //   productDetails(post.id);
-                        // }}
+                        onClick={() => {
+                          productDetails(post.id);
+                        }}
                         >
                           <HiOutlineArrowRight className="text-lg text-arrow cursor-pointer" />
                         </div>}
@@ -133,9 +148,9 @@ function Ongoing() {
                       {post.product.cost > post.product.threshold ? <div>
                         <button
                           className="bg-white text-green text-tiny font-normal w-24 h-7 rounded-2xl"
-                        // onClick={() => {
-                        //   productDetails(post.id);
-                        // }}
+                        onClick={() => {
+                          joinNow(post.id);
+                        }}
                         >
                           Join Now
                           </button>
