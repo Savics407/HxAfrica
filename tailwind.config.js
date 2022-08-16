@@ -21,7 +21,7 @@ module.exports = {
       colors: {
         primary: "#EDFDFD",
         arrow: "#5C6A77",
-        ongoing: "#FFF1F3",
+        ongoing: "#FFFAEB",
         green: "#008E10",
         opacity: "#008e1191",
         border: "rgba(0, 142, 16, 0.46);",

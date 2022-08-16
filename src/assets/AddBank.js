@@ -5,18 +5,18 @@ import { useEffect, useState } from "react";
 import { HiPlus } from "react-icons/hi"
 import * as CurrencyFormat from "react-currency-format";
 import { toast } from "react-toastify";
+import ScaleLoader from "react-spinners/ScaleLoader"
 
-function AddBank({ closeToken }) {
+function AddBank({ closeToken, setVerifyBVN }) {
   // const [authPullOut, setAuthPullOut] = useState(false)
   const [registered, setRegistered] = useState(true)
+  const [main, setMain] = useState(true)
   const [addAccount, setAddAccount] = useState(false)
   const [banks, setBanks] = useState(false)
+  const [chooseBank, setChooseBank] = useState(false)
   const [addAmount, setAddAmount] = useState(false)
-  const [balance, setBalance] = useState(false)
   const [amount, setAmount] = useState(50000);
-  const [click1, isClick1] = useState(true);
-  const [click2, isClick2] = useState(true);
-  const [click3, isClick3] = useState(true);
+  
 
   // // const [details, setDetails] = useState(true)
   async function fetchBank() {
@@ -38,30 +38,12 @@ function AddBank({ closeToken }) {
     setBanks(result.data)
   }
 
-  async function wallet() {
-    // console.log(formData);
-    const token = localStorage.getItem("user-token");
-    // e.preventDefault();
-    const response = await fetch(
-      "https://reic.api.simpoo.biz/api/wallet/fetch_wallet",
-      {
-        method: "POST",
-        headers: {
-          "Content-type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
-    const result = await response.json();
-    console.log(result?.status);
-    // alert(result.data.token);
-    // setToken(result.data.token);
-    setBalance(result.data.balance);
-    // localStorage.setItem("user-wallet", result?.data.token);
-  }
+  
 
 
   const [userBank, setUserBank] = useState()
+  const [loading, setLoading] = useState(true)
+
   async function fetchUserBank() {
     // console.log(formData);
     const token = localStorage.getItem("user-token");
@@ -79,13 +61,12 @@ function AddBank({ closeToken }) {
     const result = await response.json();
     console.log(result?.status);
     setUserBank(result?.data)
-
+    setLoading(false)
   }
 
 
   useEffect(() => {
     fetchBank();
-    wallet();
     fetchUserBank();
   }, []);
 
@@ -94,15 +75,21 @@ function AddBank({ closeToken }) {
     accountNumber: "",
   })
   const [process, setProcess] = useState(false);
-  const [bankName, setBankName] = useState()
+  const [bankInfo, setBankInfo] = useState("Default, bank")
+  const split = bankInfo.split(',')
+  const bankCode = split[0]
+  const bankName = split[1]
+  localStorage.setItem('userAccountNo', bankData.accountNumber )
+  localStorage.setItem('bankCode', bankCode )
+  localStorage.setItem('bank_name', bankName )
 
   async function resolveBank() {
     const token = localStorage.getItem("user-token");
     const payLoad = {
       account_number: bankData.accountNumber,
-      bank_code: bankData.bankCode
+      bank_code: bankCode
     }
-    // console.log(bankName)
+    // alert(bankName[0  ])
     const response = await fetch(
       "https://reic.api.simpoo.biz/api/investor/resolve_bank_info",
       {
@@ -117,21 +104,26 @@ function AddBank({ closeToken }) {
     const result = await response.json();
     console.log(result?.status);
     if (result?.status === true) {
-      toast.success(`${result.message}`, {
-        position: "top-left",
-        autoClose: 1500,
-        hideProgressBar: true,
-        closeOnClick: false,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
-      // setAddAmount(true)
-      // setAddAccount(false)
+      // toast.success(`${result.message}`, {
+      //   position: "top-left",
+      //   autoClose: 1500,
+      //   hideProgressBar: true,
+      //   closeOnClick: false,
+      //   pauseOnHover: true,
+      //   draggable: true,
+      //   progress: undefined,
+      // });
+      // setChooseBank(true)
+      setAddAccount(false)
+      setProcess(false);
+      // setMain(true)
+      setVerifyBVN(true)
+      closeToken(false)
       // addBank()
+                        
 
     } else {
-      if (result.status === false) {
+      if (result.status === "error") {
         setProcess(false);
         toast.error(`${result.message}`, {
           position: "top-left",
@@ -145,58 +137,11 @@ function AddBank({ closeToken }) {
       }
     }
   }
-
-  async function addBank() {
-    const token = localStorage.getItem("user-token");
-    // if(bankData.bankCode)
-    const payLoad = {
-      account_number: bankData.accountNumber,
-      bank_code: bankData.bankCode,
-      bank_name: banks[bankData.bankCode].name
-    }
-    alert(payLoad.bank_name)
-    const response = await fetch(
-      "https://reic.api.simpoo.biz/api/investor/add_bank_info",
-      {
-        method: "POST",
-        body: JSON.stringify(payLoad),
-        headers: {
-          "Content-type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
-    const result = await response.json();
-    console.log(result?.status);
-    if (result?.status === true) {
-      toast.success(`${result.message}`, {
-        position: "top-left",
-        autoClose: 1500,
-        hideProgressBar: true,
-        closeOnClick: false,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
-      setAddAmount(true)
-      setAddAccount(false)
-    } else {
-      if (result.status === false) {
-        // setProcess(false);
-        toast.error(`${result.message}`, {
-          position: "top-left",
-          autoClose: 1500,
-          hideProgressBar: true,
-          closeOnClick: false,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
-      }
-    }
+  const save = () => {
+    
   }
 
-
+  
 
   return (
     <>
@@ -221,8 +166,7 @@ function AddBank({ closeToken }) {
       //         closeDetails(false)
       //     }}
       >
-
-        {registered && <motion.div
+        {main && userBank?.length === 0 ? <motion.div
           initial={{
             scale: 0,
           }}
@@ -238,7 +182,7 @@ function AddBank({ closeToken }) {
               delay: 0.5,
             },
           }}
-          className="bg-white rounded-xl border w-2/5"
+          className={`bg-white rounded-xl border w-2/5 ${!registered && "hidden"}`}
         >
           <div className="border-b border-stroke uppercase px-10 py-5 text-2xl font-semibold flex justify-between items-center text-modal">
             <h1 className="font-iter">Add Bank</h1>
@@ -261,7 +205,8 @@ function AddBank({ closeToken }) {
             <HiPlus className="text-green" />
             <button className="capitalize ml-3 text-token font-semibold text-sm"> Add new bank</button>
           </div>
-        </motion.div>}
+        </motion.div> : <MyBanks closeToken={closeToken} userBank={userBank} loading={loading} setLoading={setLoading} addAccount={addAccount} setAddAccount={setAddAccount} setMain={setMain} main={main}/>}
+        
 
         {addAccount && <motion.div
           initial={{
@@ -301,21 +246,21 @@ function AddBank({ closeToken }) {
                 placeholder="enter account name"
                 className="box"
               /> */}
-              {/* <h1>{bankName}</h1> */}
+              {/* <h1>{bankName}, {bankCode}</h1> */}
 
               <select
-                className="box text-green"
-                value={bankData.bankCode}
+                className="box text-green cursor-pointer"
+                value={bankInfo}
                 // name={bankData.bankName}
                 onChange={(event) =>
-                  {setBankData({ ...bankData, bankCode: event.target.value })}
-                  // setBankName(JSON.stringify(event.target.value))
+                  // {setBankData({ ...bankData, bankCode: event.target.value })}
+                  setBankInfo(event.target.value)
                 }
               >
                 <option selected>--Choose Bank--</option>
 
                 {banks?.map(bank => (
-                  <option key={bank.id} value={bank.code}>{bank.name}</option>
+                  <option key={bank.id} value={[bank.code, bank.name]}>{bank.name}</option>
                 ))}
 
               </select>
@@ -361,7 +306,21 @@ function AddBank({ closeToken }) {
 
 
         </motion.div>}
-        {addAmount && <motion.div
+        {/* {chooseBank && <MyBanks />} */}
+
+      </motion.div>
+    </>
+  );
+}
+
+
+function MyBanks({closeToken, userBank, loading, setLoading, addAccount, setAddAccount, setMain, main}) {
+  // const [addAccount, setAddAccount] = useState(false)
+  // const [banks, setBanks] = useState(false)
+  const [addAmount, setAddAmount] = useState(false)
+  return (
+    <>
+    <motion.div
           initial={{
             scale: 0,
           }}
@@ -377,7 +336,7 @@ function AddBank({ closeToken }) {
               delay: 0.5,
             },
           }}
-          className="bg-white rounded-xl border w-1/2"
+          className={`bg-white rounded-xl border w-1/2 ${addAccount && "hidden"}`}
         >
           <div className="border-b border-stroke uppercase px-10 py-5 text-2xl font-semibold flex justify-between items-center text-modal">
             <h1 className="font-iter">Choose Bank</h1>
@@ -388,11 +347,16 @@ function AddBank({ closeToken }) {
               }}
             />
           </div>
-
-          <div className="py-4 px-10">
+            
+          {loading ? <div className="text-center p-20">
+            <ScaleLoader
+  color="#008E10"
+  height={50}
+  width={6}
+/></div> : <div className="py-4 px-10">
             <div className="input mb-4 h-90 overflow-y-scroll scroll">
               {userBank?.map(bank => (
-                <div key={bank.id} className=" rounded-xl text-footer bg-input p-5 flex justify-between items-center mb-5">
+                <div key={bank.id} className=" rounded-xl text-footer bg-input p-5 flex justify-between items-center mb-5 border border-transparent hover:border-green">
                   <div>
                     <h1 className="font-normal text-base">{bank.bank_name}</h1>
                     <h1 className="font-semibold text-xl">{bank.account_name}</h1></div>
@@ -404,69 +368,18 @@ function AddBank({ closeToken }) {
 
             </div>
 
-            <div className="text-green capitalize font-medium text-sm flex items-center cursor-pointer py-5">
+            <div className="text-green capitalize font-medium text-sm flex items-center cursor-pointer py-5" 
+            onClick={() => {
+            setAddAccount(true)
+            // setAddAmount(!addAmount)
+            setMain(false)
+            setLoading(true)
+          }}>
               <HiPlus className="mr-3" /><span>Add new bank</span>
             </div>
 
 
-            {/* <div className="pt-5 pb-9">
-              <p className="text-payment text-base font-normal mb-2.5 flex justify-between">
-                <span>Amount</span>{" "}
-                <span className="text-green font-medium">
-                  Available Amount: N<CurrencyFormat
-                    value={balance}
-                    displayType={"text"}
-                    thousandSeparator={true}
-                  />
-                </span>
-              </p>
-              <div className="text-nuetral font-bold text-lg flex justify-center py-6 rounded-lg bg-mainbg relative">
-                <input
-                  type="number"
-                  placeholder="enter amount"
-                  className="text-neutral font-bold text-4xl text-center bg-transparent outline-0"
-                  value={amount}
-                  onChange={(e) => setAmount(e.target.value)}
-                />
-              </div>
-              <div className="flex justify-center mt-6">
-                <button
-                  className={`withd-button ${click1 && "with-dark"}`}
-                  //   {`notification z-50 ${isClick ? 'show-note' : 'remove-note'}`}
-                  onClick={() => {
-                    setAmount(50000);
-                    isClick1(true);
-                    isClick2(true);
-                    isClick3(true);
-                  }}
-                >
-                  N50,000
-                </button>
-                <button
-                  className={`withd-button ${!click2 && "with-dark"}`}
-                  onClick={() => {
-                    setAmount(100000);
-                    isClick1(false);
-                    isClick2(!isClick2);
-                    isClick3(true);
-                  }}
-                >
-                  N100,000
-                </button>
-                <button
-                  className={`withd-button ${!click3 && "with-dark"}`}
-                  onClick={() => {
-                    setAmount(200000);
-                    isClick1(false);
-                    isClick2(true);
-                    isClick3(!isClick3);
-                  }}
-                >
-                  N200,000
-                </button>
-              </div>
-            </div> */}
-
+            
             <div className="text-right pb-3 flex justify-between items-center">
               <div className=" flex items-center">
                 <input
@@ -490,10 +403,9 @@ function AddBank({ closeToken }) {
               </button>
             </div>
           </div>
-        </motion.div>}
-      </motion.div>
-    </>
-  );
+ }
+                  </motion.div>
+        </>
+  )
 }
-
 export default AddBank;

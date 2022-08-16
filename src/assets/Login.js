@@ -62,6 +62,7 @@ function Login() {
       localStorage.setItem("user-state", result?.data.state);
       localStorage.setItem("user-address", result?.data.address);
       localStorage.setItem("user-id", result?.data.id);
+      localStorage.setItem("bvn", result?.data.is_bvn_verified);
       // Route to Dashbaord
       toast.success(`${result.message}`, {
         position: "top-left",

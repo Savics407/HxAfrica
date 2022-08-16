@@ -24,6 +24,7 @@ import PrivateRoutes from "./util/PrivateRoutes";
 import UseNetworkStatus from "./useNetworkStatus";
 import SelectAvater from "./assets/SelectAvater";
 import Success from "./assets/Success";
+import Withdraw from "./assets/WithdrawToken";
 
 function App() {
   return (
@@ -42,6 +43,7 @@ function App() {
           <Route path="/change-password" element={<ChangePassword />} />
           <Route path="/activities" element={<Activity />} />
           <Route path="/token" element={<Token />} />
+          <Route path="/withdraw" element={<Withdraw />} />
           <Route path="/details" element={<Details />} />
           <Route path="/addbank" element={<AddBank />} />
           <Route path="/bvn" element={<Processing />} />

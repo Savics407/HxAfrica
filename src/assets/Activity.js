@@ -11,22 +11,7 @@ function Activity() {
 
             <div className='w-10/12 m-auto mt-20 bg-white rounded-lg py-8 px-10'>
 
-                <motion.div
-                    initial={{
-                        scale: 0
-                    }}
-                    animate={{
-                        scale: 1,
-                        transition: {
-                            duration: 0.3
-                        }
-                    }}
-                    exit={{
-                        scale: 0,
-                        transition: {
-                            delay: 0.5
-                        }
-                    }}
+                <div
                     className='bg-white rounded-xl'>
                     <div className='py-10 font-semibold flex justify-between items-center text-modal text-2xl'>
                         <h1>Profile Details</h1>
@@ -38,7 +23,7 @@ function Activity() {
                             <h1 className='font-semibold text-lg text-footer'>Opps Nothing new here</h1>
                         </div>
                     </div>
-                </motion.div>
+                </div>
 
             </div>
             <div className='mt-6 pb-10 text-center'>

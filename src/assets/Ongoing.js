@@ -104,7 +104,9 @@ function Ongoing() {
                       <div className="mb-2 flex justify-between">
                         <div className="w-4/5">
                           {" "}
-                          <abbr title={post.product.title} className="no-underline"><h1 className="!mb-0 truncate">{post.product.title}</h1></abbr>
+                          <abbr title={post.product.title} className="no-underline">
+                          <h1 data-tip={post.product.title} className="!mb-0 truncate">{post.product.title}</h1>
+                          </abbr>
                           <h2 className="text-green text-xs">
                             {post.interest}% Interest Rate
                           </h2>

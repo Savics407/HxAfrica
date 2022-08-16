@@ -14,7 +14,7 @@ import { motion } from "framer-motion";
 import Withdraw from "./AddBank";
 import RecentActivity from "./recentActivity";
 import * as CurrencyFormat from "react-currency-format";
-import * as NumberFormat from "react-currency-format";
+import Processing from "./ProcessingBvn";
 
 class ErrorBoundary extends React.Component {
   constructor(props) {
@@ -86,6 +86,7 @@ function Token() {
   }
   //Token Withdrawal
   const [buyToken, setBuyToken] = useState(false);
+  const [verifyBVN, setVerifyBVN] = useState(false);
 
   //token balance
   const [ngn, setNgn] = useState();
@@ -119,7 +120,8 @@ function Token() {
 
   return (
     <div className="font-family">
-      {buyToken && <Withdraw className="z-10" closeToken={setBuyToken} />}
+      {buyToken && <Withdraw className="z-10" closeToken={setBuyToken} setVerifyBVN={setVerifyBVN} />}
+      {verifyBVN && <Processing className="z-10" setVerifyBVN={setVerifyBVN} closeToken={setBuyToken} />}
 
       <Header />
 

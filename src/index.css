@@ -29,7 +29,7 @@ body {
 .remove-note {
   @apply top-28 invisible duration-300 opacity-0
 }
-.arrow::before {
+.arrow4::before {
     content: "";
     position: absolute;
     right:3px;

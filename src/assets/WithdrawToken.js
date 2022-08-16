@@ -1,19 +1,22 @@
 import { MdClose } from "react-icons/md";
-import reictoken from "./images/Reic_Token.png";
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { PaystackButton } from "react-paystack";
-import TokenSuccess from "./tokenSuccess";
+import * as CurrencyFormat from "react-currency-format";
 
 // import { TbLoader } from 'react-icons/tb'
 
 function Withdraw({ closeToken }) {
   const navigate = useNavigate();
+  const [click1, isClick1] = useState(true);
+  const [click2, isClick2] = useState(true);
+  const [click3, isClick3] = useState(true);
+  const [balance, setBalance] = useState(false)
+  const [userBank, setUserBank] = useState()
   // const [authPullOut, setAuthPullOut] = useState(false)
   const [isCardPay, setIsCardPay] = useState(false);
   const [amount, setAmount] = useState(50000);
-  async function buy(e) {
+  async function withdraw(e) {
     e.preventDefault();
     const email = localStorage.getItem("user-email");
     const payLoad = {
@@ -36,10 +39,52 @@ function Withdraw({ closeToken }) {
     const result = await response.json();
     //use toaster and display redirecting to paystack
     // alert(result?.data.data.authorization_url);
-    console.log(result?.data.data.authorization_url);
-    window.location.href = result?.data.data.authorization_url;
-    return null;
+    
   }
+  async function wallet() {
+    const token = localStorage.getItem("user-token");
+    const response = await fetch(
+      "https://reic.api.simpoo.biz/api/wallet/fetch_wallet",
+      {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    const result = await response.json();
+    console.log(result?.status);
+    // alert(result.data.token);
+    // setToken(result.data.token);
+    setBalance(result.data.balance);
+    // localStorage.setItem("user-wallet", result?.data.token);
+  }
+async function fetchUserBank() {
+    // console.log(formData);
+    const token = localStorage.getItem("user-token");
+    // e.preventDefault();
+    const response = await fetch(
+      "https://reic.api.simpoo.biz/api/investor/fetch_user_bank",
+      {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    const result = await response.json();
+    console.log(result?.status);
+    setUserBank(result?.data)
+    // setLoading(false)
+  }
+
+
+  useEffect(() => {
+    wallet();
+    fetchUserBank();
+  }, []);
 
   return (
     <>
@@ -83,7 +128,7 @@ function Withdraw({ closeToken }) {
           className="bg-white rounded-xl border w-1/2"
         >
           <div className="border-b border-stroke uppercase px-10 py-5 text-2xl font-semibold flex justify-between items-center text-modal">
-            <h1>Add Bank</h1>
+            <h1>Add Amount</h1>
             <MdClose
               className="cursor-pointer"
               onClick={() => {
@@ -92,89 +137,78 @@ function Withdraw({ closeToken }) {
             />
           </div>
           <div className="py-4 px-14">
-            <div className="pb-4 flex items-center ">
-              <img src={reictoken} alt="my-investment-image" />
-              <div className="ml-4 flex items-center">
-                <span className="text-tokentext text-2xl font-extra-bold mr-2">
-                  1
-                </span>
-                <span className="text-token uppercase text-base font-semibold mr-2">
-                  {" "}
-                  reic token
-                </span>
-                <span className="text-tokentext text-2xl font-semibold">
-                  {" "}
-                  = N50,000
-                </span>
-              </div>
-            </div>
+            <div className="input mb-4 h-90 overflow-y-scroll scroll">
+              {userBank?.map(bank => (
+                <div key={bank.id} className=" rounded-xl text-footer bg-input p-5 flex justify-between items-center mb-5 border border-transparent hover:border-green">
+                  <div>
+                    <h1 className="font-normal text-base">{bank.bank_name}</h1>
+                    <h1 className="font-semibold text-xl">{bank.account_name}</h1></div>
+                  <div>
+                    <h1 className="font-normal text-base">{bank.account_number}</h1>
+                  </div>
+                </div>
+              ))}
 
-            <div className="pt-5 pb-9">
-              <p className="text-payment text-base font-normal mb-2.5">
-                Payment Method
-              </p>
-              <div className="flex justify-between">
-                <button
-                  className="border-2 border-border rounded-lg w-72 h-12 mr-5 text-token text-base font-semibold hover:bg-green hover:text-dashbg duration-300"
-                  onClick={() => setIsCardPay(true)}
-                >
-                  Card payment
-                </button>
-                <button
-                  className="border-2 border-border rounded-lg w-72 h-12 text-token text-base font-semibold hover:bg-green hover:text-dashbg duration-300"
-                  onClick={() => alert("NO Bank added yet")}
-                >
-                  Bank Transfer
-                </button>
-              </div>
             </div>
-
+            
             <div className="pt-5 pb-9">
-              <p className="text-payment text-base font-normal mb-2.5">
-                Amount
+              <p className="text-payment text-base font-normal mb-2.5 flex justify-between">
+                <span>Amount</span>{" "}
+                <span className="text-green font-medium">
+                  Available Amount: N<CurrencyFormat
+                    value={balance}
+                    displayType={"text"}
+                    thousandSeparator={true}
+                  />
+                </span>
               </p>
               <div className="text-nuetral font-bold text-lg flex justify-center py-6 rounded-lg bg-mainbg relative">
                 <input
                   type="number"
                   placeholder="enter amount"
                   className="text-neutral font-bold text-4xl text-center bg-transparent outline-0"
-                  // value="50,000"
+                  value={amount}
                   onChange={(e) => setAmount(e.target.value)}
-                  defaultValue="50000"
                 />
               </div>
-            </div>
-            <div className="text-right pt-5 pb-8 flex justify-between items-center">
-              <div className=" flex items-center">
-                <input
-                  required
-                  type="checkbox"
-                  className="border mr-2 checked:bg-green"
-                  value="1"
-                />
-                <p className="text-sm text-footer font-medium">
-                  Save method as default
-                </p>
-              </div>
-              {/* <button className='rounded-full w-44 h-12 text-dashbg bg-green'
-                                onClick={() => {
-                                    // setAuthPullOut(true)
-                                    // closeToken  (false)
-                                    console.log(amount * 100);
-                                    // setIsClick(!isClick)
-                                }}>Continue</button> */}
-              {isCardPay ? (
+              <div className="flex justify-center mt-6">
                 <button
-                  className="rounded-full w-44 h-12 text-dashbg bg-green"
-                  onClick={buy}
+                  className={`withd-button ${click1 && "with-dark"}`}
+                  //   {`notification z-50 ${isClick ? 'show-note' : 'remove-note'}`}
+                  onClick={() => {
+                    setAmount(50000);
+                    isClick1(true);
+                    isClick2(true);
+                    isClick3(true);
+                  }}
                 >
-                  Pay with Card
+                  N50,000
                 </button>
-              ) : (
-                  //   {...componentProps}
-                  <span className="text-red h-22 ">Select Payment Method</span>
-                )}
+                <button
+                  className={`withd-button ${!click2 && "with-dark"}`}
+                  onClick={() => {
+                    setAmount(100000);
+                    isClick1(false);
+                    isClick2(!isClick2);
+                    isClick3(true);
+                  }}
+                >
+                  N100,000
+                </button>
+                <button
+                  className={`withd-button ${!click3 && "with-dark"}`}
+                  onClick={() => {
+                    setAmount(200000);
+                    isClick1(false);
+                    isClick2(true);
+                    isClick3(!isClick3);
+                  }}
+                >
+                  N200,000
+                </button>
+              </div>
             </div>
+
           </div>
         </motion.div>
       </motion.div>

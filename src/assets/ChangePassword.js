@@ -78,22 +78,8 @@ function ChangePassword() {
       <Header />
 
       <div className="w-10/12 m-auto mt-20 bg-white rounded-lg py-8 px-10">
-        <motion.div
-          initial={{
-            scale: 0,
-          }}
-          animate={{
-            scale: 1,
-            transition: {
-              duration: 0.3,
-            },
-          }}
-          exit={{
-            scale: 0,
-            transition: {
-              delay: 0.5,
-            },
-          }}
+        <div
+          
           className="bg-white rounded-xl"
         >
           <div className="py-10 font-semibold flex justify-between items-center text-modal text-2xl">
@@ -181,7 +167,7 @@ function ChangePassword() {
               Update
             </button>
           </div>
-        </motion.div>
+        </div>
       </div>
       <div className="mt-6 pb-10 text-center">
         <h1 className="text-base font-semibold text-footer">

@@ -41,43 +41,15 @@ function SelectAvater({ setAvailable }) {
     setAvailable(false);
   };
   return (
-    <motion.div
-      initial={{
-        opacity: 0,
-      }}
-      animate={{
-        opacity: 1,
-        transition: {
-          duration: 0.3,
-        },
-      }}
-      exit={{
-        opacity: 0,
-        transition: {
-          delay: 0.5,
-        },
-      }}
+    <div
+      
       className="flex items-center justify-center fixed top-0 right-0 bottom-0 left-0 bg-overlay z-50 backdrop-blur-xs"
     // onClick={() => {
     //         closeDetails(false)
     //     }}
     >
-      <motion.div
-        initial={{
-          scale: 0,
-        }}
-        animate={{
-          scale: 1,
-          transition: {
-            duration: 0.3,
-          },
-        }}
-        exit={{
-          scale: 0,
-          transition: {
-            delay: 0.5,
-          },
-        }}
+      <div
+        
         className="justify-center lg:p-10 rounded-xl flex bg-white border-4 lg:w-auto w-full lg:h-auto h-full"
       >
         <div className="w-96">
@@ -199,8 +171,8 @@ function SelectAvater({ setAvailable }) {
               )}
           </div>
         </div>
-      </motion.div>
-    </motion.div>
+      </div>
+    </div>
   );
 }
 
@@ -350,22 +322,8 @@ function Profile() {
       <Header />
 
       <div className="w-10/12 m-auto mt-20 bg-white rounded-lg py-8 px-10">
-        <motion.div
-          initial={{
-            scale: 0,
-          }}
-          animate={{
-            scale: 1,
-            transition: {
-              duration: 0.3,
-            },
-          }}
-          exit={{
-            scale: 0,
-            transition: {
-              delay: 0.5,
-            },
-          }}
+        <div
+          
           className="bg-white rounded-xl"
         >
           <div className="py-10 font-semibold flex justify-between items-center text-modal text-2xl">
@@ -665,7 +623,7 @@ function Profile() {
               Update
             </button>
           </div>
-        </motion.div>
+        </div>
       </div>
       <div className="mt-6 pb-10 text-center">
         <h1 className="text-base font-semibold text-footer">

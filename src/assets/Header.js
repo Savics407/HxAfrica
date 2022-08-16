@@ -71,9 +71,10 @@ function Header() {
                 className={`notification z-50 ${isClick ? "show-note" : "remove-note"
                   }`}
               >
-                <div className="arrow relative">
+                <div className=" arrow4 relative ">
                   <h1 className="text-2xl font-semibold">Notifications</h1>
                 </div>
+                
                 <div className="text-sm  my-4">
                   <h1>Login attempted from new IP</h1>
                   <p className="text-footer text-xs mt-1">
