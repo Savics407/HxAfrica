@@ -11,7 +11,8 @@ import status from "./images/status-up.png";
 // import reictoken from './images/Reic_Token.png'
 import { MdClose } from "react-icons/md";
 import { motion } from "framer-motion";
-import Withdraw from "./AddBank";
+import AddBank from "./AddBank";
+import Withdraw from "./WithdrawToken";
 import RecentActivity from "./recentActivity";
 import * as CurrencyFormat from "react-currency-format";
 import Processing from "./ProcessingBvn";
@@ -117,11 +118,13 @@ function Token() {
   useEffect(() => {
     wallet();
   });
-
+const [withdraw, setWithdraw] = useState(false)
+const [bankID, setBankID] = useState()
   return (
     <div className="font-family">
-      {buyToken && <Withdraw className="z-10" closeToken={setBuyToken} setVerifyBVN={setVerifyBVN} />}
+      {buyToken && <AddBank className="z-10" closeToken={setBuyToken} setWithdraw={setWithdraw} setVerifyBVN={setVerifyBVN} setBankID={setBankID}/>}
       {verifyBVN && <Processing className="z-10" setVerifyBVN={setVerifyBVN} closeToken={setBuyToken} />}
+      {withdraw && <Withdraw className="z-10" setWithdraw={setWithdraw} closeToken={setBuyToken} bankID={bankID} wallet={wallet}/>}
 
       <Header />
 

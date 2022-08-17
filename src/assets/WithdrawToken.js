@@ -2,30 +2,31 @@ import { MdClose } from "react-icons/md";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import {toast} from "react-toastify"
+import ScaleLoader from "react-spinners/ScaleLoader"
 import * as CurrencyFormat from "react-currency-format";
 
 // import { TbLoader } from 'react-icons/tb'
 
-function Withdraw({ closeToken }) {
+function Withdraw({ setWithdraw, bankID, wallet }) {
   const navigate = useNavigate();
   const [click1, isClick1] = useState(true);
   const [click2, isClick2] = useState(true);
   const [click3, isClick3] = useState(true);
-  const [balance, setBalance] = useState(false)
+  const [balance, setBalance] = useState()
   const [userBank, setUserBank] = useState()
   // const [authPullOut, setAuthPullOut] = useState(false)
-  const [isCardPay, setIsCardPay] = useState(false);
+  const [successful, setSuccessful] = useState(false);
   const [amount, setAmount] = useState(50000);
-  async function withdraw(e) {
-    e.preventDefault();
-    const email = localStorage.getItem("user-email");
+  const [accountNo, setAccountNo] = useState();
+const [loading, setLoading] = useState(false)
+  async function withdraw() {
     const payLoad = {
-      email,
       amount: amount,
     };
     const token = localStorage.getItem("user-token");
     const response = await fetch(
-      "https://reic.api.simpoo.biz/api/paystack/initialize_paystack",
+      "https://reic.api.simpoo.biz/api/payment/withdraw",
       {
         method: "POST",
         body: JSON.stringify(payLoad),
@@ -37,10 +38,26 @@ function Withdraw({ closeToken }) {
       }
     );
     const result = await response.json();
-    //use toaster and display redirecting to paystack
-    // alert(result?.data.data.authorization_url);
-    
+      console.log(result);
+    if (result?.status === "success") {
+      setSuccessful(true)
+      
+    } else {
+      if (result.status === "error") {
+       
+        toast.error(`${result.message}`, {
+          position: "top-left",
+          autoClose: 1500,
+          hideProgressBar: true,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      }
+    }
   }
+
   async function wallet() {
     const token = localStorage.getItem("user-token");
     const response = await fetch(
@@ -55,15 +72,11 @@ function Withdraw({ closeToken }) {
     );
     const result = await response.json();
     console.log(result?.status);
-    // alert(result.data.token);
-    // setToken(result.data.token);
-    setBalance(result.data.balance);
-    // localStorage.setItem("user-wallet", result?.data.token);
+    setBalance(result?.data.balance);
   }
-async function fetchUserBank() {
-    // console.log(formData);
+
+  async function fetchUserBank() {
     const token = localStorage.getItem("user-token");
-    // e.preventDefault();
     const response = await fetch(
       "https://reic.api.simpoo.biz/api/investor/fetch_user_bank",
       {
@@ -77,7 +90,6 @@ async function fetchUserBank() {
     const result = await response.json();
     console.log(result?.status);
     setUserBank(result?.data)
-    // setLoading(false)
   }
 
 
@@ -109,6 +121,8 @@ async function fetchUserBank() {
       //         closeDetails(false)
       //     }}
       >
+        {userBank?.filter((bank) => bank.id === bankID).map((bank) => (
+
         <motion.div
           initial={{
             scale: 0,
@@ -116,7 +130,7 @@ async function fetchUserBank() {
           animate={{
             scale: 1,
             transition: {
-              duration: 0.3,
+              duration: 0.1,
             },
           }}
           exit={{
@@ -125,21 +139,26 @@ async function fetchUserBank() {
               delay: 0.5,
             },
           }}
-          className="bg-white rounded-xl border w-1/2"
+          className={`bg-white rounded-xl border w-1/2 ${successful ? "hidden" : "block"}`}
         >
           <div className="border-b border-stroke uppercase px-10 py-5 text-2xl font-semibold flex justify-between items-center text-modal">
             <h1>Add Amount</h1>
             <MdClose
               className="cursor-pointer"
               onClick={() => {
-                closeToken(false);
+                setWithdraw(false);
               }}
             />
           </div>
-          <div className="py-4 px-14">
-            <div className="input mb-4 h-90 overflow-y-scroll scroll">
-              {userBank?.map(bank => (
-                <div key={bank.id} className=" rounded-xl text-footer bg-input p-5 flex justify-between items-center mb-5 border border-transparent hover:border-green">
+
+          {loading ? <div className="text-center p-20">
+            <ScaleLoader color="#008E10" height={50} width={6} />
+            </div> :
+          <div className="py-4 px-7">
+            <div className="input mb-4 ">
+             
+              {/* {userBank?.filter((bank) => bank.id === bankID).map((bank) => ( */}
+                <div key={bank.id} className=" rounded-xl text-footer bg-input p-5 flex justify-between items-center mb-5 border border-green">
                   <div>
                     <h1 className="font-normal text-base">{bank.bank_name}</h1>
                     <h1 className="font-semibold text-xl">{bank.account_name}</h1></div>
@@ -147,7 +166,6 @@ async function fetchUserBank() {
                     <h1 className="font-normal text-base">{bank.account_number}</h1>
                   </div>
                 </div>
-              ))}
 
             </div>
             
@@ -162,11 +180,13 @@ async function fetchUserBank() {
                   />
                 </span>
               </p>
-              <div className="text-nuetral font-bold text-lg flex justify-center py-6 rounded-lg bg-mainbg relative">
+              <div className="text-nuetral font-bold text-lg flex justify-center items-center py-6 rounded-lg bg-mainbg relative">
+                <sup className="w-2/5 text-right">N</sup>
+
                 <input
                   type="number"
                   placeholder="enter amount"
-                  className="text-neutral font-bold text-4xl text-center bg-transparent outline-0"
+                  className="text-neutral font-bold text-4xl  w-3/5 bg-transparent outline-0"
                   value={amount}
                   onChange={(e) => setAmount(e.target.value)}
                 />
@@ -208,9 +228,75 @@ async function fetchUserBank() {
                 </button>
               </div>
             </div>
-
+            <div className="text-right pb-3 flex justify-between items-center">
+              <div className=" flex items-center">
+                <input
+                  required
+                  type="checkbox"
+                  className="border mr-2 checked:bg-green"
+                  value="1"
+                />
+                <p className="text-sm text-footer font-medium">
+                  Save as default bank
+                </p>
+              </div>
+              <button
+                className="rounded-full w-44 h-12 text-dashbg bg-green"
+                onClick={() => {
+                  setLoading(true)
+                  setTimeout(withdraw, 7000)
+                  
+                setAccountNo(bank.account_number)}}
+              >
+                Continue
+              </button>
+            </div>
           </div>
+}
         </motion.div>
+              ))}
+
+      {successful && (
+        <motion.div
+          initial={{
+            opacity: 0,
+          }}
+          animate={{
+            opacity: 1,
+            transition: {
+              duration: 0.3,
+            },
+          }}
+          exit={{
+            opacity: 0,
+            transition: {
+              delay: 0.5,
+            },
+          }}
+          className="w-128 bg-white rounded-xl fixed top-40 border-green py-10 px-6 text-center"
+        >
+          <div className="flex flex-col items-center ">
+            {/* <img src={success} alt="success" className="w-28 mb-5" /> */}
+            <h1 className="font-bold text-neutral text-4xl">Success!</h1>
+          </div>
+          <div className="font-semibold text-base text-neutral my-8">
+            <p>
+              Your Withdrawal of  <span className="text-green">N<CurrencyFormat
+                value={amount}
+                displayType={"text"}
+                thousandSeparator={true}
+              /></span> to account: <br /> <span className="text-green">{accountNo} </span> was successful.
+            </p>
+          </div>
+          <div className=" text-center w-11/12 mb-2 m-auto">
+            <button className="rounded-full w-full p-2 text-white bg-green flex justify-around items-center" onClick={() => {setWithdraw(false)
+            wallet()}}>
+              Done
+            </button>
+          </div>
+          
+        </motion.div>
+      )}
       </motion.div>
     </>
   );

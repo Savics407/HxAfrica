@@ -7,7 +7,7 @@ import * as CurrencyFormat from "react-currency-format";
 import { toast } from "react-toastify";
 import ScaleLoader from "react-spinners/ScaleLoader"
 
-function AddBank({ closeToken, setVerifyBVN }) {
+function AddBank({ closeToken, setVerifyBVN, setWithdraw, setBankID }) {
   // const [authPullOut, setAuthPullOut] = useState(false)
   const [registered, setRegistered] = useState(true)
   const [main, setMain] = useState(true)
@@ -205,7 +205,7 @@ function AddBank({ closeToken, setVerifyBVN }) {
             <HiPlus className="text-green" />
             <button className="capitalize ml-3 text-token font-semibold text-sm"> Add new bank</button>
           </div>
-        </motion.div> : <MyBanks closeToken={closeToken} userBank={userBank} loading={loading} setLoading={setLoading} addAccount={addAccount} setAddAccount={setAddAccount} setMain={setMain} main={main}/>}
+        </motion.div> : <MyBanks closeToken={closeToken} userBank={userBank} loading={loading} setLoading={setLoading} addAccount={addAccount} setAddAccount={setAddAccount} setMain={setMain} main={main} setWithdraw={setWithdraw} setBankID={setBankID}/>}
         
 
         {addAccount && <motion.div
@@ -314,10 +314,13 @@ function AddBank({ closeToken, setVerifyBVN }) {
 }
 
 
-function MyBanks({closeToken, userBank, loading, setLoading, addAccount, setAddAccount, setMain, main}) {
+function MyBanks({closeToken, userBank, loading, setLoading, addAccount, setAddAccount, setMain, main, setWithdraw, setBankID}) {
   // const [addAccount, setAddAccount] = useState(false)
-  // const [banks, setBanks] = useState(false)
+  const [selected, setSelected] = useState(false)
   const [addAmount, setAddAmount] = useState(false)
+  const userBankId = (id) => {
+    setBankID(id)
+  }
   return (
     <>
     <motion.div
@@ -353,10 +356,14 @@ function MyBanks({closeToken, userBank, loading, setLoading, addAccount, setAddA
   color="#008E10"
   height={50}
   width={6}
-/></div> : <div className="py-4 px-10">
-            <div className="input mb-4 h-90 overflow-y-scroll scroll">
+/></div> : <div className="py-4 px-7">
+            <div className="input mb-4 h-90 px-2 overflow-y-scroll scroll">
               {userBank?.map(bank => (
-                <div key={bank.id} className=" rounded-xl text-footer bg-input p-5 flex justify-between items-center mb-5 border border-transparent hover:border-green">
+                <div key={bank.id} className= {`rounded-xl text-footer bg-input p-5 flex justify-between items-center mb-5 border border-transparent hover:border-green cursor-pointer`} onClick={() => {
+                  setWithdraw(true)
+                  closeToken(false)
+                  userBankId(bank.id)
+                }}>
                   <div>
                     <h1 className="font-normal text-base">{bank.bank_name}</h1>
                     <h1 className="font-semibold text-xl">{bank.account_name}</h1></div>
@@ -380,7 +387,7 @@ function MyBanks({closeToken, userBank, loading, setLoading, addAccount, setAddA
 
 
             
-            <div className="text-right pb-3 flex justify-between items-center">
+            {/* <div className="text-right pb-3 flex justify-between items-center">
               <div className=" flex items-center">
                 <input
                   required
@@ -401,7 +408,7 @@ function MyBanks({closeToken, userBank, loading, setLoading, addAccount, setAddA
               >
                 Continue
               </button>
-            </div>
+            </div> */}
           </div>
  }
                   </motion.div>
