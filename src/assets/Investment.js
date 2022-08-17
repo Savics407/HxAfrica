@@ -71,7 +71,7 @@ function Investment() {
           {/* {posts[0].id} */}
           <InvestTabs />
           <div className="investlists">
-            <div className="flex justify-between mb-4 flex-wrap">
+            <div className="flex mb-4 flex-wrap">
               {posts
                 ?.sort((a, b) => (a.id < b.id ? 1 : -1))
                 .map((post) => (
