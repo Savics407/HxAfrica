@@ -25,6 +25,7 @@ import UseNetworkStatus from "./useNetworkStatus";
 import SelectAvater from "./assets/SelectAvater";
 import Success from "./assets/Success";
 import Withdraw from "./assets/WithdrawToken";
+import Admin_Dashboard from "./assets/admin/Admin_Dashboard";
 
 function App() {
   return (
@@ -51,6 +52,7 @@ function App() {
           <Route path="/investment" element={<Investment />} />
           <Route path="/investments/ongoing" element={<Ongoing />} />
           <Route path="/investments/completed" element={<Completed />} />
+          <Route path="/admin-dashboard" element={<Admin_Dashboard />} />
           <Route
             path="/investments/relisted-investment"
             element={<Relisted />}

@@ -190,13 +190,28 @@ body {
     .ds-icons {
       @apply lg:text-2xl text-xl lg:mr-2 mb-1 lg:mb-0 
     }
+
+    .s-icons {
+      @apply text-2xl mr-3 mb-0 
+    }
     .navbar {
       @apply bg-white fixed lg:relative bottom-0 lg:px-80 lg:border flex justify-between items-center lg:text-navbar w-full z-20 border-0 px-6 text-mobile-nav 
     }
     .nav-items {
       @apply flex lg:flex-row flex-col pt-3 pb-2.5 items-center rounded px-2 hover:text-green hover:cursor-pointer border-b-4 border-transparent duration-500 border lg:text-base text-xxm font-normal lg:font-semibold
     }
-    .active {
+
+        .sidenav-items {
+           @apply flex items-center p-3  hover:text-green hover:cursor-pointer duration-300 border-r-4 border-transparent hover:bg-sidenav text-base 
+         }
+
+         .side-nav{
+          @apply flex flex-col pl-5 py-20 h-side justify-between text-sideText font-normal
+         }
+           .side-nav .active {
+      @apply text-green bg-sidenav border-green border-r-4 font-medium
+    }
+        .navbar .active {
       @apply  text-green lg:rounded relative before:content-[''] before:w-full before:h-4 before:bg-green before:absolute before:rounded-t before:rounded-r before:-bottom-3 overflow-hidden lg:before:-bottom-6 lg:border-b-4 border-green
     }
     .vestabs {
@@ -206,6 +221,8 @@ body {
     .tab .active {
       @apply border-b-2 border-green text-green rounded-none before:hidden
     }
+
+  
     .welcome {
       background-image:url(../src/assets/images/frame.png), url(../src/assets/images/reicNG.svg);
       background-repeat: no-repeat, no-repeat;

@@ -38,6 +38,7 @@ module.exports = {
         "mobile-nav": "#343C44",
         "mobile-banner": "#8BFF98",
         dashbg: "#FCFCFD",
+        sidenav: "#CCE8CF",
         endsin: "#C01048",
         rose: "#F63D68",
         welcome: "#FBFFFF",
@@ -57,6 +58,7 @@ module.exports = {
         "sky-blue": "rgba(134, 223, 247, 0.4)",
         mainsec: "rgba(190, 190, 255, 0.15)",
         pink: "#FF62A5",
+        sideText: "#5E636D",
         grayy: "#686868",
         darkgray: "#263238",
         join: "#4B4B4B",
@@ -92,12 +94,15 @@ module.exports = {
         "6x": "13%",
         "7x": "130px",
         per: "48%",
+        53: "53%",
+        27: "25.5%",
       },
       height: {
         128: "465px",
         "7x": "465px",
         100: "725px",
-        90: "350px"
+        90: "350px",
+        side: "620px",
       },
       // boxShadow: {
       //   '3xl': '0px 16px 64px -48px rgba(31, 47, 70, 0.15)',
