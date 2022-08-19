@@ -41,17 +41,28 @@ function SelectAvater({ setAvailable }) {
     setAvailable(false);
   };
   return (
-    <div
-      
+    <motion.div
+      initial={{
+        opacity: 0,
+      }}
+      animate={{
+        opacity: 1,
+        transition: {
+          duration: 0.3,
+        },
+      }}
+      exit={{
+        opacity: 0,
+        transition: {
+          delay: 0.5,
+        },
+      }}
       className="flex items-center justify-center fixed top-0 right-0 bottom-0 left-0 bg-overlay z-50 backdrop-blur-xs"
-    // onClick={() => {
-    //         closeDetails(false)
-    //     }}
+      // onClick={() => {
+      //         closeDetails(false)
+      //     }}
     >
-      <div
-        
-        className="justify-center lg:p-10 rounded-xl flex bg-white border-4 lg:w-auto w-full lg:h-auto h-full"
-      >
+      <div className="justify-center lg:p-10 rounded-xl flex bg-white border-4 lg:w-auto w-full lg:h-auto h-full">
         <div className="w-96">
           <div>
             <h1 className="text-green text-2xl lg:text-4xl font-semibold mb-3 text-center">
@@ -162,22 +173,21 @@ function SelectAvater({ setAvailable }) {
                 Set as avater
               </button>
             ) : (
-                <button
-                  className="text-white bg-green opacity-50 hover:opacity-100 rounded-xl px-7 py-3"
-                  onClick={() => alert("select an avater")}
-                >
-                  Set as avater
-                </button>
-              )}
+              <button
+                className="text-white bg-green opacity-50 hover:opacity-100 rounded-xl px-7 py-3"
+                onClick={() => alert("select an avater")}
+              >
+                Set as avater
+              </button>
+            )}
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
 
 function Profile() {
-
   const [available, setAvailable] = useState(false);
 
   const navigate = useNavigate();
@@ -213,7 +223,7 @@ function Profile() {
   };
 
   const [posts, setPosts] = useState();
-  const [image, setImage] = useState()
+  const [image, setImage] = useState();
 
   async function fetchData() {
     const token = localStorage.getItem("user-token");
@@ -234,7 +244,6 @@ function Profile() {
 
     setPosts(result?.data);
     // setImage(result?.data.profile_photo_path)
-
   }
 
   // const UserPicture = posts?.profile_photo_path
@@ -322,10 +331,7 @@ function Profile() {
       <Header />
 
       <div className="w-10/12 m-auto mt-20 bg-white rounded-lg py-8 px-10">
-        <div
-          
-          className="bg-white rounded-xl"
-        >
+        <div className="bg-white rounded-xl">
           <div className="py-10 font-semibold flex justify-between items-center text-modal text-2xl">
             <h1>Profile Details</h1>
           </div>
@@ -339,8 +345,8 @@ function Profile() {
                   className="w-28 h-28"
                 />
               ) : (
-                  <img src={avater} alt="Profile Picture" className="w-28 h-28" />
-                )}
+                <img src={avater} alt="Profile Picture" className="w-28 h-28" />
+              )}
               {/* <img src={userIcon} alt="Profile Picture" className="w-28 h-28" /> */}
               <button
                 className="text-blue border rounded-full py-1 px-4 font-bold text-sm my-3"
@@ -358,7 +364,7 @@ function Profile() {
               User Information
             </h1>
 
-            <table className="border w-full border-collapse mt-3 " >
+            <table className="border w-full border-collapse mt-3 ">
               <tr>
                 <td className="w-1/3 px-5 py-2">
                   <h1 className="text-footer font-semibold text-base">
@@ -505,7 +511,6 @@ function Profile() {
                 </td>
               </tr>
             </table>
-
           </div>
           <div className="my-10 text-footer">
             <h1 className="text-footer text-xs font-medium">

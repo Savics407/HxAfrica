@@ -63,6 +63,7 @@ module.exports = {
         darkgray: "#263238",
         join: "#4B4B4B",
         footer: "#777E90",
+
         neutral: "#23262F",
         overlay: "rgba(0, 0, 0, 0.3)",
         modal: "#342D6E",
@@ -79,6 +80,8 @@ module.exports = {
         pendingtext: "#FFA500",
         pending: "#fff8eb",
         change: "#0177FB",
+        angle: "#505051",
+        darker: "#111114",
         blue: "#3772FF",
         "border-gray": "rgba(114, 129, 255, 0.1)",
         total: "#F1F4F7",
