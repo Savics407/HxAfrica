@@ -136,13 +136,9 @@ function Completed() {
                       <td className="p-3"></td>
                     </tr>
 
-
-
-
                     {posts?.map((post) => (
                       <tr className="border-b" key={post.id}>
                         <td className=" py-8 text-footer font-bold text-sm ">
-
                           <div className="ml-2 ">
                             <h1 className="mb-1">{post.product.title}</h1>
                             <h2 className="font-medium font-xs capitalize">
@@ -174,9 +170,10 @@ function Completed() {
                           </h1>
                         </td>
                         <td className=" py-8 text-footer font-bold text-sm">
-                          <h1>N
-                             <CurrencyFormat
-                              value={(post.amount * post.interest) / 100 }
+                          <h1>
+                            N
+                            <CurrencyFormat
+                              value={(post.amount * post.interest) / 100}
                               displayType={"text"}
                               thousandSeparator={true}
                             />
@@ -191,27 +188,24 @@ function Completed() {
                             Days
                           </h1>
                         </td> */}
-
                       </tr>
                     ))}
                   </table>
                 </div>
               </>
             ) : (
-                <div className="flex flex-col items-center justify-center h-128">
-                  <div className="flex flex-col justify-center items-center">
-                    <img src={box} alt="No Completed investment" />
-                  </div>
-                  <h1 className="font-semibold text-xs text-statustext text-center -ml-10">
-                    Oh oh! You have no completed
+              <div className="flex flex-col items-center justify-center h-128">
+                <div className="flex flex-col justify-center items-center">
+                  <img src={box} alt="No Completed investment" />
+                </div>
+                <h1 className="font-semibold text-xs text-statustext text-center -ml-10">
+                  Oh oh! You have no completed
                   <br />
                   investments at this time
                 </h1>
-                </div>
-              )}
+              </div>
+            )}
           </div>
-
-
         </div>
       </div>
       <div className="mt-6 pb-10 text-center">

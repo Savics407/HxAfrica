@@ -26,6 +26,10 @@ import SelectAvater from "./assets/SelectAvater";
 import Success from "./assets/Success";
 import Withdraw from "./assets/WithdrawToken";
 import Admin_Dashboard from "./assets/admin/Admin_Dashboard";
+import Staffs from "./assets/admin/Staffs";
+import Marchants from "./assets/admin/Marchants";
+import PullFunds from "./assets/admin/PullFunds";
+import AllInvestments from "./assets/admin/AllInvestments";
 
 function App() {
   return (
@@ -45,6 +49,10 @@ function App() {
           <Route path="/activities" element={<Activity />} />
           <Route path="/token" element={<Token />} />
           <Route path="/withdraw" element={<Withdraw />} />
+          <Route path="/staffs" element={<Staffs />} />
+          <Route path="/marchants" element={<Marchants />} />
+          <Route path="/pull-funds-request" element={<PullFunds />} />
+          <Route path="/admin/investments" element={<AllInvestments />} />
           <Route path="/details" element={<Details />} />
           <Route path="/addbank" element={<AddBank />} />
           <Route path="/bvn" element={<Processing />} />
