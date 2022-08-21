@@ -1,28 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Header from "./Admin_header";
 import { HiOutlinePlusSm } from "react-icons/hi";
 import SideBar from "./SideBar";
-import upload from "../images/Upload.svg";
 import { MdClose } from "react-icons/md";
 import { motion } from "framer-motion";
 
 import StaffList from "./StaffList";
+import RoleList from "./RoleList";
 
-function Staffs() {
+function RolesPermission() {
   const [create, setCreate] = useState(false);
-  const [image, setImage] = useState();
-  const [preview, setPreview] = useState();
-  useEffect(() => {
-    if (image) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setPreview(reader.result);
-      };
-      reader.readAsDataURL(image);
-    } else {
-      setPreview(null);
-    }
-  }, [image]);
+
   return (
     <div className="bg-dashbg font-family">
       {create && (
@@ -64,90 +52,85 @@ function Staffs() {
               className="bg-white rounded-xl border w-2/5 m-auto z-10"
             >
               <div className="border-b border-stroke capitalize font-inter px-10 py-5 text-2xl font-semibold flex justify-between items-center text-modal">
-                <h1>Add Staff</h1>
+                <h1>Staff Roles</h1>
                 <MdClose
                   className="cursor-pointer"
                   onClick={() => {
                     setCreate(false);
-                    setImage(null);
                   }}
                 />
               </div>
               <div className="px-10 py-5">
                 <div className="merchant">
-                  <label>Name</label>
+                  <label>Role Name</label>
                   <input
                     required
                     type="text"
-                    placeholder="enter merchant name"
+                    placeholder="enter role name"
                     className="box"
                     // value="000000"
                   />
                 </div>
 
                 <div className="merchant">
-                  <label>Phone</label>
-                  <input
-                    required
-                    type="tel"
-                    placeholder="+234 |"
-                    className="box"
-                    // value="000000"
-                  />
-                </div>
-
-                {image === null ? (
-                  <div className="border bg-file rounded-lg border-dashed flex flex-col items-center p-10">
-                    <img src={upload} alt="Upload Icon" />
-                    <label
-                      for="file"
-                      className="cursor-pointer border rounded bg-white font-normal text-xs py-1.5 px-3 mt-2"
-                    >
-                      Add Image
+                  <label>Select Permissions</label>
+                  <div className="mb-4">
+                    <label className="!text-black !text-sm !font-normal">
+                      <input
+                        required
+                        type="checkbox"
+                        className=" !checked:bg-green "
+                      />{" "}
+                      Approve Marchant
                     </label>
-                    <h1 className="text-product font-normal text-tiny">
-                      Upload product Image
-                    </h1>
-                    <input
-                      type="file"
-                      id="file"
-                      accept="image/*"
-                      onChange={(e) => {
-                        const file = e.target.files[0];
-                        if (file) {
-                          setImage(file);
-                        } else {
-                          setImage(null);
-                        }
-                      }}
-                    />
                   </div>
-                ) : (
-                  <div
-                    className="border bg-cover bg-top rounded-lg h-40 w-full relative"
-                    // style={{ backgroundImage: `url(${preview})` }}
-                  >
-                    <img
-                      src={preview}
-                      alt="product Image"
-                      className="object-cover w-full h-full rounded-lg"
-                    />
-                    <span
-                      className="text-dark shadow bg-dashbg text-xs p-2 absolute left-2 rounded cursor-pointer bottom-2"
-                      onClick={() => {
-                        setImage(null);
-                      }}
-                    >
-                      change image
-                    </span>
+                  <div className="mb-4">
+                    <label className="!text-black !text-sm !font-normal">
+                      <input
+                        required
+                        type="checkbox"
+                        className=" !checked:bg-green "
+                      />{" "}
+                      Approve Disbursement
+                    </label>
                   </div>
-                )}
+                  <div className="mb-4">
+                    <label className="!text-black !text-sm !font-normal">
+                      <input
+                        required
+                        type="checkbox"
+                        className=" !checked:bg-green "
+                      />{" "}
+                      Approve Pullout
+                    </label>
+                  </div>
+                  <div className="mb-4">
+                    <label className="!text-black !text-sm !font-normal">
+                      <input
+                        required
+                        type="checkbox"
+                        className=" !checked:bg-green "
+                      />{" "}
+                      Approve Disbursement
+                    </label>
+                  </div>
+                  <div className="mb-4">
+                    <label className="!text-black !text-sm !font-normal">
+                      <input
+                        required
+                        type="checkbox"
+                        className=" !checked:bg-green "
+                      />{" "}
+                      Approve Marchant
+                    </label>
+                  </div>
+                </div>
 
                 <div className="text-white flex justify-end items-center w-full mt-10 font-medium">
                   <input
                     type="submit"
-                    className=" cursor-pointer bg-green py-3 px-8 outline-none rounded-full"
-                    value="Add Staff"
+                    className=" cursor-pointer bg-green py-2 px-10 outline-none rounded-full"
+                    value="Update"
                   />
                 </div>
               </div>
@@ -162,7 +145,7 @@ function Staffs() {
         </div>
         <div className=" w-4/5 p-5 mb-20">
           <div className=" bg-white p-10 rounded-lg flex justify-between">
-            <h1 className="text-dark  font-black text-3xl mb-3">Staffs</h1>
+            <h1 className="text-dark  font-black text-3xl mb-3">Roles</h1>
             <button
               className="bg-green rounded-full flex text-white px-5 py-3 items-center"
               onClick={() => {
@@ -172,12 +155,12 @@ function Staffs() {
               <span className="mr-2 text-xl">
                 <HiOutlinePlusSm />
               </span>{" "}
-              Create Staff
+              Create Role
             </button>
           </div>
           <div className="flex justify-between">
             <div className="w-full">
-              <StaffList />
+              <RoleList />
             </div>
           </div>
         </div>
@@ -186,4 +169,4 @@ function Staffs() {
   );
 }
 
-export default Staffs;
+export default RolesPermission;

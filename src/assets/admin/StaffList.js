@@ -7,7 +7,7 @@ import { MdArrowBackIosNew } from "react-icons/md";
 import { NavLink, Link } from "react-router-dom";
 import { MdArrowForwardIos } from "react-icons/md";
 
-function MarchantsList() {
+function StaffList() {
   return (
     <>
       <div className="flex justify-between my-6">
@@ -30,26 +30,10 @@ function MarchantsList() {
         </div>
       </div>
 
-      {/* <Martabs /> */}
-      <div className="flex items-center text-sm mar rounded-lg my-4 text-footer bg-white px-9 ">
-        <Link to="/admin/merchants">
-          <div
-            className={` text-dark text-base border-b-4 border-green font-medium px-1 py-2.5 hover:text-dark `}
-          >
-            <h1>Merchants </h1>
-          </div>
-        </Link>
-        <span className="w-7"> </span>
-        <NavLink to="/merchants/pull-funds-request">
-          <div className="font-normal px-1 py-2.5 border-b-4 border-transparent hover:text-dark ">
-            <h1>Pull Funds request </h1>
-          </div>
-        </NavLink>
-      </div>
       <div className="rounded-lg bg-white mt-2 mb-3 pb-10">
         <div className="py-7 px-9 text-lg text-mobile-nav font-medium border-b cursor-pointer">
           <h1 className="">
-            <span className="text-grayy text-sm mr-2">List of Merchants </span>{" "}
+            <span className="text-grayy text-sm mr-2">List of Staffs </span>{" "}
             <span className="rounded-full bg-green text-white px-2 text-xs ">
               234
             </span>
@@ -60,208 +44,159 @@ function MarchantsList() {
             <thead className="">
               <tr className="text-left bg-bar">
                 <th className="py-3 text-mobile-nav font-medium text-xs pl-9">
-                  Name
+                  Staff Name
                 </th>
                 <th className="py-3 pr-7 text-mobile-nav font-medium text-xs ">
-                  Email Address
+                  Phone Number
                 </th>
                 <th className="py-3 pr-7 text-mobile-nav font-medium text-xs ">
-                  Address
+                  Staff Role
                 </th>
-                <th className="py-3 pr-7 text-mobile-nav font-medium text-xs ">
-                  State/City
-                </th>
-                <th className="py-3 pr-7 text-mobile-nav font-medium text-xs ">
+
+                <th className="py-3 text-center w-52 text-mobile-nav font-medium text-xs ">
                   Action
                 </th>
               </tr>
             </thead>
-            <tr className="border-b font-inter">
-              <td className="py-8 pl-5 flex">
+            <tr className="border-b">
+              <td className="py-8 pl-5 flex items-center">
                 <div className="mr-2">
                   <img src={avater} alt="merchant avater" />
                 </div>
                 <div>
-                  <h1 className="font-normal  text-deep text-sm">
-                    Marchant Name
-                  </h1>
-                  <h1 className="font-normal text-statustext text-xs">
-                    200 Products
-                  </h1>
+                  <h1 className="font-normal text-deep text-sm">Staff Name</h1>
                 </div>
               </td>
               <td className="py-8">
-                <h1 className="font-normal text-deep text-xs">
-                  example@gmail.com
-                </h1>
-              </td>
-              <td className="py-8">
-                <h1 className="font-normal text-deep text-xs w-32">
-                  7 Bauchi Road Jos North, Abuja,Nigeria
-                </h1>
-              </td>
-              <td className="py-8">
-                <h1 className="font-normal text-deep text-xs">Abuja/Wuse II</h1>
+                <h1 className="font-normal text-deep text-sm">08106750047</h1>
               </td>
 
-              <td className="py-3">
+              <td className="py-8">
+                <h1 className="font-normal text-deep text-sm">Secretary</h1>
+              </td>
+
+              <td className="py-3 text-center">
                 <button className="font-medium text-xs font-inter text-blue py-2 px-2 border-r ">
                   Edit
                 </button>
-                <button className="font-medium text-xs font-inter text-red py-1 px-2">
-                  Remove
+                <button className="font-medium text-xs font-inter text-inactive py-1 px-2">
+                  Assign role
                 </button>
               </td>
             </tr>
 
-            <tr className="border-b font-inter">
-              <td className="py-8 pl-5 flex">
+            <tr className="border-b">
+              <td className="py-8 pl-5 flex items-center">
                 <div className="mr-2">
                   <img src={avater} alt="merchant avater" />
                 </div>
                 <div>
-                  <h1 className="font-normal  text-deep text-sm">
-                    Marchant Name
-                  </h1>
-                  <h1 className="font-normal text-statustext text-xs">
-                    200 Products
-                  </h1>
+                  <h1 className="font-normal  text-deep text-sm">Staff Name</h1>
                 </div>
               </td>
               <td className="py-8">
-                <h1 className="font-normal text-deep text-xs">
-                  example@gmail.com
-                </h1>
-              </td>
-              <td className="py-8">
-                <h1 className="font-normal text-deep text-xs w-32">
-                  7 Bauchi Road Jos North, Abuja,Nigeria
-                </h1>
-              </td>
-              <td className="py-8">
-                <h1 className="font-normal text-deep text-xs">Abuja/Wuse II</h1>
+                <h1 className="font-normal text-deep text-sm">08106750047</h1>
               </td>
 
-              <td className="py-3">
+              <td className="py-8">
+                <h1 className="font-normal text-deep text-sm">
+                  Financial Assistant
+                </h1>
+              </td>
+
+              <td className="py-3 text-center">
                 <button className="font-medium text-xs font-inter text-blue py-2 px-2 border-r ">
                   Edit
                 </button>
-                <button className="font-medium text-xs font-inter text-red py-1 px-2">
-                  Remove
+                <button className="font-medium text-xs font-inter text-inactive py-1 px-2">
+                  Assign role
                 </button>
               </td>
             </tr>
 
-            <tr className="border-b font-inter">
-              <td className="py-8 pl-5 flex">
+            <tr className="border-b">
+              <td className="py-8 pl-5 flex items-center">
                 <div className="mr-2">
                   <img src={avater} alt="merchant avater" />
                 </div>
                 <div>
-                  <h1 className="font-normal  text-deep text-sm">
-                    Marchant Name
-                  </h1>
-                  <h1 className="font-normal text-statustext text-xs">
-                    200 Products
-                  </h1>
+                  <h1 className="font-normal  text-deep text-sm">Staff Name</h1>
                 </div>
               </td>
               <td className="py-8">
-                <h1 className="font-normal text-deep text-xs">
-                  example@gmail.com
-                </h1>
-              </td>
-              <td className="py-8">
-                <h1 className="font-normal text-deep text-xs w-32">
-                  7 Bauchi Road Jos North, Abuja,Nigeria
-                </h1>
-              </td>
-              <td className="py-8">
-                <h1 className="font-normal text-deep text-xs">Abuja/Wuse II</h1>
+                <h1 className="font-normal text-deep text-sm">08106750047</h1>
               </td>
 
-              <td className="py-3">
+              <td className="py-8">
+                <h1 className="font-normal text-deep text-sm">
+                  Financial Assistant
+                </h1>
+              </td>
+
+              <td className="py-3 text-center">
                 <button className="font-medium text-xs font-inter text-blue py-2 px-2 border-r ">
                   Edit
                 </button>
-                <button className="font-medium text-xs font-inter text-red py-1 px-2">
-                  Remove
+                <button className="font-medium text-xs font-inter text-inactive py-1 px-2">
+                  Assign role
                 </button>
               </td>
             </tr>
 
-            <tr className="border-b font-inter">
-              <td className="py-8 pl-5 flex">
+            <tr className="border-b">
+              <td className="py-8 pl-5 flex items-center">
                 <div className="mr-2">
                   <img src={avater} alt="merchant avater" />
                 </div>
                 <div>
-                  <h1 className="font-normal  text-deep text-sm">
-                    Marchant Name
-                  </h1>
-                  <h1 className="font-normal text-statustext text-xs">
-                    200 Products
-                  </h1>
+                  <h1 className="font-normal  text-deep text-sm">Staff Name</h1>
                 </div>
               </td>
               <td className="py-8">
-                <h1 className="font-normal text-deep text-xs">
-                  example@gmail.com
-                </h1>
-              </td>
-              <td className="py-8">
-                <h1 className="font-normal text-deep text-xs w-32">
-                  7 Bauchi Road Jos North, Abuja,Nigeria
-                </h1>
-              </td>
-              <td className="py-8">
-                <h1 className="font-normal text-deep text-xs">Abuja/Wuse II</h1>
+                <h1 className="font-normal text-deep text-sm">08106750047</h1>
               </td>
 
-              <td className="py-3">
+              <td className="py-8">
+                <h1 className="font-normal text-deep text-sm">
+                  Financial Assistant
+                </h1>
+              </td>
+
+              <td className="py-3 text-center">
                 <button className="font-medium text-xs font-inter text-blue py-2 px-2 border-r ">
                   Edit
                 </button>
-                <button className="font-medium text-xs font-inter text-red py-1 px-2">
-                  Remove
+                <button className="font-medium text-xs font-inter text-inactive py-1 px-2">
+                  Update role
                 </button>
               </td>
             </tr>
 
-            <tr className="border-b font-inter">
-              <td className="py-8 pl-5 flex">
+            <tr className="border-b">
+              <td className="py-8 pl-5 flex items-center">
                 <div className="mr-2">
                   <img src={avater} alt="merchant avater" />
                 </div>
                 <div>
-                  <h1 className="font-normal  text-deep text-sm">
-                    Marchant Name
-                  </h1>
-                  <h1 className="font-normal text-statustext text-xs">
-                    200 Products
-                  </h1>
+                  <h1 className="font-normal  text-deep text-sm">Staff Name</h1>
                 </div>
               </td>
               <td className="py-8">
-                <h1 className="font-normal text-deep text-xs">
-                  example@gmail.com
-                </h1>
-              </td>
-              <td className="py-8">
-                <h1 className="font-normal text-deep text-xs w-32">
-                  7 Bauchi Road Jos North, Abuja,Nigeria
-                </h1>
-              </td>
-              <td className="py-8">
-                <h1 className="font-normal text-deep text-xs">Abuja/Wuse II</h1>
+                <h1 className="font-normal text-deep text-sm">08106750047</h1>
               </td>
 
-              <td className="py-3">
+              <td className="py-8">
+                <h1 className="font-normal text-deep text-sm">
+                  Financial Assistant
+                </h1>
+              </td>
+
+              <td className="py-3 text-center">
                 <button className="font-medium text-xs font-inter text-blue py-2 px-2 border-r ">
                   Edit
                 </button>
-                <button className="font-medium text-xs font-inter text-red py-1 px-2">
-                  Remove
+                <button className="font-medium text-xs font-inter text-inactive py-1 px-2">
+                  Update role
                 </button>
               </td>
             </tr>
@@ -300,4 +235,4 @@ function MarchantsList() {
   );
 }
 
-export default MarchantsList;
+export default StaffList;

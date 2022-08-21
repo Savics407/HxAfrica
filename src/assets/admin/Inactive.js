@@ -1,13 +1,11 @@
 import React from "react";
 import Header from "./Admin_header";
 import SideBar from "./SideBar";
+import InvestmentCard from "./InvestmentCard";
+import OngoingInvestments from "./OngoingInvestments";
+import InactiveList from "./InactiveList";
 
-import MarchantsList from "./MarchantsList";
-
-import Products from "./Products";
-import Create_Marchant from "./CreateMerchant.js";
-
-function Marchants() {
+function Inactive() {
   return (
     <div className="bg-dashbg font-family">
       <Header />
@@ -17,16 +15,16 @@ function Marchants() {
         </div>
         <div className=" w-4/5 p-5 mb-20">
           <div className=" bg-white p-10 rounded-lg">
-            <h1 className="text-dark  font-black text-3xl mb-3">Merchants</h1>
+            <h1 className="text-dark  font-black text-3xl mb-3">Investments</h1>
           </div>
           <div className="flex justify-between">
             <div className="w-4/6">
-              <Create_Marchant />
+              <InvestmentCard />
 
-              <MarchantsList />
+              <InactiveList />
             </div>
             <div className="w-2/6">
-              <Products />
+              <OngoingInvestments />
             </div>
           </div>
         </div>
@@ -35,4 +33,4 @@ function Marchants() {
   );
 }
 
-export default Marchants;
+export default Inactive;

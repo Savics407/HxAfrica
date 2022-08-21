@@ -3,48 +3,11 @@ import { FaAngleDown } from "react-icons/fa";
 import avater from "../images/Avatar.svg";
 import { MdArrowBackIosNew } from "react-icons/md";
 import { MdArrowForwardIos } from "react-icons/md";
-// import InvestmentTabs from "./InvestmentTabs";
-import { NavLink, Link } from "react-router-dom";
+import { AiOutlineArrowUp } from "react-icons/ai";
+import InvestmentTabs from "./InvestmentTabs";
 import realEstate from "../images/realEstate.svg";
 
-function InvestmentTabs() {
-  return (
-    <>
-      <div className="flex items-center mar text-sm rounded-lg my-4 text-footer bg-white px-9 ">
-        <Link to="/admin/investments">
-          <div className=" text-dark text-base border-b-4 border-green font-medium  px-1 py-2.5 hover:text-dark">
-            <h1>Investments </h1>
-          </div>
-        </Link>
-        <span className="w-7"> </span>
-        <NavLink to="/admin/investments/approved">
-          <div className="font-normal px-1 py-2.5 border-b-4 border-transparent hover:text-dark ">
-            <h1>Approved </h1>
-          </div>
-        </NavLink>
-        <span className="w-7"> </span>
-        <NavLink to="/admin/investments/inactive">
-          <div className="font-normal px-1 py-2.5 border-b-4 border-transparent hover:text-dark ">
-            <h1>Inactive </h1>
-          </div>
-        </NavLink>
-        <span className="w-7"> </span>
-        <NavLink to="/admin/investments/pullout-request">
-          <div className="font-normal px-1 py-2.5 border-b-4 border-transparent hover:text-dark ">
-            <h1>Pullout Request </h1>
-          </div>
-        </NavLink>
-        <span className="w-7"> </span>
-        <NavLink to="/admin/investments/relisted">
-          <div className="font-normal px-1 py-2.5 border-b-4 border-transparent hover:text-dark ">
-            <h1>Relisted </h1>
-          </div>
-        </NavLink>
-      </div>
-    </>
-  );
-}
-function InvestmentList() {
+function RelistedList() {
   return (
     <>
       <InvestmentTabs />
@@ -52,13 +15,12 @@ function InvestmentList() {
         <div className="py-7 px-9 text-lg text-mobile-nav flex justify-between font-medium border-b cursor-pointer">
           <h1 className="">
             <span className="text-grayy text-sm mr-2">
-              Pending investments{" "}
+              Relisted investments{" "}
             </span>{" "}
             <span className="rounded-full bg-green text-white px-2 text-xs ">
               234
             </span>
           </h1>
-          <button className="text-sm text-dark">Select Multiple</button>
         </div>
         <div className="">
           <table className=" w-full table-auto">
@@ -106,11 +68,8 @@ function InvestmentList() {
               </td>
 
               <td className="py-3">
-                <button className="font-medium text-xs font-inter text-blue py-2 px-2 border-r ">
-                  Approve
-                </button>
-                <button className="font-medium text-xs font-inter text-red py-1 px-2">
-                  Decline
+                <button className="font-medium text-sm font-inter bg-relist text-relisted py-1 px-2.5 rounded-full ">
+                  Relisted
                 </button>
               </td>
             </tr>
@@ -140,11 +99,8 @@ function InvestmentList() {
               </td>
 
               <td className="py-3">
-                <button className="font-medium text-xs font-inter text-blue py-2 px-2 border-r ">
-                  Approve
-                </button>
-                <button className="font-medium text-xs font-inter text-red py-1 px-2">
-                  Decline
+                <button className="font-medium text-sm font-inter bg-relist text-relisted py-1 px-2.5 rounded-full ">
+                  Relisted
                 </button>
               </td>
             </tr>
@@ -174,11 +130,8 @@ function InvestmentList() {
               </td>
 
               <td className="py-3">
-                <button className="font-medium text-xs font-inter text-blue py-2 px-2 border-r ">
-                  Approve
-                </button>
-                <button className="font-medium text-xs font-inter text-red py-1 px-2">
-                  Decline
+                <button className="font-medium text-sm font-inter bg-relist text-relisted py-1 px-2.5 rounded-full ">
+                  Relisted
                 </button>
               </td>
             </tr>
@@ -208,11 +161,8 @@ function InvestmentList() {
               </td>
 
               <td className="py-3">
-                <button className="font-medium text-xs font-inter text-blue py-2 px-2 border-r ">
-                  Approve
-                </button>
-                <button className="font-medium text-xs font-inter text-red py-1 px-2">
-                  Decline
+                <button className="font-medium text-sm font-inter bg-relist text-relisted py-1 px-2.5 rounded-full ">
+                  Relisted
                 </button>
               </td>
             </tr>
@@ -242,11 +192,8 @@ function InvestmentList() {
               </td>
 
               <td className="py-3">
-                <button className="font-medium text-xs font-inter text-blue py-2 px-2 border-r ">
-                  Approve
-                </button>
-                <button className="font-medium text-xs font-inter text-red py-1 px-2">
-                  Decline
+                <button className="font-medium text-sm font-inter bg-relist text-relisted py-1 px-2.5 rounded-full ">
+                  Relisted
                 </button>
               </td>
             </tr>
@@ -285,4 +232,4 @@ function InvestmentList() {
   );
 }
 
-export default InvestmentList;
+export default RelistedList;

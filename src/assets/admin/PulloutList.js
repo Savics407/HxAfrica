@@ -3,57 +3,17 @@ import { FaAngleDown } from "react-icons/fa";
 import avater from "../images/Avatar.svg";
 import { MdArrowBackIosNew } from "react-icons/md";
 import { MdArrowForwardIos } from "react-icons/md";
-// import InvestmentTabs from "./InvestmentTabs";
-import { NavLink, Link } from "react-router-dom";
+import InvestmentTabs from "./InvestmentTabs";
 import realEstate from "../images/realEstate.svg";
 
-function InvestmentTabs() {
-  return (
-    <>
-      <div className="flex items-center mar text-sm rounded-lg my-4 text-footer bg-white px-9 ">
-        <Link to="/admin/investments">
-          <div className=" text-dark text-base border-b-4 border-green font-medium  px-1 py-2.5 hover:text-dark">
-            <h1>Investments </h1>
-          </div>
-        </Link>
-        <span className="w-7"> </span>
-        <NavLink to="/admin/investments/approved">
-          <div className="font-normal px-1 py-2.5 border-b-4 border-transparent hover:text-dark ">
-            <h1>Approved </h1>
-          </div>
-        </NavLink>
-        <span className="w-7"> </span>
-        <NavLink to="/admin/investments/inactive">
-          <div className="font-normal px-1 py-2.5 border-b-4 border-transparent hover:text-dark ">
-            <h1>Inactive </h1>
-          </div>
-        </NavLink>
-        <span className="w-7"> </span>
-        <NavLink to="/admin/investments/pullout-request">
-          <div className="font-normal px-1 py-2.5 border-b-4 border-transparent hover:text-dark ">
-            <h1>Pullout Request </h1>
-          </div>
-        </NavLink>
-        <span className="w-7"> </span>
-        <NavLink to="/admin/investments/relisted">
-          <div className="font-normal px-1 py-2.5 border-b-4 border-transparent hover:text-dark ">
-            <h1>Relisted </h1>
-          </div>
-        </NavLink>
-      </div>
-    </>
-  );
-}
-function InvestmentList() {
+function PulloutList() {
   return (
     <>
       <InvestmentTabs />
       <div className="rounded-lg bg-white mt-2 mb-3 pb-10">
         <div className="py-7 px-9 text-lg text-mobile-nav flex justify-between font-medium border-b cursor-pointer">
           <h1 className="">
-            <span className="text-grayy text-sm mr-2">
-              Pending investments{" "}
-            </span>{" "}
+            <span className="text-grayy text-sm mr-2">Request </span>{" "}
             <span className="rounded-full bg-green text-white px-2 text-xs ">
               234
             </span>
@@ -68,13 +28,13 @@ function InvestmentList() {
                   Investment
                 </th>
                 <th className="py-3 pr-7 text-mobile-nav font-medium text-xs ">
+                  Investors
+                </th>
+                <th className="py-3 pr-7 text-mobile-nav font-medium text-xs ">
                   Amount
                 </th>
                 <th className="py-3 pr-7 text-mobile-nav font-medium text-xs ">
-                  Time Frame
-                </th>
-                <th className="py-3 pr-7 text-mobile-nav font-medium text-xs ">
-                  Investors
+                  Date/Time
                 </th>
                 <th className="py-3 pr-7 text-mobile-nav font-medium text-xs ">
                   Action
@@ -96,13 +56,15 @@ function InvestmentList() {
                 </div>
               </td>
               <td className="py-8">
+                <h1 className="font-normal text-deep text-xs">Paul Felix</h1>
+              </td>
+              <td className="py-8">
                 <h1 className="font-normal text-deep text-xs">N200,000</h1>
               </td>
               <td className="py-8">
-                <h1 className="font-normal text-deep text-xs">7 weeks</h1>
-              </td>
-              <td className="py-8">
-                <h1 className="font-normal text-deep text-xs">200</h1>
+                <h1 className="font-normal text-deep text-xs">
+                  Jul 12/ 3:00PM
+                </h1>
               </td>
 
               <td className="py-3">
@@ -130,13 +92,15 @@ function InvestmentList() {
                 </div>
               </td>
               <td className="py-8">
+                <h1 className="font-normal text-deep text-xs">Paul Felix</h1>
+              </td>
+              <td className="py-8">
                 <h1 className="font-normal text-deep text-xs">N200,000</h1>
               </td>
               <td className="py-8">
-                <h1 className="font-normal text-deep text-xs">7 weeks</h1>
-              </td>
-              <td className="py-8">
-                <h1 className="font-normal text-deep text-xs">200</h1>
+                <h1 className="font-normal text-deep text-xs">
+                  Jul 12/ 3:00PM
+                </h1>
               </td>
 
               <td className="py-3">
@@ -164,13 +128,15 @@ function InvestmentList() {
                 </div>
               </td>
               <td className="py-8">
+                <h1 className="font-normal text-deep text-xs">Paul Felix</h1>
+              </td>
+              <td className="py-8">
                 <h1 className="font-normal text-deep text-xs">N200,000</h1>
               </td>
               <td className="py-8">
-                <h1 className="font-normal text-deep text-xs">7 weeks</h1>
-              </td>
-              <td className="py-8">
-                <h1 className="font-normal text-deep text-xs">200</h1>
+                <h1 className="font-normal text-deep text-xs">
+                  Jul 12/ 3:00PM
+                </h1>
               </td>
 
               <td className="py-3">
@@ -198,13 +164,15 @@ function InvestmentList() {
                 </div>
               </td>
               <td className="py-8">
+                <h1 className="font-normal text-deep text-xs">Paul Felix</h1>
+              </td>
+              <td className="py-8">
                 <h1 className="font-normal text-deep text-xs">N200,000</h1>
               </td>
               <td className="py-8">
-                <h1 className="font-normal text-deep text-xs">7 weeks</h1>
-              </td>
-              <td className="py-8">
-                <h1 className="font-normal text-deep text-xs">200</h1>
+                <h1 className="font-normal text-deep text-xs">
+                  Jul 12/ 3:00PM
+                </h1>
               </td>
 
               <td className="py-3">
@@ -232,13 +200,15 @@ function InvestmentList() {
                 </div>
               </td>
               <td className="py-8">
+                <h1 className="font-normal text-deep text-xs">Paul Felix</h1>
+              </td>
+              <td className="py-8">
                 <h1 className="font-normal text-deep text-xs">N200,000</h1>
               </td>
               <td className="py-8">
-                <h1 className="font-normal text-deep text-xs">7 weeks</h1>
-              </td>
-              <td className="py-8">
-                <h1 className="font-normal text-deep text-xs">200</h1>
+                <h1 className="font-normal text-deep text-xs">
+                  Jul 12/ 3:00PM
+                </h1>
               </td>
 
               <td className="py-3">
@@ -285,4 +255,4 @@ function InvestmentList() {
   );
 }
 
-export default InvestmentList;
+export default PulloutList;

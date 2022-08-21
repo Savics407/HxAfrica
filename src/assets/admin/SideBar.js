@@ -13,7 +13,7 @@ function SideBar() {
   return (
     <div className="">
       <div className="side-nav">
-        <NavLink to="/admin-dashboard">
+        <NavLink to="/admin/dashboard">
           <div className="sidenav-items">
             {/* <MdDashboard className="s-icons" />
              */}
@@ -54,7 +54,7 @@ function SideBar() {
             <h1>Dashboard</h1>
           </div>
         </NavLink>
-        <NavLink to="/marchants">
+        <NavLink to="/admin/merchants">
           <div className="sidenav-items">
             {/* <FaRegUserCircle className="" /> */}
             <div className="s-icons">
@@ -106,7 +106,7 @@ function SideBar() {
                 />
               </svg>
             </div>
-            <h1>Marchants</h1>
+            <h1>Merchants</h1>
           </div>
         </NavLink>
         <NavLink to="/admin/investments">
@@ -168,7 +168,7 @@ function SideBar() {
             <h1>Investment</h1>
           </div>
         </NavLink>
-        <NavLink to="/settings">
+        <NavLink to="/admin/investors">
           <div className="sidenav-items">
             {/* <BiUserPin className="s-icons" /> */}
             <div className="s-icons">
@@ -203,7 +203,7 @@ function SideBar() {
             <h1>Investors</h1>
           </div>
         </NavLink>
-        <NavLink to="/staffs">
+        <NavLink to="/admin/staffs">
           <div className="sidenav-items">
             {/* <TiGroup className="s-icons" /> */}
             <div className="s-icons">
@@ -255,7 +255,7 @@ function SideBar() {
             <h1>Staffs</h1>
           </div>
         </NavLink>
-        <NavLink to="/settings">
+        <NavLink to="/admin/roles-permission">
           <div className="sidenav-items ">
             {/* <AiFillPropertySafety className="s-icons" />
              */}
@@ -293,7 +293,7 @@ function SideBar() {
           </div>
         </NavLink>
 
-        <NavLink to="/settings">
+        <NavLink to="/admin/settings">
           <div className="sidenav-items  ">
             {/* <RiSettings3Fill className="s-icons" /> */}
             <div className="s-icons">

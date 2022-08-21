@@ -30,6 +30,14 @@ import Staffs from "./assets/admin/Staffs";
 import Marchants from "./assets/admin/Marchants";
 import PullFunds from "./assets/admin/PullFunds";
 import AllInvestments from "./assets/admin/AllInvestments";
+import Approved from "./assets/admin/Approved";
+import Inactive from "./assets/admin/Inactive";
+import RelistedInvestments from "./assets/admin/RelistedInvestments";
+import PulloutRequest from "./assets/admin/PulloutRequest";
+import Investors from "./assets/admin/Investors";
+import Banned from "./assets/admin/Banned";
+import RolesPermission from "./assets/admin/RolesPermission";
+import AdminSettings from "./assets/admin/AdminSettings";
 
 function App() {
   return (
@@ -49,10 +57,24 @@ function App() {
           <Route path="/activities" element={<Activity />} />
           <Route path="/token" element={<Token />} />
           <Route path="/withdraw" element={<Withdraw />} />
-          <Route path="/staffs" element={<Staffs />} />
-          <Route path="/marchants" element={<Marchants />} />
-          <Route path="/pull-funds-request" element={<PullFunds />} />
+          <Route path="/admin/staffs" element={<Staffs />} />
+          <Route path="/admin/merchants" element={<Marchants />} />
+          <Route path="/admin/investors" element={<Investors />} />
+          <Route path="/admin/roles-permission" element={<RolesPermission />} />
+          <Route path="/admin/settings" element={<AdminSettings />} />
+          <Route path="/admin/investors/banned" element={<Banned />} />
+          <Route path="/merchants/pull-funds-request" element={<PullFunds />} />
           <Route path="/admin/investments" element={<AllInvestments />} />
+          <Route path="/admin/investments/approved" element={<Approved />} />
+          <Route path="/admin/investments/inactive" element={<Inactive />} />
+          <Route
+            path="/admin/investments/pullout-request"
+            element={<PulloutRequest />}
+          />
+          <Route
+            path="/admin/investments/relisted"
+            element={<RelistedInvestments />}
+          />
           <Route path="/details" element={<Details />} />
           <Route path="/addbank" element={<AddBank />} />
           <Route path="/bvn" element={<Processing />} />
@@ -60,7 +82,7 @@ function App() {
           <Route path="/investment" element={<Investment />} />
           <Route path="/investments/ongoing" element={<Ongoing />} />
           <Route path="/investments/completed" element={<Completed />} />
-          <Route path="/admin-dashboard" element={<Admin_Dashboard />} />
+          <Route path="/admin/dashboard" element={<Admin_Dashboard />} />
           <Route
             path="/investments/relisted-investment"
             element={<Relisted />}

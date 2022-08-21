@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 function Protabs() {
   return (
     <div>
-      <div className="flex border-b tab my-4 border-vestabs border text-vestabs text-base font-semibold">
+      <div className="flex border-b tab my-4 border-vestabsborder text-vestabs text-base font-semibold">
         <div className="tabs mr-8">
           <NavLink to="/settings">
             <div className="vestabs">

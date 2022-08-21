@@ -1,9 +1,9 @@
 import React from "react";
 import Header from "./Admin_header";
 import SideBar from "./SideBar";
-import Products from "./Products";
 import InvestmentCard from "./InvestmentCard";
 import InvestmentList from "./InvestmentList";
+import OngoingInvestments from "./OngoingInvestments";
 
 function AllInvestments() {
   return (
@@ -24,7 +24,7 @@ function AllInvestments() {
               <InvestmentList />
             </div>
             <div className="w-2/6">
-              <Products />
+              <OngoingInvestments />
             </div>
           </div>
         </div>

@@ -157,12 +157,20 @@ body {
    .input {
       @apply flex flex-col mb-5
     }
-  
+    .merchant {
+      @apply flex flex-col mb-5
+    }
+  .merchant label {
+      @apply font-normal text-base mb-2 text-footer
+  }
     .box {
       @apply border rounded-xl border-border bg-input p-3 text-sm focus-within:shadow-lg;
       outline: none
     }
     
+    input[type="file"] {
+      display: none
+    }
     .box option {
       @apply bg-input
     }
@@ -223,6 +231,9 @@ body {
       @apply text-dark text-base border-b-4 border-green font-medium   
     }
   
+    .tab .active {
+      @apply border-b-2 border-green text-green rounded-none before:hidden
+    }
     .welcome {
       background-image:url(../src/assets/images/frame.png), url(../src/assets/images/reicNG.svg);
       background-repeat: no-repeat, no-repeat;
