@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { MdDashboard } from "react-icons/md";
 import { FaRegUserCircle } from "react-icons/fa";
@@ -10,8 +10,16 @@ import { TiGroup } from "react-icons/ti";
 import { BiLogOut } from "react-icons/bi";
 
 function SideBar() {
+  const [fix, setFix] = useState(false);
+  function sideBarFixed() {
+    if (window.scrollY >= 150) {
+      setFix(true);
+    } else setFix(false);
+  }
+
+  window.addEventListener("scroll", sideBarFixed);
   return (
-    <div className="">
+    <div className={`${fix ? "fixed -top-10 w-1/5" : "w-full"}`}>
       <div className="side-nav">
         <NavLink to="/admin/dashboard">
           <div className="sidenav-items">

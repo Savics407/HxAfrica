@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Header from "./Admin_header";
 import SideBar from "./SideBar";
 import totalUsers from "../images/totalUsers.svg";
@@ -16,11 +16,19 @@ import moment from "moment";
 import { FaAngleRight } from "react-icons/fa";
 
 function Admin_Dashboard() {
+  // const [fix, setFix] = useState(false);
+  // function sideBarFixed() {
+  //   if (window.scrollY >= 150) {
+  //     setFix(true);
+  //   } else setFix(false);
+  // }
+
+  // window.addEventListener("scroll", sideBarFixed);
   return (
     <div className="bg-dashbg font-family">
       <Header />
       <div className=" flex justify-between">
-        <div className="w-1/5 border-r bg-white">
+        <div className="w-1/5 border-r bg-white relative">
           <SideBar />
         </div>
         <div className="w-53 pt-5 mb-20">
