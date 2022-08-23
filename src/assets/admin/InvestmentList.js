@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FaAngleDown } from "react-icons/fa";
 import avater from "../images/Avatar.svg";
 import { MdArrowBackIosNew } from "react-icons/md";
@@ -45,6 +45,31 @@ function InvestmentTabs() {
   );
 }
 function InvestmentList() {
+  const [pending, setPending] = useState();
+  async function fetchInvestment() {
+    const token = localStorage.getItem("user-token");
+    // e.preventDefault();
+    const response = await fetch(
+      "https://reic.api.simpoo.biz/api/admin/fetch_pending_investments",
+      {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+          Accept: "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    const result = await response.json();
+    console.log(result.data);
+    // alert(result.data.name);
+    setPending(result?.data);
+  }
+
+  useEffect(() => {
+    fetchInvestment();
+  }, []);
+
   return (
     <>
       <InvestmentTabs />
@@ -55,7 +80,7 @@ function InvestmentList() {
               Pending investments{" "}
             </span>{" "}
             <span className="rounded-full bg-green text-white px-2 text-xs ">
-              234
+              {pending?.length}
             </span>
           </h1>
           <button className="text-sm text-dark">Select Multiple</button>

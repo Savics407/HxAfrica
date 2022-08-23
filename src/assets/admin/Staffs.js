@@ -12,6 +12,7 @@ function Staffs() {
   const [create, setCreate] = useState(false);
   const [image, setImage] = useState();
   const [preview, setPreview] = useState();
+
   useEffect(() => {
     if (image) {
       const reader = new FileReader();
@@ -19,10 +20,44 @@ function Staffs() {
         setPreview(reader.result);
       };
       reader.readAsDataURL(image);
+      // alert(reader.readAsDataURL(image));
     } else {
       setPreview(null);
     }
   }, [image]);
+
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    image: "",
+  });
+  async function addStaff() {
+    const token = localStorage.getItem("user-token");
+    // e.preventDefault();
+    const payLoad = {
+      name: formData.name,
+      email: "example@gmail.com",
+      phone: formData.phone,
+      image: { preview },
+    };
+    const response = await fetch(
+      "https://reic.api.simpoo.biz/api/admin/add_staff",
+      {
+        method: "POST",
+        body: JSON.stringify(payLoad),
+
+        headers: {
+          "Content-type": "application/json",
+          Accept: "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    const result = await response.json();
+    console.log(result.data);
+    // alert(result.data.name);
+  }
   return (
     <div className="bg-dashbg font-family">
       {create && (
@@ -81,7 +116,10 @@ function Staffs() {
                     type="text"
                     placeholder="enter merchant name"
                     className="box"
-                    // value="000000"
+                    value={formData.name}
+                    onChange={(event) =>
+                      setFormData({ ...formData, name: event.target.value })
+                    }
                   />
                 </div>
 
@@ -92,7 +130,10 @@ function Staffs() {
                     type="tel"
                     placeholder="+234 |"
                     className="box"
-                    // value="000000"
+                    value={formData.phone}
+                    onChange={(event) =>
+                      setFormData({ ...formData, phone: event.target.value })
+                    }
                   />
                 </div>
 
@@ -106,7 +147,7 @@ function Staffs() {
                       Add Image
                     </label>
                     <h1 className="text-product font-normal text-tiny">
-                      Upload product Image
+                      Upload Staff Image
                     </h1>
                     <input
                       type="file"
@@ -148,6 +189,10 @@ function Staffs() {
                     type="submit"
                     className=" cursor-pointer bg-green py-3 px-8 outline-none rounded-full"
                     value="Add Staff"
+                    onClick={() => {
+                      addStaff();
+                      alert(image);
+                    }}
                   />
                 </div>
               </div>

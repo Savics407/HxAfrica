@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FaAngleDown } from "react-icons/fa";
 import search from "../images/Small.svg";
 import avater from "../images/Avatar.svg";
@@ -8,6 +8,30 @@ import { NavLink, Link } from "react-router-dom";
 import { MdArrowForwardIos } from "react-icons/md";
 
 function StaffList() {
+  const [staffs, setStaffs] = useState();
+  async function fetchStaffs() {
+    const token = localStorage.getItem("user-token");
+    // e.preventDefault();
+    const response = await fetch(
+      "https://reic.api.simpoo.biz/api/admin/fetch_staffs",
+      {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+          Accept: "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    const result = await response.json();
+    console.log(result.data);
+    // alert(result.data.name);
+    setStaffs(result?.data);
+  }
+
+  useEffect(() => {
+    fetchStaffs();
+  }, []);
   return (
     <>
       <div className="flex justify-between my-6">
@@ -35,7 +59,7 @@ function StaffList() {
           <h1 className="">
             <span className="text-grayy text-sm mr-2">List of Staffs </span>{" "}
             <span className="rounded-full bg-green text-white px-2 text-xs ">
-              234
+              {staffs?.length}
             </span>
           </h1>
         </div>

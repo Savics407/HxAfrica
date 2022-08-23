@@ -30,7 +30,7 @@ function PullList() {
       </div>
 
       <Martabs />
-      <div className="rounded-lg bg-white mt-2 mb-3 pb-10">
+      <div className="rounded-lg bg-white mt-2 pb-10">
         <div className="py-7 px-9 text-lg text-mobile-nav font-medium border-b cursor-pointer">
           <h1 className="">
             <span className="text-grayy text-sm mr-2">Request </span>{" "}
@@ -40,7 +40,7 @@ function PullList() {
           </h1>
         </div>
         <div className="">
-          <table className=" w-full table-fixed">
+          <table className=" w-full table-auto">
             <thead className="">
               <tr className="text-left bg-bar">
                 <th className="py-3 text-mobile-nav font-medium text-xs pl-9 w-60">

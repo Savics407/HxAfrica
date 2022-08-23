@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FaAngleDown } from "react-icons/fa";
 import avater from "../images/Avatar.svg";
 import { MdArrowBackIosNew } from "react-icons/md";
@@ -8,6 +8,31 @@ import InvestmentTabs from "./InvestmentTabs";
 import realEstate from "../images/realEstate.svg";
 
 function RelistedList() {
+  const [relisted, setRelisted] = useState();
+  async function fetchRelisted() {
+    const token = localStorage.getItem("user-token");
+    // e.preventDefault();
+    const response = await fetch(
+      "https://reic.api.simpoo.biz/api/admin/fetch_relisted_investment",
+      {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+          Accept: "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    const result = await response.json();
+    console.log(result.data);
+    // alert(result.data.name);
+    setRelisted(result?.data);
+  }
+
+  useEffect(() => {
+    fetchRelisted();
+  }, []);
+
   return (
     <>
       <InvestmentTabs />
@@ -18,7 +43,7 @@ function RelistedList() {
               Relisted investments{" "}
             </span>{" "}
             <span className="rounded-full bg-green text-white px-2 text-xs ">
-              234
+              {relisted?.length}
             </span>
           </h1>
         </div>
@@ -43,36 +68,38 @@ function RelistedList() {
                 </th>
               </tr>
             </thead>
-            <tr className="border-b font-inter">
-              <td className="py-8 pl-5 flex items-center">
-                <div className="mr-2">
-                  <img src={realEstate} alt="Investment Icon" />
-                </div>
-                <div>
-                  <h1 className="font-normal  text-deep text-sm">
-                    Crowdfunding
-                  </h1>
-                  <h1 className="font-normal text-green text-xs">
-                    Real Estate
-                  </h1>
-                </div>
-              </td>
-              <td className="py-8">
-                <h1 className="font-normal text-deep text-xs">N200,000</h1>
-              </td>
-              <td className="py-8">
-                <h1 className="font-normal text-deep text-xs">7 weeks</h1>
-              </td>
-              <td className="py-8">
-                <h1 className="font-normal text-deep text-xs">200</h1>
-              </td>
+            {relisted?.map((relisted) => (
+              <tr className="border-b font-inter">
+                <td className="py-8 pl-5 flex items-center">
+                  <div className="mr-2">
+                    <img src={realEstate} alt="Investment Icon" />
+                  </div>
+                  <div className=" w-44">
+                    <h1 className="font-normal truncate text-deep text-sm">
+                      {relisted.product.title}
+                    </h1>
+                    <h1 className="font-normal text-green text-xs">
+                      Real Estate
+                    </h1>
+                  </div>
+                </td>
+                <td className="py-8">
+                  <h1 className="font-normal text-deep text-xs">N200,000</h1>
+                </td>
+                <td className="py-8">
+                  <h1 className="font-normal text-deep text-xs">7 weeks</h1>
+                </td>
+                <td className="py-8">
+                  <h1 className="font-normal text-deep text-xs">200</h1>
+                </td>
 
-              <td className="py-3">
-                <button className="font-medium text-sm font-inter bg-relist text-relisted py-1 px-2.5 rounded-full ">
-                  Relisted
-                </button>
-              </td>
-            </tr>
+                <td className="py-3">
+                  <button className="font-medium text-sm font-inter bg-relist text-relisted py-1 px-2.5 rounded-full ">
+                    Relisted
+                  </button>
+                </td>
+              </tr>
+            ))}
 
             <tr className="border-b font-inter">
               <td className="py-8 pl-5 flex items-center">

@@ -1,9 +1,32 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import software from "../images/software.svg";
 import realEstate from "../images/realEstate.svg";
 import { HiOutlineDotsVertical } from "react-icons/hi";
 
 function OngoingInvestments() {
+  const [ongoing, setOngoing] = useState();
+  async function fetchOngoing() {
+    const token = localStorage.getItem("user-token");
+    // e.preventDefault();
+    const response = await fetch(
+      "https://reic.api.simpoo.biz/api/admin/fetch_ongoing_investments",
+      {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+          Accept: "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    const result = await response.json();
+    console.log(result.data);
+    // alert(result.data.name);
+    setOngoing(result?.data);
+  }
+  useEffect(() => {
+    fetchOngoing();
+  }, []);
   return (
     <div>
       <div className="rounded-lg bg-white mt-5 pb-28">

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FaAngleDown } from "react-icons/fa";
 import search from "../images/Small.svg";
 import avater from "../images/Avatar.svg";
@@ -8,6 +8,30 @@ import { NavLink, Link } from "react-router-dom";
 import { MdArrowForwardIos } from "react-icons/md";
 
 function MarchantsList() {
+  const [merchants, setMerchants] = useState();
+  async function fetchMerchants() {
+    const token = localStorage.getItem("user-token");
+    // e.preventDefault();
+    const response = await fetch(
+      "https://reic.api.simpoo.biz/api/admin/fetch_merchants",
+      {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+          Accept: "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    const result = await response.json();
+    console.log(result.data);
+    // alert(result.data.name);
+    setMerchants(result?.data);
+  }
+  useEffect(() => {
+    fetchMerchants();
+  }, []);
+
   return (
     <>
       <div className="flex justify-between my-6">
@@ -46,12 +70,12 @@ function MarchantsList() {
           </div>
         </NavLink>
       </div>
-      <div className="rounded-lg bg-white mt-2 mb-3 pb-10">
+      <div className="rounded-lg bg-white mt-2 pb-10">
         <div className="py-7 px-9 text-lg text-mobile-nav font-medium border-b cursor-pointer">
           <h1 className="">
             <span className="text-grayy text-sm mr-2">List of Merchants </span>{" "}
             <span className="rounded-full bg-green text-white px-2 text-xs ">
-              234
+              {merchants?.length}
             </span>
           </h1>
         </div>
@@ -76,197 +100,49 @@ function MarchantsList() {
                 </th>
               </tr>
             </thead>
-            <tr className="border-b font-inter">
-              <td className="py-8 pl-5 flex">
-                <div className="mr-2">
-                  <img src={avater} alt="merchant avater" />
-                </div>
-                <div>
-                  <h1 className="font-normal  text-deep text-sm">
-                    Marchant Name
+            {merchants?.map((merchant) => (
+              <tr className="border-b font-inter" key={merchant.id}>
+                <td className="py-8 pl-5 flex">
+                  <div className="mr-2">
+                    <img src={avater} alt="merchant avater" />
+                  </div>
+                  <div>
+                    <h1 className="font-normal  text-deep text-sm">
+                      {merchant.name}
+                    </h1>
+                    <h1 className="font-normal text-statustext text-xs">
+                      200 Products
+                    </h1>
+                  </div>
+                </td>
+                <td className="py-8">
+                  <h1 className="font-normal text-deep text-xs">
+                    {merchant.email}
                   </h1>
-                  <h1 className="font-normal text-statustext text-xs">
-                    200 Products
+                </td>
+                <td className="py-8">
+                  <h1 className="font-normal text-deep text-xs w-32">
+                    {merchant.address}
                   </h1>
-                </div>
-              </td>
-              <td className="py-8">
-                <h1 className="font-normal text-deep text-xs">
-                  example@gmail.com
-                </h1>
-              </td>
-              <td className="py-8">
-                <h1 className="font-normal text-deep text-xs w-32">
-                  7 Bauchi Road Jos North, Abuja,Nigeria
-                </h1>
-              </td>
-              <td className="py-8">
-                <h1 className="font-normal text-deep text-xs">Abuja/Wuse II</h1>
-              </td>
+                </td>
+                <td className="py-8">
+                  <h1 className="font-normal text-deep text-xs">
+                    {merchant.city}
+                  </h1>
+                </td>
 
-              <td className="py-3">
-                <button className="font-medium text-xs font-inter text-blue py-2 px-2 border-r ">
-                  Edit
-                </button>
-                <button className="font-medium text-xs font-inter text-red py-1 px-2">
-                  Remove
-                </button>
-              </td>
-            </tr>
-
-            <tr className="border-b font-inter">
-              <td className="py-8 pl-5 flex">
-                <div className="mr-2">
-                  <img src={avater} alt="merchant avater" />
-                </div>
-                <div>
-                  <h1 className="font-normal  text-deep text-sm">
-                    Marchant Name
-                  </h1>
-                  <h1 className="font-normal text-statustext text-xs">
-                    200 Products
-                  </h1>
-                </div>
-              </td>
-              <td className="py-8">
-                <h1 className="font-normal text-deep text-xs">
-                  example@gmail.com
-                </h1>
-              </td>
-              <td className="py-8">
-                <h1 className="font-normal text-deep text-xs w-32">
-                  7 Bauchi Road Jos North, Abuja,Nigeria
-                </h1>
-              </td>
-              <td className="py-8">
-                <h1 className="font-normal text-deep text-xs">Abuja/Wuse II</h1>
-              </td>
-
-              <td className="py-3">
-                <button className="font-medium text-xs font-inter text-blue py-2 px-2 border-r ">
-                  Edit
-                </button>
-                <button className="font-medium text-xs font-inter text-red py-1 px-2">
-                  Remove
-                </button>
-              </td>
-            </tr>
-
-            <tr className="border-b font-inter">
-              <td className="py-8 pl-5 flex">
-                <div className="mr-2">
-                  <img src={avater} alt="merchant avater" />
-                </div>
-                <div>
-                  <h1 className="font-normal  text-deep text-sm">
-                    Marchant Name
-                  </h1>
-                  <h1 className="font-normal text-statustext text-xs">
-                    200 Products
-                  </h1>
-                </div>
-              </td>
-              <td className="py-8">
-                <h1 className="font-normal text-deep text-xs">
-                  example@gmail.com
-                </h1>
-              </td>
-              <td className="py-8">
-                <h1 className="font-normal text-deep text-xs w-32">
-                  7 Bauchi Road Jos North, Abuja,Nigeria
-                </h1>
-              </td>
-              <td className="py-8">
-                <h1 className="font-normal text-deep text-xs">Abuja/Wuse II</h1>
-              </td>
-
-              <td className="py-3">
-                <button className="font-medium text-xs font-inter text-blue py-2 px-2 border-r ">
-                  Edit
-                </button>
-                <button className="font-medium text-xs font-inter text-red py-1 px-2">
-                  Remove
-                </button>
-              </td>
-            </tr>
-
-            <tr className="border-b font-inter">
-              <td className="py-8 pl-5 flex">
-                <div className="mr-2">
-                  <img src={avater} alt="merchant avater" />
-                </div>
-                <div>
-                  <h1 className="font-normal  text-deep text-sm">
-                    Marchant Name
-                  </h1>
-                  <h1 className="font-normal text-statustext text-xs">
-                    200 Products
-                  </h1>
-                </div>
-              </td>
-              <td className="py-8">
-                <h1 className="font-normal text-deep text-xs">
-                  example@gmail.com
-                </h1>
-              </td>
-              <td className="py-8">
-                <h1 className="font-normal text-deep text-xs w-32">
-                  7 Bauchi Road Jos North, Abuja,Nigeria
-                </h1>
-              </td>
-              <td className="py-8">
-                <h1 className="font-normal text-deep text-xs">Abuja/Wuse II</h1>
-              </td>
-
-              <td className="py-3">
-                <button className="font-medium text-xs font-inter text-blue py-2 px-2 border-r ">
-                  Edit
-                </button>
-                <button className="font-medium text-xs font-inter text-red py-1 px-2">
-                  Remove
-                </button>
-              </td>
-            </tr>
-
-            <tr className="border-b font-inter">
-              <td className="py-8 pl-5 flex">
-                <div className="mr-2">
-                  <img src={avater} alt="merchant avater" />
-                </div>
-                <div>
-                  <h1 className="font-normal  text-deep text-sm">
-                    Marchant Name
-                  </h1>
-                  <h1 className="font-normal text-statustext text-xs">
-                    200 Products
-                  </h1>
-                </div>
-              </td>
-              <td className="py-8">
-                <h1 className="font-normal text-deep text-xs">
-                  example@gmail.com
-                </h1>
-              </td>
-              <td className="py-8">
-                <h1 className="font-normal text-deep text-xs w-32">
-                  7 Bauchi Road Jos North, Abuja,Nigeria
-                </h1>
-              </td>
-              <td className="py-8">
-                <h1 className="font-normal text-deep text-xs">Abuja/Wuse II</h1>
-              </td>
-
-              <td className="py-3">
-                <button className="font-medium text-xs font-inter text-blue py-2 px-2 border-r ">
-                  Edit
-                </button>
-                <button className="font-medium text-xs font-inter text-red py-1 px-2">
-                  Remove
-                </button>
-              </td>
-            </tr>
+                <td className="py-3">
+                  <button className="font-medium text-xs font-inter text-blue py-2 px-2 border-r ">
+                    Edit
+                  </button>
+                  <button className="font-medium text-xs font-inter text-red py-1 px-2">
+                    Remove
+                  </button>
+                </td>
+              </tr>
+            ))}
           </table>
-          <div className=" flex pt-20 px-7 items-center justify-between">
+          {/* <div className=" flex pt-20 px-7 items-center justify-between">
             <div className="border rounded-lg bg-page text-footer text-sm p-3">
               <span>Page 1 of 32</span>
             </div>
@@ -293,7 +169,7 @@ function MarchantsList() {
                 <MdArrowForwardIos />
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </>
