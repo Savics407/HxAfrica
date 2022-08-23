@@ -352,11 +352,11 @@ function Profile() {
                 className="text-blue border rounded-full py-1 px-4 font-bold text-sm my-3"
                 onClick={() => setAvailable(true)}
               >
-                Change Profile Picture
+                Change Avater
               </button>
-              <h1 className="text-red text-sm cursor-pointer" onClick={remove}>
+              {/* <h1 className="text-red text-sm cursor-pointer" onClick={remove}>
                 Remove Picture
-              </h1>
+              </h1> */}
             </div>
           </div>
           <div className="my-14 text-footer">

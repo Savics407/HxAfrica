@@ -266,7 +266,7 @@ body {
       @apply text-secondary font-normal lg:text-xs text-xxm
     }
 
-    .circle {
+    /* .circle {
       fill: none;
       stroke: url(#GradientColor);
       stroke-width: 25px;
@@ -303,12 +303,11 @@ body {
   
     @keyframes anim {
       100% {
-        /* stroke-dashoffset: 165; */
-      }
-    }
+        stroke-dashoffset: 165;
+    } */
 
     .section {
-      @apply lg:w-1/2 w-full
+      @apply lg:w-1/2 w-full p-1
     }
 
     .section h1 {
@@ -385,11 +384,11 @@ input[type=number] {
            @apply p-3 justify-between w-full 
          }
     .categories {
-      @apply rounded-xl mb-5 px-10 py-3 w-per relative
+      @apply rounded-xl mb-5 px-5 lg:px-10 py-3 w-per relative
     }
 
 /* .cate-block {
-  @apply w-60  
+  @apply border-2
 } */
 
 

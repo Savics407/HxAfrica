@@ -2,8 +2,8 @@ import moment from "moment";
 import React, { useEffect, useState } from "react";
 import * as CurrencyFormat from "react-currency-format";
 import box from "./images/Box.png";
-import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
-import 'react-circular-progressbar/dist/styles.css';
+import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
+import "react-circular-progressbar/dist/styles.css";
 
 function IncomingROI() {
   const [available, setAvailable] = useState(false);
@@ -62,7 +62,9 @@ function IncomingROI() {
                       </div>
                       <div className="income">
                         <h1>Expected Date</h1>
-                        <p>{moment(posts[0].due_date).format("MMM DD, yyyy")}</p>
+                        <p>
+                          {moment(posts[0].due_date).format("MMM DD, yyyy")}
+                        </p>
                       </div>
                     </div>
                     <div className="flex justify-between">
@@ -83,17 +85,24 @@ function IncomingROI() {
                       <div className="income">
                         <h1>Amount in Reic Token</h1>
                         <p>
-                          {((posts[0].amount / 100) * 10 + posts[0].amount) / 50000}{" "}
-                      REIC
-                    </p>
+                          {((posts[0].amount / 100) * 10 + posts[0].amount) /
+                            50000}{" "}
+                          REIC
+                        </p>
                       </div>
                     </div>
                   </div>
-                  <div className="lg:w-2/5 lg:p-4 py-4 px-1 ">
+                  <div className="lg:w-2/5 lg:p-4 py-4 px-1  ">
                     <div className=" rounded-full lg:w-48 lg:h-48 w-24 h-24 m-auto flex items-center justify-around relative font-semibold">
                       <CircularProgressbar
-                        value={moment(posts[0].due_date).diff(new Date(), "Days")}
-                        text={`${moment(posts[0].due_date).diff(new Date(), "Days")} Days left`}
+                        value={moment(posts[0].due_date).diff(
+                          new Date(),
+                          "Days"
+                        )}
+                        text={`${moment(posts[0].due_date).diff(
+                          new Date(),
+                          "Days"
+                        )} Days left`}
                         // value={20}
                         // text={10}
                         strokeWidth={15}
@@ -104,10 +113,10 @@ function IncomingROI() {
                           rotation: 0.04,
 
                           // Whether to use rounded or flat corners on the ends - can use 'butt' or 'round'
-                          strokeLinecap: 'round',
+                          strokeLinecap: "round",
 
                           // Text size
-                          textSize: '9px',
+                          textSize: "9px",
 
                           // How long animation takes to go from one percentage to another, in seconds
                           pathTransitionDuration: 0.5,
@@ -116,27 +125,26 @@ function IncomingROI() {
                           // pathTransition: 'none',
 
                           // Colors
-                          pathColor: '#008E10',
-                          textColor: '#1E2335',
-                          trailColor: '#F8F8F9',
-                          backgroundColor: '#F8F8F9',
+                          pathColor: "#008E10",
+                          textColor: "#1E2335",
+                          trailColor: "#F8F8F9",
+                          backgroundColor: "#F8F8F9",
                         })}
                       />
-
                     </div>
                   </div>
                 </div>
               ))}
           </>
         ) : (
-            <div className="flex flex-col items-center justify-center py-20">
-              <h1 className="font-semibold text-xs text-statustext text-center -ml-10">
-                Oh oh! You have no active
+          <div className="flex flex-col items-center justify-center py-20">
+            <h1 className="font-semibold text-xs text-statustext text-center -ml-10">
+              Oh oh! You have no active
               <br />
               investments at this time
             </h1>
-            </div>
-          )}
+          </div>
+        )}
       </div>
     </>
   );

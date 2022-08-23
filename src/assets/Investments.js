@@ -115,18 +115,19 @@ function Investments() {
           <div className="cat flex flex-wrap ">
             {categories?.map((post) => (
               <div
-                className={`categories bg-light-purple ${post.product_category === "renovate"
-                  ? "bg-light-orange"
-                  : post.product_category === "mortgage"
+                className={`categories bg-light-purple ${
+                  post.product_category === "renovate"
+                    ? "bg-light-orange"
+                    : post.product_category === "mortgage"
                     ? "bg-light-blue"
                     : post.product_category === "sales"
-                      ? "bg-sky-blue"
-                      : "bg-light-purple"
-                  }`}
+                    ? "bg-sky-blue"
+                    : "bg-light-purple"
+                }`}
               >
                 <div className="cate-block">
-                  <div className="flex text-dark py-3">
-                    <div className="mr-3">
+                  <div className="flex lg:flex-row flex-col text-dark py-3">
+                    <div className="mr-3 mb-2 lg:mb-0">
                       {/* <img src={renovate} alt="investment_icon" /> */}
                       {post.product_category === "renovate" ? (
                         <img src={renovate} alt="investment_icon" />
@@ -135,8 +136,8 @@ function Investments() {
                       ) : post.product_category === "sales" ? (
                         <img src={sales} alt="investment_icon" />
                       ) : (
-                              <img src={invest_icon} alt="investment_icon" />
-                            )}
+                        <img src={invest_icon} alt="investment_icon" />
+                      )}
                     </div>
                     <div>
                       <h1 className="text-sm font-medium text-dark capitalize">
@@ -162,23 +163,28 @@ function Investments() {
         </div>
 
         <div className="px-4 py-6 flex flex-col lg:flex-row">
-          <div className="section pr-4">
+          <div className="section">
             <h1>New Investments</h1>
             {posts
               ?.filter((post) => post === posts[0])
               .map((post) => (
-                <div key={post.id} className="real-estate">
-                  <div className="mr-1.5 w-1/3 h-full rounded-full">
+                <div
+                  key={post.id}
+                  className="p-3 mb-4 bg-mainbg rounded-2xl flex items-center justify-between"
+                >
+                  <div className="w-1/3 h-full rounded-full">
                     <img
                       src={raw}
                       alt="rawland"
                       className="w-full h-full object-cover rounded-2xl"
                     />
                   </div>
-                  <div className="w-2/3">
+                  <div className="w-2/3 pl-3 flex flex-col">
                     <div className="mb-2">
                       {/* <h1 className="!mb-0">{post.title}</h1> */}
-                      <abbr title={post.title} className="no-underline"><h1 className="!mb-0 truncate">{post.title}</h1></abbr>
+                      <abbr title={post.title} className="no-underline">
+                        <h1 className="!mb-0 truncate">{post.title}</h1>
+                      </abbr>
                       <h2 className="text-pink text-xs">
                         {" "}
                         {post.interest_rate}% Interest Rate
@@ -211,7 +217,7 @@ function Investments() {
                         </span>
                       </p>
                     </div>
-                    <div className="flex justify-between w-full">
+                    <div className="flex w-full">
                       <div className="flex items-center">
                         <img src={users1} alt="frame" className="z-0" />
                         <img src={users2} alt="frame" className="-ml-3 z-10" />
@@ -221,7 +227,7 @@ function Investments() {
                           +24
                         </div>
                       </div>
-                      <div>
+                      <div className="pl-4">
                         <Link to="/investment">
                           <button className="bg-white text-green text-tiny font-normal w-24 h-7 rounded-2xl">
                             Join Now
@@ -236,97 +242,107 @@ function Investments() {
           <div className="section">
             <h1>Ongoing Investments</h1>
             {ongoing ? (
-              <div className="flex flex-wrap mb-4">
-                {/* {data
-                  ?.filter((post) => post.length)
-                  .map((post) => ( */}
-                <Link to="/investments/ongoing">
-
-                  <div
-                    key={data[0].id}
-                    className="real-estate"
-
-                  >
-                    <div className="mr-2 w-1/3">
-                      <img src={land} alt="rawland" />
-                    </div>
-                    <div className="w-2/3">
-                      <div className="mb-2 flex justify-between">
-                        <div className="w-4/5">
-                          {" "}
-                          <abbr title={data[0].product.title} className="no-underline"><h1 className="!mb-0 truncate">{data[0].product.title}</h1></abbr>
-                          <h2 className="text-green text-xs">
-                            {data[0].interest}% Interest Rate
-                          </h2>
-                        </div>
-                        {data[0].product.cost === data[0].product.threshold && <div
+              <Link to="/investments/ongoing">
+                <div
+                  key={data[0].id}
+                  className="p-3 mb-4 bg-mainbg rounded-2xl flex items-center justify-between"
+                >
+                  {/* <div className="mr-2 h-full w-1/3">
+                    <img src={land} alt="rawland" />
+                  </div> */}
+                  <div className="w-1/3 h-full rounded-full">
+                    <img
+                      src={land}
+                      alt="rawland"
+                      className="w-full h-full object-cover rounded-2xl"
+                    />
+                  </div>
+                  <div className="w-2/3 pl-3 flex flex-col">
+                    <div className="mb-2">
+                      <div className="w-4/5">
+                        {" "}
+                        <abbr
+                          title={data[0].product.title}
+                          className="no-underline"
+                        >
+                          <h1 className="!mb-0 truncate">
+                            {data[0].product.title}
+                          </h1>
+                        </abbr>
+                        <h2 className="text-green text-xs">
+                          {data[0].interest}% Interest Rate
+                        </h2>
+                      </div>
+                      {data[0].product.cost === data[0].product.threshold && (
+                        <div
                         // onClick={() => {
                         //   productDetails(post.id);
                         // }}
                         >
                           <HiOutlineArrowRight className="text-lg text-arrow cursor-pointer" />
-                        </div>}
-
-                      </div>
-                      <div className="text-tiny text-grayy mb-3">
-                        <p className="!mb-0">
-                          Time Frame:{" "}
-                          <span className="text-darkgray">
-                            {data[0].duration} Days
-                          </span>
-                        </p>
-                        <p className="">
-                          Expires -{" "}
-                          <span className="text-darkgray">
-                            {moment(data[0].due_date).format("MMM DD, yyyy")}
-                          </span>
-                        </p>
-                      </div>
-                      <div className="text-grayy text-tiny bg-mainsec p-2 rounded-lg mb-2 w-48">
-                        <p className="">
-                          Property Worth{" "}
-                          <span className="text-darkgray text-xs font-medium ml-2">
-                            N
-                            <CurrencyFormat
-                              value={data[0].product.cost}
-                              displayType={"text"}
-                              thousandSeparator={true}
-                            />
-                          </span>
-                        </p>
-                      </div>
-                      {data[0].product.cost > data[0].product.threshold ? <div>
+                        </div>
+                      )}
+                    </div>
+                    <div className="text-tiny text-grayy mb-3">
+                      <p className="!mb-0">
+                        Time Frame:{" "}
+                        <span className="text-darkgray">
+                          {data[0].duration} Days
+                        </span>
+                      </p>
+                      <p className="">
+                        Expires -{" "}
+                        <span className="text-darkgray">
+                          {moment(data[0].due_date).format("MMM DD, yyyy")}
+                        </span>
+                      </p>
+                    </div>
+                    <div className="text-grayy text-tiny bg-mainsec p-2 rounded-lg mb-2 w-48">
+                      <p className="">
+                        Property Worth{" "}
+                        <span className="text-darkgray text-xs font-medium ml-2">
+                          N
+                          <CurrencyFormat
+                            value={data[0].product.cost}
+                            displayType={"text"}
+                            thousandSeparator={true}
+                          />
+                        </span>
+                      </p>
+                    </div>
+                    {data[0].product.cost > data[0].product.threshold ? (
+                      <div>
                         <button
                           className="bg-white text-green text-tiny font-normal w-24 h-7 rounded-2xl"
-                        // onClick={() => {
-                        //   productDetails(post.id);
-                        // }}
+                          // onClick={() => {
+                          //   productDetails(post.id);
+                          // }}
                         >
                           Join Now
-                          </button>
-                      </div> : <h1 className="text-endsin text-xxm font-medium flex items-center bg-ongoing w-fit px-2.5 py-1.5 rounded-full">
-                          <FiArrowUp className="text-tiny text-rose mr-1 mb-1 " />{" "}
-                          <span className="">
-                            {moment(data[0].due_date).diff(new Date(), "Days")} Days:{" "}
-                            {/* {moment(post.due_date).format("h:m")} */}
-                           to go
+                        </button>
+                      </div>
+                    ) : (
+                      <h1 className="text-endsin text-xxm font-medium flex items-center bg-ongoing w-fit px-2.5 py-1.5 rounded-full">
+                        <FiArrowUp className="text-tiny text-rose mr-1 mb-1 " />{" "}
+                        <span className="">
+                          {moment(data[0].due_date).diff(new Date(), "Days")}{" "}
+                          Days: {/* {moment(post.due_date).format("h:m")} */}
+                          to go
                         </span>
-                        </h1>}
-
-                    </div>
+                      </h1>
+                    )}
                   </div>
-                </Link>
-                {/* ))} */}
-              </div>
+                </div>
+              </Link>
             ) : (
-                <div className="flex flex-col items-center justify-center h-full">
-                  <h1 className="font-semibold text-xs text-statustext text-center -ml-10">
-                    Oh oh! You have no active
+              <div className="flex flex-col items-center justify-center h-full">
+                <h1 className="font-semibold text-xs text-statustext text-center -ml-10">
+                  Oh oh! You have no active
                   <br />
                   investments at this time
                 </h1>
-                </div>
-              )}
+              </div>
+            )}
           </div>
         </div>
         <div className="flex items-center p-4 hidden lg:flex">

@@ -78,64 +78,72 @@ function RecentActivity() {
                   key={post.transaction_id}
                   className="px-4 py-3 recent flex"
                 >
-                  <div className="mr-2">
+                  <div className="">
                     {post.type === "buytoken" ? (
                       <img
                         src={purchase}
                         alt="activity-icon"
-                        className="w-11"
+                        className="w-12 lg-w-14"
                       />
                     ) : post.type === "deposit" ? (
                       <img
                         src={purchase}
                         alt="activity-icon"
-                        className="w-11"
+                        className="w-12 lg-w-14"
                       />
                     ) : post.type === "pullout" ? (
-                      <img src={pullout} alt="activity-icon" className="w-11" />
+                      <img
+                        src={pullout}
+                        alt="activity-icon"
+                        className="w-12 lg-w-14"
+                      />
                     ) : post.type === "inherited" ? (
                       <img
                         src={inherited}
                         alt="activity-icon"
-                        className="w-11"
+                        className="w-12 lg-w-14"
                       />
                     ) : post.type === "investment" ? (
                       <img
                         src={investment}
                         alt="activity-icon"
-                        className="w-11"
+                        className="w-12 lg-w-14"
                       />
                     ) : post.type === "withdrawal" ? (
                       <img
                         src={withdraw}
                         alt="activity-icon"
-                        className="w-11"
+                        className="w-12 lg-w-14"
                       />
                     ) : post.type === "reversal" ? (
                       <img
                         src={reversed}
                         alt="activity-icon"
-                        className="w-11"
+                        className="w-12 lg-w-14"
                       />
                     ) : (
-                                    <img src={failed} alt="activity-icon" className="w-11" />
-                                  )}
+                      <img
+                        src={failed}
+                        alt="activity-icon"
+                        className="w-12 lg-w-14"
+                      />
+                    )}
                   </div>
-                  <div className="w-full flex lg:block justify-between items-center lg:w-auto">
+                  <div className="w-full pl-2 flex lg:block justify-between items-center lg:w-auto">
                     <div className="flex justify-between lg:mb-3 items-center">
                       <div>
                         <h1 className="text-mobile-nav text-xs lg:text-lg font-semibold capitalize">
                           {post.type === "buytoken"
                             ? "Purchase REIC Token"
                             : post.type === "pullout"
-                              ? "Pullout Investment"
-                              : post.type === "withdrawal"
-                                ? "Withdrew Token"
-                                : post.type === "reversal"
-                                  ? "Reversed Investment"
-                                  : post.type === "failed"
-                                    ? "Failed Purchase"
-                                    : post.type}
+                            ? "Pullout Investment"
+                            : post.type === "withdrawal"
+                            ? "Withdrew Token"
+                            : post.type === "reversal"
+                            ? "Reversed Investment"
+                            : post.type === "failed"
+                            ? "Failed Purchase"
+                            : post.type}
                         </h1>
                         <h1 className="font-normal text-tiny text-footer lg:hidden">
                           {moment(post.created_at).calendar()}
@@ -234,40 +242,41 @@ function RecentActivity() {
                           <span>{post.transaction_id}</span>
                         </p>
                       ) : (
-                                    <p className="font-normal text-sm text-footer">
-                                      <span>Your</span> purchase of{" "}
-                                      <span>
-                                        N
+                        <p className="font-normal text-sm text-footer">
+                          <span>Your</span> purchase of{" "}
+                          <span>
+                            N
                             <CurrencyFormat
-                                          value={post.amount}
-                                          displayType={"text"}
-                                          thousandSeparator={true}
-                                        />
-                                      </span>{" "}
+                              value={post.amount}
+                              displayType={"text"}
+                              thousandSeparator={true}
+                            />
+                          </span>{" "}
                           worth of <span>REIC Token</span> failed, Transaction
                           ID: <span>{post.transaction_id}</span>
-                                    </p>
-                                  )}
+                        </p>
+                      )}
                     </div>
-                    <div className="lg:hidden">
+                    <div className="lg:hidden text-right">
                       <h1 className="text-xs text-dark">{post.token} Reic</h1>
                       <h1
-                        className={`font-normal text-tiny ${post.type === "buytoken"
+                        className={`font-normal text-tiny ${
+                          post.type === "buytoken"
                             ? "text-green"
                             : post.type === "deposit"
-                              ? "text-green"
-                              : post.type === "withdrawal"
-                                ? "text-yellow"
-                                : post.type === "investment"
-                                  ? "text-green"
-                                  : post.type === "reversal"
-                                    ? "text-yellow"
-                                    : post.type === "pullout"
-                                      ? "text-red"
-                                      : post.type === "inherited"
-                                        ? "text-yellow"
-                                        : "text-red"
-                          }`}
+                            ? "text-green"
+                            : post.type === "withdrawal"
+                            ? "text-yellow"
+                            : post.type === "investment"
+                            ? "text-green"
+                            : post.type === "reversal"
+                            ? "text-yellow"
+                            : post.type === "pullout"
+                            ? "text-red"
+                            : post.type === "inherited"
+                            ? "text-yellow"
+                            : "text-red"
+                        }`}
                       >
                         N
                         <CurrencyFormat
@@ -282,38 +291,38 @@ function RecentActivity() {
               ))}
           </div>
         ) : (
-            <motion.div
-              initial={{
-                scale: 0,
-              }}
-              animate={{
-                scale: 1,
-                transition: {
-                  duration: 0.3,
-                },
-              }}
-              exit={{
-                scale: 0,
-                transition: {
-                  delay: 0.5,
-                },
-              }}
-              className="bg-white rounded-xl h-auto lg:h-100 flex items-center justify-center"
-            >
-              <div className=" lg:-mt-28 flex items-center justify-center">
-                <div className="text-center my-10 pb-20 lg:p-0">
-                  <img
-                    src={opps}
-                    alt="Opps Nothing new here"
-                    className="w-48 lg:w-auto"
-                  />
-                  <h1 className="font-semibold mt-5 lg:mt-auto text-xs lg:text-lg text-footer">
-                    Opps Nothing new here
+          <motion.div
+            initial={{
+              scale: 0,
+            }}
+            animate={{
+              scale: 1,
+              transition: {
+                duration: 0.3,
+              },
+            }}
+            exit={{
+              scale: 0,
+              transition: {
+                delay: 0.5,
+              },
+            }}
+            className="bg-white rounded-xl h-auto lg:h-100 flex items-center justify-center"
+          >
+            <div className=" lg:-mt-28 flex items-center justify-center">
+              <div className="text-center my-10 pb-20 lg:p-0">
+                <img
+                  src={opps}
+                  alt="Opps Nothing new here"
+                  className="w-48 lg:w-auto"
+                />
+                <h1 className="font-semibold mt-5 lg:mt-auto text-xs lg:text-lg text-footer">
+                  Opps Nothing new here
                 </h1>
-                </div>
               </div>
-            </motion.div>
-          )}
+            </div>
+          </motion.div>
+        )}
       </motion.div>
     </div>
   );
