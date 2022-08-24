@@ -12,6 +12,9 @@ module.exports = {
       inter: ["Inter"],
     },
     extend: {
+      skew: {
+        20: "50deg",
+      },
       boxShadow: {
         "3xl": "0 16px 64px -48px rgba(31, 47, 70, 0.15)",
       },
@@ -20,13 +23,18 @@ module.exports = {
       },
       colors: {
         primary: "#EDFDFD",
+        timeStamp: "rgba(15, 15, 15, 0.5)",
+        time: "rgba(255, 255, 255, 0.5)",
         arrow: "#5C6A77",
+        you: "rgba(15, 15, 15, 0.75)",
         up: "#F79009",
         ongoing: "#FFFAEB",
+        mine: "#EAF0FF",
         inactive: "#B54708",
         green: "#008E10",
+        smiles: "#9BABC9",
         opacity: "#008e1191",
-        border: "rgba(0, 142, 16, 0.46);",
+        border: "#8acb91",
         dashed: "#8C9196",
         file: "#F6F6F7",
         relisted: "#B42318",
@@ -46,6 +54,7 @@ module.exports = {
         page: "#EEF2F8",
         mainbg: "#F8F8F9",
         back: "#919EAB",
+        chat: "#0F0F0F",
         backarrow: "#C4CDD5",
         navbar: "#8E8E8E",
         bar: "#FCFAFC",
@@ -74,7 +83,6 @@ module.exports = {
         "sky-blue": "rgba(134, 223, 247, 0.4)",
         mainsec: "rgba(190, 190, 255, 0.15)",
         pink: "#FF62A5",
-
         pinkShade: "#FF7171",
         sideText: "#5E636D",
         grayy: "#686868",
@@ -115,6 +123,7 @@ module.exports = {
       },
       width: {
         128: "452px",
+        100: "700px",
         411: "411px",
         "2/6": "32%",
         "6x": "13%",

@@ -102,37 +102,38 @@ function Dashboard() {
                       {reic ? (
                         <span>{JSON.stringify(token)}</span>
                       ) : (
-                          <span>
-                            N
-                            <CurrencyFormat
-                              value={JSON.stringify(ngn)}
-                              displayType={"text"}
-                              thousandSeparator={true}
-                            />
-                            {/* {JSON.stringify(ngn)} */}
-                          </span>
-                        )}{" "}
+                        <span>
+                          N
+                          <CurrencyFormat
+                            value={JSON.stringify(ngn)}
+                            displayType={"text"}
+                            thousandSeparator={true}
+                          />
+                          {/* {JSON.stringify(ngn)} */}
+                        </span>
+                      )}{" "}
                       {reic && "REIC"}
                     </h1>
                   </div>
                 </div>
 
                 <div
-                  className="flex items-center border rounded-full lg:px-5 px-3 lg:py-2.5  py-1.5 text-footer lg:text-xs text-xxm cursor-pointer relative"
+                  className="flex items-center border rounded-full lg:px-5 px-3 lg:py-2.5 py-1.5 text-footer lg:text-xs text-xxm cursor-pointer relative"
                   onClick={() => setDrop(!drop)}
                 >
                   <span
                     className="mr-1"
-                  // onClick={() => {
-                  //   setTokenSuccess(true);
-                  // }}
+                    // onClick={() => {
+                    //   setTokenSuccess(true);
+                    // }}
                   >
                     {reic ? "REIC Coin" : "NGN"}
                   </span>
                   <FaAngleDown />
                   <div
-                    className={`absolute text-neutral  left-0 top-28 -mt-2 rounded-xl shadow-2xl bg-dashbg text-left w-28 invisible duration-300 z-50 ${drop ? "show-note !top-10" : "remove-note"
-                      }`}
+                    className={`absolute text-neutral right-0 lg:right-0 lg:left-0 top-28 -mt-2 rounded-xl shadow-2xl bg-dashbg text-left w-28 visible duration-300 z-50 ${
+                      drop ? "show-note !top-10" : "remove-note"
+                    }`}
                   >
                     <div
                       className="arrow2 relative border-b px-4 py-2 hover:bg-mainbg rounded-t-xl "
@@ -195,8 +196,9 @@ function Dashboard() {
               </button>
             </div>
             <div
-              className={`px-6 py-8 flex items-center justify-between border-t border-stroke hidden ${!click ? "remove" : "show"
-                }`}
+              className={`px-6 py-8 flex items-center justify-between border-t border-stroke hidden ${
+                !click ? "remove" : "show"
+              }`}
             >
               <div className="w-1/2 px-4 border-r border-border-grey ">
                 <img src={dollar} alt="dollar-icon" className="mb-4 h-6 w-6" />

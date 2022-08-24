@@ -118,13 +118,35 @@ function Token() {
   useEffect(() => {
     wallet();
   });
-const [withdraw, setWithdraw] = useState(false)
-const [bankID, setBankID] = useState()
+  const [withdraw, setWithdraw] = useState(false);
+  const [bankID, setBankID] = useState();
   return (
     <div className="font-family">
-      {buyToken && <AddBank className="z-10" closeToken={setBuyToken} setWithdraw={setWithdraw} setVerifyBVN={setVerifyBVN} setBankID={setBankID}/>}
-      {verifyBVN && <Processing className="z-10" setVerifyBVN={setVerifyBVN} closeToken={setBuyToken} />}
-      {withdraw && <Withdraw className="z-10" setWithdraw={setWithdraw} closeToken={setBuyToken} bankID={bankID} wallet={wallet}/>}
+      {buyToken && (
+        <AddBank
+          className="z-10"
+          closeToken={setBuyToken}
+          setWithdraw={setWithdraw}
+          setVerifyBVN={setVerifyBVN}
+          setBankID={setBankID}
+        />
+      )}
+      {verifyBVN && (
+        <Processing
+          className="z-10"
+          setVerifyBVN={setVerifyBVN}
+          closeToken={setBuyToken}
+        />
+      )}
+      {withdraw && (
+        <Withdraw
+          className="z-10"
+          setWithdraw={setWithdraw}
+          closeToken={setBuyToken}
+          bankID={bankID}
+          wallet={wallet}
+        />
+      )}
 
       <Header />
 
@@ -158,15 +180,15 @@ const [bankID, setBankID] = useState()
                         {reic ? (
                           <span>{JSON.stringify(token)}</span>
                         ) : (
-                            <span>
-                              N
-                              <CurrencyFormat
-                                value={JSON.stringify(ngn)}
-                                displayType={"text"}
-                                thousandSeparator={true}
-                              />
-                            </span>
-                          )}{" "}
+                          <span>
+                            N
+                            <CurrencyFormat
+                              value={JSON.stringify(ngn)}
+                              displayType={"text"}
+                              thousandSeparator={true}
+                            />
+                          </span>
+                        )}{" "}
                         {reic && "REIC"}
                       </h1>
                     </div>
@@ -181,8 +203,9 @@ const [bankID, setBankID] = useState()
                     </span>
                     <FaAngleDown />
                     <div
-                      className={`absolute text-neutral  left-0 top-28 -mt-2 rounded-xl shadow-2xl bg-dashbg text-left w-28 invisible duration-3#7E7E99#7E7E9900 z-50 ${drop ? "show-note !top-10" : "remove-note"
-                        }`}
+                      className={`absolute text-neutral right-0 lg:left-0 top-28 -mt-2 rounded-xl shadow-2xl bg-dashbg text-left w-28 invisible duration-3#7E7E99#7E7E9900 z-50 ${
+                        drop ? "show-note !top-10" : "remove-note"
+                      }`}
                     >
                       <div
                         className="arrow2 relative border-b px-4 py-2 hover:bg-mainbg rounded-t-xl "
@@ -303,8 +326,9 @@ const [bankID, setBankID] = useState()
                       </p>
                       <div className="flex justify-between ">
                         <button
-                          className={`border-2 border-border rounded-lg w-1/2 h-12 text-token text-base font-semibold mr-1 hover:bg-green hover:text-dashbg duration-300 ${card && "bg-green !text-dashbg"
-                            }`}
+                          className={`border-2 border-border rounded-lg w-1/2 h-12 text-token text-base font-semibold mr-1 hover:bg-green hover:text-dashbg duration-300 ${
+                            card && "bg-green !text-dashbg"
+                          }`}
                           onClick={() => {
                             setIsCardPay(true);
                             setCard(true);
@@ -314,8 +338,9 @@ const [bankID, setBankID] = useState()
                           Card payment
                         </button>
                         <button
-                          className={`border-2 border-border rounded-lg w-1/2 h-12 text-token text-base font-semibold ml-1 hover:bg-green hover:text-dashbg duration-300 ${card2 && "bg-green !text-dashbg"
-                            }`}
+                          className={`border-2 border-border rounded-lg w-1/2 h-12 text-token text-base font-semibold ml-1 hover:bg-green hover:text-dashbg duration-300 ${
+                            card2 && "bg-green !text-dashbg"
+                          }`}
                           onClick={() => {
                             alert("No Bank added yet");
                             setCard(false);

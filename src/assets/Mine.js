@@ -2,9 +2,12 @@ import React, { useEffect, useState } from "react";
 import Header from "./Header";
 import InvestTabs from "./InvestTabs";
 import box from "./images/Box.png";
+import messenger from "./images/Line.svg";
 import moment from "moment";
 import Details from "./Investment_Details";
 import crowd from "./images/crowdfund.png";
+import { MdClose } from "react-icons/md";
+import { Link, NavLink } from "react-router-dom";
 import * as CurrencyFormat from "react-currency-format";
 
 function Mine() {
@@ -64,8 +67,27 @@ function Mine() {
       <Header />
       <div className="w-10/12 m-auto mt-20 bg-dashbg rounded-lg py-8 px-4">
         <div className="bg-white p-10 w-full rounded-lg">
-          <div className="mb-10">
+          <div className="mb-10 flex justify-between items-center">
             <h1 className="text-modal text-2xl font-semibold">Investments</h1>
+            <Link to="/investment-chat">
+              <button className="flex items-center bg-green rounded px-4 py-2 text-white text-sm">
+                <img src={messenger} alt="messenger" />{" "}
+                <span className="ml-3">Messages(3)</span>
+              </button>
+            </Link>
+          </div>
+          <div className="absolute top-40 left-0 right-0">
+            <div className=" border border-green rounded-lg w-100 m-auto flex items-center justify-between bg-white text-navbar p-5 shadow-2xl ">
+              <h1>
+                You have message request on your listed investment{" "}
+                <Link to="/investment-chat">
+                  <span className="text-green underline font-semibold">
+                    View Messages
+                  </span>
+                </Link>
+              </h1>
+              <MdClose className="cursor-pointer text-4xl ml-6" />
+            </div>
           </div>
 
           <InvestTabs />
@@ -141,10 +163,20 @@ function Mine() {
                           </h1>
                         </td>
                         <td className=" py-8 text-footer font-bold text-sm">
-                          <h1>N
-
+                          <h1>
+                            N
                             <CurrencyFormat
-                              value={(post.amount * (post.interest * (post.duration - moment(post.due_date).diff(new Date(), "Days")) / post.duration)) / 100}
+                              value={
+                                (post.amount *
+                                  ((post.interest *
+                                    (post.duration -
+                                      moment(post.due_date).diff(
+                                        new Date(),
+                                        "Days"
+                                      ))) /
+                                    post.duration)) /
+                                100
+                              }
                               displayType={"text"}
                               thousandSeparator={true}
                             />
@@ -170,14 +202,14 @@ function Mine() {
                               Pull Out
                             </button>
                           ) : post.status === "completed" ? (
-                            <button
-                              className="bg-input text-xs text-green w-28 h-9 rounded-full font-medium">
+                            <button className="bg-input text-xs text-green w-28 h-9 rounded-full font-medium">
                               Completed
                             </button>
-                          ) : <button
-                            className="bg-status text-xs text-statustext w-28 h-9 rounded-full font-medium">
-                                Waiting
-                              </button>}
+                          ) : (
+                            <button className="bg-status text-xs text-statustext w-28 h-9 rounded-full font-medium">
+                              Waiting
+                            </button>
+                          )}
                         </td>
                       </tr>
                     ))}
@@ -185,17 +217,17 @@ function Mine() {
                 </div>
               </>
             ) : (
-                <div className="flex flex-col items-center justify-center h-128">
-                  <div className="flex flex-col justify-center items-center">
-                    <img src={box} alt="No relisted investment" />
-                  </div>
-                  <h1 className="font-semibold text-xs text-statustext text-center -ml-10">
-                    Oh oh! You have no active
+              <div className="flex flex-col items-center justify-center h-128">
+                <div className="flex flex-col justify-center items-center">
+                  <img src={box} alt="No relisted investment" />
+                </div>
+                <h1 className="font-semibold text-xs text-statustext text-center -ml-10">
+                  Oh oh! You have no active
                   <br />
                   investments at this time
                 </h1>
-                </div>
-              )}
+              </div>
+            )}
           </div>
         </div>
       </div>

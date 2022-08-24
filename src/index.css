@@ -380,6 +380,10 @@ input[type=number] {
     /* .cat::-webkit-scrollbar {
       display: none;
     } */
+
+    textarea::-webkit-scrollbar{
+      width: 0;
+    }
          .cat {
            @apply p-3 justify-between w-full 
          }

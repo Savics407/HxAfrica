@@ -96,7 +96,7 @@ function Login() {
   return (
     <div className="font-family bg-white">
       <Tab />
-      <div className="lg:flex justify-between">
+      <div className="lg:flex h-screen justify-between">
         <div className="lg:px-24 md:px-24 px-10 lg:pt-20 pt-14 pb-5 w-full lg:w-1/2">
           <form className="form" onSubmit={handleSubmit(login)}>
             <div>
@@ -109,9 +109,10 @@ function Login() {
                 required
                 type="email"
                 placeholder="enter email address"
-                className={`box ${errors.password &&
+                className={`box ${
+                  errors.password &&
                   "focus:border-red focus:ring-red border-red"
-                  }`}
+                }`}
                 // {...register("email", {
                 //   required: "email is required",
                 //   pattern: {
@@ -138,9 +139,10 @@ function Login() {
                 required
                 type="password"
                 placeholder="enter password"
-                className={`box ${errors.password &&
+                className={`box ${
+                  errors.password &&
                   "focus:border-red focus:ring-red border-red"
-                  }`}
+                }`}
                 // {...register("password", {
                 //   required: "Password is required",
                 // })}
@@ -175,7 +177,7 @@ function Login() {
 
             <div
               className="lg:w-80 bg-green text-white flex justify-center items-center w-full rounded-xl mt-6 font-medium cursor-pointer"
-            // onClick={login}
+              // onClick={login}
             >
               {/* value={process ? <TbLoader className="animate-spin" /> : "Log in"} */}
 

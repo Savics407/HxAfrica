@@ -112,7 +112,7 @@ function Investments() {
           </Link>
         </div>
         <div className="overflow-hidden mt-5 ">
-          <div className="cat flex flex-wrap ">
+          <div className="cat flex flex-wrap">
             {categories?.map((post) => (
               <div
                 className={`categories bg-light-purple ${
