@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FaAngleDown } from "react-icons/fa";
 import avater from "../images/Avatar.svg";
 import { MdArrowBackIosNew } from "react-icons/md";
@@ -6,19 +6,47 @@ import { MdArrowForwardIos } from "react-icons/md";
 import InvestmentTabs from "./InvestmentTabs";
 import realEstate from "../images/realEstate.svg";
 
-function PulloutList() {
+function CompletedList() {
+  const [completed, setCompleted] = useState();
+
+  async function fetchCompleted() {
+    const token = localStorage.getItem("user-token");
+    // e.preventDefault();
+    const response = await fetch(
+      "https://reic.api.simpoo.biz/api/admin/fetch_completed_investments",
+      {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+          Accept: "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    const result = await response.json();
+    console.log(result.data);
+    // alert(result.data.name);
+    setCompleted(result?.data);
+  }
+
+  useEffect(() => {
+    fetchCompleted();
+  }, []);
+
   return (
     <>
       <InvestmentTabs />
       <div className="rounded-lg bg-white mt-2 mb-3 pb-10">
         <div className="py-7 px-9 text-lg text-mobile-nav flex justify-between font-medium border-b cursor-pointer">
           <h1 className="">
-            <span className="text-grayy text-sm mr-2">Request </span>{" "}
+            <span className="text-grayy text-sm mr-2">
+              Completed Investments{" "}
+            </span>{" "}
             <span className="rounded-full bg-green text-white px-2 text-xs ">
-              234
+              {completed?.length}
             </span>
           </h1>
-          <button className="text-sm text-dark">Select Multiple</button>
+          {/* <button className="text-sm text-dark">Select Multiple</button> */}
         </div>
         <div className="">
           <table className=" w-full table-auto">
@@ -34,11 +62,11 @@ function PulloutList() {
                   Amount
                 </th>
                 <th className="py-3 pr-7 text-mobile-nav font-medium text-xs ">
-                  Date/Time
+                  Due Date
                 </th>
-                <th className="py-3 pr-7 text-mobile-nav font-medium text-xs ">
+                {/* <th className="py-3 pr-7 text-mobile-nav font-medium text-xs ">
                   Action
-                </th>
+                </th> */}
               </tr>
             </thead>
             <tr className="border-b font-inter">
@@ -56,24 +84,13 @@ function PulloutList() {
                 </div>
               </td>
               <td className="py-8">
-                <h1 className="font-normal text-deep text-xs">Paul Felix</h1>
+                <h1 className="font-normal text-deep text-xs">20</h1>
               </td>
               <td className="py-8">
                 <h1 className="font-normal text-deep text-xs">N200,000</h1>
               </td>
               <td className="py-8">
-                <h1 className="font-normal text-deep text-xs">
-                  Jul 12/ 3:00PM
-                </h1>
-              </td>
-
-              <td className="py-3">
-                <button className="font-medium text-xs font-inter text-blue py-2 px-2 border-r ">
-                  Approve
-                </button>
-                <button className="font-medium text-xs font-inter text-red py-1 px-2">
-                  Decline
-                </button>
+                <h1 className="font-normal text-deep text-xs">Jul 12</h1>
               </td>
             </tr>
 
@@ -92,24 +109,13 @@ function PulloutList() {
                 </div>
               </td>
               <td className="py-8">
-                <h1 className="font-normal text-deep text-xs">Paul Felix</h1>
+                <h1 className="font-normal text-deep text-xs">20</h1>
               </td>
               <td className="py-8">
                 <h1 className="font-normal text-deep text-xs">N200,000</h1>
               </td>
               <td className="py-8">
-                <h1 className="font-normal text-deep text-xs">
-                  Jul 12/ 3:00PM
-                </h1>
-              </td>
-
-              <td className="py-3">
-                <button className="font-medium text-xs font-inter text-blue py-2 px-2 border-r ">
-                  Approve
-                </button>
-                <button className="font-medium text-xs font-inter text-red py-1 px-2">
-                  Decline
-                </button>
+                <h1 className="font-normal text-deep text-xs">Jul 12</h1>
               </td>
             </tr>
 
@@ -128,24 +134,13 @@ function PulloutList() {
                 </div>
               </td>
               <td className="py-8">
-                <h1 className="font-normal text-deep text-xs">Paul Felix</h1>
+                <h1 className="font-normal text-deep text-xs">20</h1>
               </td>
               <td className="py-8">
                 <h1 className="font-normal text-deep text-xs">N200,000</h1>
               </td>
               <td className="py-8">
-                <h1 className="font-normal text-deep text-xs">
-                  Jul 12/ 3:00PM
-                </h1>
-              </td>
-
-              <td className="py-3">
-                <button className="font-medium text-xs font-inter text-blue py-2 px-2 border-r ">
-                  Approve
-                </button>
-                <button className="font-medium text-xs font-inter text-red py-1 px-2">
-                  Decline
-                </button>
+                <h1 className="font-normal text-deep text-xs">Jul 12</h1>
               </td>
             </tr>
 
@@ -164,24 +159,13 @@ function PulloutList() {
                 </div>
               </td>
               <td className="py-8">
-                <h1 className="font-normal text-deep text-xs">Paul Felix</h1>
+                <h1 className="font-normal text-deep text-xs">20</h1>
               </td>
               <td className="py-8">
                 <h1 className="font-normal text-deep text-xs">N200,000</h1>
               </td>
               <td className="py-8">
-                <h1 className="font-normal text-deep text-xs">
-                  Jul 12/ 3:00PM
-                </h1>
-              </td>
-
-              <td className="py-3">
-                <button className="font-medium text-xs font-inter text-blue py-2 px-2 border-r ">
-                  Approve
-                </button>
-                <button className="font-medium text-xs font-inter text-red py-1 px-2">
-                  Decline
-                </button>
+                <h1 className="font-normal text-deep text-xs">Jul 12</h1>
               </td>
             </tr>
 
@@ -200,24 +184,13 @@ function PulloutList() {
                 </div>
               </td>
               <td className="py-8">
-                <h1 className="font-normal text-deep text-xs">Paul Felix</h1>
+                <h1 className="font-normal text-deep text-xs">20</h1>
               </td>
               <td className="py-8">
                 <h1 className="font-normal text-deep text-xs">N200,000</h1>
               </td>
               <td className="py-8">
-                <h1 className="font-normal text-deep text-xs">
-                  Jul 12/ 3:00PM
-                </h1>
-              </td>
-
-              <td className="py-3">
-                <button className="font-medium text-xs font-inter text-blue py-2 px-2 border-r ">
-                  Approve
-                </button>
-                <button className="font-medium text-xs font-inter text-red py-1 px-2">
-                  Decline
-                </button>
+                <h1 className="font-normal text-deep text-xs">Jul 12</h1>
               </td>
             </tr>
           </table>
@@ -255,4 +228,4 @@ function PulloutList() {
   );
 }
 
-export default PulloutList;
+export default CompletedList;

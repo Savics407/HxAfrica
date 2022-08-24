@@ -33,13 +33,14 @@ import AllInvestments from "./assets/admin/AllInvestments";
 import Approved from "./assets/admin/Approved";
 import Inactive from "./assets/admin/Inactive";
 import RelistedInvestments from "./assets/admin/RelistedInvestments";
-import PulloutRequest from "./assets/admin/PulloutRequest";
+import CompletedInvestment from "./assets/admin/CompletedInvestment";
 import Investors from "./assets/admin/Investors";
 import Banned from "./assets/admin/Banned";
 import RolesPermission from "./assets/admin/RolesPermission";
 import AdminSettings from "./assets/admin/AdminSettings";
 import BiddersChat from "./assets/Chats/biddersChat";
 import Owner from "./assets/Chats/Owner";
+import Disbursed from "./assets/admin/Disbursed";
 
 function App() {
   return (
@@ -68,12 +69,13 @@ function App() {
           <Route path="/admin/settings" element={<AdminSettings />} />
           <Route path="/admin/investors/banned" element={<Banned />} />
           <Route path="/merchants/pull-funds-request" element={<PullFunds />} />
+          <Route path="/merchants/disbursed-funds" element={<Disbursed />} />
           <Route path="/admin/investments" element={<AllInvestments />} />
           <Route path="/admin/investments/approved" element={<Approved />} />
           <Route path="/admin/investments/inactive" element={<Inactive />} />
           <Route
-            path="/admin/investments/pullout-request"
-            element={<PulloutRequest />}
+            path="/admin/investments/completed"
+            element={<CompletedInvestment />}
           />
           <Route
             path="/admin/investments/relisted"

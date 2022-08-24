@@ -3,9 +3,9 @@ import Header from "./Admin_header";
 import SideBar from "./SideBar";
 import InvestmentCard from "./InvestmentCard";
 import OngoingInvestments from "./OngoingInvestments";
-import PulloutList from "./PulloutList";
+import CompletedList from "./CompletedList";
 
-function PulloutRequest() {
+function Completed() {
   return (
     <div className="bg-dashbg font-family">
       <Header />
@@ -21,7 +21,7 @@ function PulloutRequest() {
             <div className="w-4/6">
               <InvestmentCard />
 
-              <PulloutList />
+              <CompletedList />
             </div>
             <div className="w-2/6">
               <OngoingInvestments />
@@ -33,4 +33,4 @@ function PulloutRequest() {
   );
 }
 
-export default PulloutRequest;
+export default Completed;

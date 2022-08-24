@@ -29,9 +29,9 @@ function InvestmentTabs() {
           </div>
         </NavLink>
         <span className="w-7"> </span>
-        <NavLink to="/admin/investments/pullout-request">
+        <NavLink to="/admin/investments/completed">
           <div className="font-normal px-1 py-2.5 border-b-4 border-transparent hover:text-dark ">
-            <h1>Pullout Request </h1>
+            <h1>Completed </h1>
           </div>
         </NavLink>
         <span className="w-7"> </span>

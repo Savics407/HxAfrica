@@ -69,6 +69,12 @@ function MarchantsList() {
             <h1>Pull Funds request </h1>
           </div>
         </NavLink>
+        <span className="w-7"> </span>
+        <NavLink to="/merchants/disbursed-funds">
+          <div className="font-normal px-1 py-2.5 border-b-4 border-transparent hover:text-dark ">
+            <h1>Disbursed Funds </h1>
+          </div>
+        </NavLink>
       </div>
       <div className="rounded-lg bg-white mt-2 pb-10">
         <div className="py-7 px-9 text-lg text-mobile-nav font-medium border-b cursor-pointer">

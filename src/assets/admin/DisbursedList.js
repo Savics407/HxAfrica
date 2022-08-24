@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { FaAngleDown } from "react-icons/fa";
 import search from "../images/Small.svg";
 import avater from "../images/Avatar.svg";
@@ -6,30 +6,7 @@ import Martabs from "./Martabs";
 import { MdArrowBackIosNew } from "react-icons/md";
 import { MdArrowForwardIos } from "react-icons/md";
 
-function PullList() {
-  const [pullFunds, setPullFunds] = useState();
-  async function fetchPullFunds() {
-    const token = localStorage.getItem("user-token");
-    // e.preventDefault();
-    const response = await fetch(
-      "https://reic.api.simpoo.biz/api/admin/fetch_pullout_funds_request",
-      {
-        method: "POST",
-        headers: {
-          "Content-type": "application/json",
-          Accept: "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
-    const result = await response.json();
-    console.log(result.data);
-    // alert(result.data.name);
-    setPullFunds(result?.data);
-  }
-  useEffect(() => {
-    fetchPullFunds();
-  }, []);
+function DisbursedList() {
   return (
     <>
       <div className="flex justify-between my-6">
@@ -56,9 +33,9 @@ function PullList() {
       <div className="rounded-lg bg-white mt-2 pb-10">
         <div className="py-7 px-9 text-lg text-mobile-nav font-medium border-b cursor-pointer">
           <h1 className="">
-            <span className="text-grayy text-sm mr-2">Request </span>{" "}
+            <span className="text-grayy text-sm mr-2">Disbursed Funds </span>{" "}
             <span className="rounded-full bg-green text-white px-2 text-xs ">
-              {pullFunds?.length}
+              120
             </span>
           </h1>
         </div>
@@ -79,7 +56,7 @@ function PullList() {
                   time{" "}
                 </th>
                 <th className="py-3 pr-7 text-mobile-nav font-medium text-xs ">
-                  Action
+                  Status
                 </th>
               </tr>
             </thead>
@@ -108,11 +85,8 @@ function PullList() {
               </td>
 
               <td className="py-3">
-                <button className="font-medium text-xs font-inter text-blue py-2 px-2 border-r ">
-                  Approve
-                </button>
-                <button className="font-medium text-xs font-inter text-red py-1 px-2">
-                  Decline
+                <button className="font-medium text-sm font-inter bg-approved text-appText py-1 px-3 rounded-full ">
+                  Disbursed
                 </button>
               </td>
             </tr>
@@ -142,11 +116,8 @@ function PullList() {
               </td>
 
               <td className="py-3">
-                <button className="font-medium text-xs font-inter text-blue py-2 px-2 border-r ">
-                  Approve
-                </button>
-                <button className="font-medium text-xs font-inter text-red py-1 px-2">
-                  Decline
+                <button className="font-medium text-sm font-inter bg-approved text-appText py-1 px-3 rounded-full ">
+                  Disbursed
                 </button>
               </td>
             </tr>
@@ -176,11 +147,8 @@ function PullList() {
               </td>
 
               <td className="py-3">
-                <button className="font-medium text-xs font-inter text-blue py-2 px-2 border-r ">
-                  Approve
-                </button>
-                <button className="font-medium text-xs font-inter text-red py-1 px-2">
-                  Decline
+                <button className="font-medium text-sm font-inter bg-approved text-appText py-1 px-3 rounded-full ">
+                  Disbursed
                 </button>
               </td>
             </tr>
@@ -210,11 +178,8 @@ function PullList() {
               </td>
 
               <td className="py-3">
-                <button className="font-medium text-xs font-inter text-blue py-2 px-2 border-r ">
-                  Approve
-                </button>
-                <button className="font-medium text-xs font-inter text-red py-1 px-2">
-                  Decline
+                <button className="font-medium text-sm font-inter bg-approved text-appText py-1 px-3 rounded-full ">
+                  Disbursed
                 </button>
               </td>
             </tr>
@@ -244,11 +209,8 @@ function PullList() {
               </td>
 
               <td className="py-3">
-                <button className="font-medium text-xs font-inter text-blue py-2 px-2 border-r ">
-                  Approve
-                </button>
-                <button className="font-medium text-xs font-inter text-red py-1 px-2">
-                  Decline
+                <button className="font-medium text-sm font-inter bg-approved text-appText py-1 px-3 rounded-full ">
+                  Disbursed
                 </button>
               </td>
             </tr>
@@ -287,4 +249,4 @@ function PullList() {
   );
 }
 
-export default PullList;
+export default DisbursedList;

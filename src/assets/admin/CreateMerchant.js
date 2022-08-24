@@ -5,6 +5,8 @@ import upload from "../images/Upload.svg";
 import { MdClose } from "react-icons/md";
 import { motion } from "framer-motion";
 import { HiOutlinePlusSm } from "react-icons/hi";
+import { toast } from "react-toastify";
+
 function Create() {
   const [create, setCreate] = useState(false);
   const [image, setImage] = useState();
@@ -20,6 +22,65 @@ function Create() {
       setPreview(null);
     }
   }, [image]);
+
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    address: "",
+    city: "",
+    state: "",
+  });
+  async function createMerchant() {
+    const token = localStorage.getItem("user-token");
+    // e.preventDefault();
+    const payLoad = {
+      name: formData.name,
+      email: formData.email,
+      phone: formData.phone,
+      address: formData.address,
+      city: formData.city,
+      state_id: formData.state,
+    };
+    const response = await fetch(
+      "https://reic.api.simpoo.biz/api/admin/add_staff",
+      {
+        method: "POST",
+        body: JSON.stringify(payLoad),
+
+        headers: {
+          "Content-type": "application/json",
+          Accept: "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    const result = await response.json();
+    console.log(result.data);
+    if (result?.errors) {
+      toast.error(`${result.message}`, {
+        position: "top-left",
+        autoClose: 1500,
+        hideProgressBar: true,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    } else {
+      if (result?.message) {
+        toast(`${result.message}`, {
+          position: "top-left",
+          autoClose: 1500,
+          hideProgressBar: true,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      }
+    }
+  }
   return (
     <div>
       {create && (
@@ -79,7 +140,10 @@ function Create() {
                     type="text"
                     placeholder="enter merchant name"
                     className="box"
-                    // value="000000"
+                    value={formData.name}
+                    onChange={(event) =>
+                      setFormData({ ...formData, name: event.target.value })
+                    }
                   />
                 </div>
                 <div className="merchant">
@@ -89,7 +153,10 @@ function Create() {
                     type="email"
                     placeholder="enter merchant email"
                     className="box"
-                    // value="000000"
+                    value={formData.email}
+                    onChange={(event) =>
+                      setFormData({ ...formData, email: event.target.value })
+                    }
                   />
                 </div>
                 <div className="merchant">
@@ -99,7 +166,10 @@ function Create() {
                     type="tel"
                     placeholder="+234 |"
                     className="box"
-                    // value="000000"
+                    value={formData.phone}
+                    onChange={(event) =>
+                      setFormData({ ...formData, phone: event.target.value })
+                    }
                   />
                 </div>
                 <div className="merchant">
@@ -109,23 +179,84 @@ function Create() {
                     type="text"
                     placeholder="enter address"
                     className="box"
-                    // value="000000"
+                    value={formData.address}
+                    onChange={(event) =>
+                      setFormData({ ...formData, address: event.target.value })
+                    }
                   />
                 </div>
                 <div className="flex justify-between">
                   <div className="merchant w-per">
                     <label>State</label>
-                    <select className="box">
-                      <option defaultValue>Choose State</option>
-                      <option>States</option>
+                    <select
+                      className="box"
+                      value={formData.state}
+                      onChange={(event) =>
+                        setFormData({ ...formData, state: event.target.value })
+                      }
+                    >
+                      {/* <option value="" className='text-grey'>--Choose State--</option> */}
+                      <option selected>--Choose State--</option>
+                      {/* {st.map((responseSt) => (
+              <option key={responseSt.states.id}>
+                {responseSt.states.name}
+              </option>
+            ))} */}
+                      <option value="303">Abia</option>
+                      <option value="320">Adamawa</option>
+                      <option value="304">Akwa Ibom</option>
+                      <option value="315">Anambra</option>
+                      <option value="312">Bauchi</option>
+                      <option value="305">Bayelsa</option>
+                      <option value="291">Benue</option>
+                      <option value="307">Borno</option>
+                      <option value="314">Cross River</option>
+                      <option value="316">Delta</option>
+                      <option value="311">Ebonyi</option>
+                      <option value="318">Edo</option>
+                      <option value="309">Ekiti</option>
+                      <option value="289">Enugu</option>
+                      <option value="293">Federal Capital Territory</option>
+                      <option value="310">Gombe</option>
+                      <option value="308">Imo</option>
+                      <option value="288">Jigawa</option>
+                      <option value="294">Kaduna</option>
+                      <option value="300">Kano</option>
+                      <option value="313">Katsina</option>
+                      <option value="290">Kebbi</option>
+                      <option value="298">Kogi</option>
+                      <option value="295">Kwara</option>
+                      <option value="306">Lagos</option>
+                      <option value="301">Nasarawa</option>
+                      <option value="317">Niger</option>
+                      <option value="323">Ogun</option>
+                      <option value="321">Ondo</option>
+                      <option value="322">Osun</option>
+                      <option value="296">Oyo</option>
+                      <option value="302">Plateau</option>
+                      <option value="100">Rivers</option>
+                      <option value="292">Sokoto</option>
+                      <option value="319">Taraba</option>
+                      <option value="297">Yobe</option>
+                      <option value="299">Zamfara</option>
                     </select>
                   </div>
                   <div className="merchant w-per">
                     <label>City</label>
-                    <select className="box">
-                      <option defaultValue>Choose City</option>
-                      <option>Cities</option>
-                    </select>
+
+                    <input
+                      required
+                      type="text"
+                      placeholder="enter city"
+                      className="box"
+                      value={formData.city}
+                      onChange={(event) =>
+                        setFormData({
+                          ...formData,
+                          city: event.target.value,
+                        })
+                      }
+                    />
                   </div>
                 </div>
                 {image === null ? (
@@ -180,6 +311,7 @@ function Create() {
                     type="submit"
                     className=" cursor-pointer bg-green py-3 px-8 outline-none rounded-full"
                     value="Add merchant"
+                    onClick={createMerchant}
                   />
                 </div>
               </div>
