@@ -1,10 +1,15 @@
 import { MdClose } from "react-icons/md";
 import reictoken from "./images/Reic_Token.png";
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import ScaleLoader from "react-spinners/ScaleLoader";
+import done from "./images/Success Icon.svg";
+import { MdOutlineContentCopy } from "react-icons/md";
 // import { PaystackButton, usePaystackPayment } from "react-paystack";
 import TokenSuccess from "./tokenSuccess";
+// import { Toast } from "react-toastify/dist/components";
 
 // import { TbLoader } from 'react-icons/tb'
 
@@ -14,6 +19,8 @@ function Details({ closeToken }) {
   const [card, setCard] = useState(false);
   const [card2, setCard2] = useState(false);
   const [isCardPay, setIsCardPay] = useState(false);
+  const [isBankPay, setIsBankPay] = useState(false);
+  const [proceed, setProceed] = useState(false);
   const [amount, setAmount] = useState(50000);
   async function buy(e) {
     e.preventDefault();
@@ -65,9 +72,9 @@ function Details({ closeToken }) {
           },
         }}
         className="flex items-center justify-center fixed top-0 right-0 bottom-0 left-0 bg-overlay z-50 backdrop-blur-xs"
-      // onClick={() => {
-      //         closeDetails(false)
-      //     }}
+        // onClick={() => {
+        //         closeDetails(false)
+        //     }}
       >
         <motion.div
           initial={{
@@ -85,7 +92,7 @@ function Details({ closeToken }) {
               delay: 0.5,
             },
           }}
-          className="bg-white rounded-xl border w-1/2"
+          className={`bg-white rounded-xl border w-1/2 ${proceed && "hidden"}`}
         >
           <div className="border-b border-stroke uppercase px-10 py-5 text-2xl font-semibold flex justify-between items-center text-modal">
             <h1>Buy Token</h1>
@@ -120,24 +127,28 @@ function Details({ closeToken }) {
               </p>
               <div className="flex justify-between">
                 <button
-                  className={`border-2 border-border rounded-lg w-72 h-12 mr-5 text-token text-base font-semibold hover:bg-green hover:text-dashbg duration-300 ${card && "bg-green !text-dashbg"
-                    }`}
+                  className={`border-2 border-border rounded-lg w-72 h-12 mr-5 text-token text-base font-semibold hover:bg-green hover:text-dashbg duration-300 ${
+                    card && "bg-green !text-dashbg"
+                  }`}
                   onClick={() => {
                     setIsCardPay(true);
                     setCard(true);
                     setCard2(false);
+                    setIsBankPay(false);
                   }}
                 >
                   Card payment
                 </button>
                 <button
-                  className={`border-2 border-border rounded-lg w-72 h-12 text-token text-base font-semibold hover:bg-green hover:text-dashbg duration-300 ${card2 && "bg-green !text-dashbg"
-                    }`}
+                  className={`border-2 border-border rounded-lg w-72 h-12 text-token text-base font-semibold hover:bg-green hover:text-dashbg duration-300 ${
+                    card2 && "bg-green !text-dashbg"
+                  }`}
                   onClick={() => {
-                    alert("NO Bank added yet");
-                    setCard2(false);
+                    // alert("NO Bank added yet");
+                    setCard2(true);
                     setIsCardPay(false);
                     setCard(false);
+                    setIsBankPay(true);
                   }}
                 >
                   Bank Transfer
@@ -188,53 +199,282 @@ function Details({ closeToken }) {
                 >
                   Pay with Card
                 </button>
+              ) : isBankPay ? (
+                <button
+                  className="rounded-full w-44 h-12 text-dashbg bg-green"
+                  onClick={() => setProceed(true)}
+                >
+                  Continue
+                </button>
               ) : (
-                  //   {...componentProps}
-                  <span className="text-red h-22 ">Select Payment Method</span>
-                )}
+                //   {...componentProps}
+                <span className="text-red h-22 ">Select Payment Method</span>
+              )}
             </div>
           </div>
         </motion.div>
         {/* {authPullOut && <Warning closeWarning={setIsClick} />} */}
         {/* <Success /> */}
+        {proceed && <BankTransfer closeToken={closeToken} />}
       </motion.div>
       {/* <div className="fixed top-0 right-0 bottom-0 left-0 bg-overlay -z-10"></div> */}
     </>
   );
 }
 
-// function Processing(){
-//     return(
-//         <>
-//             <motion.div
-//                 initial = {{
-//                     opacity: 0
-//                 }}
-//                 animate = {{
-//                     opacity: 1,
-//                     transition: {
-//                         duration: 0.3
-//                     }
-//                 }}
-//                 exit = {{
-//                     opacity: 0,
-//                     transition: {
-//                         delay: 0.5
-//                     }
-//                 }}
-//                 className="w-128 bg-white rounded-xl absolute border-green p-6 text-center">
-//                 <div>
-//                     <h1 className='font-bold text-neutral text-3xl'>Processing BVN</h1>
-//                 </div>
-//                 <div className='font-semibold text-base text-neutral my-8'>
-//                     <p>Please wait while we process your BVN. This will take few seconds.</p>
-//                 </div>
-//                 <div className='flex justify-center'>
-//                     <button className='rounded-full w-28 h-12 text-neutral flex justify-around items-center'><TbLoader /> Processing</button>
-//                 </div>
-//             </motion.div>
-//         </>
-//     )
-// }
+export function BankTransfer({ closeToken, setBank, bank }) {
+  const [kuda, setKuda] = useState();
+  async function fetchKuda() {
+    const token = localStorage.getItem("user-token");
+    const response = await fetch(
+      "https://reic.api.simpoo.biz/api/kuda/fetch_mykuda_account",
+      {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    const result = await response.json();
+    console.log(result.data);
+
+    setKuda(result?.data);
+  }
+  const [initialize, setInitialize] = useState();
+  const [processing, setProccessing] = useState(false);
+  async function initializeKuda() {
+    const token = localStorage.getItem("user-token");
+    const response = await fetch(
+      "https://reic.api.simpoo.biz/api/kuda/initialize_kuda",
+      {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    const result = await response.json();
+    console.log(result.data);
+
+    setInitialize(result?.data);
+    if (result?.status === "success") {
+      checkPayment();
+      // setProccessing(true);
+      setTimeout(() => setProccessing(true), 2000);
+    }
+  }
+
+  const [success, setSuccess] = useState(false);
+  const [checking, setChecking] = useState();
+  async function checkPayment() {
+    const token = localStorage.getItem("user-token");
+    const payLoad = {
+      tracking_reference: initialize,
+    };
+    const response = await fetch(
+      "https://reic.api.simpoo.biz/api/kuda/check_webhook_payment",
+      {
+        method: "POST",
+        body: JSON.stringify(payLoad),
+        headers: {
+          "Content-type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    const result = await response.json();
+    console.log(result);
+    setChecking(result);
+    if (result.status === "success") {
+      setProccessing(false);
+      setSuccess(true);
+    } else {
+      if (result?.status === "error") {
+        setTimeout(checkPayment, 20000);
+      }
+    }
+  }
+  useEffect(() => {
+    fetchKuda();
+    initializeKuda();
+  }, []);
+  const navigate = useNavigate();
+
+  return (
+    <>
+      <motion.div
+        initial={{
+          opacity: 0,
+        }}
+        animate={{
+          opacity: 1,
+          transition: {
+            duration: 0.3,
+          },
+        }}
+        exit={{
+          opacity: 0,
+          transition: {
+            delay: 0.5,
+          },
+        }}
+        className="flex items-center justify-center fixed top-0 right-0 bottom-0 left-0 bg-overlay z-50 backdrop-blur-xs"
+      >
+        <motion.div
+          initial={{
+            opacity: 0,
+          }}
+          animate={{
+            opacity: 1,
+            transition: {
+              duration: 0.3,
+            },
+          }}
+          exit={{
+            opacity: 0,
+            transition: {
+              delay: 0.5,
+            },
+          }}
+          className={`w-2/5 bg-white rounded-xl absolute border-green ${
+            success && "hidden"
+          }`}
+        >
+          <div className="border-b border-stroke uppercase px-10 py-5 text-2xl font-semibold flex justify-between items-center text-modal">
+            <h1>Bank Transfer</h1>
+
+            {bank ? (
+              <MdClose
+                className="cursor-pointer"
+                onClick={() => {
+                  setBank(false);
+                  // navigate("/dashoboar");
+                  // alert("bank clicked");
+                }}
+              />
+            ) : (
+              <MdClose
+                className="cursor-pointer"
+                onClick={() => {
+                  closeToken(false);
+                  // navigate("/dashoboar");
+                  // alert("token");
+                }}
+              />
+            )}
+          </div>
+
+          <div className="text-sm text-center text-neutral py-5 px-10">
+            <p>
+              Please make payment to your dedicated account details below.
+              Kindly note that this account info is unique only to your account.
+            </p>
+          </div>
+          <div className=" text-neutral m-auto w-3/4 rounded-xl mb-5 py-3 px-5 shadow-lg  flex flex-col items-center">
+            <div className="flex justify-between w-full mb-2">
+              <h1 className="font-semibold mr-3">Account Name:</h1>
+              <h1>{kuda?.name}</h1>
+            </div>
+            <div className="flex justify-between w-full mb-2">
+              <h1 className="font-semibold mr-3">Bank Name:</h1>
+              <h1>{kuda?.bank}</h1>
+            </div>
+            <div className="flex items-center w-full justify-between rounded ">
+              <h1 className="font-semibold mr-3">Account Number:</h1>
+              <div
+                className="flex items-center text-sm bg-green text-white rounded-full py-1 px-6 cursor-pointer"
+                onClick={() => {
+                  navigator.clipboard.writeText(kuda?.account_number);
+                  toast.success(`copied ${kuda?.account_number} to clipboard`, {
+                    position: "bottom-center",
+                    autoClose: 1500,
+                    hideProgressBar: true,
+                    closeOnClick: false,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                  });
+                }}
+              >
+                <h1 className="mr-2 ">{kuda?.account_number}</h1>
+                <MdOutlineContentCopy />
+              </div>
+            </div>
+          </div>
+          {processing && (
+            <div className="text-center">
+              <ScaleLoader color="#008E10" height={13} width={4} />
+            </div>
+          )}
+          <div className="text-xs px-10 ">
+            <p className="box !border-0 !text-xs">
+              <b>Note:</b> This dialog box will redirect automatically once
+              theirs a successful payment on this bank account. Meanwhile, you
+              can use the button below to manually verify the payment if the
+              wait is long
+            </p>
+          </div>
+          <div className="flex justify-center py-5 px-10">
+            <button
+              className="rounded-full w-full py-2 text-dashbg bg-green"
+              onClick={() => {
+                checkPayment();
+                toast.warning(`${checking.message}`, {
+                  position: "bottom-center",
+                  autoClose: 1500,
+                  hideProgressBar: true,
+                  closeOnClick: false,
+                  pauseOnHover: true,
+                  draggable: true,
+                  progress: undefined,
+                });
+              }}
+            >
+              Verify Payment
+            </button>
+          </div>
+        </motion.div>
+        {success && (
+          <motion.div
+            initial={{
+              opacity: 0,
+            }}
+            animate={{
+              opacity: 1,
+              transition: {
+                duration: 0.3,
+              },
+            }}
+            exit={{
+              opacity: 0,
+              transition: {
+                delay: 0.5,
+              },
+            }}
+            className="w-128 bg-white rounded-xl fixed top-20 border-green p-6 text-center"
+          >
+            <div className="flex flex-col items-center ">
+              <img src={done} alt="success" className="w-28 mb-5" />
+              <h1 className="font-bold text-neutral text-4xl">Success!</h1>
+            </div>
+            <div className="font-semibold text-base text-neutral my-8">
+              <p>Payment was Successfully received, wallet is being funded</p>
+            </div>
+            <div className=" text-center w-11/12 mb-2 m-auto">
+              <button
+                className="rounded-full w-full p-2 text-white bg-green flex justify-around items-center"
+                onClick={() => navigate("/token")}
+              >
+                Done
+              </button>
+            </div>
+          </motion.div>
+        )}
+      </motion.div>
+    </>
+  );
+}
 
 export default Details;

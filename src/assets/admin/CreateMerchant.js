@@ -14,7 +14,7 @@ function Create() {
   useEffect(() => {
     if (image) {
       const reader = new FileReader();
-      reader.onloadend = () => {
+      reader.onload = () => {
         setPreview(reader.result);
       };
       reader.readAsDataURL(image);
@@ -31,9 +31,12 @@ function Create() {
     city: "",
     state: "",
   });
+  console.log(image);
   async function createMerchant() {
     const token = localStorage.getItem("user-token");
     // e.preventDefault();
+    // const imageData = new FormData();
+    // imageData.append("file", image);
     const payLoad = {
       name: formData.name,
       email: formData.email,
@@ -41,13 +44,14 @@ function Create() {
       address: formData.address,
       city: formData.city,
       state_id: formData.state,
+      image: image,
     };
+    alert(payLoad.image);
     const response = await fetch(
-      "https://reic.api.simpoo.biz/api/admin/add_staff",
+      "https://reic.api.simpoo.biz/api/admin/add_merchant",
       {
         method: "POST",
         body: JSON.stringify(payLoad),
-
         headers: {
           "Content-type": "application/json",
           Accept: "application/json",

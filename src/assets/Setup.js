@@ -131,7 +131,6 @@ function Setup({ formData, setFormData }) {
             type="tel"
             placeholder="enter phone number"
             className="box"
-            disabled
             value={formData.phone}
             onChange={(event) =>
               setFormData({ ...formData, phone: event.target.value })
@@ -232,6 +231,7 @@ function Setup({ formData, setFormData }) {
             onChange={(event) =>
               setFormData({ ...formData, dob: event.target.value })
             }
+            max="2022-02-01"
           />
         </div>
         <div>

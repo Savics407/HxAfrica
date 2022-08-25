@@ -12,6 +12,7 @@ import status from "./images/status-up.png";
 import { MdClose } from "react-icons/md";
 import { motion } from "framer-motion";
 import AddBank from "./AddBank";
+import BuyToken, { BankTransfer } from "./BuyToken";
 import Withdraw from "./WithdrawToken";
 import RecentActivity from "./recentActivity";
 import * as CurrencyFormat from "react-currency-format";
@@ -54,6 +55,7 @@ class ErrorBoundary extends React.Component {
 function Token() {
   const [isCardPay, setIsCardPay] = useState(false);
   const [card, setCard] = useState(false);
+  const [isBankPay, setIsBankPay] = useState(false);
   const [card2, setCard2] = useState(false);
   const [amount, setAmount] = useState(50000);
   async function buy(e) {
@@ -120,6 +122,7 @@ function Token() {
   });
   const [withdraw, setWithdraw] = useState(false);
   const [bankID, setBankID] = useState();
+  const [bank, setBank] = useState(false);
   return (
     <div className="font-family">
       {buyToken && (
@@ -147,7 +150,7 @@ function Token() {
           wallet={wallet}
         />
       )}
-
+      {bank && <BankTransfer setBank={setBank} bank={bank} />}
       <Header />
 
       <div className="lg:w-10/12 w-full m-auto lg:mt-20 bg-dashbg rounded-lg lg:py-8 lg:px-4">
@@ -333,6 +336,7 @@ function Token() {
                             setIsCardPay(true);
                             setCard(true);
                             setCard2(false);
+                            setIsBankPay(false);
                           }}
                         >
                           Card payment
@@ -342,10 +346,11 @@ function Token() {
                             card2 && "bg-green !text-dashbg"
                           }`}
                           onClick={() => {
-                            alert("No Bank added yet");
+                            // alert("No Bank added yet");
                             setCard(false);
                             setIsCardPay(false);
-                            setCard2(false);
+                            setCard2(true);
+                            setIsBankPay(true);
                           }}
                         >
                           Bank Transfer
@@ -386,7 +391,24 @@ function Token() {
                           Save method as default
                         </p>
                       </div>
-                      {!isCardPay && (
+
+                      {isCardPay ? (
+                        <button
+                          className="rounded-full w-44 h-12 text-dashbg bg-green"
+                          onClick={buy}
+                        >
+                          Pay with Card
+                        </button>
+                      ) : isBankPay ? (
+                        <button
+                          className="rounded-full w-44 h-12 text-dashbg bg-green"
+                          onClick={() => {
+                            setBank(true);
+                          }}
+                        >
+                          Continue
+                        </button>
+                      ) : (
                         <button
                           className="rounded-full w-44 h-12 text-dashbg bg-green"
                           onClick={() => {
@@ -394,14 +416,6 @@ function Token() {
                           }}
                         >
                           Buy Token
-                        </button>
-                      )}
-                      {isCardPay && (
-                        <button
-                          className="rounded-full w-44 h-12 text-dashbg bg-green"
-                          onClick={buy}
-                        >
-                          Pay with Card
                         </button>
                       )}
                     </div>

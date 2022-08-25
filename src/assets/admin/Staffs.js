@@ -16,7 +16,7 @@ function Staffs() {
   useEffect(() => {
     if (image) {
       const reader = new FileReader();
-      reader.onloadend = () => {
+      reader.onload = () => {
         setPreview(reader.result);
       };
       reader.readAsDataURL(image);
@@ -39,16 +39,16 @@ function Staffs() {
       name: formData.name,
       email: "example@gmail.com",
       phone: formData.phone,
-      image: { preview },
+      image: image,
     };
     const response = await fetch(
       "https://reic.api.simpoo.biz/api/admin/add_staff",
       {
         method: "POST",
         body: JSON.stringify(payLoad),
-
         headers: {
-          "Content-type": "application/json",
+          "Content-type": "multipart/form-data",
+          // "Content-type": "application/json",
           Accept: "application/json",
           Authorization: `Bearer ${token}`,
         },
@@ -78,7 +78,7 @@ function Staffs() {
                 delay: 0.5,
               },
             }}
-            className="flex items-center justify-center fixed top-0 right-0 bottom-0 left-0 bg-overlay  backdrop-blur-sm"
+            className="flex items-center justify-center fixed top-0 right-0 bottom-0 left-0 bg-overlay  backdrop-blur-sm z-10"
           >
             <motion.div
               initial={{
