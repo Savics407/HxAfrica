@@ -2,7 +2,7 @@ import user from "../images/default_profile.svg";
 import { FaAngleDown } from "react-icons/fa";
 import { FaBell } from "react-icons/fa";
 import { useState } from "react";
-import logo from "../images/REICLogo.png";
+import logo from "../images/logo.svg";
 import { MdDashboard } from "react-icons/md";
 import { MdInsertChart } from "react-icons/md";
 import { AiFillDollarCircle } from "react-icons/ai";

@@ -49,9 +49,28 @@ function Dashboard() {
     localStorage.setItem("user-wallet", result?.data.token);
   }
 
+  const [earnings, setEarnings] = useState();
+  async function totalEarnings() {
+    const token = localStorage.getItem("user-token");
+    const response = await fetch(
+      "https://reic.api.simpoo.biz/api/wallet/total_earning",
+      {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    const result = await response.json();
+    console.log(result?.status);
+    setEarnings(result?.data);
+  }
+
   useEffect(() => {
     wallet();
-  });
+    totalEarnings();
+  }, []);
 
   // function redirect() {
   //   window.location = "http://localhost:3000/investment";
@@ -205,14 +224,23 @@ function Dashboard() {
                 <p className="text-earnings font-medium text-xs mb-1">
                   Total Earnings Reic
                 </p>
-                <h1 className="text-dark text-xl font-medium">4 reic</h1>
+                <h1 className="text-dark text-xl font-medium">
+                  {earnings?.token} reic
+                </h1>
               </div>
               <div className="w-1/2 px-4">
                 <img src={coin} alt="dollar-icon" className="mb-4 h-6 w-6" />
                 <p className="text-earnings font-medium text-xs mb-1">
                   Total Investments
                 </p>
-                <h1 className="text-dark text-xl font-medium">N200,000</h1>
+                <h1 className="text-dark text-xl font-medium">
+                  N
+                  <CurrencyFormat
+                    value={earnings?.NGN}
+                    displayType={"text"}
+                    thousandSeparator={true}
+                  />
+                </h1>
               </div>
             </div>
           </div>
@@ -229,14 +257,23 @@ function Dashboard() {
               <p className="text-earnings font-medium text-xs mb-1">
                 Total Earnings Reic
               </p>
-              <h1 className="text-dark text-2xl font-medium">4 REIC</h1>
+              <h1 className="text-dark text-2xl font-medium">
+                {earnings?.token} REIC
+              </h1>
             </div>
             <div className="w-1/2 px-4">
               <img src={coin} alt="dollar-icon" className="mb-4 h-6 w-6" />
               <p className="text-earnings font-medium text-xs mb-1">
                 Total Earnings Naira
               </p>
-              <h1 className="text-dark text-2xl font-medium">N200,000</h1>
+              <h1 className="text-dark text-2xl font-medium">
+                N
+                <CurrencyFormat
+                  value={earnings?.NGN}
+                  displayType={"text"}
+                  thousandSeparator={true}
+                />
+              </h1>
             </div>
           </div>
           <div className="my-5 bg-white rounded-lg pt-4 pb-20 px-4 hidden lg:block">

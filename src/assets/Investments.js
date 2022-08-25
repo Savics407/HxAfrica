@@ -18,6 +18,8 @@ import { FiArrowUp } from "react-icons/fi";
 import { HiOutlineArrowRight } from "react-icons/hi";
 
 function Investments() {
+  const userID = localStorage.getItem("user-id");
+
   const [posts, setPosts] = useState();
   async function fetchData() {
     const token = localStorage.getItem("user-token");
@@ -310,7 +312,12 @@ function Investments() {
                         </span>
                       </p>
                     </div>
-                    {data[0].product.cost > data[0].product.threshold ? (
+                    {data[0].user_id == userID ? (
+                      <button className="bg-ongoing text-rose text-tiny font-semibold w-24 h-7 rounded-2xl">
+                        Pull Out
+                      </button>
+                    ) : data[0].user_id != userID &&
+                      data[0].product.cost > data[0].product.threshold ? (
                       <div>
                         <button
                           className="bg-white text-green text-tiny font-normal w-24 h-7 rounded-2xl"
