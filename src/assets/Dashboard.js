@@ -205,7 +205,7 @@ function Dashboard() {
                 <p className="text-earnings font-medium text-xs mb-1">
                   Total Earnings Reic
                 </p>
-                <h1 className="text-dark text-xl font-medium">N200,000</h1>
+                <h1 className="text-dark text-xl font-medium">4 reic</h1>
               </div>
               <div className="w-1/2 px-4">
                 <img src={coin} alt="dollar-icon" className="mb-4 h-6 w-6" />
@@ -229,12 +229,12 @@ function Dashboard() {
               <p className="text-earnings font-medium text-xs mb-1">
                 Total Earnings Reic
               </p>
-              <h1 className="text-dark text-2xl font-medium">N200,000</h1>
+              <h1 className="text-dark text-2xl font-medium">4 REIC</h1>
             </div>
             <div className="w-1/2 px-4">
               <img src={coin} alt="dollar-icon" className="mb-4 h-6 w-6" />
               <p className="text-earnings font-medium text-xs mb-1">
-                Total Earnings Reic
+                Total Earnings Naira
               </p>
               <h1 className="text-dark text-2xl font-medium">N200,000</h1>
             </div>
@@ -245,7 +245,7 @@ function Dashboard() {
               NEW INVESTMENTS
             </h1>
             <p className="text-sm text-dark font-semibold">
-              Submit your watchlist and win USDT
+              Make profitable ROI's in Reic as you buy more token
             </p>
           </div>
           <Myinvests />
@@ -256,8 +256,8 @@ function Dashboard() {
               Best for investments
             </h1>
             <h1 className="text-footer font-normal text-sm">
-              Put your CHSB in the Yield Program and get rewarded daily with new
-              CHSB.
+              Enjoy Predictable cash flow, excellent returns and creation of
+              wealth.
             </h1>
           </div>
         </div>

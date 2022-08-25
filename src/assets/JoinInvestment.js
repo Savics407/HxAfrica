@@ -39,9 +39,25 @@ function JoinInvestment({ closeModal, itemId }) {
     console.log(result.data);
     setPosts(result.data);
   }
-
+  const [balance, setBalance] = useState();
+  async function wallet() {
+    const token = localStorage.getItem("user-token");
+    const response = await fetch(
+      "https://reic.api.simpoo.biz/api/wallet/fetch_wallet",
+      {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    const result = await response.json();
+    console.log(result?.status);
+    setBalance(result?.data.balance);
+  }
   useEffect(() => {
-    // activities();
+    wallet();
     fetchData();
   }, []);
 
@@ -68,9 +84,9 @@ function JoinInvestment({ closeModal, itemId }) {
           },
         }}
         className="flex items-center justify-center relative z-50"
-      // onClick={() => {
-      //         closeDetails(false)
-      //     }}
+        // onClick={() => {
+        //         closeDetails(false)
+        //     }}
       >
         <div
           className="fixed top-0 right-0 bottom-0 left-0 bg-overlay backdrop-blur-xs"
@@ -97,8 +113,9 @@ function JoinInvestment({ closeModal, itemId }) {
                   delay: 0.5,
                 },
               }}
-              className={`bg-white rounded-xl border w-1/2 absolute top-12 ${isClick ? "hidden" : "block"
-                }`}
+              className={`bg-white rounded-xl border w-1/2 absolute top-12 ${
+                isClick ? "hidden" : "block"
+              }`}
             >
               <div className="border-b border-stroke px-10 py-5 text-2xl font-semibold flex justify-between items-center text-modal">
                 <h1>Investments</h1>
@@ -112,11 +129,15 @@ function JoinInvestment({ closeModal, itemId }) {
               </div>
 
               <div className="px-10 ">
-                <img src={hdimage} alt="my-investment-image" />
+                <img
+                  src={hdimage}
+                  alt="my-investment-image"
+                  className="w-full"
+                />
                 <div className="border-b border-strek pb-4">
                   <div className="flex items-center justify-between">
-                    <h1 className="bg-media p-2 rounded text-sm my-5 text-dashbg w-fit text-center font-semibold ">
-                      {post.title}
+                    <h1 className="bg-media p-2 rounded text-sm my-5 text-dashbg w-fit text-center font-semibold capitalize">
+                      {post.category.product_category}
                     </h1>
                     <h1 className="text-darkgray text-sm">
                       <span className="text-secondary">Created:</span>{" "}
@@ -125,7 +146,7 @@ function JoinInvestment({ closeModal, itemId }) {
                   </div>
                   <div className="flex items-center justify-between">
                     <h1 className="text-neutral text-2xl font-semibold capitalize">
-                      {post.category.product_category}
+                      {post.title}
                     </h1>
                     <h1 className="text-darkgray text-sm">
                       <span className="text-secondary">Time:</span>{" "}
@@ -196,18 +217,27 @@ function JoinInvestment({ closeModal, itemId }) {
                   <div className="flex justify-between items-ce4nter py-5">
                     <h1 className="text-darkgray text-sm font-normal">
                       <span className="text-secondary">Time Frame </span> -{" "}
-                      {post.duration} Months
+                      {post.duration} Days
                     </h1>{" "}
                     <h1 className="text-darkgray text-sm font-normal">
-                      <span className="text-secondary">Expires in </span> -{" "}
+                      <span className="text-secondary">Starts in </span> -{" "}
                       {moment(post.expiry_date).diff(new Date(), "Days")} Days
                     </h1>
                   </div>
                 </div>
                 <div className="pt-5 pb-9">
-                  <p className="text-neutral text-base font-normal mb-2.5">
-                    Amount
+                  <p className="text-neutral text-base font-normal mb-2.5 flex justify-between">
+                    <span>Amount</span>{" "}
+                    <span className="text-green text-sm font-medium">
+                      Available Amount: N
+                      <CurrencyFormat
+                        value={balance}
+                        displayType={"text"}
+                        thousandSeparator={true}
+                      />
+                    </span>
                   </p>
+
                   <div className="text-nuetral font-bold text-lg flex items-center justify-center py-6 rounded-lg bg-mainbg relative">
                     <sup className="w-2/5 text-right">REIC</sup>
                     <input
@@ -244,7 +274,8 @@ function JoinInvestment({ closeModal, itemId }) {
                         alert("kindly input reic amount to invest");
                       } else if (reic > token) {
                         toast.error(
-                          `Your balance is too small for this investment, kindly make a deposit of ${reic - token
+                          `Your balance is too small for this investment, kindly make a deposit of ${
+                            reic - token
                           } reic to continue`,
                           {
                             position: "top-left",
@@ -288,11 +319,11 @@ function JoinInvestment({ closeModal, itemId }) {
 
 export function Warning({ closeWarning, closeModal, reic, title, productID }) {
   function redirect() {
-    setProcessing(false)
-    setCompleted(true)
+    setProcessing(false);
+    setCompleted(true);
   }
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [processing, setProcessing] = useState(false);
   const [completed, setCompleted] = useState(false);
   const [warning, setWarning] = useState(true);
@@ -357,8 +388,9 @@ export function Warning({ closeWarning, closeModal, reic, title, productID }) {
             delay: 0.5,
           },
         }}
-        className={`w-128 bg-white rounded-xl fixed top-20 border-green p-6 text-center ${warning ? "block" : "hidden"
-          } `}
+        className={`w-128 bg-white rounded-xl fixed top-20 border-green p-6 text-center ${
+          warning ? "block" : "hidden"
+        } `}
       >
         <div>
           <h1 className="font-bold text-neutral text-3xl">Notice</h1>
@@ -456,20 +488,32 @@ export function Warning({ closeWarning, closeModal, reic, title, productID }) {
           </div>
           <div className="font-semibold text-base text-neutral my-8">
             <p>
-              You made an investment of <span className="text-green">N<CurrencyFormat
-                value={reic * 50000}
-                displayType={"text"}
-                thousandSeparator={true}
-              /></span> worth <br /> of <span className="text-green">Reic </span> to the {title} Project.
+              You made an investment of{" "}
+              <span className="text-green">
+                N
+                <CurrencyFormat
+                  value={reic * 50000}
+                  displayType={"text"}
+                  thousandSeparator={true}
+                />
+              </span>{" "}
+              worth <br /> of <span className="text-green">Reic </span> to the{" "}
+              {title} Project.
             </p>
           </div>
           <div className=" text-center w-11/12 mb-2 m-auto">
-            <button className="rounded-full w-full p-2 text-white bg-green flex justify-around items-center" onClick={() => navigate("/token")}>
+            <button
+              className="rounded-full w-full p-2 text-white bg-green flex justify-around items-center"
+              onClick={() => navigate("/token")}
+            >
               Done
             </button>
           </div>
           <div className=" text-center w-11/12 m-auto">
-            <button className="rounded-full w-full p-2 text-green border-green border flex justify-around items-center" onClick={() => navigate("/investments/my-investment")}>
+            <button
+              className="rounded-full w-full p-2 text-green border-green border flex justify-around items-center"
+              onClick={() => navigate("/investments/my-investment")}
+            >
               Go to My Investments
             </button>
           </div>

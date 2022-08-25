@@ -87,8 +87,9 @@ function Details({ closeDetails, itemId }) {
                   delay: 0.5,
                 },
               }}
-              className={`bg-white rounded-xl border w-1/2 z-10 ${isClick ? "hidden" : "block"
-                }`}
+              className={`bg-white rounded-xl border w-1/2 z-10 ${
+                isClick ? "hidden" : "block"
+              }`}
             >
               <div className="border-b border-stroke px-10 py-5 text-2xl font-semibold flex justify-between items-center text-modal">
                 <h1>Investments</h1>
@@ -157,27 +158,31 @@ function Details({ closeDetails, itemId }) {
                   </div>
                 </div>
                 <div className="text-right pt-5 pb-8">
-                  {post.status === "ongoing" ? <button
-                    className="border rounded-full w-44 h-12 text-dashbg bg-red"
-                    onClick={() => {
-                      setAuthPullOut(true);
-                      setIsClick(!isClick);
-                      setTitle(post.product.title);
-                      setProductId(itemId);
-                      localStorage.setItem("product_title", post.product.title);
-                    }}
-                  >
-                    Pull Out
-                  </button> : post.status === "completed" ? <button
-                      className="border rounded-full w-44 h-12 text-dashbg bg-green"
+                  {post.status === "ongoing" ? (
+                    <button
+                      className="border rounded-full w-44 h-12 text-dashbg bg-red"
+                      onClick={() => {
+                        setAuthPullOut(true);
+                        setIsClick(!isClick);
+                        setTitle(post.product.title);
+                        setProductId(itemId);
+                        localStorage.setItem(
+                          "product_title",
+                          post.product.title
+                        );
+                      }}
                     >
+                      Pull Out
+                    </button>
+                  ) : post.status === "completed" ? (
+                    <button className="border rounded-full w-44 h-12 text-dashbg bg-green">
                       Completed
-                  </button> : <button
-                        className="border rounded-full w-44 h-12 text-dashbg bg-red"
-                      >
-                        Status: Waiting
-                  </button>}
-
+                    </button>
+                  ) : (
+                    <button className="border rounded-full w-44 h-12 text-dashbg bg-red">
+                      Cancel
+                    </button>
+                  )}
                 </div>
               </div>
             </motion.div>
@@ -219,8 +224,9 @@ function Warning({ closeWarning, title, productId }) {
             delay: 0.5,
           },
         }}
-        className={`w-128 bg-white rounded-xl absolute border-green p-6 text-center ${warning ? "block" : "hidden"
-          } `}
+        className={`w-128 bg-white rounded-xl absolute border-green p-6 text-center ${
+          warning ? "block" : "hidden"
+        } `}
       >
         <div>
           <h1 className="font-bold text-neutral text-3xl">Warning!</h1>
@@ -334,8 +340,9 @@ function Processing({ productId }) {
             delay: 0.5,
           },
         }}
-        className={`w-128 bg-white rounded-xl absolute border-green p-6 text-center ${bvn ? "block" : "hidden"
-          }`}
+        className={`w-128 bg-white rounded-xl absolute border-green p-6 text-center ${
+          bvn ? "block" : "hidden"
+        }`}
       >
         <div>
           <h1 className="font-bold text-neutral text-3xl">Processing</h1>
@@ -361,7 +368,6 @@ function Sad() {
   const product_title = localStorage.getItem("product_title");
   useEffect(() => {
     setTimeout((window.location = "/token"), 10000);
-
   }, []);
   return (
     <>
