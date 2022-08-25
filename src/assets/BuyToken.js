@@ -465,7 +465,9 @@ export function BankTransfer({ closeToken, setBank, bank }) {
             <div className=" text-center w-11/12 mb-2 m-auto">
               <button
                 className="rounded-full w-full p-2 text-white bg-green flex justify-around items-center"
-                onClick={() => navigate("/token")}
+                onClick={() => {
+                  bank ? setBank(false) : navigate("/token");
+                }}
               >
                 Done
               </button>
