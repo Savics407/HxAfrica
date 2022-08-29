@@ -158,7 +158,7 @@ function Ongoing() {
                         <button
                           className="bg-ongoing text-rose text-tiny font-semibold w-24 h-7 rounded-2xl"
                           onClick={() => {
-                            productDetails(post.product_id);
+                            productDetails(post.id);
                           }}
                         >
                           Pull Out
