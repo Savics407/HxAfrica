@@ -158,7 +158,7 @@ function Details({ closeDetails, itemId }) {
                   </div>
                 </div>
                 <div className="text-right pt-5 pb-8">
-                  {post.status === "ongoing" ? (
+                  {post.product.status_investment === "ongoing" ? (
                     <button
                       className="border rounded-full w-44 h-12 text-dashbg bg-red"
                       onClick={() => {
@@ -233,7 +233,7 @@ function Warning({ closeWarning, title, productId }) {
         </div>
         <div className="font-semibold text-base text-neutral my-8">
           <p>
-            Are you sure you want to pull out from the{" "}
+            Are you sure you want to pull out from the <br />
             <span className="text-green">{title}</span> investments? <br />
             This action will incur charges of N25,000
           </p>

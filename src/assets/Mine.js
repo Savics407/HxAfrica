@@ -192,7 +192,7 @@ function Mine() {
                           </h1>
                         </td>
                         <td className=" py-8">
-                          {post.status === "ongoing" ? (
+                          {post.product.status_investment === "ongoing" ? (
                             <button
                               className="bg-pending text-xs text-red w-28 h-9 rounded-full font-medium"
                               onClick={() => {
