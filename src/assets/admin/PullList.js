@@ -4,10 +4,14 @@ import search from "../images/Small.svg";
 import avater from "../images/Avatar.svg";
 import Martabs from "./Martabs";
 import { MdArrowBackIosNew } from "react-icons/md";
+import * as CurrencyFormat from "react-currency-format";
+import moment from "moment";
 import { MdArrowForwardIos } from "react-icons/md";
+import { toast } from "react-toastify";
 
 function PullList() {
   const [pullFunds, setPullFunds] = useState();
+  const [status, setStatus] = useState("");
   async function fetchPullFunds() {
     const token = localStorage.getItem("user-token");
     // e.preventDefault();
@@ -27,6 +31,51 @@ function PullList() {
     // alert(result.data.name);
     setPullFunds(result?.data);
   }
+
+  async function approvePullout(id) {
+    const token = localStorage.getItem("user-token");
+    const payLoad = {
+      id: id,
+      status: status,
+    };
+    alert(payLoad.id);
+    const response = await fetch(
+      "https://reic.api.simpoo.biz/api/admin/approve_merchant_pullout_product_funds",
+      {
+        method: "POST",
+        body: JSON.stringify(payLoad),
+        headers: {
+          "Content-type": "application/json",
+          Accept: "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    const result = await response.json();
+    console.log(result.data);
+    if (result?.status === "success" && status === "success") {
+      toast.success(`${result.message}`, {
+        position: "top-right",
+        autoClose: 1500,
+        hideProgressBar: true,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    } else {
+      toast(`Merchant Pullout Declined`, {
+        position: "top-right",
+        autoClose: 1500,
+        hideProgressBar: true,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    }
+  }
+
   useEffect(() => {
     fetchPullFunds();
   }, []);
@@ -76,46 +125,84 @@ function PullList() {
                   Dates
                 </th>
                 <th className="py-3 pr-7 text-mobile-nav font-medium text-xs ">
-                  time{" "}
+                  Time{" "}
                 </th>
                 <th className="py-3 pr-7 text-mobile-nav font-medium text-xs ">
                   Action
                 </th>
               </tr>
             </thead>
-            <tr className="border-b font-inter">
-              <td className="py-8 pl-5 flex">
-                <div className="mr-2">
-                  <img src={avater} alt="merchant avater" />
-                </div>
-                <div>
-                  <h1 className="font-normal  text-deep text-sm">
-                    Marchant Name
+            {pullFunds?.map((funds) => (
+              <tr className="border-b font-inter" key={funds.id}>
+                <td className="py-8 pl-5 flex">
+                  <div className="mr-2">
+                    <img src={avater} alt="merchant avater" />
+                  </div>
+                  <div>
+                    <h1 className="font-normal  text-deep text-sm">
+                      {funds.merchant.name}
+                    </h1>
+                    <h1 className="font-normal text-statustext text-xs">
+                      {funds.merchant.products.length} Products
+                    </h1>
+                  </div>
+                </td>
+                <td className="py-8">
+                  <h1 className="font-normal text-deep text-xs">
+                    N
+                    <CurrencyFormat
+                      value={funds.amount}
+                      displayType={"text"}
+                      thousandSeparator={true}
+                    />
                   </h1>
-                  <h1 className="font-normal text-statustext text-xs">
-                    200 Products
+                </td>
+                <td className="py-8">
+                  <h1 className="font-normal text-deep text-xs">
+                    {moment(funds.created_at).format("MMM DD, yyyy")}
                   </h1>
-                </div>
-              </td>
-              <td className="py-8">
-                <h1 className="font-normal text-deep text-xs">N200,000</h1>
-              </td>
-              <td className="py-8">
-                <h1 className="font-normal text-deep text-xs">12/02/2022</h1>
-              </td>
-              <td className="py-8">
-                <h1 className="font-normal text-deep text-xs">13:30pm</h1>
-              </td>
+                </td>
+                <td className="py-8">
+                  <h1 className="font-normal text-deep text-xs">
+                    {moment(funds.created_at).format("LT")}
+                  </h1>
+                </td>
 
-              <td className="py-3">
-                <button className="font-medium text-xs font-inter text-blue py-2 px-2 border-r ">
-                  Approve
-                </button>
-                <button className="font-medium text-xs font-inter text-red py-1 px-2">
-                  Decline
-                </button>
-              </td>
-            </tr>
+                <td className="py-3">
+                  {funds.status === "success" ? (
+                    <button className="font-semibold text-xs font-inter bg-approved text-appText py-1 px-3 rounded-full ">
+                      Approved
+                    </button>
+                  ) : funds.status === "failed" ? (
+                    <button className="font-semibold text-xs font-inter bg-relist text-relisted py-1 px-2.5 rounded-full ">
+                      Declined
+                    </button>
+                  ) : (
+                    <div>
+                      <button
+                        className="font-medium text-xs font-inter text-blue py-2 px-2 border-r "
+                        onClick={() => {
+                          approvePullout(funds.id);
+                          setStatus("success");
+                        }}
+                      >
+                        Approve
+                      </button>
+                      <button
+                        className="font-medium text-xs font-inter text-red py-1 px-2"
+                        onClick={() => {
+                          approvePullout(funds.id);
+                          setStatus("failed");
+                          // alert(status);
+                        }}
+                      >
+                        Decline
+                      </button>
+                    </div>
+                  )}
+                </td>
+              </tr>
+            ))}
 
             <tr className="border-b font-inter">
               <td className="py-8 pl-5 flex">

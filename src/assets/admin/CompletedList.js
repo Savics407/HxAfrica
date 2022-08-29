@@ -4,6 +4,8 @@ import avater from "../images/Avatar.svg";
 import { MdArrowBackIosNew } from "react-icons/md";
 import { MdArrowForwardIos } from "react-icons/md";
 import InvestmentTabs from "./InvestmentTabs";
+import moment from "moment";
+import * as CurrencyFormat from "react-currency-format";
 import realEstate from "../images/realEstate.svg";
 
 function CompletedList() {
@@ -49,10 +51,10 @@ function CompletedList() {
           {/* <button className="text-sm text-dark">Select Multiple</button> */}
         </div>
         <div className="">
-          <table className=" w-full table-auto">
+          <table className=" w-full table-fixed">
             <thead className="">
               <tr className="text-left bg-bar">
-                <th className="py-3 text-mobile-nav font-medium text-xs pl-9">
+                <th className="py-3 text-mobile-nav font-medium text-xs pl-9 w-60">
                   Investment
                 </th>
                 <th className="py-3 pr-7 text-mobile-nav font-medium text-xs ">
@@ -69,30 +71,43 @@ function CompletedList() {
                 </th> */}
               </tr>
             </thead>
-            <tr className="border-b font-inter">
-              <td className="py-8 pl-5 flex items-center">
-                <div className="mr-2">
-                  <img src={realEstate} alt="Investment Icon" />
-                </div>
-                <div>
-                  <h1 className="font-normal  text-deep text-sm">
-                    Crowdfunding
+            {completed?.map((completed) => (
+              <tr className="border-b font-inter">
+                <td className="py-8 pl-5 flex items-center">
+                  <div className="mr-2">
+                    <img src={realEstate} alt="Investment Icon" />
+                  </div>
+                  <div>
+                    <h1 className="font-normal  text-deep text-sm">
+                      {completed.title}
+                    </h1>
+                    <h1 className="font-normal text-green text-xs">
+                      {completed.category.product_category}
+                    </h1>
+                  </div>
+                </td>
+                <td className="py-8">
+                  <h1 className="font-normal text-deep text-xs">
+                    {completed.investments.length}
                   </h1>
-                  <h1 className="font-normal text-green text-xs">
-                    Real Estate
+                </td>
+                <td className="py-8">
+                  <h1 className="font-normal text-deep text-xs">
+                    N
+                    <CurrencyFormat
+                      value={completed.cost}
+                      displayType={"text"}
+                      thousandSeparator={true}
+                    />
                   </h1>
-                </div>
-              </td>
-              <td className="py-8">
-                <h1 className="font-normal text-deep text-xs">20</h1>
-              </td>
-              <td className="py-8">
-                <h1 className="font-normal text-deep text-xs">N200,000</h1>
-              </td>
-              <td className="py-8">
-                <h1 className="font-normal text-deep text-xs">Jul 12</h1>
-              </td>
-            </tr>
+                </td>
+                <td className="py-8">
+                  <h1 className="font-normal text-deep text-xs">
+                    {moment(completed.expiry_date).format("MMM DD")}
+                  </h1>
+                </td>
+              </tr>
+            ))}
 
             <tr className="border-b font-inter">
               <td className="py-8 pl-5 flex items-center">

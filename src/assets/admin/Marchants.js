@@ -17,7 +17,7 @@ function Marchants() {
         </div>
         <div className=" w-4/5 p-5 mb-20">
           <div className=" bg-white p-10 rounded-lg">
-            <h1 className="text-dark  font-black text-3xl mb-3">Merchants</h1>
+            <h1 className="text-dark font-black text-3xl mb-3">Merchants</h1>
           </div>
           <div className="flex justify-between">
             <div className="w-4/6">

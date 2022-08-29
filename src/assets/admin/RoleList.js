@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaAngleDown } from "react-icons/fa";
 
 import { MdArrowBackIosNew } from "react-icons/md";
@@ -8,6 +8,30 @@ import { motion } from "framer-motion";
 
 function RoleList() {
   const [create, setCreate] = useState(false);
+  const [roles, setRoles] = useState();
+  async function fetchRoles() {
+    const token = localStorage.getItem("user-token");
+    // e.preventDefault();
+    const response = await fetch(
+      "https://reic.api.simpoo.biz/api/admin/get_roles",
+      {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+          Accept: "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    const result = await response.json();
+    console.log(result.data);
+    // alert(result.data.name);
+    setRoles(result?.data);
+  }
+
+  useEffect(() => {
+    fetchRoles();
+  }, []);
 
   return (
     <>

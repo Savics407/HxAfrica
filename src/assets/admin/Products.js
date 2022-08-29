@@ -37,7 +37,7 @@ function Products() {
   }, []);
 
   return (
-    <div>
+    <div className="">
       <div
         className={`rounded-lg ${
           fix ? "fixed top-0 bg-white" : "rounded-lg bg-white relative"

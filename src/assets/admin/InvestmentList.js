@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { FaAngleDown } from "react-icons/fa";
-import avater from "../images/Avatar.svg";
 import { MdArrowBackIosNew } from "react-icons/md";
 import { MdArrowForwardIos } from "react-icons/md";
-// import InvestmentTabs from "./InvestmentTabs";
 import { NavLink, Link } from "react-router-dom";
+import * as CurrencyFormat from "react-currency-format";
 import realEstate from "../images/realEstate.svg";
 
 function InvestmentTabs() {
@@ -98,81 +96,64 @@ function InvestmentList() {
                 <th className="py-3 pr-7 text-mobile-nav font-medium text-xs ">
                   Time Frame
                 </th>
-                <th className="py-3 pr-7 text-mobile-nav font-medium text-xs ">
+                {/* <th className="py-3 pr-7 text-mobile-nav font-medium text-xs ">
                   Investors
-                </th>
+                </th> */}
                 <th className="py-3 pr-7 text-mobile-nav font-medium text-xs ">
                   Action
                 </th>
               </tr>
             </thead>
-            <tr className="border-b font-inter">
-              <td className="py-8 pl-5 flex items-center">
-                <div className="mr-2">
-                  <img src={realEstate} alt="Investment Icon" />
-                </div>
-                <div>
-                  <h1 className="font-normal  text-deep text-sm">
-                    Crowdfunding
+            {pending?.map((pending) => (
+              <tr className="border-b font-inter">
+                <td className="py-8 pl-5 flex items-center">
+                  <div className="mr-2">
+                    <img src={realEstate} alt="Investment Icon" />
+                  </div>
+                  <div>
+                    <h1 className="font-normal  text-deep text-sm">
+                      {pending.title}
+                    </h1>
+                    <h1 className="font-normal text-green text-xs">
+                      {pending.category.product_category}
+                    </h1>
+                  </div>
+                </td>
+                <td className="py-8">
+                  <h1 className="font-normal text-deep text-xs">
+                    N
+                    <CurrencyFormat
+                      value={pending.cost}
+                      displayType={"text"}
+                      thousandSeparator={true}
+                    />
                   </h1>
-                  <h1 className="font-normal text-green text-xs">
-                    Real Estate
+                </td>
+                <td className="py-8">
+                  <h1 className="font-normal text-deep text-xs">
+                    {pending.duration} Days
                   </h1>
-                </div>
-              </td>
-              <td className="py-8">
-                <h1 className="font-normal text-deep text-xs">N200,000</h1>
-              </td>
-              <td className="py-8">
-                <h1 className="font-normal text-deep text-xs">7 weeks</h1>
-              </td>
-              <td className="py-8">
-                <h1 className="font-normal text-deep text-xs">200</h1>
-              </td>
+                </td>
+                {/* <td className="py-8">
+                  <h1 className="font-normal text-deep text-xs">200</h1>
+                </td> */}
 
-              <td className="py-3">
-                <button className="font-medium text-xs font-inter text-blue py-2 px-2 border-r ">
-                  Approve
-                </button>
-                <button className="font-medium text-xs font-inter text-red py-1 px-2">
-                  Decline
-                </button>
-              </td>
-            </tr>
-
-            <tr className="border-b font-inter">
-              <td className="py-8 pl-5 flex items-center">
-                <div className="mr-2">
-                  <img src={realEstate} alt="Investment Icon" />
-                </div>
-                <div>
-                  <h1 className="font-normal  text-deep text-sm">
-                    Crowdfunding
-                  </h1>
-                  <h1 className="font-normal text-green text-xs">
-                    Real Estate
-                  </h1>
-                </div>
-              </td>
-              <td className="py-8">
-                <h1 className="font-normal text-deep text-xs">N200,000</h1>
-              </td>
-              <td className="py-8">
-                <h1 className="font-normal text-deep text-xs">7 weeks</h1>
-              </td>
-              <td className="py-8">
-                <h1 className="font-normal text-deep text-xs">200</h1>
-              </td>
-
-              <td className="py-3">
-                <button className="font-medium text-xs font-inter text-blue py-2 px-2 border-r ">
-                  Approve
-                </button>
-                <button className="font-medium text-xs font-inter text-red py-1 px-2">
-                  Decline
-                </button>
-              </td>
-            </tr>
+                <td className="py-3">
+                  <button
+                    className="font-medium text-xs font-inter text-blue py-2 px-2 border-r"
+                    // onClick={() => {
+                    //   approveProduct(funds.id);
+                    //   setStatus("success");
+                    // }}
+                  >
+                    Approve
+                  </button>
+                  <button className="font-medium text-xs font-inter text-red py-1 px-2">
+                    Decline
+                  </button>
+                </td>
+              </tr>
+            ))}
 
             <tr className="border-b font-inter">
               <td className="py-8 pl-5 flex items-center">
@@ -191,77 +172,9 @@ function InvestmentList() {
               <td className="py-8">
                 <h1 className="font-normal text-deep text-xs">N200,000</h1>
               </td>
-              <td className="py-8">
+              {/* <td className="py-8">
                 <h1 className="font-normal text-deep text-xs">7 weeks</h1>
-              </td>
-              <td className="py-8">
-                <h1 className="font-normal text-deep text-xs">200</h1>
-              </td>
-
-              <td className="py-3">
-                <button className="font-medium text-xs font-inter text-blue py-2 px-2 border-r ">
-                  Approve
-                </button>
-                <button className="font-medium text-xs font-inter text-red py-1 px-2">
-                  Decline
-                </button>
-              </td>
-            </tr>
-
-            <tr className="border-b font-inter">
-              <td className="py-8 pl-5 flex items-center">
-                <div className="mr-2">
-                  <img src={realEstate} alt="Investment Icon" />
-                </div>
-                <div>
-                  <h1 className="font-normal  text-deep text-sm">
-                    Crowdfunding
-                  </h1>
-                  <h1 className="font-normal text-green text-xs">
-                    Real Estate
-                  </h1>
-                </div>
-              </td>
-              <td className="py-8">
-                <h1 className="font-normal text-deep text-xs">N200,000</h1>
-              </td>
-              <td className="py-8">
-                <h1 className="font-normal text-deep text-xs">7 weeks</h1>
-              </td>
-              <td className="py-8">
-                <h1 className="font-normal text-deep text-xs">200</h1>
-              </td>
-
-              <td className="py-3">
-                <button className="font-medium text-xs font-inter text-blue py-2 px-2 border-r ">
-                  Approve
-                </button>
-                <button className="font-medium text-xs font-inter text-red py-1 px-2">
-                  Decline
-                </button>
-              </td>
-            </tr>
-
-            <tr className="border-b font-inter">
-              <td className="py-8 pl-5 flex items-center">
-                <div className="mr-2">
-                  <img src={realEstate} alt="Investment Icon" />
-                </div>
-                <div>
-                  <h1 className="font-normal  text-deep text-sm">
-                    Crowdfunding
-                  </h1>
-                  <h1 className="font-normal text-green text-xs">
-                    Real Estate
-                  </h1>
-                </div>
-              </td>
-              <td className="py-8">
-                <h1 className="font-normal text-deep text-xs">N200,000</h1>
-              </td>
-              <td className="py-8">
-                <h1 className="font-normal text-deep text-xs">7 weeks</h1>
-              </td>
+              </td> */}
               <td className="py-8">
                 <h1 className="font-normal text-deep text-xs">200</h1>
               </td>

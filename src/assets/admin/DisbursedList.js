@@ -1,12 +1,38 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FaAngleDown } from "react-icons/fa";
 import search from "../images/Small.svg";
 import avater from "../images/Avatar.svg";
 import Martabs from "./Martabs";
 import { MdArrowBackIosNew } from "react-icons/md";
 import { MdArrowForwardIos } from "react-icons/md";
+import * as CurrencyFormat from "react-currency-format";
+import moment from "moment";
 
 function DisbursedList() {
+  const [disburseFunds, setDisburseFunds] = useState();
+  async function fetchDisburse() {
+    const token = localStorage.getItem("user-token");
+    // e.preventDefault();
+    const response = await fetch(
+      "https://reic.api.simpoo.biz/api/admin/fetch_disburse_funds_request",
+      {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+          Accept: "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    const result = await response.json();
+    console.log(result.data);
+    // alert(result.data.name);
+    setDisburseFunds(result?.data);
+  }
+
+  useEffect(() => {
+    fetchDisburse();
+  }, []);
   return (
     <>
       <div className="flex justify-between my-6">
@@ -35,7 +61,7 @@ function DisbursedList() {
           <h1 className="">
             <span className="text-grayy text-sm mr-2">Disbursed Funds </span>{" "}
             <span className="rounded-full bg-green text-white px-2 text-xs ">
-              120
+              {disburseFunds?.length}
             </span>
           </h1>
         </div>
@@ -53,43 +79,56 @@ function DisbursedList() {
                   Dates
                 </th>
                 <th className="py-3 pr-7 text-mobile-nav font-medium text-xs ">
-                  time{" "}
+                  Time{" "}
                 </th>
                 <th className="py-3 pr-7 text-mobile-nav font-medium text-xs ">
                   Status
                 </th>
               </tr>
             </thead>
-            <tr className="border-b font-inter">
-              <td className="py-8 pl-5 flex">
-                <div className="mr-2">
-                  <img src={avater} alt="merchant avater" />
-                </div>
-                <div>
-                  <h1 className="font-normal  text-deep text-sm">
-                    Marchant Name
+            {disburseFunds?.map((funds) => (
+              <tr className="border-b font-inter">
+                <td className="py-8 pl-5 flex">
+                  <div className="mr-2">
+                    <img src={avater} alt="merchant avater" />
+                  </div>
+                  <div>
+                    <h1 className="font-normal  text-deep text-sm">
+                      {funds.merchant.name}
+                    </h1>
+                    <h1 className="font-normal text-statustext text-xs">
+                      {funds.merchant.products.length} Products
+                    </h1>
+                  </div>
+                </td>
+                <td className="py-8">
+                  <h1 className="font-normal text-deep text-xs">
+                    N
+                    <CurrencyFormat
+                      value={funds.amount}
+                      displayType={"text"}
+                      thousandSeparator={true}
+                    />
                   </h1>
-                  <h1 className="font-normal text-statustext text-xs">
-                    200 Products
+                </td>
+                <td className="py-8">
+                  <h1 className="font-normal text-deep text-xs">
+                    {moment(funds.created_at).format("MMM DD, yyyy")}
                   </h1>
-                </div>
-              </td>
-              <td className="py-8">
-                <h1 className="font-normal text-deep text-xs">N200,000</h1>
-              </td>
-              <td className="py-8">
-                <h1 className="font-normal text-deep text-xs">12/02/2022</h1>
-              </td>
-              <td className="py-8">
-                <h1 className="font-normal text-deep text-xs">13:30pm</h1>
-              </td>
+                </td>
+                <td className="py-8">
+                  <h1 className="font-normal text-deep text-xs">
+                    {moment(funds.created_at).format("LT")}
+                  </h1>
+                </td>
 
-              <td className="py-3">
-                <button className="font-medium text-sm font-inter bg-approved text-appText py-1 px-3 rounded-full ">
-                  Disbursed
-                </button>
-              </td>
-            </tr>
+                <td className="py-3">
+                  <button className="font-medium text-sm font-inter bg-approved text-appText py-1 px-3 rounded-full capitalize">
+                    {funds.status}
+                  </button>
+                </td>
+              </tr>
+            ))}
 
             <tr className="border-b font-inter">
               <td className="py-8 pl-5 flex">

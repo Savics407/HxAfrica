@@ -6,6 +6,7 @@ import { MdArrowForwardIos } from "react-icons/md";
 import { AiOutlineArrowUp } from "react-icons/ai";
 import InvestmentTabs from "./InvestmentTabs";
 import realEstate from "../images/realEstate.svg";
+import * as CurrencyFormat from "react-currency-format";
 
 function RelistedList() {
   const [relisted, setRelisted] = useState();
@@ -48,10 +49,10 @@ function RelistedList() {
           </h1>
         </div>
         <div className="">
-          <table className=" w-full table-auto">
+          <table className=" w-full table-fixed">
             <thead className="">
               <tr className="text-left bg-bar">
-                <th className="py-3 text-mobile-nav font-medium text-xs pl-9">
+                <th className="py-3 text-mobile-nav font-medium text-xs pl-9 w-60">
                   Investment
                 </th>
                 <th className="py-3 pr-7 text-mobile-nav font-medium text-xs ">
@@ -60,9 +61,9 @@ function RelistedList() {
                 <th className="py-3 pr-7 text-mobile-nav font-medium text-xs ">
                   Time Frame
                 </th>
-                <th className="py-3 pr-7 text-mobile-nav font-medium text-xs ">
+                {/* <th className="py-3 pr-7 text-mobile-nav font-medium text-xs ">
                   Investors
-                </th>
+                </th> */}
                 <th className="py-3 pr-7 text-mobile-nav font-medium text-xs ">
                   Action
                 </th>
@@ -84,14 +85,23 @@ function RelistedList() {
                   </div>
                 </td>
                 <td className="py-8">
-                  <h1 className="font-normal text-deep text-xs">N200,000</h1>
+                  <h1 className="font-normal text-deep text-xs">
+                    N
+                    <CurrencyFormat
+                      value={relisted.pullout.accumulated_amount}
+                      displayType={"text"}
+                      thousandSeparator={true}
+                    />
+                  </h1>
                 </td>
                 <td className="py-8">
-                  <h1 className="font-normal text-deep text-xs">7 weeks</h1>
+                  <h1 className="font-normal text-deep text-xs">
+                    {relisted.product.duration} Days
+                  </h1>
                 </td>
-                <td className="py-8">
+                {/* <td className="py-8">
                   <h1 className="font-normal text-deep text-xs">200</h1>
-                </td>
+                </td> */}
 
                 <td className="py-3">
                   <button className="font-medium text-sm font-inter bg-relist text-relisted py-1 px-2.5 rounded-full ">
@@ -121,9 +131,9 @@ function RelistedList() {
               <td className="py-8">
                 <h1 className="font-normal text-deep text-xs">7 weeks</h1>
               </td>
-              <td className="py-8">
+              {/* <td className="py-8">
                 <h1 className="font-normal text-deep text-xs">200</h1>
-              </td>
+              </td> */}
 
               <td className="py-3">
                 <button className="font-medium text-sm font-inter bg-relist text-relisted py-1 px-2.5 rounded-full ">
@@ -152,9 +162,9 @@ function RelistedList() {
               <td className="py-8">
                 <h1 className="font-normal text-deep text-xs">7 weeks</h1>
               </td>
-              <td className="py-8">
+              {/* <td className="py-8">
                 <h1 className="font-normal text-deep text-xs">200</h1>
-              </td>
+              </td> */}
 
               <td className="py-3">
                 <button className="font-medium text-sm font-inter bg-relist text-relisted py-1 px-2.5 rounded-full ">
@@ -183,9 +193,9 @@ function RelistedList() {
               <td className="py-8">
                 <h1 className="font-normal text-deep text-xs">7 weeks</h1>
               </td>
-              <td className="py-8">
+              {/* <td className="py-8">
                 <h1 className="font-normal text-deep text-xs">200</h1>
-              </td>
+              </td> */}
 
               <td className="py-3">
                 <button className="font-medium text-sm font-inter bg-relist text-relisted py-1 px-2.5 rounded-full ">
@@ -214,9 +224,9 @@ function RelistedList() {
               <td className="py-8">
                 <h1 className="font-normal text-deep text-xs">7 weeks</h1>
               </td>
-              <td className="py-8">
+              {/* <td className="py-8">
                 <h1 className="font-normal text-deep text-xs">200</h1>
-              </td>
+              </td> */}
 
               <td className="py-3">
                 <button className="font-medium text-sm font-inter bg-relist text-relisted py-1 px-2.5 rounded-full ">

@@ -68,8 +68,14 @@ function App() {
           <Route path="/admin/roles-permission" element={<RolesPermission />} />
           <Route path="/admin/settings" element={<AdminSettings />} />
           <Route path="/admin/investors/banned" element={<Banned />} />
-          <Route path="/merchants/pull-funds-request" element={<PullFunds />} />
-          <Route path="/merchants/disbursed-funds" element={<Disbursed />} />
+          <Route
+            path="/admin/merchants/pull-funds-request"
+            element={<PullFunds />}
+          />
+          <Route
+            path="/admin/merchants/disbursed-funds"
+            element={<Disbursed />}
+          />
           <Route path="/admin/investments" element={<AllInvestments />} />
           <Route path="/admin/investments/approved" element={<Approved />} />
           <Route path="/admin/investments/inactive" element={<Inactive />} />

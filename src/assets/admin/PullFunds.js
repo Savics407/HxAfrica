@@ -24,7 +24,7 @@ function PullFunds() {
               <Create_Marchant />
               <PullList />
             </div>
-            <div className="w-2/6 mt-5 rounded-lg overflow-y-hidden relative bg-white">
+            <div className="w-2/6 mt-5 rounded-lg bg-white">
               <Products />
             </div>
           </div>
