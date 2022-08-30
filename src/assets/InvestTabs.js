@@ -35,6 +35,13 @@ function InvestTabs() {
           </NavLink>
         </div>
         <div className="tabs mr-8">
+          <NavLink to="/investments/pending">
+            <div className="vestabs">
+              <h1>pending Investments</h1>
+            </div>
+          </NavLink>
+        </div>
+        <div className="tabs mr-8">
           <NavLink to="/investments/ongoing">
             <div className="vestabs">
               <h1>Ongoing</h1>

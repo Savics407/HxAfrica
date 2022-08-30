@@ -2,13 +2,13 @@ import React, { useEffect, useState } from "react";
 import Header from "./Header";
 import InvestTabs from "./InvestTabs";
 import box from "./images/Box.png";
-import messenger from "./images/Line.svg";
 import moment from "moment";
+import * as CurrencyFormat from "react-currency-format";
+import messenger from "./images/Line.svg";
 import Details from "./Investment_Details";
 import crowd from "./images/crowdfund.png";
 import { MdClose } from "react-icons/md";
 import { Link, NavLink } from "react-router-dom";
-import * as CurrencyFormat from "react-currency-format";
 
 function Mine() {
   const [openDetails, setOpenDetails] = useState(false);
@@ -117,7 +117,7 @@ function Mine() {
                           Ends in
                         </th>
                         <th className="py-2 text-head font-semibold text-sm">
-                          Action
+                          Status
                         </th>
                       </tr>
                     </thead>
@@ -195,11 +195,11 @@ function Mine() {
                           {post.product.status_investment === "ongoing" ? (
                             <button
                               className="bg-pending text-xs text-red w-28 h-9 rounded-full font-medium"
-                              onClick={() => {
-                                productDetails(post.id);
-                              }}
+                              // onClick={() => {
+                              //   productDetails(post.id);
+                              // }}
                             >
-                              Pull Out
+                              Ongoing
                             </button>
                           ) : post.status === "completed" ? (
                             <button className="bg-input text-xs text-green w-28 h-9 rounded-full font-medium">

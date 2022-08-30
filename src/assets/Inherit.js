@@ -195,9 +195,9 @@ function Inherit({ closeModal, itemId }) {
                     {/* <h1 className="text-darkgray text-sm font-normal">
                                             <span className="text-secondary">Time Frame </span> -{" "}
                                             {post.due_date} Months
-                    </h1>{" "} */}
+                    </h1> */}
                     <h1 className="text-darkgray text-sm font-normal">
-                      <span className="text-secondary">Expires in </span> -{" "}
+                      <span className="text-secondary">Expires in </span>
                       {moment(post.due_date).diff(new Date(), "Days")} Days
                     </h1>
                   </div>

@@ -1,6 +1,7 @@
 import { MdClose } from "react-icons/md";
 import hdimage from "./images/invest_image.png";
 import success from "./images/Success Icon.svg";
+import { TbLoader } from "react-icons/tb";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
@@ -10,7 +11,6 @@ import users2 from "./images/Frame 18.png";
 import users3 from "./images/Frame 19.png";
 import users4 from "./images/Frame 20.png";
 import { toast } from "react-toastify";
-import { TbLoader } from "react-icons/tb";
 import moment from "moment";
 import * as CurrencyFormat from "react-currency-format";
 
@@ -220,7 +220,7 @@ function JoinInvestment({ closeModal, itemId }) {
                       {post.duration} Days
                     </h1>{" "}
                     <h1 className="text-darkgray text-sm font-normal">
-                      <span className="text-secondary">Starts in </span> -{" "}
+                      <span className="text-secondary">Starts in </span>
                       {moment(post.expiry_date).diff(new Date(), "Days")} Days
                     </h1>
                   </div>
@@ -310,7 +310,6 @@ function JoinInvestment({ closeModal, itemId }) {
           />
         )}
       </motion.div>
-      {/* <div className="fixed top-0 right-0 bottom-0 left-0 bg-overlay -z-10"></div> */}
     </>
   );
 }

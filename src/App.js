@@ -41,6 +41,7 @@ import AdminSettings from "./assets/admin/AdminSettings";
 import BiddersChat from "./assets/Chats/biddersChat";
 import Owner from "./assets/Chats/Owner";
 import Disbursed from "./assets/admin/Disbursed";
+import Pending from "./assets/Pending";
 
 function App() {
   return (
@@ -54,6 +55,7 @@ function App() {
         <Route path="/status" element={<UseNetworkStatus />} />
         <Route element={<PrivateRoutes />}>
           <Route path="/buytoken/success" element={<Success />} />
+          <Route path="/investments/pending" element={<Pending />} />
 
           <Route path="/select-avater" element={<SelectAvater />} />
           <Route path="/dashboard" element={<Dashboard />} />
