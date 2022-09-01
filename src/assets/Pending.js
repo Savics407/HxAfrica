@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Header from "./Header";
 import InvestTabs from "./InvestTabs";
 import box from "./images/Box.png";
+import land from "./images/rawland2.png";
 import moment from "moment";
 import crowd from "./images/crowdfund.png";
 import { toast } from "react-toastify";
@@ -10,6 +11,7 @@ import success from "./images/Success Icon.svg";
 import { TbLoader } from "react-icons/tb";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
+import TopUp from "./TopUp";
 
 function Pending() {
   const [available, setAvailable] = useState(true);
@@ -48,9 +50,28 @@ function Pending() {
     // activities();
     fetchData();
   }, []);
-
+  const [itemId, setItemID] = useState("");
+  const [topUp, setTopUp] = useState(false);
+  //   function productDetails(id) {
+  //     setItemID(id);
+  //     // setOpenDetails(true);
+  //   }
+  function joinNow(id) {
+    setItemID(id);
+    setTopUp(true);
+  }
   return (
     <div>
+      {topUp && (
+        <TopUp
+          className="z-10"
+          closeModal={setTopUp}
+          itemId={itemId}
+          setItemID={setItemID}
+          setTile={setTitle}
+          setAuthCancel={setAuthCancel}
+        />
+      )}
       <Header />
       <div className="w-10/12 m-auto mt-20 bg-dashbg rounded-lg py-8 px-4">
         <div className="bg-white p-10 w-full rounded-lg">
@@ -64,108 +85,86 @@ function Pending() {
           <div className="mb-8 mine">
             {available ? (
               <>
-                <div>
-                  <table className=" w-full table-auto">
-                    <thead className="">
-                      <tr className="text-left bg-dashbg">
-                        <th className="py-2 text-head font-semibold text-sm pl-5">
-                          Investments
-                        </th>
-                        <th className="py-2 pr-7 text-head font-semibold text-sm">
-                          Duration
-                        </th>
-                        <th className="py-2 pr-7 text-head font-semibold text-sm">
-                          Property Worth
-                        </th>
-                        <th className="py-2 pr-7 text-head font-semibold text-sm">
-                          Amount Invested
-                        </th>
-                        <th className="py-2 pr-7 text-head font-semibold text-sm">
-                          Interest Gained
-                        </th>
-                        <th className="py-2 pr-7 text-head font-semibold text-sm">
-                          Ends in
-                        </th>
-                        <th className="py-2 text-head font-semibold text-sm">
-                          Action
-                        </th>
-                      </tr>
-                    </thead>
-                    <tr className="">
-                      <td className="p-3"></td>
-                    </tr>
-                    {posts?.map((pending) => (
-                      <tr className="border-b">
-                        <td className=" py-8 text-footer font-bold text-sm flex ">
-                          <img
-                            src={crowd}
-                            alt="crowdfunding"
-                            className="h-10"
-                          />
-                          <div className="ml-2 ">
-                            <h1 className="mb-1">{pending.product.title}</h1>
-                            <h2 className="font-medium font-xs">
-                              {pending.product.category.product_category}
+                <div className="flex flex-wrap mb-4">
+                  {posts?.map((pending) => (
+                    <div key={pending.id} className="real-estate">
+                      <div className="mr-2 w-1/3">
+                        <img src={land} alt="rawland" />
+                      </div>
+                      <div className="w-2/3">
+                        <div className="mb-2 flex justify-between">
+                          <div className="w-4/5">
+                            {" "}
+                            <abbr
+                              title={pending.product.title}
+                              className="no-underline"
+                            >
+                              <h1
+                                data-tip={pending.product.title}
+                                className="!mb-0 truncate"
+                              >
+                                {pending.product.title}
+                              </h1>
+                            </abbr>
+                            <h2 className="text-green text-xs">
+                              {pending.product.interest_rate}% Interest Rate
                             </h2>
                           </div>
-                        </td>
-                        <td className=" py-8 text-footer font-bold text-sm">
-                          <h1>{pending.duration} Days</h1>
-                        </td>
-                        <td className="py-8 text-footer font-bold text-sm">
-                          <h1>
-                            N
-                            <CurrencyFormat
-                              value={pending.product.cost}
-                              displayType={"text"}
-                              thousandSeparator={true}
-                            />
-                          </h1>
-                        </td>
-                        <td className="py-8 text-footer font-bold text-sm">
-                          <h1>
-                            N
-                            <CurrencyFormat
-                              value={pending.amount}
-                              displayType={"text"}
-                              thousandSeparator={true}
-                            />
-                          </h1>
-                        </td>
-                        <td className=" py-8 text-footer font-bold text-sm">
-                          <h1>
-                            N
-                            <CurrencyFormat
-                              value={400000}
-                              displayType={"text"}
-                              thousandSeparator={true}
-                            />
-                          </h1>
-                          <h2 className="font-medium font-xs">
-                            {pending.product.interest_rate}% Interest
-                          </h2>
-                        </td>
-                        <td className=" py-8 text-footer font-bold text-sm">
-                          <h1>
-                            {moment(pending.due_date).diff(new Date(), "Days")}{" "}
-                            Days
-                          </h1>
-                        </td>
-                        <td className=" py-8">
-                          <button
-                            className="bg-pending text-xs text-red w-28 h-9 rounded-full font-medium"
-                            onClick={() => {
-                              setProID(pending.id);
-                              setAuthCancel(true);
-                              setTitle(pending.product.title);
-                            }}
-                          >
-                            Cancel
-                          </button>
-                        </td>
-                      </tr>
-                    ))}
-                  </table>
+                        </div>
+                        <div className="text-tiny text-grayy mb-3">
+                          <p className="!mb-0">
+                            Time Frame:{" "}
+                            <span className="text-darkgray">
+                              {pending.duration} Days
+                            </span>
+                          </p>
+                          <p className="">
+                            Expires -{" "}
+                            <span className="text-darkgray">
+                              {moment(pending.due_date).format("MMM DD, yyyy")}
+                            </span>
+                          </p>
+                        </div>
+                        <div className="text-grayy text-tiny bg-mainsec p-2 rounded-lg mb-2 w-48">
+                          <p className="">
+                            Property Worth{" "}
+                            <span className="text-darkgray text-xs font-medium ml-2">
+                              N
+                              <CurrencyFormat
+                                value={pending.product.cost}
+                                displayType={"text"}
+                                thousandSeparator={true}
+                              />
+                            </span>
+                          </p>
+                        </div>
+                        {pending.product.cost > pending.product.threshold ? (
+                          <div>
+                            <button
+                              className="bg-white text-green text-tiny font-normal w-24 h-7 rounded-2xl"
+                              onClick={() => {
+                                joinNow(pending.id);
+                              }}
+                            >
+                              Top up
+                            </button>
+                          </div>
+                        ) : (
+                          <div>
+                            <button
+                              className="bg-white text-red text-tiny font-normal w-24 h-7 rounded-2xl"
+                              onClick={() => {
+                                setTitle(pending.product.title);
+                                setAuthCancel(true);
+                              }}
+                            >
+                              Cancel
+                            </button>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  ))}
                 </div>
               </>
             ) : (
@@ -205,6 +204,25 @@ export function Warning({ closeWarning, productID, title, fetch }) {
   const [processing, setProcessing] = useState(false);
   const [completed, setCompleted] = useState(false);
   const [warning, setWarning] = useState(true);
+
+  //   const Cancel = () => {
+  //     const payLoad = {
+  //       investment_id: productID,
+  //     };
+  //     const token = localStorage.getItem("user-token");
+  //     fetch("https://reic.api.simpoo.biz/api/investment/cancel_investment", {
+  //       method: "POST",
+  //       body: JSON.stringify(payLoad),
+  //       headers: {
+  //         "Content-Type": "multipart/form-data",
+  //         Accept: "application/json",
+  //         Authorization: `Bearer ${token}`,
+  //       },
+  //     })
+  //       .then((response) => response.json())
+  //       .then((json) => console.log(json));
+  //   };
+
   async function Cancel() {
     const payLoad = {
       investment_id: productID,
@@ -312,7 +330,7 @@ export function Warning({ closeWarning, productID, title, fetch }) {
                 fetch();
               }}
             >
-              Back
+              No, Return
             </button>
             <button
               className="rounded-full w-44 h-12 text-dashbg bg-red"
@@ -320,7 +338,7 @@ export function Warning({ closeWarning, productID, title, fetch }) {
                 Cancel();
               }}
             >
-              Yes Proceed
+              Yes, Cancel
             </button>
           </div>
         </motion.div>

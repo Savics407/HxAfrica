@@ -78,6 +78,7 @@ function Ongoing() {
           closeModal={setJoinInvest}
           itemId={itemId}
           setItemID={setItemID}
+          productDetails={productDetails}
         />
       )}
       <Header />
@@ -117,15 +118,16 @@ function Ongoing() {
                             {post.interest}% Interest Rate
                           </h2>
                         </div>
-                        {post.product.cost === post.product.threshold && (
-                          <div
-                            onClick={() => {
-                              productDetails(post.id);
-                            }}
-                          >
-                            <HiOutlineArrowRight className="text-lg text-arrow cursor-pointer" />
-                          </div>
-                        )}
+                        {post.user_id == userID &&
+                          post.product.cost === post.product.threshold && (
+                            <div
+                              onClick={() => {
+                                productDetails(post.id);
+                              }}
+                            >
+                              <HiOutlineArrowRight className="text-lg text-arrow cursor-pointer" />
+                            </div>
+                          )}
                       </div>
                       <div className="text-tiny text-grayy mb-3">
                         <p className="!mb-0">
@@ -154,17 +156,7 @@ function Ongoing() {
                           </span>
                         </p>
                       </div>
-                      {post.user_id == userID ? (
-                        <button
-                          className="bg-ongoing text-rose text-tiny font-semibold w-24 h-7 rounded-2xl"
-                          onClick={() => {
-                            productDetails(post.id);
-                          }}
-                        >
-                          Pull Out
-                        </button>
-                      ) : post.user_id != userID &&
-                        post.product.cost > post.product.threshold ? (
+                      {post.product.cost > post.product.threshold ? (
                         <div>
                           <button
                             className="bg-white text-green text-tiny font-normal w-24 h-7 rounded-2xl"

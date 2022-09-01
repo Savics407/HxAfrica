@@ -14,11 +14,11 @@ import { TbLoader } from "react-icons/tb";
 import moment from "moment";
 import * as CurrencyFormat from "react-currency-format";
 
-function JoinOngoing({ closeModal, itemId, productDetails }) {
+function TopUp({ closeModal, itemId, productDetails, setAuthCancel, setTile }) {
   const [authPullOut, setAuthPullOut] = useState(false);
   const [isClick, setIsClick] = useState(false);
   const userID = localStorage.getItem("user-id");
-
+  //   alert(itemId);
   const [posts, setPosts] = useState();
   const productID = itemId;
   // alert(productID);
@@ -27,7 +27,7 @@ function JoinOngoing({ closeModal, itemId, productDetails }) {
     const token = localStorage.getItem("user-token");
 
     const response = await fetch(
-      "https://reic.api.simpoo.biz/api/investment/fetch_ongoing_investment",
+      "https://reic.api.simpoo.biz/api/investment/fetch_pending_investment",
       {
         method: "POST",
         headers: {
@@ -246,13 +246,12 @@ function JoinOngoing({ closeModal, itemId, productDetails }) {
                       post.user_id == userID ? "opacity-100" : "opacity-30"
                     }`}
                     onClick={() => {
-                      if (post.user_id == userID) {
-                        productDetails(post.id);
-                        closeModal(false);
-                      }
+                      setAuthCancel(true);
+                      closeModal(false);
+                      setTile(post.product.title);
                     }}
                   >
-                    Pullout
+                    Cancel
                   </button>
                   <button
                     className="border rounded-full w-44 h-12 text-dashbg bg-green"
@@ -285,7 +284,7 @@ function JoinOngoing({ closeModal, itemId, productDetails }) {
                       }
                     }}
                   >
-                    Invest
+                    Top Up
                   </button>
                 </div>
               </div>
@@ -514,4 +513,4 @@ export function Warning({ closeWarning, closeModal, reic, title, productID }) {
   );
 }
 
-export default JoinOngoing;
+export default TopUp;
