@@ -8,13 +8,15 @@ import messenger from "./images/Line.svg";
 import Details from "./Investment_Details";
 import crowd from "./images/crowdfund.png";
 import { MdClose } from "react-icons/md";
+import ScaleLoader from "react-spinners/ScaleLoader";
 import { Link, NavLink } from "react-router-dom";
 
 function Mine() {
   const [openDetails, setOpenDetails] = useState(false);
   const [posts, setPosts] = useState();
   const [itemId, setItemID] = useState("");
-  const [available, setAvailable] = useState(false);
+  const [available, setAvailable] = useState(true);
+  const [loading, setLoading] = useState(true);
 
   async function fetchData() {
     const token = localStorage.getItem("user-token");
@@ -39,6 +41,10 @@ function Mine() {
       // alert("fetched Successfully");
     } else {
       setAvailable(true);
+    }
+
+    if (result?.status === "success") {
+      setLoading(false);
     }
   }
 
@@ -94,127 +100,133 @@ function Mine() {
           <div className="mb-8 mine">
             {available ? (
               <>
-                <div>
-                  <table className=" w-full table-auto">
-                    <thead className="">
-                      <tr className="text-left bg-dashbg">
-                        <th className="py-2 text-head font-semibold text-sm pl-5">
-                          Investments
-                        </th>
-                        <th className="py-2 pr-7 text-head font-semibold text-sm">
-                          Duration
-                        </th>
-                        <th className="py-2 pr-7 text-head font-semibold text-sm">
-                          Property Worth
-                        </th>
-                        <th className="py-2 pr-7 text-head font-semibold text-sm">
-                          Amount Invested
-                        </th>
-                        <th className="py-2 pr-7 text-head font-semibold text-sm">
-                          Interest Gained
-                        </th>
-                        <th className="py-2 pr-7 text-head font-semibold text-sm">
-                          Ends in
-                        </th>
-                        <th className="py-2 text-head font-semibold text-sm">
-                          Status
-                        </th>
+                {loading ? (
+                  <div className="text-center px-20 py-40">
+                    <ScaleLoader color="#008E10" height={50} width={6} />
+                  </div>
+                ) : (
+                  <div>
+                    <table className=" w-full table-auto">
+                      <thead className="">
+                        <tr className="text-left bg-dashbg">
+                          <th className="py-2 text-head font-semibold text-sm pl-5">
+                            Investments
+                          </th>
+                          <th className="py-2 pr-7 text-head font-semibold text-sm">
+                            Duration
+                          </th>
+                          <th className="py-2 pr-7 text-head font-semibold text-sm">
+                            Property Worth
+                          </th>
+                          <th className="py-2 pr-7 text-head font-semibold text-sm">
+                            Amount Invested
+                          </th>
+                          <th className="py-2 pr-7 text-head font-semibold text-sm">
+                            Interest Gained
+                          </th>
+                          <th className="py-2 pr-7 text-head font-semibold text-sm">
+                            Ends in
+                          </th>
+                          <th className="py-2 text-head font-semibold text-sm">
+                            Status
+                          </th>
+                        </tr>
+                      </thead>
+                      <tr className="">
+                        <td className="p-3"></td>
                       </tr>
-                    </thead>
-                    <tr className="">
-                      <td className="p-3"></td>
-                    </tr>
-                    {posts?.map((post) => (
-                      <tr className="border-b" key={post.id}>
-                        <td className=" py-8 text-footer font-bold text-sm flex ">
-                          <img
-                            src={crowd}
-                            alt="crowdfunding"
-                            className="h-10"
-                          />
-                          <div className="ml-2 ">
-                            <h1 className="mb-1">{post.product.title}</h1>
+                      {posts?.map((post) => (
+                        <tr className="border-b" key={post.id}>
+                          <td className=" py-8 text-footer font-bold text-sm flex ">
+                            <img
+                              src={crowd}
+                              alt="crowdfunding"
+                              className="h-10"
+                            />
+                            <div className="ml-2 ">
+                              <h1 className="mb-1">{post.product.title}</h1>
+                              <h2 className="font-medium font-xs">
+                                {post.product.category.product_category}
+                              </h2>
+                            </div>
+                          </td>
+                          <td className=" py-8 text-footer font-bold text-sm">
+                            <h1>{post.duration} Days</h1>
+                          </td>
+                          <td className="py-8 text-footer font-bold text-sm">
+                            <h1>
+                              N
+                              <CurrencyFormat
+                                value={post.product.cost}
+                                displayType={"text"}
+                                thousandSeparator={true}
+                              />
+                            </h1>
+                          </td>
+                          <td className="py-8 text-footer font-bold text-sm">
+                            <h1>
+                              N
+                              <CurrencyFormat
+                                value={post.amount}
+                                displayType={"text"}
+                                thousandSeparator={true}
+                              />
+                            </h1>
+                          </td>
+                          <td className=" py-8 text-footer font-bold text-sm">
+                            <h1>
+                              N
+                              <CurrencyFormat
+                                value={
+                                  (post.amount *
+                                    ((post.interest *
+                                      (post.duration -
+                                        moment(post.due_date).diff(
+                                          new Date(),
+                                          "Days"
+                                        ))) /
+                                      post.duration)) /
+                                  100
+                                }
+                                displayType={"text"}
+                                thousandSeparator={true}
+                              />
+                            </h1>
                             <h2 className="font-medium font-xs">
-                              {post.product.category.product_category}
+                              {post.interest}% Interest
                             </h2>
-                          </div>
-                        </td>
-                        <td className=" py-8 text-footer font-bold text-sm">
-                          <h1>{post.duration} Days</h1>
-                        </td>
-                        <td className="py-8 text-footer font-bold text-sm">
-                          <h1>
-                            N
-                            <CurrencyFormat
-                              value={post.product.cost}
-                              displayType={"text"}
-                              thousandSeparator={true}
-                            />
-                          </h1>
-                        </td>
-                        <td className="py-8 text-footer font-bold text-sm">
-                          <h1>
-                            N
-                            <CurrencyFormat
-                              value={post.amount}
-                              displayType={"text"}
-                              thousandSeparator={true}
-                            />
-                          </h1>
-                        </td>
-                        <td className=" py-8 text-footer font-bold text-sm">
-                          <h1>
-                            N
-                            <CurrencyFormat
-                              value={
-                                (post.amount *
-                                  ((post.interest *
-                                    (post.duration -
-                                      moment(post.due_date).diff(
-                                        new Date(),
-                                        "Days"
-                                      ))) /
-                                    post.duration)) /
-                                100
-                              }
-                              displayType={"text"}
-                              thousandSeparator={true}
-                            />
-                          </h1>
-                          <h2 className="font-medium font-xs">
-                            {post.interest}% Interest
-                          </h2>
-                        </td>
-                        <td className=" py-8 text-footer font-bold text-sm">
-                          <h1>
-                            {moment(post.due_date).diff(new Date(), "Days")}{" "}
-                            Days
-                          </h1>
-                        </td>
-                        <td className=" py-8">
-                          {post.product.status_investment === "ongoing" ? (
-                            <button
-                              className="bg-pending text-xs text-red w-28 h-9 rounded-full font-medium"
-                              // onClick={() => {
-                              //   productDetails(post.id);
-                              // }}
-                            >
-                              Ongoing
-                            </button>
-                          ) : post.status === "completed" ? (
-                            <button className="bg-input text-xs text-green w-28 h-9 rounded-full font-medium">
-                              Completed
-                            </button>
-                          ) : (
-                            <button className="bg-status text-xs text-statustext w-28 h-9 rounded-full font-medium">
-                              Waiting
-                            </button>
-                          )}
-                        </td>
-                      </tr>
-                    ))}
-                  </table>
-                </div>
+                          </td>
+                          <td className=" py-8 text-footer font-bold text-sm">
+                            <h1>
+                              {moment(post.due_date).diff(new Date(), "Days")}{" "}
+                              Days
+                            </h1>
+                          </td>
+                          <td className=" py-8">
+                            {post.product.status_investment === "ongoing" ? (
+                              <button
+                                className="bg-pending text-xs text-red w-28 h-9 rounded-full font-medium"
+                                // onClick={() => {
+                                //   productDetails(post.id);
+                                // }}
+                              >
+                                Ongoing
+                              </button>
+                            ) : post.status === "completed" ? (
+                              <button className="bg-input text-xs text-green w-28 h-9 rounded-full font-medium">
+                                Completed
+                              </button>
+                            ) : (
+                              <button className="bg-status text-xs text-statustext w-28 h-9 rounded-full font-medium">
+                                Waiting
+                              </button>
+                            )}
+                          </td>
+                        </tr>
+                      ))}
+                    </table>
+                  </div>
+                )}
               </>
             ) : (
               <div className="flex flex-col items-center justify-center h-128">

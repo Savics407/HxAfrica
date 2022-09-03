@@ -11,6 +11,7 @@ import success from "./images/Success Icon.svg";
 import { TbLoader } from "react-icons/tb";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
+import ScaleLoader from "react-spinners/ScaleLoader";
 import TopUp from "./TopUp";
 
 function Pending() {
@@ -19,6 +20,7 @@ function Pending() {
   const [isClick, setIsClick] = useState(false);
   const [proID, setProID] = useState(false);
   const [posts, setPosts] = useState();
+  const [loading, setLoading] = useState(true);
   const [title, setTitle] = useState();
   async function fetchData() {
     const token = localStorage.getItem("user-token");
@@ -43,6 +45,10 @@ function Pending() {
       // alert("fetched Successfully");
     } else {
       setAvailable(true);
+    }
+
+    if (result?.status === "success") {
+      setLoading(false);
     }
   }
 
@@ -82,90 +88,98 @@ function Pending() {
                         <img src={banner} alt="Buy_REIC_Token" className='w-full'/>
                     </div> */}
           <InvestTabs />
-          <div className="mb-8 mine">
+          <div className="mb-8 mine investlists">
             {available ? (
               <>
-                <div className="flex flex-wrap mb-4">
-                  {posts?.map((pending) => (
-                    <div key={pending.id} className="real-estate">
-                      <div className="mr-2 w-1/3">
-                        <img src={land} alt="rawland" />
-                      </div>
-                      <div className="w-2/3">
-                        <div className="mb-2 flex justify-between">
-                          <div className="w-4/5">
-                            {" "}
-                            <abbr
-                              title={pending.product.title}
-                              className="no-underline"
-                            >
-                              <h1
-                                data-tip={pending.product.title}
-                                className="!mb-0 truncate"
+                {loading ? (
+                  <div className="text-center px-20 py-40">
+                    <ScaleLoader color="#008E10" height={50} width={6} />
+                  </div>
+                ) : (
+                  <div className="flex flex-wrap mb-4">
+                    {posts?.map((pending) => (
+                      <div key={pending.id} className="real-estate ">
+                        <div className="mr-2 w-1/3">
+                          <img src={land} alt="rawland" />
+                        </div>
+                        <div className="w-2/3">
+                          <div className="mb-2 flex justify-between">
+                            <div className="w-4/5">
+                              {" "}
+                              <abbr
+                                title={pending.product.title}
+                                className="no-underline"
                               >
-                                {pending.product.title}
-                              </h1>
-                            </abbr>
-                            <h2 className="text-green text-xs">
-                              {pending.product.interest_rate}% Interest Rate
-                            </h2>
+                                <h1
+                                  data-tip={pending.product.title}
+                                  className="!mb-0 truncate"
+                                >
+                                  {pending.product.title}
+                                </h1>
+                              </abbr>
+                              <h2 className="text-green text-xs">
+                                {pending.product.interest_rate}% Interest Rate
+                              </h2>
+                            </div>
                           </div>
-                        </div>
-                        <div className="text-tiny text-grayy mb-3">
-                          <p className="!mb-0">
-                            Time Frame:{" "}
-                            <span className="text-darkgray">
-                              {pending.duration} Days
-                            </span>
-                          </p>
-                          <p className="">
-                            Expires -{" "}
-                            <span className="text-darkgray">
-                              {moment(pending.due_date).format("MMM DD, yyyy")}
-                            </span>
-                          </p>
-                        </div>
-                        <div className="text-grayy text-tiny bg-mainsec p-2 rounded-lg mb-2 w-48">
-                          <p className="">
-                            Property Worth{" "}
-                            <span className="text-darkgray text-xs font-medium ml-2">
-                              N
-                              <CurrencyFormat
-                                value={pending.product.cost}
-                                displayType={"text"}
-                                thousandSeparator={true}
-                              />
-                            </span>
-                          </p>
-                        </div>
-                        {pending.product.cost > pending.product.threshold ? (
-                          <div>
-                            <button
-                              className="bg-white text-green text-tiny font-normal w-24 h-7 rounded-2xl"
-                              onClick={() => {
-                                joinNow(pending.id);
-                              }}
-                            >
-                              Top up
-                            </button>
+                          <div className="text-tiny text-grayy mb-3">
+                            <p className="!mb-0">
+                              Time Frame:{" "}
+                              <span className="text-darkgray">
+                                {pending.duration} Days
+                              </span>
+                            </p>
+                            <p className="">
+                              Expires -{" "}
+                              <span className="text-darkgray">
+                                {moment(pending.due_date).format(
+                                  "MMM DD, yyyy"
+                                )}
+                              </span>
+                            </p>
                           </div>
-                        ) : (
-                          <div>
-                            <button
-                              className="bg-white text-red text-tiny font-normal w-24 h-7 rounded-2xl"
-                              onClick={() => {
-                                setTitle(pending.product.title);
-                                setAuthCancel(true);
-                              }}
-                            >
-                              Cancel
-                            </button>
+                          <div className="text-grayy text-tiny bg-mainsec p-2 rounded-lg mb-2 w-48">
+                            <p className="">
+                              Property Worth{" "}
+                              <span className="text-darkgray text-xs font-medium ml-2">
+                                N
+                                <CurrencyFormat
+                                  value={pending.product.cost}
+                                  displayType={"text"}
+                                  thousandSeparator={true}
+                                />
+                              </span>
+                            </p>
                           </div>
-                        )}
+                          {pending.product.cost > pending.product.threshold ? (
+                            <div>
+                              <button
+                                className="bg-white text-green text-tiny font-normal w-24 h-7 rounded-2xl"
+                                onClick={() => {
+                                  joinNow(pending.id);
+                                }}
+                              >
+                                Top up
+                              </button>
+                            </div>
+                          ) : (
+                            <div>
+                              <button
+                                className="bg-white text-red text-tiny font-normal w-24 h-7 rounded-2xl"
+                                onClick={() => {
+                                  setTitle(pending.product.title);
+                                  setAuthCancel(true);
+                                }}
+                              >
+                                Cancel
+                              </button>
+                            </div>
+                          )}
+                        </div>
                       </div>
-                    </div>
-                  ))}
-                </div>
+                    ))}
+                  </div>
+                )}
               </>
             ) : (
               <div className="flex flex-col items-center justify-center h-128">

@@ -149,7 +149,7 @@ function TopUp({ closeModal, itemId, productDetails, setAuthCancel, setTile }) {
                       <div className="bg-green rounded-full w-6 h-6 text-xxm text-white flex items-center justify-center -ml-3 z-10">
                         +24
                       </div>
-                </div> */}
+                    </div> */}
                   </div>
                   <div className="flex justify-between items-center">
                     <h1 className="text-dark text-2xl font-medium">

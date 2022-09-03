@@ -10,7 +10,7 @@ import { TbLoader } from "react-icons/tb";
 import moment from "moment";
 import * as CurrencyFormat from "react-currency-format";
 
-function Inherit({ closeModal, itemId }) {
+function Bidding({ closeModal, itemId }) {
   const [authPullOut, setAuthPullOut] = useState(false);
   const [isClick, setIsClick] = useState(false);
 
@@ -395,4 +395,4 @@ export function Processing({
   );
 }
 
-export default Inherit;
+export default Bidding;

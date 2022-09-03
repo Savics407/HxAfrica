@@ -9,11 +9,14 @@ import moment from "moment";
 import { toast } from "react-toastify";
 import relist from "./images/relisted.png";
 import * as CurrencyFormat from "react-currency-format";
+import ScaleLoader from "react-spinners/ScaleLoader";
 import Inherit from "./Inherit";
+import Bidding from "./Bidding";
 
 function Relisted() {
   const [relisted, setRelisted] = useState(true);
   const [posts, setPosts] = useState();
+  const [loading, setLoading] = useState(true);
 
   async function fetchData() {
     const token = localStorage.getItem("user-token");
@@ -39,6 +42,9 @@ function Relisted() {
     } else {
       setRelisted(true);
     }
+    if (result?.status === "success") {
+      setLoading(false);
+    }
   }
 
   useEffect(() => {
@@ -47,13 +53,19 @@ function Relisted() {
   }, []);
 
   const [joinInvest, setJoinInvest] = useState(false);
+  const [placeBid, setPlaceBid] = useState(false);
   const [itemId, setItemID] = useState("");
   function productDetails(id) {
     setItemID(id);
-
+    // alert(id);
     setJoinInvest(true);
   }
+  function bid(id) {
+    setItemID(id);
+    // alert(id);
 
+    setPlaceBid(true);
+  }
 
   // onClick={() => {
   //                           inherit(post.pullout.id);
@@ -69,6 +81,14 @@ function Relisted() {
           setItemID={setItemID}
         />
       )}
+      {placeBid && (
+        <Bidding
+          className="z-10"
+          closeModal={setPlaceBid}
+          itemId={itemId}
+          setItemID={setItemID}
+        />
+      )}
       <Header />
       <div className="w-10/12 m-auto mt-20 bg-dashbg rounded-lg py-8 px-4">
         <div className="bg-white p-10 w-full rounded-lg">
@@ -78,81 +98,108 @@ function Relisted() {
           <InvestTabs />
           <div className="mb-8 mine">
             {relisted ? (
-              <div className="flex flex-wrap mb-4">
-                {posts?.map((post) => (
-                  <div className="real-estate w-80 mr-3" key={post.id}>
-                    <div className="mr-3 w-1/3 h-full">
-                      <img
-                        src={land}
-                        alt="rawland"
-                        className="w-full h-full object-cover rounded-2xl"
-                      />
-                    </div>
-                    <div className="w-2/3">
-                      <div className="mb-2">
-                        <h1 className="!mb-0">{post.product.title}</h1>
-                        <div className="flex items-start">
-                          <h2 className="text-green text-xs font-medium mr-1">
-                            {post.interest}% Interest Rate
-                          </h2>
-                          <img src={New} alt="new" />
+              <>
+                {loading ? (
+                  <div className="text-center px-20 py-40">
+                    <ScaleLoader color="#008E10" height={50} width={6} />
+                  </div>
+                ) : (
+                  <div className="flex flex-wrap mb-4">
+                    {posts?.map((post) => (
+                      <div className="real-estate w-80 mr-3" key={post.id}>
+                        <div className="mr-3 w-1/3 h-full">
+                          <img
+                            src={land}
+                            alt="rawland"
+                            className="w-full h-full object-cover rounded-2xl"
+                          />
+                        </div>
+                        <div className="w-2/3">
+                          <div className="mb-2">
+                            <h1 className="!mb-0">{post.product.title}</h1>
+                            <div className="flex items-start">
+                              <h2 className="text-green text-xs font-medium mr-1">
+                                {post.interest}% Interest Rate
+                              </h2>
+                              <img src={New} alt="new" />
+                            </div>
+                          </div>
+                          <div className="text-tiny text-grayy mb-3">
+                            <p className="!mb-0">
+                              Relisted Date:{" "}
+                              <span className="text-darkgray">
+                                {moment(post.created_at).format("MMM DD, yyyy")}
+                              </span>
+                            </p>
+                            <p className="">
+                              Due Date -{" "}
+                              <span className="text-darkgray">
+                                {" "}
+                                {moment(post.due_date).format("MMM DD, yyyy")}
+                              </span>
+                            </p>
+                          </div>
+                          <div className="text-grayy text-tiny bg-mainsec p-2 rounded-lg mb-3 w-48">
+                            <p className="">
+                              Amount:{" "}
+                              <span className="text-darkgray text-xs font-medium ml-2">
+                                {post.pullout === null ? (
+                                  "not available"
+                                ) : (
+                                  <>
+                                    N{" "}
+                                    <CurrencyFormat
+                                      value={
+                                        post.pullout === null
+                                          ? "not available"
+                                          : post.pullout.accumulated_amount
+                                      }
+                                      displayType={"text"}
+                                      thousandSeparator={true}
+                                    />
+                                  </>
+                                )}
+                              </span>
+                            </p>
+                          </div>
+                          <div className=" w-48">
+                            {post.pullout === null ? (
+                              <button
+                                className="bg-neutral text-white text-tiny w-full p-2 rounded-full"
+                                onClick={() => {
+                                  bid(post.product.id);
+                                }}
+                              >
+                                Place Bid
+                              </button>
+                            ) : (
+                              <button
+                                className="bg-white text-green text-tiny w-full p-2 rounded-full"
+                                onClick={() => {
+                                  productDetails(post.product.id);
+                                }}
+                              >
+                                Inherit Investment
+                              </button>
+                            )}
+                          </div>
                         </div>
                       </div>
-                      <div className="text-tiny text-grayy mb-3">
-                        <p className="!mb-0">
-                          Relisted Date:{" "}
-                          <span className="text-darkgray">
-                            {moment(post.pullout.pullout_date).format(
-                              "MMM DD, yyyy"
-                            )}
-                          </span>
-                        </p>
-                        <p className="">
-                          Due Date -{" "}
-                          <span className="text-darkgray">
-                            {" "}
-                            {moment(post.due_date).format("MMM DD, yyyy")}
-                          </span>
-                        </p>
-                      </div>
-                      <div className="text-grayy text-tiny bg-mainsec p-2 rounded-lg mb-3 w-48">
-                        <p className="">
-                          Amount:{" "}
-                          <span className="text-darkgray text-xs font-medium ml-2">
-                            N
-                            <CurrencyFormat
-                              value={post.pullout.accumulated_amount}
-                              displayType={"text"}
-                              thousandSeparator={true}
-                            />
-                          </span>
-                        </p>
-                      </div>
-                      <div className=" w-48">
-                        <button
-                          className="bg-white text-green text-tiny w-full p-2 rounded-full"
-                          onClick={() => {
-                            productDetails(post.product.id)
-                          }}
-                        >
-                          Inherit Investment
-                        </button>
-                      </div>
-                    </div>
+                    ))}
                   </div>
-                ))}
-              </div>
+                )}
+              </>
             ) : (
-                <div className="flex items-center justify-center h-128">
-                  <div className="flex flex-col justify-center items-center">
-                    <img src={relist} alt="No relisted investment" />
-                    <h1 className="font-semibold text-xs text-statustext text-center mt-7">
-                      No Relisted investments at this time. <br />
+              <div className="flex items-center justify-center h-128">
+                <div className="flex flex-col justify-center items-center">
+                  <img src={relist} alt="No relisted investment" />
+                  <h1 className="font-semibold text-xs text-statustext text-center mt-7">
+                    No Relisted investments at this time. <br />
                     Keep Investing.
                   </h1>
-                  </div>
                 </div>
-              )}
+              </div>
+            )}
           </div>
           <div className="flex justify-center p-10 hidden">
             <button className="border border-more font-medium rounded-full w-40 h-10 text-neutral flex justify-center items-center">

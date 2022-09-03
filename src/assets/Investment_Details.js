@@ -193,6 +193,7 @@ function Details({ closeDetails, itemId }) {
             closeWarning={setIsClick}
             title={title}
             productId={productId}
+            closeDetails={closeDetails}
           />
         )}
       </motion.div>
@@ -201,10 +202,52 @@ function Details({ closeDetails, itemId }) {
   );
 }
 
-function Warning({ closeWarning, title, productId }) {
+function Warning({ closeWarning, title, productId, closeDetails }) {
   const [warning, setWarning] = useState(true);
   const [processing, setProcessing] = useState(false);
+  const [instant, setInstant] = useState(false);
+  const [success, setSuccess] = useState(false);
   const product_id = productId;
+  async function relist() {
+    const payLoad = {
+      id: productId,
+    };
+
+    const token = localStorage.getItem("user-token");
+    const response = await fetch(
+      "https://reic.api.simpoo.biz/api/exchange/relist_market",
+      {
+        method: "POST",
+        body: JSON.stringify(payLoad),
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    const result = await response.json();
+    console.log(result);
+    // alert(productId);
+
+    if (result?.status === "success") {
+      setSuccess(true);
+    } else {
+      if (result.status === "error") {
+        console.log(result.data);
+        // alert(result.message);
+        toast.error(`${result.message}`, {
+          position: "top-left",
+          autoClose: 500,
+          hideProgressBar: true,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      }
+    }
+  }
 
   return (
     <>
@@ -225,41 +268,135 @@ function Warning({ closeWarning, title, productId }) {
           },
         }}
         className={`w-128 bg-white rounded-xl absolute border-green p-6 text-center ${
-          warning ? "block" : "hidden"
+          !instant || !success ? "block" : "hidden"
         } `}
       >
         <div>
-          <h1 className="font-bold text-neutral text-3xl">Warning!</h1>
+          <h1 className="font-bold text-neutral text-3xl">Pullout Option</h1>
         </div>
         <div className="font-semibold text-base text-neutral my-8">
           <p>
-            Are you sure you want to pull out from the <br />
-            <span className="text-green">{title}</span> investments? <br />
-            This action will incur charges of N25,000
+            You can choose to make instant pullout or relist your investment on
+            the exchange market.
           </p>
         </div>
         <div className="flex justify-between">
           <button
-            className="border rounded-full w-44 h-12 text-neutral bg-dashbg"
+            className="border rounded-full w-44 h-12 text-white bg-green"
             onClick={() => {
-              closeWarning(false);
-              // setWarning(!warning);
+              // closeWarning(false);
+              relist();
             }}
           >
-            No, Cancel
+            List in market
           </button>
           <button
             className="rounded-full w-44 h-12 text-dashbg bg-red"
             onClick={() => {
-              // closeWarning(false);
-              setWarning(!warning);
-              setProcessing(true);
+              setInstant(true);
             }}
           >
-            Yes, Pull Out
+            Instant pullout
           </button>
         </div>
       </motion.div>
+      {instant && (
+        <motion.div
+          initial={{
+            opacity: 0,
+          }}
+          animate={{
+            opacity: 1,
+            transition: {
+              duration: 0.3,
+            },
+          }}
+          exit={{
+            opacity: 0,
+            transition: {
+              delay: 0.5,
+            },
+          }}
+          className={`w-128 bg-white rounded-xl absolute border-green p-6 text-center ${
+            warning ? "block" : "hidden"
+          } `}
+        >
+          <div>
+            <h1 className="font-bold text-neutral text-3xl">Warning!</h1>
+          </div>
+          <div className="font-semibold text-base text-neutral my-8">
+            <p>
+              Are you sure you want to pull out from the <br />
+              <span className="text-green">{title}</span> investments? <br />
+              This action will incur charges of N25,000
+            </p>
+          </div>
+          <div className="flex justify-between">
+            <button
+              className="border rounded-full w-44 h-12 text-neutral bg-dashbg"
+              onClick={() => {
+                closeWarning(false);
+                // setWarning(!warning);
+              }}
+            >
+              No, Cancel
+            </button>
+            <button
+              className="rounded-full w-44 h-12 text-dashbg bg-red"
+              onClick={() => {
+                // closeWarning(false);
+                setWarning(!warning);
+                setProcessing(true);
+              }}
+            >
+              Yes, Pull Out
+            </button>
+          </div>
+        </motion.div>
+      )}
+      {success && (
+        <motion.div
+          initial={{
+            opacity: 0,
+          }}
+          animate={{
+            opacity: 1,
+            transition: {
+              duration: 0.3,
+            },
+          }}
+          exit={{
+            opacity: 0,
+            transition: {
+              delay: 0.5,
+            },
+          }}
+          className={`w-128 bg-white rounded-xl absolute border-green p-6 text-center ${
+            !instant ? "block" : "hidden"
+          } `}
+        >
+          <div>
+            <h1 className="font-bold text-neutral text-3xl">Successful</h1>
+          </div>
+          <div className="font-semibold text-base text-neutral my-8">
+            <p>
+              Your investment has been relisted on the market and you will be
+              notified when a bid is made by investors.
+            </p>
+          </div>
+          <div className="">
+            <button
+              className="border rounded-full w-full py-3 text-white bg-green"
+              onClick={() => {
+                closeDetails(false);
+                // setWarning(!warning);
+              }}
+            >
+              Continue
+            </button>
+          </div>
+        </motion.div>
+      )}
       {processing && <Processing productId={product_id} />}
     </>
   );

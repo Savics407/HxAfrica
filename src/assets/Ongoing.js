@@ -10,6 +10,7 @@ import * as CurrencyFormat from "react-currency-format";
 import moment from "moment";
 import { FiArrowUp } from "react-icons/fi";
 import JoinInvestment from "./JoinOngoing";
+import ScaleLoader from "react-spinners/ScaleLoader";
 import { HiOutlineArrowRight } from "react-icons/hi";
 
 function Ongoing() {
@@ -18,6 +19,7 @@ function Ongoing() {
   const [posts, setPosts] = useState();
   const [itemId, setItemID] = useState("");
   const [openDetails, setOpenDetails] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [ongoing, setOngoing] = useState(true);
   async function fetchData() {
     const token = localStorage.getItem("user-token");
@@ -42,6 +44,9 @@ function Ongoing() {
       // alert(result.data);
     } else {
       setOngoing(true);
+    }
+    if (result?.status === "success") {
+      setLoading(false);
     }
   }
 
@@ -93,94 +98,103 @@ function Ongoing() {
           <InvestTabs />
           <div className="investlists">
             {ongoing ? (
-              <div className="flex flex-wrap mb-4">
-                {posts?.map((post) => (
-                  <div key={post.id} className="real-estate">
-                    <div className="mr-2 w-1/3">
-                      <img src={land} alt="rawland" />
-                    </div>
-                    <div className="w-2/3">
-                      <div className="mb-2 flex justify-between">
-                        <div className="w-4/5">
-                          {" "}
-                          <abbr
-                            title={post.product.title}
-                            className="no-underline"
-                          >
-                            <h1
-                              data-tip={post.product.title}
-                              className="!mb-0 truncate"
-                            >
-                              {post.product.title}
-                            </h1>
-                          </abbr>
-                          <h2 className="text-green text-xs">
-                            {post.interest}% Interest Rate
-                          </h2>
-                        </div>
-                        {post.user_id == userID &&
-                          post.product.cost === post.product.threshold && (
-                            <div
-                              onClick={() => {
-                                productDetails(post.id);
-                              }}
-                            >
-                              <HiOutlineArrowRight className="text-lg text-arrow cursor-pointer" />
-                            </div>
-                          )}
-                      </div>
-                      <div className="text-tiny text-grayy mb-3">
-                        <p className="!mb-0">
-                          Time Frame:{" "}
-                          <span className="text-darkgray">
-                            {post.duration} Days
-                          </span>
-                        </p>
-                        <p className="">
-                          Expires -{" "}
-                          <span className="text-darkgray">
-                            {moment(post.due_date).format("MMM DD, yyyy")}
-                          </span>
-                        </p>
-                      </div>
-                      <div className="text-grayy text-tiny bg-mainsec p-2 rounded-lg mb-2 w-48">
-                        <p className="">
-                          Property Worth{" "}
-                          <span className="text-darkgray text-xs font-medium ml-2">
-                            N
-                            <CurrencyFormat
-                              value={post.product.cost}
-                              displayType={"text"}
-                              thousandSeparator={true}
-                            />
-                          </span>
-                        </p>
-                      </div>
-                      {post.product.cost > post.product.threshold ? (
-                        <div>
-                          <button
-                            className="bg-white text-green text-tiny font-normal w-24 h-7 rounded-2xl"
-                            onClick={() => {
-                              joinNow(post.id);
-                            }}
-                          >
-                            Join Now
-                          </button>
-                        </div>
-                      ) : (
-                        <h1 className="text-endsin text-xxm font-medium flex items-center bg-ongoing w-fit px-2.5 py-1.5 rounded-full">
-                          <FiArrowUp className="text-tiny text-rose mr-1 mb-1 " />{" "}
-                          <span className="">
-                            {moment(post.due_date).diff(new Date(), "Days")}{" "}
-                            Days: {/* {moment(post.due_date).format("h:m")} */}
-                            to go
-                          </span>
-                        </h1>
-                      )}
-                    </div>
+              <>
+                {loading ? (
+                  <div className="text-center px-20 py-40">
+                    <ScaleLoader color="#008E10" height={50} width={6} />
                   </div>
-                ))}
-              </div>
+                ) : (
+                  <div className="flex flex-wrap mb-4">
+                    {posts?.map((post) => (
+                      <div key={post.id} className="real-estate">
+                        <div className="mr-2 w-1/3">
+                          <img src={land} alt="rawland" />
+                        </div>
+                        <div className="w-2/3">
+                          <div className="mb-2 flex justify-between">
+                            <div className="w-4/5">
+                              {" "}
+                              <abbr
+                                title={post.product.title}
+                                className="no-underline"
+                              >
+                                <h1
+                                  data-tip={post.product.title}
+                                  className="!mb-0 truncate"
+                                >
+                                  {post.product.title}
+                                </h1>
+                              </abbr>
+                              <h2 className="text-green text-xs">
+                                {post.interest}% Interest Rate
+                              </h2>
+                            </div>
+                            {post.user_id == userID &&
+                              post.product.cost === post.product.threshold && (
+                                <div
+                                  onClick={() => {
+                                    productDetails(post.id);
+                                  }}
+                                >
+                                  <HiOutlineArrowRight className="text-lg text-arrow cursor-pointer" />
+                                </div>
+                              )}
+                          </div>
+                          <div className="text-tiny text-grayy mb-3">
+                            <p className="!mb-0">
+                              Time Frame:{" "}
+                              <span className="text-darkgray">
+                                {post.duration} Days
+                              </span>
+                            </p>
+                            <p className="">
+                              Expires -{" "}
+                              <span className="text-darkgray">
+                                {moment(post.due_date).format("MMM DD, yyyy")}
+                              </span>
+                            </p>
+                          </div>
+                          <div className="text-grayy text-tiny bg-mainsec p-2 rounded-lg mb-2 w-48">
+                            <p className="">
+                              Property Worth{" "}
+                              <span className="text-darkgray text-xs font-medium ml-2">
+                                N
+                                <CurrencyFormat
+                                  value={post.product.cost}
+                                  displayType={"text"}
+                                  thousandSeparator={true}
+                                />
+                              </span>
+                            </p>
+                          </div>
+                          {post.product.cost > post.product.threshold ? (
+                            <div>
+                              <button
+                                className="bg-white text-green text-tiny font-normal w-24 h-7 rounded-2xl"
+                                onClick={() => {
+                                  joinNow(post.id);
+                                }}
+                              >
+                                Join Now
+                              </button>
+                            </div>
+                          ) : (
+                            <h1 className="text-endsin text-xxm font-medium flex items-center bg-ongoing w-fit px-2.5 py-1.5 rounded-full">
+                              <FiArrowUp className="text-tiny text-rose mr-1 mb-1 " />{" "}
+                              <span className="">
+                                {moment(post.due_date).diff(new Date(), "Days")}{" "}
+                                Days:{" "}
+                                {/* {moment(post.due_date).format("h:m")} */}
+                                to go
+                              </span>
+                            </h1>
+                          )}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </>
             ) : (
               <div className="flex flex-col items-center justify-center h-128">
                 <div className="flex flex-col justify-center items-center">
