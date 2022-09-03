@@ -176,7 +176,30 @@ function Bidding({ closeModal, itemId }) {
                     </h1>
                   </div>
                 </div>
-
+                <div className="py-10 font-inter">
+                  <div className="flex justify-between pb-2 items-center">
+                    <h1 className="text-darkgray font-normal text-lg">
+                      Property worth
+                    </h1>
+                    <div className="flex items-center font-normal text-lg">
+                      <h1>Bidding Status</h1>
+                    </div>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <h1 className="text-dark text-2xl font-medium">
+                      N
+                      <CurrencyFormat
+                        value={12000}
+                        displayType={"text"}
+                        thousandSeparator={true}
+                      />
+                    </h1>
+                    <h1 className=" text-sm flex items-center justify-between font-normal px-2 py-1 rounded-full bg-bids text-bidsText">
+                      <span className="p-1 rounded-full bg-bidsText mr-2"></span>{" "}
+                      No bid placed
+                    </h1>
+                  </div>
+                </div>
                 <div className=" bg-total p-4 mt-5 border rounded-2xl">
                   <div className="flex justify-between items-center py-3 border-b">
                     <h1 className="text-head text-lg font-medium ">
@@ -217,7 +240,6 @@ function Bidding({ closeModal, itemId }) {
                       placeholder="0.00"
                       className="text-neutral font-bold text-4xl w-1/2 bg-transparent text-navbar outline-0"
                       // value="50,000"
-                      disabled
                       onChange={(e) => setReic(e.target.value)}
                       defaultValue={
                         post.pullout === null
@@ -229,8 +251,11 @@ function Bidding({ closeModal, itemId }) {
                 </div>
 
                 <div className="text-right pb-8">
+                  <button className="border border-green rounded-full px-10 py-2 text-green mr-3 ">
+                    Negotiate Bid
+                  </button>
                   <button
-                    className="border rounded-full px-6 py-2 text-dashbg bg-green"
+                    className="border rounded-full px-14 py-2 text-dashbg bg-green"
                     onClick={() => {
                       const token = localStorage.getItem("user-wallet");
                       setReic(post.pullout.accumulated_amount);
@@ -254,12 +279,13 @@ function Bidding({ closeModal, itemId }) {
                           }
                         );
                       } else {
-                        setTitle(post.product.title);
-                        inherit(post.pullout.id);
+                        // setTitle(post.product.title);
+                        // inherit(post.pullout.id);
+                        alert("Not Functional Yet");
                       }
                     }}
                   >
-                    Inherit Investment
+                    Place Bid
                   </button>
                 </div>
               </div>

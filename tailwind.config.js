@@ -106,6 +106,8 @@ module.exports = {
         deep: "#101828",
         status: "#F8F8F8",
         table: "#F9FAFB",
+        bids: " #F8F9FC",
+        bidsText: "#363F72",
         statusborder: "#ECF3FC",
         pendingtext: "#FFA500",
         pending: "#fff8eb",
