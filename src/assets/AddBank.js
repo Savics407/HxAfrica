@@ -397,10 +397,10 @@ function MyBanks({
                   }}
                 >
                   <div>
-                    <h1 className="font-normal text-sm lg:text-base">
+                    <h1 className="font-normal text-xs lg:text-base">
                       {bank.bank_name}
                     </h1>
-                    <h1 className="lg:font-semibold capitalize lg:uppercase font-medium lg:text-xl text-base">
+                    <h1 className="lg:font-semibold  font-medium lg:text-xl text-sm">
                       {bank.account_name}
                     </h1>
                   </div>

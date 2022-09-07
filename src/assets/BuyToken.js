@@ -92,9 +92,11 @@ function Details({ closeToken }) {
               delay: 0.5,
             },
           }}
-          className={`bg-white rounded-xl border w-1/2 ${proceed && "hidden"}`}
+          className={`bg-white rounded-xl border lg:w-1/2 w-11/12 ${
+            proceed && "hidden"
+          }`}
         >
-          <div className="border-b border-stroke uppercase px-10 py-5 text-2xl font-semibold flex justify-between items-center text-modal">
+          <div className="border-b border-stroke lg:uppercase px-5 lg:px-10 py-5 text-xl lg:text-2xl font-semibold flex justify-between items-center text-modal">
             <h1>Buy Token</h1>
             <MdClose
               className="cursor-pointer"
@@ -103,18 +105,18 @@ function Details({ closeToken }) {
               }}
             />
           </div>
-          <div className="py-4 px-14">
+          <div className="py-4 lg:px-14 px-5">
             <div className="pb-4 flex items-center ">
               <img src={reictoken} alt="my-investment-image" />
               <div className="ml-4 flex items-center">
-                <span className="text-tokentext text-2xl font-extra-bold mr-2">
+                <span className="text-tokentext lg:text-2xl text-base font-extra-bold mr-2">
                   1
                 </span>
-                <span className="text-token uppercase text-base font-semibold mr-2">
+                <span className="text-token uppercase lg:text-base text-xs font-semibold mr-2">
                   {" "}
                   reic token
                 </span>
-                <span className="text-tokentext text-2xl font-semibold">
+                <span className="text-tokentext text-base lg:text-2xl font-semibold">
                   {" "}
                   = N50,000
                 </span>
@@ -122,13 +124,13 @@ function Details({ closeToken }) {
             </div>
 
             <div className="pt-5 pb-9">
-              <p className="text-payment text-base font-normal mb-2.5">
+              <p className="text-payment lg:text-base text-xs font-medium lg:font-normal mb-2.5">
                 Payment Method
               </p>
-              <div className="flex justify-between">
+              <div className="flex flex-wrap justify-between">
                 <button
-                  className={`border-2 border-border rounded-lg w-72 h-12 mr-5 text-token text-base font-semibold hover:bg-green hover:text-dashbg duration-300 ${
-                    card && "bg-green !text-dashbg"
+                  className={`border-2 border-border rounded-full lg:rounded-lg w-full lg:w-72 h-12 mb-3 lg:mb-0 lg:mr-5 text-token text-base font-semibold hover:bg-green hover:text-dashbg duration-300 ${
+                    card && "!bg-dark border-dark !text-dashbg"
                   }`}
                   onClick={() => {
                     setIsCardPay(true);
@@ -140,8 +142,8 @@ function Details({ closeToken }) {
                   Card payment
                 </button>
                 <button
-                  className={`border-2 border-border rounded-lg w-72 h-12 text-token text-base font-semibold hover:bg-green hover:text-dashbg duration-300 ${
-                    card2 && "bg-green !text-dashbg"
+                  className={`border-2 border-border rounded-full lg:rounded-lg w-full lg:w-72 h-12 text-token text-base font-semibold hover:bg-green hover:text-dashbg duration-300 ${
+                    card2 && "!bg-dark border-dark !text-dashbg"
                   }`}
                   onClick={() => {
                     // alert("NO Bank added yet");
@@ -157,15 +159,15 @@ function Details({ closeToken }) {
             </div>
 
             <div className="pt-5 pb-9">
-              <p className="text-payment text-base font-normal mb-2.5">
+              <p className="text-payment text-base lg:text-left text-center font-normal mb-2.5">
                 Amount
               </p>
               <div className="text-nuetral font-bold text-lg flex items-center justify-center py-6 rounded-lg bg-mainbg relative">
-                <sup className="w-2/5 text-right">N</sup>
+                <sup className="lg:w-2/5 w-2/6 text-right">N</sup>
                 <input
                   type="number"
-                  placeholder="enter amount"
-                  className="text-neutral font-bold text-4xl w-3/5 bg-transparent outline-0"
+                  placeholder="50,000"
+                  className="text-neutral font-bold text-4xl lg:w-3/5 w-4/6 bg-transparent outline-0"
                   // value="50,000"
                   onChange={(e) => setAmount(e.target.value)}
                   defaultValue="50000"
@@ -174,7 +176,7 @@ function Details({ closeToken }) {
               <span className="text-green text-xs">{amount / 50000} REIC</span>
             </div>
             <div className="text-right pt-5 pb-8 flex justify-between items-center">
-              <div className=" flex items-center">
+              <div className=" flex items-center lg:flex hidden">
                 <input
                   required
                   type="checkbox"
@@ -194,21 +196,23 @@ function Details({ closeToken }) {
                                 }}>Continue</button> */}
               {isCardPay ? (
                 <button
-                  className="rounded-full w-44 h-12 text-dashbg bg-green"
+                  className="rounded-full w-full lg:w-44 h-12 text-dashbg bg-green"
                   onClick={buy}
                 >
                   Pay with Card
                 </button>
               ) : isBankPay ? (
                 <button
-                  className="rounded-full w-44 h-12 text-dashbg bg-green"
+                  className="rounded-full w-full lg:w-44 h-12 text-dashbg bg-green"
                   onClick={() => setProceed(true)}
                 >
                   Continue
                 </button>
               ) : (
                 //   {...componentProps}
-                <span className="text-red h-22 ">Select Payment Method</span>
+                <span className="text-red h-22 w-full lg:w-auto text-center lg:text-base text-sm">
+                  Select Payment Method
+                </span>
               )}
             </div>
           </div>
@@ -338,11 +342,11 @@ export function BankTransfer({ closeToken, setBank, bank }) {
               delay: 0.5,
             },
           }}
-          className={`w-2/5 bg-white rounded-xl absolute border-green ${
+          className={`lg:w-2/5 w-11/12 bg-white rounded-xl absolute border-green ${
             success && "hidden"
           }`}
         >
-          <div className="border-b border-stroke uppercase px-10 py-5 text-2xl font-semibold flex justify-between items-center text-modal">
+          <div className="border-b border-stroke capitalize lg:uppercase lg:px-10 px-5 py-5 text-xl lg:text-2xl font-semibold flex justify-between items-center text-modal">
             <h1>Bank Transfer</h1>
 
             {bank ? (
@@ -366,25 +370,25 @@ export function BankTransfer({ closeToken, setBank, bank }) {
             )}
           </div>
 
-          <div className="text-sm text-center text-neutral py-5 px-10">
+          <div className="text-sm text-center text-neutral py-5 lg:px-10 px-5">
             <p>
               Please make payment to your dedicated account details below.
               Kindly note that this account info is unique only to your account.
             </p>
           </div>
-          <div className=" text-neutral m-auto w-3/4 rounded-xl mb-5 py-3 px-5 shadow-lg  flex flex-col items-center">
-            <div className="flex justify-between w-full mb-2">
+          <div className=" text-neutral m-auto lg:w-3/4 w-11/12 rounded-xl mb-5 py-3 pl-10 lg:px-5 shadow-lg flex flex-col items-center justify-center">
+            <div className="flex flex-col lg:flex-row justify-between w-full mb-2">
               <h1 className="font-semibold mr-3">Account Name:</h1>
               <h1>{kuda?.name}</h1>
             </div>
-            <div className="flex justify-between w-full mb-2">
+            <div className="flex flex-col lg:flex-row justify-between w-full mb-2">
               <h1 className="font-semibold mr-3">Bank Name:</h1>
               <h1>{kuda?.bank}</h1>
             </div>
-            <div className="flex items-center w-full justify-between rounded ">
+            <div className="flex flex-col lg:flex-row w-full justify-between rounded ">
               <h1 className="font-semibold mr-3">Account Number:</h1>
               <div
-                className="flex items-center text-sm bg-green text-white rounded-full py-1 px-6 cursor-pointer"
+                className="flex items-center text-sm bg-green text-white w-fit rounded-full py-1 px-6 cursor-pointer"
                 onClick={() => {
                   navigator.clipboard.writeText(kuda?.account_number);
                   toast.success(`copied ${kuda?.account_number} to clipboard`, {
