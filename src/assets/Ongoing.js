@@ -74,6 +74,7 @@ function Ongoing() {
           closeDetails={setOpenDetails}
           itemId={itemId}
           setItemID={setItemID}
+          ongoing={fetchData}
         />
       )}
 

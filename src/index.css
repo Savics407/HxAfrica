@@ -327,11 +327,11 @@ body {
       @apply w-1/2 py-3
     }
     .income2 h1{
-      @apply font-bold text-xl mb-2 text-secondary
+      @apply lg:font-bold font-semibold lg:text-xl text-xs mb-2 text-secondary
     }
 
     .income2 p {
-      @apply text-secondary font-medium text-lg
+      @apply text-secondary font-medium lg:text-lg text-tiny
     }
 
     .table {

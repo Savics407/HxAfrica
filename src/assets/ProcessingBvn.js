@@ -189,14 +189,16 @@ function Processing({ setVerifyBVN, closeToken }) {
               delay: 0.5,
             },
           }}
-          className={`w-128 bg-white rounded-xl absolute border-green p-6 text-center ${
+          className={`lg:w-128 w-11/12 bg-white rounded-xl absolute border-green p-6 text-center ${
             bvnCheck ? "hidden" : "block"
           }`}
         >
           <div>
-            <h1 className="font-bold text-neutral text-3xl">Processing BVN</h1>
+            <h1 className="font-medium lg:font-bold text-neutral lg:text-3xl text-2xl">
+              Processing BVN
+            </h1>
           </div>
-          <div className="font-semibold text-base text-neutral my-8">
+          <div className="lg:font-semibold font-medium text-base text-neutral my-8">
             <p>
               Please wait while we process your BVN. This will take few seconds.
             </p>
@@ -224,12 +226,14 @@ function Processing({ setVerifyBVN, closeToken }) {
                 delay: 0.5,
               },
             }}
-            className="w-128 bg-white rounded-xl absolute border-green p-6 text-center"
+            className="lg:w-128 w-11/12 bg-white rounded-xl absolute border-green p-6 text-center"
           >
             <div>
-              <h1 className="font-bold text-neutral text-3xl">No BVN Found</h1>
+              <h1 className="lg:font-bold font-medium  text-neutral text-2xl lg:text-3xl">
+                No BVN Found
+              </h1>
             </div>
-            <div className="font-semibold text-base text-neutral my-8">
+            <div className="lg:font-semibold font-medium lg:text-base text-sm text-neutral my-8">
               <p>Please add your BVN to continue this action</p>
             </div>
             <div className="input mb-3">

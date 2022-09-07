@@ -6,10 +6,10 @@ import moment from "moment";
 import { TbLoader } from "react-icons/tb";
 import { toast } from "react-toastify";
 import sad from "./images/sad.svg";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import * as CurrencyFormat from "react-currency-format";
 
-function Details({ closeDetails, itemId }) {
+function Details({ closeDetails, itemId, ongoing }) {
   const [authPullOut, setAuthPullOut] = useState(false);
   const [isClick, setIsClick] = useState(false);
   // const [details, setDetails] = useState(true)
@@ -87,11 +87,11 @@ function Details({ closeDetails, itemId }) {
                   delay: 0.5,
                 },
               }}
-              className={`bg-white rounded-xl border w-1/2 z-10 ${
+              className={`bg-white rounded-xl border w-4/5 lg:w-1/2 z-10 ${
                 isClick ? "hidden" : "block"
               }`}
             >
-              <div className="border-b border-stroke px-10 py-5 text-2xl font-semibold flex justify-between items-center text-modal">
+              <div className="border-b border-stroke lg:px-10 px-5 py-5 lg:text-2xl text-xs font-semibold flex justify-between items-center text-modal">
                 <h1>Investments</h1>
                 <MdClose
                   className="cursor-pointer"
@@ -100,7 +100,7 @@ function Details({ closeDetails, itemId }) {
                   }}
                 />
               </div>
-              <div className="px-10 ">
+              <div className="px-5 lg:px-10 ">
                 <div>
                   <img
                     src={hdimage}
@@ -110,10 +110,10 @@ function Details({ closeDetails, itemId }) {
                 </div>
 
                 <div className="border-b border-strek pb-4 ">
-                  <h1 className="bg-media p-2 rounded text-sm my-5 capitalize text-dashbg w-fit text-center font-semibold ">
+                  <h1 className="bg-media lg:p-2 px-2 py-1 rounded text-xxm lg:text-sm my-5 uppercase  text-dashbg w-fit text-center font-semibold ">
                     {post.product.category.product_category}
                   </h1>
-                  <h1 className="text-neutral text-2xl font-semibold">
+                  <h1 className="text-neutral text-sm lg:text-2xl font-semibold">
                     {post.product.title}
                   </h1>
                 </div>
@@ -160,7 +160,7 @@ function Details({ closeDetails, itemId }) {
                 <div className="text-right pt-5 pb-8">
                   {post.product.status_investment === "ongoing" ? (
                     <button
-                      className="border rounded-full w-44 h-12 text-dashbg bg-red"
+                      className="border rounded-full lg:w-44 lg:h-12 w-24 h-9 text-xs lg:text-xl text-dashbg bg-red"
                       onClick={() => {
                         setAuthPullOut(true);
                         setIsClick(!isClick);
@@ -175,13 +175,15 @@ function Details({ closeDetails, itemId }) {
                       Pull Out
                     </button>
                   ) : post.status === "completed" ? (
-                    <button className="border rounded-full w-44 h-12 text-dashbg bg-green">
+                    <button className="border rounded-full px-6 py-1 text-xs lg:text-xl text-dashbg bg-green">
                       Completed
                     </button>
                   ) : (
-                    <button className="border rounded-full w-44 h-12 text-dashbg bg-red">
-                      Cancel
-                    </button>
+                    <Link to="/investments/pending">
+                      <button className="border rounded-full lg:w-44 lg:h-12 w-24 h-9 text-xs lg:text-xl text-dashbg bg-red">
+                        Cancel
+                      </button>
+                    </Link>
                   )}
                 </div>
               </div>
@@ -194,6 +196,7 @@ function Details({ closeDetails, itemId }) {
             title={title}
             productId={productId}
             closeDetails={closeDetails}
+            ongoing={ongoing}
           />
         )}
       </motion.div>
@@ -202,7 +205,7 @@ function Details({ closeDetails, itemId }) {
   );
 }
 
-function Warning({ closeWarning, title, productId, closeDetails }) {
+function Warning({ closeWarning, title, productId, closeDetails, ongoing }) {
   const [warning, setWarning] = useState(true);
   const [processing, setProcessing] = useState(false);
   const [instant, setInstant] = useState(false);
@@ -267,14 +270,16 @@ function Warning({ closeWarning, title, productId, closeDetails }) {
             delay: 0.5,
           },
         }}
-        className={`w-128 bg-white rounded-xl absolute border-green p-6 text-center ${
+        className={`lg:w-128 w-11/12 bg-white rounded-xl absolute border-green p-6 text-center ${
           !instant || !success ? "block" : "hidden"
         } `}
       >
         <div>
-          <h1 className="font-bold text-neutral text-3xl">Pullout Option</h1>
+          <h1 className="lg:font-bold text-neutral text-2xl lg:text-3xl">
+            Pullout Option
+          </h1>
         </div>
-        <div className="font-semibold text-base text-neutral my-8">
+        <div className="lg:font-semibold lg:text-base text-xs text-neutral my-8">
           <p>
             You can choose to make instant pullout or relist your investment on
             the exchange market.
@@ -282,7 +287,7 @@ function Warning({ closeWarning, title, productId, closeDetails }) {
         </div>
         <div className="flex justify-between">
           <button
-            className="border rounded-full w-44 h-12 text-white bg-green"
+            className="border rounded-full lg:w-44 lg:h-12 w-40 h-12 text-sm lg:text-base text-white bg-green"
             onClick={() => {
               // closeWarning(false);
               relist();
@@ -291,7 +296,7 @@ function Warning({ closeWarning, title, productId, closeDetails }) {
             List in market
           </button>
           <button
-            className="rounded-full w-44 h-12 text-dashbg bg-red"
+            className="rounded-full lg:w-44 lg:h-12 w-40 h-12 text-dashbg bg-red text-sm lg:text-base"
             onClick={() => {
               setInstant(true);
             }}
@@ -317,32 +322,34 @@ function Warning({ closeWarning, title, productId, closeDetails }) {
               delay: 0.5,
             },
           }}
-          className={`w-128 bg-white rounded-xl absolute border-green p-6 text-center ${
+          className={`lg:w-128 w-11/12 bg-white rounded-xl absolute border-green p-6 text-center ${
             warning ? "block" : "hidden"
           } `}
         >
           <div>
-            <h1 className="font-bold text-neutral text-3xl">Warning!</h1>
+            <h1 className="lg:font-bold font-medium text-neutral text-2xl lg:text-3xl">
+              Warning!
+            </h1>
           </div>
-          <div className="font-semibold text-base text-neutral my-8">
+          <div className="font-semibold lg:text-base text-xs text-neutral my-8">
             <p>
-              Are you sure you want to pull out from the <br />
-              <span className="text-green">{title}</span> investments? <br />
+              Are you sure you want to pull out from <br /> the
+              <span className="text-green"> {title}</span> investments? <br />
               This action will incur charges of N25,000
             </p>
           </div>
           <div className="flex justify-between">
             <button
-              className="border rounded-full w-44 h-12 text-neutral bg-dashbg"
+              className="border rounded-full lg:w-44 h-12 w-40 text-neutral bg-dashbg text-sm lg:text-base"
               onClick={() => {
-                closeWarning(false);
+                closeDetails(false);
                 // setWarning(!warning);
               }}
             >
               No, Cancel
             </button>
             <button
-              className="rounded-full w-44 h-12 text-dashbg bg-red"
+              className="rounded-full w-40 lg:w-44 h-12 text-dashbg bg-red text-sm lg:text-base"
               onClick={() => {
                 // closeWarning(false);
                 setWarning(!warning);
@@ -371,7 +378,7 @@ function Warning({ closeWarning, title, productId, closeDetails }) {
               delay: 0.5,
             },
           }}
-          className={`w-128 bg-white rounded-xl absolute border-green p-6 text-center ${
+          className={`w-11/12 lg:w-128 bg-white rounded-xl absolute border-green p-6 text-center ${
             !instant ? "block" : "hidden"
           } `}
         >
@@ -389,6 +396,7 @@ function Warning({ closeWarning, title, productId, closeDetails }) {
               className="border rounded-full w-full py-3 text-white bg-green"
               onClick={() => {
                 closeDetails(false);
+                ongoing();
                 // setWarning(!warning);
               }}
             >
@@ -434,7 +442,6 @@ function Processing({ productId }) {
     } else {
       if (result.status === "error") {
         console.log(result.data);
-        alert(result.message);
         toast.error(`${result.message}`, {
           position: "top-left",
           autoClose: 500,
@@ -450,7 +457,7 @@ function Processing({ productId }) {
   }
 
   useEffect(() => {
-    pullout();
+    setTimeout(pullout, 7000);
   }, []);
   // function redirect() {
   //   setTimeout((window.location = "/investment"), 10000);
@@ -477,7 +484,7 @@ function Processing({ productId }) {
             delay: 0.5,
           },
         }}
-        className={`w-128 bg-white rounded-xl absolute border-green p-6 text-center ${
+        className={`w-11/12 lg:w-128 bg-white rounded-xl absolute border-green p-6 text-center ${
           bvn ? "block" : "hidden"
         }`}
       >
@@ -524,9 +531,9 @@ function Sad() {
             delay: 0.5,
           },
         }}
-        className="w-2/4 bg-white rounded-xl absolute border-green p-20 flex justify-center"
+        className="lg:w-2/4 w-full bg-white rounded-xl absolute border-green lg:p-20 p-10 flex justify-center"
       >
-        <div className="flex justify-center flex-col px-3 w-1/2">
+        <div className="flex justify-center flex-col px-3 lg:w-1/2 w-11/12">
           <div className="flex justify-center mb-4">
             <img src={sad} alt="sad to see you go" />
           </div>

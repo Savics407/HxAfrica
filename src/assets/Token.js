@@ -17,6 +17,7 @@ import Withdraw from "./WithdrawToken";
 import RecentActivity from "./recentActivity";
 import * as CurrencyFormat from "react-currency-format";
 import Processing from "./ProcessingBvn";
+import Details from "./BuyToken";
 
 class ErrorBoundary extends React.Component {
   constructor(props) {
@@ -123,8 +124,13 @@ function Token() {
   const [withdraw, setWithdraw] = useState(false);
   const [bankID, setBankID] = useState();
   const [bank, setBank] = useState(false);
+  const [purchaseToken, setPurchaseToken] = useState(false);
   return (
     <div className="font-family">
+      {purchaseToken && (
+        <Details className="z-10" closeToken={setPurchaseToken} />
+      )}
+
       {buyToken && (
         <AddBank
           className="z-10"
@@ -424,11 +430,21 @@ function Token() {
               </div>
             </div>
             <div className="bg-welcome px-4 py-5 lg:hidden flex justify-between mb-4">
-              <button className="font-normal text-dashbg bg-darkButton rounded-full text-tiny flex items-center py-3 px-5">
+              <button
+                className="font-normal text-dashbg bg-darkButton rounded-full text-tiny flex items-center py-3 px-5"
+                onClick={() => {
+                  setBuyToken(true);
+                }}
+              >
                 <img src={widthdraw} alt="withdraw token icon" />{" "}
                 <span className="ml-2">Withdraw Token </span>
               </button>
-              <button className="font-normal text-dashbg bg-green rounded-full text-tiny flex items-center py-3 px-9">
+              <button
+                className="font-normal text-dashbg bg-green rounded-full text-tiny flex items-center py-3 px-9"
+                onClick={() => {
+                  setPurchaseToken(true);
+                }}
+              >
                 <img src={send} alt="withdraw token icon" />{" "}
                 <span className="ml-2">Buy Token </span>
               </button>

@@ -172,11 +172,11 @@ function AddBank({ closeToken, setVerifyBVN, setWithdraw, setBankID }) {
                 delay: 0.5,
               },
             }}
-            className={`bg-white rounded-xl border w-2/5 ${
+            className={`bg-white rounded-xl border lg:w-2/5 w-11/12 ${
               !registered && "hidden"
             }`}
           >
-            <div className="border-b border-stroke uppercase px-10 py-5 text-2xl font-semibold flex justify-between items-center text-modal">
+            <div className="border-b border-stroke Capitalize lg:uppercase px-10 py-5 lg:text-2xl font-semibold flex justify-between items-center text-modal text-base">
               <h1 className="font-iter">Add Bank</h1>
               <MdClose
                 className="cursor-pointer"
@@ -186,7 +186,7 @@ function AddBank({ closeToken, setVerifyBVN, setWithdraw, setBankID }) {
               />
             </div>
             <div className="p-10 flex flex-col items-center text-token text-sm font-medium">
-              <img src={bank} alt="bank-icon" className="w-28 mb-2" />
+              <img src={bank} alt="bank-icon" className="lg:w-28 w-20 mb-2" />
               <h1>No registered bank account</h1>
             </div>
 
@@ -236,9 +236,9 @@ function AddBank({ closeToken, setVerifyBVN, setWithdraw, setBankID }) {
                 delay: 0.5,
               },
             }}
-            className="bg-white rounded-xl border w-2/5"
+            className="bg-white rounded-xl border w-11/12 lg:w-2/5"
           >
-            <div className="border-b border-stroke uppercase px-10 py-5 text-2xl font-semibold flex justify-between items-center text-modal">
+            <div className="border-b border-stroke capitalize lg:uppercase px-5 lg:px-10 py-5 lg:text-2xl text-base font-semibold flex justify-between items-center text-modal">
               <h1 className="font-iter">Add Bank</h1>
               <MdClose
                 className="cursor-pointer"
@@ -247,9 +247,9 @@ function AddBank({ closeToken, setVerifyBVN, setWithdraw, setBankID }) {
                 }}
               />
             </div>
-            <div className="py-4 px-10">
+            <div className="py-4 lg:px-10 px-5">
               <div className="input mb-4">
-                <label className="text-footer text-base font-normal">
+                <label className="text-footer text-tiny lg:text-base font-normal">
                   Bank Name
                 </label>
                 {/* <input
@@ -261,7 +261,7 @@ function AddBank({ closeToken, setVerifyBVN, setWithdraw, setBankID }) {
                 {/* <h1>{bankName}, {bankCode}</h1> */}
 
                 <select
-                  className="box text-green cursor-pointer"
+                  className="border rounded-full lg:rounded-xl border-border bg-input p-4 lg:p-3 lg:text-sm text-xs focus-within:shadow-lg outline-none text-green cursor-pointer"
                   value={bankInfo}
                   // name={bankData.bankName}
                   onChange={(event) =>
@@ -279,14 +279,14 @@ function AddBank({ closeToken, setVerifyBVN, setWithdraw, setBankID }) {
                 </select>
               </div>
               <div className="input">
-                <label className="text-footer text-base font-normal">
+                <label className="text-footer text-tiny lg:text-base font-normal">
                   Account Number
                 </label>
                 <input
                   required
                   type="number"
                   placeholder="enter account number"
-                  className="box text-green"
+                  className="border rounded-full lg:rounded-xl border-border bg-input p-4 lg:p-3 lg:text-sm text-xs focus-within:shadow-lg       outline-none text-green"
                   value={bankData.accountNumber}
                   onChange={(event) =>
                     setBankData({
@@ -298,7 +298,7 @@ function AddBank({ closeToken, setVerifyBVN, setWithdraw, setBankID }) {
               </div>
               <div>
                 <button
-                  className="rounded-xl w-full h-12 text-dashbg bg-green"
+                  className="rounded-full lg:rounded-xl w-full h-12 mt-3 text-dashbg bg-green"
                   onClick={() => {
                     setProcess(true);
                     resolveBank();
@@ -363,10 +363,14 @@ function MyBanks({
             delay: 0.5,
           },
         }}
-        className={`bg-white rounded-xl border w-1/2 ${addAccount && "hidden"}`}
+        className={`bg-white rounded-xl border w-11/12 lg:w-1/2 ${
+          addAccount && "hidden"
+        }`}
       >
-        <div className="border-b border-stroke uppercase px-10 py-5 text-2xl font-semibold flex justify-between items-center text-modal">
-          <h1 className="font-iter">Choose Bank</h1>
+        <div className="border-b border-stroke px-5 lg:px-10 py-5 text-base lg:text-2xl font-semibold flex justify-between items-center text-modal">
+          <h1 className="font-iter lg:uppercase capitalize">
+            Choose Bank Account
+          </h1>
           <MdClose
             className="cursor-pointer"
             onClick={() => {
@@ -380,8 +384,8 @@ function MyBanks({
             <ScaleLoader color="#008E10" height={50} width={6} />
           </div>
         ) : (
-          <div className="py-4 px-7">
-            <div className="input mb-4 h-90 px-2 overflow-y-scroll scroll">
+          <div className="py-4 lg:px-7 px-5">
+            <div className="input mb-4 h-90 lg:px-2 overflow-y-scroll scroll">
               {userBank?.map((bank) => (
                 <div
                   key={bank.id}
@@ -393,13 +397,15 @@ function MyBanks({
                   }}
                 >
                   <div>
-                    <h1 className="font-normal text-base">{bank.bank_name}</h1>
-                    <h1 className="font-semibold text-xl">
+                    <h1 className="font-normal text-sm lg:text-base">
+                      {bank.bank_name}
+                    </h1>
+                    <h1 className="lg:font-semibold capitalize lg:uppercase font-medium lg:text-xl text-base">
                       {bank.account_name}
                     </h1>
                   </div>
                   <div>
-                    <h1 className="font-normal text-base">
+                    <h1 className="font-normal text-xs lg:text-base">
                       {bank.account_number}
                     </h1>
                   </div>
