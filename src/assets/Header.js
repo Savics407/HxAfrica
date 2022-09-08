@@ -11,6 +11,7 @@ import { RiSettings3Fill } from "react-icons/ri";
 import { BiLogOut } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { IoWallet } from "react-icons/io5";
 // import { toast } from "react-toastify";
 import { Link, NavLink } from "react-router-dom";
 
@@ -212,7 +213,7 @@ function Header() {
         </NavLink>
         <NavLink to="/bids">
           <div className="nav-items">
-            <RiSettings3Fill className="ds-icons" />
+            <IoWallet className="ds-icons" />
             <h1>Bids</h1>
           </div>
         </NavLink>

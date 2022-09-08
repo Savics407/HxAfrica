@@ -53,6 +53,11 @@ function Bids() {
           </div>
         </div>
       </div>
+      <div className="footer">
+        <h1 className="text-base font-semibold text-footer">
+          © 2022 REIC. All rights reserved.
+        </h1>
+      </div>
     </div>
   );
 }
