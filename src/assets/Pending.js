@@ -18,7 +18,7 @@ function Pending() {
   const [available, setAvailable] = useState(true);
   const [authCancel, setAuthCancel] = useState(false);
   const [isClick, setIsClick] = useState(false);
-  const [proID, setProID] = useState(false);
+  const [proID, setProID] = useState();
   const [posts, setPosts] = useState();
   const [loading, setLoading] = useState(true);
   const [title, setTitle] = useState();
@@ -58,6 +58,13 @@ function Pending() {
   }, []);
   const [itemId, setItemID] = useState("");
   const [topUp, setTopUp] = useState(false);
+  const [processing, setProcessing] = useState(false);
+  const [completed, setCompleted] = useState(false);
+  const [warning, setWarning] = useState(true);
+  function redirect() {
+    setProcessing(false);
+    setCompleted(true);
+  }
   //   function productDetails(id) {
   //     setItemID(id);
   //     // setOpenDetails(true);
@@ -66,8 +73,46 @@ function Pending() {
     setItemID(id);
     setTopUp(true);
   }
+  async function Cancel() {
+    const payLoad = {
+      investment_id: proID,
+    };
+    const token = localStorage.getItem("user-token");
+    const response = await fetch(
+      "https://reic.api.simpoo.biz/api/investment/cancel_investment",
+      {
+        method: "POST",
+        body: JSON.stringify(payLoad),
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    const result = await response.json();
+    console.log(result);
+    if (result?.status === "success") {
+      setProcessing(true);
+      setWarning(!warning);
+      setTimeout(redirect, 7000);
+    } else {
+      if (result?.status === "error") {
+        // alert(result.message);
+        toast.error(`${result.message}`, {
+          position: "top-left",
+          autoClose: 3000,
+          hideProgressBar: true,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      }
+    }
+  }
   return (
-    <div>
+    <div className="font-family">
       {topUp && (
         <TopUp
           className="z-10"
@@ -156,6 +201,8 @@ function Pending() {
                               <button
                                 className="bg-white text-green text-tiny font-normal w-24 h-7 rounded-2xl"
                                 onClick={() => {
+                                  // Cancel(pending.id);
+                                  setProID(pending.id);
                                   joinNow(pending.id);
                                 }}
                               >
@@ -169,6 +216,8 @@ function Pending() {
                                 onClick={() => {
                                   setTitle(pending.product.title);
                                   setAuthCancel(true);
+                                  // Cancel(pending.id);
+                                  setProID(pending.id);
                                 }}
                               >
                                 Cancel
@@ -199,25 +248,30 @@ function Pending() {
       {authCancel && (
         <Warning
           closeWarning={setAuthCancel}
-          productID={proID}
+          proID={proID}
           title={title}
           fetch={fetchData}
+          Cancel={Cancel}
+          warning={warning}
+          processing={processing}
+          completed={completed}
         />
       )}
     </div>
   );
 }
 
-export function Warning({ closeWarning, productID, title, fetch }) {
-  function redirect() {
-    setProcessing(false);
-    setCompleted(true);
-  }
-
+export function Warning({
+  closeWarning,
+  proID,
+  title,
+  fetch,
+  Cancel,
+  warning,
+  processing,
+  completed,
+}) {
   const navigate = useNavigate();
-  const [processing, setProcessing] = useState(false);
-  const [completed, setCompleted] = useState(false);
-  const [warning, setWarning] = useState(true);
 
   //   const Cancel = () => {
   //     const payLoad = {
@@ -236,12 +290,11 @@ export function Warning({ closeWarning, productID, title, fetch }) {
   //       .then((response) => response.json())
   //       .then((json) => console.log(json));
   //   };
-
-  async function Cancel() {
+  // alert(productID);
+  async function cancel() {
     const payLoad = {
-      investment_id: productID,
+      investment_id: proID,
     };
-    // alert(payLoad.investment_id);
     const token = localStorage.getItem("user-token");
     const response = await fetch(
       "https://reic.api.simpoo.biz/api/investment/cancel_investment",
@@ -255,27 +308,26 @@ export function Warning({ closeWarning, productID, title, fetch }) {
         },
       }
     );
-
     const result = await response.json();
     console.log(result);
-    if (result?.status === "success") {
-      setProcessing(true);
-      setWarning(!warning);
-      setTimeout(redirect, 7000);
-    } else {
-      if (result?.status === "error") {
-        // alert(result.message);
-        toast.error(`${result.message}`, {
-          position: "top-left",
-          autoClose: 3000,
-          hideProgressBar: true,
-          closeOnClick: false,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
-      }
-    }
+    // if (result?.status === "success") {
+    //   setProcessing(true);
+    //   setWarning(!warning);
+    //   setTimeout(redirect, 7000);
+    // } else {
+    //   if (result?.status === "error") {
+    //     // alert(result.message);
+    //     toast.error(`${result.message}`, {
+    //       position: "top-left",
+    //       autoClose: 3000,
+    //       hideProgressBar: true,
+    //       closeOnClick: false,
+    //       pauseOnHover: true,
+    //       draggable: true,
+    //       progress: undefined,
+    //     });
+    //   }
+    // }
   }
 
   return (

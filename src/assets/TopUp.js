@@ -202,7 +202,7 @@ function TopUp({ closeModal, itemId, productDetails, setAuthCancel, setTile }) {
                       {post.duration} Days
                     </h1>{" "}
                     <h1 className="text-darkgray text-sm font-normal">
-                      <span className="text-secondary">Expires in </span> -{" "}
+                      <span className="text-secondary">Starts in </span> -{" "}
                       {moment(post.product.expiry_date).diff(
                         new Date(),
                         "Days"

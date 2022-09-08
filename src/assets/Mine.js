@@ -204,22 +204,30 @@ function Mine() {
                           </td>
                           <td className=" py-8">
                             {post.product.status_investment === "ongoing" ? (
-                              <button
-                                className="bg-pending text-xs text-red w-28 h-9 rounded-full font-medium"
-                                // onClick={() => {
-                                //   productDetails(post.id);
-                                // }}
-                              >
-                                Ongoing
-                              </button>
+                              <Link to="/investments/ongoing">
+                                {" "}
+                                <button
+                                  className="bg-pending text-xs text-red w-28 h-9 rounded-full font-medium"
+                                  // onClick={() => {
+                                  //   productDetails(post.id);
+                                  // }}
+                                >
+                                  Ongoing
+                                </button>
+                              </Link>
                             ) : post.status === "completed" ? (
-                              <button className="bg-input text-xs text-green w-28 h-9 rounded-full font-medium">
-                                Completed
-                              </button>
+                              <Link to="/investments/completed">
+                                {" "}
+                                <button className="bg-input text-xs text-green w-28 h-9 rounded-full font-medium">
+                                  Completed
+                                </button>{" "}
+                              </Link>
                             ) : (
-                              <button className="bg-status text-xs text-statustext w-28 h-9 rounded-full font-medium">
-                                Waiting
-                              </button>
+                              <Link to="/investments/pending">
+                                <button className="bg-status text-xs text-statustext w-28 h-9 rounded-full font-medium">
+                                  Waiting
+                                </button>
+                              </Link>
                             )}
                           </td>
                         </tr>

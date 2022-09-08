@@ -127,7 +127,7 @@ function Details({ closeToken }) {
               <p className="text-payment lg:text-base text-xs font-medium lg:font-normal mb-2.5">
                 Payment Method
               </p>
-              <div className="flex flex-wrap justify-between">
+              <div className="flex lg:flex-nowrap	 flex-wrap justify-between">
                 <button
                   className={`border-2 border-border rounded-full lg:rounded-lg w-full lg:w-72 h-12 mb-3 lg:mb-0 lg:mr-5 text-token text-base font-semibold hover:bg-green hover:text-dashbg duration-300 ${
                     card && "!bg-dark border-dark !text-dashbg"

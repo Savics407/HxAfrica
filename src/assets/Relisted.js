@@ -163,16 +163,7 @@ function Relisted() {
                             </p>
                           </div>
                           <div className=" w-48">
-                            {post.pullout === null ? (
-                              <button
-                                className="bg-neutral text-white text-tiny w-full p-2 rounded-full"
-                                onClick={() => {
-                                  bid(post.product.id);
-                                }}
-                              >
-                                Place Bid
-                              </button>
-                            ) : (
+                            {post.pullout.user_id === 1 ? (
                               <button
                                 className="bg-white text-green text-tiny w-full p-2 rounded-full"
                                 onClick={() => {
@@ -180,6 +171,15 @@ function Relisted() {
                                 }}
                               >
                                 Inherit Investment
+                              </button>
+                            ) : (
+                              <button
+                                className="bg-neutral text-white text-tiny w-full p-2 rounded-full"
+                                onClick={() => {
+                                  bid(post.pullout.id);
+                                }}
+                              >
+                                Place Bid
                               </button>
                             )}
                           </div>
