@@ -204,7 +204,7 @@ function Token() {
                   </div>
 
                   <div
-                    className="flex items-center border rounded-full py-2 px-5 lg:py-2.5 lg:px-5 relative cursor-pointer"
+                    className="flex items-center border rounded-full lg:px-5 px-3 lg:py-2.5 py-1.5 text-footer lg:text-xs text-xxm cursor-pointer relative"
                     onClick={() => setDrop(!drop)}
                   >
                     <span className="mr-1 lg:text-xs text-xxm">
