@@ -185,7 +185,7 @@ function Token() {
                       <h1 className="text-token uppercase text-tiny font-semibold lg:hidden">
                         reic token
                       </h1>
-                      <h1 className="font-medium mr-4 text-dark text-3xl">
+                      <h1 className="font-medium mr-4 text-dark lg:text-3xl text-4l">
                         {reic ? (
                           <span>{JSON.stringify(token)}</span>
                         ) : (
@@ -204,7 +204,7 @@ function Token() {
                   </div>
 
                   <div
-                    className="flex items-center border rounded-full lg:px-5 px-3 lg:py-2.5 py-1.5 text-footer lg:text-xs text-xxm cursor-pointer relative"
+                    className="flex items-center border rounded-full py-1.5 px-3 lg:py-2.5 lg:px-5 relative cursor-pointer"
                     onClick={() => setDrop(!drop)}
                   >
                     <span className="mr-1 lg:text-xs text-xxm">
