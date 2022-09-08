@@ -67,12 +67,15 @@ function Owner() {
           </div>
         </div>
         <div className="bg-white w-2/3 rounded-xl flex flex-col justify-between">
-          <div className="border-b flex  px-10 py-5">
+          <div className="border-b flex px-10 py-5">
             <div className="mr-2 w-16">
               <img src={elvis} alt="investor" />
             </div>
-            <div className="flex items-center">
+            <div className="flex items-center justify-between w-full">
               <h1 className="text-banner font-semibold text-xl">Investor ID</h1>
+              <button className="bg-dark px-6 py-2 test-sm rounded-full text-white">
+                Accept bid
+              </button>
             </div>
           </div>
           <div className="font-inter">

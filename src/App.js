@@ -50,10 +50,11 @@ function App() {
       <Routes>
         <Route path="/sign-up" element={<Auth />} />
         <Route path="/" element={<Login />} />
-        <Route path="/bidders-chat" element={<BiddersChat />} />
-        <Route path="/investment-chat" element={<Owner />} />
+
         <Route path="/status" element={<UseNetworkStatus />} />
         <Route element={<PrivateRoutes />}>
+          <Route path="/bidders-chat" element={<BiddersChat />} />
+          <Route path="/investment-chat" element={<Owner />} />
           <Route path="/buytoken/success" element={<Success />} />
           <Route path="/investments/pending" element={<Pending />} />
 

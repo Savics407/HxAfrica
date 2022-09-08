@@ -15,6 +15,7 @@ function Bidding({ closeModal, itemId }) {
   const [isClick, setIsClick] = useState(false);
   const [loading, setLoading] = useState(true);
   const [negotiate, setNegotiate] = useState(false);
+  const navigate = useNavigate();
 
   const [posts, setPosts] = useState();
   const productID = itemId;
@@ -49,13 +50,15 @@ function Bidding({ closeModal, itemId }) {
   const [reic, setReic] = useState();
   const [title, setTitle] = useState("");
   // alert(amount);
-  async function inherit(id) {
+  async function bid(id) {
     const payLoad = {
-      pullout_id: id,
+      investment_id: id,
+      amount: reic,
     };
+    // alert(reic);
     const token = localStorage.getItem("user-token");
     const response = await fetch(
-      "https://reic.api.simpoo.biz/api/investment/inherit_investment",
+      "https://reic.api.simpoo.biz/api/exchange/bid_investment",
       {
         method: "POST",
         body: JSON.stringify(payLoad),
@@ -201,7 +204,7 @@ function Bidding({ closeModal, itemId }) {
                           <h1 className="text-dark text-2xl font-medium">
                             N
                             <CurrencyFormat
-                              value={12000}
+                              value={1200000}
                               displayType={"text"}
                               thousandSeparator={true}
                             />
@@ -254,14 +257,15 @@ function Bidding({ closeModal, itemId }) {
                           <input
                             type="number"
                             placeholder="0.00"
-                            className="text-neutral font-bold text-4xl w-1/2 bg-transparent text-navbar outline-0"
+                            className="text-neutral font-bold text-4xl w-1/2 bg-transparent  outline-0"
                             // value="50,000"
                             onChange={(e) => setReic(e.target.value)}
-                            defaultValue={
-                              post.pullout === null
-                                ? 50000
-                                : post.pullout.accumulated_amount / 50000
-                            }
+                            // defaultValue={
+                            //   post.pullout === null
+                            //     ? 50000 / 50000
+                            //     : post.pullout.accumulated_amount / 50000
+                            // }
+                            defaultValue={reic}
                           />
                         </div>
                       </div>
@@ -271,6 +275,7 @@ function Bidding({ closeModal, itemId }) {
                           className="border border-green rounded-full px-10 py-2 text-green mr-3"
                           onClick={() => {
                             setIsClick(true);
+                            setNegotiate(true);
                           }}
                         >
                           Negotiate Bid
@@ -279,7 +284,7 @@ function Bidding({ closeModal, itemId }) {
                           className="border rounded-full px-14 py-2 text-dashbg bg-green"
                           onClick={() => {
                             const token = localStorage.getItem("user-wallet");
-                            setReic(post.pullout.accumulated_amount);
+                            // setReic(post.pullout.accumulated_amount);
                             if (reic === 0) {
                               alert("kindly input reic amount to invest");
                             } else if (reic === "") {
@@ -288,7 +293,7 @@ function Bidding({ closeModal, itemId }) {
                               toast.error(
                                 `Your balance is too small for this investment, kindly make a deposit of ${
                                   reic - token
-                                } reic to continue`,
+                                } reic or more to continue`,
                                 {
                                   position: "top-left",
                                   autoClose: 3500,
@@ -301,8 +306,7 @@ function Bidding({ closeModal, itemId }) {
                               );
                             } else {
                               // setTitle(post.product.title);
-                              // inherit(post.pullout.id);
-                              alert("Not Functional Yet");
+                              bid(post.pullout.investment_id);
                             }
                           }}
                         >
@@ -316,7 +320,7 @@ function Bidding({ closeModal, itemId }) {
           </motion.div>
         </>
 
-        {isClick && (
+        {negotiate && (
           <div className="  fixed top-0 bottom-0 flex items-center justify-center left-0 right-0 ">
             <motion.div
               initial={{
@@ -357,7 +361,7 @@ function Bidding({ closeModal, itemId }) {
                 <button
                   className="rounded-full w-44 h-12 text-dashbg bg-green"
                   onClick={() => {
-                    // closeWarning(false);
+                    navigate("/bidders-chat");
                   }}
                 >
                   Yes, Continue
@@ -464,30 +468,21 @@ export function Processing({
           className="w-128 bg-white rounded-xl fixed top-20 border-green p-6 text-center"
         >
           <div className="flex flex-col items-center ">
-            <img src={success} alt="success" className="w-28 mb-5" />
-            <h1 className="font-bold text-neutral text-4xl">Success!</h1>
+            {/* <img src={success} alt="success" className="w-28 mb-5" /> */}
+            <h1 className="font-bold text-neutral text-4xl">Bid placed!</h1>
           </div>
           <div className="font-semibold text-base text-neutral my-8">
             <p>
-              You inherited an investment of{" "}
-              <span className="text-green">{reic}</span> worth <br /> of{" "}
-              <span className="text-green">Reic </span> to the {title} Project.
+              Your bid has been placed successfully, you will be notified if you
+              win the bid.
             </p>
           </div>
           <div className=" text-center w-11/12 mb-2 m-auto">
             <button
               className="rounded-full w-full p-2 text-white bg-green flex justify-around items-center"
-              onClick={() => navigate("/token")}
+              onClick={() => navigate("/dashboard")}
             >
-              Done
-            </button>
-          </div>
-          <div className=" text-center w-11/12 m-auto">
-            <button
-              className="rounded-full w-full p-2 text-green border-green border flex justify-around items-center"
-              onClick={() => navigate("/investments/my-investment")}
-            >
-              Go to My Investments
+              Return home
             </button>
           </div>
         </motion.div>

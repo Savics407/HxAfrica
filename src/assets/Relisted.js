@@ -163,7 +163,7 @@ function Relisted() {
                             </p>
                           </div>
                           <div className=" w-48">
-                            {post.pullout.user_id === 1 ? (
+                            {post.pullout.user_id === 3 ? (
                               <button
                                 className="bg-white text-green text-tiny w-full p-2 rounded-full"
                                 onClick={() => {
