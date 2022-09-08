@@ -205,7 +205,7 @@ body {
       @apply mr-3 mb-0 
     }
     .navbar {
-      @apply bg-white fixed lg:relative bottom-0 lg:px-80 lg:border flex justify-between items-center lg:text-navbar w-full z-20 border-0 px-6 text-mobile-nav 
+      @apply bg-white fixed lg:relative bottom-0 lg:px-60 lg:border flex justify-between items-center lg:text-navbar w-full z-20 border-0 px-6 text-mobile-nav 
     }
     .nav-items {
       @apply flex lg:flex-row flex-col pt-3 pb-2.5 items-center rounded px-2 hover:text-green hover:cursor-pointer border-b-4 border-transparent duration-500 border lg:text-base text-xxm font-normal lg:font-semibold

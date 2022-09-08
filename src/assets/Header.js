@@ -210,6 +210,12 @@ function Header() {
             <h1>Settings</h1>
           </div>
         </NavLink>
+        <NavLink to="/bids">
+          <div className="nav-items">
+            <RiSettings3Fill className="ds-icons" />
+            <h1>Bids</h1>
+          </div>
+        </NavLink>
       </div>
     </>
   );

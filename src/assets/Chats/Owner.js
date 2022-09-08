@@ -73,7 +73,7 @@ function Owner() {
             </div>
             <div className="flex items-center justify-between w-full">
               <h1 className="text-banner font-semibold text-xl">Investor ID</h1>
-              <button className="bg-dark px-6 py-2 test-sm rounded-full text-white">
+              <button className="bg-dark px-8 py-2 test-sm rounded-full text-white">
                 Accept bid
               </button>
             </div>

@@ -42,6 +42,7 @@ import BiddersChat from "./assets/Chats/biddersChat";
 import Owner from "./assets/Chats/Owner";
 import Disbursed from "./assets/admin/Disbursed";
 import Pending from "./assets/Pending";
+import Bids from "./assets/Bids";
 
 function App() {
   return (
@@ -55,6 +56,7 @@ function App() {
         <Route element={<PrivateRoutes />}>
           <Route path="/bidders-chat" element={<BiddersChat />} />
           <Route path="/investment-chat" element={<Owner />} />
+          <Route path="/bids" element={<Bids />} />
           <Route path="/buytoken/success" element={<Success />} />
           <Route path="/investments/pending" element={<Pending />} />
 
