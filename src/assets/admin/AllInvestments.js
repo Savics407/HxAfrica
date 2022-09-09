@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Header from "./Admin_header";
 import SideBar from "./SideBar";
 import InvestmentCard from "./InvestmentCard";
@@ -6,6 +6,9 @@ import InvestmentList from "./InvestmentList";
 import OngoingInvestments from "./OngoingInvestments";
 
 function AllInvestments() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <div className="bg-dashbg font-family">
       <Header />

@@ -333,12 +333,12 @@ function SideBar() {
           </div>
         </NavLink>
       </div>
-      <div className="border-t p-5">
+      {/* <div className="border-t p-5">
         <div className="flex p-3 font-medium text-sideText">
           <BiLogOut className="s-icons" />
           <h1>Logout</h1>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }

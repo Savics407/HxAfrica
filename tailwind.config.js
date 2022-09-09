@@ -141,7 +141,7 @@ module.exports = {
         l: "880px",
         p: "75vh",
         90: "350px",
-        side: "620px",
+        side: "650px",
       },
       // boxShadow: {
       //   '3xl': '0px 16px 64px -48px rgba(31, 47, 70, 0.15)',

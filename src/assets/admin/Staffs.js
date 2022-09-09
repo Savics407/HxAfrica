@@ -24,6 +24,7 @@ function Staffs() {
     } else {
       setPreview(null);
     }
+    window.scrollTo(0, 0);
   }, [image]);
 
   const [formData, setFormData] = useState({

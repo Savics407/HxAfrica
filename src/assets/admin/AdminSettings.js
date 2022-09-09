@@ -1,9 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Header from "./Admin_header";
 import SideBar from "./SideBar";
 import reictoken from "../images/Reic_Token.png";
 
 function AdminSettings() {
+  useEffect(() => {
+    // window.onbeforeunload = function () {
+    window.scrollTo(0, 0);
+    // };
+  }, []);
   return (
     <div className="bg-dashbg font-family">
       <Header />

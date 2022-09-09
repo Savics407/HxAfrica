@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Header from "./Admin_header";
 import SideBar from "./SideBar";
 
 import InvestorList from "./InvestorList";
 
 function Investors() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <div className="bg-dashbg font-family">
       <Header />

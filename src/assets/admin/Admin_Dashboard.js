@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "./Admin_header";
 import SideBar from "./SideBar";
 import totalUsers from "../images/totalUsers.svg";
@@ -24,6 +24,9 @@ function Admin_Dashboard() {
   // }
 
   // window.addEventListener("scroll", sideBarFixed);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <div className="bg-dashbg font-family">
       <Header />

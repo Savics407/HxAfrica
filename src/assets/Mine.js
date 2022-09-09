@@ -201,7 +201,10 @@ function Mine() {
                                 />{" "}
                                 of{" "}
                                 <CurrencyFormat
-                                  value={(post.amount * post.interest) / 100}
+                                  value={(
+                                    (post.amount * post.interest) /
+                                    100
+                                  ).toFixed(2)}
                                   displayType={"text"}
                                   thousandSeparator={true}
                                 />

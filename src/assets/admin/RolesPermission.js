@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "./Admin_header";
 import { HiOutlinePlusSm } from "react-icons/hi";
 import SideBar from "./SideBar";
@@ -10,7 +10,9 @@ import RoleList from "./RoleList";
 
 function RolesPermission() {
   const [create, setCreate] = useState(false);
-
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <div className="bg-dashbg font-family">
       {create && (
