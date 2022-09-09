@@ -23,7 +23,7 @@ function BannedList() {
         <div className="border-2 bg-white rounded-lg flex items-center px-5 justify-between w-411">
           <input
             type="search"
-            placeholder="Search Merchants"
+            placeholder="Search Investors"
             className="outline-none font-normal text-sm w-full py-2"
           />
           <img src={search} alt="search" />
