@@ -415,7 +415,7 @@ export function BankTransfer({ closeToken, setBank, bank }) {
           <div className="text-xs px-10 ">
             <p className="box !border-0 !text-xs">
               <b>Note:</b> This dialog box will redirect automatically once
-              theirs a successful payment on this bank account. Meanwhile, you
+              there's a successful payment on this bank account. Meanwhile, you
               can use the button below to manually verify the payment if the
               wait is long
             </p>

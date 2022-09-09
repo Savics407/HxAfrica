@@ -276,7 +276,7 @@ function JoinInvestment({ closeModal, itemId }) {
                         toast.error(
                           `Your balance is too small for this investment, kindly make a deposit of ${
                             reic - token
-                          } reic to continue`,
+                          } reic or more to continue`,
                           {
                             position: "top-left",
                             autoClose: 3500,
@@ -496,8 +496,8 @@ export function Warning({ closeWarning, closeModal, reic, title, productID }) {
                   thousandSeparator={true}
                 />
               </span>{" "}
-              worth <br /> of <span className="text-green">Reic </span> to the{" "}
-              {title} Project.
+              worth <br /> of <span className="text-green">{reic} Reic </span>{" "}
+              to the {title} Project.
             </p>
           </div>
           <div className=" text-center w-11/12 mb-2 m-auto">

@@ -162,8 +162,9 @@ function RecentActivity() {
                                   thousandSeparator={true}
                                 />
                               </span>{" "}
-                              worth of <span>REIC Token</span>, Transaction ID:{" "}
-                              <span>{post.transaction_id}</span>
+                              worth of{" "}
+                              <span> {post.amount / 50000} REIC Token</span>,
+                              Transaction ID: <span>{post.transaction_id}</span>
                             </p>
                           ) : post.type === "withdrawal" ? (
                             <p className="font-normal text-sm text-footer">
@@ -176,8 +177,10 @@ function RecentActivity() {
                                   thousandSeparator={true}
                                 />
                               </span>{" "}
-                              worth of <span>REIC Token</span> to your bank,
-                              Transaction ID: <span>{post.transaction_id}</span>
+                              worth of{" "}
+                              <span> {post.amount / 50000} REIC Token</span> to
+                              your bank, Transaction ID:{" "}
+                              <span>{post.transaction_id}</span>
                             </p>
                           ) : post.type === "investment" ? (
                             <p className="font-normal text-sm text-footer">
@@ -190,8 +193,9 @@ function RecentActivity() {
                                   thousandSeparator={true}
                                 />
                               </span>{" "}
-                              worth of <span>REIC Token</span>, Transaction ID:{" "}
-                              <span>{post.transaction_id}</span>
+                              worth of{" "}
+                              <span> {post.amount / 50000} REIC Token</span>,
+                              Transaction ID: <span>{post.transaction_id}</span>
                             </p>
                           ) : post.type === "reversal" ? (
                             <p className="font-normal text-sm text-footer">
@@ -204,8 +208,9 @@ function RecentActivity() {
                                   thousandSeparator={true}
                                 />
                               </span>{" "}
-                              worth of <span>REIC Token</span> was reversed back
-                              to your wallet, Transaction ID:{" "}
+                              worth of{" "}
+                              <span> {post.amount / 50000} REIC Token</span> was
+                              reversed back to your wallet, Transaction ID:{" "}
                               <span>{post.transaction_id}</span>
                             </p>
                           ) : post.type === "pullout" ? (
@@ -219,8 +224,13 @@ function RecentActivity() {
                                   thousandSeparator={true}
                                 />
                               </span>{" "}
-                              worth of <span>REIC Investment</span>, Transaction
-                              ID: <span>{post.transaction_id}</span>
+                              worth of{" "}
+                              <span>
+                                {" "}
+                                {post.amount / 50000} REIC Investment
+                              </span>
+                              , Transaction ID:{" "}
+                              <span>{post.transaction_id}</span>
                             </p>
                           ) : post.type === "inherited" ? (
                             <p className="font-normal text-sm text-footer">
@@ -233,8 +243,13 @@ function RecentActivity() {
                                   thousandSeparator={true}
                                 />
                               </span>{" "}
-                              worth of <span>REIC Investment</span>, Transaction
-                              ID: <span>{post.transaction_id}</span>
+                              worth of{" "}
+                              <span>
+                                {" "}
+                                {post.amount / 50000} REIC Investment
+                              </span>
+                              , Transaction ID:{" "}
+                              <span>{post.transaction_id}</span>
                             </p>
                           ) : (
                             <p className="font-normal text-sm text-footer">
@@ -247,8 +262,10 @@ function RecentActivity() {
                                   thousandSeparator={true}
                                 />
                               </span>{" "}
-                              worth of <span>REIC Token</span> failed,
-                              Transaction ID: <span>{post.transaction_id}</span>
+                              worth of{" "}
+                              <span> {post.amount / 50000} REIC Token</span>{" "}
+                              failed, Transaction ID:{" "}
+                              <span>{post.transaction_id}</span>
                             </p>
                           )}
                         </div>

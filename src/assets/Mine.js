@@ -137,14 +137,18 @@ function Mine() {
                       </tr>
                       {posts?.map((post) => (
                         <tr className="border-b" key={post.id}>
-                          <td className=" py-8 text-footer font-bold text-sm flex ">
+                          <td className=" py-8 text-footer font-bold text-sm flex">
                             <img
                               src={crowd}
                               alt="crowdfunding"
                               className="h-10"
                             />
                             <div className="ml-2 ">
-                              <h1 className="mb-1">{post.product.title}</h1>
+                              <h1 className="mb-1 truncate w-32">
+                                <span title={post.product.title}>
+                                  {post.product.title}
+                                </span>
+                              </h1>
                               <h2 className="font-medium font-xs">
                                 {post.product.category.product_category}
                               </h2>
@@ -174,24 +178,35 @@ function Mine() {
                             </h1>
                           </td>
                           <td className=" py-8 text-footer font-bold text-sm">
-                            <h1>
-                              N
-                              <CurrencyFormat
-                                value={
-                                  (post.amount *
-                                    ((post.interest *
-                                      (post.duration -
-                                        moment(post.due_date).diff(
-                                          new Date(),
-                                          "Days"
-                                        ))) /
-                                      post.duration)) /
-                                  100
-                                }
-                                displayType={"text"}
-                                thousandSeparator={true}
-                              />
-                            </h1>
+                            <marquee
+                              className=" w-24 bg-dashbg p-1"
+                              Scrollamount="2"
+                            >
+                              <h1>
+                                N
+                                <CurrencyFormat
+                                  value={(
+                                    (post.amount *
+                                      ((post.interest *
+                                        (post.duration -
+                                          moment(post.due_date).diff(
+                                            new Date(),
+                                            "Days"
+                                          ))) /
+                                        post.duration)) /
+                                    100
+                                  ).toFixed(2)}
+                                  displayType={"text"}
+                                  thousandSeparator={true}
+                                />{" "}
+                                of{" "}
+                                <CurrencyFormat
+                                  value={(post.amount * post.interest) / 100}
+                                  displayType={"text"}
+                                  thousandSeparator={true}
+                                />
+                              </h1>
+                            </marquee>
                             <h2 className="font-medium font-xs">
                               {post.interest}% Interest
                             </h2>

@@ -203,11 +203,7 @@ function JoinOngoing({ closeModal, itemId, productDetails }) {
                     </h1>{" "}
                     <h1 className="text-darkgray text-sm font-normal">
                       <span className="text-secondary">Expires in </span> -{" "}
-                      {moment(post.product.expiry_date).diff(
-                        new Date(),
-                        "Days"
-                      )}{" "}
-                      Days
+                      {moment(post.due_date).diff(new Date(), "Days")} Days
                     </h1>
                   </div>
                 </div>
