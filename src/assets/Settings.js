@@ -62,7 +62,7 @@ function SelectAvater({ setAvailable }) {
       //         closeDetails(false)
       //     }}
     >
-      <div className="justify-center lg:p-10 rounded-xl flex bg-white border-4 lg:w-auto w-full lg:h-auto h-full">
+      <div className="justify-center lg:p-10 pt-10 rounded-xl flex bg-white lg:w-auto w-full lg:h-auto h-full">
         <div className="w-96">
           <div>
             <h1 className="text-green text-2xl lg:text-4xl font-semibold mb-3 text-center">
@@ -330,9 +330,18 @@ function Profile() {
 
       <Header />
 
-      <div className="w-10/12 m-auto mt-20 bg-white rounded-lg py-8 px-10">
+      <div className="lg:w-10/12 w-full m-auto lg:mt-20 bg-white rounded-lg pb-10 lg:py-8 lg:px-10">
+        <div className="lg:hidden py-8 px-4 bg-welcome text-dark text-lg font-semibold flex justify-between">
+          <h1 className="capitalize">Profile Details</h1>
+          <button
+            className="bg-green rounded-full text-dashbg py-1 px-5 text-xs font-bold flex items-center justify-center "
+            onClick={logOut}
+          >
+            <BiLogOut className="mr-1 text-sm" /> Log Out
+          </button>
+        </div>
         <div className="bg-white rounded-xl">
-          <div className="py-10 font-semibold flex justify-between items-center text-modal text-2xl">
+          <div className="lg:block hidden py-10 font-semibold flex justify-between items-center text-modal text-2xl">
             <h1>Profile Details</h1>
           </div>
           <Protabs />
@@ -342,14 +351,18 @@ function Profile() {
                 <img
                   src={userIcon}
                   alt="Profile Picture"
-                  className="w-28 h-28"
+                  className="lg:w-28 lg:h-28 w-20 h-20"
                 />
               ) : (
-                <img src={avater} alt="Profile Picture" className="w-28 h-28" />
+                <img
+                  src={avater}
+                  alt="Profile Picture"
+                  className="lg:w-28 lg:h-28 w-20 h-20 "
+                />
               )}
               {/* <img src={userIcon} alt="Profile Picture" className="w-28 h-28" /> */}
               <button
-                className="text-blue border rounded-full py-1 px-4 font-bold text-sm my-3"
+                className="text-blue border rounded-full lg:py-1 lg:px-4 py-2 px-6 font-bold text-tiny lg:text-sm my-3"
                 onClick={() => setAvailable(true)}
               >
                 Change Avater
@@ -360,23 +373,23 @@ function Profile() {
             </div>
           </div>
           <div className="my-14 text-footer">
-            <h1 className="text-footer text-xs font-medium">
+            <h1 className="uppercase lg:capitalize text-footer text-xs px-3 font-medium">
               User Information
             </h1>
 
-            <table className="border w-full border-collapse mt-3 ">
+            <table className="border w-full border-collapse mt-3 font-inter">
               <tr>
-                <td className="w-1/3 px-5 py-2">
-                  <h1 className="text-footer font-semibold text-base">
+                <td className="lg:w-1/3 w-2/5 px-5 py-2">
+                  <h1 className="text-footer font-semibold text-xs lg:text-base">
                     Full Name
                   </h1>
                 </td>
-                <td className="w-2/3 border px-5">
+                <td className="lg:w-2/3 w-3/5 border px-5">
                   {/* <h1 className="font-medium text-sm ">{userName}</h1> */}
                   <input
                     type="text"
                     defaultValue={posts?.name}
-                    className="font-medium text-sm outline-none w-full"
+                    className="font-medium text-xs lg:text-sm outline-none w-full"
                     // value={profileData.name}
                     onChange={(event) =>
                       setProfileData({
@@ -388,18 +401,18 @@ function Profile() {
                 </td>
               </tr>
               <tr>
-                <td className="w-1/3 px-5 py-2">
-                  <h1 className="text-footer font-semibold text-base">
+                <td className="lg:w-1/3 w-2/5 px-5 py-2">
+                  <h1 className="text-footer font-semibold text-xs lg:text-base">
                     Username
                   </h1>
                 </td>
-                <td className="w-2/3 border px-5">
+                <td className="lg:w-2/3 w-3/5 border px-5">
                   {/* <h1 className="font-medium text-sm italic">Not added yet</h1> */}
                   <input
                     type="text"
                     placeholder="Not Added yet"
                     defaultValue={posts?.username}
-                    className="font-medium text-sm outline-none w-full"
+                    className="font-medium text-xs lg:text-sm outline-none w-full"
                     onChange={(event) =>
                       setProfileData({
                         ...profileData,
@@ -410,17 +423,17 @@ function Profile() {
                 </td>
               </tr>
               <tr>
-                <td className="w-1/3 px-5 py-2">
-                  <h1 className="text-footer font-semibold text-base">
+                <td className="lg:w-1/3 w-2/5 px-5 py-2">
+                  <h1 className="text-footer font-semibold text-xs lg:text-base">
                     Email Address
                   </h1>
                 </td>
-                <td className="w-2/3 border px-5">
+                <td className="lg:w-2/3 w-3/5 border px-5">
                   {/* <h1 className="font-medium text-sm">{userEmail}</h1> */}
                   <input
                     type="text"
                     defaultValue={posts?.email}
-                    className="font-medium text-sm outline-none w-full"
+                    className="font-medium text-xs lg:text-sm outline-none w-full"
                     onChange={(event) =>
                       setProfileData({
                         ...profileData,
@@ -431,17 +444,17 @@ function Profile() {
                 </td>
               </tr>
               <tr>
-                <td className="w-1/3 px-5 py-2">
-                  <h1 className="text-footer font-semibold text-base">
+                <td className="lg:w-1/3 w-2/5 px-5 py-2">
+                  <h1 className="text-footer font-semibold text-xs lg:text-base">
                     Mobile Number
                   </h1>
                 </td>
-                <td className="w-2/3 border px-5">
+                <td className="lg:w-2/3 w-3/5 border px-5">
                   {/* <h1 className="font-medium text-sm">{userPhone}</h1> */}
                   <input
                     type="text"
                     defaultValue={posts?.phone}
-                    className="font-medium text-sm outline-none w-full"
+                    className="font-medium text-xs lg:text-sm outline-none w-full"
                     onChange={(event) =>
                       setProfileData({
                         ...profileData,
@@ -452,17 +465,17 @@ function Profile() {
                 </td>
               </tr>
               <tr>
-                <td className="w-1/3 px-5 py-2">
-                  <h1 className="text-footer font-semibold text-base">
+                <td className="lg:w-1/3 w-2/5 px-5 py-2">
+                  <h1 className="text-footer font-semibold text-xs lg:text-base">
                     Date of Birth
                   </h1>
                 </td>
-                <td className="w-2/3 border px-5">
+                <td className="lg:w-2/3 w-3/5 border px-5">
                   {/* <h1 className="font-medium text-sm">{userDob}</h1> */}
                   <input
                     type="text"
                     defaultValue={posts?.investor.dob}
-                    className="font-medium text-sm outline-none w-full"
+                    className="font-medium text-xs lg:text-sm outline-none w-full"
                     onChange={(event) =>
                       setProfileData({
                         ...profileData,
@@ -473,15 +486,17 @@ function Profile() {
                 </td>
               </tr>
               <tr>
-                <td className="w-1/3 px-5 py-2">
-                  <h1 className="text-footer font-semibold text-base">State</h1>
+                <td className="lg:w-1/3 w-2/5 px-5 py-2">
+                  <h1 className="text-footer font-semibold text-xs lg:text-base">
+                    State
+                  </h1>
                 </td>
-                <td className="w-2/3 border px-5">
+                <td className="lg:w-2/3 w-3/5 border px-5">
                   {/* <h1 className="font-medium text-sm">{userState}</h1> */}
                   <input
                     type="text"
                     defaultValue={posts?.investor.state.name}
-                    className="font-medium text-sm outline-none w-full"
+                    className="font-medium text-xs lg:text-sm outline-none w-full"
                     onChange={(event) =>
                       setProfileData({
                         ...profileData,
@@ -492,15 +507,17 @@ function Profile() {
                 </td>
               </tr>
               <tr>
-                <td className="w-1/3 px-5 py-2">
-                  <h1 className="text-footer font-semibold text-base">City</h1>
+                <td className="lg:w-1/3 w-2/5 px-5 py-2">
+                  <h1 className="text-footer font-semibold text-xs lg:text-base">
+                    City
+                  </h1>
                 </td>
-                <td className="w-2/3 border px-5">
+                <td className="lg:w-2/3 w-3/5 border px-5">
                   {/* <h1 className="font-medium text-sm">{userCity}</h1> */}
                   <input
                     type="text"
                     defaultValue={posts?.investor.city}
-                    className="font-medium text-sm outline-none w-full"
+                    className="font-medium text-xs lg:text-sm outline-none w-full"
                     onChange={(event) =>
                       setProfileData({
                         ...profileData,
@@ -513,45 +530,46 @@ function Profile() {
             </table>
           </div>
           <div className="my-10 text-footer">
-            <h1 className="text-footer text-xs font-medium">
+            <h1 className="uppercase lg:capitalize text-footer text-xs px-3 font-medium">
               More Information
             </h1>
-            <table className="border w-full border-collapse mt-3 ">
+            <table className="border w-full border-collapse mt-3 font-inter">
               <tr>
-                <td className="w-1/3 px-5 py-2">
-                  <h1 className="text-footer font-semibold text-base">
+                <td className="lg:w-1/3 w-2/5 px-5 py-2">
+                  <h1 className="text-footer font-semibold text-xs lg:text-base">
                     Bank Account Name
                   </h1>
                 </td>
-                <td className="w-2/3 border px-5">
+                <td className="lg:w-2/3 w-3/5 border px-5">
+                  {/* <h1 className="font-medium text-sm ">{userName}</h1> */}
                   <input
                     type="text"
                     placeholder="Not Added yet"
-                    className="font-medium text-sm outline-none w-full"
+                    className="font-medium text-xs lg:text-sm outline-none w-full"
                   />
                 </td>
               </tr>
               <tr>
-                <td className="w-1/3 px-5 py-2">
-                  <h1 className="text-footer font-semibold text-base">
+                <td className="lg:w-1/3 w-2/5 px-5 py-2">
+                  <h1 className="text-footer font-semibold text-xs lg:text-base">
                     Account Number
                   </h1>
                 </td>
-                <td className="w-2/3 border px-5">
+                <td className="lg:w-2/3 w-3/5 border px-5">
                   <input
                     type="text"
                     placeholder="Not Added yet"
-                    className="font-medium text-sm outline-none w-full"
+                    className="font-medium text-xs lg:text-sm outline-none w-full"
                   />
                 </td>
               </tr>
-              <tr>
-                <td className="w-1/3 px-5 py-2">
-                  <h1 className="text-footer font-semibold text-base">
+              {/* <tr>
+                <td className="lg:w-1/3 w-2/5 px-5 py-2">
+                  <h1 className="text-footer font-semibold text-xs lg:text-base">
                     Password
                   </h1>
                 </td>
-                <td className="w-2/3 border px-5 py-2">
+                <td className="lg:w-2/3 w-3/5 border px-5">
                   <div className="flex justify-between items-center">
                     <input
                       type="password"
@@ -560,26 +578,24 @@ function Profile() {
                       className="bg-transparent"
                     />
                     <Link to="/change-password">
-                      <h1 className="font-medium text-xs cursor-pointer text-change">
+                      <h1 className="font-medium text-xs cursor-pointer text-change hidden lg:block">
                         Change password
                       </h1>
                     </Link>
                   </div>
                 </td>
-              </tr>
-
+              </tr> */}
               <tr>
-                <td className="w-1/3 px-5 py-2">
-                  <h1 className="text-footer font-semibold text-base">
+                <td className="lg:w-1/3 w-2/5 px-5 py-2">
+                  <h1 className="text-footer font-semibold text-xs lg:text-base">
                     Address
                   </h1>
                 </td>
-                <td className="w-2/3 border px-5">
-                  {/* <h1 className="font-medium text-sm">{userAddress}</h1> */}
+                <td className="lg:w-2/3 w-3/5 border px-5">
                   <input
                     type="text"
                     defaultValue={posts?.investor.address}
-                    className="font-medium text-sm outline-none w-full"
+                    className="font-medium text-xs lg:text-sm outline-none w-full"
                     onChange={(event) =>
                       setProfileData({
                         ...profileData,
@@ -590,17 +606,16 @@ function Profile() {
                 </td>
               </tr>
               <tr>
-                <td className="w-1/3 px-5 py-2">
-                  <h1 className="text-footer font-semibold text-base">BVN</h1>
+                <td className="lg:w-1/3 w-2/5 px-5 py-2">
+                  <h1 className="text-footer font-semibold text-xs lg:text-base">
+                    BVN
+                  </h1>
                 </td>
-                <td className="w-2/3 border px-5">
-                  {/* <h1 className="font-normal text-head italic text-sm ">
-                    Not Added yet
-                  </h1> */}
+                <td className="lg:w-2/3 w-3/5 border px-5">
                   <input
                     type="text"
                     placeholder="Not Added yet"
-                    className="font-medium text-sm outline-none w-full"
+                    className="font-medium text-xs lg:text-sm outline-none w-full"
                     onChange={(event) =>
                       setProfileData({
                         ...profileData,
@@ -612,17 +627,17 @@ function Profile() {
               </tr>
             </table>
           </div>
-          <div className="text-right font-family mb-12 flex justify-between ">
-            <div className="">
+          <div className="text-right font-family mb-12 flex justify-between px-4 lg:px-0">
+            <div className="hidden lg:block">
               <button
-                className="bg-green rounded-full text-dashbg py-3 px-10 text-sm font-bold flex items-center justify-center"
+                className="bg-green rounded-full text-dashbg py-3 px-10 text-sm font-bold flex items-center justify-center "
                 onClick={logOut}
               >
                 <BiLogOut className="mr-1 text-lg" /> Log Out
               </button>
             </div>
             <button
-              className="rounded-full bg-green text-dashbg font-medium text-sm py-3 px-12 "
+              className="rounded-full bg-green text-dashbg w-full lg:w-auto font-medium text-sm py-3 px-12 "
               onClick={update}
             >
               Update
@@ -630,7 +645,7 @@ function Profile() {
           </div>
         </div>
       </div>
-      <div className="mt-6 pb-10 text-center">
+      <div className="mt-6 hidden lg:block pb-10 text-center">
         <h1 className="text-base font-semibold text-footer">
           © 2022 REIC. All rights reserved.
         </h1>

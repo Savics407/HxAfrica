@@ -3,9 +3,26 @@ import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
 import Protabs from "./Protabs";
 import { useState } from "react";
+import { BiLogOut } from "react-icons/bi";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 function ChangePassword() {
+  const navigate = useNavigate();
+
+  const logOut = () => {
+    window.localStorage.clear();
+    toast.success(`User logged out Successfully`, {
+      position: "top-left",
+      autoClose: 1500,
+      hideProgressBar: true,
+      closeOnClick: false,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+    navigate("/");
+  };
   const {
     register,
     handleSubmit,
@@ -76,25 +93,33 @@ function ChangePassword() {
   return (
     <div className="font-family bg-mainbg">
       <Header />
-
-      <div className="w-10/12 m-auto mt-20 bg-white rounded-lg py-8 px-10">
-        <div
-          
-          className="bg-white rounded-xl"
-        >
-          <div className="py-10 font-semibold flex justify-between items-center text-modal text-2xl">
+      <div className="lg:w-10/12 w-full m-auto lg:mt-20 bg-white rounded-lg pb-10 lg:py-8 lg:px-10">
+        <div className="lg:hidden py-8 px-4 bg-welcome text-dark text-lg font-semibold flex justify-between">
+          <h1 className="capitalize">Profile Details</h1>
+          <button
+            className="bg-green rounded-full text-dashbg py-1 px-5 text-xs font-bold flex items-center justify-center "
+            onClick={logOut}
+          >
+            <BiLogOut className="mr-1 text-sm" /> Log Out
+          </button>
+        </div>
+        <div className="bg-white rounded-xl">
+          <div className="lg:block hidden py-10 font-semibold flex justify-between items-center text-modal text-2xl">
             <h1>Profile Details</h1>
           </div>
+
           <Protabs />
-          <div className="my-16 flex items-end">
-            <div className="w-1/2 pr-10">
+          <div className="my-16 flex flex-wrap items-end w-full">
+            <div className="lg:w-1/2 w-full px-5 lg:pr-10">
               <div className="input relative mb-5">
-                <label>OLD PASSWORD</label>
+                <label className="lg:font-semibold font-medium text-tiny lg:text-sm mb-2">
+                  OLD PASSWORD
+                </label>
                 <input
                   required
                   type="text"
                   placeholder="enter old password"
-                  className="box"
+                  className="border rounded-full lg:rounded-xl border-border bg-input p-3 text-sm focus-within:shadow-lg outline-none "
                   id="confirm"
                   //   {...register()}
                   value={oldPassword}
@@ -102,12 +127,14 @@ function ChangePassword() {
                 />
               </div>
               <div className="input relative">
-                <label>NEW PASSWORD</label>
+                <label className="lg:font-semibold font-medium text-tiny lg:text-sm mb-2">
+                  NEW PASSWORD
+                </label>
                 <input
                   required
                   type="text"
                   placeholder="enter new password"
-                  className="box"
+                  className="border rounded-full lg:rounded-xl border-border bg-input p-3 text-sm focus-within:shadow-lg outline-none"
                   id="confirm"
                   value={newPassword}
                   {...register("password", {
@@ -132,14 +159,16 @@ function ChangePassword() {
                 )}
               </div>
             </div>
-            <div className="w-1/2 pl-10">
+            <div className=" lg:pl-10 lg:w-1/2 w-full px-5 ">
               <div className="input relative">
-                <label>CONFIRM NEW PASSWORD</label>
+                <label className="lg:font-semibold font-medium text-tiny lg:text-sm mb-2">
+                  CONFIRM NEW PASSWORD
+                </label>
                 <input
                   required
                   type="text"
                   placeholder="confirm password"
-                  className="box"
+                  className="border rounded-full lg:rounded-xl border-border bg-input p-3 text-sm focus-within:shadow-lg outline-none"
                   id="confirm"
                   value={confirmPassword}
                   {...register("confirmPassword", {
@@ -159,9 +188,9 @@ function ChangePassword() {
             </div>
           </div>
 
-          <div className="font-family mb-12">
+          <div className="font-family mb-12 w-full px-4 lg:px-0 ">
             <button
-              className="rounded-full bg-green text-dashbg font-medium text-sm py-3 px-12"
+              className="rounded-full bg-green text-dashbg w-full lg:w-auto font-medium text-sm py-3 px-12"
               onClick={update}
             >
               Update
@@ -169,7 +198,7 @@ function ChangePassword() {
           </div>
         </div>
       </div>
-      <div className="mt-6 pb-10 text-center">
+      <div className="mt-6 pb-10 text-center hidden lg:block">
         <h1 className="text-base font-semibold text-footer">
           © 2022 REIC. All rights reserved.
         </h1>

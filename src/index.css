@@ -226,7 +226,7 @@ body {
       @apply  text-green lg:rounded relative before:content-[''] before:w-full before:h-4 before:bg-green before:absolute before:rounded-t before:rounded-r before:-bottom-3 overflow-hidden lg:before:-bottom-6 lg:border-b-4 border-green
     }
     .vestabs {
-        @apply py-2.5 hover:text-green hover:cursor-pointer font-semibold duration-500 uppercase
+        @apply py-2.5 hover:text-green hover:cursor-pointer font-semibold duration-500 uppercase text-xs lg:text-base
     }
 
     .mar .active {
