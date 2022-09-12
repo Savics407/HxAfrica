@@ -40,9 +40,28 @@ function JoinOngoing({ closeModal, itemId, productDetails }) {
     console.log(result.data);
     setPosts(result.data);
   }
+  const [balance, setBalance] = useState();
+  const [token, setToken] = useState();
 
+  async function wallet() {
+    const token = localStorage.getItem("user-token");
+    const response = await fetch(
+      "https://reic.api.simpoo.biz/api/wallet/fetch_wallet",
+      {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    const result = await response.json();
+    console.log(result?.status);
+    setBalance(result?.data.balance);
+    setToken(result?.data.token);
+  }
   useEffect(() => {
-    // activities();
+    wallet();
     fetchData();
   }, []);
 
@@ -208,8 +227,19 @@ function JoinOngoing({ closeModal, itemId, productDetails }) {
                   </div>
                 </div>
                 <div className="pt-5 pb-9">
-                  <p className="text-neutral text-base font-normal mb-2.5">
+                  {/* <p className="text-neutral text-base font-normal mb-2.5">
                     Amount
+                  </p> */}
+                  <p className="text-neutral text-base font-normal mb-2.5 flex justify-between">
+                    <span>Amount</span>{" "}
+                    <span className="text-green text-sm font-medium">
+                      Available Amount: N
+                      <CurrencyFormat
+                        value={balance}
+                        displayType={"text"}
+                        thousandSeparator={true}
+                      />
+                    </span>
                   </p>
                   <div className="text-nuetral font-bold text-lg flex items-center justify-center py-6 rounded-lg bg-mainbg relative">
                     <sup className="w-2/5 text-right">REIC</sup>
@@ -253,7 +283,7 @@ function JoinOngoing({ closeModal, itemId, productDetails }) {
                   <button
                     className="border rounded-full w-44 h-12 text-dashbg bg-green"
                     onClick={() => {
-                      const token = localStorage.getItem("user-wallet");
+                      // const token = localStorage.getItem("user-wallet");
                       if (reic === 0) {
                         alert("kindly input reic amount to invest");
                       } else if (reic === "") {
@@ -294,6 +324,7 @@ function JoinOngoing({ closeModal, itemId, productDetails }) {
             reic={reic}
             title={title}
             productID={proID}
+            closeModal={closeModal}
           />
         )}
       </motion.div>
@@ -394,8 +425,8 @@ export function Warning({ closeWarning, closeModal, reic, title, productID }) {
             onClick={() => {
               closeWarning(!closeWarning);
               setWarning(!warning);
-              // closeModal(false);
-              window.location = "/investment";
+              closeModal(false);
+              // window.location = "/investment";
             }}
           >
             Cancel

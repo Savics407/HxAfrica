@@ -17,7 +17,6 @@ import * as CurrencyFormat from "react-currency-format";
 function JoinInvestment({ closeModal, itemId }) {
   const [authPullOut, setAuthPullOut] = useState(false);
   const [isClick, setIsClick] = useState(false);
-
   const [posts, setPosts] = useState();
   const productID = itemId;
   // alert(productID);
@@ -40,6 +39,8 @@ function JoinInvestment({ closeModal, itemId }) {
     setPosts(result.data);
   }
   const [balance, setBalance] = useState();
+  const [token, setToken] = useState();
+
   async function wallet() {
     const token = localStorage.getItem("user-token");
     const response = await fetch(
@@ -55,6 +56,7 @@ function JoinInvestment({ closeModal, itemId }) {
     const result = await response.json();
     console.log(result?.status);
     setBalance(result?.data.balance);
+    setToken(result?.data.token);
   }
   useEffect(() => {
     wallet();
@@ -267,7 +269,7 @@ function JoinInvestment({ closeModal, itemId }) {
                   <button
                     className="border rounded-full w-44 h-12 text-dashbg bg-green"
                     onClick={() => {
-                      const token = localStorage.getItem("user-wallet");
+                      // const token = localStorage.getItem("user-wallet");
                       if (reic === 0) {
                         alert("kindly input reic amount to invest");
                       } else if (reic === "") {
@@ -307,6 +309,7 @@ function JoinInvestment({ closeModal, itemId }) {
             reic={reic}
             title={title}
             productID={productID}
+            closeModal={closeModal}
           />
         )}
       </motion.div>
@@ -406,8 +409,8 @@ export function Warning({ closeWarning, closeModal, reic, title, productID }) {
             onClick={() => {
               closeWarning(!closeWarning);
               setWarning(!warning);
-              // closeModal(false);
-              window.location = "/investment";
+              closeModal(false);
+              // window.location = "/investment";
             }}
           >
             Cancel

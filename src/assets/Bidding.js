@@ -42,8 +42,28 @@ function Bidding({ closeModal, itemId }) {
     }
   }
 
+  const [balance, setBalance] = useState();
+  const [token, setToken] = useState();
+
+  async function wallet() {
+    const token = localStorage.getItem("user-token");
+    const response = await fetch(
+      "https://reic.api.simpoo.biz/api/wallet/fetch_wallet",
+      {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    const result = await response.json();
+    console.log(result?.status);
+    setBalance(result?.data.balance);
+    setToken(result?.data.token);
+  }
   useEffect(() => {
-    // activities();
+    wallet();
     fetchData();
   }, []);
 
@@ -249,8 +269,19 @@ function Bidding({ closeModal, itemId }) {
                         </div>
                       </div>
                       <div className="pt-5 pb-9">
-                        <p className="text-neutral text-base font-normal mb-2.5">
+                        {/* <p className="text-neutral text-base font-normal mb-2.5">
                           Amount
+                        </p> */}
+                        <p className="text-neutral text-base font-normal mb-2.5 flex justify-between">
+                          <span>Amount</span>{" "}
+                          <span className="text-green text-sm font-medium">
+                            Available Amount: N
+                            <CurrencyFormat
+                              value={balance}
+                              displayType={"text"}
+                              thousandSeparator={true}
+                            />
+                          </span>
                         </p>
                         <div className="text-nuetral font-bold text-lg flex items-center justify-center py-6 rounded-lg bg-mainbg relative">
                           <sup className="w-2/5 text-right">REIC</sup>
@@ -268,6 +299,18 @@ function Bidding({ closeModal, itemId }) {
                             defaultValue={reic}
                           />
                         </div>
+                        <div className="text-center h-1">
+                          {reic > 0 && (
+                            <span className="text-green text-xs">
+                              N
+                              <CurrencyFormat
+                                value={reic * 50000}
+                                displayType={"text"}
+                                thousandSeparator={true}
+                              />
+                            </span>
+                          )}
+                        </div>
                       </div>
 
                       <div className="text-right pb-8">
@@ -283,7 +326,7 @@ function Bidding({ closeModal, itemId }) {
                         <button
                           className="border rounded-full px-14 py-2 text-dashbg bg-green"
                           onClick={() => {
-                            const token = localStorage.getItem("user-wallet");
+                            // const token = localStorage.getItem("user-wallet");
                             // setReic(post.pullout.accumulated_amount);
                             if (reic === 0) {
                               alert("kindly input reic amount to invest");
