@@ -270,6 +270,13 @@ body {
         background-position: 60% -20px, 64% 60px, 100% 60px, 80% 20px;
     }
 
+        .invest-banner {
+          background-image: url(../src/assets/images/reic-rounded.svg),url(../src/assets/images/bannerWiggle.png);
+          background-repeat: no-repeat, no-repeat;
+          background-size: contain, contain;
+          background-position: 100% 100%, 150px -10px;
+        }
+
     .mobile-banner {
       background-image:url(../src/assets/images/mobileReic.png) ,url(../src/assets/images/mobileRed.png),url(../src/assets/images/mobileGrey.png),url(../src/assets/images/mobileWiggle.png), linear-gradient(to right,#1e1e1e 30%, #008e10);
         background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;

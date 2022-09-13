@@ -1,20 +1,23 @@
 import Header from "./Header";
 import { useEffect, useState } from "react";
 import banner from "./images/banner.png";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import InvestTabs from "./InvestTabs";
 import raw from "./images/rawland.png";
+import dropCoin from "./images/dropcoin.svg";
 import land from "./images/rawland2.png";
 import users1 from "./images/Frame 14.png";
 import users2 from "./images/Frame 18.png";
 import users3 from "./images/Frame 19.png";
 import users4 from "./images/Frame 20.png";
+// import { FaAngleRight } from "react-icons/fa";
 import { TbLoader } from "react-icons/tb";
 import JoinInvestment from "./JoinInvestment";
 import moment from "moment";
 import crowd from "./images/crowdfund.png";
 import ScaleLoader from "react-spinners/ScaleLoader";
 import * as CurrencyFormat from "react-currency-format";
+import { FaAngleRight } from "react-icons/fa";
 
 function Investment() {
   const [joinInvest, setJoinInvest] = useState(false);
@@ -68,8 +71,79 @@ function Investment() {
         />
       )}
       <Header />
-      <div className="w-10/12 m-auto mt-20 bg-dashbg rounded-lg py-8 px-4">
-        <div className="bg-white p-10 w-full rounded-lg">
+      <div className="lg:w-10/12 m-auto lg:mt-20 bg-dashbg rounded-lg lg:py-8 lg:px-4">
+        <div className="lg:hidden py-8 px-4 bg-welcome text-dark text-lg font-semibold">
+          <h1 className="">Investments</h1>
+        </div>
+        <div className="bg-white lg:hidden lg:p-10 p-5 w-full rounded-lg">
+          <div className="  p-5 rounded-lg invest-banner border bg-banner text-dashbg w-full">
+            <h1 className="text-white font-semibold text-sm mb-1">
+              Top Investments
+            </h1>
+            <h1 className="font-normal text-tiny mb-3">
+              Join the early investors and earn better
+            </h1>
+            <div className="flex items-center">
+              <h1 className="text-xs font-extrabold text-mobile-banner w-fit py-1 mr-6">
+                1{" "}
+                <span className="uppercase font-semibold text-tiny">
+                  reic token{" "}
+                </span>{" "}
+                = N50,000
+              </h1>
+              <Link to="/token">
+                <button className="bg-white text-green text-tiny font-normal rounded-full py-1.5 px-6">
+                  Buy Token
+                </button>
+              </Link>
+            </div>
+          </div>
+        </div>
+        <div className="lg:hidden border-2 p-4">
+          <div className="mb-4 bg-white flex rounded justify-between items-center text-vestabs text-sm p-4">
+            <div className="flex items-center ">
+              <img src={dropCoin} alt="coins" className="mr-1" />
+              <h1>New Investments</h1>
+            </div>
+            <FaAngleRight className="text-base" />
+          </div>
+          <div className="mb-4 bg-white flex rounded justify-between items-center text-vestabs text-sm p-4">
+            <div className="flex items-center ">
+              <img src={dropCoin} alt="coins" className="mr-1" />
+              <h1>New Investments</h1>
+            </div>
+            <FaAngleRight className="text-base" />
+          </div>
+          <div className="mb-4 bg-white flex rounded justify-between items-center text-vestabs text-sm p-4">
+            <div className="flex items-center ">
+              <img src={dropCoin} alt="coins" className="mr-1" />
+              <h1>New Investments</h1>
+            </div>
+            <FaAngleRight className="text-base" />
+          </div>
+          <div className="mb-4 bg-white flex rounded justify-between items-center text-vestabs text-sm p-4">
+            <div className="flex items-center ">
+              <img src={dropCoin} alt="coins" className="mr-1" />
+              <h1>New Investments</h1>
+            </div>
+            <FaAngleRight className="text-base" />
+          </div>
+          <div className="mb-4 bg-white flex rounded justify-between items-center text-vestabs text-sm p-4">
+            <div className="flex items-center ">
+              <img src={dropCoin} alt="coins" className="mr-1" />
+              <h1>New Investments</h1>
+            </div>
+            <FaAngleRight className="text-base" />
+          </div>
+          <div className="mb-4 bg-white flex rounded justify-between items-center text-vestabs text-sm p-4">
+            <div className="flex items-center ">
+              <img src={dropCoin} alt="coins" className="mr-1" />
+              <h1>New Investments</h1>
+            </div>
+            <FaAngleRight className="text-base" />
+          </div>
+        </div>
+        <div className="bg-white p-10 w-full rounded-lg hidden lg:block">
           <div className="mb-10">
             <h1 className="text-modal text-2xl font-semibold">Investments</h1>
           </div>
@@ -177,7 +251,7 @@ function Investment() {
           </div>
         </div>
       </div>
-      <div className="mt-6 pb-10 text-center">
+      <div className="mt-6 pb-10 text-center hidden lg:block">
         <h1 className="text-base font-semibold text-footer">
           © 2022 REIC. All rights reserved.
         </h1>

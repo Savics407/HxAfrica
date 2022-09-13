@@ -273,7 +273,7 @@ function Create() {
                       Add Image
                     </label>
                     <h1 className="text-product font-normal text-tiny">
-                      Upload product Image
+                      Upload Merchant Logo
                     </h1>
                     <input
                       type="file"
