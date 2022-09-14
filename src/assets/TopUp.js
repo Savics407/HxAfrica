@@ -326,7 +326,7 @@ export function Warning({ closeWarning, closeModal, reic, title, productID }) {
     };
     const token = localStorage.getItem("user-token");
     const response = await fetch(
-      "https://reic.api.simpoo.biz/api/investment/join_ongoing_investment",
+      "https://reic.api.simpoo.biz/api/investment/join_investment",
       {
         method: "POST",
         body: JSON.stringify(payLoad),

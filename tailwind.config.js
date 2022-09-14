@@ -124,7 +124,7 @@ module.exports = {
       fontSize: {
         tiny: "10px",
         xxm: "8px",
-        "4l": "28px",
+        "4l": "26px",
       },
       width: {
         128: "452px",

@@ -117,7 +117,7 @@ function Dashboard() {
                     <h1 className="text-tiny text-token font-semibold mb-1.5 lg:hidden">
                       REIC TOKEN
                     </h1>
-                    <h1 className="text-base font-medium mr-4 text-dark text-4l">
+                    <h1 className="lg:text-4xl font-medium mr-4 text-dark text-4l">
                       {reic ? (
                         <span>{JSON.stringify(token)}</span>
                       ) : (
