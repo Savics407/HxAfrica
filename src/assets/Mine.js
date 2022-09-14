@@ -7,9 +7,10 @@ import * as CurrencyFormat from "react-currency-format";
 import messenger from "./images/Line.svg";
 import Details from "./Investment_Details";
 import crowd from "./images/crowdfund.png";
+import mine from "./images/mywallet.svg";
 import { MdClose } from "react-icons/md";
 import ScaleLoader from "react-spinners/ScaleLoader";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 
 function Mine() {
   const [openDetails, setOpenDetails] = useState(false);
@@ -17,7 +18,7 @@ function Mine() {
   const [itemId, setItemID] = useState("");
   const [available, setAvailable] = useState(true);
   const [loading, setLoading] = useState(true);
-
+  const navigate = useNavigate();
   async function fetchData() {
     const token = localStorage.getItem("user-token");
     // e.preventDefault();
@@ -71,9 +72,13 @@ function Mine() {
         />
       )}
       <Header />
-      <div className="w-10/12 m-auto mt-20 bg-dashbg rounded-lg py-8 px-4">
-        <div className="bg-white p-10 w-full rounded-lg">
-          <div className="mb-10 flex justify-between items-center">
+
+      <div className="lg:w-10/12 m-auto lg:mt-20 bg-dashbg rounded-lg lg:py-8 lg:px-4">
+        <div className="bg-white h-screen lg:h-auto lg:p-10 w-full rounded-lg">
+          {/* <div className="mb-10 hidden lg:block">
+            <h1 className="text-modal text-2xl font-semibold">Investments</h1>
+          </div> */}
+          <div className="mb-10 flex justify-between items-center hidden lg:flex">
             <h1 className="text-modal text-2xl font-semibold">Investments</h1>
             <Link to="/investment-chat">
               <button className="flex items-center bg-green rounded px-4 py-2 text-white text-sm">
@@ -82,7 +87,7 @@ function Mine() {
               </button>
             </Link>
           </div>
-          <div className="absolute top-40 left-0 right-0">
+          <div className="absolute top-40 left-0 right-0 hidden lg:block">
             <div className=" border border-green rounded-lg w-100 m-auto flex items-center justify-between bg-white text-navbar p-5 shadow-2xl ">
               <h1>
                 You have message request on your listed investment{" "}
@@ -96,8 +101,26 @@ function Mine() {
             </div>
           </div>
 
+          <div className="lg:hidden py-8 px-4 bg-welcome text-dark text-lg font-semibold flex justify-between items-center">
+            <h1 className="">Investments</h1>
+            <button
+              className="text-green text-sm font-inter"
+              onClick={() => {
+                navigate(-1);
+              }}
+            >
+              Back
+            </button>
+          </div>
+          <div className=" p-5 lg:hidden">
+            <div className="flex items-center ">
+              <img src={mine} alt="coins" className="mr-2" />
+              <h1 className="text-sm text-title font-medium">My Investments</h1>
+            </div>
+          </div>
+
           <InvestTabs />
-          <div className="mb-8 mine">
+          <div className="lg:mb-8 pb-20 lg:pb-0 bg-white mine">
             {available ? (
               <>
                 {loading ? (
@@ -105,29 +128,29 @@ function Mine() {
                     <ScaleLoader color="#008E10" height={50} width={6} />
                   </div>
                 ) : (
-                  <div>
-                    <table className=" w-full table-auto">
+                  <div className="px-4 bg-white overflow-auto">
+                    <table className="w-full table-auto">
                       <thead className="">
                         <tr className="text-left bg-dashbg">
-                          <th className="py-2 text-head font-semibold text-sm pl-5">
+                          <th className="py-2 text-head font-semibold text-sm whitespace-nowrap pl-5 pr-28 lg:pr-0">
                             Investments
                           </th>
-                          <th className="py-2 pr-7 text-head font-semibold text-sm">
+                          <th className="py-2 pr-7 text-head font-semibold text-sm whitespace-nowrap">
                             Duration
                           </th>
-                          <th className="py-2 pr-7 text-head font-semibold text-sm">
+                          <th className="py-2 pr-7 text-head font-semibold text-sm whitespace-nowrap">
                             Property Worth
                           </th>
-                          <th className="py-2 pr-7 text-head font-semibold text-sm">
+                          <th className="py-2 pr-7 text-head font-semibold text-sm whitespace-nowrap">
                             Amount Invested
                           </th>
-                          <th className="py-2 pr-7 text-head font-semibold text-sm">
+                          <th className="py-2 pr-7 text-head font-semibold text-sm whitespace-nowrap">
                             Interest Gained
                           </th>
-                          <th className="py-2 pr-7 text-head font-semibold text-sm">
+                          <th className="py-2 pr-7 text-head font-semibold text-sm whitespace-nowrap">
                             Ends in
                           </th>
-                          <th className="py-2 text-head font-semibold text-sm">
+                          <th className="py-2 text-head font-semibold text-sm whitespace-nowrap">
                             Status
                           </th>
                         </tr>
@@ -144,7 +167,7 @@ function Mine() {
                               className="h-10"
                             />
                             <div className="ml-2 ">
-                              <h1 className="mb-1 truncate w-32">
+                              <h1 className="mb-1 truncate lg:w-32">
                                 <span title={post.product.title}>
                                   {post.product.title}
                                 </span>
@@ -269,7 +292,7 @@ function Mine() {
           </div>
         </div>
       </div>
-      <div className="mt-6 pb-10 text-center">
+      <div className="mt-6 pb-10 text-center hidden lg:block">
         <h1 className="text-base font-semibold text-footer">
           © 2022 REIC. All rights reserved.
         </h1>

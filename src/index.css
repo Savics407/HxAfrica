@@ -344,7 +344,7 @@ body {
     }
 
     .investlists .real-estate {
-      @apply w-80 mr-3
+      @apply lg:w-80 lg:mr-3 w-full
     }
 
     .real-estate {

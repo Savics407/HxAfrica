@@ -43,6 +43,7 @@ import Owner from "./assets/Chats/Owner";
 import Disbursed from "./assets/admin/Disbursed";
 import Pending from "./assets/Pending";
 import Bids from "./assets/Bids";
+import NewInvestment from "./assets/NewInvestments";
 
 function App() {
   return (
@@ -58,8 +59,7 @@ function App() {
           <Route path="/investment-chat" element={<Owner />} />
           <Route path="/bids" element={<Bids />} />
           <Route path="/buytoken/success" element={<Success />} />
-          <Route path="/investments/pending" element={<Pending />} />
-
+          <Route path="/investment/pending" element={<Pending />} />
           <Route path="/select-avater" element={<SelectAvater />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/settings" element={<Profile />} />
@@ -97,14 +97,18 @@ function App() {
           <Route path="/bvn" element={<Processing />} />
           <Route path="/notification" element={<Notification />} />
           <Route path="/investment" element={<Investment />} />
-          <Route path="/investments/ongoing" element={<Ongoing />} />
-          <Route path="/investments/completed" element={<Completed />} />
+          <Route
+            path="/investment/new-investment"
+            element={<NewInvestment />}
+          />
+          <Route path="/investment/ongoing" element={<Ongoing />} />
+          <Route path="/investment/completed" element={<Completed />} />
           <Route path="/admin/dashboard" element={<Admin_Dashboard />} />
           <Route
-            path="/investments/relisted-investment"
+            path="/investment/relisted-investment"
             element={<Relisted />}
           />
-          <Route path="/investments/my-investment" element={<Mine />} />
+          <Route path="/investment/my-investment" element={<Mine />} />
           {/* <Route path="/header" element={<Header />} /> */}
         </Route>
       </Routes>

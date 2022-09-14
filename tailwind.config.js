@@ -99,6 +99,7 @@ module.exports = {
         tokentext: "#353945",
         payment: "#777E91",
         vestabs: "#7D8698",
+        title: "#28261E",
         vestabsborder: "#C6C6C6",
         more: "#E6E8EC",
         head: "#979797",

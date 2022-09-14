@@ -1,11 +1,10 @@
 import Header from "./Header";
 import { useEffect, useState } from "react";
 import banner from "./images/banner.png";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink, Link, useNavigate } from "react-router-dom";
 import InvestTabs from "./InvestTabs";
 import raw from "./images/rawland.png";
 import dropCoin from "./images/dropcoin.svg";
-import ongoingCoin from "./images/ongoingcoin.svg";
 import completed from "./images/card-tick.svg";
 import mine from "./images/mywallet.svg";
 import relisted from "./images/convert-card.svg";
@@ -25,13 +24,14 @@ import * as CurrencyFormat from "react-currency-format";
 import { FaAngleRight } from "react-icons/fa";
 import Tabs from "./Tab";
 
-function Investment() {
+function NewInvestment() {
   const [joinInvest, setJoinInvest] = useState(false);
   const [buyToken, setBuyToken] = useState(false);
   const [posts, setPosts] = useState();
   const [itemId, setItemID] = useState("");
   const [loading, setLoading] = useState(true);
 
+  const history = useNavigate();
   async function fetchData() {
     const token = localStorage.getItem("user-token");
     // e.preventDefault();
@@ -78,99 +78,31 @@ function Investment() {
       )}
       <Header />
       <div className="lg:w-10/12 m-auto lg:mt-20 bg-dashbg rounded-lg lg:py-8 lg:px-4">
-        <div className="lg:hidden py-8 px-4 bg-welcome text-dark text-lg font-semibold">
+        <div className="lg:hidden py-8 px-4 bg-welcome text-dark text-lg font-semibold flex justify-between items-center">
           <h1 className="">Investments</h1>
+          <button
+            className="text-green text-sm font-inter"
+            onClick={() => {
+              history(-1);
+            }}
+          >
+            Back
+          </button>
         </div>
-        <div className="bg-white lg:hidden lg:p-10 p-5 w-full rounded-lg">
-          <div className="  p-5 rounded-lg invest-banner border bg-banner text-dashbg w-full">
-            <h1 className="text-white font-semibold text-sm mb-1">
-              Top Investments
-            </h1>
-            <h1 className="font-normal text-tiny mb-3">
-              Join the early investors and earn better
-            </h1>
-            <div className="flex items-center">
-              <h1 className="text-xs font-extrabold text-mobile-banner w-fit py-1 mr-6">
-                1{" "}
-                <span className="uppercase font-semibold text-tiny">
-                  reic token{" "}
-                </span>{" "}
-                = N50,000
-              </h1>
-              <Link to="/token">
-                <button className="bg-white text-green text-tiny font-normal rounded-full py-1.5 px-6">
-                  Buy Token
-                </button>
-              </Link>
-            </div>
-          </div>
-        </div>
-        <div className="lg:hidden p-4 mb-10">
-          <Link to="/investment/new-investment">
-            <div className="mb-4 bg-white flex rounded justify-between items-center text-vestabs text-sm p-4 py-6">
-              <div className="flex items-center ">
-                <img src={dropCoin} alt="coins" className="mr-1" />
-                <h1>New Investments</h1>
-              </div>
-              <FaAngleRight className="text-base" />
-            </div>
-          </Link>
-          <Link to="/investment/pending">
-            <div className="mb-4 bg-white flex rounded justify-between items-center text-vestabs text-sm p-4 py-6">
-              <div className="flex items-center ">
-                <img src={dropCoin} alt="coins" className="mr-1" />
-                <h1>Pending Investments</h1>
-              </div>
-              <FaAngleRight className="text-base" />
-            </div>
-          </Link>
-          <Link to="/investment/ongoing">
-            <div className="mb-4 bg-white flex rounded justify-between items-center text-vestabs text-sm p-4 py-6">
-              <div className="flex items-center ">
-                <img src={ongoingCoin} alt="coins" className="mr-1" />
-                <h1>Ongoing Investments</h1>
-              </div>
-              <FaAngleRight className="text-base" />
-            </div>
-          </Link>
-          <Link to="/investment/completed">
-            <div className="mb-4 bg-white flex rounded justify-between items-center text-vestabs text-sm p-4 py-6">
-              <div className="flex items-center ">
-                <img src={completed} alt="coins" className="mr-1" />
-                <h1>Completed Investments</h1>
-              </div>
-              <FaAngleRight className="text-base" />
-            </div>
-          </Link>
-          <Link to="/investment/my-investment">
-            <div className="mb-4 bg-white flex rounded justify-between items-center text-vestabs text-sm p-4 py-6">
-              <div className="flex items-center ">
-                <img src={mine} alt="coins" className="mr-1" />
-                <h1>My Investments</h1>
-              </div>
-              <FaAngleRight className="text-base" />
-            </div>
-          </Link>
-          <Link to="/investment/relisted-investment">
-            <div className="mb-4 bg-white flex rounded justify-between items-center text-vestabs text-sm p-4 py-6">
-              <div className="flex items-center ">
-                <img src={relisted} alt="coins" className="mr-1" />
-                <h1>Relisted Investments</h1>
-              </div>
-              <FaAngleRight className="text-base" />
-            </div>
-          </Link>
-        </div>
-        <div className="bg-white p-10 w-full rounded-lg hidden lg:block">
+        <div className="bg-white lg:h-auto p-5 w-full rounded-lg">
           <div className="mb-10">
-            <h1 className="text-modal text-2xl font-semibold">Investments</h1>
+            <div className="flex items-center ">
+              <img src={dropCoin} alt="coins" className="mr-2" />
+              <h1 className="text-sm text-title font-medium">
+                New Investments
+              </h1>
+            </div>
           </div>
           {/* {posts[0].id} */}
           {/* <InvestTabs /> */}
-          <Tabs />
           <div className="investlists">
             {loading ? (
-              <div className="text-center px-20 py-40">
+              <div className="text-center px-20 h-screen py-40">
                 <ScaleLoader color="#008E10" height={50} width={6} />
               </div>
             ) : (
@@ -279,4 +211,4 @@ function Investment() {
   );
 }
 
-export default Investment;
+export default NewInvestment;

@@ -5,12 +5,15 @@ import React, { useEffect, useState } from "react";
 import ScaleLoader from "react-spinners/ScaleLoader";
 import * as CurrencyFormat from "react-currency-format";
 import moment from "moment";
+import completed from "./images/card-tick.svg";
 import banner from "./images/banner.png";
+import { useNavigate } from "react-router-dom";
 
 function Completed() {
   const [posts, setPosts] = useState();
   const [loading, setLoading] = useState(true);
   const [available, setAvailable] = useState(true);
+  const navigate = useNavigate();
 
   async function fetchData() {
     const token = localStorage.getItem("user-token");
@@ -49,17 +52,35 @@ function Completed() {
   return (
     <div className="font-family bg-mainbg">
       <Header />
-      <div className="w-10/12 m-auto mt-20 bg-dashbg rounded-lg py-8 px-4">
-        <div className="bg-white p-10 w-full rounded-lg">
-          <div className="mb-10">
+
+      <div className="lg:w-10/12 m-auto lg:mt-20 bg-dashbg rounded-lg lg:py-8 lg:px-4">
+        <div className="bg-white h-screen lg:h-auto lg:p-10 w-full rounded-lg">
+          <div className="mb-10 hidden lg:block">
             <h1 className="text-modal text-2xl font-semibold">Investments</h1>
           </div>
-          {/* <div>
-                            <img src={banner} alt="Buy_REIC_Token" className='w-full'/>
-                        </div> */}
+          <div className="lg:hidden py-8 px-4 bg-welcome text-dark text-lg font-semibold flex justify-between items-center">
+            <h1 className="">Investments</h1>
+            <button
+              className="text-green text-sm font-inter"
+              onClick={() => {
+                navigate(-1);
+              }}
+            >
+              Back
+            </button>
+          </div>
+          <div className=" p-5 lg:hidden">
+            <div className="flex items-center ">
+              <img src={completed} alt="coins" className="mr-2" />
+              <h1 className="text-sm text-title font-medium">
+                Completed Investments
+              </h1>
+            </div>
+          </div>
+
           <InvestTabs />
 
-          <div className="mb-8">
+          <div className="mb-8 ">
             {available ? (
               <>
                 {loading ? (
@@ -67,29 +88,33 @@ function Completed() {
                     <ScaleLoader color="#008E10" height={50} width={6} />
                   </div>
                 ) : (
-                  <div>
-                    <table className=" w-full table-fixed">
+                  <div className="overflow-auto px-4 bg-white">
+                    <table className="w-full lg:table-fixed">
                       <thead className="">
                         <tr className="text-left bg-dashbg">
-                          <th className="py-2 text-head font-semibold text-sm pl-5 ">
+                          <th className="py-2 text-head font-semibold text-sm  whitespace-nowrap pl-5 pr-20 lg:w-auto ">
                             Investments
                           </th>
-                          <th className="py-2 pr-7 text-head font-semibold text-sm ">
+                          <th className="py-2 pr-7 text-head font-semibold text-sm  whitespace-nowrap">
                             Duration
                           </th>
-                          <th className="py-2 pr-7 text-head font-semibold text-sm ">
+                          <th className="py-2 pr-7 text-head font-semibold text-sm  whitespace-nowrap">
                             Property Worth
                           </th>
-                          <th className="py-2 pr-7 text-head font-semibold text-sm ">
+                          <th className="py-2 pr-7 text-head font-semibold text-sm  whitespace-nowrap">
                             Amount Invested
                           </th>
-                          <th className="py-2 pr-7 text-head font-semibold text-sm ">
+                          <th className="py-2 pr-7 text-head font-semibold text-sm  whitespace-nowrap">
                             Amount Gained
                           </th>
+                          <th className="py-2 pr-7 text-head font-semibold text-sm  whitespace-nowrap">
+                            Status
+                          </th>
+
                           {/* <th className="py-2 pr-7 text-head font-semibold text-sm">
                           Ends in
                         </th>
-                        <th className="py-2 text-head font-semibold text-sm ">
+                        <th className="py-2 text-head font-semibold text-sm  whitespace-nowrap">
                           Action
                         </th> */}
                         </tr>
@@ -100,7 +125,7 @@ function Completed() {
                       </tr>
                       {posts?.map((post) => (
                         <tr className="border-b" key={post.id}>
-                          <td className=" py-8 text-footer font-bold text-sm ">
+                          <td className=" py-8 text-footer font-bold text-sm whitespace-nowrap ">
                             <div className="ml-2 ">
                               <h1 className="mb-1">{post.product.title}</h1>
                               <h2 className="font-medium font-xs capitalize">
@@ -108,10 +133,10 @@ function Completed() {
                               </h2>
                             </div>
                           </td>
-                          <td className=" py-8 text-footer font-bold text-sm">
+                          <td className=" py-8 text-footer font-bold text-sm whitespace-nowrap">
                             <h1>{post.duration} Days</h1>
                           </td>
-                          <td className="py-8 text-footer font-bold text-sm">
+                          <td className="py-8 text-footer font-bold text-sm whitespace-nowrap">
                             <h1>
                               N
                               <CurrencyFormat
@@ -121,7 +146,7 @@ function Completed() {
                               />
                             </h1>
                           </td>
-                          <td className=" py-8 text-footer font-bold text-sm">
+                          <td className=" py-8 text-footer font-bold text-sm whitespace-nowrap">
                             <h1>
                               N
                               <CurrencyFormat
@@ -131,7 +156,7 @@ function Completed() {
                               />
                             </h1>
                           </td>
-                          <td className=" py-8 text-footer font-bold text-sm">
+                          <td className=" py-8 text-footer font-bold text-sm whitespace-nowrap">
                             <h1>
                               N
                               <CurrencyFormat
@@ -144,12 +169,11 @@ function Completed() {
                               {post.interest}% Interest
                             </h2>
                           </td>
-                          {/* <td className=" py-8 text-footer font-bold text-sm">
-                          <h1>
-                            {moment(post.due_date).diff(new Date(), "Days")}{" "}
-                            Days
-                          </h1>
-                        </td> */}
+                          <td className=" py-8 text-footer font-bold text-sm whitespace-nowrap">
+                            <button className="bg-status text-xs text-statustext w-28 h-9 rounded-full font-medium">
+                              Completed
+                            </button>
+                          </td>
                         </tr>
                       ))}
                     </table>
@@ -171,7 +195,7 @@ function Completed() {
           </div>
         </div>
       </div>
-      <div className="mt-6 pb-10 text-center">
+      <div className="mt-6 pb-10 text-center hidden lg:block">
         <h1 className="text-base font-semibold text-footer">
           © 2022 REIC. All rights reserved.
         </h1>

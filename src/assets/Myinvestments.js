@@ -66,7 +66,7 @@ function Myinvests() {
       <div className="rounded-lg bg-white mt-2 lg:mb-3 lg:pb-4 pb-28">
         <div className="border-b border-stroke px-10 py-5 lg:text-lg text-xs text-dark font-medium flex justify-between items-center cursor-pointer">
           <h1>My Investments</h1>
-          <Link to="/investments/my-investment">
+          <Link to="/investment/my-investment">
             <h1 className="lg:text-dark text-links lg:text-xs text-tiny font-normal">
               View all
             </h1>

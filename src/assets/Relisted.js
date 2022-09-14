@@ -7,17 +7,19 @@ import { TbLoader } from "react-icons/tb";
 import New from "./images/new.svg";
 import moment from "moment";
 import { toast } from "react-toastify";
+import relistedIn from "./images/convert-card.svg";
 import relist from "./images/relisted.png";
 import * as CurrencyFormat from "react-currency-format";
 import ScaleLoader from "react-spinners/ScaleLoader";
 import Inherit from "./Inherit";
 import Bidding from "./Bidding";
+import { useNavigate } from "react-router-dom";
 
 function Relisted() {
   const [relisted, setRelisted] = useState(true);
   const [posts, setPosts] = useState();
   const [loading, setLoading] = useState(true);
-
+  const navigate = useNavigate();
   async function fetchData() {
     const token = localStorage.getItem("user-token");
     // e.preventDefault();
@@ -90,13 +92,34 @@ function Relisted() {
         />
       )}
       <Header />
-      <div className="w-10/12 m-auto mt-20 bg-dashbg rounded-lg py-8 px-4">
-        <div className="bg-white p-10 w-full rounded-lg">
-          <div className="mb-10">
+
+      <div className="lg:w-10/12 m-auto lg:mt-20 bg-dashbg rounded-lg lg:py-8 lg:px-4">
+        <div className="bg-white h-screen lg:h-auto lg:p-10 w-full rounded-lg">
+          <div className="mb-10 hidden lg:block">
             <h1 className="text-modal text-2xl font-semibold">Investments</h1>
           </div>
+          <div className="lg:hidden py-8 px-4 bg-welcome text-dark text-lg font-semibold flex justify-between items-center">
+            <h1 className="">Investments</h1>
+            <button
+              className="text-green text-sm font-inter"
+              onClick={() => {
+                navigate(-1);
+              }}
+            >
+              Back
+            </button>
+          </div>
+          <div className=" p-5 lg:hidden">
+            <div className="flex items-center ">
+              <img src={relistedIn} alt="coins" className="mr-2" />
+              <h1 className="text-sm text-title font-medium">
+                Relisted Investments
+              </h1>
+            </div>
+          </div>
+
           <InvestTabs />
-          <div className="mb-8 mine">
+          <div className="lg:mb-8 pb-10 lg:pb-0  mine px-5 lg:px-0 bg-white">
             {relisted ? (
               <>
                 {loading ? (
@@ -106,7 +129,10 @@ function Relisted() {
                 ) : (
                   <div className="flex flex-wrap mb-4">
                     {posts?.map((post) => (
-                      <div className="real-estate w-80 mr-3" key={post.id}>
+                      <div
+                        className="real-estate w-full lg:w-80 lg:mr-3"
+                        key={post.id}
+                      >
                         <div className="mr-3 w-1/3 h-full">
                           <img
                             src={land}
@@ -147,7 +173,7 @@ function Relisted() {
                                   "not available"
                                 ) : (
                                   <>
-                                    N{" "}
+                                    N
                                     <CurrencyFormat
                                       value={
                                         post.pullout === null
@@ -208,7 +234,7 @@ function Relisted() {
           </div>
         </div>
       </div>
-      <div className="mt-6 pb-10 text-center">
+      <div className="mt-6 pb-10 text-center hidden lg:block">
         <h1 className="text-base font-semibold text-footer">
           © 2022 REIC. All rights reserved.
         </h1>

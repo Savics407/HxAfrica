@@ -244,7 +244,7 @@ function Investments() {
           <div className="section">
             <h1>Ongoing Investments</h1>
             {ongoing ? (
-              <Link to="/investments/ongoing">
+              <Link to="/investment/ongoing">
                 <div
                   key={data[0].id}
                   className="p-3 mb-4 bg-mainbg rounded-2xl flex items-center justify-between"

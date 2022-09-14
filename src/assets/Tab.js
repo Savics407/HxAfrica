@@ -1,9 +1,9 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
 
-function InvestTabs() {
+function Tabs() {
   return (
-    <div className="hidden lg:block">
+    <div>
       <div className=" banner border bg-banner text-dashbg w-full py-6 px-9">
         <h1 className="text-white font-semibold text-2xl mb-2">
           Top Investments
@@ -28,11 +28,11 @@ function InvestTabs() {
       </div>
       <div className="flex border-b tab my-4 border-vestabsborder text-vestabs text-base font-semibold">
         <div className="tabs mr-8">
-          <Link to="/investment">
+          <NavLink to="/investment">
             <div className="vestabs">
               <h1>new investments</h1>
             </div>
-          </Link>
+          </NavLink>
         </div>
         <div className="tabs mr-8">
           <NavLink to="/investment/pending">
@@ -62,7 +62,7 @@ function InvestTabs() {
             </div>
           </NavLink>
         </div>
-        <div className="tabs">
+        <div className="tabs mr-8">
           <NavLink to="/investment/relisted-investment">
             <div className="vestabs">
               <h1>Relisted investments</h1>
@@ -74,4 +74,4 @@ function InvestTabs() {
   );
 }
 
-export default InvestTabs;
+export default Tabs;

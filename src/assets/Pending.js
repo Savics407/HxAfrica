@@ -4,6 +4,7 @@ import InvestTabs from "./InvestTabs";
 import box from "./images/Box.png";
 import land from "./images/rawland2.png";
 import moment from "moment";
+import dropCoin from "./images/dropcoin.svg";
 import crowd from "./images/crowdfund.png";
 import { toast } from "react-toastify";
 import * as CurrencyFormat from "react-currency-format";
@@ -22,6 +23,8 @@ function Pending() {
   const [posts, setPosts] = useState();
   const [loading, setLoading] = useState(true);
   const [title, setTitle] = useState();
+  const navigate = useNavigate();
+
   async function fetchData() {
     const token = localStorage.getItem("user-token");
     // e.preventDefault();
@@ -124,16 +127,32 @@ function Pending() {
         />
       )}
       <Header />
-      <div className="w-10/12 m-auto mt-20 bg-dashbg rounded-lg py-8 px-4">
-        <div className="bg-white p-10 w-full rounded-lg">
-          <div className="mb-10">
+      <div className="lg:w-10/12 m-auto lg:mt-20 bg-dashbg rounded-lg lg:py-8 lg:px-4">
+        <div className="bg-white h-screen lg:h-auto lg:p-10 w-full rounded-lg">
+          <div className="mb-10 hidden lg:block">
             <h1 className="text-modal text-2xl font-semibold">Investments</h1>
           </div>
-          {/* <div>
-                        <img src={banner} alt="Buy_REIC_Token" className='w-full'/>
-                    </div> */}
+          <div className="lg:hidden py-8 px-4 bg-welcome text-dark text-lg font-semibold flex justify-between items-center">
+            <h1 className="">Investments</h1>
+            <button
+              className="text-green text-sm font-inter"
+              onClick={() => {
+                navigate(-1);
+              }}
+            >
+              Back
+            </button>
+          </div>
+          <div className=" p-5 lg:hidden">
+            <div className="flex items-center ">
+              <img src={dropCoin} alt="coins" className="mr-2" />
+              <h1 className="text-sm text-title font-medium">
+                Pending Investments
+              </h1>
+            </div>
+          </div>
           <InvestTabs />
-          <div className="mb-8 mine investlists">
+          <div className="mb-8 px-5 lg:px-0 investlists">
             {available ? (
               <>
                 {loading ? (

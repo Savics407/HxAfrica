@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import Header from "./Header";
 import InvestTabs from "./InvestTabs";
 import banner from "./images/banner.png";
+import ongoingCoin from "./images/ongoingcoin.svg";
+import { useNavigate } from "react-router-dom";
 import land from "./images/rawland2.png";
 import box from "./images/Box.png";
 import Details from "./Investment_Details";
@@ -21,6 +23,7 @@ function Ongoing() {
   const [openDetails, setOpenDetails] = useState(false);
   const [loading, setLoading] = useState(true);
   const [ongoing, setOngoing] = useState(true);
+  const navigate = useNavigate();
   async function fetchData() {
     const token = localStorage.getItem("user-token");
     // e.preventDefault();
@@ -88,16 +91,38 @@ function Ongoing() {
         />
       )}
       <Header />
-      <div className="w-10/12 m-auto mt-20 bg-dashbg rounded-lg py-8 px-4">
-        <div className="bg-white p-10 w-full rounded-lg">
+      <div className="lg:w-10/12 m-auto lg:mt-20 bg-dashbg rounded-lg lg:py-8 lg:px-4">
+        {/* <div className="bg-white p-10 w-full rounded-lg">
           <div className="mb-10">
             <h1 className="text-modal text-2xl font-semibold">Investments</h1>
           </div>
-          {/* <div>
-                        <img src={banner} alt="Buy_REIC_Token" className='w-full'/>
-                    </div> */}
+          
+        */}
+        <div className="bg-white h-screen lg:h-auto lg:p-10 w-full rounded-lg">
+          <div className="mb-10 hidden lg:block">
+            <h1 className="text-modal text-2xl font-semibold">Investments</h1>
+          </div>
+          <div className="lg:hidden py-8 px-4 bg-welcome text-dark text-lg font-semibold flex justify-between items-center">
+            <h1 className="">Investments</h1>
+            <button
+              className="text-green text-sm font-inter"
+              onClick={() => {
+                navigate(-1);
+              }}
+            >
+              Back
+            </button>
+          </div>
+          <div className=" p-5 lg:hidden">
+            <div className="flex items-center ">
+              <img src={ongoingCoin} alt="coins" className="mr-2" />
+              <h1 className="text-sm text-title font-medium">
+                Ongoing Investments
+              </h1>
+            </div>
+          </div>
           <InvestTabs />
-          <div className="investlists">
+          <div className="investlists bg-white px-5 lg:px-0">
             {ongoing ? (
               <>
                 {loading ? (
