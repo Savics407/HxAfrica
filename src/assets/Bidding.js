@@ -393,7 +393,7 @@ function Bidding({ closeModal, itemId }) {
               </div>
               <div className="flex justify-between">
                 <button
-                  className="border text-sm lg:text-base rounded-full w-40 lg:w-44 h-12 text-neutral bg-dashbg"
+                  className="border text-xs lg:text-base rounded-full w-40 lg:w-44 h-12 text-neutral bg-dashbg"
                   onClick={() => {
                     closeModal(false);
                   }}
@@ -401,7 +401,7 @@ function Bidding({ closeModal, itemId }) {
                   No, Cancel
                 </button>
                 <button
-                  className="rounded-full text-sm lg:text-base w-40 lg:w-44 h-12 text-dashbg bg-green"
+                  className="rounded-full text-xs lg:text-base w-40 lg:w-44 h-12 text-dashbg bg-green"
                   onClick={() => {
                     navigate("/bidders-chat");
                   }}
