@@ -128,7 +128,7 @@ function Pending() {
       )}
       <Header />
       <div className="lg:w-10/12 m-auto lg:mt-20 bg-dashbg rounded-lg lg:py-8 lg:px-4">
-        <div className="bg-white h-screen lg:h-auto lg:p-10 w-full rounded-lg">
+        <div className="bg-white lg:h-auto lg:p-10 w-full rounded-lg">
           <div className="mb-10 hidden lg:block">
             <h1 className="text-modal text-2xl font-semibold">Investments</h1>
           </div>
@@ -152,7 +152,7 @@ function Pending() {
             </div>
           </div>
           <InvestTabs />
-          <div className="mb-8 px-5 lg:px-0 investlists">
+          <div className="mb-8 pb-20 lg:pb-0 px-5 lg:px-0 bg-white investlists">
             {available ? (
               <>
                 {loading ? (
@@ -394,22 +394,24 @@ export function Warning({
               delay: 0.5,
             },
           }}
-          className={`w-128 bg-white rounded-xl fixed top-48 border-green p-6 text-center ${
+          className={`lg:w-128 w-11/12 bg-white rounded-xl fixed top-48 border-green p-6 text-center ${
             warning ? "block" : "hidden"
           } `}
         >
           <div>
-            <h1 className="font-bold text-neutral text-3xl">Warning!</h1>
+            <h1 className="lg:font-bold font-semibold text-neutral text-3xl">
+              Warning!
+            </h1>
           </div>
-          <div className="font-semibold text-base text-neutral my-8">
+          <div className="font-semibold text-sm lg:text-base text-neutral my-8">
             <p>
-              You are about to cancel your investment on <br />{" "}
-              <span className="text-green">{title} </span>
+              You are about to cancel your investment <br />
+              on <span className="text-green">{title} </span>
             </p>
           </div>
           <div className="flex justify-between">
             <button
-              className="border rounded-full w-44 h-12 text-neutral bg-dashbg"
+              className="border rounded-full text-sm lg:text-base w-36 h-10 lg:w-44 lg:h-12 text-neutral bg-dashbg"
               onClick={() => {
                 closeWarning(!closeWarning);
                 fetch();
@@ -418,7 +420,7 @@ export function Warning({
               No, Return
             </button>
             <button
-              className="rounded-full w-44 h-12 text-dashbg bg-red"
+              className="rounded-full text-sm lg:text-base w-36 h-10 lg:w-44 lg:h-12 text-dashbg bg-red"
               onClick={() => {
                 Cancel();
               }}
@@ -445,12 +447,14 @@ export function Warning({
                 delay: 0.5,
               },
             }}
-            className="w-128 bg-white rounded-xl fixed top-20 border-green p-6 text-center"
+            className="lg:w-128 w-11/12 bg-white rounded-xl fixed top-48 border-green p-6 text-center"
           >
             <div>
-              <h1 className="font-bold text-neutral text-3xl">Processing</h1>
+              <h1 className="lg:font-bold font-semibold text-neutral text-3xl">
+                Processing
+              </h1>
             </div>
-            <div className="font-semibold text-base text-neutral my-8">
+            <div className="font-semibold ;g:text-base text-sm text-neutral my-8">
               <p>
                 Please wait while we process your Investment. <br />
                 This will take few seconds.

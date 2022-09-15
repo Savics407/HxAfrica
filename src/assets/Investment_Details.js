@@ -179,7 +179,7 @@ function Details({ closeDetails, itemId, ongoing }) {
                       Completed
                     </button>
                   ) : (
-                    <Link to="/investments/pending">
+                    <Link to="/investment/pending">
                       <button className="border rounded-full lg:w-44 lg:h-12 w-24 h-9 text-xs lg:text-xl text-dashbg bg-red">
                         Cancel
                       </button>
@@ -451,7 +451,7 @@ function Processing({ productId }) {
           draggable: true,
           progress: undefined,
         });
-        window.location.href = "/investments/my-investment";
+        window.location.href = "/investment/my-investment";
       }
     }
   }

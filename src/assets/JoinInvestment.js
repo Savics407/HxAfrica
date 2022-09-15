@@ -158,7 +158,7 @@ function JoinInvestment({ closeModal, itemId }) {
                     />
                     <div className="border-b border-strek pb-4">
                       <div className="flex items-center justify-between">
-                        <h1 className="bg-media p-2 rounded text-xs lg:text-sm my-5 text-dashbg w-fit text-center font-semibold capitalize">
+                        <h1 className="bg-media p-2 rounded text-xs lg:text-sm my-4 lg:my-5 text-dashbg w-fit text-center font-semibold capitalize">
                           {post.category.product_category}
                         </h1>
                         <h1 className="text-darkgray text-tiny lg:text-sm">
@@ -449,7 +449,7 @@ export function Warning({ closeWarning, closeModal, reic, title, productID }) {
         </div>
         <div className="flex justify-between">
           <button
-            className="border rounded-full w-40 lg:w-44 h-12 text-neutral bg-dashbg"
+            className="border text-sm lg:text-base rounded-full w-36 h-10 lg:w-44 lg:h-12 text-neutral bg-dashbg"
             onClick={() => {
               closeWarning(!closeWarning);
               setWarning(!warning);
@@ -460,7 +460,7 @@ export function Warning({ closeWarning, closeModal, reic, title, productID }) {
             Cancel
           </button>
           <button
-            className="rounded-full w-40 lg:w-44 h-12 text-dashbg bg-green"
+            className="text-sm lg:text-base rounded-full w-36 h-10 lg:w-44 lg:h-12 text-dashbg bg-green"
             onClick={() => {
               // alert("Please wait while we process your investment");
               // alert(productID);
@@ -528,15 +528,15 @@ export function Warning({ closeWarning, closeModal, reic, title, productID }) {
               delay: 0.5,
             },
           }}
-          className="lg:w-128 w-11/12 m-auto bg-white rounded-xl fixed top-32 border-green p-6 text-center"
+          className="lg:w-128 w-11/12 m-auto bg-white rounded-xl fixed top-28 border-green p-6 text-center"
         >
           <div className="flex flex-col items-center ">
-            <img src={success} alt="success" className="w-28 mb-5" />
+            <img src={success} alt="success" className="lg:w-28 w-20 mb-5" />
             <h1 className="lg:font-bold font-semibold text-neutral text-3xl lg:text-4xl">
               Success!
             </h1>
           </div>
-          <div className="font-semibold text-base text-neutral my-8">
+          <div className="font-semibold text-sm lg:text-base text-neutral my-8">
             <p>
               You made an investment of{" "}
               <span className="text-green">
@@ -547,13 +547,13 @@ export function Warning({ closeWarning, closeModal, reic, title, productID }) {
                   thousandSeparator={true}
                 />
               </span>{" "}
-              worth <br /> of <span className="text-green">{reic} Reic </span>{" "}
+              worth of <br /> <span className="text-green">{reic} Reic </span>{" "}
               to the {title} Project.
             </p>
           </div>
           <div className=" text-center w-11/12 mb-2 m-auto">
             <button
-              className="rounded-full w-full p-2 text-white bg-green flex justify-around items-center"
+              className="rounded-full w-full p-2 text-white bg-green border-green border flex justify-around items-center"
               onClick={() => navigate("/token")}
             >
               Done
@@ -562,7 +562,7 @@ export function Warning({ closeWarning, closeModal, reic, title, productID }) {
           <div className=" text-center w-11/12 m-auto">
             <button
               className="rounded-full w-full p-2 text-green border-green border flex justify-around items-center"
-              onClick={() => navigate("/investments/my-investment")}
+              onClick={() => navigate("/investment/my-investment")}
             >
               Go to My Investments
             </button>

@@ -384,7 +384,7 @@ export function Processing({
           <div className=" text-center w-11/12 m-auto">
             <button
               className="rounded-full w-full p-2 text-green border-green border flex justify-around items-center"
-              onClick={() => navigate("/investments/my-investment")}
+              onClick={() => navigate("/investment/my-investment")}
             >
               Go to My Investments
             </button>

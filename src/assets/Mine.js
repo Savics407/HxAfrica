@@ -245,7 +245,7 @@ function Mine() {
                           </td>
                           <td className=" py-8">
                             {post.product.status_investment === "ongoing" ? (
-                              <Link to="/investments/ongoing">
+                              <Link to="/investment/ongoing">
                                 {" "}
                                 <button
                                   className="bg-pending text-xs text-red w-28 h-9 rounded-full font-medium"
@@ -257,14 +257,14 @@ function Mine() {
                                 </button>
                               </Link>
                             ) : post.status === "completed" ? (
-                              <Link to="/investments/completed">
+                              <Link to="/investment/completed">
                                 {" "}
                                 <button className="bg-input text-xs text-green w-28 h-9 rounded-full font-medium">
                                   Completed
                                 </button>{" "}
                               </Link>
                             ) : (
-                              <Link to="/investments/pending">
+                              <Link to="/investment/pending">
                                 <button className="bg-status text-xs text-statustext w-28 h-9 rounded-full font-medium">
                                   Waiting
                                 </button>
