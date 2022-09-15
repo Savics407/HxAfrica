@@ -12,6 +12,7 @@ import users4 from "./images/Frame 20.png";
 import { toast } from "react-toastify";
 import { TbLoader } from "react-icons/tb";
 import moment from "moment";
+import ScaleLoader from "react-spinners/ScaleLoader";
 import * as CurrencyFormat from "react-currency-format";
 
 function JoinOngoing({ closeModal, itemId, productDetails }) {
@@ -22,6 +23,7 @@ function JoinOngoing({ closeModal, itemId, productDetails }) {
   const [posts, setPosts] = useState();
   const productID = itemId;
   // alert(productID);
+  const [loading, setLoading] = useState(true);
 
   async function fetchData() {
     const token = localStorage.getItem("user-token");
@@ -39,6 +41,9 @@ function JoinOngoing({ closeModal, itemId, productDetails }) {
     const result = await response.json();
     console.log(result.data);
     setPosts(result.data);
+    if (result?.status === "success") {
+      setLoading(false);
+    }
   }
   const [balance, setBalance] = useState();
   const [token, setToken] = useState();
@@ -99,68 +104,76 @@ function JoinOngoing({ closeModal, itemId, productDetails }) {
             closeModal(false);
           }}
         ></div>
-        {posts
-          ?.filter((post) => post.id === itemId)
-          .map((post) => (
-            <motion.div
-              initial={{
-                scale: 0,
-              }}
-              animate={{
-                scale: 1,
-                transition: {
-                  duration: 0.3,
-                },
-              }}
-              exit={{
-                scale: 0,
-                transition: {
-                  delay: 0.5,
-                },
-              }}
-              className={`bg-white rounded-xl border w-1/2 absolute top-12 ${
-                isClick ? "hidden" : "block"
-              }`}
-            >
-              <div className="border-b border-stroke px-10 py-5 text-2xl font-semibold flex justify-between items-center text-modal">
-                <h1>Investments</h1>
 
-                <MdClose
-                  className="cursor-pointer"
-                  onClick={() => {
-                    closeModal(false);
-                  }}
-                />
-              </div>
+        <motion.div
+          initial={{
+            scale: 0,
+          }}
+          animate={{
+            scale: 1,
+            transition: {
+              duration: 0.3,
+            },
+          }}
+          exit={{
+            scale: 0,
+            transition: {
+              delay: 0.5,
+            },
+          }}
+          className={`bg-white rounded-xl border w-1/2 absolute top-12 ${
+            isClick ? "hidden" : "block"
+          }`}
+        >
+          <div className="border-b border-stroke px-10 py-5 text-2xl font-semibold flex justify-between items-center text-modal">
+            <h1>Investments</h1>
 
-              <div className="px-10 ">
-                <img src={hdimage} alt="my-investment-image" />
-                <div className="border-b border-strek pb-4">
-                  <div className="flex items-center justify-between">
-                    <h1 className="bg-media p-2 rounded text-sm my-5 text-dashbg w-fit text-center font-semibold ">
-                      {post.product.category.product_category}
-                    </h1>
-                    <h1 className="text-darkgray text-sm">
-                      <span className="text-secondary">Created:</span>{" "}
-                      {moment(post.product.created_at).format("MMM DD, yyyy")}
-                    </h1>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <h1 className="text-neutral text-2xl font-semibold capitalize">
-                      {post.product.title}
-                    </h1>
-                    <h1 className="text-darkgray text-sm">
-                      <span className="text-secondary">Time:</span>{" "}
-                      {moment(post.product.created_at).format("LT")}
-                    </h1>
-                  </div>
-                </div>
-                <div className="py-10">
-                  <div className="flex justify-between pb-2 items-center">
-                    <h1 className="text-darkgray font-normal text-lg">
-                      Property worth
-                    </h1>
-                    {/* <div className="flex items-center">
+            <MdClose
+              className="cursor-pointer"
+              onClick={() => {
+                closeModal(false);
+              }}
+            />
+          </div>
+          {loading ? (
+            <div className="text-center py-48 h-screen lg:h-auto">
+              <ScaleLoader color="#008E10" height={50} width={6} />
+            </div>
+          ) : (
+            <>
+              {posts
+                ?.filter((post) => post.id === itemId)
+                .map((post) => (
+                  <div className="px-10 ">
+                    <img src={hdimage} alt="my-investment-image" />
+                    <div className="border-b border-strek pb-4">
+                      <div className="flex items-center justify-between">
+                        <h1 className="bg-media p-2 rounded text-sm my-5 text-dashbg w-fit text-center font-semibold ">
+                          {post.product.category.product_category}
+                        </h1>
+                        <h1 className="text-darkgray text-sm">
+                          <span className="text-secondary">Created:</span>{" "}
+                          {moment(post.product.created_at).format(
+                            "MMM DD, yyyy"
+                          )}
+                        </h1>
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <h1 className="text-neutral text-2xl font-semibold capitalize">
+                          {post.product.title}
+                        </h1>
+                        <h1 className="text-darkgray text-sm">
+                          <span className="text-secondary">Time:</span>{" "}
+                          {moment(post.product.created_at).format("LT")}
+                        </h1>
+                      </div>
+                    </div>
+                    <div className="py-10">
+                      <div className="flex justify-between pb-2 items-center">
+                        <h1 className="text-darkgray font-normal text-lg">
+                          Property worth
+                        </h1>
+                        {/* <div className="flex items-center">
                       <img src={users1} alt="frame" className="z-0" />
                       <img src={users2} alt="frame" className="-ml-3 z-10" />
                       <img src={users3} alt="frame" className="-ml-3 z-10" />
@@ -169,154 +182,156 @@ function JoinOngoing({ closeModal, itemId, productDetails }) {
                         +24
                       </div>
                 </div> */}
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <h1 className="text-dark text-2xl font-medium">
-                      N
-                      <CurrencyFormat
-                        value={post.product.cost}
-                        displayType={"text"}
-                        thousandSeparator={true}
-                      />
-                    </h1>
-                    {/* <h1 className="text-navbar text-sm font-normal">
+                      </div>
+                      <div className="flex justify-between items-center">
+                        <h1 className="text-dark text-2xl font-medium">
+                          N
+                          <CurrencyFormat
+                            value={post.product.cost}
+                            displayType={"text"}
+                            thousandSeparator={true}
+                          />
+                        </h1>
+                        {/* <h1 className="text-navbar text-sm font-normal">
                       {post.investments.length === 0
                         ? 0
                         : post.investments.length}{" "}
                       {post.investments.length === 1 ? "Investor" : "Investors"}{" "}
                       currently actively invested
                     </h1> */}
-                  </div>
-                </div>
-                <div className=" bg-total p-4 border rounded-2xl">
-                  <div className="flex justify-between items-center">
-                    <h1 className="text-head text-lg font-medium ">
-                      Total Invested:
-                    </h1>
-                    <h1 className="text-secondary text-lg font-medium ">
-                      N
-                      <CurrencyFormat
-                        value={post.product.threshold}
-                        displayType={"text"}
-                        thousandSeparator={true}
-                      />
-                    </h1>
-                  </div>
-                  <div className="flex justify-between items-center py-3 border-b">
-                    <h1 className="text-head text-lg font-medium ">
-                      Amount left:
-                    </h1>
-                    <h1 className="text-secondary text-lg font-medium ">
-                      N
-                      <CurrencyFormat
-                        value={post.product.cost - post.product.threshold}
-                        displayType={"text"}
-                        thousandSeparator={true}
-                      />
-                    </h1>
-                  </div>
-                  <div className="flex justify-between items-ce4nter py-5">
-                    <h1 className="text-darkgray text-sm font-normal">
-                      <span className="text-secondary">Time Frame </span> -{" "}
-                      {post.duration} Days
-                    </h1>{" "}
-                    <h1 className="text-darkgray text-sm font-normal">
-                      <span className="text-secondary">Expires in </span> -{" "}
-                      {moment(post.due_date).diff(new Date(), "Days")} Days
-                    </h1>
-                  </div>
-                </div>
-                <div className="pt-5 pb-9">
-                  {/* <p className="text-neutral text-base font-normal mb-2.5">
+                      </div>
+                    </div>
+                    <div className=" bg-total p-4 border rounded-2xl">
+                      <div className="flex justify-between items-center">
+                        <h1 className="text-head text-lg font-medium ">
+                          Total Invested:
+                        </h1>
+                        <h1 className="text-secondary text-lg font-medium ">
+                          N
+                          <CurrencyFormat
+                            value={post.product.threshold}
+                            displayType={"text"}
+                            thousandSeparator={true}
+                          />
+                        </h1>
+                      </div>
+                      <div className="flex justify-between items-center py-3 border-b">
+                        <h1 className="text-head text-lg font-medium ">
+                          Amount left:
+                        </h1>
+                        <h1 className="text-secondary text-lg font-medium ">
+                          N
+                          <CurrencyFormat
+                            value={post.product.cost - post.product.threshold}
+                            displayType={"text"}
+                            thousandSeparator={true}
+                          />
+                        </h1>
+                      </div>
+                      <div className="flex justify-between items-ce4nter py-5">
+                        <h1 className="text-darkgray text-sm font-normal">
+                          <span className="text-secondary">Time Frame </span> -{" "}
+                          {post.duration} Days
+                        </h1>{" "}
+                        <h1 className="text-darkgray text-sm font-normal">
+                          <span className="text-secondary">Expires in </span> -{" "}
+                          {moment(post.due_date).diff(new Date(), "Days")} Days
+                        </h1>
+                      </div>
+                    </div>
+                    <div className="pt-5 pb-9">
+                      {/* <p className="text-neutral text-base font-normal mb-2.5">
                     Amount
                   </p> */}
-                  <p className="text-neutral text-base font-normal mb-2.5 flex justify-between">
-                    <span>Amount</span>{" "}
-                    <span className="text-green text-sm font-medium">
-                      Available Amount: N
-                      <CurrencyFormat
-                        value={balance}
-                        displayType={"text"}
-                        thousandSeparator={true}
-                      />
-                    </span>
-                  </p>
-                  <div className="text-nuetral font-bold text-lg flex items-center justify-center py-6 rounded-lg bg-mainbg relative">
-                    <sup className="w-2/5 text-right">REIC</sup>
-                    <input
-                      type="number"
-                      placeholder="0.00"
-                      className="text-neutral font-bold text-4xl w-1/2 bg-transparent outline-0"
-                      // value="50,000"
-                      onChange={(e) => setReic(e.target.value)}
-                      defaultValue=""
-                    />
-                  </div>
-                  <div className="text-center h-1">
-                    {reic > 0 && (
-                      <span className="text-green text-xs">
-                        N
-                        <CurrencyFormat
-                          value={reic * 50000}
-                          displayType={"text"}
-                          thousandSeparator={true}
+                      <p className="text-neutral text-base font-normal mb-2.5 flex justify-between">
+                        <span>Amount</span>{" "}
+                        <span className="text-green text-sm font-medium">
+                          Available Amount: N
+                          <CurrencyFormat
+                            value={balance}
+                            displayType={"text"}
+                            thousandSeparator={true}
+                          />
+                        </span>
+                      </p>
+                      <div className="text-nuetral font-bold text-lg flex items-center justify-center py-6 rounded-lg bg-mainbg relative">
+                        <sup className="w-2/5 text-right">REIC</sup>
+                        <input
+                          type="number"
+                          placeholder="0.00"
+                          className="text-neutral font-bold text-4xl w-1/2 bg-transparent outline-0"
+                          // value="50,000"
+                          onChange={(e) => setReic(e.target.value)}
+                          defaultValue=""
                         />
-                      </span>
-                    )}
-                  </div>
-                </div>
+                      </div>
+                      <div className="text-center h-1">
+                        {reic > 0 && (
+                          <span className="text-green text-xs">
+                            N
+                            <CurrencyFormat
+                              value={reic * 50000}
+                              displayType={"text"}
+                              thousandSeparator={true}
+                            />
+                          </span>
+                        )}
+                      </div>
+                    </div>
 
-                <div className="text-right pt-5 pb-8">
-                  <button
-                    className={`border rounded-full w-44 h-12 text-dashbg bg-red mr-5 ${
-                      post.user_id == userID ? "opacity-100" : "opacity-30"
-                    }`}
-                    onClick={() => {
-                      if (post.user_id == userID) {
-                        productDetails(post.id);
-                        closeModal(false);
-                      }
-                    }}
-                  >
-                    Pullout
-                  </button>
-                  <button
-                    className="border rounded-full w-44 h-12 text-dashbg bg-green"
-                    onClick={() => {
-                      // const token = localStorage.getItem("user-wallet");
-                      if (reic === 0) {
-                        alert("kindly input reic amount to invest");
-                      } else if (reic === "") {
-                        alert("kindly input reic amount to invest");
-                      } else if (reic > token) {
-                        toast.error(
-                          `Your balance is too small for this investment, kindly make a deposit of ${
-                            reic - token
-                          } reic to continue`,
-                          {
-                            position: "top-left",
-                            autoClose: 3500,
-                            hideProgressBar: true,
-                            closeOnClick: false,
-                            pauseOnHover: true,
-                            draggable: true,
-                            progress: undefined,
+                    <div className="text-right pt-5 pb-8">
+                      <button
+                        className={`border rounded-full w-44 h-12 text-dashbg bg-red mr-5 ${
+                          post.user_id == userID ? "opacity-100" : "opacity-30"
+                        }`}
+                        onClick={() => {
+                          if (post.user_id == userID) {
+                            productDetails(post.id);
+                            closeModal(false);
                           }
-                        );
-                      } else {
-                        setAuthPullOut(!authPullOut);
-                        setIsClick(!isClick);
-                        setTitle(post.product.title);
-                        setProID(post.product_id);
-                      }
-                    }}
-                  >
-                    Invest
-                  </button>
-                </div>
-              </div>
-            </motion.div>
-          ))}
+                        }}
+                      >
+                        Pullout
+                      </button>
+                      <button
+                        className="border rounded-full w-44 h-12 text-dashbg bg-green"
+                        onClick={() => {
+                          // const token = localStorage.getItem("user-wallet");
+                          if (reic === 0) {
+                            alert("kindly input reic amount to invest");
+                          } else if (reic === "") {
+                            alert("kindly input reic amount to invest");
+                          } else if (reic > token) {
+                            toast.error(
+                              `Your balance is too small for this investment, kindly make a deposit of ${
+                                reic - token
+                              } reic to continue`,
+                              {
+                                position: "top-left",
+                                autoClose: 3500,
+                                hideProgressBar: true,
+                                closeOnClick: false,
+                                pauseOnHover: true,
+                                draggable: true,
+                                progress: undefined,
+                              }
+                            );
+                          } else {
+                            setAuthPullOut(!authPullOut);
+                            setIsClick(!isClick);
+                            setTitle(post.product.title);
+                            setProID(post.product_id);
+                          }
+                        }}
+                      >
+                        Invest
+                      </button>
+                    </div>
+                  </div>
+                ))}
+            </>
+          )}
+        </motion.div>
 
         {authPullOut && (
           <Warning

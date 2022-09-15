@@ -115,7 +115,12 @@ function Header() {
                 </div>
               </div>
             </div>
-
+            <div
+              className={`fixed top-0 left-0 bottom-0 right-0 cursor-pointer z-10 ${
+                logout ? "show-note" : "remove-note"
+              }`}
+              onClick={() => setLogout(!logout)}
+            ></div>
             <div
               className="flex items flex items-center text-sm ml-6 mr-3 relative cursor-pointer"
               onClick={() => {

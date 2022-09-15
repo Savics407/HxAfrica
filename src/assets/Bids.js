@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Header from "./Header";
 import InvestTabs from "./InvestTabs";
-import box from "./images/Box.png";
+import box from "./images/Artwork.svg";
 import bidders from "./images/bidders.svg";
 import arrow from "./images/arrow.svg";
 import moment from "moment";
@@ -16,7 +16,7 @@ import ScaleLoader from "react-spinners/ScaleLoader";
 import TopUp from "./TopUp";
 
 function Bids() {
-  const [available, setAvailable] = useState(true);
+  const [available, setAvailable] = useState(false);
   const [loading, setLoading] = useState(false);
   const [click, setClick] = useState(false);
   const [bids, setBids] = useState();
@@ -53,37 +53,43 @@ function Bids() {
             <h1 className="text-modal text-2xl font-semibold ">
               Investment Bid
             </h1>
-            <div className="relative">
-              <button
-                className="bg-listed flex text-white text-xs rounded px-6 py-3 items-center"
-                onClick={() => {
-                  setClick(!click);
-                }}
-              >
-                <span className="mr-1">Crowdfund...</span>
-                <img src={arrow} alt="arrow-icon" />
-              </button>
+            {available && (
+              <div className="relative">
+                <button
+                  className="bg-listed flex text-white text-xs rounded px-6 py-3 items-center"
+                  onClick={() => {
+                    setClick(!click);
+                  }}
+                >
+                  <span className="mr-1">Crowdfund...</span>
+                  <img src={arrow} alt="arrow-icon" />
+                </button>
 
-              <div
-                className={`absolute px-4 pb-4 text-neutral right-0 top-20 -mt-2 rounded-xl shadow-2xl bg-listed text-left invisible  flex flex-col items-center duration-300 z-50 ${
-                  click ? "show-note !top-14" : "remove-note"
-                }`}
-              >
-                <div className="arr relative w-full"></div>
-                <div className="py-3 w-full pr-20 border-b border-tokentext">
-                  <h1 className="text-more font-semibold mb-1.5">
-                    Crowdfunding
-                  </h1>
-                  <h1 className="text-sm text-footer font-normal">2 Bidders</h1>
-                </div>
-                <div className="py-3 pr-20 border-b w-full border-tokentext">
-                  <h1 className="text-more font-semibold mb-1.5">
-                    Real Estate
-                  </h1>
-                  <h1 className="text-sm text-footer font-normal">2 Bidders</h1>
+                <div
+                  className={`absolute px-4 pb-4 text-neutral right-0 top-20 -mt-2 rounded-xl shadow-2xl bg-listed text-left invisible  flex flex-col items-center duration-300 z-50 ${
+                    click ? "show-note !top-14" : "remove-note"
+                  }`}
+                >
+                  <div className="arr relative w-full"></div>
+                  <div className="py-3 w-full pr-20 border-b border-tokentext">
+                    <h1 className="text-more font-semibold mb-1.5">
+                      Crowdfunding
+                    </h1>
+                    <h1 className="text-sm text-footer font-normal">
+                      2 Bidders
+                    </h1>
+                  </div>
+                  <div className="py-3 pr-20 border-b w-full border-tokentext">
+                    <h1 className="text-more font-semibold mb-1.5">
+                      Real Estate
+                    </h1>
+                    <h1 className="text-sm text-footer font-normal">
+                      2 Bidders
+                    </h1>
+                  </div>
                 </div>
               </div>
-            </div>
+            )}
           </div>
 
           <div className="mb-8 mine investlists">
@@ -291,9 +297,8 @@ function Bids() {
                 <div className="flex flex-col justify-center items-center">
                   <img src={box} alt="No relisted investment" />
                 </div>
-                <h1 className="font-semibold text-xs text-statustext text-center -ml-10">
-                  You have no bids currently on <br />
-                  your cart at the moment.
+                <h1 className="font-semibold text-2xl text-statustext text-center">
+                  No bids placed yet
                 </h1>
               </div>
             )}

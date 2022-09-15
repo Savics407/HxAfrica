@@ -161,7 +161,12 @@ function Header() {
                 </div>
               </div>
             </div>
-
+            <div
+              className={`fixed top-0 left-0 bottom-0 right-0 cursor-pointer z-10 ${
+                logout ? "show-note" : "remove-note"
+              }`}
+              onClick={() => setLogout(!logout)}
+            ></div>
             <div className="relative w-10 bg-mainbg rounded-full h-10">
               <Link to="/settings">
                 {!!userIcon ? (

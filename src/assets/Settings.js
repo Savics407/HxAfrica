@@ -69,10 +69,10 @@ function SelectAvater({ setAvailable }) {
               Select Avater
             </h1>
           </div>
-          <div className="flex justify-center mb-5">
-            <img src={userIcon} alt="userAvater" />
+          <div className="flex justify-center my-10">
+            <img src={userIcon} alt="Users Avater" />
           </div>
-          <div className="flex justify-around w-full px-4 flex-wrap mb-4">
+          <div className="flex justify-around w-full lg:px-4 px-10 flex-wrap mb-4">
             <div
               className="avater"
               onClick={() => {
@@ -109,8 +109,7 @@ function SelectAvater({ setAvailable }) {
             >
               <img src={images.avater4} alt="Users Avater" />
             </div>
-          </div>
-          <div className="flex justify-around w-full px-4 flex-wrap">
+
             <div
               className="avater"
               onClick={() => {
@@ -148,7 +147,7 @@ function SelectAvater({ setAvailable }) {
               <img src={images.avater8} alt="Users Avater" />
             </div>
             <div
-              className="mt-4 avater"
+              className="avater"
               onClick={() => {
                 setUserIcon(avater9);
                 setIsClick(true);
@@ -157,9 +156,20 @@ function SelectAvater({ setAvailable }) {
               <img src={images.avater9} alt="Users Avater" />
             </div>
           </div>
-          <div className=" text-sm font-medium flex justify-center my-10">
+          <div
+            className=" 
+            text-sm
+            font-medium
+            flex
+            flex-wrap
+            items-center
+            justify-center
+            my-10
+            px-5
+            "
+          >
             <button
-              className="text-green border border-green rounded-xl px-12 py-3 mr-3"
+              className="text-green border border-green rounded-xl w-full lg:w-auto px-12 py-3 lg:mr-3 lg:mb-0 mb-5"
               onClick={() => setAvailable(false)}
             >
               Cancel
@@ -167,14 +177,14 @@ function SelectAvater({ setAvailable }) {
 
             {isClick ? (
               <button
-                className="text-white bg-green hover:opacity-100 rounded-xl px-7 py-3"
+                className="text-white bg-green border-green border hover:opacity-100 w-full lg:w-auto rounded-xl px-7 py-3"
                 onClick={updateProfile}
               >
                 Set as avater
               </button>
             ) : (
               <button
-                className="text-white bg-green opacity-50 hover:opacity-100 rounded-xl px-7 py-3"
+                className="text-white bg-green opacity-50 border-green border hover:opacity-100 w-full lg:w-auto rounded-xl px-7 py-3"
                 onClick={() => alert("select an avater")}
               >
                 Set as avater
@@ -222,6 +232,7 @@ function Profile() {
     navigate("/");
   };
 
+  const [signOut, setSignOut] = useState(false);
   const [posts, setPosts] = useState();
   const [image, setImage] = useState();
 
@@ -327,7 +338,30 @@ function Profile() {
   return (
     <div className="font-family bg-mainbg">
       {available && <SelectAvater setAvailable={setAvailable} />}
-
+      {signOut && (
+        <div className="fixed top-0 right-0 bottom-0 left-0 bg-overlay backdrop-blur-xs flex justify-center items-center z-50">
+          <div className="bg-white rounded-xl lg:w-128 w-10/12 p-5 lg:px-10 py-10 text-center">
+            <h1 className="font-semibold lg:text-3xl text-2xl mb-2">Logout</h1>
+            <p className="mb-5 text-sm lg:text-base">
+              Are you sure you want to logout? <br /> we will miss you ...{" "}
+            </p>
+            <div className="flex items-center justify-between">
+              <button
+                className="rounded-full lg:px-10 px-8 py-2 border text-sm lg:text-base"
+                onClick={() => setSignOut(false)}
+              >
+                Cancel
+              </button>
+              <button
+                className="bg-red text-white rounded-full px-8 lg:px-10 py-2 text-sm lg:text-base"
+                onClick={logOut}
+              >
+                Logout
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
       <Header />
 
       <div className="lg:w-10/12 w-full m-auto lg:mt-20 bg-white rounded-lg pb-10 lg:py-8 lg:px-10">
@@ -335,7 +369,7 @@ function Profile() {
           <h1 className="capitalize">Profile Details</h1>
           <button
             className="bg-green rounded-full text-dashbg py-1 px-5 text-xs font-bold flex items-center justify-center "
-            onClick={logOut}
+            onClick={() => setSignOut(true)}
           >
             <BiLogOut className="mr-1 text-sm" /> Log Out
           </button>
@@ -631,7 +665,7 @@ function Profile() {
             <div className="hidden lg:block">
               <button
                 className="bg-green rounded-full text-dashbg py-3 px-10 text-sm font-bold flex items-center justify-center "
-                onClick={logOut}
+                onClick={() => setSignOut(true)}
               >
                 <BiLogOut className="mr-1 text-lg" /> Log Out
               </button>
