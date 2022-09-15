@@ -7,6 +7,7 @@ import moment from "moment";
 import dropCoin from "./images/dropcoin.svg";
 import crowd from "./images/crowdfund.png";
 import { toast } from "react-toastify";
+import pendingCoin from "./images/timer-pause.svg";
 import * as CurrencyFormat from "react-currency-format";
 import success from "./images/Success Icon.svg";
 import { TbLoader } from "react-icons/tb";
@@ -145,7 +146,7 @@ function Pending() {
           </div>
           <div className=" p-5 lg:hidden">
             <div className="flex items-center ">
-              <img src={dropCoin} alt="coins" className="mr-2" />
+              <img src={pendingCoin} alt="coins" className="mr-2" />
               <h1 className="text-sm text-title font-medium">
                 Pending Investments
               </h1>
@@ -252,9 +253,13 @@ function Pending() {
             ) : (
               <div className="flex flex-col items-center justify-center h-128">
                 <div className="flex flex-col justify-center items-center">
-                  <img src={box} alt="No relisted investment" />
+                  <img
+                    src={box}
+                    alt="No relisted investment"
+                    className="-mr-10"
+                  />
                 </div>
-                <h1 className="font-semibold text-xs text-statustext text-center -ml-10">
+                <h1 className="font-semibold text-xs text-statustext text-center">
                   Oh oh! You have no Pending
                   <br />
                   investments at this time

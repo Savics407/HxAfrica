@@ -280,9 +280,13 @@ function Mine() {
             ) : (
               <div className="flex flex-col items-center justify-center h-128">
                 <div className="flex flex-col justify-center items-center">
-                  <img src={box} alt="No relisted investment" />
+                  <img
+                    src={box}
+                    alt="No relisted investment"
+                    className="-mr-10"
+                  />
                 </div>
-                <h1 className="font-semibold text-xs text-statustext text-center -ml-10">
+                <h1 className="font-semibold text-xs text-statustext text-center">
                   Oh oh! You have no active
                   <br />
                   investments at this time

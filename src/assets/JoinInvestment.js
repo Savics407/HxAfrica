@@ -250,7 +250,7 @@ function JoinInvestment({ closeModal, itemId }) {
                           />
                         </h1>
                       </div>
-                      <div className="flex justify-between items-ce4nter py-5">
+                      <div className="flex justify-between items-center py-5">
                         <h1 className="text-darkgray text-tiny lg:text-sm font-normal">
                           <span className="text-secondary">Time Frame </span> -{" "}
                           {post.duration} Days
@@ -536,7 +536,7 @@ export function Warning({ closeWarning, closeModal, reic, title, productID }) {
               Success!
             </h1>
           </div>
-          <div className="font-semibold text-sm lg:text-base text-neutral my-8">
+          <div className="font-semibold text-xs lg:text-base text-neutral my-8">
             <p>
               You made an investment of{" "}
               <span className="text-green">

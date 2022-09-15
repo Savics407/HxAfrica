@@ -385,7 +385,7 @@ function Warning({ closeWarning, title, productId, closeDetails, ongoing }) {
           <div>
             <h1 className="font-bold text-neutral text-3xl">Successful</h1>
           </div>
-          <div className="font-semibold text-base text-neutral my-8">
+          <div className="font-semibold text-sm lg:text-base text-neutral my-8">
             <p>
               Your investment has been relisted on the market and you will be
               notified when a bid is made by investors.

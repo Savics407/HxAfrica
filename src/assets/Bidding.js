@@ -160,11 +160,11 @@ function Bidding({ closeModal, itemId }) {
                 delay: 0.5,
               },
             }}
-            className={`bg-white rounded-xl border w-1/2 absolute top-12 ${
+            className={`bg-white rounded-xl border w-full lg:w-1/2 top-28 absolute top-12 ${
               isClick ? "hidden" : "block"
             }`}
           >
-            <div className="border-b border-stroke px-10 py-5 text-2xl font-semibold flex justify-between items-center text-modal">
+            <div className="border-b border-stroke lg:px-10 px-5 py-5 text-sm lg:text-2xl font-semibold flex justify-between items-center text-modal">
               <h1>Investment</h1>
 
               <MdClose
@@ -183,29 +183,26 @@ function Bidding({ closeModal, itemId }) {
                 {posts
                   ?.filter((post) => post.pullout.id === itemId)
                   .map((post) => (
-                    <div className="px-10 ">
+                    <div className="lg:px-10 px-5 ">
                       <img src={hdimage} alt="my-investment-image" />
-                      <div className="border-b border-strek pb-4">
-                        <div className="flex items-center justify-between">
+                      <div className="border-b border-strek py-4">
+                        <div className="flex items-center justify-between mb-2">
                           <div className="flex items-center">
-                            <h1 className="bg-media p-2 rounded text-sm my-5 text-dashbg w-fit text-center font-semibold mr-2">
+                            <h1 className="text-neutral text-base lg:text-2xl font-semibold capitalize">
                               {post.product.title}
                             </h1>
-                            <span className="text-endsin text-sm font-medium bg-ongoing w-fit px-2.5 py-1 rounded">
-                              Relisted Investment
-                            </span>
                           </div>
 
-                          <h1 className="text-darkgray text-sm">
+                          <h1 className="text-darkgray text-tiny lg:text-sm">
                             <span className="text-secondary">Created:</span>{" "}
                             {moment(post.updated_at).format("MMM DD, yyyy")}
                           </h1>
                         </div>
                         <div className="flex items-center justify-between">
-                          <h1 className="text-neutral text-2xl font-semibold capitalize">
-                            {post.product.title}
-                          </h1>
-                          <h1 className="text-darkgray text-sm">
+                          <span className="text-endsin text-sm font-medium bg-ongoing w-fit px-2.5 py-1 rounded">
+                            Relisted Investment
+                          </span>
+                          <h1 className="text-darkgray text-tiny lg:text-sm">
                             <span className="text-secondary">Time:</span>{" "}
                             {moment(post.updated_at).format("LT")}
                           </h1>
@@ -213,15 +210,15 @@ function Bidding({ closeModal, itemId }) {
                       </div>
                       <div className="py-10 font-inter">
                         <div className="flex justify-between pb-2 items-center">
-                          <h1 className="text-darkgray font-normal text-lg">
+                          <h1 className="text-darkgray font-normal text-sm lg:text-lg">
                             Property worth
                           </h1>
-                          <div className="flex items-center font-normal text-lg">
+                          {/* <div className="flex items-center font-normal text-lg">
                             <h1>Bidding Status</h1>
-                          </div>
+                          </div> */}
                         </div>
                         <div className="flex justify-between items-center">
-                          <h1 className="text-dark text-2xl font-medium">
+                          <h1 className="text-dark text-sm lg:text-2xl font-medium">
                             N
                             <CurrencyFormat
                               value={1200000}
@@ -229,18 +226,18 @@ function Bidding({ closeModal, itemId }) {
                               thousandSeparator={true}
                             />
                           </h1>
-                          <h1 className=" text-sm flex items-center justify-between font-normal px-2 py-1 rounded-full bg-bids text-bidsText">
+                          {/* <h1 className=" text-sm flex items-center justify-between font-normal px-2 py-1 rounded-full bg-bids text-bidsText">
                             <span className="p-1 rounded-full bg-bidsText mr-2"></span>{" "}
                             No bid placed
-                          </h1>
+                          </h1> */}
                         </div>
                       </div>
                       <div className=" bg-total p-4 mt-5 border rounded-2xl">
                         <div className="flex justify-between items-center py-3 border-b">
-                          <h1 className="text-head text-lg font-medium ">
+                          <h1 className="text-head text-xs lg:text-lg font-medium ">
                             Accumulated Amount:
                           </h1>
-                          <h1 className="text-secondary text-lg font-medium ">
+                          <h1 className="text-secondary text-xs lg:text-lg font-medium ">
                             N
                             <CurrencyFormat
                               value={
@@ -253,12 +250,12 @@ function Bidding({ closeModal, itemId }) {
                             />
                           </h1>
                         </div>
-                        <div className="flex justify-between items-ce4nter py-5">
+                        <div className="flex justify-between items-center py-5">
                           {/* <h1 className="text-darkgray text-sm font-normal">
                                             <span className="text-secondary">Time Frame </span> -{" "}
                                             {post.due_date} Months
                     </h1> */}
-                          <h1 className="text-darkgray text-sm font-normal">
+                          <h1 className="text-darkgray text-tiny lg:text-sm font-normal">
                             <span className="text-secondary">Expires in </span>
                             {moment(post.due_date).diff(
                               new Date(),
@@ -272,9 +269,9 @@ function Bidding({ closeModal, itemId }) {
                         {/* <p className="text-neutral text-base font-normal mb-2.5">
                           Amount
                         </p> */}
-                        <p className="text-neutral text-base font-normal mb-2.5 flex justify-between">
+                        <p className="text-neutral text-xs lg:text-base font-normal mb-2.5 flex justify-between">
                           <span>Amount</span>{" "}
-                          <span className="text-green text-sm font-medium">
+                          <span className="text-green text-tiny lg:text-sm font-medium">
                             Available Amount: N
                             <CurrencyFormat
                               value={balance}
@@ -283,7 +280,7 @@ function Bidding({ closeModal, itemId }) {
                             />
                           </span>
                         </p>
-                        <div className="text-nuetral font-bold text-lg flex items-center justify-center py-6 rounded-lg bg-mainbg relative">
+                        <div className="text-nuetral font-bold text-base lg:text-lg flex items-center justify-center py-6 rounded-lg bg-mainbg relative">
                           <sup className="w-2/5 text-right">REIC</sup>
                           <input
                             type="number"
@@ -313,9 +310,9 @@ function Bidding({ closeModal, itemId }) {
                         </div>
                       </div>
 
-                      <div className="text-right pb-8">
+                      <div className="lg:text-right flex justify-between lg:block text-center pt-5 pb-8">
                         <button
-                          className="border border-green rounded-full px-10 py-2 text-green mr-3"
+                          className="border border-green text-sm lg:text-base rounded-full px-10 py-2 text-green mr-3"
                           onClick={() => {
                             setIsClick(true);
                             setNegotiate(true);
@@ -324,7 +321,7 @@ function Bidding({ closeModal, itemId }) {
                           Negotiate Bid
                         </button>
                         <button
-                          className="border rounded-full px-14 py-2 text-dashbg bg-green"
+                          className="border border-green text-sm lg:text-base rounded-full px-14 py-2 text-dashbg bg-green"
                           onClick={() => {
                             // const token = localStorage.getItem("user-wallet");
                             // setReic(post.pullout.accumulated_amount);
@@ -381,12 +378,14 @@ function Bidding({ closeModal, itemId }) {
                   delay: 0.5,
                 },
               }}
-              className={`w-128 bg-white rounded-xl absolute border-green p-6 text-center`}
+              className={`lg:w-128 w-11/12 bg-white rounded-xl absolute border-green p-6 text-center`}
             >
               <div>
-                <h1 className="font-bold text-neutral text-3xl">Negotiation</h1>
+                <h1 className="lg:font-bold font-semibold text-neutral text-3xl">
+                  Negotiation
+                </h1>
               </div>
-              <div className="font-semibold text-base text-neutral my-8">
+              <div className="font-semibold lg:text-base text-sm text-neutral my-8">
                 <p>
                   You will be redirected to have a chat with the investment
                   owner before placing a bid
@@ -394,7 +393,7 @@ function Bidding({ closeModal, itemId }) {
               </div>
               <div className="flex justify-between">
                 <button
-                  className="border rounded-full w-44 h-12 text-neutral bg-dashbg"
+                  className="border text-sm lg:text-base rounded-full w-40 lg:w-44 h-12 text-neutral bg-dashbg"
                   onClick={() => {
                     closeModal(false);
                   }}
@@ -402,7 +401,7 @@ function Bidding({ closeModal, itemId }) {
                   No, Cancel
                 </button>
                 <button
-                  className="rounded-full w-44 h-12 text-dashbg bg-green"
+                  className="rounded-full text-sm lg:text-base w-40 lg:w-44 h-12 text-dashbg bg-green"
                   onClick={() => {
                     navigate("/bidders-chat");
                   }}
@@ -471,14 +470,16 @@ export function Processing({
             delay: 0.5,
           },
         }}
-        className={`w-128 bg-white rounded-xl fixed top-20 border-green p-6 text-center ${
+        className={`lg:w-128 w-11/12 bg-white rounded-xl fixed top-32 border-green p-6 text-center ${
           !ok && "hidden"
         }`}
       >
         <div>
-          <h1 className="font-bold text-neutral text-3xl">Processing</h1>
+          <h1 className="lg:font-bold font-semibold text-neutral text-3xl">
+            Processing
+          </h1>
         </div>
-        <div className="font-semibold text-base text-neutral my-8">
+        <div className="font-semibold lg:text-base text-sm text-neutral my-8">
           <p>
             Please wait while we process your Investment. <br />
             This will take few seconds.
@@ -508,13 +509,15 @@ export function Processing({
               delay: 0.5,
             },
           }}
-          className="w-128 bg-white rounded-xl fixed top-20 border-green p-6 text-center"
+          className="lg:w-128 w-11/12 bg-white rounded-xl fixed top-32 border-green p-6 text-center"
         >
           <div className="flex flex-col items-center ">
             {/* <img src={success} alt="success" className="w-28 mb-5" /> */}
-            <h1 className="font-bold text-neutral text-4xl">Bid placed!</h1>
+            <h1 className="lg:font-bold font-semibold text-neutral text-4xl">
+              Bid placed!
+            </h1>
           </div>
-          <div className="font-semibold text-base text-neutral my-8">
+          <div className="font-semibold lg:text-base text-sm text-neutral my-8">
             <p>
               Your bid has been placed successfully, you will be notified if you
               win the bid.

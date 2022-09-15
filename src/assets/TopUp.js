@@ -525,7 +525,7 @@ export function Warning({ closeWarning, closeModal, reic, title, productID }) {
               Success!
             </h1>
           </div>
-          <div className="font-semibold text-sm lg:text-base text-neutral my-8">
+          <div className="font-semibold text-xs lg:text-base text-neutral my-8">
             <p>
               You made an investment of{" "}
               <span className="text-green">

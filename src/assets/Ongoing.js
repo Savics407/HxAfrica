@@ -122,7 +122,7 @@ function Ongoing() {
             </div>
           </div>
           <InvestTabs />
-          <div className="investlists bg-white px-5 lg:px-0">
+          <div className="investlists bg-white px-5 pb-10 lg:pb-auto lg:px-0">
             {ongoing ? (
               <>
                 {loading ? (
@@ -224,9 +224,13 @@ function Ongoing() {
             ) : (
               <div className="flex flex-col items-center justify-center h-128">
                 <div className="flex flex-col justify-center items-center">
-                  <img src={box} alt="No relisted investment" />
+                  <img
+                    src={box}
+                    alt="No relisted investment"
+                    className="-mr-10"
+                  />
                 </div>
-                <h1 className="font-semibold text-xs text-statustext text-center -ml-10">
+                <h1 className="font-semibold text-xs text-statustext text-center">
                   Oh oh! You have no active
                   <br />
                   investments at this time
@@ -241,7 +245,7 @@ function Ongoing() {
           </div>
         </div>
       </div>
-      <div className="mt-6 pb-10 text-center">
+      <div className="mt-6 pb-10 text-center lg:block hidden">
         <h1 className="text-base font-semibold text-footer">
           © 2022 REIC. All rights reserved.
         </h1>

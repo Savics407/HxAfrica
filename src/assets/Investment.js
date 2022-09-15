@@ -9,7 +9,7 @@ import ongoingCoin from "./images/ongoingcoin.svg";
 import completed from "./images/card-tick.svg";
 import mine from "./images/mywallet.svg";
 import relisted from "./images/convert-card.svg";
-import pendingCoin from "./images/ongoingcoin.svg";
+import pendingCoin from "./images/timer-pause.svg";
 import land from "./images/rawland2.png";
 import users1 from "./images/Frame 14.png";
 import users2 from "./images/Frame 18.png";
@@ -118,7 +118,7 @@ function Investment() {
           <Link to="/investment/pending">
             <div className="mb-4 bg-white flex rounded justify-between items-center text-vestabs text-sm p-4 py-6">
               <div className="flex items-center ">
-                <img src={dropCoin} alt="coins" className="mr-1" />
+                <img src={pendingCoin} alt="coins" className="mr-1" />
                 <h1>Pending Investments</h1>
               </div>
               <FaAngleRight className="text-base" />

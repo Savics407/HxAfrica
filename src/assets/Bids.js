@@ -38,6 +38,9 @@ function Bids() {
     console.log(result.data);
     // alert(result.data.name);
     setBids(result?.data);
+    if (result?.status === "success" && result?.data.length > 0) {
+      setAvailable(true);
+    }
   }
 
   useEffect(() => {
@@ -100,196 +103,214 @@ function Bids() {
                     <ScaleLoader color="#008E10" height={50} width={6} />
                   </div>
                 ) : (
-                  <div className="">
-                    <div className="flex  items-center justify-between bg-banner p-12 py-14 bids">
-                      <div className=" w-1/2">
-                        <h1 className="text-white font-semibold text-3xl mb-5">
-                          Crowdfunding
-                        </h1>
-                        <h1 className="font-semibold uppercase text-sm bg-media p-1 px-2 text-dashbg w-fit rounded">
-                          Real Estate
-                        </h1>
-                      </div>
-                      <div className=" flex justify-between items-center w-1/2">
-                        <div className=" flex font-inter border-r border-card w-1/2 py-2">
-                          <div className="mr-2">
-                            <img src={bidders} alt="bidders-icon" />
+                  <>
+                    {bids
+                      ?.filter((bid) => bid.id === 1)
+                      .map((bid) => (
+                        <div className="">
+                          <div className="flex  items-center justify-between bg-banner p-12 py-14 bids">
+                            <div className=" w-1/2">
+                              <h1 className="text-white font-semibold text-3xl mb-5">
+                                {bid.investment.product.title}
+                              </h1>
+                              <h1 className="font-semibold uppercase text-sm bg-media p-1 px-2 text-dashbg w-fit rounded">
+                                {
+                                  bid.investment.product.category
+                                    .product_category
+                                }
+                              </h1>
+                            </div>
+                            <div className=" flex justify-between items-center w-1/2">
+                              <div className=" flex font-inter border-r border-card w-1/2 py-2">
+                                <div className="mr-2">
+                                  <img src={bidders} alt="bidders-icon" />
+                                </div>
+                                <div>
+                                  <h1 className="font-bold text-2xl text-white">
+                                    650
+                                  </h1>
+                                  <h1 className="text-svg text-xs">
+                                    Total Bidders
+                                  </h1>
+                                </div>
+                              </div>
+                              <div className=" pl-5 flex items-center">
+                                <div className="mr-2">
+                                  <img src={card} alt="bidders-icon" />
+                                </div>
+                                <div>
+                                  <h1 className="text-svg text-xs">
+                                    {bid.amount} REIC
+                                  </h1>
+
+                                  <h1 className="font-semibold text-2xl text-white">
+                                    N
+                                    <CurrencyFormat
+                                      value={bid.investment.amount}
+                                      displayType={"text"}
+                                      thousandSeparator={true}
+                                    />
+                                  </h1>
+                                  <h1 className="text-svg text-xs">
+                                    Investment worth
+                                  </h1>
+                                </div>
+                              </div>
+                            </div>
                           </div>
-                          <div>
-                            <h1 className="font-bold text-2xl text-white">
-                              650
-                            </h1>
-                            <h1 className="text-svg text-xs">Total Bidders</h1>
+                          <div className=" mt-10">
+                            <table className=" w-full table-fixed">
+                              <thead className="">
+                                <tr className="text-left bg-dashbg">
+                                  <th className="py-1 text-head font-semibold text-sm pl-9 w-72">
+                                    Investors
+                                  </th>
+                                  <th className="py-1 pr-7 text-head font-semibold text-sm ">
+                                    Amount Invested
+                                  </th>
+                                  <th className="py-1 pr-7 text-head font-semibold text-sm ">
+                                    Date
+                                  </th>
+                                  <th className="py-1 pr-7 text-head font-semibold text-sm ">
+                                    Time
+                                  </th>
+                                  <th className="py-1 pr-7 text-head font-semibold text-sm ">
+                                    Action
+                                  </th>
+                                </tr>
+                              </thead>
+                              <tr className="border-b ">
+                                <td className="py-8 pl-9 flex items-center">
+                                  <div className="mr-2">
+                                    <img
+                                      src={user}
+                                      alt="Investment Icon"
+                                      className="w-8"
+                                    />
+                                  </div>
+                                  <div className=" w-40">
+                                    <h1 className="font-normal text-statustext text-sm truncate">
+                                      <span title="investors name">
+                                        Investors Name
+                                      </span>
+                                    </h1>
+                                  </div>
+                                </td>
+                                <td className="py-8">
+                                  <h1 className="font-normal text-statustext text-sm">
+                                    N195,500
+                                  </h1>
+                                </td>
+                                <td className="py-8">
+                                  <h1 className="font-normal text-statustext text-sm">
+                                    Aug 12, 2022
+                                  </h1>
+                                </td>
+                                <td className="py-8">
+                                  <h1 className="font-normal text-statustext text-sm">
+                                    12:34pm
+                                  </h1>
+                                </td>
+
+                                <td className="py-3">
+                                  <button className="font-medium text-xs font-inter text-blue py-2 px-2 border-r">
+                                    Approve
+                                  </button>
+                                  <button className="font-medium text-xs font-inter text-red py-1 px-2">
+                                    Decline
+                                  </button>
+                                </td>
+                              </tr>
+
+                              <tr className="border-b ">
+                                <td className="py-8 pl-9 flex items-center">
+                                  <div className="mr-2">
+                                    <img
+                                      src={user}
+                                      alt="Investment Icon"
+                                      className="w-8"
+                                    />
+                                  </div>
+                                  <div className=" w-40">
+                                    <h1 className="font-normal text-statustext text-sm truncate">
+                                      <span title="investors name">
+                                        Investors Name
+                                      </span>
+                                    </h1>
+                                  </div>
+                                </td>
+                                <td className="py-8">
+                                  <h1 className="font-normal text-statustext text-sm">
+                                    N195,500
+                                  </h1>
+                                </td>
+                                <td className="py-8">
+                                  <h1 className="font-normal text-statustext text-sm">
+                                    Aug 12, 2022
+                                  </h1>
+                                </td>
+                                <td className="py-8">
+                                  <h1 className="font-normal text-statustext text-sm">
+                                    12:34pm
+                                  </h1>
+                                </td>
+
+                                <td className="py-3">
+                                  <button className="font-medium text-xs font-inter text-blue py-2 px-2 border-r">
+                                    Approve
+                                  </button>
+                                  <button className="font-medium text-xs font-inter text-red py-1 px-2">
+                                    Decline
+                                  </button>
+                                </td>
+                              </tr>
+                              <tr className="border-b ">
+                                <td className="py-8 pl-9 flex items-center">
+                                  <div className="mr-2">
+                                    <img
+                                      src={user}
+                                      alt="Investment Icon"
+                                      className="w-8"
+                                    />
+                                  </div>
+                                  <div className=" w-40">
+                                    <h1 className="font-normal text-statustext text-sm truncate">
+                                      <span title="investors name">
+                                        Investors Name
+                                      </span>
+                                    </h1>
+                                  </div>
+                                </td>
+                                <td className="py-8">
+                                  <h1 className="font-normal text-statustext text-sm">
+                                    N195,500
+                                  </h1>
+                                </td>
+                                <td className="py-8">
+                                  <h1 className="font-normal text-statustext text-sm">
+                                    Aug 12, 2022
+                                  </h1>
+                                </td>
+                                <td className="py-8">
+                                  <h1 className="font-normal text-statustext text-sm">
+                                    12:34pm
+                                  </h1>
+                                </td>
+
+                                <td className="py-3">
+                                  <button className="font-medium text-xs font-inter text-blue py-2 px-2 border-r">
+                                    Approve
+                                  </button>
+                                  <button className="font-medium text-xs font-inter text-red py-1 px-2">
+                                    Decline
+                                  </button>
+                                </td>
+                              </tr>
+                            </table>
                           </div>
                         </div>
-                        <div className=" pl-5 flex items-center">
-                          <div className="mr-2">
-                            <img src={card} alt="bidders-icon" />
-                          </div>
-                          <div>
-                            <h1 className="text-svg text-xs">256.29 REIC</h1>
-
-                            <h1 className="font-semibold text-2xl text-white">
-                              N200,000
-                            </h1>
-                            <h1 className="text-svg text-xs">
-                              Investment worth
-                            </h1>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div className=" mt-10">
-                      <table className=" w-full table-fixed">
-                        <thead className="">
-                          <tr className="text-left bg-dashbg">
-                            <th className="py-1 text-head font-semibold text-sm pl-9 w-72">
-                              Investors
-                            </th>
-                            <th className="py-1 pr-7 text-head font-semibold text-sm ">
-                              Amount Invested
-                            </th>
-                            <th className="py-1 pr-7 text-head font-semibold text-sm ">
-                              Date
-                            </th>
-                            <th className="py-1 pr-7 text-head font-semibold text-sm ">
-                              Time
-                            </th>
-                            <th className="py-1 pr-7 text-head font-semibold text-sm ">
-                              Action
-                            </th>
-                          </tr>
-                        </thead>
-                        <tr className="border-b ">
-                          <td className="py-8 pl-9 flex items-center">
-                            <div className="mr-2">
-                              <img
-                                src={user}
-                                alt="Investment Icon"
-                                className="w-8"
-                              />
-                            </div>
-                            <div className=" w-40">
-                              <h1 className="font-normal text-statustext text-sm truncate">
-                                <span title="investors name">
-                                  Investors Name
-                                </span>
-                              </h1>
-                            </div>
-                          </td>
-                          <td className="py-8">
-                            <h1 className="font-normal text-statustext text-sm">
-                              N195,500
-                            </h1>
-                          </td>
-                          <td className="py-8">
-                            <h1 className="font-normal text-statustext text-sm">
-                              Aug 12, 2022
-                            </h1>
-                          </td>
-                          <td className="py-8">
-                            <h1 className="font-normal text-statustext text-sm">
-                              12:34pm
-                            </h1>
-                          </td>
-
-                          <td className="py-3">
-                            <button className="font-medium text-xs font-inter text-blue py-2 px-2 border-r">
-                              Approve
-                            </button>
-                            <button className="font-medium text-xs font-inter text-red py-1 px-2">
-                              Decline
-                            </button>
-                          </td>
-                        </tr>
-
-                        <tr className="border-b ">
-                          <td className="py-8 pl-9 flex items-center">
-                            <div className="mr-2">
-                              <img
-                                src={user}
-                                alt="Investment Icon"
-                                className="w-8"
-                              />
-                            </div>
-                            <div className=" w-40">
-                              <h1 className="font-normal text-statustext text-sm truncate">
-                                <span title="investors name">
-                                  Investors Name
-                                </span>
-                              </h1>
-                            </div>
-                          </td>
-                          <td className="py-8">
-                            <h1 className="font-normal text-statustext text-sm">
-                              N195,500
-                            </h1>
-                          </td>
-                          <td className="py-8">
-                            <h1 className="font-normal text-statustext text-sm">
-                              Aug 12, 2022
-                            </h1>
-                          </td>
-                          <td className="py-8">
-                            <h1 className="font-normal text-statustext text-sm">
-                              12:34pm
-                            </h1>
-                          </td>
-
-                          <td className="py-3">
-                            <button className="font-medium text-xs font-inter text-blue py-2 px-2 border-r">
-                              Approve
-                            </button>
-                            <button className="font-medium text-xs font-inter text-red py-1 px-2">
-                              Decline
-                            </button>
-                          </td>
-                        </tr>
-                        <tr className="border-b ">
-                          <td className="py-8 pl-9 flex items-center">
-                            <div className="mr-2">
-                              <img
-                                src={user}
-                                alt="Investment Icon"
-                                className="w-8"
-                              />
-                            </div>
-                            <div className=" w-40">
-                              <h1 className="font-normal text-statustext text-sm truncate">
-                                <span title="investors name">
-                                  Investors Name
-                                </span>
-                              </h1>
-                            </div>
-                          </td>
-                          <td className="py-8">
-                            <h1 className="font-normal text-statustext text-sm">
-                              N195,500
-                            </h1>
-                          </td>
-                          <td className="py-8">
-                            <h1 className="font-normal text-statustext text-sm">
-                              Aug 12, 2022
-                            </h1>
-                          </td>
-                          <td className="py-8">
-                            <h1 className="font-normal text-statustext text-sm">
-                              12:34pm
-                            </h1>
-                          </td>
-
-                          <td className="py-3">
-                            <button className="font-medium text-xs font-inter text-blue py-2 px-2 border-r">
-                              Approve
-                            </button>
-                            <button className="font-medium text-xs font-inter text-red py-1 px-2">
-                              Decline
-                            </button>
-                          </td>
-                        </tr>
-                      </table>
-                    </div>
-                  </div>
+                      ))}
+                  </>
                 )}
               </>
             ) : (
