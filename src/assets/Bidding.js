@@ -310,18 +310,23 @@ function Bidding({ closeModal, itemId }) {
                         </div>
                       </div>
 
-                      <div className="lg:text-right flex justify-between lg:block text-center pt-5 pb-8">
+                      <div className="lg:text-right flex flex-wrap justify-between lg:block text-center pt-5 pb-8">
                         <button
-                          className="border border-green text-sm lg:text-base rounded-full px-10 py-2 text-green mr-3"
+                          className="border border-green w-full lg:w-auto rounded-full px-10 py-2 text-green mb-2 lg:mb-auto lg:mr-3"
                           onClick={() => {
                             setIsClick(true);
                             setNegotiate(true);
+                            localStorage.setItem(
+                              "investment-owner",
+                              post.user_id
+                            );
+                            // alert(post.user_id);
                           }}
                         >
                           Negotiate Bid
                         </button>
                         <button
-                          className="border border-green text-sm lg:text-base rounded-full px-14 py-2 text-dashbg bg-green"
+                          className="border border-green w-full lg:w-auto rounded-full px-14 py-2 text-dashbg bg-green"
                           onClick={() => {
                             // const token = localStorage.getItem("user-wallet");
                             // setReic(post.pullout.accumulated_amount);
@@ -393,7 +398,7 @@ function Bidding({ closeModal, itemId }) {
               </div>
               <div className="flex justify-between">
                 <button
-                  className="border text-xs lg:text-base rounded-full w-40 lg:w-44 h-12 text-neutral bg-dashbg"
+                  className="border text-sm lg:text-base rounded-full w-40 lg:w-44 h-12 text-neutral bg-dashbg"
                   onClick={() => {
                     closeModal(false);
                   }}
@@ -401,9 +406,9 @@ function Bidding({ closeModal, itemId }) {
                   No, Cancel
                 </button>
                 <button
-                  className="rounded-full text-xs lg:text-base w-40 lg:w-44 h-12 text-dashbg bg-green"
+                  className="rounded-full text-sm lg:text-base w-40 lg:w-44 h-12 text-dashbg bg-green"
                   onClick={() => {
-                    navigate("/bidders-chat");
+                    navigate("/investment-chat");
                   }}
                 >
                   Yes, Continue

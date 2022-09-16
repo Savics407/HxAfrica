@@ -16,8 +16,8 @@ import ScaleLoader from "react-spinners/ScaleLoader";
 import TopUp from "./TopUp";
 
 function Bids() {
-  const [available, setAvailable] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [available, setAvailable] = useState(true);
+  const [loading, setLoading] = useState(true);
   const [click, setClick] = useState(false);
   const [bids, setBids] = useState();
   async function fetchInvestment() {
@@ -38,8 +38,13 @@ function Bids() {
     console.log(result.data);
     // alert(result.data.name);
     setBids(result?.data);
-    if (result?.status === "success" && result?.data.length > 0) {
+    if (result?.data.length === 0) {
+      setAvailable(false);
+    } else {
       setAvailable(true);
+    }
+    if (result?.status === "success" && result?.data.length > 0) {
+      setLoading(false);
     }
   }
 

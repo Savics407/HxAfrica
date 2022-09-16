@@ -385,7 +385,7 @@ function MyBanks({
           </div>
         ) : (
           <div className="py-4 lg:px-7 px-5">
-            <div className="input mb-4 h-90 lg:px-2 overflow-y-scroll scroll">
+            <div className="input mb-4 h-90 lg:px-2 overflow-y-auto scroll">
               {userBank?.map((bank) => (
                 <div
                   key={bank.id}

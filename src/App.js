@@ -55,8 +55,8 @@ function App() {
 
         <Route path="/status" element={<UseNetworkStatus />} />
         <Route element={<PrivateRoutes />}>
-          <Route path="/bidders-chat" element={<BiddersChat />} />
-          <Route path="/investment-chat" element={<Owner />} />
+          <Route path="/investment-chat" element={<BiddersChat />} />
+          {/* <Route path="/investment-chat" element={<Owner />} /> */}
           <Route path="/bids" element={<Bids />} />
           <Route path="/buytoken/success" element={<Success />} />
           <Route path="/investment/pending" element={<Pending />} />

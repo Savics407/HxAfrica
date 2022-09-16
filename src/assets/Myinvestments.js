@@ -73,7 +73,7 @@ function Myinvests() {
           </Link>
         </div>
         {available ? (
-          <div className="pt-8 px-2 h-7x overflow-y-scroll scroll">
+          <div className="pt-8 px-2 h-7x overflow-y-auto scroll">
             {posts?.map((post) => (
               <div
                 key={post.id}

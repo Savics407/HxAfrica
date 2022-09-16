@@ -48,9 +48,34 @@ function Mine() {
       setLoading(false);
     }
   }
+  const [lists, setLists] = useState(false);
+  async function fetchChatList() {
+    const token = localStorage.getItem("user-token");
+    // e.preventDefault();
+    const response = await fetch(
+      "https://reic.api.simpoo.biz/api/chat/chat_list",
+      {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+          Accept: "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    const result = await response.json();
+    console.log(result.data);
+    // alert(result.data.name);
+    // setLists(result?.data);
+    if (result?.data.length !== 0) {
+      //  setLoading(false);
+      setLists(true);
+    }
+  }
 
   useEffect(() => {
     // activities();
+    fetchChatList();
     fetchData();
   }, []);
 
@@ -80,26 +105,30 @@ function Mine() {
           </div> */}
           <div className="mb-10 flex justify-between items-center hidden lg:flex">
             <h1 className="text-modal text-2xl font-semibold">Investments</h1>
-            <Link to="/investment-chat">
-              <button className="flex items-center bg-green rounded px-4 py-2 text-white text-sm">
-                <img src={messenger} alt="messenger" />{" "}
-                <span className="ml-3">Messages(3)</span>
-              </button>
-            </Link>
+            {lists && (
+              <Link to="/investment-chat">
+                <button className="flex items-center bg-green rounded px-4 py-2 text-white text-sm">
+                  <img src={messenger} alt="messenger" />{" "}
+                  <span className="ml-3">Messages(3)</span>
+                </button>
+              </Link>
+            )}
           </div>
-          <div className="absolute top-40 left-0 right-0 hidden lg:block">
-            <div className=" border border-green rounded-lg w-100 m-auto flex items-center justify-between bg-white text-navbar p-5 shadow-2xl ">
-              <h1>
-                You have message request on your listed investment{" "}
-                <Link to="/investment-chat">
-                  <span className="text-green underline font-semibold">
-                    View Messages
-                  </span>
-                </Link>
-              </h1>
-              <MdClose className="cursor-pointer text-4xl ml-6" />
+          {lists && (
+            <div className="absolute top-40 left-0 right-0 hidden lg:block">
+              <div className=" border border-green rounded-lg w-100 m-auto flex items-center justify-between bg-white text-navbar p-5 shadow-2xl ">
+                <h1>
+                  You have message request on your listed investment{" "}
+                  <Link to="/investment-chat">
+                    <span className="text-green underline font-semibold">
+                      View Messages
+                    </span>
+                  </Link>
+                </h1>
+                <MdClose className="cursor-pointer text-4xl ml-6" />
+              </div>
             </div>
-          </div>
+          )}
 
           <div className="lg:hidden py-8 px-4 bg-welcome text-dark text-lg font-semibold flex justify-between items-center">
             <h1 className="">Investments</h1>

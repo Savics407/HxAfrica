@@ -47,7 +47,7 @@ function Products() {
           <h1 className="text-lg text-darker">Products</h1>
           <button className="text-dark font-sm">View all</button>
         </div>
-        <div className=" h-p rounded-lg overflow-y-scroll scroll">
+        <div className=" h-p rounded-lg overflow-y-auto scroll">
           {product?.map((product) => (
             <div className="px-5 py-1" key={product.id}>
               <div className="bg-welcome rounded-lg flex justify-between items-center px-3 py-3">
