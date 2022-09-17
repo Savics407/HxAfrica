@@ -20,10 +20,11 @@ function AllInvestments() {
           <div className=" bg-white p-10 rounded-lg">
             <h1 className="text-dark  font-black text-3xl mb-3">Investments</h1>
           </div>
+          <div>
+            <InvestmentCard />
+          </div>
           <div className="flex justify-between">
             <div className="w-4/6">
-              <InvestmentCard />
-
               <InvestmentList />
             </div>
             <div className="w-2/6">

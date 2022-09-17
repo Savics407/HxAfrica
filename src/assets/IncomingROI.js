@@ -30,12 +30,12 @@ function IncomingROI() {
     // alert(result.data.due_date);
 
     setPosts(result.data);
-    if (result?.status === "error") {
-      setAvailable(false);
+    if (result?.status === "success") {
+      setAvailable(true);
       setLoading(false);
       // alert("fetched Successfully");
     } else {
-      setAvailable(true);
+      setAvailable(false);
     }
   }
 

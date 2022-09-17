@@ -7,12 +7,14 @@ import { TbLoader } from "react-icons/tb";
 import { toast } from "react-toastify";
 import sad from "./images/sad.svg";
 import { useNavigate, Link } from "react-router-dom";
+import ScaleLoader from "react-spinners/ScaleLoader";
 import * as CurrencyFormat from "react-currency-format";
 
 function Details({ closeDetails, itemId, ongoing }) {
   const [authPullOut, setAuthPullOut] = useState(false);
   const [isClick, setIsClick] = useState(false);
   // const [details, setDetails] = useState(true)
+  const [loading, setLoading] = useState(true);
 
   const [posts, setPosts] = useState();
   // const productID = itemId;
@@ -32,6 +34,9 @@ function Details({ closeDetails, itemId, ongoing }) {
     const result = await response.json();
     console.log(result.data);
     setPosts(result.data);
+    if (result?.status === "success") {
+      setLoading(false);
+    }
   }
 
   useEffect(() => {
@@ -68,127 +73,139 @@ function Details({ closeDetails, itemId, ongoing }) {
             closeDetails(false);
           }}
         ></div>
-        {posts
-          ?.filter((post) => post.id === itemId)
-          .map((post) => (
-            <motion.div
-              initial={{
-                scale: 0,
-              }}
-              animate={{
-                scale: 1,
-                transition: {
-                  duration: 0.3,
-                },
-              }}
-              exit={{
-                scale: 0,
-                transition: {
-                  delay: 0.5,
-                },
-              }}
-              className={`bg-white rounded-xl border w-4/5 lg:w-1/2 z-10 ${
-                isClick ? "hidden" : "block"
-              }`}
-            >
-              <div className="border-b border-stroke lg:px-10 px-5 py-5 lg:text-2xl text-xs font-semibold flex justify-between items-center text-modal">
-                <h1>Investments</h1>
-                <MdClose
-                  className="cursor-pointer"
-                  onClick={() => {
-                    closeDetails(false);
-                  }}
-                />
-              </div>
-              <div className="px-5 lg:px-10 ">
-                <div>
-                  <img
-                    src={hdimage}
-                    alt="my-investment-image"
-                    className="w-full"
-                  />
-                </div>
 
-                <div className="border-b border-strek pb-4 ">
-                  <h1 className="bg-media lg:p-2 px-2 py-1 rounded text-xxm lg:text-sm my-5 uppercase  text-dashbg w-fit text-center font-semibold ">
-                    {post.product.category.product_category}
-                  </h1>
-                  <h1 className="text-neutral text-sm lg:text-2xl font-semibold">
-                    {post.product.title}
-                  </h1>
-                </div>
-                <div className="justify-between">
-                  <div className="">
-                    <div className="flex justify-between">
-                      <div className="income2">
-                        <h1>Expected Returns</h1>
-                        <p>
-                          N
-                          <CurrencyFormat
-                            value={
-                              (post.amount * post.interest) / 100 + post.amount
-                            }
-                            displayType={"text"}
-                            thousandSeparator={true}
-                          />
-                        </p>
-                      </div>
-                      <div className="income2">
-                        <h1>Expected Date</h1>
-                        <p>{moment(post.due_date).format("MMM DD, yyyy")}</p>
+        <motion.div
+          initial={{
+            scale: 0,
+          }}
+          animate={{
+            scale: 1,
+            transition: {
+              duration: 0.3,
+            },
+          }}
+          exit={{
+            scale: 0,
+            transition: {
+              delay: 0.5,
+            },
+          }}
+          className={`bg-white rounded-xl border w-4/5 lg:w-1/2 z-10 ${
+            isClick ? "hidden" : "block"
+          }`}
+        >
+          <div className="border-b border-stroke lg:px-10 px-5 py-5 lg:text-2xl text-xs font-semibold flex justify-between items-center text-modal">
+            <h1>Investments</h1>
+            <MdClose
+              className="cursor-pointer"
+              onClick={() => {
+                closeDetails(false);
+              }}
+            />
+          </div>
+          {loading ? (
+            <div className="text-center lg:py-48 py-40 h-auto">
+              <ScaleLoader color="#008E10" height={40} width={5} />
+            </div>
+          ) : (
+            <>
+              {posts
+                ?.filter((post) => post.id === itemId)
+                .map((post) => (
+                  <div className="px-5 lg:px-10 ">
+                    <div>
+                      <img
+                        src={hdimage}
+                        alt="my-investment-image"
+                        className="w-full"
+                      />
+                    </div>
+
+                    <div className="border-b border-strek pb-4 ">
+                      <h1 className="bg-media lg:p-2 px-2 py-1 rounded text-xxm lg:text-sm my-5 uppercase  text-dashbg w-fit text-center font-semibold ">
+                        {post.product.category.product_category}
+                      </h1>
+                      <h1 className="text-neutral text-sm lg:text-2xl font-semibold">
+                        {post.product.title}
+                      </h1>
+                    </div>
+                    <div className="justify-between">
+                      <div className="">
+                        <div className="flex justify-between">
+                          <div className="income2">
+                            <h1>Expected Returns</h1>
+                            <p>
+                              N
+                              <CurrencyFormat
+                                value={
+                                  (post.amount * post.interest) / 100 +
+                                  post.amount
+                                }
+                                displayType={"text"}
+                                thousandSeparator={true}
+                              />
+                            </p>
+                          </div>
+                          <div className="income2">
+                            <h1>Expected Date</h1>
+                            <p>
+                              {moment(post.due_date).format("MMM DD, yyyy")}
+                            </p>
+                          </div>
+                        </div>
+                        <div className="flex justify-between">
+                          <div className="income2">
+                            <h1>Amount in Reic Token</h1>
+                            <p>{post.amount / 50000} REIC</p>
+                          </div>
+                          <div className="income2">
+                            <h1>Invested Amount</h1>
+                            <p>
+                              N
+                              <CurrencyFormat
+                                value={post.amount}
+                                displayType={"text"}
+                                thousandSeparator={true}
+                              />
+                            </p>
+                          </div>
+                        </div>
                       </div>
                     </div>
-                    <div className="flex justify-between">
-                      <div className="income2">
-                        <h1>Amount in Reic Token</h1>
-                        <p>{post.amount / 50000} REIC</p>
-                      </div>
-                      <div className="income2">
-                        <h1>Invested Amount</h1>
-                        <p>
-                          N
-                          <CurrencyFormat
-                            value={post.amount}
-                            displayType={"text"}
-                            thousandSeparator={true}
-                          />
-                        </p>
-                      </div>
+                    <div className="text-right pt-5 pb-8">
+                      {post.product.status_investment === "ongoing" ? (
+                        <button
+                          className="border rounded-full lg:w-44 lg:h-12 w-24 h-9 text-xs lg:text-xl text-dashbg bg-red"
+                          onClick={() => {
+                            setAuthPullOut(true);
+                            setIsClick(!isClick);
+                            setTitle(post.product.title);
+                            setProductId(itemId);
+                            localStorage.setItem(
+                              "product_title",
+                              post.product.title
+                            );
+                          }}
+                        >
+                          Pull Out
+                        </button>
+                      ) : post.status === "completed" ? (
+                        <button className="border rounded-full px-6 py-1 text-xs lg:text-xl text-dashbg bg-green">
+                          Completed
+                        </button>
+                      ) : (
+                        <Link to="/investment/pending">
+                          <button className="border rounded-full lg:w-44 lg:h-12 w-24 h-9 text-xs lg:text-xl text-dashbg bg-red">
+                            Cancel
+                          </button>
+                        </Link>
+                      )}
                     </div>
                   </div>
-                </div>
-                <div className="text-right pt-5 pb-8">
-                  {post.product.status_investment === "ongoing" ? (
-                    <button
-                      className="border rounded-full lg:w-44 lg:h-12 w-24 h-9 text-xs lg:text-xl text-dashbg bg-red"
-                      onClick={() => {
-                        setAuthPullOut(true);
-                        setIsClick(!isClick);
-                        setTitle(post.product.title);
-                        setProductId(itemId);
-                        localStorage.setItem(
-                          "product_title",
-                          post.product.title
-                        );
-                      }}
-                    >
-                      Pull Out
-                    </button>
-                  ) : post.status === "completed" ? (
-                    <button className="border rounded-full px-6 py-1 text-xs lg:text-xl text-dashbg bg-green">
-                      Completed
-                    </button>
-                  ) : (
-                    <Link to="/investment/pending">
-                      <button className="border rounded-full lg:w-44 lg:h-12 w-24 h-9 text-xs lg:text-xl text-dashbg bg-red">
-                        Cancel
-                      </button>
-                    </Link>
-                  )}
-                </div>
-              </div>
-            </motion.div>
-          ))}
+                ))}
+            </>
+          )}
+        </motion.div>
 
         {authPullOut && (
           <Warning

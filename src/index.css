@@ -340,7 +340,7 @@ body {
     }
 
     .section h1 {
-      @apply lg:text-sm text-xs font-medium text-dark mb-3 lg:mt-0 mt-6
+      @apply text-sm font-medium text-dark mb-3
     }
 
     .investlists .real-estate {

@@ -29,7 +29,7 @@ function OngoingInvestments() {
   }, []);
   return (
     <div>
-      <div className="rounded-lg bg-white mt-5 pb-28">
+      <div className="rounded-lg bg-white pb-28">
         <div className="border-b border-stroke flex justify-between px-5 py-5 mb-5 font-medium">
           <h1 className="text-lg text-darker">Ongoing Investments</h1>
           <button className="text-dark font-sm">View all</button>

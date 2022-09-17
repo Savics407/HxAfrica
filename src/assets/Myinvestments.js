@@ -6,13 +6,14 @@ import box from "./images/Box.png";
 import { useState, useEffect } from "react";
 import Details from "./Investment_Details";
 import { Link } from "react-router-dom";
+import ScaleLoader from "react-spinners/ScaleLoader";
 import moment from "moment";
 
 function Myinvests() {
   const [openDetails, setOpenDetails] = useState(false);
-  const [available, setAvailable] = useState(false);
+  const [available, setAvailable] = useState(true);
   const [itemId, setItemID] = useState("");
-
+  const [loading, setLoading] = useState(true);
   const [posts, setPosts] = useState();
   async function fetchData() {
     const token = localStorage.getItem("user-token");
@@ -37,6 +38,9 @@ function Myinvests() {
       // alert("fetched Successfully");
     } else {
       setAvailable(true);
+    }
+    if (result?.status === "success") {
+      setLoading(false);
     }
   }
 
@@ -73,42 +77,50 @@ function Myinvests() {
           </Link>
         </div>
         {available ? (
-          <div className="pt-8 px-2 h-7x overflow-y-auto scroll">
-            {posts?.map((post) => (
-              <div
-                key={post.id}
-                className="p-2 bg-welcome flex items-center justify-between rounded-lg mb-4"
-              >
-                <div className="flex items-center w-56">
-                  <div className="mr-3">
-                    <img
-                      src={invest}
-                      alt="investment-icon"
-                      className="h-10 w-10"
-                    />
-                  </div>
-                  <div className="">
-                    <h1 className="text-dark font-medium text-base">
-                      {post.product.title}
-                    </h1>
-                    <p className="text-xs text-green">
-                      {post.product.product_category}
-                    </p>
-                  </div>
-                </div>
-                <div className="w-18">
-                  <h1
-                    className="text-links text-tiny lg:text-xs font-normal cursor-pointer"
-                    onClick={() => {
-                      productDetails(post.id);
-                    }}
-                  >
-                    See details
-                  </h1>
-                </div>
+          <>
+            {loading ? (
+              <div className="text-center px-20 py-48">
+                <ScaleLoader color="#008E10" height={40} width={4} />
               </div>
-            ))}
-          </div>
+            ) : (
+              <div className="pt-8 px-2 h-7x overflow-y-auto scroll">
+                {posts?.map((post) => (
+                  <div
+                    key={post.id}
+                    className="p-2 bg-welcome flex items-center justify-between rounded-lg mb-4"
+                  >
+                    <div className="flex items-center w-56">
+                      <div className="mr-3">
+                        <img
+                          src={invest}
+                          alt="investment-icon"
+                          className="h-10 w-10"
+                        />
+                      </div>
+                      <div className="">
+                        <h1 className="text-dark font-medium text-base">
+                          {post.product.title}
+                        </h1>
+                        <p className="text-xs text-green">
+                          {post.product.product_category}
+                        </p>
+                      </div>
+                    </div>
+                    <div className="w-18">
+                      <h1
+                        className="text-links text-tiny lg:text-xs font-normal cursor-pointer"
+                        onClick={() => {
+                          productDetails(post.id);
+                        }}
+                      >
+                        See details
+                      </h1>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </>
         ) : (
           <div className="flex flex-col items-center justify-center h-128">
             {/* <div className="flex flex-col justify-center items-center">

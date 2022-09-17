@@ -8,7 +8,7 @@ import realEstate from "../images/realEstate.svg";
 function InvestmentTabs() {
   return (
     <>
-      <div className="flex items-center mar text-sm rounded-lg my-4 text-footer bg-white px-9 ">
+      <div className="flex items-center mar text-sm rounded-lg mb-4 text-footer bg-white px-9 ">
         <Link to="/admin/investments">
           <div className=" text-dark text-base border-b-4 border-green font-medium  px-1 py-2.5 hover:text-dark">
             <h1>Investments </h1>
@@ -81,20 +81,26 @@ function InvestmentList() {
               {pending?.length}
             </span>
           </h1>
-          <button className="text-sm text-dark">Select Multiple</button>
+          {/* <button className="text-sm text-dark">Select Multiple</button> */}
         </div>
         <div className="">
           <table className=" w-full table-auto">
             <thead className="">
               <tr className="text-left bg-bar">
-                <th className="py-3 text-mobile-nav font-medium text-xs pl-9">
+                <th className="py-3 text-mobile-nav font-medium text-xs pl-9 border w-48">
+                  ID
+                </th>
+                <th className="py-3 pr-7 text-mobile-nav font-medium text-xs ">
                   Investment
                 </th>
                 <th className="py-3 pr-7 text-mobile-nav font-medium text-xs ">
                   Amount
                 </th>
                 <th className="py-3 pr-7 text-mobile-nav font-medium text-xs ">
-                  Time Frame
+                  Duration
+                </th>
+                <th className="py-3 pr-7 text-mobile-nav font-medium text-xs ">
+                  Interest
                 </th>
                 {/* <th className="py-3 pr-7 text-mobile-nav font-medium text-xs ">
                   Investors
@@ -106,7 +112,10 @@ function InvestmentList() {
             </thead>
             {pending?.map((pending) => (
               <tr className="border-b font-inter">
-                <td className="py-8 pl-5 flex items-center">
+                <td className="py-8 pl-9">
+                  <h1 className="font-normal text-deep text-xs">#1246</h1>
+                </td>
+                <td className="py-8  flex items-center">
                   <div className="mr-2">
                     <img src={realEstate} alt="Investment Icon" />
                   </div>
@@ -134,13 +143,13 @@ function InvestmentList() {
                     {pending.duration} Days
                   </h1>
                 </td>
-                {/* <td className="py-8">
-                  <h1 className="font-normal text-deep text-xs">200</h1>
-                </td> */}
+                <td className="py-8">
+                  <h1 className="font-normal text-deep text-xs">20%</h1>
+                </td>
 
                 <td className="py-3">
                   <button
-                    className="font-medium text-xs font-inter text-blue py-2 px-2 border-r"
+                    className="font-medium text-xs font-inter text-green py-2 px-2 border-r"
                     // onClick={() => {
                     //   approveProduct(funds.id);
                     //   setStatus("success");
@@ -148,15 +157,27 @@ function InvestmentList() {
                   >
                     Approve
                   </button>
-                  <button className="font-medium text-xs font-inter text-red py-1 px-2">
+                  <button className="font-medium text-xs font-inter text-red py-1 border-r px-2">
                     Decline
+                  </button>
+                  <button
+                    className="font-medium text-xs font-inter text-blue py-2 px-2 "
+                    // onClick={() => {
+                    //   approveProduct(funds.id);
+                    //   setStatus("success");
+                    // }}
+                  >
+                    View
                   </button>
                 </td>
               </tr>
             ))}
 
             <tr className="border-b font-inter">
-              <td className="py-8 pl-5 flex items-center">
+              <td className="py-8 pl-9">
+                <h1 className="font-normal text-deep text-xs">#1246</h1>
+              </td>
+              <td className="py-8  flex items-center">
                 <div className="mr-2">
                   <img src={realEstate} alt="Investment Icon" />
                 </div>
@@ -172,19 +193,34 @@ function InvestmentList() {
               <td className="py-8">
                 <h1 className="font-normal text-deep text-xs">N200,000</h1>
               </td>
-              {/* <td className="py-8">
+              <td className="py-8">
                 <h1 className="font-normal text-deep text-xs">7 weeks</h1>
-              </td> */}
+              </td>
               <td className="py-8">
                 <h1 className="font-normal text-deep text-xs">200</h1>
               </td>
 
               <td className="py-3">
-                <button className="font-medium text-xs font-inter text-blue py-2 px-2 border-r ">
+                <button
+                  className="font-medium text-xs font-inter text-green py-2 px-2 border-r"
+                  // onClick={() => {
+                  //   approveProduct(funds.id);
+                  //   setStatus("success");
+                  // }}
+                >
                   Approve
                 </button>
-                <button className="font-medium text-xs font-inter text-red py-1 px-2">
+                <button className="font-medium text-xs font-inter text-red py-1 border-r px-2">
                   Decline
+                </button>
+                <button
+                  className="font-medium text-xs font-inter text-blue py-2 px-2 "
+                  // onClick={() => {
+                  //   approveProduct(funds.id);
+                  //   setStatus("success");
+                  // }}
+                >
+                  View
                 </button>
               </td>
             </tr>
