@@ -2,14 +2,49 @@ import React, { useEffect, useRef, useState } from "react";
 import Header from "../Header";
 import elvis from "../images/Elvis.svg";
 import raw from "../images/raw.svg";
-import { FaAngleRight, FaRegSmile } from "react-icons/fa";
+import { FaAngleLeft, FaAngleRight, FaRegSmile } from "react-icons/fa";
 import { RiCheckDoubleFill } from "react-icons/ri";
 import user from "../images/default_profile.svg";
 import moment from "moment";
 import ScaleLoader from "react-spinners/ScaleLoader";
 import send from "../images/send.svg";
+import { Link, useNavigate } from "react-router-dom";
 
 function BiddersChat() {
+  const navigate = useNavigate();
+  const [bids, setBids] = useState(false);
+  async function fetchInvestment() {
+    const token = localStorage.getItem("user-token");
+    // e.preventDefault();
+    const response = await fetch(
+      "https://reic.api.simpoo.biz/api/exchange/fetch_investment_bids",
+      {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+          Accept: "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    const result = await response.json();
+    console.log(result.data);
+    // alert(result.data.name);
+    setBids(result?.data);
+    if (result?.data.length === 0) {
+      setBids(false);
+    } else {
+      setBids(true);
+    }
+    // if (result?.status === "success" && result?.data.length > 0) {
+    //   setLoading(false);
+    // }
+  }
+
+  useEffect(() => {
+    fetchInvestment();
+  }, []);
+
   const userIcon = localStorage.getItem("user-profile");
   const bottomRef = useRef(null);
 
@@ -122,11 +157,23 @@ function BiddersChat() {
   return (
     <div className="font-family bg-mainbg">
       <Header />
-      <div className="p-10 flex justify-between">
-        <div className="bg-white py-10 w-2/6 rounded-xl">
-          <div className="p-10">
+      <div className="lg:hidden py-8 px-4 bg-chatHeader text-dark text-lg flex justify-between items-center">
+        <h1 className="">Investors List</h1>
+        <button
+          className="text-goback text-sm font-inter"
+          onClick={() => {
+            navigate(-1);
+          }}
+        >
+          Back
+        </button>
+      </div>
+      <div className="lg:p-10 flex justify-between flex-wrap">
+        <div className="bg-white py-10 lg:w-2/6 w-full lg:rounded-xl">
+          <div className="p-10 hidden lg:block">
             <h1 className="text-xl text-modal">Investors list</h1>
           </div>
+
           <div className="h-7x overflow-y-auto scroll">
             {lists?.map((list) => (
               <div
@@ -138,15 +185,17 @@ function BiddersChat() {
                   fetchChat(list.receiver_id);
                 }}
               >
-                <div className="w-2/6">
+                <div className="lg:w-2/6 w-14 mr-4 lg:mr-auto">
                   <img src={elvis} alt="investor" />
                 </div>
-                <div className="flex items-center w-2/3 justify-between">
+                <div className="flex w-full items-center lg:w-2/3 justify-between">
                   <div>
-                    <h1 className="text-banner font-semibold">
+                    <h1 className="text-banner lg:font-semibold">
                       {list.user.name}
                     </h1>
-                    <h1 className="text-navbar text-sm">New messages (3)</h1>
+                    <h1 className="text-navbar text-tiny lg:text-sm">
+                      New messages (3)
+                    </h1>
                   </div>
                   <FaAngleRight className="text-xl" />
                 </div>
@@ -155,13 +204,39 @@ function BiddersChat() {
           </div>
         </div>
         {available ? (
-          <div className="bg-white w-2/3 rounded-xl">
-            <div className="border-b flex px-10 py-5">
-              <div className="mr-2 w-16">
+          <div className="bg-white lg:w-2/3 w-full rounded-xl lg:relative absolute top-0 z-50">
+            <div className="border-b flex items-center px-5 lg:px-10 py-5 bg-chatHeader lg:bg-inherit">
+              {bids && (
+                <FaAngleLeft
+                  className="text-xl lg:hidden mr-3"
+                  onClick={() => setAvailable(false)}
+                />
+              )}
+
+              <div className="mr-2 w-12 lg:w-16">
                 <img src={elvis} alt="investor" />
               </div>
-              <div className="flex items-center">
+              {/* <div className="flex items-center">
                 <h1 className="text-banner font-semibold text-xl">{name}</h1>
+              </div> */}
+              <div className="flex items-center justify-between w-full">
+                <h1 className="text-banner font-semibold text-sm lg:text-xl">
+                  {name}
+                </h1>
+                {bids ? (
+                  <Link to="/bids">
+                    <button className="bg-dark px-5 lg:px-8 py-2 text-sm rounded-full text-white">
+                      Accept bids
+                    </button>
+                  </Link>
+                ) : (
+                  <button
+                    className="text-goback text-sm font-inter lg:hidden"
+                    onClick={() => setAvailable(false)}
+                  >
+                    Back
+                  </button>
+                )}
               </div>
             </div>
             <div className="font-inter">
@@ -170,7 +245,7 @@ function BiddersChat() {
                   <ScaleLoader color="#008E10" height={50} width={6} />
                 </div>
               ) : (
-                <div className="p-10 h-7x overflow-y-auto scroll">
+                <div className="lg:p-10 p-5 h-7x overflow-y-auto scroll">
                   {chat?.map((chat) => (
                     <>
                       {" "}
@@ -178,7 +253,7 @@ function BiddersChat() {
                         <div className="flex justify-end py-5">
                           <div>
                             {" "}
-                            <div className="bg-mine rounded-lg rounded-tl-none w-72 mr-2 mb-2 p-3 relative before:content-[''] before:w-5 before:h-5 before:top-0 before:-skew-x-20 before:right-0 before:bg-mine before:-z-10 z-20 before:absolute ">
+                            <div className="bg-mine rounded-lg rounded-tl-none lg:w-72 w-52 mr-2 mb-2 p-3 relative before:content-[''] before:w-5 before:h-5 before:top-0 before:-skew-x-20 before:right-0 before:bg-mine before:-z-10 z-20 before:absolute ">
                               <h1 className="text-you font-semibold text-tiny">
                                 You.
                               </h1>
@@ -198,7 +273,7 @@ function BiddersChat() {
                             </div>
                           </div>
 
-                          <div className="w-8">
+                          <div className="w-8 hidden lg:block">
                             {!!userIcon ? (
                               <img
                                 src={userIcon}
@@ -217,7 +292,7 @@ function BiddersChat() {
                       ) : (
                         <div className="flex flex-row-reverse justify-end py-5">
                           <div>
-                            <div className="bg-border rounded-lg rounded-tl-none w-72 ml-2 mb-2 p-3 relative before:content-[''] before:w-5 before:h-5 before:top-0 before:skew-x-20 before:left-0 before:bg-border before:-z-10 z-20 before:absolute ">
+                            <div className="bg-border rounded-lg rounded-tl-none w-52 lg:w-72 ml-2 mb-2 p-3 relative before:content-[''] before:w-5 before:h-5 before:top-0 before:skew-x-20 before:left-0 before:bg-border before:-z-10 z-20 before:absolute ">
                               <p className="font-normal text-sm text-white">
                                 {chat.message}
                               </p>
@@ -236,7 +311,7 @@ function BiddersChat() {
                   {sent && (
                     <div className="flex justify-end py-5">
                       <div>
-                        <div className="bg-mine rounded-lg rounded-tl-none w-72 mr-2 mb-2 p-3 relative before:content-[''] before:w-5 before:h-5 before:top-0 before:-skew-x-20 before:right-0 before:bg-mine before:-z-10 z-20 before:absolute ">
+                        <div className="bg-mine rounded-lg rounded-tl-none w-52 lg:w-72 mr-2 mb-2 p-3 relative before:content-[''] before:w-5 before:h-5 before:top-0 before:-skew-x-20 before:right-0 before:bg-mine before:-z-10 z-20 before:absolute ">
                           <h1 className="text-you font-semibold text-tiny">
                             You.
                           </h1>
@@ -247,7 +322,7 @@ function BiddersChat() {
                         </div>
                       </div>
 
-                      <div className="w-8">
+                      <div className="w-8 hidden lg:block">
                         {!!userIcon ? (
                           <img
                             src={userIcon}
@@ -267,7 +342,7 @@ function BiddersChat() {
                   <div ref={bottomRef} />
                 </div>
               )}
-              <div className="p-10 flex justify-between font-inter">
+              <div className="lg:p-10 p-5 flex justify-between font-inter">
                 <div className="bg-mine flex items-center rounded-full px-4 w-11/12 mr-2 ">
                   <FaRegSmile className="text-smiles" />
 
@@ -282,7 +357,7 @@ function BiddersChat() {
                   ></textarea>
                 </div>
                 <div
-                  className="bg-mine rounded-full flex justify-center items-center w-1/12 cursor-pointer"
+                  className="bg-mine rounded-full flex justify-center items-center w-14 lg:w-1/12 cursor-pointer"
                   onClick={() => {
                     if (message === "") {
                       alert("type a message to send");
@@ -299,7 +374,7 @@ function BiddersChat() {
             </div>
           </div>
         ) : (
-          <div className="bg-white w-2/3 h-screen justify-center items-center flex flex-col rounded-xl">
+          <div className="bg-white w-2/3 h-screen justify-center items-center flex flex-col rounded-xl lg:relative hidden lg:flex">
             <span>
               <svg
                 width="360"
