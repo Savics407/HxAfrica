@@ -257,7 +257,7 @@ function BiddersChat() {
                               <h1 className="text-you font-semibold text-tiny">
                                 You.
                               </h1>
-                              <p className="font-normal text-sm text-chat">
+                              <p className="font-normal lg:text-sm text-xs text-chat">
                                 {chat.message}
                               </p>
                               <h1 className="flex items-center font-normal text-timeStamp text-tiny">
@@ -293,7 +293,7 @@ function BiddersChat() {
                         <div className="flex flex-row-reverse justify-end py-5">
                           <div>
                             <div className="bg-border rounded-lg rounded-tl-none w-52 lg:w-72 ml-2 mb-2 p-3 relative before:content-[''] before:w-5 before:h-5 before:top-0 before:skew-x-20 before:left-0 before:bg-border before:-z-10 z-20 before:absolute ">
-                              <p className="font-normal text-sm text-white">
+                              <p className="font-normal lg:text-sm text-xs text-white">
                                 {chat.message}
                               </p>
                               <h1 className="font-normal text-time text-tiny">
@@ -315,7 +315,9 @@ function BiddersChat() {
                           <h1 className="text-you font-semibold text-tiny">
                             You.
                           </h1>
-                          <p className="font-normal text-sm text-chat">{now}</p>
+                          <p className="font-normal rtext-xs lg:text-sm text-chat">
+                            {now}
+                          </p>
                           <h1 className="flex items-center font-normal text-timeStamp text-tiny">
                             <RiCheckDoubleFill /> {moment(Date()).format("LT")}
                           </h1>
