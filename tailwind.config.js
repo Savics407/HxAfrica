@@ -92,6 +92,7 @@ module.exports = {
         footer: "#777E90",
         currency: "#72777F",
         bgGreen: "#ECFDF3",
+        gren: "027A48",
         neutral: "#23262F",
         overlay: "rgba(0, 0, 0, 0.3)",
         modal: "#342D6E",
@@ -120,6 +121,7 @@ module.exports = {
         blue: "#3772FF",
         "border-gray": "rgba(114, 129, 255, 0.1)",
         total: "#F1F4F7",
+        letsee: "#FFF1F3",
       },
       fontSize: {
         tiny: "10px",

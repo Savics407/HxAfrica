@@ -63,17 +63,8 @@ function Login() {
       localStorage.setItem("user-address", result?.data.address);
       localStorage.setItem("user-id", result?.data.id);
       localStorage.setItem("bvn", result?.data.is_bvn_verified);
+      localStorage.setItem("role", result?.data.role);
       // Route to Dashbaord
-      toast.success(`${result.message}`, {
-        position: "top-left",
-        autoClose: 300,
-        hideProgressBar: true,
-        closeOnClick: false,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
-      navigate("/dashboard");
     } else {
       if (result.status === "error") {
         // setError(result.data);
@@ -90,6 +81,30 @@ function Login() {
           progress: undefined,
         });
       }
+    }
+
+    if (result.data.role === "investor") {
+      toast.success(`${result.message}`, {
+        position: "top-left",
+        autoClose: 300,
+        hideProgressBar: true,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      navigate("/dashboard");
+    } else {
+      toast.success(`${result.message}`, {
+        position: "top-left",
+        autoClose: 300,
+        hideProgressBar: true,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      navigate("/admin/dashboard");
     }
   }
 

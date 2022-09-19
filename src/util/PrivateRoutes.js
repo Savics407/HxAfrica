@@ -2,9 +2,9 @@ import React from "react";
 import { Outlet, Navigate } from "react-router-dom";
 
 function PrivateRoutes() {
-  let auth = localStorage.getItem("user-token");
+  let auth = localStorage.getItem("role");
 
-  return !!auth ? <Outlet /> : <Navigate to="/" />;
+  return auth === "investor" ? <Outlet /> : <Navigate to="/" />;
 }
 
 export default PrivateRoutes;

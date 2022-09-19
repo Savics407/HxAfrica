@@ -44,6 +44,7 @@ import Disbursed from "./assets/admin/Disbursed";
 import Pending from "./assets/Pending";
 import Bids from "./assets/Bids";
 import NewInvestment from "./assets/NewInvestments";
+import AdminRoutes from "./util/AdminRoutes";
 
 function App() {
   return (
@@ -54,19 +55,7 @@ function App() {
         <Route path="/" element={<Login />} />
 
         <Route path="/status" element={<UseNetworkStatus />} />
-        <Route element={<PrivateRoutes />}>
-          <Route path="/investment-chat" element={<BiddersChat />} />
-          {/* <Route path="/investment-chat" element={<Owner />} /> */}
-          <Route path="/bids" element={<Bids />} />
-          <Route path="/buytoken/success" element={<Success />} />
-          <Route path="/investment/pending" element={<Pending />} />
-          <Route path="/select-avater" element={<SelectAvater />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/settings" element={<Profile />} />
-          <Route path="/change-password" element={<ChangePassword />} />
-          <Route path="/activities" element={<Activity />} />
-          <Route path="/token" element={<Token />} />
-          <Route path="/withdraw" element={<Withdraw />} />
+        <Route element={<AdminRoutes />}>
           <Route path="/admin/staffs" element={<Staffs />} />
           <Route path="/admin/merchants" element={<Marchants />} />
           <Route path="/admin/investors" element={<Investors />} />
@@ -92,6 +81,23 @@ function App() {
             path="/admin/investments/relisted"
             element={<RelistedInvestments />}
           />
+          <Route path="/admin/dashboard" element={<Admin_Dashboard />} />
+        </Route>
+
+        <Route element={<PrivateRoutes />}>
+          <Route path="/investment-chat" element={<BiddersChat />} />
+          {/* <Route path="/investment-chat" element={<Owner />} /> */}
+          <Route path="/bids" element={<Bids />} />
+          <Route path="/buytoken/success" element={<Success />} />
+          <Route path="/investment/pending" element={<Pending />} />
+          <Route path="/select-avater" element={<SelectAvater />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/settings" element={<Profile />} />
+          <Route path="/change-password" element={<ChangePassword />} />
+          <Route path="/activities" element={<Activity />} />
+          <Route path="/token" element={<Token />} />
+          <Route path="/withdraw" element={<Withdraw />} />
+
           <Route path="/details" element={<Details />} />
           <Route path="/addbank" element={<AddBank />} />
           <Route path="/bvn" element={<Processing />} />
@@ -103,7 +109,6 @@ function App() {
           />
           <Route path="/investment/ongoing" element={<Ongoing />} />
           <Route path="/investment/completed" element={<Completed />} />
-          <Route path="/admin/dashboard" element={<Admin_Dashboard />} />
           <Route
             path="/investment/relisted-investment"
             element={<Relisted />}

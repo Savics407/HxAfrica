@@ -4,6 +4,7 @@ import { MdArrowForwardIos } from "react-icons/md";
 import { NavLink, Link } from "react-router-dom";
 import * as CurrencyFormat from "react-currency-format";
 import realEstate from "../images/realEstate.svg";
+import Details from "./Details";
 
 function InvestmentTabs() {
   return (
@@ -44,6 +45,7 @@ function InvestmentTabs() {
 }
 function InvestmentList() {
   const [pending, setPending] = useState();
+  const [details, setDetails] = useState(false);
   async function fetchInvestment() {
     const token = localStorage.getItem("user-token");
     // e.preventDefault();
@@ -70,6 +72,7 @@ function InvestmentList() {
 
   return (
     <>
+      {details && <Details setDetails={setDetails} />}
       <InvestmentTabs />
       <div className="rounded-lg bg-white mt-2 mb-3 pb-10">
         <div className="py-7 px-9 text-lg text-mobile-nav flex justify-between font-medium border-b cursor-pointer">
@@ -84,13 +87,13 @@ function InvestmentList() {
           {/* <button className="text-sm text-dark">Select Multiple</button> */}
         </div>
         <div className="">
-          <table className=" w-full table-auto">
+          <table className=" w-full table-fixed">
             <thead className="">
               <tr className="text-left bg-bar">
-                <th className="py-3 text-mobile-nav font-medium text-xs pl-9 border w-48">
+                <th className="py-3 pr-7 text-mobile-nav font-medium text-xs pl-9 w-24">
                   ID
                 </th>
-                <th className="py-3 pr-7 text-mobile-nav font-medium text-xs ">
+                <th className="py-3 pr-10 w-44 text-mobile-nav font-medium text-xs ">
                   Investment
                 </th>
                 <th className="py-3 pr-7 text-mobile-nav font-medium text-xs ">
@@ -105,7 +108,7 @@ function InvestmentList() {
                 {/* <th className="py-3 pr-7 text-mobile-nav font-medium text-xs ">
                   Investors
                 </th> */}
-                <th className="py-3 pr-7 text-mobile-nav font-medium text-xs ">
+                <th className="py-3 pr-7 w-44 text-mobile-nav font-medium text-xs text-center">
                   Action
                 </th>
               </tr>
@@ -162,10 +165,7 @@ function InvestmentList() {
                   </button>
                   <button
                     className="font-medium text-xs font-inter text-blue py-2 px-2 "
-                    // onClick={() => {
-                    //   approveProduct(funds.id);
-                    //   setStatus("success");
-                    // }}
+                    onClick={() => setDetails(true)}
                   >
                     View
                   </button>
@@ -215,10 +215,7 @@ function InvestmentList() {
                 </button>
                 <button
                   className="font-medium text-xs font-inter text-blue py-2 px-2 "
-                  // onClick={() => {
-                  //   approveProduct(funds.id);
-                  //   setStatus("success");
-                  // }}
+                  onClick={() => setDetails(true)}
                 >
                   View
                 </button>
