@@ -241,7 +241,7 @@ function BiddersChat() {
             </div>
             <div className="font-inter">
               {loading ? (
-                <div className="text-center py-40 bg-white rounded-xl w-full">
+                <div className="text-center py-48 lg:py-40 bg-white rounded-xl w-full">
                   <ScaleLoader color="#008E10" height={50} width={6} />
                 </div>
               ) : (

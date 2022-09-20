@@ -196,7 +196,7 @@ function Mine() {
                               className="h-10"
                             />
                             <div className="ml-2 ">
-                              <h1 className="mb-1 truncate lg:w-32">
+                              <h1 className="mb-1 truncate w-40 lg:w-36">
                                 <span title={post.product.title}>
                                   {post.product.title}
                                 </span>

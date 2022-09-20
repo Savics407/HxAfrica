@@ -160,6 +160,15 @@ function Investment() {
               <FaAngleRight className="text-base" />
             </div>
           </Link>
+          <Link to="/investment-chat">
+            <div className="mb-4 bg-white flex rounded justify-between items-center text-vestabs text-sm p-4 py-6">
+              <div className="flex items-center ">
+                <img src={relisted} alt="coins" className="mr-1" />
+                <h1>Chat Session</h1>
+              </div>
+              <FaAngleRight className="text-base" />
+            </div>
+          </Link>
         </div>
         <div className="bg-white p-10 w-full rounded-lg hidden lg:block">
           <div className="mb-10">

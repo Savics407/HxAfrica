@@ -123,7 +123,7 @@ function Investments() {
         <div className="overflow-hidden mt-5 ">
           {loading ? (
             <div className="text-center p-20">
-              <ScaleLoader color="#008E10" height={40} width={6} />
+              <ScaleLoader color="#008E10" height={40} width={4} />
             </div>
           ) : (
             <div className="cat flex flex-wrap">
@@ -182,7 +182,7 @@ function Investments() {
             <h1>New Investments</h1>
             {newLoad ? (
               <div className="text-center p-20">
-                <ScaleLoader color="#008E10" height={40} width={6} />
+                <ScaleLoader color="#008E10" height={40} width={4} />
               </div>
             ) : (
               <>
@@ -278,7 +278,7 @@ function Investments() {
             <h1>Ongoing Investments</h1>
             {available ? (
               <div className="text-center p-20">
-                <ScaleLoader color="#008E10" height={40} width={6} />
+                <ScaleLoader color="#008E10" height={40} width={4} />
               </div>
             ) : (
               <>

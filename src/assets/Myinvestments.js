@@ -89,7 +89,7 @@ function Myinvests() {
                     key={post.id}
                     className="p-2 bg-welcome flex items-center justify-between rounded-lg mb-4"
                   >
-                    <div className="flex items-center w-56">
+                    <div className="flex items-center w-9/12">
                       <div className="mr-3">
                         <img
                           src={invest}
@@ -97,18 +97,23 @@ function Myinvests() {
                           className="h-10 w-10"
                         />
                       </div>
-                      <div className="">
-                        <h1 className="text-dark font-medium text-base">
-                          {post.product.title}
+                      <div className="lg:w-44 w-48">
+                        <h1 className="text-dark font-medium truncate text-base">
+                          <span title={post.product.title}>
+                            {post.product.title}
+                          </span>
                         </h1>
-                        <p className="text-xs text-green">
-                          {post.product.product_category}
+                        <p className="text-xs text-green capitalize">
+                          {post.product.category.product_category ===
+                          "rent_financing"
+                            ? "rent financing"
+                            : post.product.category.product_category}
                         </p>
                       </div>
                     </div>
-                    <div className="w-18">
+                    <div className="w-3/12">
                       <h1
-                        className="text-links text-tiny lg:text-xs font-normal cursor-pointer"
+                        className="text-links text-tiny lg:text-xs font-normal text-right cursor-pointer"
                         onClick={() => {
                           productDetails(post.id);
                         }}

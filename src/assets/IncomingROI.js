@@ -53,7 +53,7 @@ function IncomingROI() {
           <>
             {loading ? (
               <div className="text-center p-20">
-                <ScaleLoader color="#008E10" height={40} width={6} />
+                <ScaleLoader color="#008E10" height={40} width={4} />
               </div>
             ) : (
               <div className="lg:px-10 lg:py-5 px-6 py-3 flex flex-row justify-between">
