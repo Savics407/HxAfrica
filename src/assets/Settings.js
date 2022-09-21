@@ -17,6 +17,7 @@ import avater7 from "./images/7.svg";
 import avater8 from "./images/8.svg";
 import avater9 from "./images/9.svg";
 import { useEffect, useState } from "react";
+import { stringify } from "postcss";
 
 function SelectAvater({ setAvailable }) {
   const images = {
@@ -253,7 +254,7 @@ function Profile() {
     console.log(result.data);
     // alert(result.data.name);
 
-    setPosts(result?.data);
+    setPosts(result.data);
     // setImage(result?.data.profile_photo_path)
   }
 
@@ -278,11 +279,13 @@ function Profile() {
     phone: posts?.phone,
     password: "",
     state: posts?.investor.state.id,
-    bvn: "",
     city: posts?.investor.city,
     address: posts?.investor.address,
     dob: posts?.investor.dob,
   });
+  const nam = posts?.name;
+  const [name, setName] = useState(nam);
+  alert(name);
 
   async function update() {
     const payLoad = {
@@ -399,7 +402,7 @@ function Profile() {
                 className="text-blue border rounded-full lg:py-1 lg:px-4 py-2 px-6 font-bold text-tiny lg:text-sm my-3"
                 onClick={() => setAvailable(true)}
               >
-                Change Avater
+                Change Avatar
               </button>
               {/* <h1 className="text-red text-sm cursor-pointer" onClick={remove}>
                 Remove Picture
@@ -422,9 +425,9 @@ function Profile() {
                   {/* <h1 className="font-medium text-sm ">{userName}</h1> */}
                   <input
                     type="text"
-                    defaultValue={posts?.name}
+                    // defaultValue={name}
                     className="font-medium text-xs lg:text-sm outline-none w-full"
-                    // value={profileData.name}
+                    value={posts?.name}
                     onChange={(event) =>
                       setProfileData({
                         ...profileData,
@@ -462,18 +465,22 @@ function Profile() {
                     Email Address
                   </h1>
                 </td>
-                <td className="lg:w-2/3 w-3/5 border px-5">
+                <td
+                  className="lg:w-2/3 w-3/5 border px-5"
+                  onClick={() => alert("can't edit email address")}
+                >
                   {/* <h1 className="font-medium text-sm">{userEmail}</h1> */}
                   <input
                     type="text"
                     defaultValue={posts?.email}
-                    className="font-medium text-xs lg:text-sm outline-none w-full"
+                    className="font-medium text-xs lg:text-sm outline-none w-full bg-transparent"
                     onChange={(event) =>
                       setProfileData({
                         ...profileData,
                         email: event.target.value,
                       })
                     }
+                    disabled
                   />
                 </td>
               </tr>
@@ -506,14 +513,38 @@ function Profile() {
                 </td>
                 <td className="lg:w-2/3 w-3/5 border px-5">
                   {/* <h1 className="font-medium text-sm">{userDob}</h1> */}
+
                   <input
-                    type="text"
-                    defaultValue={posts?.investor.dob}
+                    required
+                    type="date"
+                    placeholder=""
                     className="font-medium text-xs lg:text-sm outline-none w-full"
+                    defaultValue={posts?.investor.dob}
                     onChange={(event) =>
                       setProfileData({
                         ...profileData,
                         dob: event.target.value,
+                      })
+                    }
+                    max="2022-02-01"
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td className="lg:w-1/3 w-2/5 px-5 py-2">
+                  <h1 className="text-footer font-semibold text-xs lg:text-base">
+                    Address
+                  </h1>
+                </td>
+                <td className="lg:w-2/3 w-3/5 border px-5">
+                  <input
+                    type="text"
+                    defaultValue={posts?.investor.address}
+                    className="font-medium text-xs lg:text-sm outline-none w-full"
+                    onChange={(event) =>
+                      setProfileData({
+                        ...profileData,
+                        address: event.target.value,
                       })
                     }
                   />
@@ -563,104 +594,7 @@ function Profile() {
               </tr>
             </table>
           </div>
-          <div className="my-10 text-footer">
-            <h1 className="uppercase lg:capitalize text-footer text-xs px-3 font-medium">
-              More Information
-            </h1>
-            <table className="border w-full border-collapse mt-3 font-inter">
-              <tr>
-                <td className="lg:w-1/3 w-2/5 px-5 py-2">
-                  <h1 className="text-footer font-semibold text-xs lg:text-base">
-                    Bank Account Name
-                  </h1>
-                </td>
-                <td className="lg:w-2/3 w-3/5 border px-5">
-                  {/* <h1 className="font-medium text-sm ">{userName}</h1> */}
-                  <input
-                    type="text"
-                    placeholder="Not Added yet"
-                    className="font-medium text-xs lg:text-sm outline-none w-full"
-                  />
-                </td>
-              </tr>
-              <tr>
-                <td className="lg:w-1/3 w-2/5 px-5 py-2">
-                  <h1 className="text-footer font-semibold text-xs lg:text-base">
-                    Account Number
-                  </h1>
-                </td>
-                <td className="lg:w-2/3 w-3/5 border px-5">
-                  <input
-                    type="text"
-                    placeholder="Not Added yet"
-                    className="font-medium text-xs lg:text-sm outline-none w-full"
-                  />
-                </td>
-              </tr>
-              {/* <tr>
-                <td className="lg:w-1/3 w-2/5 px-5 py-2">
-                  <h1 className="text-footer font-semibold text-xs lg:text-base">
-                    Password
-                  </h1>
-                </td>
-                <td className="lg:w-2/3 w-3/5 border px-5">
-                  <div className="flex justify-between items-center">
-                    <input
-                      type="password"
-                      disabled
-                      value="12345628"
-                      className="bg-transparent"
-                    />
-                    <Link to="/change-password">
-                      <h1 className="font-medium text-xs cursor-pointer text-change hidden lg:block">
-                        Change password
-                      </h1>
-                    </Link>
-                  </div>
-                </td>
-              </tr> */}
-              <tr>
-                <td className="lg:w-1/3 w-2/5 px-5 py-2">
-                  <h1 className="text-footer font-semibold text-xs lg:text-base">
-                    Address
-                  </h1>
-                </td>
-                <td className="lg:w-2/3 w-3/5 border px-5">
-                  <input
-                    type="text"
-                    defaultValue={posts?.investor.address}
-                    className="font-medium text-xs lg:text-sm outline-none w-full"
-                    onChange={(event) =>
-                      setProfileData({
-                        ...profileData,
-                        address: event.target.value,
-                      })
-                    }
-                  />
-                </td>
-              </tr>
-              <tr>
-                <td className="lg:w-1/3 w-2/5 px-5 py-2">
-                  <h1 className="text-footer font-semibold text-xs lg:text-base">
-                    BVN
-                  </h1>
-                </td>
-                <td className="lg:w-2/3 w-3/5 border px-5">
-                  <input
-                    type="text"
-                    placeholder="Not Added yet"
-                    className="font-medium text-xs lg:text-sm outline-none w-full"
-                    onChange={(event) =>
-                      setProfileData({
-                        ...profileData,
-                        bvn: event.target.value,
-                      })
-                    }
-                  />
-                </td>
-              </tr>
-            </table>
-          </div>
+
           <div className="text-right font-family mb-12 flex justify-between px-4 lg:px-0">
             <div className="hidden lg:block">
               <button

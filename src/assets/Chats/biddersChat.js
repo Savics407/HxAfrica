@@ -50,6 +50,7 @@ function BiddersChat() {
 
   const [available, setAvailable] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [load, setLoad] = useState(true);
   const [lists, setLists] = useState();
   async function fetchChatList() {
     const token = localStorage.getItem("user-token");
@@ -72,6 +73,9 @@ function BiddersChat() {
     if (result?.data.length === 0) {
       //  setLoading(false);
       setAvailable(true);
+    }
+    if (result?.status === "success") {
+      setLoad(false);
     }
   }
 
@@ -175,37 +179,45 @@ function BiddersChat() {
           </div>
 
           <div className="h-7x overflow-y-auto scroll">
-            {lists?.map((list) => (
-              <div
-                className="border-b flex justify-between px-10 py-5 cursor-pointer"
-                onClick={() => {
-                  // setReceiver(list.receiver_id);
-                  setAvailable(true);
-                  setName(list.user.name);
-                  fetchChat(list.receiver_id);
-                }}
-              >
-                <div className="lg:w-2/6 w-14 mr-4 lg:mr-auto">
-                  <img src={elvis} alt="investor" />
-                </div>
-                <div className="flex w-full items-center lg:w-2/3 justify-between">
-                  <div>
-                    <h1 className="text-banner lg:font-semibold">
-                      {list.user.name}
-                    </h1>
-                    <h1 className="text-navbar text-tiny lg:text-sm">
-                      New messages (3)
-                    </h1>
-                  </div>
-                  <FaAngleRight className="text-xl" />
-                </div>
+            {load ? (
+              <div className="text-center py-20 lg:py-40 h-full bg-white rounded-xl w-full">
+                <ScaleLoader color="#008E10" height={30} width={4} />
               </div>
-            ))}
+            ) : (
+              <>
+                {lists?.map((list) => (
+                  <div
+                    className="border-b flex justify-between px-10 py-5 cursor-pointer"
+                    onClick={() => {
+                      // setReceiver(list.receiver_id);
+                      setAvailable(true);
+                      setName(list.user.name);
+                      fetchChat(list.receiver_id);
+                    }}
+                  >
+                    <div className="lg:w-2/6 w-14 mr-4 lg:mr-auto">
+                      <img src={elvis} alt="investor" />
+                    </div>
+                    <div className="flex w-full items-center lg:w-2/3 justify-between">
+                      <div>
+                        <h1 className="text-banner lg:font-semibold">
+                          {list.user.name}
+                        </h1>
+                        <h1 className="text-navbar text-tiny lg:text-sm">
+                          New messages (3)
+                        </h1>
+                      </div>
+                      <FaAngleRight className="text-xl" />
+                    </div>
+                  </div>
+                ))}
+              </>
+            )}
           </div>
         </div>
         {available ? (
-          <div className="bg-white lg:w-2/3 w-full rounded-xl lg:relative absolute top-0 z-50">
-            <div className="border-b flex items-center px-5 lg:px-10 py-5 bg-chatHeader lg:bg-inherit">
+          <div className="bg-white lg:w-2/3 w-full rounded-xl lg:relative absolute top-0 lg:z-auto z-50">
+            <div className="border-b fixed lg:relative w-full flex items-center px-5 lg:px-10 py-5 bg-chatHeader lg:bg-inherit lg:z-auto z-50">
               {bids && (
                 <FaAngleLeft
                   className="text-xl lg:hidden mr-3"
@@ -241,11 +253,11 @@ function BiddersChat() {
             </div>
             <div className="font-inter">
               {loading ? (
-                <div className="text-center py-48 lg:py-40 bg-white rounded-xl w-full">
+                <div className="text-center py-48 lg:py-40 h-full bg-white rounded-xl w-full">
                   <ScaleLoader color="#008E10" height={50} width={6} />
                 </div>
               ) : (
-                <div className="lg:p-10 p-5 h-7x overflow-y-auto scroll">
+                <div className="lg:p-10 p-5 lg:h-7x overflow-y-auto scroll">
                   {chat?.map((chat) => (
                     <>
                       {" "}
@@ -253,7 +265,7 @@ function BiddersChat() {
                         <div className="flex justify-end py-5">
                           <div>
                             {" "}
-                            <div className="bg-mine rounded-lg rounded-tl-none lg:w-72 w-52 mr-2 mb-2 p-3 relative before:content-[''] before:w-5 before:h-5 before:top-0 before:-skew-x-20 before:right-0 before:bg-mine before:-z-10 z-20 before:absolute ">
+                            <div className="bg-mine rounded-lg rounded-tl-none lg:w-72 w-52 mr-2 mb-2 p-3 relative before:content-[''] before:w-5 before:h-5 before:top-0 before:-skew-x-20 before:right-0 before:bg-mine before:-z-10 z-10 before:absolute ">
                               <h1 className="text-you font-semibold text-tiny">
                                 You.
                               </h1>
@@ -292,7 +304,7 @@ function BiddersChat() {
                       ) : (
                         <div className="flex flex-row-reverse justify-end py-5">
                           <div>
-                            <div className="bg-border rounded-lg rounded-tl-none w-52 lg:w-72 ml-2 mb-2 p-3 relative before:content-[''] before:w-5 before:h-5 before:top-0 before:skew-x-20 before:left-0 before:bg-border before:-z-10 z-20 before:absolute ">
+                            <div className="bg-border rounded-lg rounded-tl-none w-52 lg:w-72 ml-2 mb-2 p-3 relative before:content-[''] before:w-5 before:h-5 before:top-0 before:skew-x-20 before:left-0 before:bg-border before:-z-10 z-10 before:absolute ">
                               <p className="font-normal lg:text-sm text-xs text-white">
                                 {chat.message}
                               </p>
@@ -311,7 +323,7 @@ function BiddersChat() {
                   {sent && (
                     <div className="flex justify-end py-5">
                       <div>
-                        <div className="bg-mine rounded-lg rounded-tl-none w-52 lg:w-72 mr-2 mb-2 p-3 relative before:content-[''] before:w-5 before:h-5 before:top-0 before:-skew-x-20 before:right-0 before:bg-mine before:-z-10 z-20 before:absolute ">
+                        <div className="bg-mine rounded-lg rounded-tl-none w-52 lg:w-72 mr-2 mb-2 p-3 relative before:content-[''] before:w-5 before:h-5 before:top-0 before:-skew-x-20 before:right-0 before:bg-mine before:-z-10 z-10 before:absolute ">
                           <h1 className="text-you font-semibold text-tiny">
                             You.
                           </h1>
@@ -344,7 +356,7 @@ function BiddersChat() {
                   <div ref={bottomRef} />
                 </div>
               )}
-              <div className="lg:p-10 p-5 flex justify-between font-inter">
+              <div className="lg:p-10 p-5 fixed lg:relative bottom-0 lg:bottom-auto flex justify-between font-inter z-50 w-full bg-white">
                 <div className="bg-mine flex items-center rounded-full px-4 w-11/12 mr-2 ">
                   <FaRegSmile className="text-smiles" />
 

@@ -10,6 +10,7 @@ import completed from "./images/card-tick.svg";
 import mine from "./images/mywallet.svg";
 import relisted from "./images/convert-card.svg";
 import pendingCoin from "./images/timer-pause.svg";
+import messenger from "./images/Line.svg";
 import land from "./images/rawland2.png";
 import users1 from "./images/Frame 14.png";
 import users2 from "./images/Frame 18.png";
@@ -161,12 +162,14 @@ function Investment() {
             </div>
           </Link>
           <Link to="/investment-chat">
-            <div className="mb-4 bg-white flex rounded justify-between items-center text-vestabs text-sm p-4 py-6">
-              <div className="flex items-center ">
-                <img src={relisted} alt="coins" className="mr-1" />
-                <h1>Chat Session</h1>
-              </div>
-              <FaAngleRight className="text-base" />
+            <div className="mb-4 bg-white flex rounded justify-between items-center text-vestabs text-sm p-4 py-3">
+              <Link to="/investment-chat">
+                <button className="flex items-center bg-green rounded px-4 py-2 text-white text-sm">
+                  <img src={messenger} alt="messenger" />{" "}
+                  <span className="ml-3">Messages(3)</span>
+                </button>
+              </Link>
+              {/* <FaAngleRight className="text-base" /> */}
             </div>
           </Link>
         </div>

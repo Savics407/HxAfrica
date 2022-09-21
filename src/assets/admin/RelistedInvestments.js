@@ -3,7 +3,6 @@ import Header from "./Admin_header";
 import SideBar from "./SideBar";
 import InvestmentCard from "./InvestmentCard";
 import OngoingInvestments from "./OngoingInvestments";
-import InactiveList from "./InactiveList";
 import RelistedList from "./RelistedList";
 
 function RelistedInvestments() {

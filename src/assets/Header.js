@@ -48,6 +48,17 @@ function Header() {
   //     onOpen: () => window.alert("Called when I open"),
   //     onClose: () => window.alert("Called when I close"),
   //   });
+
+  const [fix, setFix] = useState(false);
+  function sideBarFixed() {
+    if (window.scrollY >= 100) {
+      setFix(true);
+    } else {
+      setFix(false);
+    }
+  }
+
+  window.addEventListener("scroll", sideBarFixed);
   return (
     <>
       <div className="bg-green text-center text-white py-4 hidden lg:block">
@@ -191,7 +202,7 @@ function Header() {
           </div>
         </div>
       </div>
-      <div className="navbar">
+      <div className={`navbar ${fix && "lg:fixed lg:top-0 lg:bottom-auto"}`}>
         <NavLink to="/dashboard">
           <div className="nav-items">
             <MdDashboard className="ds-icons" />
