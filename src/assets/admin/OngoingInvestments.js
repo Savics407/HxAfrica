@@ -34,181 +34,29 @@ function OngoingInvestments() {
           <h1 className="text-lg text-darker">Ongoing Investments</h1>
           <button className="text-dark font-sm">View all</button>
         </div>
-        <div className="px-5 py-1">
-          <div className="bg-welcome rounded-lg flex justify-between items-center px-3 py-3">
-            <div className="flex items-center">
-              <div className="mr-2">
-                <img src={software} alt="software" />
-              </div>
-              <div>
-                <h1 className="text-deep">Investment 1</h1>
-                <h1 className="text-media text-xs font-normal">Software</h1>
-              </div>
-            </div>
-            <div className="text-dark text-2xl cursor-pointer">
-              <HiOutlineDotsVertical />
-            </div>
-          </div>
-        </div>
-        <div className="px-5 py-1">
-          <div className="bg-welcome rounded-lg flex justify-between items-center px-3 py-3">
-            <div className="flex items-center">
-              <div className="mr-2">
-                <img src={realEstate} alt="software" />
-              </div>
-              <div>
-                <h1 className="text-deep">Crowdfunding</h1>
-                <h1 className="text-media text-xs font-normal">Real Estate</h1>
+        <div className="h-screen overflow-auto scroll">
+          {ongoing?.map((ongoing) => (
+            <div className="px-5 py-1">
+              <div className="bg-welcome rounded-lg flex justify-between items-center px-3 py-3">
+                <div className="flex items-center">
+                  <div className="mr-2">
+                    <img src={software} alt="software" />
+                  </div>
+                  <div>
+                    <h1 className="text-deep truncate w-48">
+                      <span title={ongoing.title}>{ongoing.title}</span>
+                    </h1>
+                    <h1 className="text-media text-xs font-normal capitalize">
+                      {ongoing.category.product_category}
+                    </h1>
+                  </div>
+                </div>
+                <div className="text-dark text-2xl cursor-pointer">
+                  <HiOutlineDotsVertical />
+                </div>
               </div>
             </div>
-            <div className="text-dark text-2xl cursor-pointer">
-              <HiOutlineDotsVertical />
-            </div>
-          </div>
-        </div>
-        <div className="px-5 py-1">
-          <div className="bg-welcome rounded-lg flex justify-between items-center px-3 py-3">
-            <div className="flex items-center">
-              <div className="mr-2">
-                <img src={software} alt="software" />
-              </div>
-              <div>
-                <h1 className="text-deep">Investment 1</h1>
-                <h1 className="text-media text-xs font-normal">Software</h1>
-              </div>
-            </div>
-            <div className="text-dark text-2xl cursor-pointer">
-              <HiOutlineDotsVertical />
-            </div>
-          </div>
-        </div>
-        <div className="px-5 py-1">
-          <div className="bg-welcome rounded-lg flex justify-between items-center px-3 py-3">
-            <div className="flex items-center">
-              <div className="mr-2">
-                <img src={realEstate} alt="software" />
-              </div>
-              <div>
-                <h1 className="text-deep">Crowdfunding</h1>
-                <h1 className="text-media text-xs font-normal">Real Estate</h1>
-              </div>
-            </div>
-            <div className="text-dark text-2xl cursor-pointer">
-              <HiOutlineDotsVertical />
-            </div>
-          </div>
-        </div>
-        <div className="px-5 py-1">
-          <div className="bg-welcome rounded-lg flex justify-between items-center px-3 py-3">
-            <div className="flex items-center">
-              <div className="mr-2">
-                <img src={realEstate} alt="software" />
-              </div>
-              <div>
-                <h1 className="text-deep">Crowdfunding</h1>
-                <h1 className="text-media text-xs font-normal">Real Estate</h1>
-              </div>
-            </div>
-            <div className="text-dark text-2xl cursor-pointer">
-              <HiOutlineDotsVertical />
-            </div>
-          </div>
-        </div>
-        <div className="px-5 py-1">
-          <div className="bg-welcome rounded-lg flex justify-between items-center px-3 py-3">
-            <div className="flex items-center">
-              <div className="mr-2">
-                <img src={realEstate} alt="software" />
-              </div>
-              <div>
-                <h1 className="text-deep">Raw Land</h1>
-                <h1 className="text-media text-xs font-normal">Real Estate</h1>
-              </div>
-            </div>
-            <div className="text-dark text-2xl cursor-pointer">
-              <HiOutlineDotsVertical />
-            </div>
-          </div>
-        </div>
-        <div className="px-5 py-1">
-          <div className="bg-welcome rounded-lg flex justify-between items-center px-3 py-3">
-            <div className="flex items-center">
-              <div className="mr-2">
-                <img src={software} alt="software" />
-              </div>
-              <div>
-                <h1 className="text-deep">Investment 1</h1>
-                <h1 className="text-media text-xs font-normal">Software</h1>
-              </div>
-            </div>
-            <div className="text-dark text-2xl cursor-pointer">
-              <HiOutlineDotsVertical />
-            </div>
-          </div>
-        </div>
-        <div className="px-5 py-1">
-          <div className="bg-welcome rounded-lg flex justify-between items-center px-3 py-3">
-            <div className="flex items-center">
-              <div className="mr-2">
-                <img src={realEstate} alt="software" />
-              </div>
-              <div>
-                <h1 className="text-deep">Crowdfunding</h1>
-                <h1 className="text-media text-xs font-normal">Real Estate</h1>
-              </div>
-            </div>
-            <div className="text-dark text-2xl cursor-pointer">
-              <HiOutlineDotsVertical />
-            </div>
-          </div>
-        </div>
-        <div className="px-5 py-1">
-          <div className="bg-welcome rounded-lg flex justify-between items-center px-3 py-3">
-            <div className="flex items-center">
-              <div className="mr-2">
-                <img src={software} alt="software" />
-              </div>
-              <div>
-                <h1 className="text-deep">Crowdfunding</h1>
-                <h1 className="text-media text-xs font-normal">Software</h1>
-              </div>
-            </div>
-            <div className="text-dark text-2xl cursor-pointer">
-              <HiOutlineDotsVertical />
-            </div>
-          </div>
-        </div>
-        <div className="px-5 py-1">
-          <div className="bg-welcome rounded-lg flex justify-between items-center px-3 py-3">
-            <div className="flex items-center">
-              <div className="mr-2">
-                <img src={software} alt="software" />
-              </div>
-              <div>
-                <h1 className="text-deep">Crowdfunding</h1>
-                <h1 className="text-media text-xs font-normal">Software</h1>
-              </div>
-            </div>
-            <div className="text-dark text-2xl cursor-pointer">
-              <HiOutlineDotsVertical />
-            </div>
-          </div>
-        </div>
-        <div className="px-5 py-1">
-          <div className="bg-welcome rounded-lg flex justify-between items-center px-3 py-3">
-            <div className="flex items-center">
-              <div className="mr-2">
-                <img src={software} alt="software" />
-              </div>
-              <div>
-                <h1 className="text-deep">Crowdfunding</h1>
-                <h1 className="text-media text-xs font-normal">Software</h1>
-              </div>
-            </div>
-            <div className="text-dark text-2xl cursor-pointer">
-              <HiOutlineDotsVertical />
-            </div>
-          </div>
+          ))}
         </div>
       </div>
     </div>

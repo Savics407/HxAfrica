@@ -7,10 +7,12 @@ import InvestmentTabs from "./InvestmentTabs";
 import realEstate from "../images/realEstate.svg";
 import * as CurrencyFormat from "react-currency-format";
 import Details from "./Details";
+import ApprovedDetails from "./ApprovedDetails";
 
 function ApprovedList() {
   const [details, setDetails] = useState(false);
   const [approved, setApproved] = useState();
+  const [itemId, setItemID] = useState();
   async function fetchApproved() {
     const token = localStorage.getItem("user-token");
     // e.preventDefault();
@@ -37,7 +39,13 @@ function ApprovedList() {
 
   return (
     <>
-      {details && <Details setDetails={setDetails} />}
+      {details && (
+        <ApprovedDetails
+          setDetails={setDetails}
+          itemId={itemId}
+          fetchApproved={fetchApproved}
+        />
+      )}
 
       <InvestmentTabs />
       <div className="rounded-lg bg-white mt-2 mb-3">
@@ -82,7 +90,9 @@ function ApprovedList() {
               {approved?.map((approved) => (
                 <tr className="border-b font-inter" key={approved.id}>
                   <td className="py-8 pl-9">
-                    <h1 className="font-normal text-deep text-xs">#1246</h1>
+                    <h1 className="font-normal text-deep text-xs">
+                      #{approved.id}
+                    </h1>
                   </td>
                   <td className="py-8 pl-2 flex items-center whitespace-nowrap w-60">
                     <div className="mr-2">
@@ -92,7 +102,7 @@ function ApprovedList() {
                       <h1 className="font-normal text-deep text-sm truncate">
                         <span title={approved.title}>{approved.title}</span>
                       </h1>
-                      <h1 className="font-normal text-green text-xs">
+                      <h1 className="font-normal text-green text-xs capitalize">
                         {approved.category.product_category}
                       </h1>
                     </div>
@@ -149,7 +159,10 @@ function ApprovedList() {
 
                     <button
                       className="font-medium text-sm font-inter text-blue py-1 px-3 rounded-full "
-                      onClick={() => setDetails(true)}
+                      onClick={() => {
+                        setDetails(true);
+                        setItemID(approved.id);
+                      }}
                     >
                       View
                     </button>

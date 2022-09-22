@@ -6,8 +6,55 @@ import { MdClose } from "react-icons/md";
 import { motion } from "framer-motion";
 import { HiOutlinePlusSm } from "react-icons/hi";
 import { toast } from "react-toastify";
+import Products from "./Products";
 
 function Create() {
+  const [merchants, setMerchants] = useState();
+  async function fetchMerchants() {
+    const token = localStorage.getItem("user-token");
+    // e.preventDefault();
+    const response = await fetch(
+      "https://reic.api.simpoo.biz/api/admin/fetch_merchants",
+      {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+          Accept: "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    const result = await response.json();
+    console.log(result.data);
+    // alert(result.data.name);
+    setMerchants(result?.data);
+  }
+
+  const [product, setProduct] = useState();
+  async function fetchProducts() {
+    const token = localStorage.getItem("user-token");
+    // e.preventDefault();
+    const response = await fetch(
+      "https://reic.api.simpoo.biz/api/admin/fetch_products",
+      {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+          Accept: "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    const result = await response.json();
+    console.log(result.data);
+    // alert(result.data.name);
+    setProduct(result?.data);
+  }
+  useEffect(() => {
+    fetchMerchants();
+    fetchProducts();
+  }, []);
+
   const [create, setCreate] = useState(false);
   const [image, setImage] = useState();
   const [preview, setPreview] = useState();
@@ -332,7 +379,9 @@ function Create() {
             <h1 className="text-earnings font-medium text-xs">
               Total Marchants
             </h1>
-            <h1 className="text-dark font-medium text-2xl">600</h1>
+            <h1 className="text-dark font-medium text-2xl">
+              {merchants?.length}
+            </h1>
           </div>
         </div>
         <div className="border-l-2 flex w-1/3 py-1 pl-10">
@@ -343,7 +392,9 @@ function Create() {
             <h1 className="text-earnings font-medium text-xs">
               Total Products
             </h1>
-            <h1 className="text-dark font-medium text-2xl">2330</h1>
+            <h1 className="text-dark font-medium text-2xl">
+              {product?.length}
+            </h1>
           </div>
         </div>
         <div className="flex w-1/3 py-1">

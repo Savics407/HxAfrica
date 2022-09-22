@@ -55,7 +55,7 @@ function RelistedList() {
                 <th className="py-3 text-mobile-nav font-medium text-xs pl-9 w-60">
                   Investment
                 </th>
-                <th className="py-3 pr-7 text-mobile-nav font-medium text-xs ">
+                <th className="py-3 pr-7 pl-5 text-mobile-nav font-medium text-xs ">
                   Amount
                 </th>
                 <th className="py-3 pr-7 text-mobile-nav font-medium text-xs ">
@@ -84,7 +84,7 @@ function RelistedList() {
                     </h1>
                   </div>
                 </td>
-                <td className="py-8">
+                <td className="py-8 pl-5">
                   <h1 className="font-normal text-deep text-xs">
                     N
                     <CurrencyFormat
@@ -110,130 +110,6 @@ function RelistedList() {
                 </td>
               </tr>
             ))}
-
-            <tr className="border-b font-inter">
-              <td className="py-8 pl-5 flex items-center">
-                <div className="mr-2">
-                  <img src={realEstate} alt="Investment Icon" />
-                </div>
-                <div>
-                  <h1 className="font-normal  text-deep text-sm">
-                    Crowdfunding
-                  </h1>
-                  <h1 className="font-normal text-green text-xs">
-                    Real Estate
-                  </h1>
-                </div>
-              </td>
-              <td className="py-8">
-                <h1 className="font-normal text-deep text-xs">N200,000</h1>
-              </td>
-              <td className="py-8">
-                <h1 className="font-normal text-deep text-xs">7 weeks</h1>
-              </td>
-              {/* <td className="py-8">
-                <h1 className="font-normal text-deep text-xs">200</h1>
-              </td> */}
-
-              <td className="py-3">
-                <button className="font-medium text-sm font-inter bg-relist text-relisted py-1 px-2.5 rounded-full ">
-                  Relisted
-                </button>
-              </td>
-            </tr>
-
-            <tr className="border-b font-inter">
-              <td className="py-8 pl-5 flex items-center">
-                <div className="mr-2">
-                  <img src={realEstate} alt="Investment Icon" />
-                </div>
-                <div>
-                  <h1 className="font-normal  text-deep text-sm">
-                    Crowdfunding
-                  </h1>
-                  <h1 className="font-normal text-green text-xs">
-                    Real Estate
-                  </h1>
-                </div>
-              </td>
-              <td className="py-8">
-                <h1 className="font-normal text-deep text-xs">N200,000</h1>
-              </td>
-              <td className="py-8">
-                <h1 className="font-normal text-deep text-xs">7 weeks</h1>
-              </td>
-              {/* <td className="py-8">
-                <h1 className="font-normal text-deep text-xs">200</h1>
-              </td> */}
-
-              <td className="py-3">
-                <button className="font-medium text-sm font-inter bg-relist text-relisted py-1 px-2.5 rounded-full ">
-                  Relisted
-                </button>
-              </td>
-            </tr>
-
-            <tr className="border-b font-inter">
-              <td className="py-8 pl-5 flex items-center">
-                <div className="mr-2">
-                  <img src={realEstate} alt="Investment Icon" />
-                </div>
-                <div>
-                  <h1 className="font-normal  text-deep text-sm">
-                    Crowdfunding
-                  </h1>
-                  <h1 className="font-normal text-green text-xs">
-                    Real Estate
-                  </h1>
-                </div>
-              </td>
-              <td className="py-8">
-                <h1 className="font-normal text-deep text-xs">N200,000</h1>
-              </td>
-              <td className="py-8">
-                <h1 className="font-normal text-deep text-xs">7 weeks</h1>
-              </td>
-              {/* <td className="py-8">
-                <h1 className="font-normal text-deep text-xs">200</h1>
-              </td> */}
-
-              <td className="py-3">
-                <button className="font-medium text-sm font-inter bg-relist text-relisted py-1 px-2.5 rounded-full ">
-                  Relisted
-                </button>
-              </td>
-            </tr>
-
-            <tr className="border-b font-inter">
-              <td className="py-8 pl-5 flex items-center">
-                <div className="mr-2">
-                  <img src={realEstate} alt="Investment Icon" />
-                </div>
-                <div>
-                  <h1 className="font-normal  text-deep text-sm">
-                    Crowdfunding
-                  </h1>
-                  <h1 className="font-normal text-green text-xs">
-                    Real Estate
-                  </h1>
-                </div>
-              </td>
-              <td className="py-8">
-                <h1 className="font-normal text-deep text-xs">N200,000</h1>
-              </td>
-              <td className="py-8">
-                <h1 className="font-normal text-deep text-xs">7 weeks</h1>
-              </td>
-              {/* <td className="py-8">
-                <h1 className="font-normal text-deep text-xs">200</h1>
-              </td> */}
-
-              <td className="py-3">
-                <button className="font-medium text-sm font-inter bg-relist text-relisted py-1 px-2.5 rounded-full ">
-                  Relisted
-                </button>
-              </td>
-            </tr>
           </table>
           <div className=" flex pt-20 px-7 items-center justify-between">
             <div className="border rounded-lg bg-page text-footer text-sm p-3">

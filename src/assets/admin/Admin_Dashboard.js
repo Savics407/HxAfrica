@@ -13,18 +13,56 @@ import {
   buildStyles,
 } from "react-circular-progressbar";
 import moment from "moment";
+import * as CurrencyFormat from "react-currency-format";
 import { FaAngleRight } from "react-icons/fa";
 
 function Admin_Dashboard() {
-  // const [fix, setFix] = useState(false);
-  // function sideBarFixed() {
-  //   if (window.scrollY >= 150) {
-  //     setFix(true);
-  //   } else setFix(false);
-  // }
+  const [total, setTotal] = useState();
+  async function fetchTotal() {
+    const token = localStorage.getItem("user-token");
+    // e.preventDefault();
+    const response = await fetch(
+      "https://reic.api.simpoo.biz/api/admin/fetch_dashboard_total",
+      {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+          Accept: "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    const result = await response.json();
+    console.log(result.data);
+    // alert(result.data.name);
+    setTotal(result?.data);
+  }
+  const [top, setTop] = useState();
 
-  // window.addEventListener("scroll", sideBarFixed);
+  async function fetchTopInvestments() {
+    const token = localStorage.getItem("user-token");
+    // e.preventDefault();
+    const response = await fetch(
+      "https://reic.api.simpoo.biz/api/admin/fetch_top_investment",
+      {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+          Accept: "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    const result = await response.json();
+    console.log(result.data);
+    // alert(result.data.name);
+    setTop(result?.data);
+  }
+  const userName = localStorage.getItem("name");
+
   useEffect(() => {
+    fetchTotal();
+    fetchTopInvestments();
     window.scrollTo(0, 0);
   }, []);
   return (
@@ -37,7 +75,7 @@ function Admin_Dashboard() {
         <div className="w-53 pt-5 mb-20">
           <div className="welcome bg-welcome p-10 rounded-lg border lg:block hidden">
             <h1 className="text-green font-black text-2xl mb-3">
-              Hi, <span className="text-dark ml-1">Admin</span>
+              Hi, <span className="text-dark ml-1">{userName}</span>
             </h1>
             <p className="font-normal text-lg text-dark">Welcome Back</p>
           </div>
@@ -50,7 +88,9 @@ function Admin_Dashboard() {
                 <h1 className="text-earnings font-medium text-xs">
                   Total Users
                 </h1>
-                <h1 className="text-dark font-medium text-2xl">670 Users</h1>
+                <h1 className="text-dark font-medium text-2xl">
+                  {total?.total_user} Users
+                </h1>
               </div>
             </div>
             <div className="border-x-2 flex w-1/3 py-1 pl-10">
@@ -61,7 +101,9 @@ function Admin_Dashboard() {
                 <h1 className="text-earnings font-medium text-xs">
                   Total Investments
                 </h1>
-                <h1 className="text-dark font-medium text-2xl">2,000</h1>
+                <h1 className="text-dark font-medium text-2xl">
+                  {total?.total_investments}
+                </h1>
               </div>
             </div>
             <div className="flex w-1/3 py-1 pl-10">
@@ -72,7 +114,9 @@ function Admin_Dashboard() {
                 <h1 className="text-earnings font-medium text-xs">
                   Relisted Investments
                 </h1>
-                <h1 className="text-dark font-medium text-2xl">150</h1>
+                <h1 className="text-dark font-medium text-2xl">
+                  {total?.total_relisted}
+                </h1>
               </div>
             </div>
           </div>
@@ -282,12 +326,12 @@ function Admin_Dashboard() {
           <div className="rounded-lg bg-white p-10 my-5">
             <div className="w-44 m-auto">
               <CircularProgressbarWithChildren
-                value={78}
+                value={total?.total_investments - total?.total_relisted}
                 // text={"Total Investments"}
                 // value={20}
                 // text={10}
                 strokeWidth={10}
-                maxValue={100}
+                maxValue={total?.total_investments}
                 // counterClockwise={true}s
                 styles={buildStyles({
                   rotation: 0.04,
@@ -300,18 +344,29 @@ function Admin_Dashboard() {
               >
                 <div className="font-medium text-center">
                   <h1 className="text-green text-xs mb-2">Total Investments</h1>
-                  <h1 className="text-darker text-xl ">2000</h1>
+                  <h1 className="text-darker text-xl ">
+                    {total?.total_investments}
+                  </h1>
                 </div>
               </CircularProgressbarWithChildren>
             </div>
             <div className="flex justify-center mt-10">
               <div className="flex text-tiny font-normal text-banner mr-5">
                 <img src={rectangle2} alt="green icon" className="mr-1" />
-                <h1>Investment 78%</h1>
+                <h1>
+                  Investment{" "}
+                  {((total?.total_investments - total?.total_relisted) /
+                    total?.total_investments) *
+                    100}
+                  %
+                </h1>
               </div>
               <div className="flex text-tiny font-normal text-banner">
                 <img src={rectangle} alt="pink icon" className="mr-1" />
-                <h1>Relisted 22%</h1>
+                <h1>
+                  Relisted{" "}
+                  {(total?.total_relisted / total?.total_investments) * 100}%
+                </h1>
               </div>
             </div>
           </div>
@@ -319,83 +374,29 @@ function Admin_Dashboard() {
             <div className="border-b border-stroke px-5 py-5 mb-5 text-lg text-darker font-medium">
               <h1 className="">Top Investments</h1>
             </div>
-            <div className="px-5">
-              <div className="border-b flex justify-between items-center py-5">
-                <div>
-                  <h1 className="text-deep text-sm  ">Crowdfunding</h1>
-                  <h1 className="text-statustext text-xs font-normal">
-                    200 Investors
-                  </h1>
+            <div className="h-screen overflow-auto scroll">
+              {top?.map((top) => (
+                <div className="px-5" key={top.id}>
+                  <div className="border-b flex justify-between items-center py-5">
+                    <div>
+                      <h1 className="text-deep text-sm">{top.title}</h1>
+                      <h1 className="text-statustext text-xs font-normal">
+                        {top.investments.length} Investors
+                      </h1>
+                    </div>
+                    <div className="text-slight text-sm">
+                      <h1>
+                        N
+                        <CurrencyFormat
+                          value={top.cost}
+                          displayType={"text"}
+                          thousandSeparator={true}
+                        />
+                      </h1>
+                    </div>
+                  </div>
                 </div>
-                <div className="text-slight text-sm">
-                  <h1>N200,000</h1>
-                </div>
-              </div>
-            </div>
-            <div className="px-5">
-              <div className="border-b flex justify-between items-center py-5">
-                <div>
-                  <h1 className="text-deep text-sm  ">Crowdfunding</h1>
-                  <h1 className="text-statustext text-xs font-normal">
-                    200 Investors
-                  </h1>
-                </div>
-                <div className="text-slight text-sm">
-                  <h1>N200,000</h1>
-                </div>
-              </div>
-            </div>
-            <div className="px-5">
-              <div className="border-b flex justify-between items-center py-5">
-                <div>
-                  <h1 className="text-deep text-sm  ">Crowdfunding</h1>
-                  <h1 className="text-statustext text-xs font-normal">
-                    200 Investors
-                  </h1>
-                </div>
-                <div className="text-slight text-sm">
-                  <h1>N200,000</h1>
-                </div>
-              </div>
-            </div>
-            <div className="px-5">
-              <div className="border-b flex justify-between items-center py-5">
-                <div>
-                  <h1 className="text-deep text-sm  ">Crowdfunding</h1>
-                  <h1 className="text-statustext text-xs font-normal">
-                    200 Investors
-                  </h1>
-                </div>
-                <div className="text-slight text-sm">
-                  <h1>N200,000</h1>
-                </div>
-              </div>
-            </div>
-            <div className="px-5">
-              <div className="border-b flex justify-between items-center py-5">
-                <div>
-                  <h1 className="text-deep text-sm  ">Crowdfunding</h1>
-                  <h1 className="text-statustext text-xs font-normal">
-                    200 Investors
-                  </h1>
-                </div>
-                <div className="text-slight text-sm">
-                  <h1>N200,000</h1>
-                </div>
-              </div>
-            </div>
-            <div className="px-5">
-              <div className="border-b flex justify-between items-center py-5">
-                <div>
-                  <h1 className="text-deep text-sm  ">Crowdfunding</h1>
-                  <h1 className="text-statustext text-xs font-normal">
-                    200 Investors
-                  </h1>
-                </div>
-                <div className="text-slight text-sm">
-                  <h1>N200,000</h1>
-                </div>
-              </div>
+              ))}
             </div>
             <h1 className="text-blue text-sm px-5 my-4">Show more</h1>
           </div>

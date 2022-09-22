@@ -236,6 +236,14 @@ function Profile() {
   const [signOut, setSignOut] = useState(false);
   const [posts, setPosts] = useState();
   const [image, setImage] = useState();
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [userName, setUserName] = useState("");
+  const [state, setState] = useState("");
+  const [stateName, setStateName] = useState("");
+  const [city, setCity] = useState("");
+  const [address, setAddress] = useState("");
+  const [dob, setDob] = useState("");
 
   async function fetchData() {
     const token = localStorage.getItem("user-token");
@@ -255,6 +263,16 @@ function Profile() {
     // alert(result.data.name);
 
     setPosts(result.data);
+    setName(result.data.name);
+    setPhone(result.data.phone);
+    setAddress(result.data.investor.address);
+    setDob(result.data.investor.dob);
+    setCity(result.data.investor.city);
+    setUserName(result.data.username);
+    setStateName(result.data.investor.state.name);
+    setState(result.data.investor.state.id);
+    localStorage.setItem("user-name", userName);
+
     // setImage(result?.data.profile_photo_path)
   }
 
@@ -272,29 +290,14 @@ function Profile() {
     fetchData();
   }, []);
 
-  const [profileData, setProfileData] = useState({
-    // email: userEmail,
-    userName: posts?.username,
-    name: posts?.name,
-    phone: posts?.phone,
-    password: "",
-    state: posts?.investor.state.id,
-    city: posts?.investor.city,
-    address: posts?.investor.address,
-    dob: posts?.investor.dob,
-  });
-  const nam = posts?.name;
-  const [name, setName] = useState(nam);
-  alert(name);
-
   async function update() {
     const payLoad = {
-      name: profileData.name,
-      username: profileData.userName,
-      address: profileData.address,
-      city: profileData.city,
-      state_id: profileData.state,
-      dob: profileData.dob,
+      name: name,
+      username: userName,
+      address: address,
+      city: city,
+      state_id: state,
+      dob: dob,
     };
 
     const token = localStorage.getItem("user-token");
@@ -324,8 +327,9 @@ function Profile() {
         progress: undefined,
       });
       //   navigate("/select-avater");
+      fetchData();
     } else {
-      if (result.status === "error") {
+      if (result.errors) {
         toast.error(`${result.message}`, {
           position: "top-left",
           autoClose: 300,
@@ -413,7 +417,7 @@ function Profile() {
             <h1 className="uppercase lg:capitalize text-footer text-xs px-3 font-medium">
               User Information
             </h1>
-
+            {/* {state} */}
             <table className="border w-full border-collapse mt-3 font-inter">
               <tr>
                 <td className="lg:w-1/3 w-2/5 px-5 py-2">
@@ -425,15 +429,10 @@ function Profile() {
                   {/* <h1 className="font-medium text-sm ">{userName}</h1> */}
                   <input
                     type="text"
-                    // defaultValue={name}
+                    defaultValue={name}
                     className="font-medium text-xs lg:text-sm outline-none w-full"
-                    value={posts?.name}
-                    onChange={(event) =>
-                      setProfileData({
-                        ...profileData,
-                        name: event.target.value,
-                      })
-                    }
+                    // value={posts?.name}
+                    onChange={(event) => setName(event.target.value)}
                   />
                 </td>
               </tr>
@@ -448,14 +447,9 @@ function Profile() {
                   <input
                     type="text"
                     placeholder="Not Added yet"
-                    defaultValue={posts?.username}
+                    defaultValue={userName}
                     className="font-medium text-xs lg:text-sm outline-none w-full"
-                    onChange={(event) =>
-                      setProfileData({
-                        ...profileData,
-                        userName: event.target.value,
-                      })
-                    }
+                    onChange={(event) => setUserName(event.target.value)}
                   />
                 </td>
               </tr>
@@ -474,12 +468,12 @@ function Profile() {
                     type="text"
                     defaultValue={posts?.email}
                     className="font-medium text-xs lg:text-sm outline-none w-full bg-transparent"
-                    onChange={(event) =>
-                      setProfileData({
-                        ...profileData,
-                        email: event.target.value,
-                      })
-                    }
+                    // onChange={(event) =>
+                    //   setProfileData({
+                    //     ...profileData,
+                    //     email: event.target.value,
+                    //   })
+                    // }
                     disabled
                   />
                 </td>
@@ -490,18 +484,21 @@ function Profile() {
                     Mobile Number
                   </h1>
                 </td>
-                <td className="lg:w-2/3 w-3/5 border px-5">
+                <td
+                  className="lg:w-2/3 w-3/5 border px-5"
+                  onClick={() => alert("can't edit phone number")}
+                >
                   {/* <h1 className="font-medium text-sm">{userPhone}</h1> */}
                   <input
                     type="text"
-                    defaultValue={posts?.phone}
-                    className="font-medium text-xs lg:text-sm outline-none w-full"
-                    onChange={(event) =>
-                      setProfileData({
-                        ...profileData,
-                        phone: event.target.value,
-                      })
-                    }
+                    defaultValue={phone}
+                    className="font-medium text-xs lg:text-sm outline-none w-full bg-transparent"
+                    // onChange={(event) =>
+                    //   setProfileData({
+                    //     ...profileData,
+                    //     phone: event.target.value,
+                    //   })
+                    disabled
                   />
                 </td>
               </tr>
@@ -519,13 +516,8 @@ function Profile() {
                     type="date"
                     placeholder=""
                     className="font-medium text-xs lg:text-sm outline-none w-full"
-                    defaultValue={posts?.investor.dob}
-                    onChange={(event) =>
-                      setProfileData({
-                        ...profileData,
-                        dob: event.target.value,
-                      })
-                    }
+                    defaultValue={dob}
+                    onChange={(event) => setDob(event.target.value)}
                     max="2022-02-01"
                   />
                 </td>
@@ -539,14 +531,9 @@ function Profile() {
                 <td className="lg:w-2/3 w-3/5 border px-5">
                   <input
                     type="text"
-                    defaultValue={posts?.investor.address}
+                    defaultValue={address}
                     className="font-medium text-xs lg:text-sm outline-none w-full"
-                    onChange={(event) =>
-                      setProfileData({
-                        ...profileData,
-                        address: event.target.value,
-                      })
-                    }
+                    onChange={(event) => setAddress(event.target.value)}
                   />
                 </td>
               </tr>
@@ -558,17 +545,62 @@ function Profile() {
                 </td>
                 <td className="lg:w-2/3 w-3/5 border px-5">
                   {/* <h1 className="font-medium text-sm">{userState}</h1> */}
-                  <input
+                  {/* <input
                     type="text"
-                    defaultValue={posts?.investor.state.name}
+                    defaultValue={state}
                     className="font-medium text-xs lg:text-sm outline-none w-full"
-                    onChange={(event) =>
-                      setProfileData({
-                        ...profileData,
-                        state: event.target.value,
-                      })
-                    }
-                  />
+                    onChange={(event) => setState(event.target.value)}
+                  /> */}
+                  <select
+                    className="font-medium text-xs lg:text-sm outline-none w-full"
+                    value={stateName}
+                    onChange={(event) => {
+                      setState(event.target.value);
+                      setStateName(event.target.value);
+                    }}
+                  >
+                    <option value={posts?.investor.state.id} selected>
+                      {stateName}
+                    </option>
+
+                    <option value="303">Abia</option>
+                    <option value="320">Adamawa</option>
+                    <option value="304">Akwa Ibom</option>
+                    <option value="315">Anambra</option>
+                    <option value="312">Bauchi</option>
+                    <option value="305">Bayelsa</option>
+                    <option value="291">Benue</option>
+                    <option value="307">Borno</option>
+                    <option value="314">Cross River</option>
+                    <option value="316">Delta</option>
+                    <option value="311">Ebonyi</option>
+                    <option value="318">Edo</option>
+                    <option value="309">Ekiti</option>
+                    <option value="289">Enugu</option>
+                    <option value="293">Federal Capital Territory</option>
+                    <option value="310">Gombe</option>
+                    <option value="308">Imo</option>
+                    <option value="288">Jigawa</option>
+                    <option value="294">Kaduna</option>
+                    <option value="300">Kano</option>
+                    <option value="313">Katsina</option>
+                    <option value="290">Kebbi</option>
+                    <option value="298">Kogi</option>
+                    <option value="295">Kwara</option>
+                    <option value="306">Lagos</option>
+                    <option value="301">Nasarawa</option>
+                    <option value="317">Niger</option>
+                    <option value="323">Ogun</option>
+                    <option value="321">Ondo</option>
+                    <option value="322">Osun</option>
+                    <option value="296">Oyo</option>
+                    <option value="302">Plateau</option>
+                    <option value="100">Rivers</option>
+                    <option value="292">Sokoto</option>
+                    <option value="319">Taraba</option>
+                    <option value="297">Yobe</option>
+                    <option value="299">Zamfara</option>
+                  </select>
                 </td>
               </tr>
               <tr>
@@ -581,14 +613,9 @@ function Profile() {
                   {/* <h1 className="font-medium text-sm">{userCity}</h1> */}
                   <input
                     type="text"
-                    defaultValue={posts?.investor.city}
+                    defaultValue={city}
                     className="font-medium text-xs lg:text-sm outline-none w-full"
-                    onChange={(event) =>
-                      setProfileData({
-                        ...profileData,
-                        city: event.target.value,
-                      })
-                    }
+                    onChange={(event) => setCity(event.target.value)}
                   />
                 </td>
               </tr>

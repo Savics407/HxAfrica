@@ -1,7 +1,7 @@
-import user from "./images/default_profile.svg";
+import userp from "./images/default_profile.svg";
 import { FaAngleDown } from "react-icons/fa";
 import { FaBell } from "react-icons/fa";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import logo from "./images/logo.svg";
 import status from "./images/status.png";
 import { MdDashboard } from "react-icons/md";
@@ -18,10 +18,40 @@ import { Link, NavLink } from "react-router-dom";
 function Header() {
   const [isClick, setIsClick] = useState(false);
   const [logout, setLogout] = useState(false);
-  const userName = localStorage.getItem("name");
+  const [userName, setUserName] = useState();
+
+  const name = localStorage.getItem("name");
+  const user = localStorage.getItem("user-name");
+
+  // const userName = localStorage.getItem("name");
   const navigate = useNavigate();
   const userEmail = localStorage.getItem("user-email");
   const userIcon = localStorage.getItem("user-profile");
+
+  async function fetchData() {
+    const token = localStorage.getItem("user-token");
+    // e.preventDefault();
+    const response = await fetch(
+      "https://reic.api.simpoo.biz/api/investor/fetch_user_profile",
+      {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    const result = await response.json();
+    console.log(result.data);
+    setUserName(result.data.username);
+    localStorage.setItem("user-name", userName);
+  }
+
+  useEffect(() => {
+    // activities();
+    fetchData();
+  }, []);
+
   const logOut = () => {
     window.localStorage.removeItem("user-token");
     toast.success(`User logged out Successfully`, {
@@ -148,7 +178,9 @@ function Header() {
                 setIsClick(false);
               }}
             >
-              <h1 className="font-semibold mr-1">{userName}</h1>
+              <h1 className="font-semibold mr-1">
+                {user === "null" ? name : userName}
+              </h1>
               <FaAngleDown />
               <div
                 className={`absolute py-6 text-neutral px-16 -right-5 top-20 -mt-2 rounded-xl shadow-2xl bg-dashbg text-left invisible  flex flex-col items-center duration-300 z-50 ${
@@ -187,7 +219,7 @@ function Header() {
                     className="object-fill  "
                   />
                 ) : (
-                  <img src={user} alt="User-Icon" className="object-cover" />
+                  <img src={userp} alt="User-Icon" className="object-cover" />
                 )}
               </Link>
               <div className="online"></div>

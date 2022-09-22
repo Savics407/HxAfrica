@@ -468,7 +468,7 @@ function Processing({ productId }) {
           draggable: true,
           progress: undefined,
         });
-        window.location.href = "/investment/my-investment";
+        navigate("/investment/my-investment");
       }
     }
   }
@@ -527,8 +527,10 @@ function Processing({ productId }) {
 
 function Sad() {
   const product_title = localStorage.getItem("product_title");
+  const navigate = useNavigate();
+
   useEffect(() => {
-    setTimeout((window.location = "/token"), 10000);
+    setTimeout(navigate("/token"), 10000);
   }, []);
   return (
     <>

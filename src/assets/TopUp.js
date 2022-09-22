@@ -443,7 +443,7 @@ export function Warning({ closeWarning, closeModal, reic, title, productID }) {
               closeWarning(!closeWarning);
               setWarning(!warning);
               // closeModal(false);
-              window.location = "/investment";
+              navigate("/investment");
             }}
           >
             Cancel

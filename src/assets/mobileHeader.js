@@ -1,19 +1,48 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FaBell } from "react-icons/fa";
 import { Link, NavLink } from "react-router-dom";
 // import user from "./images/user_icon.png";
 import user from "./images/default_profile.svg";
 
-function mobileHeader() {
-  const userName = localStorage.getItem("name");
+function MobileHeader() {
+  const name = localStorage.getItem("name");
+  const user = localStorage.getItem("user-name");
+  const [userName, setUserName] = useState();
+
   const userIcon = localStorage.getItem("user-profile");
+  async function fetchData() {
+    const token = localStorage.getItem("user-token");
+    // e.preventDefault();
+    const response = await fetch(
+      "https://reic.api.simpoo.biz/api/investor/fetch_user_profile",
+      {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    const result = await response.json();
+    console.log(result.data);
+    setUserName(result.data.username);
+    localStorage.setItem("user-name", userName);
+  }
+
+  useEffect(() => {
+    // activities();
+    fetchData();
+  }, []);
 
   return (
     <>
       <div className="lg:hidden bg-welcome p-6 rounded-lg flex items-center justify-between w-full">
         <div className="">
           <h1 className="text-green font-black text-lg mb-3">
-            Hi, <span className="text-dark">{userName}</span>
+            Hi,{" "}
+            <span className="text-dark">
+              {user === "null" ? name : userName}
+            </span>
           </h1>
           <p className="font-normal text-sm text-dark">You are welcome</p>
         </div>
@@ -41,4 +70,4 @@ function mobileHeader() {
   );
 }
 
-export default mobileHeader;
+export default MobileHeader;
