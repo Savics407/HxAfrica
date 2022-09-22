@@ -107,6 +107,17 @@ function Investment() {
           </div>
         </div>
         <div className="lg:hidden p-4 mb-10">
+          <Link to="/investment-chat">
+            <div className="mb-6 bg-green flex rounded justify-between items-center text-white text-sm p-4 py-2">
+              <Link to="/investment-chat">
+                <button className="flex items-center  rounded px-4 py-2 text-white text-sm">
+                  <img src={messenger} alt="messenger" />{" "}
+                  <span className="ml-3">Messages(3)</span>
+                </button>
+              </Link>
+              <FaAngleRight className="text-base" />
+            </div>
+          </Link>
           <Link to="/investment/new-investment">
             <div className="mb-4 bg-white flex rounded justify-between items-center text-vestabs text-sm p-4 py-6">
               <div className="flex items-center ">
@@ -159,17 +170,6 @@ function Investment() {
                 <h1>Relisted Investments</h1>
               </div>
               <FaAngleRight className="text-base" />
-            </div>
-          </Link>
-          <Link to="/investment-chat">
-            <div className="mb-4 bg-white flex rounded justify-between items-center text-vestabs text-sm p-4 py-3">
-              <Link to="/investment-chat">
-                <button className="flex items-center bg-green rounded px-4 py-2 text-white text-sm">
-                  <img src={messenger} alt="messenger" />{" "}
-                  <span className="ml-3">Messages(3)</span>
-                </button>
-              </Link>
-              {/* <FaAngleRight className="text-base" /> */}
             </div>
           </Link>
         </div>
