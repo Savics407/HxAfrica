@@ -222,7 +222,7 @@ function Pending() {
                                 className="bg-white text-green text-tiny font-normal w-24 h-7 rounded-2xl"
                                 onClick={() => {
                                   // Cancel(pending.id);
-                                  setProID(pending.id);
+                                  setProID(pending.product_id);
                                   joinNow(pending.id);
                                 }}
                               >

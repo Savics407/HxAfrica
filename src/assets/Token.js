@@ -117,10 +117,31 @@ function Token() {
     setNgn(result.data.balance);
     setToken(result.data.token);
   }
+  const [total, setTotal] = useState();
+  async function fetchTotal() {
+    // console.log(formData);
+    const token = localStorage.getItem("user-token");
+    // e.preventDefault();
+    const response = await fetch(
+      "https://reic.api.simpoo.biz/api/wallet/total_investment",
+      {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    const result = await response.json();
+    console.log(result.status);
+    setTotal(result.data);
+  }
 
   useEffect(() => {
     wallet();
-  });
+    fetchTotal();
+  }, []);
+
   const [withdraw, setWithdraw] = useState(false);
   const [bankID, setBankID] = useState();
   const [bank, setBank] = useState(false);
@@ -241,21 +262,32 @@ function Token() {
                 <p className="text-earnings font-medium text-xs mb-1">
                   My Investments
                 </p>
-                <h1 className="text-dark text-2xl font-medium">20</h1>
+                <h1 className="text-dark text-2xl font-medium">
+                  {total?.total_investment}
+                </h1>
               </div>
               <div className="px-4 border-strokegrey ">
                 <img src={dollar} alt="dollar-icon" className="mb-4 h-6 w-6" />
                 <p className="text-earnings font-medium text-xs mb-1">
                   Total in Reic
                 </p>
-                <h1 className="text-dark text-2xl font-medium">200</h1>
+                <h1 className="text-dark text-2xl font-medium">
+                  {total?.token}
+                </h1>
               </div>
               <div className="px-4">
                 <img src={coin} alt="dollar-icon" className="mb-4 h-6 w-6" />
                 <p className="text-earnings font-medium text-xs mb-1">
                   Naira Equivalent
                 </p>
-                <h1 className="text-dark text-2xl font-medium">N200,000</h1>
+                <h1 className="text-dark text-2xl font-medium">
+                  N
+                  <CurrencyFormat
+                    value={total?.NGN}
+                    displayType={"text"}
+                    thousandSeparator={true}
+                  />
+                </h1>
               </div>
             </div>
             <div className="flex py-5 pl-3 lg:hidden">
