@@ -15,6 +15,7 @@ import {
 import moment from "moment";
 import * as CurrencyFormat from "react-currency-format";
 import { FaAngleRight } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 function Admin_Dashboard() {
   const [total, setTotal] = useState();
@@ -60,8 +61,31 @@ function Admin_Dashboard() {
   }
   const userName = localStorage.getItem("name");
 
+  const [activities, setActivities] = useState();
+
+  async function merchantActivities() {
+    const token = localStorage.getItem("user-token");
+    // e.preventDefault();
+    const response = await fetch(
+      "https://reic.api.simpoo.biz/api/admin/fetch_merchant_activities",
+      {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+          Accept: "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    const result = await response.json();
+    console.log(result.data);
+    // alert(result.data.name);
+    setActivities(result?.data);
+  }
+
   useEffect(() => {
     fetchTotal();
+    merchantActivities();
     fetchTopInvestments();
     window.scrollTo(0, 0);
   }, []);
@@ -129,11 +153,26 @@ function Admin_Dashboard() {
                 <FaAngleRight className="ml-2 text-blue text-sm" />
               </h1>
             </div>
+            <div className="flex items-center text-sm mar rounded-lg my-4 text-footer bg-white ">
+              <div className=" text-dark text-base border-b-4 border-green font-medium px-1 py-2.5 hover:text-dark">
+                <h1>Merchants </h1>
+              </div>
+
+              <span className="w-7"> </span>
+              <Link to="/admin/merchants/pull-funds-request">
+                <div className="font-normal px-1 py-2.5 border-b-4 border-transparent hover:text-dark ">
+                  <h1>Investors</h1>
+                </div>
+              </Link>
+            </div>
             <div className="py-4">
               <table className=" w-full table-auto">
                 <thead className="">
                   <tr className="text-left bg-table">
                     <th className="py-2 text-darker font-medium text-sm pl-5">
+                      ID
+                    </th>
+                    <th className="py-2 pr-7 text-darker font-medium text-sm ">
                       Type
                     </th>
                     <th className="py-2 pr-7 text-darker font-medium text-sm ">
@@ -156,34 +195,56 @@ function Admin_Dashboard() {
                         </th> */}
                   </tr>
                 </thead>
-                <tr className="py-8 border-b">
-                  <td className="py-3 pl-5">
-                    <h1 className="font-medium text-neutral text-xs">
-                      Loan Request
-                    </h1>
-                  </td>
-                  <td className="py-3">
-                    <h1 className="font-medium text-neutral text-xs">
-                      20,000 <span className="text-currency">NGN</span>
-                    </h1>
-                  </td>
-                  <td className="py-3">
-                    <h1 className="font-medium text-neutral text-xs">
-                      Jul 16, 2022
-                    </h1>
-                  </td>
-                  <td className="py-3">
-                    <h1 className="font-medium text-neutral text-xs">8:30pm</h1>
-                  </td>
+                {activities?.map((activities) => (
+                  <tr className="py-8 border-b">
+                    <td className="py-3 pl-5">
+                      <h1 className="font-medium text-neutral text-xs capitalize">
+                        #{activities.id}
+                      </h1>
+                    </td>
+                    <td className="py-3">
+                      <h1 className="font-medium text-neutral text-xs capitalize">
+                        {activities.type === "pullout_product_funds"
+                          ? "Pullout Funds"
+                          : activities.type}
+                      </h1>
+                    </td>
+                    <td className="py-3">
+                      <h1 className="font-medium text-neutral text-xs">
+                        <CurrencyFormat
+                          value={activities.amount}
+                          displayType={"text"}
+                          thousandSeparator={true}
+                        />{" "}
+                        <span className="text-currency">NGN</span>
+                      </h1>
+                    </td>
+                    <td className="py-3">
+                      <h1 className="font-medium text-neutral text-xs">
+                        {moment(activities.created_at).format("MMM DD, yyyy")}
+                      </h1>
+                    </td>
+                    <td className="py-3">
+                      <h1 className="font-medium text-neutral text-xs">
+                        {moment(activities.created_at).format("LT")}
+                      </h1>
+                    </td>
 
-                  <td className="py-3">
-                    <button className="font-medium text-sm font-inter bg-bgGreen text-green rounded-full py-1 px-2">
-                      Success
-                    </button>
-                  </td>
-                </tr>
+                    <td className="py-3">
+                      <button className="font-medium text-sm font-inter bg-bgGreen text-green rounded-full py-1 px-2">
+                        {activities.status}
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+
                 <tr className="py-8 border-b">
                   <td className="py-3 pl-5">
+                    <h1 className="font-medium text-neutral text-xs capitalize">
+                      #2
+                    </h1>
+                  </td>
+                  <td className="py-3">
                     <h1 className="font-medium text-neutral text-xs">
                       Buy Airtime
                     </h1>
@@ -210,6 +271,11 @@ function Admin_Dashboard() {
                 </tr>
                 <tr className="py-8 border-b">
                   <td className="py-3 pl-5">
+                    <h1 className="font-medium text-neutral text-xs capitalize">
+                      #3
+                    </h1>
+                  </td>
+                  <td className="py-3">
                     <h1 className="font-medium text-neutral text-xs">
                       Repay Loan
                     </h1>
@@ -236,6 +302,42 @@ function Admin_Dashboard() {
                 </tr>
                 <tr className="py-8 border-b">
                   <td className="py-3 pl-5">
+                    <h1 className="font-medium text-neutral text-xs capitalize">
+                      #4
+                    </h1>
+                  </td>
+                  <td className="py-3">
+                    <h1 className="font-medium text-neutral text-xs">
+                      Buy Airtime
+                    </h1>
+                  </td>
+                  <td className="py-3">
+                    <h1 className="font-medium text-neutral text-xs">
+                      20,000 <span className="text-currency">NGN</span>
+                    </h1>
+                  </td>
+                  <td className="py-3">
+                    <h1 className="font-medium text-neutral text-xs">
+                      Jul 16, 2022
+                    </h1>
+                  </td>
+                  <td className="py-3">
+                    <h1 className="font-medium text-neutral text-xs">8:30pm</h1>
+                  </td>
+
+                  <td className="py-3">
+                    <button className="font-medium text-sm font-inter bg-bgGreen text-green rounded-full py-1 px-2">
+                      Success
+                    </button>
+                  </td>
+                </tr>
+                <tr className="py-8 border-b">
+                  <td className="py-3 pl-5">
+                    <h1 className="font-medium text-neutral text-xs capitalize">
+                      #5
+                    </h1>
+                  </td>
+                  <td className="py-3">
                     <h1 className="font-medium text-neutral text-xs">
                       Loan Request
                     </h1>
@@ -262,32 +364,11 @@ function Admin_Dashboard() {
                 </tr>
                 <tr className="py-8 border-b">
                   <td className="py-3 pl-5">
-                    <h1 className="font-medium text-neutral text-xs">
-                      Loan Request
+                    <h1 className="font-medium text-neutral text-xs capitalize">
+                      #6
                     </h1>
                   </td>
                   <td className="py-3">
-                    <h1 className="font-medium text-neutral text-xs">
-                      20,000 <span className="text-currency">NGN</span>
-                    </h1>
-                  </td>
-                  <td className="py-3">
-                    <h1 className="font-medium text-neutral text-xs">
-                      Jul 16, 2022
-                    </h1>
-                  </td>
-                  <td className="py-3">
-                    <h1 className="font-medium text-neutral text-xs">8:30pm</h1>
-                  </td>
-
-                  <td className="py-3">
-                    <button className="font-medium text-sm font-inter bg-bgGreen text-green rounded-full py-1 px-2">
-                      Success
-                    </button>
-                  </td>
-                </tr>
-                <tr className="py-8 border-b">
-                  <td className="py-3 pl-5">
                     <h1 className="font-medium text-neutral text-xs">
                       Loan Request
                     </h1>
@@ -355,9 +436,11 @@ function Admin_Dashboard() {
                 <img src={rectangle2} alt="green icon" className="mr-1" />
                 <h1>
                   Investment{" "}
-                  {((total?.total_investments - total?.total_relisted) /
-                    total?.total_investments) *
-                    100}
+                  {(
+                    ((total?.total_investments - total?.total_relisted) /
+                      total?.total_investments) *
+                    100
+                  ).toFixed(2)}
                   %
                 </h1>
               </div>
@@ -365,7 +448,11 @@ function Admin_Dashboard() {
                 <img src={rectangle} alt="pink icon" className="mr-1" />
                 <h1>
                   Relisted{" "}
-                  {(total?.total_relisted / total?.total_investments) * 100}%
+                  {(
+                    (total?.total_relisted / total?.total_investments) *
+                    100
+                  ).toFixed(2)}
+                  %
                 </h1>
               </div>
             </div>
@@ -398,7 +485,7 @@ function Admin_Dashboard() {
                 </div>
               ))}
             </div>
-            <h1 className="text-blue text-sm px-5 my-4">Show more</h1>
+            {/* <h1 className="text-blue text-sm px-5 my-4">Show more</h1> */}
           </div>
         </div>
       </div>

@@ -300,7 +300,43 @@ function SideBar() {
             <h1>Roles & Permission</h1>
           </div>
         </NavLink>
-
+        <NavLink to="/admin/transactions">
+          <div className="sidenav-items ">
+            {/* <AiFillPropertySafety className="s-icons" />
+             */}
+            <div className="s-icons">
+              <svg
+                width="18"
+                height="19"
+                viewBox="0 0 18 19"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M15.6824 8.96499C15.6824 12.6325 13.0199 16.0675 9.38239 17.0725C9.13489 17.14 8.86488 17.14 8.61738 17.0725C4.97988 16.0675 2.31738 12.6325 2.31738 8.96499V5.67248C2.31738 5.05748 2.78239 4.35998 3.35989 4.12748L7.53738 2.41751C8.47488 2.03501 9.53238 2.03501 10.4699 2.41751L14.6474 4.12748C15.2174 4.35998 15.6899 5.05748 15.6899 5.67248L15.6824 8.96499Z"
+                  // stroke="#5E636D"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M9 10C9.82843 10 10.5 9.32843 10.5 8.5C10.5 7.67157 9.82843 7 9 7C8.17157 7 7.5 7.67157 7.5 8.5C7.5 9.32843 8.17157 10 9 10Z"
+                  // stroke="#5E636D"
+                  stroke-miterlimit="10"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M9 10V12.25"
+                  // stroke="#5E636D"
+                  stroke-miterlimit="10"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </div>
+            <h1>Transactions</h1>
+          </div>
+        </NavLink>
         <NavLink to="/admin/settings">
           <div className="sidenav-items  ">
             {/* <RiSettings3Fill className="s-icons" /> */}

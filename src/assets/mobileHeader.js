@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { FaBell } from "react-icons/fa";
 import { Link, NavLink } from "react-router-dom";
 // import user from "./images/user_icon.png";
-import user from "./images/default_profile.svg";
+import userp from "./images/default_profile.svg";
 
 function MobileHeader() {
   const name = localStorage.getItem("name");
@@ -59,7 +59,7 @@ function MobileHeader() {
               {!!userIcon ? (
                 <img src={userIcon} alt="User-Icon" className="object-fill  " />
               ) : (
-                <img src={user} alt="User-Icon" className="object-cover" />
+                <img src={userp} alt="User-Icon" className="object-cover" />
               )}
             </Link>
             <div className="w-2 h-2 bg-on rounded-full absolute bottom-0 right-0"></div>

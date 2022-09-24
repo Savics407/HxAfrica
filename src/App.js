@@ -45,6 +45,8 @@ import Pending from "./assets/Pending";
 import Bids from "./assets/Bids";
 import NewInvestment from "./assets/NewInvestments";
 import AdminRoutes from "./util/AdminRoutes";
+import Transactions from "./assets/admin/Transactions";
+import InvestorsTransactions from "./assets/admin/InvestorsTransactions";
 
 function App() {
   return (
@@ -56,6 +58,11 @@ function App() {
 
         <Route path="/status" element={<UseNetworkStatus />} />
         <Route element={<AdminRoutes />}>
+          <Route path="/admin/transactions" element={<Transactions />} />
+          <Route
+            path="/admin/transactions/investors"
+            element={<InvestorsTransactions />}
+          />
           <Route path="/admin/staffs" element={<Staffs />} />
           <Route path="/admin/merchants" element={<Marchants />} />
           <Route path="/admin/investors" element={<Investors />} />

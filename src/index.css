@@ -230,7 +230,7 @@ body {
          }
 
          .side-nav{
-          @apply flex flex-col pl-5 py-20 h-side justify-between text-sideText font-normal
+          @apply flex flex-col pl-5 pt-20 h-side justify-between text-sideText font-normal
          }
            .side-nav .active {
       @apply text-green bg-sidenav border-green border-r-4 font-medium !fill-green stroke-green

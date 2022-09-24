@@ -222,7 +222,7 @@ function Pending() {
                                 className="bg-white text-green text-tiny font-normal w-24 h-7 rounded-2xl"
                                 onClick={() => {
                                   // Cancel(pending.id);
-                                  setProID(pending.product_id);
+                                  setProID(pending.id);
                                   joinNow(pending.id);
                                 }}
                               >
@@ -504,7 +504,7 @@ export function Warning({
                 className="rounded-full w-full p-2 text-white bg-green flex justify-around items-center"
                 onClick={() => {
                   closeWarning(!closeWarning);
-                  //   fetch();
+                  fetch();
                 }}
               >
                 Done
