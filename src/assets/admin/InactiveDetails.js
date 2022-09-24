@@ -158,7 +158,9 @@ function InactiveDetails({ setDetails, itemId, fetchInActive }) {
                         <h1 className="text-lg font-normal font-inter text-neutral">
                           Merchant Name
                         </h1>
-                        <h1 className="text-dark text-2xl">Null</h1>
+                        <h1 className="text-dark text-2xl">
+                          {post.merchant.name}
+                        </h1>
                       </div>
                     </div>
                     <div className="border-b border-strek py-4 ">
