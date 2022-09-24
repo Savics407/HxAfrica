@@ -24,12 +24,12 @@ function AllInvestments() {
             <InvestmentCard />
           </div>
           <div className="flex justify-between">
-            <div className="w-4/6">
+            <div className="w-full">
               <InvestmentList />
             </div>
-            <div className="w-2/6">
+            {/* <div className="w-2/6">
               <OngoingInvestments />
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

@@ -87,7 +87,7 @@ function InvestmentList() {
           {/* <button className="text-sm text-dark">Select Multiple</button> */}
         </div>
         <div className="">
-          <table className=" w-full table-fixed">
+          <table className=" w-full">
             <thead className="">
               <tr className="text-left bg-bar">
                 <th className="py-3 pr-7 text-mobile-nav font-medium text-xs pl-9 w-24">
