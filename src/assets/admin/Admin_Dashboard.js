@@ -148,10 +148,12 @@ function Admin_Dashboard() {
           <div className="rounded-lg bg-white mt-2 px-5 mb-3 pb-10">
             <div className="border-b border-stroke py-5 text-lg text-darker font-medium flex justify-between items-center cursor-pointer">
               <h1 className="">Activities</h1>
-              <h1 className="text-blue text-xs flex items-center font-normal">
-                See all transactions{" "}
-                <FaAngleRight className="ml-2 text-blue text-sm" />
-              </h1>
+              <Link to="/admin/transactions">
+                <h1 className="text-blue text-xs flex items-center font-normal">
+                  See all transactions{" "}
+                  <FaAngleRight className="ml-2 text-blue text-sm" />
+                </h1>
+              </Link>
             </div>
             <div className="flex items-center text-sm mar rounded-lg my-4 text-footer bg-white ">
               <div className=" text-dark text-base border-b-4 border-green font-medium px-1 py-2.5 hover:text-dark">
@@ -159,7 +161,7 @@ function Admin_Dashboard() {
               </div>
 
               <span className="w-7"> </span>
-              <Link to="/admin/merchants/pull-funds-request">
+              <Link to="/admin/transactions/investors">
                 <div className="font-normal px-1 py-2.5 border-b-4 border-transparent hover:text-dark ">
                   <h1>Investors</h1>
                 </div>
