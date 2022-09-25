@@ -115,7 +115,7 @@ function Dashboard() {
             <h1 className="text-green font-black text-2xl mb-3">
               Hi,{" "}
               <span className="text-dark ml-2">
-                {user === "null" ? name : userName}
+                {user === "null" || "undefined" ? name : user}
               </span>
             </h1>
             <p className="font-normal text-lg text-dark">You are welcome</p>

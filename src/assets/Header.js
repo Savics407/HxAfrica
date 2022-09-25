@@ -179,7 +179,9 @@ function Header() {
               }}
             >
               <h1 className="font-semibold mr-1">
-                {user === "null" ? name : userName}
+                {/* {user === "null" || user === "undefined" ? name : userName} */}
+                {user === "null" || "undefined" ? name : user}
+                {/* {user === "null" ? name : userName} */}
               </h1>
               <FaAngleDown />
               <div
@@ -188,7 +190,9 @@ function Header() {
                 }`}
               >
                 <div className="arrow3 relative text-center mb-5">
-                  <h1 className="text-2xl font-semibold mb-3">{userName}</h1>
+                  <h1 className="text-2xl font-semibold mb-3">
+                    {user === "null" || "undefined" ? name : user}
+                  </h1>
                   <h1 className="text-sm text-footer font-normal">
                     {userEmail}
                   </h1>

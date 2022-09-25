@@ -41,7 +41,9 @@ function MobileHeader() {
           <h1 className="text-green font-black text-lg mb-3">
             Hi,{" "}
             <span className="text-dark">
-              {user === "null" ? name : userName}
+              {user === "null" || "undefined" ? name : user}
+              {/* {user === "null" ? name : userName} */}
+              {/* {user === "null" || user === "undefined" ? name : userName} */}
             </span>
           </h1>
           <p className="font-normal text-sm text-dark">You are welcome</p>
