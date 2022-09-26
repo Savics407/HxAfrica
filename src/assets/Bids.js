@@ -3,6 +3,8 @@ import Header from "./Header";
 import InvestTabs from "./InvestTabs";
 import box from "./images/Artwork.svg";
 import bidders from "./images/bidders.svg";
+import { FaAngleRight, FaAngleDown } from "react-icons/fa";
+
 import arrow from "./images/arrow.svg";
 import moment from "moment";
 import card from "./images/card.svg";
@@ -154,13 +156,15 @@ function Bids() {
     fetchInvestment();
   }, []);
   const [bidID, setBidID] = useState();
+  const [details, setDetails] = useState();
+  const [visible, setVisible] = useState(false);
   return (
     <div className="font-family">
       <Header />
       <div className="lg:w-10/12 m-auto lg:mt-20 bg-dashbg rounded-lg lg:py-8 lg:px-4">
         <div className="bg-white lg:h-auto lg:p-10 w-full rounded-lg">
           <div className="lg:hidden py-8 px-4 bg-welcome text-dark text-lg font-semibold flex justify-between items-center">
-            <h1 className="">Investnents bidders</h1>
+            <h1 className="">Investment bidders</h1>
           </div>
           <div className=" pb-10 flex justify-between items-center">
             <h1 className="hidden lg:block text-modal text-2xl font-semibold ">
@@ -169,7 +173,7 @@ function Bids() {
             {available && (
               <div className="lg:relative absolute top-7 right-5 lg:w-48 w-36">
                 <button
-                  className="bg-listed flex text-white text-xs rounded px-6 py-3 items-center w-full"
+                  className="bg-listed flex text-white text-xs rounded px-3 lg:px-6 py-3 items-center w-full"
                   onClick={() => {
                     setClick(!click);
                   }}
@@ -185,7 +189,7 @@ function Bids() {
                 </button>
 
                 <div
-                  className={`absolute px-4 pb-4 w-96 text-neutral right-0 top-20 -mt-2 rounded-xl shadow-2xl bg-listed text-left invisible flex flex-col items-center duration-300 z-10 ${
+                  className={`absolute px-4 pb-4 w-80 lg:w-96 text-neutral right-0 top-20 -mt-2 rounded-xl shadow-2xl bg-listed text-left invisible flex flex-col items-center duration-300 z-10 ${
                     click ? "show-note !top-14" : "remove-note"
                   }`}
                 >
@@ -261,7 +265,7 @@ function Bids() {
                                   </h1>
                                 </div>
                               </div>
-                              <div className=" pl-5 flex items-center">
+                              <div className=" lg:pl-5 flex items-center">
                                 <div className="mr-2">
                                   <img
                                     src={card}
@@ -326,7 +330,7 @@ function Bids() {
                                     <div className=" w-40">
                                       <h1 className="font-normal text-statustext text-sm truncate">
                                         <span title="investors name">
-                                          Investors Name
+                                          {bidder.user.name}
                                         </span>
                                       </h1>
                                     </div>
@@ -340,7 +344,7 @@ function Bids() {
                                     <h1 className="font-normal text-statustext text-sm">
                                       N
                                       <CurrencyFormat
-                                        value={bidder.amount * 50000}
+                                        value={bidder.amount}
                                         displayType={"text"}
                                         thousandSeparator={true}
                                       />
@@ -348,12 +352,14 @@ function Bids() {
                                   </td>
                                   <td className="py-8">
                                     <h1 className="font-normal text-statustext text-sm">
-                                      Aug 12, 2022
+                                      {moment(bidder.created_at).format(
+                                        "MMM DD, yyyy"
+                                      )}
                                     </h1>
                                   </td>
                                   <td className="py-8">
                                     <h1 className="font-normal text-statustext text-sm">
-                                      12:34pm
+                                      {moment(bidder.created_at).format("LT")}
                                     </h1>
                                   </td>
 
@@ -375,26 +381,97 @@ function Bids() {
                               ))}
                             </table>
                           </div>
-                          <div>
+                          <div className="mb-20 lg:hidden">
                             {bids?.map((bidder) => (
                               <div
                                 className="border-b "
                                 key={bidder.id}
-                                className="shadow w-11/12 m-auto rounded my-5 p-5"
+                                className="bids-shadow w-11/12 m-auto rounded-lg my-4 p-5 "
                               >
-                                <div className="flex items-center">
-                                  <img
-                                    src={user}
-                                    alt="Investment Icon"
-                                    className="w-8 mr-2 "
-                                  />
-                                  <h1 className="font-normal text-statustext text-sm truncate">
-                                    <span title="investors name">
-                                      Investors Name
-                                    </span>
-                                  </h1>
+                                <div
+                                  className="flex justify-between"
+                                  onClick={() => {
+                                    setDetails(bidder.id);
+                                    setVisible(!visible);
+                                  }}
+                                >
+                                  <div className="flex items-center">
+                                    <img
+                                      src={user}
+                                      alt="Investment Icon"
+                                      className="w-8 mr-2 "
+                                    />
+                                    <h1 className="font-medium text-vestabs text-sm truncate">
+                                      <span title="investors name">
+                                        {bidder.user.name}
+                                      </span>
+                                    </h1>
+                                  </div>
+                                  <div className="flex items-center">
+                                    <div className="mr-2 text-right">
+                                      <h1 className="font-semibold text-amount text-sm">
+                                        N
+                                        <CurrencyFormat
+                                          value={bidder.amount}
+                                          displayType={"text"}
+                                          thousandSeparator={true}
+                                        />
+                                      </h1>
+                                      <h1 className="font-normal text-amounttiny text-tiny">
+                                        Amount
+                                      </h1>
+                                    </div>
+                                    <div className="text-navbar text-lg">
+                                      <FaAngleRight />
+                                    </div>
+                                  </div>
                                 </div>
-                                <div></div>
+                                {details === bidder.id && (
+                                  <div>
+                                    <div className="bg-details my-4 p-2 rounded">
+                                      <div>
+                                        <h1 className="text-xs text-statustext font-semibold text-center">
+                                          Product tile:{" "}
+                                          <span className="font-medium">
+                                            {bidder.investment.product.title}
+                                          </span>
+                                        </h1>
+                                      </div>
+                                      <div className="flex justify-between mt-2">
+                                        <h1 className="text-xs text-statustext font-semibold">
+                                          Date:{" "}
+                                          <span className="font-medium">
+                                            {moment(bidder.created_at).format(
+                                              "MMM DD, yyyy"
+                                            )}
+                                          </span>
+                                        </h1>
+                                        <h1 className="text-xs text-statustext font-semibold">
+                                          Time:{" "}
+                                          <span className="font-medium">
+                                            {moment(bidder.created_at).format(
+                                              "LT"
+                                            )}
+                                          </span>
+                                        </h1>
+                                      </div>
+                                    </div>
+                                    <div className="flex justify-between ">
+                                      <button
+                                        className="bg-red rounded-full px-10 py-2 text-white"
+                                        onClick={() => declineBid(bidder.id)}
+                                      >
+                                        Decline
+                                      </button>
+                                      <button
+                                        className="border rounded-full border-green text-green font-bold px-10 py-2"
+                                        onClick={() => approveBid(bidder.id)}
+                                      >
+                                        Approve
+                                      </button>
+                                    </div>
+                                  </div>
+                                )}
                               </div>
                             ))}
                           </div>

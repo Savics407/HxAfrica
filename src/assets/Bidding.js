@@ -73,7 +73,7 @@ function Bidding({ closeModal, itemId }) {
   async function bid(id) {
     const payLoad = {
       investment_id: id,
-      amount: reic,
+      amount: reic * 50000,
     };
     // alert(reic);
     const token = localStorage.getItem("user-token");
