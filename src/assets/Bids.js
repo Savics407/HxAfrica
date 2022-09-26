@@ -458,13 +458,13 @@ function Bids() {
                                     </div>
                                     <div className="flex justify-between ">
                                       <button
-                                        className="bg-red rounded-full px-10 py-2 text-white"
+                                        className="bg-red rounded-full px-9 py-2 text-white"
                                         onClick={() => declineBid(bidder.id)}
                                       >
                                         Decline
                                       </button>
                                       <button
-                                        className="border rounded-full border-green text-green font-bold px-10 py-2"
+                                        className="border rounded-full border-green text-green font-bold px-9 py-2"
                                         onClick={() => approveBid(bidder.id)}
                                       >
                                         Approve

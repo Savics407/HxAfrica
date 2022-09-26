@@ -16,6 +16,7 @@ import Bidding from "./Bidding";
 import { useNavigate } from "react-router-dom";
 
 function Relisted() {
+  const userID = localStorage.getItem("user-id");
   const [relisted, setRelisted] = useState(true);
   const [posts, setPosts] = useState();
   const [loading, setLoading] = useState(true);
@@ -202,7 +203,11 @@ function Relisted() {
                               <button
                                 className="bg-neutral text-white text-tiny w-full p-2 rounded-full"
                                 onClick={() => {
-                                  bid(post.pullout.id);
+                                  post.user_id == userID
+                                    ? alert(
+                                        "You can't bid on your relisted investment"
+                                      )
+                                    : bid(post.pullout.id);
                                 }}
                               >
                                 Place Bid
