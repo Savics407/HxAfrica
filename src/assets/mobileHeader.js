@@ -10,29 +10,29 @@ function MobileHeader() {
   const [userName, setUserName] = useState();
 
   const userIcon = localStorage.getItem("user-profile");
-  async function fetchData() {
-    const token = localStorage.getItem("user-token");
-    // e.preventDefault();
-    const response = await fetch(
-      "https://reic.api.simpoo.biz/api/investor/fetch_user_profile",
-      {
-        method: "POST",
-        headers: {
-          "Content-type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
-    const result = await response.json();
-    console.log(result.data);
-    setUserName(result.data.username);
-    localStorage.setItem("user-name", userName);
-  }
+  // async function fetchData() {
+  //   const token = localStorage.getItem("user-token");
+  //   // e.preventDefault();
+  //   const response = await fetch(
+  //     "https://reic.api.simpoo.biz/api/investor/fetch_user_profile",
+  //     {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-type": "application/json",
+  //         Authorization: `Bearer ${token}`,
+  //       },
+  //     }
+  //   );
+  //   const result = await response.json();
+  //   console.log(result.data);
+  //   setUserName(result.data.username);
+  //   localStorage.setItem("user-name", userName);
+  // }
 
-  useEffect(() => {
-    // activities();
-    fetchData();
-  }, []);
+  // useEffect(() => {
+  //   // activities();
+  //   fetchData();
+  // }, []);
 
   return (
     <>
@@ -41,7 +41,7 @@ function MobileHeader() {
           <h1 className="text-green font-black text-lg mb-3">
             Hi,{" "}
             <span className="text-dark">
-              {user === "null" || "undefined" ? name : user}
+              {user === "null" ? name : user}
               {/* {user === "null" ? name : userName} */}
               {/* {user === "null" || user === "undefined" ? name : userName} */}
             </span>

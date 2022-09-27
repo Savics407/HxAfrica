@@ -160,7 +160,7 @@ function Bidding({ closeModal, itemId }) {
                 delay: 0.5,
               },
             }}
-            className={`bg-white rounded-xl border w-full lg:w-1/2 top-28 absolute top-12 ${
+            className={`bg-white rounded-xl border w-full lg:w-1/2 top-28 absolute lg:top-12 ${
               isClick ? "hidden" : "block"
             }`}
           >

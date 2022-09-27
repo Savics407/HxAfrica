@@ -6,7 +6,7 @@ import Login from "./assets/Login";
 import Auth from "./assets/Signup";
 import Dashboard from "./assets/Dashboard";
 import Details from "./assets/Investment_Details";
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route, Link, useNavigate } from "react-router-dom";
 import Processing from "./assets/ProcessingBvn";
 import Investment from "./assets/Investment";
 import Ongoing from "./assets/Ongoing";
@@ -41,17 +41,93 @@ import AdminSettings from "./assets/admin/AdminSettings";
 import BiddersChat from "./assets/Chats/biddersChat";
 import Owner from "./assets/Chats/Owner";
 import Disbursed from "./assets/admin/Disbursed";
+import { motion } from "framer-motion";
 import Pending from "./assets/Pending";
 import Bids from "./assets/Bids";
 import NewInvestment from "./assets/NewInvestments";
 import AdminRoutes from "./util/AdminRoutes";
 import Transactions from "./assets/admin/Transactions";
 import InvestorsTransactions from "./assets/admin/InvestorsTransactions";
+import { useEffect, useState } from "react";
 
 function App() {
+  const [auth, setAuth] = useState(false);
+  async function fetchData() {
+    const token = localStorage.getItem("user-token");
+    // e.preventDefault();
+    const response = await fetch(
+      "https://reic.api.simpoo.biz/api/investor/fetch_user_profile",
+      {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    const result = await response.json();
+    console.log(result.data);
+    // setUserName(result?.data.username);
+    // localStorage.setItem("user-name", userName);
+    if (result?.status === "error") {
+      setAuth(true);
+    }
+  }
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    fetchData();
+  }, []);
   return (
     <div>
       {/* <UseNetworkStatus /> */}
+      {auth && (
+        <div>
+          <div className="fixed top-0 right-0 bottom-0 left-0 bg-overlay justify-center flex items-center backdrop-blur-xs z-50">
+            <motion.div
+              initial={{
+                opacity: 0,
+              }}
+              animate={{
+                opacity: 1,
+                transition: {
+                  duration: 0.3,
+                },
+              }}
+              exit={{
+                opacity: 0,
+                transition: {
+                  delay: 0.5,
+                },
+              }}
+              className="lg:w-128 w-11/12 bg-white rounded-xl border-green p-6 text-center"
+            >
+              <div className="flex flex-col items-center ">
+                {/* <img src={success} alt="success" className="w-28 mb-5" /> */}
+                <h1 className="lg:font-bold font-semibold text-neutral text-4xl">
+                  Authenication <br />
+                  Error!
+                </h1>
+              </div>
+              <div className="font-semibold lg:text-base text-sm text-neutral my-8">
+                <p>Kindly login again...</p>
+              </div>
+              <div className=" text-center w-11/12 mb-2 m-auto">
+                <button
+                  className="rounded-full w-full p-2 text-white bg-green flex justify-around items-center"
+                  onClick={() => {
+                    navigate("/");
+                    setAuth(false);
+                    window.localStorage.removeItem("user-token");
+                  }}
+                >
+                  Login
+                </button>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      )}
       <Routes>
         <Route path="/sign-up" element={<Auth />} />
         <Route path="/" element={<Login />} />

@@ -28,28 +28,28 @@ function Header() {
   const userEmail = localStorage.getItem("user-email");
   const userIcon = localStorage.getItem("user-profile");
 
-  async function fetchData() {
-    const token = localStorage.getItem("user-token");
-    // e.preventDefault();
-    const response = await fetch(
-      "https://reic.api.simpoo.biz/api/investor/fetch_user_profile",
-      {
-        method: "POST",
-        headers: {
-          "Content-type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
-    const result = await response.json();
-    console.log(result.data);
-    setUserName(result.data.username);
-    localStorage.setItem("user-name", userName);
-  }
+  // async function fetchData() {
+  //   const token = localStorage.getItem("user-token");
+  //   // e.preventDefault();
+  //   const response = await fetch(
+  //     "https://reic.api.simpoo.biz/api/investor/fetch_user_profile",
+  //     {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-type": "application/json",
+  //         Authorization: `Bearer ${token}`,
+  //       },
+  //     }
+  //   );
+  //   const result = await response.json();
+  //   console.log(result.data);
+  //   setUserName(result?.data.username);
+  //   localStorage.setItem("user-name", userName);
+  // }
 
   useEffect(() => {
     // activities();
-    fetchData();
+    // fetchData();
   }, []);
 
   const logOut = () => {
@@ -180,7 +180,7 @@ function Header() {
             >
               <h1 className="font-semibold mr-1">
                 {/* {user === "null" || user === "undefined" ? name : userName} */}
-                {user === "null" || "undefined" ? name : user}
+                {user === "null" ? name : user}
                 {/* {user === "null" ? name : userName} */}
               </h1>
               <FaAngleDown />
@@ -191,7 +191,7 @@ function Header() {
               >
                 <div className="arrow3 relative text-center mb-5">
                   <h1 className="text-2xl font-semibold mb-3">
-                    {user === "null" || "undefined" ? name : user}
+                    {user === "null" ? name : user}
                   </h1>
                   <h1 className="text-sm text-footer font-normal">
                     {userEmail}

@@ -28,25 +28,25 @@ function Dashboard() {
   const name = localStorage.getItem("name");
   const user = localStorage.getItem("user-name");
 
-  const [userName, setUserName] = useState();
-  async function fetchData() {
-    const token = localStorage.getItem("user-token");
-    // e.preventDefault();
-    const response = await fetch(
-      "https://reic.api.simpoo.biz/api/investor/fetch_user_profile",
-      {
-        method: "POST",
-        headers: {
-          "Content-type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
-    const result = await response.json();
-    console.log(result.data);
-    setUserName(result.data.username);
-    localStorage.setItem("user-name", userName);
-  }
+  // const [userName, setUserName] = useState();
+  // async function fetchData() {
+  //   const token = localStorage.getItem("user-token");
+  //   // e.preventDefault();
+  //   const response = await fetch(
+  //     "https://reic.api.simpoo.biz/api/investor/fetch_user_profile",
+  //     {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-type": "application/json",
+  //         Authorization: `Bearer ${token}`,
+  //       },
+  //     }
+  //   );
+  //   const result = await response.json();
+  //   console.log(result.data);
+  //   setUserName(result?.data.username);
+  //   localStorage.setItem("user-name", userName);
+  // }
   async function wallet() {
     // console.log(formData);
     const token = localStorage.getItem("user-token");
@@ -90,7 +90,7 @@ function Dashboard() {
   useEffect(() => {
     wallet();
     totalEarnings();
-    fetchData();
+    // fetchData();
   }, []);
 
   // function redirect() {
@@ -115,7 +115,7 @@ function Dashboard() {
             <h1 className="text-green font-black text-2xl mb-3">
               Hi,{" "}
               <span className="text-dark ml-2">
-                {user === "null" || "undefined" ? name : user}
+                {user === "null" ? name : user}
               </span>
             </h1>
             <p className="font-normal text-lg text-dark">You are welcome</p>

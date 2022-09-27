@@ -143,7 +143,11 @@ function Relisted() {
                         </div>
                         <div className="w-2/3">
                           <div className="mb-2">
-                            <h1 className="!mb-0">{post.product.title}</h1>
+                            <h1 className="!mb-0 truncate">
+                              <span title={post.product.title}>
+                                {post.product.title}
+                              </span>
+                            </h1>
                             <div className="flex items-start">
                               <h2 className="text-green text-xs font-medium mr-1">
                                 {post.interest}% Interest Rate
@@ -194,7 +198,7 @@ function Relisted() {
                               <button
                                 className="bg-white text-green text-tiny w-full p-2 rounded-full"
                                 onClick={() => {
-                                  productDetails(post.product.id);
+                                  productDetails(post.pullout.id);
                                 }}
                               >
                                 Inherit Investment
