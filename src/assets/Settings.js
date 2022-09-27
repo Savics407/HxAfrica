@@ -271,7 +271,7 @@ function Profile() {
     setUserName(result.data.username);
     setStateName(result.data.investor.state.name);
     setState(result.data.investor.state.id);
-    localStorage.setItem("user-name", userName);
+    // localStorage.setItem("user-name", userName);
 
     // setImage(result?.data.profile_photo_path)
   }
