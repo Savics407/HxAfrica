@@ -11,6 +11,7 @@ import { RiSettings3Fill } from "react-icons/ri";
 import { BiLogOut } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { motion } from "framer-motion";
 import { IoWallet } from "react-icons/io5";
 // import { toast } from "react-toastify";
 import { Link, NavLink } from "react-router-dom";
@@ -27,29 +28,32 @@ function Header() {
   const navigate = useNavigate();
   const userEmail = localStorage.getItem("user-email");
   const userIcon = localStorage.getItem("user-profile");
-
-  // async function fetchData() {
-  //   const token = localStorage.getItem("user-token");
-  //   // e.preventDefault();
-  //   const response = await fetch(
-  //     "https://reic.api.simpoo.biz/api/investor/fetch_user_profile",
-  //     {
-  //       method: "POST",
-  //       headers: {
-  //         "Content-type": "application/json",
-  //         Authorization: `Bearer ${token}`,
-  //       },
-  //     }
-  //   );
-  //   const result = await response.json();
-  //   console.log(result.data);
-  //   setUserName(result?.data.username);
-  //   localStorage.setItem("user-name", userName);
-  // }
+  const [auth, setAuth] = useState(false);
+  async function fetchData() {
+    const token = localStorage.getItem("user-token");
+    // e.preventDefault();
+    const response = await fetch(
+      "https://reic.api.simpoo.biz/api/investor/fetch_user_profile",
+      {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    const result = await response.json();
+    console.log(result.data);
+    // setUserName(result?.data.username);
+    // localStorage.setItem("user-name", userName);
+    if (result?.status === "error") {
+      setAuth(true);
+    }
+  }
+  // const navigate = useNavigate();
 
   useEffect(() => {
-    // activities();
-    // fetchData();
+    fetchData();
   }, []);
 
   const logOut = () => {
@@ -91,6 +95,53 @@ function Header() {
   window.addEventListener("scroll", sideBarFixed);
   return (
     <>
+      {auth && (
+        <div>
+          <div className="fixed top-0 right-0 bottom-0 left-0 bg-overlay justify-center flex items-center backdrop-blur-xs z-50">
+            <motion.div
+              initial={{
+                opacity: 0,
+              }}
+              animate={{
+                opacity: 1,
+                transition: {
+                  duration: 0.3,
+                },
+              }}
+              exit={{
+                opacity: 0,
+                transition: {
+                  delay: 0.5,
+                },
+              }}
+              className="lg:w-128 w-11/12 bg-white rounded-xl border-green p-6 text-center"
+            >
+              <div className="flex flex-col items-center ">
+                {/* <img src={success} alt="success" className="w-28 mb-5" /> */}
+                <h1 className="lg:font-bold font-semibold text-neutral text-3xl lg:text-4xl">
+                  Authentication <br />
+                  Error!
+                </h1>
+              </div>
+              <div className="font-semibold lg:text-base text-sm text-neutral my-8">
+                <p>Kindly login again...</p>
+              </div>
+              <div className=" text-center w-11/12 mb-2 m-auto">
+                <button
+                  className="rounded-full w-full p-2 text-white bg-green flex justify-around items-center"
+                  onClick={() => {
+                    navigate("/");
+                    setAuth(false);
+                    window.localStorage.removeItem("user-token");
+                  }}
+                >
+                  Login
+                </button>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      )}
       <div className="bg-green text-center text-white py-4 hidden lg:block">
         <div className="w-10/12 m-auto flex items-center justify-between hidden md:flex">
           <Link to="/dashboard">
