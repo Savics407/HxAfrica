@@ -6,6 +6,7 @@ import Martabs from "./Martabs";
 import { MdArrowBackIosNew } from "react-icons/md";
 import { MdArrowForwardIos } from "react-icons/md";
 import * as CurrencyFormat from "react-currency-format";
+import realEstate from "../images/realEstate.svg";
 import moment from "moment";
 
 function DisbursedList() {
@@ -69,11 +70,14 @@ function DisbursedList() {
           <table className=" w-full table-auto">
             <thead className="">
               <tr className="text-left bg-bar">
-                <th className="py-3 text-mobile-nav font-medium text-xs pl-9 w-60">
+                <th className="py-3 text-mobile-nav font-medium text-xs pl-9 w-52">
                   Name
                 </th>
                 <th className="py-3 pr-7 text-mobile-nav font-medium text-xs ">
                   Amount
+                </th>
+                <th className="py-3 pr-7 text-mobile-nav font-medium text-xs ">
+                  Investors
                 </th>
                 <th className="py-3 pr-7 text-mobile-nav font-medium text-xs ">
                   Dates
@@ -113,6 +117,11 @@ function DisbursedList() {
                 </td>
                 <td className="py-8">
                   <h1 className="font-normal text-deep text-xs">
+                    {funds.product.investments.length}
+                  </h1>
+                </td>
+                <td className="py-8">
+                  <h1 className="font-normal text-deep text-xs">
                     {moment(funds.created_at).format("MMM DD, yyyy")}
                   </h1>
                 </td>
@@ -131,16 +140,16 @@ function DisbursedList() {
             ))}
 
             <tr className="border-b font-inter">
-              <td className="py-8 pl-5 flex">
+              <td className="py-8 pl-5 flex items-center">
                 <div className="mr-2">
-                  <img src={avater} alt="merchant avater" />
+                  <img src={realEstate} alt="merchant avater" />
                 </div>
                 <div>
                   <h1 className="font-normal  text-deep text-sm">
-                    Marchant Name
+                    Crowdfunding
                   </h1>
-                  <h1 className="font-normal text-statustext text-xs">
-                    200 Products
+                  <h1 className="font-normal font-family text-media text-xs">
+                    Rent Financing
                   </h1>
                 </div>
               </td>
@@ -148,97 +157,7 @@ function DisbursedList() {
                 <h1 className="font-normal text-deep text-xs">N200,000</h1>
               </td>
               <td className="py-8">
-                <h1 className="font-normal text-deep text-xs">12/02/2022</h1>
-              </td>
-              <td className="py-8">
-                <h1 className="font-normal text-deep text-xs">13:30pm</h1>
-              </td>
-
-              <td className="py-3">
-                <button className="font-medium text-sm font-inter bg-approved text-appText py-1 px-3 rounded-full ">
-                  Disbursed
-                </button>
-              </td>
-            </tr>
-
-            <tr className="border-b font-inter">
-              <td className="py-8 pl-5 flex">
-                <div className="mr-2">
-                  <img src={avater} alt="merchant avater" />
-                </div>
-                <div>
-                  <h1 className="font-normal  text-deep text-sm">
-                    Marchant Name
-                  </h1>
-                  <h1 className="font-normal text-statustext text-xs">
-                    200 Products
-                  </h1>
-                </div>
-              </td>
-              <td className="py-8">
-                <h1 className="font-normal text-deep text-xs">N200,000</h1>
-              </td>
-              <td className="py-8">
-                <h1 className="font-normal text-deep text-xs">12/02/2022</h1>
-              </td>
-              <td className="py-8">
-                <h1 className="font-normal text-deep text-xs">13:30pm</h1>
-              </td>
-
-              <td className="py-3">
-                <button className="font-medium text-sm font-inter bg-approved text-appText py-1 px-3 rounded-full ">
-                  Disbursed
-                </button>
-              </td>
-            </tr>
-
-            <tr className="border-b font-inter">
-              <td className="py-8 pl-5 flex">
-                <div className="mr-2">
-                  <img src={avater} alt="merchant avater" />
-                </div>
-                <div>
-                  <h1 className="font-normal  text-deep text-sm">
-                    Marchant Name
-                  </h1>
-                  <h1 className="font-normal text-statustext text-xs">
-                    200 Products
-                  </h1>
-                </div>
-              </td>
-              <td className="py-8">
-                <h1 className="font-normal text-deep text-xs">N200,000</h1>
-              </td>
-              <td className="py-8">
-                <h1 className="font-normal text-deep text-xs">12/02/2022</h1>
-              </td>
-              <td className="py-8">
-                <h1 className="font-normal text-deep text-xs">13:30pm</h1>
-              </td>
-
-              <td className="py-3">
-                <button className="font-medium text-sm font-inter bg-approved text-appText py-1 px-3 rounded-full ">
-                  Disbursed
-                </button>
-              </td>
-            </tr>
-
-            <tr className="border-b font-inter">
-              <td className="py-8 pl-5 flex">
-                <div className="mr-2">
-                  <img src={avater} alt="merchant avater" />
-                </div>
-                <div>
-                  <h1 className="font-normal  text-deep text-sm">
-                    Marchant Name
-                  </h1>
-                  <h1 className="font-normal text-statustext text-xs">
-                    200 Products
-                  </h1>
-                </div>
-              </td>
-              <td className="py-8">
-                <h1 className="font-normal text-deep text-xs">N200,000</h1>
+                <h1 className="font-normal text-deep text-xs">20</h1>
               </td>
               <td className="py-8">
                 <h1 className="font-normal text-deep text-xs">12/02/2022</h1>

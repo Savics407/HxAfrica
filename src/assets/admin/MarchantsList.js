@@ -86,13 +86,13 @@ function MarchantsList() {
           </h1>
         </div>
         <div className="">
-          <table className=" w-full table-auto">
+          <table className="w-full table-auto">
             <thead className="">
               <tr className="text-left bg-bar">
-                <th className="py-3 text-mobile-nav font-medium text-xs pl-9">
+                <th className="py-3 pr-7 text-mobile-nav font-medium text-xs pl-9">
                   Name
                 </th>
-                <th className="py-3 pr-7 text-mobile-nav font-medium text-xs ">
+                <th className="py-3 pr-7 pl-3 text-mobile-nav font-medium text-xs ">
                   Email Address
                 </th>
                 <th className="py-3 pr-7 text-mobile-nav font-medium text-xs ">
@@ -102,51 +102,62 @@ function MarchantsList() {
                   State/City
                 </th>
                 <th className="py-3 pr-7 text-mobile-nav font-medium text-xs ">
+                  Earnings
+                </th>
+                <th className="py-3 pr-7 text-mobile-nav font-medium text-xs ">
                   Action
                 </th>
               </tr>
             </thead>
-            {merchants?.map((merchant) => (
-              <tr className="border-b font-inter" key={merchant.id}>
-                <td className="py-8 pl-5 flex">
-                  <div className="mr-2">
-                    <img src={avater} alt="merchant avater" />
-                  </div>
-                  <div>
-                    <h1 className="font-normal  text-deep text-sm">
-                      {merchant.name}
+            {merchants
+              ?.sort((a, b) => (a.id > b.id ? 1 : -1))
+              .map((merchant) => (
+                <tr className="border-b font-inter" key={merchant.id}>
+                  <td className="py-8 pl-5 flex w-40">
+                    <div className="mr-2 flex items-center">
+                      <span className="mr-2 font-normal text-xs text-deep">
+                        {merchant.id}
+                      </span>
+                      <img src={avater} alt="merchant avater" />
+                    </div>
+                    <div>
+                      <h1 className="font-normal truncate text-deep text-sm">
+                        <span title={merchant.name}> {merchant.name} </span>
+                      </h1>
+                      <h1 className="font-normal text-statustext text-xs">
+                        {merchant.products.length} Products
+                      </h1>
+                    </div>
+                  </td>
+                  <td className="py-8 px-3">
+                    <h1 className="font-normal truncate text-deep w-32 text-xs">
+                      <span title={merchant.email}> {merchant.email} </span>
                     </h1>
-                    <h1 className="font-normal text-statustext text-xs">
-                      200 Products
+                  </td>
+                  <td className="py-8">
+                    <h1 className="font-normal text-deep text-xs w-32">
+                      {merchant.address}
                     </h1>
-                  </div>
-                </td>
-                <td className="py-8">
-                  <h1 className="font-normal text-deep text-xs">
-                    {merchant.email}
-                  </h1>
-                </td>
-                <td className="py-8">
-                  <h1 className="font-normal text-deep text-xs w-32">
-                    {merchant.address}
-                  </h1>
-                </td>
-                <td className="py-8">
-                  <h1 className="font-normal text-deep text-xs">
-                    {merchant.city}
-                  </h1>
-                </td>
+                  </td>
+                  <td className="py-8">
+                    <h1 className="font-normal text-deep text-xs">
+                      {merchant.city}
+                    </h1>
+                  </td>
+                  <td className="py-8">
+                    <h1 className="font-normal text-deep text-xs">N200,000</h1>
+                  </td>
 
-                <td className="py-3">
-                  <button className="font-medium text-xs font-inter text-blue py-2 px-2 border-r ">
-                    Edit
-                  </button>
-                  <button className="font-medium text-xs font-inter text-red py-1 px-2">
-                    Remove
-                  </button>
-                </td>
-              </tr>
-            ))}
+                  <td className="py-3 truncate">
+                    <button className="font-medium text-xs font-inter text-blue py-2 pr-2 border-r ">
+                      Edit
+                    </button>
+                    <button className="font-medium text-xs font-inter text-red py-1 px-2">
+                      Remove
+                    </button>
+                  </td>
+                </tr>
+              ))}
           </table>
           {/* <div className=" flex pt-20 px-7 items-center justify-between">
             <div className="border rounded-lg bg-page text-footer text-sm p-3">
