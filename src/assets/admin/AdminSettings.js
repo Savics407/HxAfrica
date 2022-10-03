@@ -1,6 +1,8 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "./Admin_header";
 import SideBar from "./SideBar";
+import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 import reictoken from "../images/Reic_Token.png";
 
 function AdminSettings() {
@@ -9,6 +11,74 @@ function AdminSettings() {
     window.scrollTo(0, 0);
     // };
   }, []);
+
+  const {
+    register,
+    handleSubmit,
+    reset,
+    watch,
+    formState: { errors },
+  } = useForm({
+    mode: "onTouched",
+  });
+
+  const [newPassword, setNewPassword] = useState("");
+  const [oldPassword, setOldPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+
+  const password = watch("password");
+
+  async function update() {
+    const payLoad = {
+      old_password: oldPassword,
+      new_password: newPassword,
+    };
+
+    const token = localStorage.getItem("user-token");
+    const response = await fetch(
+      "https://reic.api.simpoo.biz/api/investor/change_password",
+      {
+        method: "POST",
+        body: JSON.stringify(payLoad),
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    const result = await response.json();
+
+    console.log(result?.status);
+    if (result?.status === "success") {
+      //   setChangePassword.new_password = "";
+      setNewPassword("");
+      setConfirmPassword("");
+      setOldPassword("");
+      toast.success(`${result.message}`, {
+        position: "top-left",
+        autoClose: 1500,
+        hideProgressBar: true,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    } else {
+      if (result.status === "error") {
+        toast.error(`${result.message}`, {
+          position: "top-left",
+          autoClose: 1500,
+          hideProgressBar: true,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      }
+    }
+  }
+
   return (
     <div className="bg-dashbg font-family">
       <Header />
@@ -22,58 +92,162 @@ function AdminSettings() {
           </div>
           <div className="flex justify-between">
             <div className="w-4/6">
-              <div className="rounded-lg bg-white mt-5 mb-3 p-5">
-                <div className="">
-                  <h1 className="border-b p-5">
+              <div className="rounded-lg bg-white mt-5 py-5 mb-3">
+                <div className="border-b pb-3 px-7 text-xl text-modal font-semibold">
+                  <h1>Investment Settings </h1>
+                </div>
+                <div className="p-5">
+                  <h1 className="p-5">
                     <span className="text-grayy text-sm capitalize">
                       percent from accumulated interest
                     </span>{" "}
                   </h1>
-                  <div className="flex items-center mx-5 my-10 w-3/5 box">
+                  <div className="flex items-center mx-5 my-3 w-3/5 box">
                     <span className="border-r-2 px-2 py-0 h-4 w-14 flex items-center font-bold text-navbar text-sm">
                       NGN
                     </span>
-                    <select className="bg-transparent w-full outline-none">
-                      <option defaultValue>1000</option>
-                      <option>2000</option>
-                    </select>
+                    <input
+                      type="number"
+                      className="bg-transparent w-full outline-none px-2"
+                      defaultValue="1000"
+                    />
                   </div>
                 </div>
 
-                <div className="">
-                  <h1 className="border-b p-5">
+                <div className="p-5">
+                  <h1 className="p-5">
                     <span className="text-grayy text-sm capitalize">
                       investment instant pullout
                     </span>{" "}
                   </h1>
-                  <div className="flex items-center mx-5 my-10 w-3/5 box">
+                  <div className="flex items-center mx-5 my-3 w-3/5 box">
                     <span className="border-r-2 px-2 py-0 h-4 w-14 flex items-center font-bold text-navbar text-sm">
                       %{" "}
                     </span>
-                    <select className="bg-transparent w-full outline-none">
-                      <option defaultValue>10</option>
-                      <option>30</option>
-                    </select>
+                    <input
+                      type="number"
+                      className="bg-transparent w-full outline-none px-2"
+                      defaultValue="30"
+                    />
                   </div>
                 </div>
 
-                <div className="">
-                  <h1 className="border-b p-5">
+                <div className="p-5 mb-20">
+                  <h1 className=" p-5">
                     <span className="text-grayy text-sm capitalize">
                       duration before an investment would kick off.
                     </span>{" "}
                   </h1>
-                  <div className="flex items-center mx-5 my-10 w-3/5 box">
+                  <div className="flex items-center mx-5 my-3 w-3/5 box">
                     <span className="border-r-2 px-2 py-0 h-4 w-14 flex items-center font-bold text-navbar text-sm">
                       Days
                     </span>
-                    <select className="bg-transparent w-full outline-none">
-                      <option defaultValue>3</option>
-                      <option>5</option>
-                    </select>
+                    <input
+                      type="number"
+                      className="bg-transparent w-full outline-none px-2"
+                      defaultValue="3"
+                    />
                   </div>
                 </div>
-                <div className="text-white flex justify-end items-center w-full mt-20 font-medium">
+                <div className="border-b pb-3 px-7 text-xl text-modal font-semibold">
+                  <h1>Password Settings </h1>
+                </div>
+                <div className="">
+                  <div className="flex justify-between w-full p-5 ">
+                    <div className="input w-1/2 relative mb-5">
+                      <h1 className="p-5">
+                        <span className="text-grayy text-sm capitalize">
+                          Old Password
+                        </span>{" "}
+                      </h1>
+                      <input
+                        required
+                        type="text"
+                        placeholder="enter old password"
+                        className="border rounded-full lg:rounded-xl border-border mx-5 bg-input p-3 text-sm focus-within:shadow-lg outline-none "
+                        id="confirm"
+                        //   {...register()}
+                        value={oldPassword}
+                        onChange={(event) => setOldPassword(event.target.value)}
+                      />
+                    </div>
+                    <div className="input  w-1/2 relative">
+                      <h1 className="p-5">
+                        <span className="text-grayy text-sm capitalize">
+                          New Password
+                        </span>{" "}
+                      </h1>
+                      <input
+                        required
+                        type="text"
+                        placeholder="enter new password"
+                        className="border rounded-full lg:rounded-xl mx-5 border-border bg-input p-3 text-sm focus-within:shadow-lg outline-none"
+                        id="confirm"
+                        value={newPassword}
+                        {...register("password", {
+                          required: "Password is required",
+
+                          minLength: {
+                            value: 8,
+                            message: "Minimum Required length is 8",
+                          },
+                          maxLength: {
+                            value: 20,
+                            message: "Maximum Required length is 20",
+                          },
+                        })}
+                        onChange={(event) => setNewPassword(event.target.value)}
+                      />
+                      {errors.password && (
+                        <span className="text-red text-xs">
+                          {" "}
+                          {errors.password.message}
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                  <div className="w-full px-5 flex items-end justify-between">
+                    <div className="input relative w-1/2">
+                      <h1 className="p-5">
+                        <span className="text-grayy text-sm capitalize">
+                          confirm new password
+                        </span>{" "}
+                      </h1>
+                      <input
+                        required
+                        type="text"
+                        placeholder="confirm password"
+                        className="border rounded-full lg:rounded-xl border-border mx-5 bg-input p-3 text-sm focus-within:shadow-lg outline-none"
+                        id="confirm"
+                        value={confirmPassword}
+                        {...register("confirmPassword", {
+                          required: "confirm Password is required",
+                          validate: (value) =>
+                            value === password || "The passwords do not match",
+                        })}
+                        onChange={(event) =>
+                          setConfirmPassword(event.target.value)
+                        }
+                      />
+                      {errors.confirmPassword && (
+                        <span className="text-red text-xs">
+                          {" "}
+                          {errors.confirmPassword.message}
+                        </span>
+                      )}
+                    </div>
+                    <div className="font-family pb-5 ">
+                      <button
+                        className="rounded-full bg-green text-dashbg w-full lg:w-auto font-medium text-sm py-3 px-12"
+                        onClick={update}
+                      >
+                        Update
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="text-white flex justify-end items-center w-full mt-20 px-5 font-medium">
                   <input
                     type="submit"
                     className=" cursor-pointer bg-green py-2.5 px-12 outline-none rounded-full"
@@ -84,7 +258,7 @@ function AdminSettings() {
             </div>
             <div className="w-2/6 pt-5">
               <div className="rounded-xl bg-white border pb-20">
-                <div className="border-b py-5 px-7 text-xl text-modal font-semibold">
+                <div className="border-b pt-5 pb-3 px-7 text-xl text-modal font-semibold">
                   <h1>Token Value </h1>
                 </div>
                 <div className="py-5 px-7">
@@ -120,10 +294,11 @@ function AdminSettings() {
                     <span className="border-r-2 px-2 py-0 h-4 w-14 flex items-center font-bold text-navbar text-sm">
                       NGN
                     </span>
-                    <select className="bg-transparent w-full outline-none">
-                      <option defaultValue>50,000</option>
-                      <option>10,000</option>
-                    </select>
+                    <input
+                      type="number"
+                      className="bg-transparent w-full outline-none px-2"
+                      defaultValue="50000"
+                    />
                   </div>
                 </div>
               </div>

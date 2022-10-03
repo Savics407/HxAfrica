@@ -87,7 +87,18 @@ function InvestorList() {
                 <th className="py-3 text-mobile-nav font-medium text-xs pl-9">
                   Name
                 </th>
-
+                <th className="py-3 text-mobile-nav font-medium text-xs">
+                  Investment
+                </th>
+                <th className="py-3 text-mobile-nav font-medium text-xs">
+                  Email
+                </th>
+                <th className="py-3 text-mobile-nav font-medium text-xs">
+                  Phone number
+                </th>
+                <th className="py-3 text-mobile-nav font-medium text-xs">
+                  Reic Balance
+                </th>
                 <th className="py-3 text-mobile-nav font-medium text-xs w-32 text-center">
                   Action
                 </th>
@@ -105,6 +116,18 @@ function InvestorList() {
                     </h1>
                   </div>
                 </td>
+                <td className="py-3 text-xs text-neutral">
+                  <h1>4</h1>
+                </td>
+                <td className="py-3  text-xs text-neutral">
+                  <h1>example@gmail.com</h1>
+                </td>
+                <td className="py-3 text-xs text-neutral">
+                  <h1>08106755047</h1>
+                </td>
+                <td className="py-3 text-xs text-neutral">
+                  <h1>N20,000</h1>
+                </td>
                 <td className="py-3 text-center">
                   <button className="font-medium text-sm font-inter bg-relist text-relisted py-1 px-2.5 rounded-full ">
                     Ban User
@@ -112,6 +135,35 @@ function InvestorList() {
                 </td>
               </tr>
             ))}
+            <tr className="border-b font-inter">
+              <td className="py-8 pl-5 flex items-center">
+                <div className="mr-2">
+                  <img src={avater} alt="merchant avater" />
+                </div>
+                <div>
+                  <h1 className="font-normal  text-deep text-sm">
+                    Investors name
+                  </h1>
+                </div>
+              </td>
+              <td className="py-3 text-xs text-neutral">
+                <h1>4</h1>
+              </td>
+              <td className="py-3  text-xs text-neutral">
+                <h1>example@gmail.com</h1>
+              </td>
+              <td className="py-3 text-xs text-neutral">
+                <h1>08106755047</h1>
+              </td>
+              <td className="py-3 text-xs text-neutral">
+                <h1>N20,000</h1>
+              </td>
+              <td className="py-3 text-center">
+                <button className="font-medium text-sm font-inter bg-relist text-relisted py-1 px-2.5 rounded-full ">
+                  Ban User
+                </button>
+              </td>
+            </tr>
           </table>
           <div className=" flex pt-20 px-7 items-center justify-between">
             <div className="border rounded-lg bg-page text-footer text-sm p-3">

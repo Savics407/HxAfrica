@@ -62,9 +62,23 @@ function BannedList() {
                 <th className="py-3 text-mobile-nav font-medium text-xs pl-9">
                   Name
                 </th>
-
+                <th className="py-3 text-mobile-nav font-medium text-xs">
+                  Investment
+                </th>
+                <th className="py-3 text-mobile-nav font-medium text-xs">
+                  Email
+                </th>
+                <th className="py-3 text-mobile-nav font-medium text-xs">
+                  Phone number
+                </th>
+                <th className="py-3 text-mobile-nav font-medium text-xs">
+                  Reic Balance
+                </th>
                 <th className="py-3 text-mobile-nav font-medium text-xs w-32 text-center">
                   Status
+                </th>
+                <th className="py-3 text-mobile-nav font-medium text-xs w-32 text-center">
+                  Action
                 </th>
               </tr>
             </thead>
@@ -75,13 +89,30 @@ function BannedList() {
                 </div>
                 <div>
                   <h1 className="font-normal  text-deep text-sm">
-                    Marchant Name
+                    Investors Name
                   </h1>
                 </div>
+              </td>
+              <td className="py-3 text-xs text-neutral">
+                <h1>4</h1>
+              </td>
+              <td className="py-3  text-xs text-neutral">
+                <h1>example@gmail.com</h1>
+              </td>
+              <td className="py-3 text-xs text-neutral">
+                <h1>08106755047</h1>
+              </td>
+              <td className="py-3 text-xs text-neutral">
+                <h1>N20,000</h1>
               </td>
               <td className="py-3 text-center">
                 <button className="font-medium text-sm font-inter bg-approved text-appText py-1 px-3 rounded-full ">
                   Banned
+                </button>
+              </td>
+              <td className="py-3 text-center">
+                <button className="font-medium text-sm font-inter bg-relist text-relisted py-1 px-2.5 rounded-full ">
+                  Unban
                 </button>
               </td>
             </tr>
@@ -93,53 +124,33 @@ function BannedList() {
                 </div>
                 <div>
                   <h1 className="font-normal  text-deep text-sm">
-                    Marchant Name
+                    Investors Name
                   </h1>
                 </div>
+              </td>
+              <td className="py-3 text-xs text-neutral">
+                <h1>4</h1>
+              </td>
+              <td className="py-3  text-xs text-neutral">
+                <h1>example@gmail.com</h1>
+              </td>
+              <td className="py-3 text-xs text-neutral">
+                <h1>08106755047</h1>
+              </td>
+              <td className="py-3 text-xs text-neutral">
+                <h1>N20,000</h1>
               </td>
               <td className="py-3 text-center">
                 <button className="font-medium text-sm font-inter bg-approved text-appText py-1 px-3 rounded-full ">
                   Banned
                 </button>
               </td>
-            </tr>
-
-            <tr className="border-b font-inter">
-              <td className="py-8 pl-5 flex items-center">
-                <div className="mr-2">
-                  <img src={avater} alt="merchant avater" />
-                </div>
-                <div>
-                  <h1 className="font-normal text-deep text-sm">
-                    Marchant Name
-                  </h1>
-                </div>
-              </td>
               <td className="py-3 text-center">
-                <button className="font-medium text-sm font-inter bg-approved text-appText py-1 px-3 rounded-full ">
-                  Banned
+                <button className="font-medium text-sm font-inter bg-relist text-relisted py-1 px-2.5 rounded-full ">
+                  Unban
                 </button>
               </td>
             </tr>
-
-            <tr className="border-b font-inter">
-              <td className="py-8 pl-5 flex items-center">
-                <div className="mr-2">
-                  <img src={avater} alt="merchant avater" />
-                </div>
-                <div>
-                  <h1 className="font-normal  text-deep text-sm">
-                    Marchant Name
-                  </h1>
-                </div>
-              </td>
-              <td className="py-3 text-center">
-                <button className="font-medium text-sm font-inter bg-approved text-appText py-1 px-3 rounded-full ">
-                  Banned
-                </button>
-              </td>
-            </tr>
-
             <tr className="border-b font-inter">
               <td className="py-8 pl-5 flex items-center">
                 <div className="mr-2">
@@ -147,13 +158,64 @@ function BannedList() {
                 </div>
                 <div>
                   <h1 className="font-normal  text-deep text-sm">
-                    Marchant Name
+                    Investors Name
                   </h1>
                 </div>
+              </td>
+              <td className="py-3 text-xs text-neutral">
+                <h1>4</h1>
+              </td>
+              <td className="py-3  text-xs text-neutral">
+                <h1>example@gmail.com</h1>
+              </td>
+              <td className="py-3 text-xs text-neutral">
+                <h1>08106755047</h1>
+              </td>
+              <td className="py-3 text-xs text-neutral">
+                <h1>N20,000</h1>
               </td>
               <td className="py-3 text-center">
                 <button className="font-medium text-sm font-inter bg-approved text-appText py-1 px-3 rounded-full ">
                   Banned
+                </button>
+              </td>
+              <td className="py-3 text-center">
+                <button className="font-medium text-sm font-inter bg-relist text-relisted py-1 px-2.5 rounded-full ">
+                  Unban
+                </button>
+              </td>
+            </tr>
+            <tr className="border-b font-inter">
+              <td className="py-8 pl-5 flex items-center">
+                <div className="mr-2">
+                  <img src={avater} alt="merchant avater" />
+                </div>
+                <div>
+                  <h1 className="font-normal  text-deep text-sm">
+                    Investors Name
+                  </h1>
+                </div>
+              </td>
+              <td className="py-3 text-xs text-neutral">
+                <h1>4</h1>
+              </td>
+              <td className="py-3  text-xs text-neutral">
+                <h1>example@gmail.com</h1>
+              </td>
+              <td className="py-3 text-xs text-neutral">
+                <h1>08106755047</h1>
+              </td>
+              <td className="py-3 text-xs text-neutral">
+                <h1>N20,000</h1>
+              </td>
+              <td className="py-3 text-center">
+                <button className="font-medium text-sm font-inter bg-approved text-appText py-1 px-3 rounded-full ">
+                  Banned
+                </button>
+              </td>
+              <td className="py-3 text-center">
+                <button className="font-medium text-sm font-inter bg-relist text-relisted py-1 px-2.5 rounded-full ">
+                  Unban
                 </button>
               </td>
             </tr>

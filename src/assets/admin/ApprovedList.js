@@ -7,6 +7,7 @@ import InvestmentTabs from "./InvestmentTabs";
 import realEstate from "../images/realEstate.svg";
 import * as CurrencyFormat from "react-currency-format";
 import Details from "./Details";
+import search from "../images/Small.svg";
 import ApprovedDetails from "./ApprovedDetails";
 
 function ApprovedList() {
@@ -48,6 +49,25 @@ function ApprovedList() {
       )}
 
       <InvestmentTabs />
+      <div className="flex justify-between my-6">
+        <div className="border-2 w-44 bg-white rounded-lg px-4 py-3">
+          <div className="w-full flex justify-between items-center text-sm text-sort">
+            <h1>
+              Sort By: <span className="font-semibold text-dark">All</span>
+            </h1>
+
+            <FaAngleDown />
+          </div>
+        </div>
+        <div className="border-2 bg-white rounded-lg flex items-center px-5 justify-between w-411">
+          <input
+            type="search"
+            placeholder="Search investment by name or ID"
+            className="outline-none font-normal text-sm w-full py-2"
+          />
+          <img src={search} alt="search" />
+        </div>
+      </div>
       <div className="rounded-lg bg-white mt-2 mb-3">
         <div className="py-7 px-9 text-lg text-mobile-nav flex justify-between font-medium border-b cursor-pointer">
           <h1 className="">
