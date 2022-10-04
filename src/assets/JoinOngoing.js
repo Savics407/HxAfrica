@@ -66,6 +66,7 @@ function JoinOngoing({ closeModal, itemId, productDetails }) {
     setToken(result?.data.token);
   }
   useEffect(() => {
+    window.scrollTo(0, 0);
     wallet();
     fetchData();
   }, []);

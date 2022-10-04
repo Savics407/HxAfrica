@@ -117,16 +117,16 @@ function InvestorList() {
                   </div>
                 </td>
                 <td className="py-3 text-xs text-neutral">
-                  <h1>4</h1>
+                  <h1>null</h1>
                 </td>
                 <td className="py-3  text-xs text-neutral">
-                  <h1>example@gmail.com</h1>
+                  <h1>{investor.email}</h1>
                 </td>
                 <td className="py-3 text-xs text-neutral">
-                  <h1>08106755047</h1>
+                  <h1>{investor.phone}</h1>
                 </td>
                 <td className="py-3 text-xs text-neutral">
-                  <h1>N20,000</h1>
+                  <h1>null</h1>
                 </td>
                 <td className="py-3 text-center">
                   <button className="font-medium text-sm font-inter bg-relist text-relisted py-1 px-2.5 rounded-full ">
@@ -135,35 +135,6 @@ function InvestorList() {
                 </td>
               </tr>
             ))}
-            <tr className="border-b font-inter">
-              <td className="py-8 pl-5 flex items-center">
-                <div className="mr-2">
-                  <img src={avater} alt="merchant avater" />
-                </div>
-                <div>
-                  <h1 className="font-normal  text-deep text-sm">
-                    Investors name
-                  </h1>
-                </div>
-              </td>
-              <td className="py-3 text-xs text-neutral">
-                <h1>4</h1>
-              </td>
-              <td className="py-3  text-xs text-neutral">
-                <h1>example@gmail.com</h1>
-              </td>
-              <td className="py-3 text-xs text-neutral">
-                <h1>08106755047</h1>
-              </td>
-              <td className="py-3 text-xs text-neutral">
-                <h1>N20,000</h1>
-              </td>
-              <td className="py-3 text-center">
-                <button className="font-medium text-sm font-inter bg-relist text-relisted py-1 px-2.5 rounded-full ">
-                  Ban User
-                </button>
-              </td>
-            </tr>
           </table>
           <div className=" flex pt-20 px-7 items-center justify-between">
             <div className="border rounded-lg bg-page text-footer text-sm p-3">

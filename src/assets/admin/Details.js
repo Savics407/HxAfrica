@@ -40,6 +40,7 @@ function Details({ setDetails, itemId, ongoing }) {
   }
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     // activities();
     fetchData();
   }, []);

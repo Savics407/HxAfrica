@@ -40,6 +40,7 @@ function Details({ closeDetails, itemId, ongoing }) {
   }
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     // activities();
     fetchData();
   }, []);
@@ -90,7 +91,7 @@ function Details({ closeDetails, itemId, ongoing }) {
               delay: 0.5,
             },
           }}
-          className={`bg-white rounded-xl border w-4/5 lg:w-1/2 z-10 ${
+          className={`bg-white rounded-xl border w-11/12 lg:w-1/2 z-10 ${
             isClick ? "hidden" : "block"
           }`}
         >

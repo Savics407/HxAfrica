@@ -68,6 +68,7 @@ function TopUp({ closeModal, itemId, productDetails, setAuthCancel, setTile }) {
   }
   useEffect(() => {
     wallet();
+    window.scrollTo(0, 0);
     fetchData();
   }, []);
 

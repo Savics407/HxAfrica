@@ -40,6 +40,7 @@ function ApprovedDetails({ setDetails, itemId, fetchApproved }) {
   }
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     // activities();
     fetchData();
   }, []);
@@ -357,6 +358,7 @@ function Processing({ fetchApproved, setDetails, itemId }) {
   // useEffect(() => {
   //   redirect();
   // });
+
   return (
     <>
       <motion.div

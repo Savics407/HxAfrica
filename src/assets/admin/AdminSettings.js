@@ -6,10 +6,54 @@ import { toast } from "react-toastify";
 import reictoken from "../images/Reic_Token.png";
 
 function AdminSettings() {
+  const [pullout, setPullout] = useState();
+  const [accumulated, setAccumulated] = useState();
+  async function fetchPulloutPercentage() {
+    const token = localStorage.getItem("user-token");
+    // e.preventDefault();
+    const response = await fetch(
+      "https://reic.api.simpoo.biz/api/admin/fetch_pullout_percentage",
+      {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+          Accept: "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    const result = await response.json();
+    console.log(result.data);
+    // alert(result.data.name);
+    setPullout(result?.data.percentage);
+    setAccumulated(result?.data.cancel_percentage);
+  }
+
+  const [investAwait, setInvestAwait] = useState();
+  async function fetchAwait() {
+    const token = localStorage.getItem("user-token");
+    // e.preventDefault();
+    const response = await fetch(
+      "https://reic.api.simpoo.biz/api/admin/fetch_investment_awaiting_time",
+      {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+          Accept: "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    const result = await response.json();
+    console.log(result.data);
+    // alert(result.data.name);
+    setInvestAwait(result?.data.waiting_time);
+  }
+
   useEffect(() => {
-    // window.onbeforeunload = function () {
+    fetchPulloutPercentage();
+    fetchAwait();
     window.scrollTo(0, 0);
-    // };
   }, []);
 
   const {
@@ -79,6 +123,10 @@ function AdminSettings() {
     }
   }
 
+  const [disable, setDisable] = useState(true);
+  const [disableAcc, setDisableAcc] = useState(true);
+  const [disablePull, setDisablePull] = useState(true);
+
   return (
     <div className="bg-dashbg font-family">
       <Header />
@@ -102,15 +150,40 @@ function AdminSettings() {
                       percent from accumulated interest
                     </span>{" "}
                   </h1>
-                  <div className="flex items-center mx-5 my-3 w-3/5 box">
-                    <span className="border-r-2 px-2 py-0 h-4 w-14 flex items-center font-bold text-navbar text-sm">
-                      NGN
-                    </span>
-                    <input
-                      type="number"
-                      className="bg-transparent w-full outline-none px-2"
-                      defaultValue="1000"
-                    />
+                  <div className="flex items-center">
+                    <div
+                      className={`flex items-center mx-5 my-3 w-3/5 box ${
+                        !disableAcc && "shadow-lg"
+                      }`}
+                    >
+                      <span className="border-r-2 px-2 py-0 h-4 w-14 flex items-center font-bold text-navbar text-sm">
+                        %
+                      </span>
+                      <input
+                        type="number"
+                        className="bg-transparent w-full outline-none px-2"
+                        defaultValue={accumulated}
+                        disabled={disableAcc}
+                        // autofocus
+                      />
+                    </div>
+                    <div>
+                      {disableAcc ? (
+                        <button
+                          className="text-links text-xs"
+                          onClick={() => setDisableAcc(false)}
+                        >
+                          Edit
+                        </button>
+                      ) : (
+                        <button
+                          className="text-links text-xs"
+                          onClick={() => setDisableAcc(true)}
+                        >
+                          Update
+                        </button>
+                      )}
+                    </div>
                   </div>
                 </div>
 
@@ -120,15 +193,39 @@ function AdminSettings() {
                       investment instant pullout
                     </span>{" "}
                   </h1>
-                  <div className="flex items-center mx-5 my-3 w-3/5 box">
-                    <span className="border-r-2 px-2 py-0 h-4 w-14 flex items-center font-bold text-navbar text-sm">
-                      %{" "}
-                    </span>
-                    <input
-                      type="number"
-                      className="bg-transparent w-full outline-none px-2"
-                      defaultValue="30"
-                    />
+                  <div className="items-center flex">
+                    <div
+                      className={`flex items-center mx-5 my-3 w-3/5 box ${
+                        !disablePull && "shadow-lg"
+                      }`}
+                    >
+                      <span className="border-r-2 px-2 py-0 h-4 w-14 flex items-center font-bold text-navbar text-sm">
+                        %{" "}
+                      </span>
+                      <input
+                        type="number"
+                        className="bg-transparent w-full outline-none px-2"
+                        defaultValue={pullout}
+                        disabled={disablePull}
+                      />
+                    </div>
+                    <div>
+                      {disablePull ? (
+                        <button
+                          className="text-links text-xs"
+                          onClick={() => setDisablePull(false)}
+                        >
+                          Edit
+                        </button>
+                      ) : (
+                        <button
+                          className="text-links text-xs"
+                          onClick={() => setDisablePull(true)}
+                        >
+                          Update
+                        </button>
+                      )}
+                    </div>
                   </div>
                 </div>
 
@@ -138,15 +235,39 @@ function AdminSettings() {
                       duration before an investment would kick off.
                     </span>{" "}
                   </h1>
-                  <div className="flex items-center mx-5 my-3 w-3/5 box">
-                    <span className="border-r-2 px-2 py-0 h-4 w-14 flex items-center font-bold text-navbar text-sm">
-                      Days
-                    </span>
-                    <input
-                      type="number"
-                      className="bg-transparent w-full outline-none px-2"
-                      defaultValue="3"
-                    />
+                  <div className="items-center flex">
+                    <div
+                      className={`flex items-center mx-5 my-3 w-3/5 box ${
+                        !disable && "shadow-lg"
+                      }`}
+                    >
+                      <span className="border-r-2 px-2 py-0 h-4 w-14 flex items-center font-bold text-navbar text-sm">
+                        Days
+                      </span>
+                      <input
+                        type="number"
+                        className="bg-transparent w-full outline-none px-2"
+                        defaultValue={investAwait}
+                        disabled={disable}
+                      />
+                    </div>
+                    <div>
+                      {disable ? (
+                        <button
+                          className="text-links text-xs"
+                          onClick={() => setDisable(false)}
+                        >
+                          Edit
+                        </button>
+                      ) : (
+                        <button
+                          className="text-links text-xs"
+                          onClick={() => setDisable(true)}
+                        >
+                          Update
+                        </button>
+                      )}
+                    </div>
                   </div>
                 </div>
                 <div className="border-b pb-3 px-7 text-xl text-modal font-semibold">

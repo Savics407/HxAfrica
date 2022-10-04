@@ -64,6 +64,7 @@ function Bidding({ closeModal, itemId }) {
   }
   useEffect(() => {
     wallet();
+    window.scrollTo(0, 0);
     fetchData();
   }, []);
 

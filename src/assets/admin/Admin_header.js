@@ -150,7 +150,7 @@ function Header() {
             </div>
 
             <div className="relative w-10 bg-mainbg rounded-full h-10">
-              <Link to="/settings">
+              <Link to="/admin/settings">
                 {!!userIcon ? (
                   <img
                     src={userIcon}
