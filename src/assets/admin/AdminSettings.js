@@ -126,6 +126,153 @@ function AdminSettings() {
   const [disable, setDisable] = useState(true);
   const [disableAcc, setDisableAcc] = useState(true);
   const [disablePull, setDisablePull] = useState(true);
+  const [updateCanc, setUpdateCanc] = useState();
+  async function updateCancel() {
+    const payLoad = {
+      cancel_percentage: updateCanc,
+    };
+
+    const token = localStorage.getItem("user-token");
+    const response = await fetch(
+      "https://reic.api.simpoo.biz/api/admin/update_cancel_percentage",
+      {
+        method: "POST",
+        body: JSON.stringify(payLoad),
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    const result = await response.json();
+
+    console.log(result?.status);
+    if (result?.status === "success") {
+      //   setChangePassword.new_password = "";
+      setDisableAcc(true);
+
+      toast.success(`${result.message}`, {
+        position: "top-left",
+        autoClose: 1500,
+        hideProgressBar: true,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    } else {
+      if (result.status === "error") {
+        toast.error(`${result.message}`, {
+          position: "top-left",
+          autoClose: 1500,
+          hideProgressBar: true,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      }
+    }
+  }
+
+  const [percentage, setPercentage] = useState();
+  async function updatePercentage() {
+    const payLoad = {
+      percentage: percentage,
+    };
+
+    const token = localStorage.getItem("user-token");
+    const response = await fetch(
+      "https://reic.api.simpoo.biz/api/admin/update_pullout_percentage",
+      {
+        method: "POST",
+        body: JSON.stringify(payLoad),
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    const result = await response.json();
+
+    console.log(result?.status);
+    if (result?.status === "success") {
+      setDisablePull(true);
+
+      toast.success(`${result.message}`, {
+        position: "top-left",
+        autoClose: 1500,
+        hideProgressBar: true,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    } else {
+      if (result.status === "error") {
+        toast.error(`${result.message}`, {
+          position: "top-left",
+          autoClose: 1500,
+          hideProgressBar: true,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      }
+    }
+  }
+
+  const [waiting, setWaiting] = useState();
+  async function updateAwait() {
+    const payLoad = {
+      waiting_time: waiting,
+    };
+
+    const token = localStorage.getItem("user-token");
+    const response = await fetch(
+      "https://reic.api.simpoo.biz/api/admin/update_investment_awaiting_time",
+      {
+        method: "POST",
+        body: JSON.stringify(payLoad),
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    const result = await response.json();
+
+    console.log(result?.status);
+    if (result?.status === "success") {
+      setDisable(true);
+
+      toast.success(`${result.message}`, {
+        position: "top-left",
+        autoClose: 1500,
+        hideProgressBar: true,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    } else {
+      if (result.status === "error") {
+        toast.error(`${result.message}`, {
+          position: "top-left",
+          autoClose: 1500,
+          hideProgressBar: true,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      }
+    }
+  }
 
   return (
     <div className="bg-dashbg font-family">
@@ -148,7 +295,8 @@ function AdminSettings() {
                   <h1 className="p-5">
                     <span className="text-grayy text-sm capitalize">
                       percent from accumulated interest
-                    </span>{" "}
+                    </span>
+                    {/* {updateCanc} */}
                   </h1>
                   <div className="flex items-center">
                     <div
@@ -165,6 +313,7 @@ function AdminSettings() {
                         defaultValue={accumulated}
                         disabled={disableAcc}
                         // autofocus
+                        onChange={(e) => setUpdateCanc(e.target.value)}
                       />
                     </div>
                     <div>
@@ -178,7 +327,7 @@ function AdminSettings() {
                       ) : (
                         <button
                           className="text-links text-xs"
-                          onClick={() => setDisableAcc(true)}
+                          onClick={updateCancel}
                         >
                           Update
                         </button>
@@ -191,7 +340,7 @@ function AdminSettings() {
                   <h1 className="p-5">
                     <span className="text-grayy text-sm capitalize">
                       investment instant pullout
-                    </span>{" "}
+                    </span>
                   </h1>
                   <div className="items-center flex">
                     <div
@@ -207,6 +356,7 @@ function AdminSettings() {
                         className="bg-transparent w-full outline-none px-2"
                         defaultValue={pullout}
                         disabled={disablePull}
+                        onChange={(e) => setPercentage(e.target.value)}
                       />
                     </div>
                     <div>
@@ -220,7 +370,7 @@ function AdminSettings() {
                       ) : (
                         <button
                           className="text-links text-xs"
-                          onClick={() => setDisablePull(true)}
+                          onClick={updatePercentage}
                         >
                           Update
                         </button>
@@ -233,7 +383,7 @@ function AdminSettings() {
                   <h1 className=" p-5">
                     <span className="text-grayy text-sm capitalize">
                       duration before an investment would kick off.
-                    </span>{" "}
+                    </span>
                   </h1>
                   <div className="items-center flex">
                     <div
@@ -249,6 +399,7 @@ function AdminSettings() {
                         className="bg-transparent w-full outline-none px-2"
                         defaultValue={investAwait}
                         disabled={disable}
+                        onChange={(e) => setWaiting(e.target.value)}
                       />
                     </div>
                     <div>
@@ -262,7 +413,7 @@ function AdminSettings() {
                       ) : (
                         <button
                           className="text-links text-xs"
-                          onClick={() => setDisable(true)}
+                          onClick={updateAwait}
                         >
                           Update
                         </button>
@@ -367,14 +518,14 @@ function AdminSettings() {
                     </div>
                   </div>
                 </div>
-
+                {/* 
                 <div className="text-white flex justify-end items-center w-full mt-20 px-5 font-medium">
                   <input
                     type="submit"
                     className=" cursor-pointer bg-green py-2.5 px-12 outline-none rounded-full"
                     value="Update Settings"
                   />
-                </div>
+                </div> */}
               </div>
             </div>
             <div className="w-2/6 pt-5">

@@ -56,9 +56,10 @@ function Create() {
   }, []);
 
   const [create, setCreate] = useState(false);
-  const [image, setImage] = useState();
+  const [image, setImage] = useState(null);
   const [preview, setPreview] = useState();
   useEffect(() => {
+    window.scrollTo(0, 0);
     if (image) {
       const reader = new FileReader();
       reader.onload = () => {
@@ -402,6 +403,7 @@ function Create() {
             className="bg-green rounded-full flex text-white px-5 py-3 items-center"
             onClick={() => {
               setCreate(true);
+              window.scrollTo(0, 0);
             }}
           >
             <span className="mr-2 text-xl">

@@ -10,7 +10,7 @@ import StaffList from "./StaffList";
 
 function Staffs() {
   const [create, setCreate] = useState(false);
-  const [image, setImage] = useState();
+  const [image, setImage] = useState(null);
   const [preview, setPreview] = useState();
 
   useEffect(() => {
