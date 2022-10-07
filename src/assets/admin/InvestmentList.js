@@ -71,6 +71,7 @@ function InvestmentList() {
   useEffect(() => {
     fetchInvestment();
   }, []);
+  const [searchTerm, setSearchTerm] = useState("");
 
   return (
     <>
@@ -89,8 +90,9 @@ function InvestmentList() {
         <div className="border-2 bg-white rounded-lg flex items-center px-5 justify-between w-411">
           <input
             type="search"
-            placeholder="Search investment by name or ID"
+            placeholder="Search investment by name"
             className="outline-none font-normal text-sm w-full py-2"
+            onChange={(event) => setSearchTerm(event.target.value)}
           />
           <img src={search} alt="search" />
         </div>
@@ -135,65 +137,77 @@ function InvestmentList() {
                 </th>
               </tr>
             </thead>
-            {pending?.map((pending) => (
-              <tr className="border-b font-inter">
-                <td className="py-8 pl-9">
-                  <h1 className="font-normal text-deep text-xs">#1246</h1>
-                </td>
-                <td className="py-8  flex items-center">
-                  <div className="mr-2">
-                    <img src={realEstate} alt="Investment Icon" />
-                  </div>
-                  <div>
-                    <h1 className="font-normal  text-deep text-sm">
-                      {pending.title}
+            {pending
+              ?.filter((val) => {
+                if (searchTerm === "") {
+                  return val;
+                } else if (
+                  val.title.toLowerCase().includes(searchTerm.toLowerCase())
+                ) {
+                  return val;
+                }
+              })
+              .map((pending) => (
+                <tr className="border-b font-inter">
+                  <td className="py-8 pl-9">
+                    <h1 className="font-normal text-deep text-xs">
+                      #{pending.id}
                     </h1>
-                    <h1 className="font-normal text-green text-xs">
-                      {pending.category.product_category}
+                  </td>
+                  <td className="py-8  flex items-center">
+                    <div className="mr-2">
+                      <img src={realEstate} alt="Investment Icon" />
+                    </div>
+                    <div>
+                      <h1 className="font-normal  text-deep text-sm">
+                        {pending.title}
+                      </h1>
+                      <h1 className="font-normal text-green text-xs">
+                        {pending.category.product_category}
+                      </h1>
+                    </div>
+                  </td>
+                  <td className="py-8">
+                    <h1 className="font-normal text-deep text-xs">
+                      N
+                      <CurrencyFormat
+                        value={pending.cost}
+                        displayType={"text"}
+                        thousandSeparator={true}
+                      />
                     </h1>
-                  </div>
-                </td>
-                <td className="py-8">
-                  <h1 className="font-normal text-deep text-xs">
-                    N
-                    <CurrencyFormat
-                      value={pending.cost}
-                      displayType={"text"}
-                      thousandSeparator={true}
-                    />
-                  </h1>
-                </td>
-                <td className="py-8">
-                  <h1 className="font-normal text-deep text-xs">
-                    {pending.duration} Days
-                  </h1>
-                </td>
-                <td className="py-8">
-                  <h1 className="font-normal text-deep text-xs">20%</h1>
-                </td>
+                  </td>
+                  <td className="py-8">
+                    <h1 className="font-normal text-deep text-xs">
+                      {pending.duration} Days
+                    </h1>
+                  </td>
+                  <td className="py-8">
+                    <h1 className="font-normal text-deep text-xs">20%</h1>
+                  </td>
 
-                <td className="py-3">
-                  <button
-                    className="font-medium text-xs font-inter text-green py-2 px-2 border-r"
-                    // onClick={() => {
-                    //   approveProduct(funds.id);
-                    //   setStatus("success");
-                    // }}
-                  >
-                    Approve
-                  </button>
-                  <button className="font-medium text-xs font-inter text-red py-1 border-r px-2">
-                    Decline
-                  </button>
-                  <button
-                    className="font-medium text-xs font-inter text-blue py-2 px-2 "
-                    onClick={() => setDetails(true)}
-                  >
-                    View
-                  </button>
-                </td>
-              </tr>
-            ))}
+                  <td className="py-3">
+                    <button
+                      className="font-medium text-xs font-inter text-green py-2 px-2 border-r"
+                      // onClick={() => {
+                      //   approveProduct(funds.id);
+                      //   setStatus("success");
+                      // }}
+                    >
+                      Approve
+                    </button>
+                    <button className="font-medium text-xs font-inter text-red py-1 border-r px-2">
+                      Decline
+                    </button>
+                    <button
+                      className="font-medium text-xs font-inter text-blue py-2 px-2 "
+                      onClick={() => setDetails(true)}
+                    >
+                      View
+                    </button>
+                  </td>
+                </tr>
+              ))}
 
             <tr className="border-b font-inter">
               <td className="py-8 pl-9">

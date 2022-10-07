@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { FaAngleDown } from "react-icons/fa";
 import search from "../images/Small.svg";
 import avater from "../images/Avatar.svg";
-import Martabs from "./Martabs";
 import { MdArrowBackIosNew } from "react-icons/md";
 import { NavLink, Link } from "react-router-dom";
 import { MdArrowForwardIos } from "react-icons/md";
@@ -33,6 +32,7 @@ function InvestorList() {
     fetchInvestors();
   }, []);
 
+  const [searchTerm, setSearchTerm] = useState("");
   return (
     <>
       <div className="flex justify-between my-6">
@@ -50,6 +50,7 @@ function InvestorList() {
             type="search"
             placeholder="Search Investors"
             className="outline-none font-normal text-sm w-full py-2"
+            onChange={(event) => setSearchTerm(event.target.value)}
           />
           <img src={search} alt="search" />
         </div>
@@ -104,37 +105,47 @@ function InvestorList() {
                 </th>
               </tr>
             </thead>
-            {investors?.map((investor) => (
-              <tr className="border-b font-inter">
-                <td className="py-8 pl-5 flex items-center">
-                  <div className="mr-2">
-                    <img src={avater} alt="merchant avater" />
-                  </div>
-                  <div>
-                    <h1 className="font-normal  text-deep text-sm">
-                      {investor.name}
-                    </h1>
-                  </div>
-                </td>
-                <td className="py-3 text-xs text-neutral">
-                  <h1>null</h1>
-                </td>
-                <td className="py-3  text-xs text-neutral">
-                  <h1>{investor.email}</h1>
-                </td>
-                <td className="py-3 text-xs text-neutral">
-                  <h1>{investor.phone}</h1>
-                </td>
-                <td className="py-3 text-xs text-neutral">
-                  <h1>null</h1>
-                </td>
-                <td className="py-3 text-center">
-                  <button className="font-medium text-sm font-inter bg-relist text-relisted py-1 px-2.5 rounded-full ">
-                    Ban User
-                  </button>
-                </td>
-              </tr>
-            ))}
+            {investors
+              ?.filter((val) => {
+                if (searchTerm === "") {
+                  return val;
+                } else if (
+                  val.name.toLowerCase().includes(searchTerm.toLowerCase())
+                ) {
+                  return val;
+                }
+              })
+              .map((investor) => (
+                <tr className="border-b font-inter">
+                  <td className="py-8 pl-5 flex items-center">
+                    <div className="mr-2">
+                      <img src={avater} alt="merchant avater" />
+                    </div>
+                    <div>
+                      <h1 className="font-normal  text-deep text-sm">
+                        {investor.name}
+                      </h1>
+                    </div>
+                  </td>
+                  <td className="py-3 text-xs text-neutral">
+                    <h1>null</h1>
+                  </td>
+                  <td className="py-3  text-xs text-neutral">
+                    <h1>{investor.email}</h1>
+                  </td>
+                  <td className="py-3 text-xs text-neutral">
+                    <h1>{investor.phone}</h1>
+                  </td>
+                  <td className="py-3 text-xs text-neutral">
+                    <h1>null</h1>
+                  </td>
+                  <td className="py-3 text-center">
+                    <button className="font-medium text-sm font-inter bg-relist text-relisted py-1 px-2.5 rounded-full ">
+                      Ban User
+                    </button>
+                  </td>
+                </tr>
+              ))}
           </table>
           <div className=" flex pt-20 px-7 items-center justify-between">
             <div className="border rounded-lg bg-page text-footer text-sm p-3">

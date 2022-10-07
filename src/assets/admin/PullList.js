@@ -80,6 +80,8 @@ function PullList() {
   useEffect(() => {
     fetchPullFunds();
   }, []);
+  const [searchTerm, setSearchTerm] = useState("");
+
   return (
     <>
       <div className="flex justify-between my-6">
@@ -97,6 +99,7 @@ function PullList() {
             type="search"
             placeholder="Search Merchants"
             className="outline-none font-normal text-sm w-full py-2"
+            onChange={(event) => setSearchTerm(event.target.value)}
           />
           <img src={search} alt="search" />
         </div>
@@ -136,82 +139,94 @@ function PullList() {
                 </th>
               </tr>
             </thead>
-            {pullFunds?.map((funds) => (
-              <tr className="border-b font-inter" key={funds.id}>
-                <td className="py-8 pl-5 flex">
-                  <div className="mr-2">
-                    <img src={realEstate} alt="merchant avater" />
-                  </div>
-                  <div>
-                    <h1 className="font-normal  text-deep text-sm">
-                      {funds.product.title}
-                    </h1>
-                    <h1 className="font-normal font-family text-media text-xs">
-                      {funds.product.category.product_category}
-                    </h1>
-                  </div>
-                </td>
-                <td className="py-8">
-                  <h1 className="font-normal text-deep text-xs">
-                    N
-                    <CurrencyFormat
-                      value={funds.amount}
-                      displayType={"text"}
-                      thousandSeparator={true}
-                    />
-                  </h1>
-                </td>
-                <td className="py-8">
-                  <h1 className="font-normal text-deep text-xs">
-                    {funds.product.investments.length}
-                  </h1>
-                </td>
-                <td className="py-8">
-                  <h1 className="font-normal text-deep text-xs">
-                    {moment(funds.created_at).format("MMM DD, yyyy")}
-                  </h1>
-                </td>
-                <td className="py-8">
-                  <h1 className="font-normal text-deep text-xs">
-                    {moment(funds.created_at).format("LT")}
-                  </h1>
-                </td>
-
-                <td className="py-3">
-                  {funds.status === "success" ? (
-                    <button className="font-semibold text-xs font-inter bg-approved text-appText py-1 px-3 rounded-full ">
-                      Approved
-                    </button>
-                  ) : funds.status === "failed" ? (
-                    <button className="font-semibold text-xs font-inter bg-relist text-relisted py-1 px-2.5 rounded-full ">
-                      Declined
-                    </button>
-                  ) : (
-                    <div className="whitespace-nowrap text-center">
-                      <button
-                        className="font-medium text-xs font-inter text-blue py-2 pr-2 border-r "
-                        onClick={() => {
-                          approvePullout(funds.id);
-                          setStatus("success");
-                        }}
-                      >
-                        Approve
-                      </button>
-                      <button
-                        className="font-medium text-xs font-inter text-red py-1 px-2"
-                        onClick={() => {
-                          approvePullout(funds.id);
-                          setStatus("failed");
-                          // alert(status);
-                        }}
-                      >
-                        Decline
-                      </button>
+            {pullFunds
+              ?.filter((val) => {
+                if (searchTerm === "") {
+                  return val;
+                } else if (
+                  val.product.title
+                    .toLowerCase()
+                    .includes(searchTerm.toLowerCase())
+                ) {
+                  return val;
+                }
+              })
+              .map((funds) => (
+                <tr className="border-b font-inter" key={funds.id}>
+                  <td className="py-8 pl-5 flex">
+                    <div className="mr-2">
+                      <img src={realEstate} alt="merchant avater" />
                     </div>
-                  )}
-                </td>
-              </tr>
-            ))}
+                    <div>
+                      <h1 className="font-normal  text-deep text-sm">
+                        {funds.product.title}
+                      </h1>
+                      <h1 className="font-normal font-family text-media text-xs">
+                        {funds.product.category.product_category}
+                      </h1>
+                    </div>
+                  </td>
+                  <td className="py-8">
+                    <h1 className="font-normal text-deep text-xs">
+                      N
+                      <CurrencyFormat
+                        value={funds.amount}
+                        displayType={"text"}
+                        thousandSeparator={true}
+                      />
+                    </h1>
+                  </td>
+                  <td className="py-8">
+                    <h1 className="font-normal text-deep text-xs">
+                      {funds.product.investments.length}
+                    </h1>
+                  </td>
+                  <td className="py-8">
+                    <h1 className="font-normal text-deep text-xs">
+                      {moment(funds.created_at).format("MMM DD, yyyy")}
+                    </h1>
+                  </td>
+                  <td className="py-8">
+                    <h1 className="font-normal text-deep text-xs">
+                      {moment(funds.created_at).format("LT")}
+                    </h1>
+                  </td>
+
+                  <td className="py-3">
+                    {funds.status === "success" ? (
+                      <button className="font-semibold text-xs font-inter bg-approved text-appText py-1 px-3 rounded-full ">
+                        Approved
+                      </button>
+                    ) : funds.status === "failed" ? (
+                      <button className="font-semibold text-xs font-inter bg-relist text-relisted py-1 px-2.5 rounded-full ">
+                        Declined
+                      </button>
+                    ) : (
+                      <div className="whitespace-nowrap text-center">
+                        <button
+                          className="font-medium text-xs font-inter text-blue py-2 pr-2 border-r "
+                          onClick={() => {
+                            approvePullout(funds.id);
+                            setStatus("success");
+                          }}
+                        >
+                          Approve
+                        </button>
+                        <button
+                          className="font-medium text-xs font-inter text-red py-1 px-2"
+                          onClick={() => {
+                            approvePullout(funds.id);
+                            setStatus("failed");
+                            // alert(status);
+                          }}
+                        >
+                          Decline
+                        </button>
+                      </div>
+                    )}
+                  </td>
+                </tr>
+              ))}
           </table>
           <div className=" flex pt-20 px-7 items-center justify-between">
             <div className="border rounded-lg bg-page text-footer text-sm p-3">

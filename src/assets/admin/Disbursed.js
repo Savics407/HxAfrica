@@ -5,7 +5,7 @@ import SideBar from "./SideBar";
 import PullList from "./PullList";
 
 import Products from "./Products";
-import Create_Marchant from "./CreateMerchant.js";
+import CreateMarchant from "./CreateMerchant.js";
 import DisbursedList from "./DisbursedList";
 
 function Disbursed() {
@@ -22,7 +22,7 @@ function Disbursed() {
           </div>
           <div className="">
             <div className="">
-              <Create_Marchant />
+              <CreateMarchant />
               <DisbursedList />
             </div>
             {/* <div className="w-2/6 mt-5 rounded-lg overflow-y-hidden relative bg-white">

@@ -535,11 +535,7 @@ function AdminSettings() {
                 </div>
                 <div className="py-5 px-7">
                   <div className="pb-4 flex items-center">
-                    <img
-                      src={reictoken}
-                      alt="my-investment-image"
-                      className="w-8"
-                    />
+                    <img src={reictoken} alt="my-investment" className="w-8" />
                     <div className="ml-4 flex items-center">
                       <span className="text-tokentext text-xl font-extra-bold mr-2">
                         1

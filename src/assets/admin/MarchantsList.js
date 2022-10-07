@@ -31,6 +31,7 @@ function MarchantsList() {
   useEffect(() => {
     fetchMerchants();
   }, []);
+  const [searchTerm, setSearchTerm] = useState("");
 
   return (
     <>
@@ -49,6 +50,7 @@ function MarchantsList() {
             type="search"
             placeholder="Search Merchants"
             className="outline-none font-normal text-sm w-full py-2"
+            onChange={(event) => setSearchTerm(event.target.value)}
           />
           <img src={search} alt="search" />
         </div>
@@ -110,7 +112,16 @@ function MarchantsList() {
               </tr>
             </thead>
             {merchants
-              ?.sort((a, b) => (a.id > b.id ? 1 : -1))
+              ?.filter((val) => {
+                if (searchTerm == "") {
+                  return val;
+                } else if (
+                  val.name.toLowerCase().includes(searchTerm.toLowerCase())
+                ) {
+                  return val;
+                }
+              })
+              .sort((a, b) => (a.id > b.id ? 1 : -1))
               .map((merchant) => (
                 <tr className="border-b font-inter" key={merchant.id}>
                   <td className="py-8 pl-5 flex w-40">

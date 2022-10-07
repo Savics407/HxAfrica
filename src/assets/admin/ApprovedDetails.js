@@ -46,6 +46,7 @@ function ApprovedDetails({ setDetails, itemId, fetchApproved }) {
   }, []);
 
   const [title, setTitle] = useState("");
+  const [turn, setTurn] = useState(false);
 
   return (
     <>
@@ -200,6 +201,18 @@ function ApprovedDetails({ setDetails, itemId, fetchApproved }) {
                       </div>
                     </div>
                     <div className="text-right py-10">
+                      {post.status_investment === "waiting" && (
+                        <button
+                          className="font-bold rounded-full lg:w-44 lg:h-12 text-dashbg bg-green mr-5"
+                          onClick={() => {
+                            setTurn(true);
+                            setIsClick(!isClick);
+                            setTitle(post.title);
+                          }}
+                        >
+                          Turn Ongoing
+                        </button>
+                      )}
                       <button
                         className="font-bold rounded-full lg:w-44 lg:h-12 text-dashbg bg-red"
                         onClick={() => {
@@ -216,7 +229,72 @@ function ApprovedDetails({ setDetails, itemId, fetchApproved }) {
             </>
           )}
         </motion.div>
-
+        {turn && (
+          <motion.div
+            initial={{
+              opacity: 0,
+            }}
+            animate={{
+              opacity: 1,
+              transition: {
+                duration: 0.3,
+              },
+            }}
+            exit={{
+              opacity: 0,
+              transition: {
+                delay: 0.5,
+              },
+            }}
+            className={`lg:w-128 w-11/12 bg-white rounded-xl fixed top-48 border-green p-6 text-center ${
+              turn ? "block" : "hidden"
+            } `}
+          >
+            <div>
+              <h1 className="lg:font-bold font-medium text-neutral text-2xl lg:text-3xl">
+                Notice!
+              </h1>
+            </div>
+            <div className="font-semibold lg:text-base text-xs text-neutral my-8">
+              <p>
+                Are you sure you want to turn <br /> the
+                <span className="text-green"> {title}</span> investment into
+                Ongoing?
+              </p>
+            </div>
+            <div className="flex justify-between">
+              <button
+                className="border rounded-full lg:w-44 h-12 w-40 text-neutral bg-dashbg text-sm lg:text-base"
+                onClick={() => {
+                  setDetails(false);
+                  // setWarning(!warning);
+                }}
+              >
+                No, Cancel
+              </button>
+              <button
+                className="rounded-full w-40 lg:w-44 h-12 text-dashbg bg-green text-sm lg:text-base"
+                onClick={() => {
+                  // closeWarning(false);
+                  // setWarning(!warning);
+                  setDetails(false);
+                  // setProcessing(true);
+                  toast.error(`Couldn't turn to Ongoing`, {
+                    position: "top-left",
+                    autoClose: 500,
+                    hideProgressBar: true,
+                    closeOnClick: false,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                  });
+                }}
+              >
+                Yes, Turn Ongoing
+              </button>
+            </div>
+          </motion.div>
+        )}
         {authPullOut && (
           <Warning
             closeWarning={setIsClick}

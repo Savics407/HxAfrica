@@ -5,7 +5,7 @@ import SideBar from "./SideBar";
 import PullList from "./PullList";
 
 import Products from "./Products";
-import Create_Marchant from "./CreateMerchant.js";
+import CreateMarchant from "./CreateMerchant.js";
 
 function PullFunds() {
   return (
@@ -21,7 +21,7 @@ function PullFunds() {
           </div>
           <div className="">
             <div className="">
-              <Create_Marchant />
+              <CreateMarchant />
               <PullList />
             </div>
             {/* <div className="w-2/6 mt-5 rounded-lg bg-white">

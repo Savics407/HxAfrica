@@ -34,6 +34,9 @@ function DisbursedList() {
   useEffect(() => {
     fetchDisburse();
   }, []);
+
+  const [searchTerm, setSearchTerm] = useState("");
+
   return (
     <>
       <div className="flex justify-between my-6">
@@ -51,6 +54,7 @@ function DisbursedList() {
             type="search"
             placeholder="Search Merchants"
             className="outline-none font-normal text-sm w-full py-2"
+            onChange={(event) => setSearchTerm(event.target.value)}
           />
           <img src={search} alt="search" />
         </div>
@@ -90,54 +94,64 @@ function DisbursedList() {
                 </th>
               </tr>
             </thead>
-            {disburseFunds?.map((funds) => (
-              <tr className="border-b font-inter">
-                <td className="py-8 pl-5 flex">
-                  <div className="mr-2">
-                    <img src={avater} alt="merchant avater" />
-                  </div>
-                  <div>
-                    <h1 className="font-normal  text-deep text-sm">
-                      {funds.merchant.name}
+            {disburseFunds
+              ?.filter((val) => {
+                if (searchTerm == "") {
+                  return val;
+                } else if (
+                  val.name.toLowerCase().includes(searchTerm.toLowerCase())
+                ) {
+                  return val;
+                }
+              })
+              .map((funds) => (
+                <tr className="border-b font-inter">
+                  <td className="py-8 pl-5 flex">
+                    <div className="mr-2">
+                      <img src={avater} alt="merchant avater" />
+                    </div>
+                    <div>
+                      <h1 className="font-normal  text-deep text-sm">
+                        {funds.merchant.name}
+                      </h1>
+                      <h1 className="font-normal text-statustext text-xs">
+                        {funds.merchant.products.length} Products
+                      </h1>
+                    </div>
+                  </td>
+                  <td className="py-8">
+                    <h1 className="font-normal text-deep text-xs">
+                      N
+                      <CurrencyFormat
+                        value={funds.amount}
+                        displayType={"text"}
+                        thousandSeparator={true}
+                      />
                     </h1>
-                    <h1 className="font-normal text-statustext text-xs">
-                      {funds.merchant.products.length} Products
+                  </td>
+                  <td className="py-8">
+                    <h1 className="font-normal text-deep text-xs">
+                      {funds.product.investments.length}
                     </h1>
-                  </div>
-                </td>
-                <td className="py-8">
-                  <h1 className="font-normal text-deep text-xs">
-                    N
-                    <CurrencyFormat
-                      value={funds.amount}
-                      displayType={"text"}
-                      thousandSeparator={true}
-                    />
-                  </h1>
-                </td>
-                <td className="py-8">
-                  <h1 className="font-normal text-deep text-xs">
-                    {funds.product.investments.length}
-                  </h1>
-                </td>
-                <td className="py-8">
-                  <h1 className="font-normal text-deep text-xs">
-                    {moment(funds.created_at).format("MMM DD, yyyy")}
-                  </h1>
-                </td>
-                <td className="py-8">
-                  <h1 className="font-normal text-deep text-xs">
-                    {moment(funds.created_at).format("LT")}
-                  </h1>
-                </td>
+                  </td>
+                  <td className="py-8">
+                    <h1 className="font-normal text-deep text-xs">
+                      {moment(funds.created_at).format("MMM DD, yyyy")}
+                    </h1>
+                  </td>
+                  <td className="py-8">
+                    <h1 className="font-normal text-deep text-xs">
+                      {moment(funds.created_at).format("LT")}
+                    </h1>
+                  </td>
 
-                <td className="py-3">
-                  <button className="font-medium text-sm font-inter bg-approved text-appText py-1 px-3 rounded-full capitalize">
-                    {funds.status}
-                  </button>
-                </td>
-              </tr>
-            ))}
+                  <td className="py-3">
+                    <button className="font-medium text-sm font-inter bg-approved text-appText py-1 px-3 rounded-full capitalize">
+                      {funds.status}
+                    </button>
+                  </td>
+                </tr>
+              ))}
 
             <tr className="border-b font-inter">
               <td className="py-8 pl-5 flex items-center">

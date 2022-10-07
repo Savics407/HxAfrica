@@ -5,7 +5,7 @@ import SideBar from "./SideBar";
 import MarchantsList from "./MarchantsList";
 
 import Products from "./Products";
-import Create_Marchant from "./CreateMerchant.js";
+import CreateMarchant from "./CreateMerchant.js";
 
 function Marchants() {
   useEffect(() => {
@@ -25,7 +25,7 @@ function Marchants() {
           </div>
           <div className="">
             <div className="">
-              <Create_Marchant />
+              <CreateMarchant />
 
               <MarchantsList />
             </div>

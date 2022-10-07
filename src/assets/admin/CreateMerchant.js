@@ -344,7 +344,7 @@ function Create() {
                   >
                     <img
                       src={preview}
-                      alt="product Image"
+                      alt="product"
                       className="object-cover w-full h-full rounded-lg"
                     />
                     <span
