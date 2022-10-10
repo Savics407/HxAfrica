@@ -202,6 +202,7 @@ function Bids() {
                         setBidID(bids.id);
                         // alert(bids.id);
                       }}
+                      key={bids.investment.id}
                     >
                       <h1 className="text-more font-semibold mb-1.5">
                         {bids.investment.product.title}

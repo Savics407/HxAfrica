@@ -196,7 +196,7 @@ function Investments() {
                       <div className="w-1/3 h-full rounded-full">
                         <img
                           src={raw}
-                          alt="rawland"
+                          alt={post.title}
                           className="w-full h-full object-cover rounded-2xl"
                         />
                       </div>

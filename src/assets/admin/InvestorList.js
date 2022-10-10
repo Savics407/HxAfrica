@@ -5,6 +5,7 @@ import avater from "../images/Avatar.svg";
 import { MdArrowBackIosNew } from "react-icons/md";
 import { NavLink, Link } from "react-router-dom";
 import { MdArrowForwardIos } from "react-icons/md";
+import Banuser from "./Banuser";
 
 function InvestorList() {
   const [investors, setInvestors] = useState();
@@ -33,8 +34,17 @@ function InvestorList() {
   }, []);
 
   const [searchTerm, setSearchTerm] = useState("");
+  const [ban, setBan] = useState(false);
+  const [userID, setUserId] = useState();
   return (
     <>
+      {ban && (
+        <Banuser
+          setBan={setBan}
+          userID={userID}
+          fetchInvestors={fetchInvestors}
+        />
+      )}
       <div className="flex justify-between my-6">
         <div className="border-2 w-44 bg-white rounded-lg px-4 py-3">
           <div className="w-full flex justify-between items-center text-sm text-sort">
@@ -140,7 +150,13 @@ function InvestorList() {
                     <h1>null</h1>
                   </td>
                   <td className="py-3 text-center">
-                    <button className="font-medium text-sm font-inter bg-relist text-relisted py-1 px-2.5 rounded-full ">
+                    <button
+                      className="font-medium text-sm font-inter bg-relist text-relisted py-1 px-2.5 rounded-full"
+                      onClick={() => {
+                        setBan(true);
+                        setUserId(investor.id);
+                      }}
+                    >
                       Ban User
                     </button>
                   </td>

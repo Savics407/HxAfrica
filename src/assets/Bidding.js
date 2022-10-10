@@ -222,7 +222,7 @@ function Bidding({ closeModal, itemId }) {
                           <h1 className="text-dark text-sm lg:text-2xl font-medium">
                             N
                             <CurrencyFormat
-                              value={1200000}
+                              value={post.product.cost}
                               displayType={"text"}
                               thousandSeparator={true}
                             />
