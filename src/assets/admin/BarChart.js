@@ -7,18 +7,27 @@ function BarChart() {
   const data = [];
 
   const [userData, setUserData] = useState({
-    labels: ["2 Aug", "3 Aug", "4 Aug", "5 Aug", "6 Aug", "7 Aug", "8 Aug"],
+    labels: [
+      "2 Aug",
+      "3 Aug",
+      "4 Aug",
+      "5 Aug",
+      "6 Aug",
+      "7 Aug",
+      "8 Aug",
+      "9 Aug",
+    ],
     datasets: [
       {
         label: "Investments",
-        data: [100, 200, 100, 400, 100, 200, 200],
+        data: [100, 200, 100, 400, 100, 200, 200, 300],
         backgroundColor: "#288AF0",
         borderColor: "#288AF0",
         borderWidth: 2,
       },
       {
         label: "Relisted Investments",
-        data: [100, 200, 100, 200, 100, 300, 200],
+        data: [100, 200, 100, 200, 100, 300, 200, 100],
         backgroundColor: "#FF7171",
         borderColor: "#FF7171",
         borderWidth: 1,

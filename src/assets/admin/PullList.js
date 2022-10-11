@@ -8,6 +8,7 @@ import * as CurrencyFormat from "react-currency-format";
 import moment from "moment";
 import realEstate from "../images/realEstate.svg";
 import { MdArrowForwardIos } from "react-icons/md";
+import { RiCheckboxMultipleFill } from "react-icons/ri";
 import { toast } from "react-toastify";
 
 function PullList() {
@@ -78,10 +79,77 @@ function PullList() {
     fetchPullFunds();
   }
 
+  async function updateSent(id) {
+    const token = localStorage.getItem("user-token");
+    const payLoad = {
+      id: id,
+    };
+    // alert(payLoad.id);
+    const response = await fetch(
+      "https://reic.api.simpoo.biz/api/admin/update_sent",
+      {
+        method: "POST",
+        body: JSON.stringify(payLoad),
+        headers: {
+          "Content-type": "application/json",
+          Accept: "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    const result = await response.json();
+    console.log(result.data);
+    if (result?.status === "success") {
+      toast.success(`${result.message}`, {
+        position: "top-right",
+        autoClose: 1500,
+        hideProgressBar: true,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    } else {
+      toast.error(`${result.message}`, {
+        position: "top-right",
+        autoClose: 1500,
+        hideProgressBar: true,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    }
+    checkSent();
+  }
+
+  const [sent, setSent] = useState("");
+  async function checkSent() {
+    const token = localStorage.getItem("user-token");
+    // e.preventDefault();
+    const response = await fetch(
+      "https://reic.api.simpoo.biz/api/admin/check_sent",
+      {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+          Accept: "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    const result = await response.json();
+    console.log(result.data);
+    // alert(result.data.name);
+    setSent(result?.data.is_sent);
+  }
+
   useEffect(() => {
     fetchPullFunds();
+    checkSent();
   }, []);
   const [searchTerm, setSearchTerm] = useState("");
+  const [update, setUpdate] = useState(false);
 
   return (
     <>
@@ -136,7 +204,7 @@ function PullList() {
                   Time{" "}
                 </th>
                 <th className="py-3 pr-7 text-mobile-nav font-medium text-xs text-center ">
-                  Action
+                  Action | Status
                 </th>
               </tr>
             </thead>
@@ -193,11 +261,39 @@ function PullList() {
                     </h1>
                   </td>
 
-                  <td className="py-3 text-center">
+                  <td className="py-3 text-center ">
                     {funds.status === "success" ? (
-                      <button className="font-semibold text-xs font-inter bg-approved text-appText py-1 px-3 rounded-full ">
-                        Approved
-                      </button>
+                      <>
+                        {sent !== "0" ? (
+                          <button className="font-semibold text-xs font-inter bg-green text-white py-1 px-4 rounded-full mr-2">
+                            Sent
+                          </button>
+                        ) : (
+                          <div className="flex justify-center ">
+                            <button className="font-semibold text-xs font-inter bg-approved text-appText py-1 px-3 rounded-full mr-3">
+                              Approved
+                            </button>
+                            <button
+                              className="font-semibold relative text-xs font-inter flex items-center justify-between bg-relist text-relisted py-1 px-2 rounded"
+                              onClick={() => setUpdate(!update)}
+                            >
+                              <span className="mr-1">Not Sent</span>{" "}
+                              <FaAngleDown />
+                              {update && (
+                                <div className="absolute left-0 right-0 bg-relist top-5 rounded p-2 flex justify-center ">
+                                  <button
+                                    className="font-semibold text-xs font-inter flex items-center bg-white text-appText py-1 px-2 rounded"
+                                    onClick={() => updateSent(funds.id)}
+                                  >
+                                    <span className="mr-1">Sent </span>{" "}
+                                    <RiCheckboxMultipleFill />
+                                  </button>
+                                </div>
+                              )}
+                            </button>
+                          </div>
+                        )}
+                      </>
                     ) : funds.status === "failed" ? (
                       <button className="font-semibold text-xs font-inter bg-relist text-relisted py-1 px-2.5 rounded-full ">
                         Declined

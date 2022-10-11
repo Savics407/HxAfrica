@@ -82,148 +82,38 @@ function StaffList() {
                 </th>
               </tr>
             </thead>
-            <tr className="border-b">
-              <td className="py-8 pl-5 flex items-center">
-                <div className="mr-2">
-                  <img src={avater} alt="merchant avater" />
-                </div>
-                <div>
-                  <h1 className="font-normal text-deep text-sm">Staff Name</h1>
-                </div>
-              </td>
-              <td className="py-8">
-                <h1 className="font-normal text-deep text-sm">08106750047</h1>
-              </td>
+            {staffs?.map((staff) => (
+              <tr className="border-b">
+                <td className="py-8 pl-5 flex items-center">
+                  <div className="mr-2">
+                    <img src={avater} alt="merchant avater" />
+                  </div>
+                  <div>
+                    <h1 className="font-normal text-deep text-sm">
+                      {staff.name}
+                    </h1>
+                  </div>
+                </td>
+                <td className="py-8">
+                  <h1 className="font-normal text-deep text-sm">
+                    {staff.phone}
+                  </h1>
+                </td>
 
-              <td className="py-8">
-                <h1 className="font-normal text-deep text-sm">Secretary</h1>
-              </td>
+                <td className="py-8">
+                  <h1 className="font-normal text-deep text-sm">Null</h1>
+                </td>
 
-              <td className="py-3 text-center">
-                <button className="font-medium text-xs font-inter text-blue py-2 px-2 border-r ">
-                  Edit
-                </button>
-                <button className="font-medium text-xs font-inter text-inactive py-1 px-2">
-                  Assign role
-                </button>
-              </td>
-            </tr>
-
-            <tr className="border-b">
-              <td className="py-8 pl-5 flex items-center">
-                <div className="mr-2">
-                  <img src={avater} alt="merchant avater" />
-                </div>
-                <div>
-                  <h1 className="font-normal  text-deep text-sm">Staff Name</h1>
-                </div>
-              </td>
-              <td className="py-8">
-                <h1 className="font-normal text-deep text-sm">08106750047</h1>
-              </td>
-
-              <td className="py-8">
-                <h1 className="font-normal text-deep text-sm">
-                  Financial Assistant
-                </h1>
-              </td>
-
-              <td className="py-3 text-center">
-                <button className="font-medium text-xs font-inter text-blue py-2 px-2 border-r ">
-                  Edit
-                </button>
-                <button className="font-medium text-xs font-inter text-inactive py-1 px-2">
-                  Assign role
-                </button>
-              </td>
-            </tr>
-
-            <tr className="border-b">
-              <td className="py-8 pl-5 flex items-center">
-                <div className="mr-2">
-                  <img src={avater} alt="merchant avater" />
-                </div>
-                <div>
-                  <h1 className="font-normal  text-deep text-sm">Staff Name</h1>
-                </div>
-              </td>
-              <td className="py-8">
-                <h1 className="font-normal text-deep text-sm">08106750047</h1>
-              </td>
-
-              <td className="py-8">
-                <h1 className="font-normal text-deep text-sm">
-                  Financial Assistant
-                </h1>
-              </td>
-
-              <td className="py-3 text-center">
-                <button className="font-medium text-xs font-inter text-blue py-2 px-2 border-r ">
-                  Edit
-                </button>
-                <button className="font-medium text-xs font-inter text-inactive py-1 px-2">
-                  Assign role
-                </button>
-              </td>
-            </tr>
-
-            <tr className="border-b">
-              <td className="py-8 pl-5 flex items-center">
-                <div className="mr-2">
-                  <img src={avater} alt="merchant avater" />
-                </div>
-                <div>
-                  <h1 className="font-normal  text-deep text-sm">Staff Name</h1>
-                </div>
-              </td>
-              <td className="py-8">
-                <h1 className="font-normal text-deep text-sm">08106750047</h1>
-              </td>
-
-              <td className="py-8">
-                <h1 className="font-normal text-deep text-sm">
-                  Financial Assistant
-                </h1>
-              </td>
-
-              <td className="py-3 text-center">
-                <button className="font-medium text-xs font-inter text-blue py-2 px-2 border-r ">
-                  Edit
-                </button>
-                <button className="font-medium text-xs font-inter text-inactive py-1 px-2">
-                  Update role
-                </button>
-              </td>
-            </tr>
-
-            <tr className="border-b">
-              <td className="py-8 pl-5 flex items-center">
-                <div className="mr-2">
-                  <img src={avater} alt="merchant avater" />
-                </div>
-                <div>
-                  <h1 className="font-normal  text-deep text-sm">Staff Name</h1>
-                </div>
-              </td>
-              <td className="py-8">
-                <h1 className="font-normal text-deep text-sm">08106750047</h1>
-              </td>
-
-              <td className="py-8">
-                <h1 className="font-normal text-deep text-sm">
-                  Financial Assistant
-                </h1>
-              </td>
-
-              <td className="py-3 text-center">
-                <button className="font-medium text-xs font-inter text-blue py-2 px-2 border-r ">
-                  Edit
-                </button>
-                <button className="font-medium text-xs font-inter text-inactive py-1 px-2">
-                  Update role
-                </button>
-              </td>
-            </tr>
+                <td className="py-3 text-center">
+                  <button className="font-medium text-xs font-inter text-blue py-2 px-2 border-r ">
+                    Edit
+                  </button>
+                  <button className="font-medium text-xs font-inter text-inactive py-1 px-2">
+                    Assign role
+                  </button>
+                </td>
+              </tr>
+            ))}
           </table>
           <div className=" flex pt-20 px-7 items-center justify-between">
             <div className="border rounded-lg bg-page text-footer text-sm p-3">

@@ -83,7 +83,19 @@ function Login() {
       }
     }
 
-    if (result.data.role === "investor") {
+    if (result?.data.is_ban == "1") {
+      toast.error(`Sorry you can't log in, please contact Support`, {
+        position: "top-left",
+        autoClose: 1500,
+        hideProgressBar: true,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      navigate("/");
+      setProcess(false);
+    } else if (result.data.role === "investor") {
       toast.success(`${result.message}`, {
         position: "top-left",
         autoClose: 300,
