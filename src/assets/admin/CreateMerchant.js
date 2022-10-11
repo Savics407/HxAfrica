@@ -58,18 +58,6 @@ function Create() {
   const [create, setCreate] = useState(false);
   const [image, setImage] = useState(null);
   const [preview, setPreview] = useState();
-  useEffect(() => {
-    window.scrollTo(0, 0);
-    if (image) {
-      const reader = new FileReader();
-      reader.onload = () => {
-        setPreview(reader.result);
-      };
-      reader.readAsDataURL(image);
-    } else {
-      setPreview(null);
-    }
-  }, [image]);
 
   const [formData, setFormData] = useState({
     name: "",
@@ -80,11 +68,12 @@ function Create() {
     state: "",
   });
   console.log(image);
+  console.log(preview);
   async function createMerchant() {
     const token = localStorage.getItem("user-token");
     // e.preventDefault();
-    // const imageData = new FormData();
-    // imageData.append("file", image);
+    const imageData = new FormData();
+    imageData.append("image", image);
     const payLoad = {
       name: formData.name,
       email: formData.email,
@@ -92,7 +81,7 @@ function Create() {
       address: formData.address,
       city: formData.city,
       state_id: formData.state,
-      image: image,
+      image: imageData,
     };
     alert(payLoad.image);
     const response = await fetch(
@@ -101,7 +90,7 @@ function Create() {
         method: "POST",
         body: JSON.stringify(payLoad),
         headers: {
-          "Content-type": "application/json",
+          "Content-type": "multipart/form-data",
           Accept: "application/json",
           Authorization: `Bearer ${token}`,
         },
@@ -311,6 +300,7 @@ function Create() {
                     />
                   </div>
                 </div>
+
                 {image === null ? (
                   <div className="border bg-file rounded-lg border-dashed flex flex-col items-center p-10">
                     <img src={upload} alt="Upload Icon" />

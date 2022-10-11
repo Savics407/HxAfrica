@@ -74,7 +74,7 @@ function DisbursedList() {
           <table className=" w-full table-auto">
             <thead className="">
               <tr className="text-left bg-bar">
-                <th className="py-3 text-mobile-nav font-medium text-xs pl-9 w-52">
+                <th className="py-3 text-mobile-nav font-medium text-xs pl-9">
                   Name
                 </th>
                 <th className="py-3 pr-7 text-mobile-nav font-medium text-xs ">
@@ -149,6 +149,36 @@ function DisbursedList() {
                     <button className="font-medium text-sm font-inter bg-approved text-appText py-1 px-3 rounded-full capitalize">
                       {funds.status}
                     </button>
+                    {/* {funds.status === "success" ? (
+                      <button className="font-semibold text-xs font-inter bg-approved text-appText py-1 px-3 rounded-full ">
+                        Approved
+                      </button>
+                    ) : funds.status === "failed" ? (
+                      <button className="font-semibold text-xs font-inter bg-relist text-relisted py-1 px-2.5 rounded-full ">
+                        Declined
+                      </button>
+                    ) : (
+                      <div className="whitespace-nowrap text-center">
+                        <button
+                          className="font-medium text-xs font-inter text-blue py-2 pr-2 border-r "
+                          onClick={() => {
+                            // approvePullout(funds.id);
+                            // setStatus("success");
+                          }}
+                        >
+                          Approve
+                        </button>
+                        <button
+                          className="font-medium text-xs font-inter text-red py-1 px-2"
+                          onClick={() => {
+                            // approvePullout(funds.id);
+                            // setStatus("failed");
+                            // alert(status);
+                          }}
+                        >
+                          Decline
+                        </button>
+                      </div> */}
                   </td>
                 </tr>
               ))}

@@ -114,10 +114,10 @@ function InvestmentList() {
           <table className=" w-full">
             <thead className="">
               <tr className="text-left bg-bar">
-                <th className="py-3 pr-7 text-mobile-nav font-medium text-xs pl-9 w-24">
+                <th className="py-3 pr-7 text-mobile-nav font-medium text-xs pl-9 w-16">
                   ID
                 </th>
-                <th className="py-3 pr-10 w-44 text-mobile-nav font-medium text-xs ">
+                <th className="py-3 pr-10 w-52 text-mobile-nav font-medium text-xs ">
                   Investment
                 </th>
                 <th className="py-3 pr-7 text-mobile-nav font-medium text-xs ">
@@ -189,14 +189,14 @@ function InvestmentList() {
                   <td className="py-3">
                     <button
                       className="font-medium text-xs font-inter text-green py-2 px-2 border-r"
-                      // onClick={() => {
-                      //   approveProduct(funds.id);
-                      //   setStatus("success");
-                      // }}
+                      onClick={() => setDetails(true)}
                     >
                       Approve
                     </button>
-                    <button className="font-medium text-xs font-inter text-red py-1 border-r px-2">
+                    <button
+                      className="font-medium text-xs font-inter text-red py-1 border-r px-2"
+                      onClick={() => setDetails(true)}
+                    >
                       Decline
                     </button>
                     <button
@@ -208,55 +208,6 @@ function InvestmentList() {
                   </td>
                 </tr>
               ))}
-
-            <tr className="border-b font-inter">
-              <td className="py-8 pl-9">
-                <h1 className="font-normal text-deep text-xs">#1246</h1>
-              </td>
-              <td className="py-8  flex items-center">
-                <div className="mr-2">
-                  <img src={realEstate} alt="Investment Icon" />
-                </div>
-                <div>
-                  <h1 className="font-normal  text-deep text-sm">
-                    Crowdfunding
-                  </h1>
-                  <h1 className="font-normal text-green text-xs">
-                    Real Estate
-                  </h1>
-                </div>
-              </td>
-              <td className="py-8">
-                <h1 className="font-normal text-deep text-xs">N200,000</h1>
-              </td>
-              <td className="py-8">
-                <h1 className="font-normal text-deep text-xs">7 weeks</h1>
-              </td>
-              <td className="py-8">
-                <h1 className="font-normal text-deep text-xs">200</h1>
-              </td>
-
-              <td className="py-3">
-                <button
-                  className="font-medium text-xs font-inter text-green py-2 px-2 border-r"
-                  // onClick={() => {
-                  //   approveProduct(funds.id);
-                  //   setStatus("success");
-                  // }}
-                >
-                  Approve
-                </button>
-                <button className="font-medium text-xs font-inter text-red py-1 border-r px-2">
-                  Decline
-                </button>
-                <button
-                  className="font-medium text-xs font-inter text-blue py-2 px-2 "
-                  onClick={() => setDetails(true)}
-                >
-                  View
-                </button>
-              </td>
-            </tr>
           </table>
           <div className=" flex pt-20 px-7 items-center justify-between">
             <div className="border rounded-lg bg-page text-footer text-sm p-3">

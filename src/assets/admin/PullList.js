@@ -39,7 +39,7 @@ function PullList() {
       id: id,
       status: status,
     };
-    alert(payLoad.id);
+    // alert(payLoad.id);
     const response = await fetch(
       "https://reic.api.simpoo.biz/api/admin/approve_merchant_pullout_product_funds",
       {
@@ -75,6 +75,7 @@ function PullList() {
         progress: undefined,
       });
     }
+    fetchPullFunds();
   }
 
   useEffect(() => {
@@ -119,7 +120,7 @@ function PullList() {
           <table className=" w-full table-auto">
             <thead className="">
               <tr className="text-left bg-bar">
-                <th className="py-3 text-mobile-nav font-medium text-xs pl-9 w-52">
+                <th className="py-3 text-mobile-nav font-medium text-xs pl-9">
                   Name
                 </th>
                 <th className="py-3 pr-7 text-mobile-nav font-medium text-xs ">
@@ -158,7 +159,7 @@ function PullList() {
                       <img src={realEstate} alt="merchant avater" />
                     </div>
                     <div>
-                      <h1 className="font-normal  text-deep text-sm">
+                      <h1 className="font-normal text-deep text-sm">
                         {funds.product.title}
                       </h1>
                       <h1 className="font-normal font-family text-media text-xs">
@@ -192,7 +193,7 @@ function PullList() {
                     </h1>
                   </td>
 
-                  <td className="py-3">
+                  <td className="py-3 text-center">
                     {funds.status === "success" ? (
                       <button className="font-semibold text-xs font-inter bg-approved text-appText py-1 px-3 rounded-full ">
                         Approved

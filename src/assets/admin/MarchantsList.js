@@ -6,6 +6,8 @@ import Martabs from "./Martabs";
 import { MdArrowBackIosNew } from "react-icons/md";
 import { NavLink, Link } from "react-router-dom";
 import { MdArrowForwardIos } from "react-icons/md";
+import { toast } from "react-toastify";
+import { motion } from "framer-motion";
 import EditMerchants from "./EditMerchants";
 
 function MarchantsList() {
@@ -29,15 +31,135 @@ function MarchantsList() {
     // alert(result.data.name);
     setMerchants(result?.data);
   }
+
+  async function removeMerchant() {
+    const token = localStorage.getItem("user-token");
+
+    const payLoad = {
+      user_id: merchantId,
+    };
+    const response = await fetch(
+      "https://reic.api.simpoo.biz/api/admin/remove_merchant",
+      {
+        method: "POST",
+        body: JSON.stringify(payLoad),
+        headers: {
+          "Content-type": "application/json",
+          Accept: "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    const result = await response.json();
+    console.log(result.data);
+    if (result?.status === "success") {
+      setRemove(false);
+      toast.success(`${result.message}`, {
+        position: "top-left",
+        autoClose: 1500,
+        hideProgressBar: true,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    } else {
+      if (result?.message) {
+        toast(`${result.message}`, {
+          position: "top-left",
+          autoClose: 1500,
+          hideProgressBar: true,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      }
+    }
+    fetchMerchants();
+  }
+
   useEffect(() => {
     fetchMerchants();
   }, []);
   const [searchTerm, setSearchTerm] = useState("");
   const [edit, setEdit] = useState(false);
+  const [merchantId, setMerchantId] = useState();
+  const [remove, setRemove] = useState(false);
+  const [name, setName] = useState();
+  // const [userId, setUserId] = useState();
 
   return (
     <>
-      {edit && <EditMerchants setEdit={setEdit} />}
+      {edit && <EditMerchants setEdit={setEdit} merchantId={merchantId} />}
+      {remove && (
+        <motion.div
+          initial={{
+            opacity: 0,
+          }}
+          animate={{
+            opacity: 1,
+            transition: {
+              duration: 0.3,
+            },
+          }}
+          exit={{
+            opacity: 0,
+            transition: {
+              delay: 0.5,
+            },
+          }}
+          className="flex items-center justify-center fixed top-0 right-0 bottom-0 left-0 bg-overlay backdrop-blur-sm z-10"
+        >
+          <motion.div
+            initial={{
+              opacity: 0,
+            }}
+            animate={{
+              opacity: 1,
+              transition: {
+                duration: 0.3,
+              },
+            }}
+            exit={{
+              opacity: 0,
+              transition: {
+                delay: 0.5,
+              },
+            }}
+            className={`lg:w-128 w-11/12 bg-white rounded-xl fixed top-48 border-green p-6 text-center`}
+          >
+            <div>
+              <h1 className="lg:font-bold font-medium text-neutral text-2xl lg:text-3xl">
+                Warning!
+              </h1>
+            </div>
+            <div className="font-semibold lg:text-base text-xs text-neutral my-8">
+              <p>
+                Are you sure you want to remove <br />
+                <span className="text-green"> {name}</span> from REIC ?
+              </p>
+            </div>
+            <div className="flex justify-between">
+              <button
+                className="border rounded-full lg:w-44 h-12 w-40 text-neutral bg-dashbg text-sm lg:text-base"
+                onClick={() => {
+                  setRemove(false);
+                  // setWarning(!warning);
+                }}
+              >
+                No, Cancel
+              </button>
+              <button
+                className="rounded-full w-40 lg:w-44 h-12 text-dashbg bg-green text-sm lg:text-base"
+                onClick={removeMerchant}
+              >
+                Yes, Remove
+              </button>
+            </div>
+          </motion.div>
+        </motion.div>
+      )}
       <div className="flex justify-between my-6">
         <div className="border-2 w-44 bg-white rounded-lg px-4 py-3">
           <div className="w-full flex justify-between items-center text-sm text-sort">
@@ -165,11 +287,22 @@ function MarchantsList() {
                   <td className="py-3 truncate">
                     <button
                       className="font-medium text-xs font-inter text-blue py-2 pr-2 border-r "
-                      onClick={() => setEdit(true)}
+                      onClick={() => {
+                        setEdit(true);
+                        setMerchantId(merchant.id);
+                      }}
                     >
                       Edit
                     </button>
-                    <button className="font-medium text-xs font-inter text-red py-1 px-2">
+                    <button
+                      className="font-medium text-xs font-inter text-red py-1 px-2"
+                      onClick={() => {
+                        setRemove(true);
+                        setName(merchant.name);
+                        window.scrollTo(0, 0);
+                        setMerchantId(merchant.id);
+                      }}
+                    >
                       Remove
                     </button>
                   </td>
