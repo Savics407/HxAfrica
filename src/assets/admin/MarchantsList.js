@@ -6,6 +6,7 @@ import Martabs from "./Martabs";
 import { MdArrowBackIosNew } from "react-icons/md";
 import { NavLink, Link } from "react-router-dom";
 import { MdArrowForwardIos } from "react-icons/md";
+import EditMerchants from "./EditMerchants";
 
 function MarchantsList() {
   const [merchants, setMerchants] = useState();
@@ -32,9 +33,11 @@ function MarchantsList() {
     fetchMerchants();
   }, []);
   const [searchTerm, setSearchTerm] = useState("");
+  const [edit, setEdit] = useState(false);
 
   return (
     <>
+      {edit && <EditMerchants setEdit={setEdit} />}
       <div className="flex justify-between my-6">
         <div className="border-2 w-44 bg-white rounded-lg px-4 py-3">
           <div className="w-full flex justify-between items-center text-sm text-sort">
@@ -160,7 +163,10 @@ function MarchantsList() {
                   </td>
 
                   <td className="py-3 truncate">
-                    <button className="font-medium text-xs font-inter text-blue py-2 pr-2 border-r ">
+                    <button
+                      className="font-medium text-xs font-inter text-blue py-2 pr-2 border-r "
+                      onClick={() => setEdit(true)}
+                    >
                       Edit
                     </button>
                     <button className="font-medium text-xs font-inter text-red py-1 px-2">

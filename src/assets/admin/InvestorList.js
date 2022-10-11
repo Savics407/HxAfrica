@@ -6,6 +6,7 @@ import { MdArrowBackIosNew } from "react-icons/md";
 import { NavLink, Link } from "react-router-dom";
 import { MdArrowForwardIos } from "react-icons/md";
 import Banuser from "./Banuser";
+import * as CurrencyFormat from "react-currency-format";
 
 function InvestorList() {
   const [investors, setInvestors] = useState();
@@ -138,7 +139,7 @@ function InvestorList() {
                     </div>
                   </td>
                   <td className="py-3 text-xs text-neutral">
-                    <h1>null</h1>
+                    <h1>{investor.investment.length}</h1>
                   </td>
                   <td className="py-3  text-xs text-neutral">
                     <h1>{investor.email}</h1>
@@ -147,7 +148,14 @@ function InvestorList() {
                     <h1>{investor.phone}</h1>
                   </td>
                   <td className="py-3 text-xs text-neutral">
-                    <h1>null</h1>
+                    <h1>
+                      N
+                      <CurrencyFormat
+                        value={investor.wallet.balance}
+                        displayType={"text"}
+                        thousandSeparator={true}
+                      />
+                    </h1>
                   </td>
                   <td className="py-3 text-center">
                     <button
