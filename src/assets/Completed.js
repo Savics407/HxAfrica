@@ -89,7 +89,7 @@ function Completed() {
                   </div>
                 ) : (
                   <div className="overflow-auto px-4 bg-white">
-                    <table className="w-full lg:table-fixed">
+                    <table className="w-full lg:table-auto">
                       <thead className="">
                         <tr className="text-left bg-dashbg">
                           <th className="py-2 text-head font-semibold text-sm  whitespace-nowrap pl-5 pr-20 lg:w-auto ">
@@ -160,7 +160,10 @@ function Completed() {
                             <h1>
                               N
                               <CurrencyFormat
-                                value={(post.amount * post.interest) / 100}
+                                value={(
+                                  (post.amount * post.interest) /
+                                  100
+                                ).toFixed(2)}
                                 displayType={"text"}
                                 thousandSeparator={true}
                               />

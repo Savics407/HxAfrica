@@ -59,6 +59,20 @@ function Create() {
   const [image, setImage] = useState(null);
   const [preview, setPreview] = useState();
 
+  useEffect(() => {
+    if (image) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        setPreview(reader.result);
+      };
+      reader.readAsDataURL(image);
+      // alert(reader.readAsDataURL(image));
+    } else {
+      setPreview(null);
+    }
+    window.scrollTo(0, 0);
+  }, [image]);
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -74,13 +88,22 @@ function Create() {
     // e.preventDefault();
     const imageData = new FormData();
     imageData.append("image", image);
+    // const payLoad = {
+    //   name: formData.name,
+    //   email: formData.email,
+    //   phone: formData.phone,
+    //   address: formData.address,
+    //   city: formData.city,
+    //   state_id: formData.state,
+    //   image: imageData,
+    // };
     const payLoad = {
-      name: formData.name,
-      email: formData.email,
-      phone: formData.phone,
-      address: formData.address,
-      city: formData.city,
-      state_id: formData.state,
+      name: "Savicstech Agency",
+      email: "savicstech@gmail.com",
+      phone: "08106750047",
+      address: "Port harcourt",
+      city: "Port Harcourt",
+      state_id: 303,
       image: imageData,
     };
     alert(payLoad.image);

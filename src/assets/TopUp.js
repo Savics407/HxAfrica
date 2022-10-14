@@ -147,7 +147,16 @@ function TopUp({ closeModal, itemId, productDetails, setAuthCancel, setTile }) {
                 ?.filter((post) => post.id === itemId)
                 .map((post) => (
                   <div className="lg:px-10 px-5">
-                    <img src={hdimage} alt="my-investment-image" />
+                    <img
+                      // src={hdimage}
+                      src={
+                        post.product.image_path === ""
+                          ? hdimage
+                          : post.product.image_path
+                      }
+                      alt="my-investment-image"
+                      className="w-full lg:h-40 h-36 object-cover"
+                    />
                     <div className="border-b border-strek pb-4">
                       <div className="flex items-center justify-between">
                         <h1 className="bg-media p-2 rounded text-xs lg:text-sm my-4 lg:my-5 text-dashbg w-fit text-center font-semibold capitalize">

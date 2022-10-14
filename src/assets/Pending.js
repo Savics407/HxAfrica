@@ -164,8 +164,17 @@ function Pending() {
                   <div className="flex flex-wrap mb-4">
                     {posts?.map((pending) => (
                       <div key={pending.id} className="real-estate ">
-                        <div className="mr-2 w-1/3">
-                          <img src={land} alt="rawland" />
+                        <div className="mr-2  h-full w-1/3">
+                          <img
+                            // src={land}
+                            src={
+                              pending.product.image_path === ""
+                                ? land
+                                : pending.product.image_path
+                            }
+                            alt="rawland"
+                            className="w-full h-full object-cover rounded-2xl"
+                          />
                         </div>
                         <div className="w-2/3">
                           <div className="mb-2 flex justify-between">

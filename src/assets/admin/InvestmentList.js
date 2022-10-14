@@ -48,6 +48,7 @@ function InvestmentTabs() {
 function InvestmentList() {
   const [pending, setPending] = useState();
   const [details, setDetails] = useState(false);
+  const [itemId, setItemId] = useState();
   async function fetchInvestment() {
     const token = localStorage.getItem("user-token");
     // e.preventDefault();
@@ -75,7 +76,13 @@ function InvestmentList() {
 
   return (
     <>
-      {details && <Details setDetails={setDetails} />}
+      {details && (
+        <Details
+          setDetails={setDetails}
+          itemId={itemId}
+          fetchInvestment={fetchInvestment}
+        />
+      )}
       <InvestmentTabs />
       <div className="flex justify-between my-6">
         <div className="border-2 w-44 bg-white rounded-lg px-4 py-3">
@@ -183,25 +190,36 @@ function InvestmentList() {
                     </h1>
                   </td>
                   <td className="py-8">
-                    <h1 className="font-normal text-deep text-xs">20%</h1>
+                    <h1 className="font-normal text-deep text-xs">
+                      {pending.interest_rate}%
+                    </h1>
                   </td>
 
                   <td className="py-3">
                     <button
                       className="font-medium text-xs font-inter text-green py-2 px-2 border-r"
-                      onClick={() => setDetails(true)}
+                      onClick={() => {
+                        setDetails(true);
+                        setItemId(pending.id);
+                      }}
                     >
                       Approve
                     </button>
                     <button
                       className="font-medium text-xs font-inter text-red py-1 border-r px-2"
-                      onClick={() => setDetails(true)}
+                      onClick={() => {
+                        setDetails(true);
+                        setItemId(pending.id);
+                      }}
                     >
                       Decline
                     </button>
                     <button
                       className="font-medium text-xs font-inter text-blue py-2 px-2 "
-                      onClick={() => setDetails(true)}
+                      onClick={() => {
+                        setDetails(true);
+                        setItemId(pending.id);
+                      }}
                     >
                       View
                     </button>

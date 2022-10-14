@@ -113,7 +113,8 @@ function NewInvestment() {
                     <div key={post.id} className="real-estate">
                       <div className="mr-1.5 w-1/3 h-full rounded-full">
                         <img
-                          src={raw}
+                          // src={raw}
+                          src={post.image_path === "" ? raw : post.image_path}
                           alt="rawland"
                           className="w-full h-full object-cover rounded-2xl"
                         />

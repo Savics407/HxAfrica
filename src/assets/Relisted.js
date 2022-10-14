@@ -136,7 +136,12 @@ function Relisted() {
                       >
                         <div className="mr-3 w-1/3 h-full">
                           <img
-                            src={land}
+                            // src={land}
+                            src={
+                              post.product.image_path === ""
+                                ? land
+                                : post.product.image_path
+                            }
                             alt="rawland"
                             className="w-full h-full object-cover rounded-2xl"
                           />

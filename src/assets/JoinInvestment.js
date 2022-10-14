@@ -153,9 +153,10 @@ function JoinInvestment({ closeModal, itemId }) {
                 .map((post) => (
                   <div className="lg:px-10 px-5 ">
                     <img
-                      src={hdimage}
+                      // src={hdimage}
+                      src={post.image_path}
                       alt="my-investment-image"
-                      className="w-full object-cover"
+                      className="w-full lg:h-40 h-36 object-cover"
                     />
                     <div className="border-b border-strek pb-4">
                       <div className="flex items-center justify-between">

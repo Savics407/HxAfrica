@@ -7,6 +7,7 @@ import { MdArrowBackIosNew } from "react-icons/md";
 import { MdArrowForwardIos } from "react-icons/md";
 import * as CurrencyFormat from "react-currency-format";
 import realEstate from "../images/realEstate.svg";
+import { toast } from "react-toastify";
 import moment from "moment";
 
 function DisbursedList() {
@@ -29,6 +30,53 @@ function DisbursedList() {
     console.log(result.data);
     // alert(result.data.name);
     setDisburseFunds(result?.data);
+  }
+
+  const [status, setStatus] = useState("");
+
+  async function approveDisburse(id) {
+    const token = localStorage.getItem("user-token");
+    const payLoad = {
+      id: id,
+      status: status,
+    };
+    // alert(payLoad.id);
+    const response = await fetch(
+      "https://reic.api.simpoo.biz/api/admin/approve_merchant_disburse_product_funds",
+      {
+        method: "POST",
+        body: JSON.stringify(payLoad),
+        headers: {
+          "Content-type": "application/json",
+          Accept: "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    const result = await response.json();
+    console.log(result.data);
+    if (result?.status === "success" && status === "success") {
+      toast.success(`${result.message}`, {
+        position: "top-right",
+        autoClose: 1500,
+        hideProgressBar: true,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    } else {
+      toast(`Merchant Pullout Declined`, {
+        position: "top-right",
+        autoClose: 1500,
+        hideProgressBar: true,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    }
+    fetchDisburse();
   }
 
   useEffect(() => {
@@ -99,23 +147,25 @@ function DisbursedList() {
                 if (searchTerm == "") {
                   return val;
                 } else if (
-                  val.name.toLowerCase().includes(searchTerm.toLowerCase())
+                  val.merchant.name
+                    .toLowerCase()
+                    .includes(searchTerm.toLowerCase())
                 ) {
                   return val;
                 }
               })
               .map((funds) => (
                 <tr className="border-b font-inter">
-                  <td className="py-8 pl-5 flex">
+                  <td className="py-8 pl-5 flex items-center">
                     <div className="mr-2">
-                      <img src={avater} alt="merchant avater" />
+                      <img src={realEstate} alt="merchant avater" />
                     </div>
                     <div>
                       <h1 className="font-normal  text-deep text-sm">
-                        {funds.merchant.name}
+                        {funds.product.title}
                       </h1>
-                      <h1 className="font-normal text-statustext text-xs">
-                        {funds.merchant.products.length} Products
+                      <h1 className="font-normal font-family text-media text-xs">
+                        {funds.product.category.product_category}
                       </h1>
                     </div>
                   </td>
@@ -146,10 +196,10 @@ function DisbursedList() {
                   </td>
 
                   <td className="py-3">
-                    <button className="font-medium text-sm font-inter bg-approved text-appText py-1 px-3 rounded-full capitalize">
+                    {/* <button className="font-medium text-sm font-inter bg-approved text-appText py-1 px-3 rounded-full capitalize">
                       {funds.status}
-                    </button>
-                    {/* {funds.status === "success" ? (
+                    </button> */}
+                    {funds.status === "success" ? (
                       <button className="font-semibold text-xs font-inter bg-approved text-appText py-1 px-3 rounded-full ">
                         Approved
                       </button>
@@ -162,8 +212,8 @@ function DisbursedList() {
                         <button
                           className="font-medium text-xs font-inter text-blue py-2 pr-2 border-r "
                           onClick={() => {
-                            // approvePullout(funds.id);
-                            // setStatus("success");
+                            approveDisburse(funds.id);
+                            setStatus("success");
                           }}
                         >
                           Approve
@@ -171,51 +221,18 @@ function DisbursedList() {
                         <button
                           className="font-medium text-xs font-inter text-red py-1 px-2"
                           onClick={() => {
-                            // approvePullout(funds.id);
-                            // setStatus("failed");
+                            approveDisburse(funds.id);
+                            setStatus("failed");
                             // alert(status);
                           }}
                         >
                           Decline
                         </button>
-                      </div> */}
+                      </div>
+                    )}
                   </td>
                 </tr>
               ))}
-
-            <tr className="border-b font-inter">
-              <td className="py-8 pl-5 flex items-center">
-                <div className="mr-2">
-                  <img src={realEstate} alt="merchant avater" />
-                </div>
-                <div>
-                  <h1 className="font-normal  text-deep text-sm">
-                    Crowdfunding
-                  </h1>
-                  <h1 className="font-normal font-family text-media text-xs">
-                    Rent Financing
-                  </h1>
-                </div>
-              </td>
-              <td className="py-8">
-                <h1 className="font-normal text-deep text-xs">N200,000</h1>
-              </td>
-              <td className="py-8">
-                <h1 className="font-normal text-deep text-xs">20</h1>
-              </td>
-              <td className="py-8">
-                <h1 className="font-normal text-deep text-xs">12/02/2022</h1>
-              </td>
-              <td className="py-8">
-                <h1 className="font-normal text-deep text-xs">13:30pm</h1>
-              </td>
-
-              <td className="py-3">
-                <button className="font-medium text-sm font-inter bg-approved text-appText py-1 px-3 rounded-full ">
-                  Disbursed
-                </button>
-              </td>
-            </tr>
           </table>
           <div className=" flex pt-20 px-7 items-center justify-between">
             <div className="border rounded-lg bg-page text-footer text-sm p-3">
