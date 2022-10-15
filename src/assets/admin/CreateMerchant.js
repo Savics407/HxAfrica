@@ -73,7 +73,7 @@ function Create() {
     window.scrollTo(0, 0);
   }, [image]);
 
-  const [formData, setFormData] = useState({
+  const [details, setFormData] = useState({
     name: "",
     email: "",
     phone: "",
@@ -83,11 +83,18 @@ function Create() {
   });
   console.log(image);
   console.log(preview);
-  async function createMerchant() {
+  async function createMerchant(e) {
     const token = localStorage.getItem("user-token");
-    // e.preventDefault();
-    const imageData = new FormData();
-    imageData.append("image", image);
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("image", image);
+    formData.append("name", details.name);
+    formData.append("phone", details.phone);
+    formData.append("address", details.address);
+    formData.append("email", details.email);
+    formData.append("state_id", details.state);
+    formData.append("city", details.city);
+
     // const payLoad = {
     //   name: formData.name,
     //   email: formData.email,
@@ -97,23 +104,23 @@ function Create() {
     //   state_id: formData.state,
     //   image: imageData,
     // };
-    const payLoad = {
-      name: "Savicstech Agency",
-      email: "savicstech@gmail.com",
-      phone: "08106750047",
-      address: "Port harcourt",
-      city: "Port Harcourt",
-      state_id: 303,
-      image: imageData,
-    };
-    alert(payLoad.image);
+    // const payLoad = {
+    //   name: "Savicstech Agency",
+    //   email: "savicstech@gmail.com",
+    //   phone: "08106750047",
+    //   address: "Port harcourt",
+    //   city: "Port Harcourt",
+    //   state_id: 303,
+    //   image: image,
+    // };
+    // alert(payLoad.image);
     const response = await fetch(
       "https://reic.api.simpoo.biz/api/admin/add_merchant",
       {
         method: "POST",
-        body: JSON.stringify(payLoad),
+        body: formData,
         headers: {
-          "Content-type": "multipart/form-data",
+          // "Content-Type": "multipart/form-data",
           Accept: "application/json",
           Authorization: `Bearer ${token}`,
         },
@@ -196,190 +203,195 @@ function Create() {
                   }}
                 />
               </div>
-              <div className="px-10 py-5">
-                <div className="merchant">
-                  <label>Name</label>
-                  <input
-                    required
-                    type="text"
-                    placeholder="enter merchant name"
-                    className="box"
-                    value={formData.name}
-                    onChange={(event) =>
-                      setFormData({ ...formData, name: event.target.value })
-                    }
-                  />
-                </div>
-                <div className="merchant">
-                  <label>Email</label>
-                  <input
-                    required
-                    type="email"
-                    placeholder="enter merchant email"
-                    className="box"
-                    value={formData.email}
-                    onChange={(event) =>
-                      setFormData({ ...formData, email: event.target.value })
-                    }
-                  />
-                </div>
-                <div className="merchant">
-                  <label>Phone</label>
-                  <input
-                    required
-                    type="tel"
-                    placeholder="+234 |"
-                    className="box"
-                    value={formData.phone}
-                    onChange={(event) =>
-                      setFormData({ ...formData, phone: event.target.value })
-                    }
-                  />
-                </div>
-                <div className="merchant">
-                  <label>Address</label>
-                  <input
-                    required
-                    type="text"
-                    placeholder="enter address"
-                    className="box"
-                    value={formData.address}
-                    onChange={(event) =>
-                      setFormData({ ...formData, address: event.target.value })
-                    }
-                  />
-                </div>
-                <div className="flex justify-between">
-                  <div className="merchant w-per">
-                    <label>State</label>
-                    <select
-                      className="box"
-                      value={formData.state}
-                      onChange={(event) =>
-                        setFormData({ ...formData, state: event.target.value })
-                      }
-                    >
-                      {/* <option value="" className='text-grey'>--Choose State--</option> */}
-                      <option selected>--Choose State--</option>
-                      {/* {st.map((responseSt) => (
-              <option key={responseSt.states.id}>
-                {responseSt.states.name}
-              </option>
-            ))} */}
-                      <option value="303">Abia</option>
-                      <option value="320">Adamawa</option>
-                      <option value="304">Akwa Ibom</option>
-                      <option value="315">Anambra</option>
-                      <option value="312">Bauchi</option>
-                      <option value="305">Bayelsa</option>
-                      <option value="291">Benue</option>
-                      <option value="307">Borno</option>
-                      <option value="314">Cross River</option>
-                      <option value="316">Delta</option>
-                      <option value="311">Ebonyi</option>
-                      <option value="318">Edo</option>
-                      <option value="309">Ekiti</option>
-                      <option value="289">Enugu</option>
-                      <option value="293">Federal Capital Territory</option>
-                      <option value="310">Gombe</option>
-                      <option value="308">Imo</option>
-                      <option value="288">Jigawa</option>
-                      <option value="294">Kaduna</option>
-                      <option value="300">Kano</option>
-                      <option value="313">Katsina</option>
-                      <option value="290">Kebbi</option>
-                      <option value="298">Kogi</option>
-                      <option value="295">Kwara</option>
-                      <option value="306">Lagos</option>
-                      <option value="301">Nasarawa</option>
-                      <option value="317">Niger</option>
-                      <option value="323">Ogun</option>
-                      <option value="321">Ondo</option>
-                      <option value="322">Osun</option>
-                      <option value="296">Oyo</option>
-                      <option value="302">Plateau</option>
-                      <option value="100">Rivers</option>
-                      <option value="292">Sokoto</option>
-                      <option value="319">Taraba</option>
-                      <option value="297">Yobe</option>
-                      <option value="299">Zamfara</option>
-                    </select>
-                  </div>
-                  <div className="merchant w-per">
-                    <label>City</label>
-
+              <form>
+                <div className="px-10 py-5">
+                  <div className="merchant">
+                    <label>Name</label>
+                    {/* {details.name} */}
                     <input
                       required
                       type="text"
-                      placeholder="enter city"
+                      placeholder="enter merchant name"
                       className="box"
-                      value={formData.city}
+                      value={details.name}
+                      onChange={(event) =>
+                        setFormData({ ...details, name: event.target.value })
+                      }
+                    />
+                  </div>
+                  <div className="merchant">
+                    <label>Email</label>
+                    <input
+                      required
+                      type="email"
+                      placeholder="enter merchant email"
+                      className="box"
+                      value={details.email}
+                      onChange={(event) =>
+                        setFormData({ ...details, email: event.target.value })
+                      }
+                    />
+                  </div>
+                  <div className="merchant">
+                    <label>Phone</label>
+                    <input
+                      required
+                      type="tel"
+                      placeholder="+234 |"
+                      className="box"
+                      value={details.phone}
+                      onChange={(event) =>
+                        setFormData({ ...details, phone: event.target.value })
+                      }
+                    />
+                  </div>
+                  <div className="merchant">
+                    <label>Address</label>
+                    <input
+                      required
+                      type="text"
+                      placeholder="enter address"
+                      className="box"
+                      value={details.address}
                       onChange={(event) =>
                         setFormData({
-                          ...formData,
-                          city: event.target.value,
+                          ...details,
+                          address: event.target.value,
                         })
                       }
                     />
                   </div>
-                </div>
-
-                {image === null ? (
-                  <div className="border bg-file rounded-lg border-dashed flex flex-col items-center p-10">
-                    <img src={upload} alt="Upload Icon" />
-                    <label
-                      for="file"
-                      className="cursor-pointer border rounded bg-white font-normal text-xs py-1.5 px-3 mt-2"
-                    >
-                      Add Image
-                    </label>
-                    <h1 className="text-product font-normal text-tiny">
-                      Upload Merchant Logo
-                    </h1>
-                    <input
-                      type="file"
-                      id="file"
-                      accept="image/*"
-                      onChange={(e) => {
-                        const file = e.target.files[0];
-                        if (file) {
-                          setImage(file);
-                        } else {
-                          setImage(null);
+                  <div className="flex justify-between">
+                    <div className="merchant w-per">
+                      <label>State</label>
+                      <select
+                        className="box"
+                        value={details.state}
+                        onChange={(event) =>
+                          setFormData({
+                            ...details,
+                            state: event.target.value,
+                          })
                         }
-                      }}
-                    />
-                  </div>
-                ) : (
-                  <div
-                    className="border bg-cover bg-top rounded-lg h-40 w-full relative"
-                    // style={{ backgroundImage: `url(${preview})` }}
-                  >
-                    <img
-                      src={preview}
-                      alt="product"
-                      className="object-cover w-full h-full rounded-lg"
-                    />
-                    <span
-                      className="text-dark shadow bg-dashbg text-xs p-2 absolute left-2 rounded cursor-pointer bottom-2"
-                      onClick={() => {
-                        setImage(null);
-                      }}
-                    >
-                      change image
-                    </span>
-                  </div>
-                )}
+                      >
+                        {/* <option value="" className='text-grey'>--Choose State--</option> */}
+                        <option selected>--Choose State--</option>
 
-                <div className="text-white flex justify-end items-center w-full mt-10 font-medium">
-                  <input
-                    type="submit"
-                    className=" cursor-pointer bg-green py-3 px-8 outline-none rounded-full"
-                    value="Add merchant"
-                    onClick={createMerchant}
-                  />
+                        <option value="303">Abia</option>
+                        <option value="320">Adamawa</option>
+                        <option value="304">Akwa Ibom</option>
+                        <option value="315">Anambra</option>
+                        <option value="312">Bauchi</option>
+                        <option value="305">Bayelsa</option>
+                        <option value="291">Benue</option>
+                        <option value="307">Borno</option>
+                        <option value="314">Cross River</option>
+                        <option value="316">Delta</option>
+                        <option value="311">Ebonyi</option>
+                        <option value="318">Edo</option>
+                        <option value="309">Ekiti</option>
+                        <option value="289">Enugu</option>
+                        <option value="293">Federal Capital Territory</option>
+                        <option value="310">Gombe</option>
+                        <option value="308">Imo</option>
+                        <option value="288">Jigawa</option>
+                        <option value="294">Kaduna</option>
+                        <option value="300">Kano</option>
+                        <option value="313">Katsina</option>
+                        <option value="290">Kebbi</option>
+                        <option value="298">Kogi</option>
+                        <option value="295">Kwara</option>
+                        <option value="306">Lagos</option>
+                        <option value="301">Nasarawa</option>
+                        <option value="317">Niger</option>
+                        <option value="323">Ogun</option>
+                        <option value="321">Ondo</option>
+                        <option value="322">Osun</option>
+                        <option value="296">Oyo</option>
+                        <option value="302">Plateau</option>
+                        <option value="100">Rivers</option>
+                        <option value="292">Sokoto</option>
+                        <option value="319">Taraba</option>
+                        <option value="297">Yobe</option>
+                        <option value="299">Zamfara</option>
+                      </select>
+                    </div>
+                    <div className="merchant w-per">
+                      <label>City</label>
+
+                      <input
+                        required
+                        type="text"
+                        placeholder="enter city"
+                        className="box"
+                        value={details.city}
+                        onChange={(event) =>
+                          setFormData({
+                            ...details,
+                            city: event.target.value,
+                          })
+                        }
+                      />
+                    </div>
+                  </div>
+
+                  {image === null ? (
+                    <div className="border bg-file rounded-lg border-dashed flex flex-col items-center p-10">
+                      <img src={upload} alt="Upload Icon" />
+                      <label
+                        for="file"
+                        className="cursor-pointer border rounded bg-white font-normal text-xs py-1.5 px-3 mt-2"
+                      >
+                        Add Image
+                      </label>
+                      <h1 className="text-product font-normal text-tiny">
+                        Upload Merchant Logo
+                      </h1>
+                      <input
+                        type="file"
+                        id="file"
+                        accept="image/*"
+                        onChange={(e) => {
+                          const file = e.target.files[0];
+                          if (file) {
+                            setImage(file);
+                          } else {
+                            setImage(null);
+                          }
+                        }}
+                      />
+                    </div>
+                  ) : (
+                    <div
+                      className="border bg-cover bg-top rounded-lg h-40 w-full relative"
+                      // style={{ backgroundImage: `url(${preview})` }}
+                    >
+                      <img
+                        src={preview}
+                        alt="product"
+                        className="object-cover w-full h-full rounded-lg"
+                      />
+                      <span
+                        className="text-dark shadow bg-dashbg text-xs p-2 absolute left-2 rounded cursor-pointer bottom-2"
+                        onClick={() => {
+                          setImage(null);
+                        }}
+                      >
+                        change image
+                      </span>
+                    </div>
+                  )}
+
+                  <div className="text-white flex justify-end items-center w-full mt-10 font-medium">
+                    <input
+                      type="submit"
+                      className=" cursor-pointer bg-green py-3 px-8 outline-none rounded-full"
+                      value="Add merchant"
+                      onClick={createMerchant}
+                    />
+                  </div>
                 </div>
-              </div>
+              </form>
             </motion.div>
           </div>
         </>

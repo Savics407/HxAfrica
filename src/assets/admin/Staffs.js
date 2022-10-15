@@ -36,11 +36,13 @@ function Staffs() {
   async function addStaff() {
     const token = localStorage.getItem("user-token");
     // e.preventDefault();
+    const imageData = new FormData();
+    imageData.append("image", image);
     const payLoad = {
-      name: formData.name,
+      name: "savics",
       email: "example@gmail.com",
-      phone: formData.phone,
-      image: image,
+      phone: "08106457504",
+      image: imageData,
     };
     const response = await fetch(
       "https://reic.api.simpoo.biz/api/admin/add_staff",
@@ -48,8 +50,7 @@ function Staffs() {
         method: "POST",
         body: JSON.stringify(payLoad),
         headers: {
-          "Content-type": "multipart/form-data",
-          // "Content-type": "application/json",
+          "Content-type": "application/json",
           Accept: "application/json",
           Authorization: `Bearer ${token}`,
         },

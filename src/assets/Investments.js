@@ -193,14 +193,18 @@ function Investments() {
                       key={post.id}
                       className="p-3 mb-4 bg-mainbg rounded-2xl flex items-center justify-between"
                     >
-                      <div className="w-1/3 h-full rounded-full">
+                      <div className="w-1/3 h-44 rounded-full">
+                        {/* <div className="w-full h-full "> */}
                         <img
-                          src={raw}
+                          src={post.image_path === "" ? raw : post.image_path}
+                          // src={raw}
                           alt={post.title}
-                          className="w-full h-full object-cover rounded-2xl"
+                          className="h-full w-full object-cover rounded-2xl"
                         />
+                        {/* </div> */}
                       </div>
-                      <div className="w-2/3 pl-3 flex flex-col">
+
+                      <div className="w-2/3 flex flex-col pl-3">
                         <div className="mb-2">
                           {/* <h1 className="!mb-0">{post.title}</h1> */}
                           <abbr title={post.title} className="no-underline">
@@ -291,9 +295,13 @@ function Investments() {
                       {/* <div className="mr-2 h-full w-1/3">
                     <img src={land} alt="rawland" />
                   </div> */}
-                      <div className="w-1/3 h-full rounded-full">
+                      <div className="w-1/3 h-44 rounded-full">
                         <img
-                          src={land}
+                          src={
+                            data[0].product.image_path === ""
+                              ? land
+                              : data[0].product.image_path
+                          }
                           alt="rawland"
                           className="w-full h-full object-cover rounded-2xl"
                         />

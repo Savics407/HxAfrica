@@ -133,8 +133,16 @@ function Ongoing() {
                   <div className="flex flex-wrap mb-4">
                     {posts?.map((post) => (
                       <div key={post.id} className="real-estate">
-                        <div className="mr-2 w-1/3">
-                          <img src={land} alt="rawland" />
+                        <div className="mr-2 w-1/3 h-full">
+                          <img
+                            src={
+                              post.product.image_path === ""
+                                ? land
+                                : post.product.image_path
+                            }
+                            alt="rawland"
+                            className="w-full h-full object-cover rounded-2xl"
+                          />
                         </div>
                         <div className="w-2/3">
                           <div className="mb-2 flex justify-between">
