@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { FaAngleDown } from "react-icons/fa";
 import search from "../images/Small.svg";
-import avater from "../images/Avatar.svg";
-import Martabs from "./Martabs";
-import { MdArrowBackIosNew } from "react-icons/md";
-import { NavLink, Link } from "react-router-dom";
-import { MdArrowForwardIos } from "react-icons/md";
+import { MdClose } from "react-icons/md";
+import { motion } from "framer-motion";
+import { toast } from "react-toastify";
+// import { MdArrowForwardIos } from "react-icons/md";
 
 function StaffList() {
   const [staffs, setStaffs] = useState();
@@ -28,12 +27,168 @@ function StaffList() {
     // alert(result.data.name);
     setStaffs(result?.data);
   }
+  const [roles, setRoles] = useState();
+  async function fetchRoles() {
+    const token = localStorage.getItem("user-token");
+    // e.preventDefault();
+    const response = await fetch(
+      "https://reic.api.simpoo.biz/api/admin/get_roles",
+      {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+          Accept: "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    const result = await response.json();
+    console.log(result.data);
+    // alert(result.data.name);
+    setRoles(result?.data);
+  }
 
   useEffect(() => {
     fetchStaffs();
+    fetchRoles();
   }, []);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [assign, setAssign] = useState(false);
+  const [roleName, setRoleName] = useState();
+  const [ID, setID] = useState();
+
+  async function assignRole() {
+    const token = localStorage.getItem("user-token");
+
+    const payLoad = {
+      user: ID,
+      role: roleName,
+    };
+    const response = await fetch(
+      "https://reic.api.simpoo.biz/api/admin/assignRole",
+      {
+        method: "POST",
+        body: JSON.stringify(payLoad),
+        headers: {
+          "Content-type": "application/json",
+          Accept: "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    const result = await response.json();
+    console.log(result.data);
+    if (result?.status === "success") {
+      setAssign(false);
+      toast.success(`${result.message}`, {
+        position: "top-left",
+        autoClose: 1500,
+        hideProgressBar: true,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      // fetchRoles();
+    } else {
+      if (result?.message) {
+        toast(`${result.message}`, {
+          position: "top-left",
+          autoClose: 1500,
+          hideProgressBar: true,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      }
+    }
+  }
+
   return (
     <>
+      {assign && (
+        <>
+          <motion.div
+            initial={{
+              opacity: 0,
+            }}
+            animate={{
+              opacity: 1,
+              transition: {
+                duration: 0.3,
+              },
+            }}
+            exit={{
+              opacity: 0,
+              transition: {
+                delay: 0.5,
+              },
+            }}
+            className="flex items-center justify-center fixed top-0 right-0 bottom-0 left-0 bg-overlay  backdrop-blur-sm"
+          >
+            <motion.div
+              initial={{
+                scale: 0,
+              }}
+              animate={{
+                scale: 1,
+                transition: {
+                  duration: 0.3,
+                },
+              }}
+              exit={{
+                scale: 0,
+                transition: {
+                  delay: 0.5,
+                },
+              }}
+              className="bg-white rounded-xl border w-2/5 m-auto z-10"
+            >
+              <div className="border-b border-stroke capitalize font-inter px-10 py-5 text-2xl font-semibold flex justify-between items-center text-modal">
+                <h1>Staff Roles</h1>
+                <MdClose
+                  className="cursor-pointer"
+                  onClick={() => {
+                    setAssign(false);
+                  }}
+                />
+              </div>
+              <div className="px-10 py-5">
+                <div className="merchant">
+                  {/* <label>Select Permissions</label> */}
+                  {roles?.map((role) => (
+                    <div className="mb-4">
+                      <label className="!text-black !text-sm !font-normal flex items-center">
+                        <input
+                          required
+                          type="radio"
+                          value={role.name}
+                          name="role"
+                          className=" mr-2 "
+                          onChange={(e) => {
+                            setRoleName(e.target.value);
+                          }}
+                        />{" "}
+                        {role.name}
+                      </label>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="text-white flex justify-end items-center w-full mt-10 font-medium">
+                  <input
+                    type="submit"
+                    className=" cursor-pointer bg-green py-2 px-10 outline-none rounded-full"
+                    value="Assign Role"
+                    onClick={assignRole}
+                  />
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        </>
+      )}
       <div className="flex justify-between my-6">
         <div className="border-2 w-44 bg-white rounded-lg px-4 py-3">
           <div className="w-full flex justify-between items-center text-sm text-sort">
@@ -49,6 +204,7 @@ function StaffList() {
             type="search"
             placeholder="Search Merchants"
             className="outline-none font-normal text-sm w-full py-2"
+            onChange={(event) => setSearchTerm(event.target.value)}
           />
           <img src={search} alt="search" />
         </div>
@@ -74,7 +230,7 @@ function StaffList() {
                   Phone Number
                 </th>
                 <th className="py-3 pr-7 text-mobile-nav font-medium text-xs ">
-                  Staff Role
+                  Email
                 </th>
 
                 <th className="py-3 text-center w-52 text-mobile-nav font-medium text-xs ">
@@ -82,40 +238,63 @@ function StaffList() {
                 </th>
               </tr>
             </thead>
-            {staffs?.map((staff) => (
-              <tr className="border-b">
-                <td className="py-8 pl-5 flex items-center">
-                  <div className="mr-2">
-                    <img src={avater} alt="merchant avater" />
-                  </div>
-                  <div>
+            {staffs
+              ?.filter((val) => {
+                if (searchTerm === "") {
+                  return val;
+                } else if (
+                  val.name.toLowerCase().includes(searchTerm.toLowerCase())
+                ) {
+                  return val;
+                }
+              })
+              .map((staff) => (
+                <tr className="border-b" key={staff.id}>
+                  <td className="py-8 pl-5 flex items-center">
+                    <div className="mr-2">
+                      <img
+                        src={staff.profile_photo_path}
+                        alt="merchant avater"
+                        className="w-10 h-10 rounded-full"
+                      />
+                    </div>
+                    <div>
+                      <h1 className="font-normal text-deep text-sm">
+                        {staff.name}
+                      </h1>
+                    </div>
+                  </td>
+                  <td className="py-8">
                     <h1 className="font-normal text-deep text-sm">
-                      {staff.name}
+                      {staff.phone}
                     </h1>
-                  </div>
-                </td>
-                <td className="py-8">
-                  <h1 className="font-normal text-deep text-sm">
-                    {staff.phone}
-                  </h1>
-                </td>
+                  </td>
 
-                <td className="py-8">
-                  <h1 className="font-normal text-deep text-sm">Null</h1>
-                </td>
+                  <td className="py-8">
+                    <h1 className="font-normal text-deep text-sm">
+                      {staff.email}
+                    </h1>
+                  </td>
 
-                <td className="py-3 text-center">
-                  <button className="font-medium text-xs font-inter text-blue py-2 px-2 border-r ">
-                    Edit
-                  </button>
-                  <button className="font-medium text-xs font-inter text-inactive py-1 px-2">
-                    Assign role
-                  </button>
-                </td>
-              </tr>
-            ))}
+                  <td className="py-3 text-center">
+                    <button className="font-medium text-xs font-inter text-blue py-2 px-2 border-r ">
+                      Edit
+                    </button>
+                    <button
+                      // className="font-medium text-xs font-inter text-inactive py-1 px-2"
+                      className="font-medium text-xs font-inter bg-relist text-relisted rounded-full ml-2 py-1 px-3"
+                      onClick={() => {
+                        setAssign(true);
+                        setID(staff.id);
+                      }}
+                    >
+                      Assign role
+                    </button>
+                  </td>
+                </tr>
+              ))}
           </table>
-          <div className=" flex pt-20 px-7 items-center justify-between">
+          {/* <div className=" flex pt-20 px-7 items-center justify-between">
             <div className="border rounded-lg bg-page text-footer text-sm p-3">
               <span>Page 1 of 32</span>
             </div>
@@ -142,7 +321,7 @@ function StaffList() {
                 <MdArrowForwardIos />
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </>

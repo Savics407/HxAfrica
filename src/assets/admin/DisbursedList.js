@@ -234,7 +234,7 @@ function DisbursedList() {
                 </tr>
               ))}
           </table>
-          <div className=" flex pt-20 px-7 items-center justify-between">
+          {/* <div className=" flex pt-20 px-7 items-center justify-between">
             <div className="border rounded-lg bg-page text-footer text-sm p-3">
               <span>Page 1 of 32</span>
             </div>
@@ -261,7 +261,7 @@ function DisbursedList() {
                 <MdArrowForwardIos />
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </>

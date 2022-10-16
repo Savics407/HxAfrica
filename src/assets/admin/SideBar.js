@@ -313,22 +313,40 @@ function SideBar() {
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
-                  d="M15.6824 8.96499C15.6824 12.6325 13.0199 16.0675 9.38239 17.0725C9.13489 17.14 8.86488 17.14 8.61738 17.0725C4.97988 16.0675 2.31738 12.6325 2.31738 8.96499V5.67248C2.31738 5.05748 2.78239 4.35998 3.35989 4.12748L7.53738 2.41751C8.47488 2.03501 9.53238 2.03501 10.4699 2.41751L14.6474 4.12748C15.2174 4.35998 15.6899 5.05748 15.6899 5.67248L15.6824 8.96499Z"
-                  // stroke="#5E636D"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-                <path
-                  d="M9 10C9.82843 10 10.5 9.32843 10.5 8.5C10.5 7.67157 9.82843 7 9 7C8.17157 7 7.5 7.67157 7.5 8.5C7.5 9.32843 8.17157 10 9 10Z"
+                  d="M9 4.79504H16.5"
                   // stroke="#5E636D"
                   stroke-miterlimit="10"
                   stroke-linecap="round"
                   stroke-linejoin="round"
                 />
                 <path
-                  d="M9 10V12.25"
+                  d="M10.665 2.125H14.835C16.17 2.125 16.5 2.455 16.5 3.775V6.8575C16.5 8.1775 16.17 8.5075 14.835 8.5075H10.665C9.33 8.5075 9 8.1775 9 6.8575V3.775C9 2.455 9.33 2.125 10.665 2.125Z"
+                  // stroke="#5E636D"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M1.5 13.42H9"
                   // stroke="#5E636D"
                   stroke-miterlimit="10"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M3.165 10.75H7.335C8.67 10.75 9 11.08 9 12.4V15.4825C9 16.8025 8.67 17.1325 7.335 17.1325H3.165C1.83 17.1325 1.5 16.8025 1.5 15.4825V12.4C1.5 11.08 1.83 10.75 3.165 10.75Z"
+                  // stroke="#5E636D"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M16.5 11.875C16.5 14.7775 14.1525 17.125 11.25 17.125L12.0375 15.8125"
+                  // stroke="#5E636D"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M1.5 7.375C1.5 4.4725 3.8475 2.125 6.75 2.125L5.96251 3.4375"
+                  // stroke="#5E636D"
                   stroke-linecap="round"
                   stroke-linejoin="round"
                 />
