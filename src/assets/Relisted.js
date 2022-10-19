@@ -210,7 +210,9 @@ function Relisted() {
                               </button>
                             ) : (
                               <button
-                                className="bg-neutral text-white text-tiny w-full p-2 rounded-full"
+                                className={`bg-neutral text-white text-tiny w-full p-2 rounded-full ${
+                                  post.user_id == userID && "!bg-grey"
+                                }`}
                                 onClick={() => {
                                   post.user_id == userID
                                     ? alert(
