@@ -52,7 +52,7 @@ function InvestmentCard() {
           </div>
           <div>
             <h1 className="text-earnings font-medium text-xs truncate">
-              Pending Investments
+              Unapproved Investments
             </h1>
             <h1 className="text-dark font-medium text-2xl">
               {total?.total_pending_investments}

@@ -131,7 +131,7 @@ function Investment() {
             <div className="mb-4 bg-white flex rounded justify-between items-center text-vestabs text-sm p-4 py-6">
               <div className="flex items-center ">
                 <img src={pendingCoin} alt="coins" className="mr-1" />
-                <h1>Unapproved Investments</h1>
+                <h1>Pending Investments</h1>
               </div>
               <FaAngleRight className="text-base" />
             </div>
