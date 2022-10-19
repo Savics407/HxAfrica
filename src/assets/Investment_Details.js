@@ -116,9 +116,13 @@ function Details({ closeDetails, itemId, ongoing }) {
                   <div className="px-5 lg:px-10 ">
                     <div>
                       <img
-                        src={hdimage}
+                        src={
+                          post.product.image_path === ""
+                            ? hdimage
+                            : post.product.image_path
+                        }
                         alt="my-investment-image"
-                        className="w-full"
+                        className="w-full lg:h-40 h-36 object-cover"
                       />
                     </div>
 

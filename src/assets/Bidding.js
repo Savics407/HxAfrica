@@ -204,7 +204,7 @@ function Bidding({ closeModal, itemId }) {
 
                           <h1 className="text-darkgray text-tiny lg:text-sm">
                             <span className="text-secondary">Created:</span>{" "}
-                            {moment(post.updated_at).format("MMM DD, yyyy")}
+                            {moment(post.created_at).format("MMM DD, yyyy")}
                           </h1>
                         </div>
                         <div className="flex items-center justify-between">
@@ -213,7 +213,7 @@ function Bidding({ closeModal, itemId }) {
                           </span>
                           <h1 className="text-darkgray text-tiny lg:text-sm">
                             <span className="text-secondary">Time:</span>{" "}
-                            {moment(post.updated_at).format("LT")}
+                            {moment(post.created_at).format("LT")}
                           </h1>
                         </div>
                       </div>

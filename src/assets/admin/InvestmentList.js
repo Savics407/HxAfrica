@@ -109,7 +109,7 @@ function InvestmentList() {
         <div className="py-7 px-9 text-lg text-mobile-nav flex justify-between font-medium border-b cursor-pointer">
           <h1 className="">
             <span className="text-grayy text-sm mr-2">
-              Pending investments{" "}
+              Unapproved investments{" "}
             </span>{" "}
             <span className="rounded-full bg-green text-white px-2 text-xs ">
               {pending?.length}

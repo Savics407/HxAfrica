@@ -201,7 +201,7 @@ function ApprovedDetails({ setDetails, itemId, fetchApproved }) {
                       </div>
                     </div>
                     <div className="text-right py-10">
-                      {post.status_investment === "waiting" && (
+                      {/* {post.status_investment === "waiting" && (
                         <button
                           className="font-bold rounded-full lg:w-44 lg:h-12 text-dashbg bg-green mr-5"
                           onClick={() => {
@@ -212,7 +212,7 @@ function ApprovedDetails({ setDetails, itemId, fetchApproved }) {
                         >
                           Turn Ongoing
                         </button>
-                      )}
+                      )} */}
                       <button
                         className="font-bold rounded-full lg:w-44 lg:h-12 text-dashbg bg-red"
                         onClick={() => {
