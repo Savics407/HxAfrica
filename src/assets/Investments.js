@@ -223,7 +223,7 @@ function Investments() {
                             </span>
                           </p>
                           <p className="">
-                            Expires -{" "}
+                            Starts on -{" "}
                             <span className="text-darkgray">
                               {moment(post.expiry_date).format("MMM DD, yyyy")}
                             </span>
@@ -341,7 +341,7 @@ function Investments() {
                             </span>
                           </p>
                           <p className="">
-                            Expires -{" "}
+                            Ends on -{" "}
                             <span className="text-darkgray">
                               {moment(data[0].due_date).format("MMM DD, yyyy")}
                             </span>

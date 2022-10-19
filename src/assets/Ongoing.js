@@ -182,7 +182,7 @@ function Ongoing() {
                               </span>
                             </p>
                             <p className="">
-                              Expires -{" "}
+                              Ends on -{" "}
                               <span className="text-darkgray">
                                 {moment(post.due_date).format("MMM DD, yyyy")}
                               </span>
