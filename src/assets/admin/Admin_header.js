@@ -36,7 +36,7 @@ function Header() {
     const token = localStorage.getItem("user-token");
     // e.preventDefault();
     const response = await fetch(
-      "https://reic.api.simpoo.biz/api/investor/fetch_user_profile",
+      "https://reic.api.simpoo.biz/api/admin/fetch_dashboard_total",
       {
         method: "POST",
         headers: {
