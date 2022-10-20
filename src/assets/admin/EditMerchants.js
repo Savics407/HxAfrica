@@ -52,7 +52,7 @@ function EditMerchants({ setEdit, merchantId }) {
     }
   }, [image]);
 
-  const [formData, setFormData] = useState({
+  const [details, setFormData] = useState({
     name: "",
     email: "",
     phone: "",
@@ -61,29 +61,26 @@ function EditMerchants({ setEdit, merchantId }) {
     state: "",
   });
   console.log(image);
-  async function updateMerchant() {
+  console.log(preview);
+  async function updateMerchant(e) {
     const token = localStorage.getItem("user-token");
-    // e.preventDefault();
-    // const imageData = new FormData();
-    // imageData.append("file", image);
-    const payLoad = {
-      user_id: 2,
-      name: formData.name,
-      email: formData.email,
-      phone: formData.phone,
-      address: formData.address,
-      city: formData.city,
-      state_id: formData.state,
-      image: image,
-    };
-    alert(payLoad.image);
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("image", image);
+    formData.append("name", details.name);
+    formData.append("phone", details.phone);
+    formData.append("address", details.address);
+    formData.append("email", details.email);
+    formData.append("state_id", details.state);
+    formData.append("city", details.city);
+
     const response = await fetch(
       "https://reic.api.simpoo.biz/api/admin/update_merchant",
       {
         method: "POST",
-        body: JSON.stringify(payLoad),
+        body: formData,
         headers: {
-          "Content-type": "application/json",
+          // "Content-Type": "multipart/form-data",
           Accept: "application/json",
           Authorization: `Bearer ${token}`,
         },

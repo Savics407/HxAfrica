@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { FaAngleDown } from "react-icons/fa";
+import { FaAngleDown, FaAngleRight } from "react-icons/fa";
 import search from "../images/Small.svg";
 import avater from "../images/Avatar.svg";
-import Martabs from "./Martabs";
-import { MdArrowBackIosNew } from "react-icons/md";
+// import Martabs from "./Martabs";
+// import { MdArrowBackIosNew } from "react-icons/md";
 import { NavLink, Link } from "react-router-dom";
-import { MdArrowForwardIos } from "react-icons/md";
+// import { MdArrowForwardIos } from "react-icons/md";
 import { toast } from "react-toastify";
 import { motion } from "framer-motion";
 import EditMerchants from "./EditMerchants";
@@ -87,6 +87,9 @@ function MarchantsList() {
   const [merchantId, setMerchantId] = useState();
   const [remove, setRemove] = useState(false);
   const [name, setName] = useState();
+  const [filter, setFilter] = useState("All");
+  const [select, setSelect] = useState(false);
+  const [sort, setSort] = useState(false);
   // const [userId, setUserId] = useState();
 
   return (
@@ -161,13 +164,48 @@ function MarchantsList() {
         </motion.div>
       )}
       <div className="flex justify-between my-6">
-        <div className="border-2 w-44 bg-white rounded-lg px-4 py-3">
-          <div className="w-full flex justify-between items-center text-sm text-sort">
-            <h1>
-              Sort By: <span className="font-semibold text-dark">All</span>
+        <div className="border-2 w-44 bg-white rounded-lg relative cursor-pointer">
+          <div
+            className="w-full flex justify-between items-center px-4 py-3 text-sm text-sort"
+            onClick={() => setSelect(!select)}
+          >
+            <h1 className="truncate">
+              Sort By:{" "}
+              <span className="font-semibold text-dark ">{filter}</span>
             </h1>
 
-            <FaAngleDown />
+            {select ? <FaAngleDown /> : <FaAngleRight />}
+          </div>
+          <div
+            className={`absolute shadow-lg rounded-b-lg top-full left-0 right-0 bg-white text-sm text-sort ${
+              select ? "visible" : "invisible"
+            }`}
+          >
+            <div
+              className="border-b px-4 py-3 cursor-pointer hover:bg-welcome"
+              onClick={() => {
+                setSearchTerm("");
+                setFilter("All");
+                setSort(false);
+                setSelect(!select);
+              }}
+            >
+              <h1>
+                Sort by: <span className="font-semibold text-dark">All</span>
+              </h1>
+            </div>
+            <div
+              className="border-b px-4 py-3 cursor-pointer hover:bg-welcome"
+              onClick={() => {
+                setSort("true");
+                setFilter("A - Z");
+                setSelect(!select);
+              }}
+            >
+              <h1>
+                Sort by: <span className="font-semibold text-dark">A - Z</span>
+              </h1>
+            </div>
           </div>
         </div>
         <div className="border-2 bg-white rounded-lg flex items-center px-5 justify-between w-411">
@@ -228,86 +266,186 @@ function MarchantsList() {
                 <th className="py-3 pr-7 text-mobile-nav font-medium text-xs ">
                   State/City
                 </th>
-                <th className="py-3 pr-7 text-mobile-nav font-medium text-xs ">
+                {/* <th className="py-3 pr-7 text-mobile-nav font-medium text-xs ">
                   Earnings
-                </th>
+                </th> */}
                 <th className="py-3 pr-7 text-mobile-nav font-medium text-xs ">
                   Action
                 </th>
               </tr>
             </thead>
-            {merchants
-              ?.filter((val) => {
-                if (searchTerm == "") {
-                  return val;
-                } else if (
-                  val.name.toLowerCase().includes(searchTerm.toLowerCase())
-                ) {
-                  return val;
-                }
-              })
-              .sort((a, b) => (a.id > b.id ? 1 : -1))
-              .map((merchant) => (
-                <tr className="border-b font-inter" key={merchant.id}>
-                  <td className="py-8 pl-5 flex w-40">
-                    <div className="mr-2 flex items-center">
-                      <span className="mr-2 font-normal text-xs text-deep">
-                        {merchant.id}
-                      </span>
-                      <img src={avater} alt="merchant avater" />
-                    </div>
-                    <div>
-                      <h1 className="font-normal truncate text-deep text-sm">
-                        <span title={merchant.name}> {merchant.name} </span>
-                      </h1>
-                      <h1 className="font-normal text-statustext text-xs">
-                        {merchant.products.length} Products
-                      </h1>
-                    </div>
-                  </td>
-                  <td className="py-8 px-3">
-                    <h1 className="font-normal truncate text-deep w-32 text-xs">
-                      <span title={merchant.email}> {merchant.email} </span>
-                    </h1>
-                  </td>
-                  <td className="py-8">
-                    <h1 className="font-normal text-deep text-xs w-32">
-                      {merchant.address}
-                    </h1>
-                  </td>
-                  <td className="py-8">
-                    <h1 className="font-normal text-deep text-xs">
-                      {merchant.city}
-                    </h1>
-                  </td>
-                  <td className="py-8">
-                    <h1 className="font-normal text-deep text-xs">N200,000</h1>
-                  </td>
+            {sort ? (
+              <>
+                {merchants
+                  ?.filter((val) => {
+                    if (searchTerm == "") {
+                      return val;
+                    } else if (
+                      val.name.toLowerCase().includes(searchTerm.toLowerCase())
+                    ) {
+                      return val;
+                    }
+                  })
+                  .sort((a, b) => (a.name < b.name ? 1 : -1))
 
-                  <td className="py-3 truncate">
-                    <button
-                      className="font-medium text-xs font-inter text-blue py-2 pr-2 border-r "
-                      onClick={() => {
-                        setEdit(true);
-                        setMerchantId(merchant.id);
-                      }}
-                    >
-                      Edit
-                    </button>
-                    <button
-                      className="font-medium text-xs font-inter text-red py-1 px-2"
-                      onClick={() => {
-                        setRemove(true);
-                        setName(merchant.name);
-                        window.scrollTo(0, 0);
-                        setMerchantId(merchant.id);
-                      }}
-                    >
-                      Remove
-                    </button>
-                  </td>
-                </tr>
-              ))}
+                  .map((merchant) => (
+                    <tr className="border-b font-inter" key={merchant.id}>
+                      <td className="py-8 pl-5 flex w-48">
+                        <div className="mr-2 flex items-center">
+                          <span className="mr-2 font-normal text-xs text-deep">
+                            {merchant.id}
+                          </span>
+                          <div className="w-10 h-10">
+                            <img
+                              src={
+                                merchant.logo_path === ""
+                                  ? avater
+                                  : merchant.logo_path
+                              }
+                              alt="merchant avater"
+                              className="w-full h-full object-cover rounded-full"
+                            />
+                          </div>
+                        </div>
+                        <div>
+                          <h1 className="font-normal truncate text-deep text-sm">
+                            <span title={merchant.name}> {merchant.name} </span>
+                          </h1>
+                          <h1 className="font-normal text-statustext text-xs">
+                            {merchant.products.length} Products
+                          </h1>
+                        </div>
+                      </td>
+                      <td className="py-8 px-3">
+                        <h1 className="font-normal truncate text-deep text-xs">
+                          <span title={merchant.email}> {merchant.email} </span>
+                        </h1>
+                      </td>
+                      <td className="py-8">
+                        <h1 className="font-normal text-deep text-xs w-32">
+                          {merchant.address}
+                        </h1>
+                      </td>
+                      <td className="py-8">
+                        <h1 className="font-normal text-deep text-xs">
+                          {merchant.city}
+                        </h1>
+                      </td>
+                      {/* <td className="py-8">
+                    <h1 className="font-normal text-deep text-xs">N200,000</h1>
+                  </td> */}
+
+                      <td className="py-3 truncate">
+                        <button
+                          className="font-medium text-xs font-inter text-blue py-2 pr-2 border-r "
+                          onClick={() => {
+                            setEdit(true);
+                            setMerchantId(merchant.id);
+                          }}
+                        >
+                          Edit
+                        </button>
+                        <button
+                          className="font-medium text-xs font-inter text-red py-1 px-2"
+                          onClick={() => {
+                            setRemove(true);
+                            setName(merchant.name);
+                            window.scrollTo(0, 0);
+                            setMerchantId(merchant.id);
+                          }}
+                        >
+                          Remove
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+              </>
+            ) : (
+              <>
+                {merchants
+                  ?.filter((val) => {
+                    if (searchTerm == "") {
+                      return val;
+                    } else if (
+                      val.name.toLowerCase().includes(searchTerm.toLowerCase())
+                    ) {
+                      return val;
+                    }
+                  })
+                  .sort((a, b) => (a.id > b.id ? 1 : -1))
+                  .map((merchant) => (
+                    <tr className="border-b font-inter" key={merchant.id}>
+                      <td className="py-8 pl-5 flex w-48">
+                        <div className="mr-2 flex items-center">
+                          <span className="mr-2 font-normal text-xs text-deep">
+                            {merchant.id}
+                          </span>
+                          <div className="w-10 h-10">
+                            <img
+                              src={
+                                merchant.logo_path === ""
+                                  ? avater
+                                  : merchant.logo_path
+                              }
+                              alt="merchant avater"
+                              className="w-full h-full object-cover rounded-full"
+                            />
+                          </div>
+                        </div>
+                        <div>
+                          <h1 className="font-normal truncate text-deep text-sm">
+                            <span title={merchant.name}> {merchant.name} </span>
+                          </h1>
+                          <h1 className="font-normal text-statustext text-xs">
+                            {merchant.products.length} Products
+                          </h1>
+                        </div>
+                      </td>
+                      <td className="py-8 px-3">
+                        <h1 className="font-normal truncate text-deep text-xs">
+                          <span title={merchant.email}> {merchant.email} </span>
+                        </h1>
+                      </td>
+                      <td className="py-8">
+                        <h1 className="font-normal text-deep text-xs w-32">
+                          {merchant.address}
+                        </h1>
+                      </td>
+                      <td className="py-8">
+                        <h1 className="font-normal text-deep text-xs">
+                          {merchant.city}
+                        </h1>
+                      </td>
+                      {/* <td className="py-8">
+                    <h1 className="font-normal text-deep text-xs">N200,000</h1>
+                  </td> */}
+
+                      <td className="py-3 truncate">
+                        <button
+                          className="font-medium text-xs font-inter text-blue py-2 pr-2 border-r "
+                          onClick={() => {
+                            setEdit(true);
+                            setMerchantId(merchant.id);
+                          }}
+                        >
+                          Edit
+                        </button>
+                        <button
+                          className="font-medium text-xs font-inter text-red py-1 px-2"
+                          onClick={() => {
+                            setRemove(true);
+                            setName(merchant.name);
+                            window.scrollTo(0, 0);
+                            setMerchantId(merchant.id);
+                          }}
+                        >
+                          Remove
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+              </>
+            )}
           </table>
           {/* <div className=" flex pt-20 px-7 items-center justify-between">
             <div className="border rounded-lg bg-page text-footer text-sm p-3">

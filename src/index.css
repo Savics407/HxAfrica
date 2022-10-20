@@ -260,6 +260,7 @@ body {
       background-size: auto, auto;
       background-position: 100% 5px, 95% 100%;
       /* background-clip: content; */
+      color: #FFF6ED
     }
     .bids {
         background-image: url(../src/assets/images/bidsbank.svg);

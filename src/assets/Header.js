@@ -11,6 +11,7 @@ import { RiSettings3Fill } from "react-icons/ri";
 import { BiLogOut } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import moment from "moment";
 import { motion } from "framer-motion";
 import { IoWallet } from "react-icons/io5";
 // import { toast } from "react-toastify";
@@ -52,8 +53,32 @@ function Header() {
   }
   // const navigate = useNavigate();
 
+  const [noti, setNoti] = useState();
+  async function fetchNotifications() {
+    const token = localStorage.getItem("user-token");
+    // e.preventDefault();
+    const response = await fetch(
+      "https://reic.api.simpoo.biz/api/investor/fetch_notifications",
+      {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    const result = await response.json();
+    console.log(result.data);
+    setNoti(result?.data);
+    // localStorage.setItem("user-name", userName);
+    if (result?.status === "error") {
+      setAuth(true);
+    }
+  }
+
   useEffect(() => {
     fetchData();
+    fetchNotifications();
   }, []);
 
   const logOut = () => {
@@ -165,60 +190,38 @@ function Header() {
                   isClick ? "show-note" : "remove-note"
                 }`}
               >
-                <div className=" arrow4 relative ">
-                  <h1 className="text-2xl font-semibold">Notifications</h1>
+                <div className="">
+                  <div className="arrow4 relative">
+                    <h1 className="text-2xl font-semibold">Notifications</h1>
+                  </div>
+                  <div className="h-72 overflow-hidden">
+                    {noti?.map((notis) => (
+                      <div className="text-sm  my-4" key={notis.id}>
+                        <h1>{notis.message}</h1>
+                        <p className="text-footer text-xs mt-1">
+                          {/* 2021-03-10 20:19:15 */}
+                          {moment(notis.created_at).calendar()}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
                 </div>
-
-                <div className="text-sm  my-4">
-                  <h1>Login attempted from new IP</h1>
-                  <p className="text-footer text-xs mt-1">
-                    2021-03-10 20:19:15
-                  </p>
-                </div>
-                <div className="text-sm  my-4">
-                  <h1>Login attempted from new IP</h1>
-                  <p className="text-footer text-xs mt-1">
-                    2021-03-10 20:19:15
-                  </p>
-                </div>
-                <div className="text-sm  my-4">
-                  <h1>Request to reset security</h1>
-                  <p className="text-footer text-xs mt-1">
-                    2021-03-10 20:19:15
-                  </p>
-                </div>
-                <div className="text-sm  my-4">
-                  <h1>Login attempted from new IP</h1>
-                  <p className="text-footer text-xs mt-1">
-                    2021-03-10 20:19:15
-                  </p>
-                </div>
-                <div className="text-sm  my-4">
-                  <h1>Request to reset security</h1>
-                  <p className="text-footer text-xs mt-1">
-                    2021-03-10 20:19:15
-                  </p>
-                </div>
-                <div className="text-sm  my-4">
-                  <h1>Login attempted from new IP</h1>
-                  <p className="text-footer text-xs mt-1">
-                    2021-03-10 20:19:15
-                  </p>
-                </div>
-                <div className="flex items-center justify-between">
-                  <div className="">
-                    <Link to="/notification">
-                      <button className="bg-green rounded-full text-dashbg w-48 h-10 text-sm">
-                        View all
+                {noti?.length >= 4 && (
+                  <div className="flex items-center justify-between">
+                    <div className="">
+                      <Link to="/notification">
+                        <button className="bg-green rounded-full text-dashbg w-48 h-10 text-sm">
+                          View all
+                        </button>
+                      </Link>
+                    </div>
+                    <div>
+                      <button className="border rounded-full text-neutral w-48 h-10 text-sm">
+                        Clear all
                       </button>
-                    </Link>
+                    </div>
                   </div>
-                  <div>
-                    <button className="border rounded-full text-neutral w-48 h-10 text-sm">
-                      Clear all
-                    </button>
-                  </div>
-                </div>
+                )}
               </div>
             </div>
 

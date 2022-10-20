@@ -1,4 +1,4 @@
-import logo from "./images/polygon.png";
+import logo from "./images/reic_with_tagline.png";
 // import bg from "./images/build.jpeg";
 // import Form from "./UserDetails";
 import Verification from "./Verification";
@@ -9,9 +9,11 @@ import { useState } from "react";
 function Tab() {
   return (
     <>
-      <div className="bg-primary text-center text-green p-4 flex items-center hidden md:flex">
-        <img src={logo} alt="logo icon" />
-        <h1 className="text-sm font-bold font-family ml-4">REIC</h1>
+      <div className="bg-primary text-center text-green p-3 hidden md:flex">
+        {/* <div className="w-40 h-20 border"> */}
+        <img src={logo} alt="logo icon" className="w-36" />
+        {/* </div> */}
+        {/* <h1 className="text-sm font-bold font-family ml-4">REIC</h1> */}
       </div>
     </>
   );

@@ -120,9 +120,9 @@ function ApprovedDetails({ setDetails, itemId, fetchApproved }) {
                   <div className="px-5 lg:px-10 ">
                     <div>
                       <img
-                        src={hdimage}
+                        src={post.image_path === "" ? hdimage : post.image_path}
                         alt="my-investment-image"
-                        className="w-full"
+                        className="w-full h-40 object-cover"
                       />
                     </div>
 

@@ -43,6 +43,8 @@ module.exports = {
         ccc: "#cccccc",
         sort: "#8C8C8C",
         chatbg: "#F3F3F3",
+        new: "#C4320A",
+        newbg: "#FFF6ED",
         product: "#6D7175",
         chatHeader: "#F3F3F3",
         goback: "#F161FF",
@@ -67,6 +69,7 @@ module.exports = {
         "mobile-nav": "#343C44",
         "mobile-banner": "#8BFF98",
         dashbg: "#FCFCFD",
+
         sidenav: "#CCE8CF",
         endsin: "#C01048",
         rose: "#F63D68",

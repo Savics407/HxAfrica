@@ -151,22 +151,31 @@ function InvestorList() {
                     <h1>
                       N
                       <CurrencyFormat
-                        value={investor.wallet.balance}
+                        value={investor.wallet.balance.toFixed(2)}
                         displayType={"text"}
                         thousandSeparator={true}
                       />
                     </h1>
                   </td>
                   <td className="py-3 text-center">
-                    <button
-                      className="font-medium text-sm font-inter bg-relist text-relisted py-1 px-2.5 rounded-full"
-                      onClick={() => {
-                        setBan(true);
-                        setUserId(investor.id);
-                      }}
-                    >
-                      Ban User
-                    </button>
+                    {investor.is_ban == "1" ? (
+                      <Link to="/admin/investors/banned">
+                        {" "}
+                        <button className="font-medium text-sm font-inter bg-approved text-appText py-1 px-2.5 rounded-full">
+                          Banned
+                        </button>
+                      </Link>
+                    ) : (
+                      <button
+                        className="font-medium text-sm font-inter bg-relist text-relisted py-1 px-2.5 rounded-full"
+                        onClick={() => {
+                          setBan(true);
+                          setUserId(investor.id);
+                        }}
+                      >
+                        Ban User
+                      </button>
+                    )}
                   </td>
                 </tr>
               ))}

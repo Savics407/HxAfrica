@@ -27,30 +27,28 @@ function Staffs() {
     window.scrollTo(0, 0);
   }, [image]);
 
-  const [formData, setFormData] = useState({
+  const [details, setFormData] = useState({
     name: "",
     email: "",
     phone: "",
     image: "",
   });
-  async function addStaff() {
+  async function addStaff(e) {
     const token = localStorage.getItem("user-token");
-    // e.preventDefault();
-    const imageData = new FormData();
-    imageData.append("image", image);
-    const payLoad = {
-      name: "savics",
-      email: "example@gmail.com",
-      phone: "08106457504",
-      image: imageData,
-    };
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("image", image);
+    formData.append("name", details.name);
+    formData.append("phone", details.phone);
+    formData.append("email", details.email);
+
     const response = await fetch(
       "https://reic.api.simpoo.biz/api/admin/add_staff",
       {
         method: "POST",
-        body: JSON.stringify(payLoad),
+        body: formData,
         headers: {
-          "Content-type": "application/json",
+          // "Content-type": "application/json",
           Accept: "application/json",
           Authorization: `Bearer ${token}`,
         },
@@ -60,6 +58,7 @@ function Staffs() {
     console.log(result.data);
     // alert(result.data.name);
   }
+
   return (
     <div className="bg-dashbg font-family">
       {create && (
@@ -110,94 +109,106 @@ function Staffs() {
                   }}
                 />
               </div>
-              <div className="px-10 py-5">
-                <div className="merchant">
-                  <label>Name</label>
-                  <input
-                    required
-                    type="text"
-                    placeholder="enter merchant name"
-                    className="box"
-                    value={formData.name}
-                    onChange={(event) =>
-                      setFormData({ ...formData, name: event.target.value })
-                    }
-                  />
-                </div>
-
-                <div className="merchant">
-                  <label>Phone</label>
-                  <input
-                    required
-                    type="tel"
-                    placeholder="+234 |"
-                    className="box"
-                    value={formData.phone}
-                    onChange={(event) =>
-                      setFormData({ ...formData, phone: event.target.value })
-                    }
-                  />
-                </div>
-
-                {image === null ? (
-                  <div className="border bg-file rounded-lg border-dashed flex flex-col items-center p-10">
-                    <img src={upload} alt="Upload Icon" />
-                    <label
-                      for="file"
-                      className="cursor-pointer border rounded bg-white font-normal text-xs py-1.5 px-3 mt-2"
-                    >
-                      Add Image
-                    </label>
-                    <h1 className="text-product font-normal text-tiny">
-                      Upload Staff Image
-                    </h1>
+              <form>
+                <div className="px-10 py-5">
+                  <div className="merchant">
+                    <label>Name</label>
                     <input
-                      type="file"
-                      id="file"
-                      accept="image/*"
-                      onChange={(e) => {
-                        const file = e.target.files[0];
-                        if (file) {
-                          setImage(file);
-                        } else {
-                          setImage(null);
-                        }
-                      }}
+                      required
+                      type="text"
+                      placeholder="enter staff name"
+                      className="box"
+                      value={details.name}
+                      onChange={(event) =>
+                        setFormData({ ...details, name: event.target.value })
+                      }
                     />
                   </div>
-                ) : (
-                  <div
-                    className="border bg-cover bg-top rounded-lg h-40 w-full relative"
-                    // style={{ backgroundImage: `url(${preview})` }}
-                  >
-                    <img
-                      src={preview}
-                      alt="product"
-                      className="object-cover w-full h-full rounded-lg"
-                    />
-                    <span
-                      className="text-dark shadow bg-dashbg text-xs p-2 absolute left-2 rounded cursor-pointer bottom-2"
-                      onClick={() => {
-                        setImage(null);
-                      }}
-                    >
-                      change image
-                    </span>
-                  </div>
-                )}
 
-                <div className="text-white flex justify-end items-center w-full mt-10 font-medium">
-                  <input
-                    type="submit"
-                    className=" cursor-pointer bg-green py-3 px-8 outline-none rounded-full"
-                    value="Add Staff"
-                    onClick={() => {
-                      addStaff();
-                      alert(image);
-                    }}
-                  />
+                  <div className="merchant">
+                    <label>Email</label>
+                    <input
+                      required
+                      type="email"
+                      placeholder="enter staff email"
+                      className="box"
+                      value={details.email}
+                      onChange={(event) =>
+                        setFormData({ ...details, email: event.target.value })
+                      }
+                    />
+                  </div>
+                  <div className="merchant">
+                    <label>Phone</label>
+                    <input
+                      required
+                      type="tel"
+                      placeholder="+234 |"
+                      className="box"
+                      value={details.phone}
+                      onChange={(event) =>
+                        setFormData({ ...details, phone: event.target.value })
+                      }
+                    />
+                  </div>
+
+                  {image === null ? (
+                    <div className="border bg-file rounded-lg border-dashed flex flex-col items-center p-10">
+                      <img src={upload} alt="Upload Icon" />
+                      <label
+                        for="file"
+                        className="cursor-pointer border rounded bg-white font-normal text-xs py-1.5 px-3 mt-2"
+                      >
+                        Add Image
+                      </label>
+                      <h1 className="text-product font-normal text-tiny">
+                        Upload Staff Image
+                      </h1>
+                      <input
+                        type="file"
+                        id="file"
+                        accept="image/*"
+                        onChange={(e) => {
+                          const file = e.target.files[0];
+                          if (file) {
+                            setImage(file);
+                          } else {
+                            setImage(null);
+                          }
+                        }}
+                      />
+                    </div>
+                  ) : (
+                    <div
+                      className="border bg-cover bg-top rounded-lg h-40 w-full relative"
+                      // style={{ backgroundImage: `url(${preview})` }}
+                    >
+                      <img
+                        src={preview}
+                        alt="product"
+                        className="object-cover w-full h-full rounded-lg"
+                      />
+                      <span
+                        className="text-dark shadow bg-dashbg text-xs p-2 absolute left-2 rounded cursor-pointer bottom-2"
+                        onClick={() => {
+                          setImage(null);
+                        }}
+                      >
+                        change image
+                      </span>
+                    </div>
+                  )}
+
+                  <div className="text-white flex justify-end items-center w-full mt-10 font-medium">
+                    <input
+                      type="submit"
+                      className=" cursor-pointer bg-green py-3 px-8 outline-none rounded-full"
+                      value="Add Staff"
+                      onClick={addStaff}
+                    />
+                  </div>
                 </div>
-              </div>
+              </form>
             </motion.div>
           </motion.div>
         </>

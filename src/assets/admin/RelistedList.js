@@ -72,8 +72,16 @@ function RelistedList() {
             {relisted?.map((relisted) => (
               <tr className="border-b font-inter">
                 <td className="py-8 pl-5 flex items-center">
-                  <div className="mr-2">
-                    <img src={realEstate} alt="Investment Icon" />
+                  <div className="mr-2 w-10 h-10">
+                    <img
+                      src={
+                        relisted.product.image_path === ""
+                          ? realEstate
+                          : relisted.product.image_path
+                      }
+                      alt="Investment Icon"
+                      className="w-full h-full object-cover rounded-full"
+                    />
                   </div>
                   <div className=" w-44">
                     <h1 className="font-normal truncate text-deep text-sm">

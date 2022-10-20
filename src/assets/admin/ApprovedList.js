@@ -197,8 +197,16 @@ function ApprovedList() {
                       </h1>
                     </td>
                     <td className="py-8 pl-2 flex items-center whitespace-nowrap w-60">
-                      <div className="mr-2">
-                        <img src={realEstate} alt="Investment Icon" />
+                      <div className="mr-2 w-10 h-10">
+                        <img
+                          src={
+                            approved.image_path === ""
+                              ? realEstate
+                              : approved.image_path
+                          }
+                          alt="Investment Icon"
+                          className="w-full h-full rounded-full object-cover"
+                        />
                       </div>
                       <div className="w-40">
                         <h1 className="font-normal text-deep text-sm truncate">
@@ -242,8 +250,8 @@ function ApprovedList() {
 
                     <td className="py-3 whitespace-nowrap">
                       {approved.status_investment === "waiting" ? (
-                        <button className="font-medium text-sm font-inter bg-letsee text-endsin py-1 px-4 rounded-full ">
-                          Pending
+                        <button className="font-medium text-sm font-inter !bg-newbg text-new py-1 px-4 rounded-full ">
+                          New
                         </button>
                       ) : approved.status_investment === "ongoing" ? (
                         <button className="font-medium text-sm font-inter bg-letsee text-endsin py-1 px-4 rounded-full ">

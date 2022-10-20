@@ -95,25 +95,6 @@ function Create() {
     formData.append("state_id", details.state);
     formData.append("city", details.city);
 
-    // const payLoad = {
-    //   name: formData.name,
-    //   email: formData.email,
-    //   phone: formData.phone,
-    //   address: formData.address,
-    //   city: formData.city,
-    //   state_id: formData.state,
-    //   image: imageData,
-    // };
-    // const payLoad = {
-    //   name: "Savicstech Agency",
-    //   email: "savicstech@gmail.com",
-    //   phone: "08106750047",
-    //   address: "Port harcourt",
-    //   city: "Port Harcourt",
-    //   state_id: 303,
-    //   image: image,
-    // };
-    // alert(payLoad.image);
     const response = await fetch(
       "https://reic.api.simpoo.biz/api/admin/add_merchant",
       {
