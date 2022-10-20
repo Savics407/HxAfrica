@@ -181,7 +181,7 @@ function EditMerchants({ setEdit, merchantId }) {
                           defaultValue={post.name}
                           onChange={(event) =>
                             setFormData({
-                              ...formData,
+                              ...details,
                               name: event.target.value,
                             })
                           }
@@ -197,7 +197,7 @@ function EditMerchants({ setEdit, merchantId }) {
                           defaultValue={post.email}
                           onChange={(event) =>
                             setFormData({
-                              ...formData,
+                              ...details,
                               email: event.target.value,
                             })
                           }
@@ -213,7 +213,7 @@ function EditMerchants({ setEdit, merchantId }) {
                           defaultValue={post.phone}
                           onChange={(event) =>
                             setFormData({
-                              ...formData,
+                              ...details,
                               phone: event.target.value,
                             })
                           }
@@ -229,7 +229,7 @@ function EditMerchants({ setEdit, merchantId }) {
                           defaultValue={post.address}
                           onChange={(event) =>
                             setFormData({
-                              ...formData,
+                              ...details,
                               address: event.target.value,
                             })
                           }
@@ -243,7 +243,7 @@ function EditMerchants({ setEdit, merchantId }) {
                             defaultValue={post.state.name}
                             onChange={(event) =>
                               setFormData({
-                                ...formData,
+                                ...details,
                                 state: event.target.value,
                               })
                             }
@@ -303,7 +303,7 @@ function EditMerchants({ setEdit, merchantId }) {
                             defaultValue={post.city}
                             onChange={(event) =>
                               setFormData({
-                                ...formData,
+                                ...details,
                                 city: event.target.value,
                               })
                             }
