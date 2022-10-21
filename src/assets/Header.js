@@ -68,7 +68,7 @@ function Header() {
       }
     );
     const result = await response.json();
-    console.log(result.data);
+    // console.log(result.data);
     setNoti(result?.data);
     // localStorage.setItem("user-name", userName);
     if (result?.status === "error") {

@@ -272,8 +272,42 @@ function Warning({ closeWarning, title, productId, closeDetails, ongoing }) {
         });
       }
     }
+    if (result.message === "Server Error") {
+      toast.error(`${result.message}`, {
+        position: "top-left",
+        autoClose: 1500,
+        hideProgressBar: true,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    }
   }
 
+  const [per, setPer] = useState();
+  async function percentage() {
+    const token = localStorage.getItem("user-token");
+    const response = await fetch(
+      "https://reic.api.simpoo.biz/api/investment/pullout_percentage",
+      {
+        method: "POST",
+        // body: JSON.stringify(payLoad),
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    const result = await response.json();
+    console.log(result);
+    setPer(result?.data);
+  }
+
+  useEffect(() => {
+    percentage();
+  }, []);
   return (
     <>
       <motion.div
@@ -356,8 +390,11 @@ function Warning({ closeWarning, title, productId, closeDetails, ongoing }) {
           <div className="font-semibold lg:text-base text-xs text-neutral my-8">
             <p>
               Are you sure you want to pull out from <br /> the
-              <span className="text-green"> {title}</span> investments? <br />
-              This action will incur charges of N25,000
+              <span className="text-green"> {title}</span> investment? <br />
+              This action will incur <span className="text-green">
+                %{per}
+              </span>{" "}
+              charges of your Investment
             </p>
           </div>
           <div className="flex justify-between">
@@ -475,6 +512,17 @@ function Processing({ productId }) {
         });
         navigate("/investment/my-investment");
       }
+    }
+    if (result.message === "Server Error") {
+      toast.error(`${result.message}`, {
+        position: "top-left",
+        autoClose: 1500,
+        hideProgressBar: true,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     }
   }
 

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Header from "./Header";
 import InvestTabs from "./InvestTabs";
 import box from "./images/Artwork.svg";
-import bidders from "./images/bidders.svg";
+import bidderss from "./images/bidders.svg";
 import { FaAngleRight, FaAngleDown } from "react-icons/fa";
 
 import arrow from "./images/arrow.svg";
@@ -18,6 +18,7 @@ function Bids() {
   const [available, setAvailable] = useState(true);
   const [loading, setLoading] = useState(true);
   const [click, setClick] = useState(false);
+  // const [bidders, setBidders] = useState();
   const [bids, setBids] = useState();
   async function fetchInvestment() {
     const token = localStorage.getItem("user-token");
@@ -154,10 +155,45 @@ function Bids() {
 
   useEffect(() => {
     fetchInvestment();
+    // console.log(groupListWithTheSameId(bidders));
   }, []);
   const [bidID, setBidID] = useState();
   const [details, setDetails] = useState();
   const [visible, setVisible] = useState(false);
+
+  // function groupListWithTheSameId(per) {
+  //   const groupedBids = {};
+  //   per?.forEach((bid) => {
+  //     if (!groupedBids[bid.investmentId]) {
+  //       groupedBids[bid.investmentId] = [];
+  //     }
+  //     groupedBids[bid.investmentId].push(bid);
+  //   });
+  //   return groupedBids;
+  //   // setBidders(groupedBids);
+  // }
+
+  // const bidders = [
+  //   { investmentId: 1, name: "bid1" },
+  //   { investmentId: 2, name: "bid2" },
+  //   { investmentId: 1, name: "bid3" },
+  //   { investmentId: 3, name: "bid4" },
+  //   { investmentId: 2, name: "bid5" },
+  //   { investmentId: 1, name: "bid6" },
+  //   { investmentId: 1, name: "bid6" },
+  //   { investmentId: 1, name: "bid6" },
+  //   { investmentId: 3, name: "bid7" },
+  //   { investmentId: 2, name: "bid8" },
+  //   { investmentId: 2, name: "bid8" },
+  //   { investmentId: 2, name: "bid8" },
+  //   { investmentId: 2, name: "bid8" },
+  // ];
+  // // setBidders(groupListWithTheSameId(bids));
+  // console.log(groupListWithTheSameId(bidders));
+  // const bidding = groupListWithTheSameId(bidders);
+  // const set = Object.entries(bidding);
+  // console.log(set);
+
   return (
     <div className="font-family">
       <Header />
@@ -194,6 +230,26 @@ function Bids() {
                   }`}
                 >
                   <div className="arr relative w-full"></div>
+                  {/* {bids?.map((bids) => ( */}
+                  {/* 
+                  {Object.keys(bidders).map((bids) => (
+                    <div
+                      className="py-3 w-full pr-20 border-b border-tokentext cursor-pointer hover:opacity-70"
+                      onClick={() => {
+                        setClick(!click);
+                        setBidID(bids.id);
+                        // alert(bids.id);
+                      }}
+                      key={bids.investment.id}
+                    >
+                      <h1 className="text-more font-semibold mb-1.5">
+                        {bids.investment.product.title}
+                      </h1>
+                      <h1 className="text-sm text-footer font-normal">
+                        2 Bidders
+                      </h1>
+                    </div>
+                  ))} */}
                   {bids?.map((bids) => (
                     <div
                       className="py-3 w-full pr-20 border-b border-tokentext cursor-pointer hover:opacity-70"
@@ -252,7 +308,7 @@ function Bids() {
                               <div className=" flex font-inter border-r border-card w-1/2 lg:py-2">
                                 <div className="mr-2">
                                   <img
-                                    src={bidders}
+                                    src={bidderss}
                                     alt="bidders-icon"
                                     className="w-10 lg:w-12"
                                   />

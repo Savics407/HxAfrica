@@ -23,7 +23,8 @@ function AddBank({ closeToken, setVerifyBVN, setWithdraw, setBankID }) {
     const token = localStorage.getItem("user-token");
     // e.preventDefault();
     const response = await fetch(
-      "https://reic.api.simpoo.biz/api/investor/list_of_banks",
+      "https://reic.api.simpoo.biz/api/kuda/get_bank_list",
+
       {
         method: "POST",
         headers: {
@@ -33,8 +34,8 @@ function AddBank({ closeToken, setVerifyBVN, setWithdraw, setBankID }) {
       }
     );
     const result = await response.json();
-    console.log(result?.data);
-    setBanks(result.data);
+    console.log(result?.banks);
+    setBanks(result.banks);
   }
 
   const [userBank, setUserBank] = useState();
@@ -272,8 +273,11 @@ function AddBank({ closeToken, setVerifyBVN, setWithdraw, setBankID }) {
                   <option selected>--Choose Bank--</option>
 
                   {banks?.map((bank) => (
-                    <option key={bank.id} value={[bank.code, bank.name]}>
-                      {bank.name}
+                    <option
+                      key={bank.id}
+                      value={[bank.bankCode, bank.bankName]}
+                    >
+                      {bank.bankName}
                     </option>
                   ))}
                 </select>
@@ -296,7 +300,7 @@ function AddBank({ closeToken, setVerifyBVN, setWithdraw, setBankID }) {
                   }
                 />
               </div>
-              <div>
+              <div className="pb-5">
                 <button
                   className="rounded-full lg:rounded-xl w-full h-12 mt-3 text-dashbg bg-green"
                   onClick={() => {
@@ -307,7 +311,7 @@ function AddBank({ closeToken, setVerifyBVN, setWithdraw, setBankID }) {
                   {process ? "processing ..." : "Save"}
                 </button>
               </div>
-              <div className=" flex items-center pt-10 pb-5">
+              {/* <div className=" flex items-center pt-10 pb-5">
                 <input
                   required
                   type="checkbox"
@@ -317,7 +321,7 @@ function AddBank({ closeToken, setVerifyBVN, setWithdraw, setBankID }) {
                 <p className="text-sm text-token font-medium">
                   Save as default bank
                 </p>
-              </div>
+              </div> */}
             </div>
           </motion.div>
         )}
