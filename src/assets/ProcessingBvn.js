@@ -114,10 +114,10 @@ function Processing({ setVerifyBVN, closeToken }) {
       setVerifyBVN(false);
       closeToken(true);
     } else {
-      if (result.status === false) {
+      if (result?.status === "error") {
         toast.error(`${result.message}`, {
           position: "top-left",
-          autoClose: 1500,
+          autoClose: 2000,
           hideProgressBar: true,
           closeOnClick: false,
           pauseOnHover: true,
@@ -125,6 +125,8 @@ function Processing({ setVerifyBVN, closeToken }) {
           progress: undefined,
         });
       }
+      setVerifyBVN(false);
+      closeToken(true);
     }
   }
 

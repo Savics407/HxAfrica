@@ -1,4 +1,4 @@
-import logo from "./images/reic_with_tagline.png";
+import logo from "./images/reicTagline.png";
 // import bg from "./images/build.jpeg";
 // import Form from "./UserDetails";
 import { FaRegEyeSlash } from "react-icons/fa";

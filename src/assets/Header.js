@@ -2,6 +2,7 @@ import userp from "./images/default_profile.svg";
 import { FaAngleDown } from "react-icons/fa";
 import { FaBell } from "react-icons/fa";
 import { useEffect, useState } from "react";
+import noNote from "./images/notifications.svg";
 import logo from "./images/logo.svg";
 import status from "./images/status.png";
 import { MdDashboard } from "react-icons/md";
@@ -54,6 +55,7 @@ function Header() {
   // const navigate = useNavigate();
 
   const [noti, setNoti] = useState();
+  const [available, setAvailable] = useState(true);
   async function fetchNotifications() {
     const token = localStorage.getItem("user-token");
     // e.preventDefault();
@@ -71,9 +73,28 @@ function Header() {
     // console.log(result.data);
     setNoti(result?.data);
     // localStorage.setItem("user-name", userName);
-    if (result?.status === "error") {
-      setAuth(true);
+    if (result?.data.length === 0) {
+      setAvailable(false);
     }
+  }
+
+  async function clearNotifications() {
+    const token = localStorage.getItem("user-token");
+    // e.preventDefault();
+    const response = await fetch(
+      "https://reic.api.simpoo.biz/api/investor/clear_notifications",
+      {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    const result = await response.json();
+    // console.log(result.data);
+    // setNoti(result?.data);
+    fetchNotifications();
   }
 
   useEffect(() => {
@@ -180,6 +201,7 @@ function Header() {
               onClick={() => {
                 setIsClick(!isClick);
                 setLogout(false);
+                fetchNotifications();
               }}
             >
               <FaBell className="w-4 h-5" />
@@ -194,17 +216,33 @@ function Header() {
                   <div className="arrow4 relative">
                     <h1 className="text-2xl font-semibold">Notifications</h1>
                   </div>
-                  <div className="h-72 overflow-hidden">
-                    {noti?.map((notis) => (
-                      <div className="text-sm  my-4" key={notis.id}>
-                        <h1>{notis.message}</h1>
-                        <p className="text-footer text-xs mt-1">
-                          {/* 2021-03-10 20:19:15 */}
-                          {moment(notis.created_at).calendar()}
-                        </p>
+
+                  {available ? (
+                    <div className="h-72 overflow-hidden">
+                      {noti?.map((notis) => (
+                        <div className="text-sm  my-4" key={notis.id}>
+                          <h1>{notis.message}</h1>
+                          <p className="text-footer text-xs mt-1">
+                            {/* 2021-03-10 20:19:15 */}
+                            {moment(notis.created_at).calendar()}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+                  ) : (
+                    <div className="flex justify-center items-center py-16">
+                      <div className="flex justify-center flex-col items-center">
+                        <img
+                          src={noNote}
+                          alt="No new notification"
+                          className="w-44"
+                        />
+                        <h1 className="text-center text-sm font-semibold text-statustext">
+                          You have no new notification
+                        </h1>
                       </div>
-                    ))}
-                  </div>
+                    </div>
+                  )}
                 </div>
                 {noti?.length >= 4 && (
                   <div className="flex items-center justify-between">
@@ -216,7 +254,10 @@ function Header() {
                       </Link>
                     </div>
                     <div>
-                      <button className="border rounded-full text-neutral w-48 h-10 text-sm">
+                      <button
+                        className="border rounded-full text-neutral w-48 h-10 text-sm"
+                        onClick={clearNotifications}
+                      >
                         Clear all
                       </button>
                     </div>

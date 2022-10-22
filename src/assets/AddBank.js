@@ -12,7 +12,7 @@ function AddBank({ closeToken, setVerifyBVN, setWithdraw, setBankID }) {
   const [registered, setRegistered] = useState(true);
   const [main, setMain] = useState(true);
   const [addAccount, setAddAccount] = useState(false);
-  const [banks, setBanks] = useState(false);
+  const [banks, setBanks] = useState();
   const [chooseBank, setChooseBank] = useState(false);
   const [addAmount, setAddAmount] = useState(false);
   const [amount, setAmount] = useState(50000);
@@ -23,8 +23,7 @@ function AddBank({ closeToken, setVerifyBVN, setWithdraw, setBankID }) {
     const token = localStorage.getItem("user-token");
     // e.preventDefault();
     const response = await fetch(
-      "https://reic.api.simpoo.biz/api/kuda/get_bank_list",
-
+      "https://reic.api.simpoo.biz/api/investor/list_of_banks",
       {
         method: "POST",
         headers: {
@@ -34,8 +33,8 @@ function AddBank({ closeToken, setVerifyBVN, setWithdraw, setBankID }) {
       }
     );
     const result = await response.json();
-    console.log(result?.banks);
-    setBanks(result.banks);
+    console.log(result?.data);
+    setBanks(result.data);
   }
 
   const [userBank, setUserBank] = useState();
@@ -253,6 +252,7 @@ function AddBank({ closeToken, setVerifyBVN, setWithdraw, setBankID }) {
                 <label className="text-footer text-tiny lg:text-base font-normal">
                   Bank Name
                 </label>
+                {/* {bankCode} */}
                 {/* <input
                 required
                 type="email"
@@ -275,9 +275,13 @@ function AddBank({ closeToken, setVerifyBVN, setWithdraw, setBankID }) {
                   {banks?.map((bank) => (
                     <option
                       key={bank.id}
-                      value={[bank.bankCode, bank.bankName]}
+                      value={
+                        bank.code === null
+                          ? ""
+                          : [bank.code.code, bank.code.name]
+                      }
                     >
-                      {bank.bankName}
+                      {bank.code === null ? "null" : bank.code.name}
                     </option>
                   ))}
                 </select>

@@ -503,7 +503,7 @@ function Processing({ productId }) {
         console.log(result.data);
         toast.error(`${result.message}`, {
           position: "top-left",
-          autoClose: 500,
+          autoClose: 1500,
           hideProgressBar: true,
           closeOnClick: false,
           pauseOnHover: true,

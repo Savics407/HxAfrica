@@ -77,14 +77,16 @@ function BiddersChat() {
     }
     if (result?.status === "success") {
       setLoad(false);
+      // setAvailable(true);
     }
   }
 
   const investOwner = localStorage.getItem("investment-owner");
   const [chat, setChat] = useState();
   const [sent, setSent] = useState(false);
+  const [none, setNone] = useState(false);
   const [receiver, setReceiver] = useState(investOwner);
-  const [name, setName] = useState("Investor ID");
+  const [name, setName] = useState(`Investors ID - ${investOwner}`);
   const user_id = localStorage.getItem("user-id");
   // alert(receiver);
   async function fetchChat(id) {
@@ -115,14 +117,22 @@ function BiddersChat() {
     if (result?.status === "success") {
       setSent(false);
     }
-    if (result?.data.length !== 0) {
+    if (result?.data.length > 0) {
       setLoading(false);
+      setNone(false);
+      // setAvailable(true);
+    }
+
+    if (result?.data.length === 0) {
+      setLoading(false);
+      setNone(true);
       // setAvailable(true);
     }
   }
   useEffect(() => {
     fetchChatList();
     fetchChat(receiver);
+    setAvailable(true);
   }, []);
 
   useEffect(() => {
@@ -205,7 +215,7 @@ function BiddersChat() {
                           {list.user.name}
                         </h1>
                         <h1 className="text-navbar text-tiny lg:text-sm">
-                          New messages (3)
+                          Messages...
                         </h1>
                       </div>
                       <FaAngleRight className="text-xl" />
@@ -245,7 +255,10 @@ function BiddersChat() {
                 ) : (
                   <button
                     className="text-goback text-sm font-inter lg:hidden"
-                    onClick={() => setAvailable(false)}
+                    onClick={() => {
+                      setAvailable(false);
+                      // fetchChatList();
+                    }}
                   >
                     Back
                   </button>
@@ -352,6 +365,15 @@ function BiddersChat() {
                           />
                         )}
                       </div>
+                    </div>
+                  )}
+
+                  {none && (
+                    <div className="bg-white justify-center items-center lg:mt-10 mt-40 flex flex-col rounded-xl relative ">
+                      <img src={noMessage} alt="no Message" />
+                      <h1 className="py-5 text-tokentext text-sm">
+                        Type a message to send
+                      </h1>
                     </div>
                   )}
                   <div ref={bottomRef} />

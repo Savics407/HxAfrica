@@ -1,4 +1,5 @@
-import logo from "./images/reic_with_tagline.png";
+import logo from "./images/reicTagline.png";
+// import logo from "./images/reic_with_tagline.png";
 // import bg from "./images/build.jpeg";
 // import Form from "./UserDetails";
 import Verification from "./Verification";
