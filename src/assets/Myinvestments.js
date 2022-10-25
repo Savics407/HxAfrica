@@ -90,11 +90,22 @@ function Myinvests() {
                     className="p-2 bg-welcome flex items-center justify-between rounded-lg mb-4"
                   >
                     <div className="flex items-center w-9/12">
-                      <div className="mr-3">
+                      {/* <div className="mr-3">
                         <img
                           src={invest}
                           alt="investment-icon"
                           className="h-10 w-10"
+                        />
+                      </div> */}
+                      <div className="h-10 w-10 mr-3">
+                        <img
+                          src={
+                            post.product.image_path === ""
+                              ? invest
+                              : post.product.image_path
+                          }
+                          alt="crowdfunding"
+                          className="h-full w-full object-cover rounded-lg"
                         />
                       </div>
                       <div className="lg:w-44 w-48">

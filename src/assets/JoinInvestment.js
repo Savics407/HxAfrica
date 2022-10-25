@@ -291,6 +291,7 @@ function JoinInvestment({ closeModal, itemId }) {
                           // value="50,000"
                           onChange={(e) => setReic(e.target.value)}
                           defaultValue=""
+                          min="0"
                         />
                       </div>
                       <div className="text-center h-1">

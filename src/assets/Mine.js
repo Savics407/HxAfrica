@@ -192,11 +192,18 @@ function Mine() {
                       {posts?.map((post) => (
                         <tr className="border-b" key={post.id}>
                           <td className=" py-8 text-footer font-bold text-sm flex">
-                            <img
-                              src={crowd}
-                              alt="crowdfunding"
-                              className="h-10"
-                            />
+                            <div className="h-12 w-12">
+                              <img
+                                src={
+                                  post.product.image_path === ""
+                                    ? crowd
+                                    : post.product.image_path
+                                }
+                                alt="crowdfunding"
+                                className="h-full w-full object-cover rounded-lg"
+                              />
+                            </div>
+
                             <div className="ml-2 ">
                               <h1 className="mb-1 truncate w-40 lg:w-36">
                                 <span title={post.product.title}>

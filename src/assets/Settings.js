@@ -7,6 +7,7 @@ import { BiLogOut } from "react-icons/bi";
 import { useNavigate, Link } from "react-router-dom";
 import avater from "./images/default_profile.svg";
 import { toast } from "react-toastify";
+import camera from "./images/camera.svg";
 import avater1 from "./images/1.svg";
 import avater2 from "./images/2.svg";
 import avater3 from "./images/3.svg";
@@ -389,19 +390,27 @@ function Profile() {
           <Protabs />
           <div className="">
             <div className="flex items-center flex-col pt-5">
-              {!!userIcon ? (
+              <div className=" relative">
+                {!!userIcon ? (
+                  <img
+                    src={userIcon}
+                    alt="Profile Picture"
+                    className="lg:w-28 lg:h-28 w-24 h-24"
+                  />
+                ) : (
+                  <img
+                    src={avater}
+                    alt="Profile Picture"
+                    className="lg:w-28 lg:h-28 w-24 h-24 "
+                  />
+                )}
                 <img
-                  src={userIcon}
-                  alt="Profile Picture"
-                  className="lg:w-28 lg:h-28 w-20 h-20"
+                  src={camera}
+                  alt="Select Profile"
+                  className="lg:hidden absolute -bottom-4 -right-3 "
+                  onClick={() => setAvailable(true)}
                 />
-              ) : (
-                <img
-                  src={avater}
-                  alt="Profile Picture"
-                  className="lg:w-28 lg:h-28 w-20 h-20 "
-                />
-              )}
+              </div>
               {/* <img src={userIcon} alt="Profile Picture" className="w-28 h-28" /> */}
               <button
                 className="text-blue hidden lg:block border rounded-full lg:py-1 lg:px-4 py-2 px-6 font-bold text-tiny lg:text-sm my-3"
