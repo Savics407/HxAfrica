@@ -1,8 +1,10 @@
 // import { useState } from "react";
+import { MdClose } from "react-icons/md";
 import { useState } from "react";
 import { FaRegEyeSlash } from "react-icons/fa";
 import { FaRegEye } from "react-icons/fa";
 import { useForm } from "react-hook-form";
+import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 // import axios from "axios";
@@ -96,6 +98,8 @@ function UserDetails({ formData, setFormData, nextPage, signup }) {
 
   //    check password event
   const password = watch("password");
+  const [terms, setTerms] = useState(false);
+  const [check, setCheck] = useState(false);
 
   return (
     <>
@@ -272,25 +276,36 @@ function UserDetails({ formData, setFormData, nextPage, signup }) {
             {...register("checkbox", {
               required: "check the box to proceed",
             })}
-            onChange={(event) =>
-              setFormData({ ...formData, terms: event.target.value })
-            }
+            onChange={(event) => {
+              setFormData({ ...formData, terms: event.target.value });
+              setCheck(!check);
+            }}
+            // checked
           />
           <p className="text-xs tracking-wide">
             I agree with REIC{" "}
-            <span className="text-blue-500">Terms & Conditions </span> and{" "}
-            <span className="text-blue-500">Privacy Policy</span>
+            <span
+              className="text-green cursor-pointer"
+              onClick={() => setTerms(true)}
+            >
+              Terms & Conditions{" "}
+            </span>{" "}
+            and <br />
+            <span
+              className="text-green cursor-pointer"
+              onClick={() => setTerms(true)}
+            >
+              Privacy Policy
+            </span>
           </p>
         </div>
-        {errors.checkbox && (
-          <span className="text-red text-xs"> {errors.checkbox.message}</span>
-        )}
         <div>
-          <input
-            className="bg-green text-white w-full p-3 rounded-xl mt-6 font-medium cursor-pointer"
-            type="submit"
-            value="Submit"
-          />
+          <h1
+            className="bg-green text-white w-full p-3 rounded-xl mt-6 font-medium cursor-pointer text-center"
+            onClick={() => setTerms(true)}
+          >
+            Next
+          </h1>
           <p className="text-sm font-medium text-sec mt-5 mb-48 text-center md:text-left">
             Existing user ?{" "}
             <Link to="/">
@@ -298,6 +313,116 @@ function UserDetails({ formData, setFormData, nextPage, signup }) {
             </Link>
           </p>
         </div>
+        {terms && (
+          <motion.div
+            initial={{
+              opacity: 0,
+            }}
+            animate={{
+              opacity: 1,
+              transition: {
+                duration: 0.3,
+              },
+            }}
+            exit={{
+              opacity: 0,
+              transition: {
+                delay: 0.5,
+              },
+            }}
+            className="flex items-center justify-center fixed bg-overlay backdrop-blur-xs right-0 left-0 bottom-0 top-0 z-50"
+            // onClick={() => {
+            //         closeDetails(false)
+            //     }}
+          >
+            <motion.div
+              initial={{
+                scale: 0,
+              }}
+              animate={{
+                scale: 1,
+                transition: {
+                  duration: 0.3,
+                },
+              }}
+              exit={{
+                scale: 0,
+                transition: {
+                  delay: 0.5,
+                },
+              }}
+              className="bg-white rounded-xl w-11/12 lg:w-1/2 "
+            >
+              <div className="border-b border-stroke lg:px-10 px-5 py-5 text-sm lg:text-2xl font-semibold flex justify-between items-center text-modal">
+                <h1>Terms & Conditions</h1>
+
+                <MdClose
+                  className="cursor-pointer"
+                  onClick={() => {
+                    setTerms(false);
+                  }}
+                />
+              </div>
+              <div className="lg:px-10 px-5 py-5 text-sm font-normal lg:h-auto h-80 overflow-auto scroll">
+                <p>
+                  Every website needs a Terms and Conditions. Even if your
+                  website is not for your business or any commercial structure,
+                  you will be better off with a Terms and Conditions agreemnent.{" "}
+                  All websites are advised to have their own agreements for
+                  their own protection. <br />
+                  <br />
+                  Every website needs a Terms and Conditions. Even if your
+                  website is not for your business or any commercial structure,
+                  you will be better off with a Terms and Conditions agreemnent.
+                  All websites are advised to have their own agreements for
+                  their own protection.
+                  <br /> <br />
+                  We will help you by providing this FREE terms and conditions
+                  generator. Fill in the blank fields below, and we will email
+                  you your personalized terms and conditions just for you and
+                  your business. The accuracy of the generated document on this
+                  website is not legally binding. Use at your own risk.
+                </p>
+              </div>
+              <div className="lg:pt-7 pt-5 lg:px-10 px-5">
+                <div className=" flex items-start">
+                  <input
+                    // required
+                    type="checkbox"
+                    className="border mr-2"
+                    value="1"
+                    {...register("checkbox", {
+                      required: "check the box to proceed",
+                    })}
+                    onChange={(event) =>
+                      setFormData({ ...formData, terms: event.target.value })
+                    }
+                    checked={check}
+                  />
+                  <p className="text-xs tracking-wide">
+                    I agree with REIC{" "}
+                    <span className="text-green">Terms & Conditions </span> and{" "}
+                    <br />
+                    <span className="text-green">Privacy Policy</span>
+                  </p>
+                </div>
+                {errors.checkbox && (
+                  <span className="text-red text-xs">
+                    {" "}
+                    {errors.checkbox.message}
+                  </span>
+                )}
+              </div>
+              <div className=" px-5 lg:pb-10 pb-5 text-center">
+                <input
+                  className="bg-green text-white py-3 w-full lg:w-auto lg:px-28 text-sm rounded-xl mt-6 font-medium cursor-pointer"
+                  type="submit"
+                  value="Continue"
+                />
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
       </form>
     </>
   );

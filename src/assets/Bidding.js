@@ -303,6 +303,7 @@ function Bidding({ closeModal, itemId }) {
                             //     : post.pullout.accumulated_amount / 50000
                             // }
                             defaultValue={reic}
+                            min="0"
                           />
                         </div>
                         <div className="text-center h-1">
