@@ -40,6 +40,7 @@ module.exports = {
         relisted: "#B42318",
         relist: "#FEF3F2",
         input: "#F9FFFF",
+        profile: "#F6F9FC",
         ccc: "#cccccc",
         sort: "#8C8C8C",
         chatbg: "#F3F3F3",
@@ -107,6 +108,7 @@ module.exports = {
         modal: "#342D6E",
         strek: "#7281FF26",
         tokentext: "#353945",
+
         payment: "#777E91",
         vestabs: "#7D8698",
         title: "#28261E",

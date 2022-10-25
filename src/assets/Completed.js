@@ -8,6 +8,7 @@ import moment from "moment";
 import completed from "./images/card-tick.svg";
 import banner from "./images/banner.png";
 import { useNavigate } from "react-router-dom";
+import InvestHeader from "./InvestHeader";
 
 function Completed() {
   const [posts, setPosts] = useState();
@@ -55,9 +56,7 @@ function Completed() {
 
       <div className="lg:w-10/12 m-auto lg:mt-20 bg-dashbg rounded-lg lg:py-8 lg:px-4">
         <div className="bg-white h-screen lg:h-auto lg:p-10 w-full rounded-lg">
-          <div className="mb-10 hidden lg:block">
-            <h1 className="text-modal text-2xl font-semibold">Investments</h1>
-          </div>
+          <InvestHeader />
           <div className="lg:hidden py-8 px-4 bg-welcome text-dark text-lg font-semibold flex justify-between items-center">
             <h1 className="">Investments</h1>
             <button

@@ -25,6 +25,7 @@ import ScaleLoader from "react-spinners/ScaleLoader";
 import * as CurrencyFormat from "react-currency-format";
 import { FaAngleRight } from "react-icons/fa";
 import Tabs from "./Tab";
+import InvestHeader from "./InvestHeader";
 
 function Investment() {
   const [joinInvest, setJoinInvest] = useState(false);
@@ -55,8 +56,33 @@ function Investment() {
     }
   }
 
+  const [available, setAvailable] = useState(false);
+  const [lists, setLists] = useState();
+  async function fetchChatList() {
+    const token = localStorage.getItem("user-token");
+    // e.preventDefault();
+    const response = await fetch(
+      "https://reic.api.simpoo.biz/api/chat/chat_list",
+      {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+          Accept: "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    const result = await response.json();
+    console.log(result.data);
+    // alert(result.data.name);
+    setLists(result?.data.length);
+    if (result?.data.length > 0) {
+      setAvailable(true);
+    }
+  }
+
   useEffect(() => {
-    // activities();
+    fetchChatList();
     fetchData();
   }, []);
 
@@ -107,17 +133,19 @@ function Investment() {
           </div>
         </div>
         <div className="lg:hidden p-4 mb-10">
-          <Link to="/investment-chat">
-            <div className="mb-6 bg-green flex rounded justify-between items-center text-white text-sm p-4 py-2">
-              <Link to="/investment-chat">
-                <button className="flex items-center  rounded px-4 py-2 text-white text-sm">
-                  <img src={messenger} alt="messenger" />{" "}
-                  <span className="ml-3">Messages(3)</span>
-                </button>
-              </Link>
-              <FaAngleRight className="text-base" />
-            </div>
-          </Link>
+          {available && (
+            <Link to="/investment-chat">
+              <div className="mb-6 bg-green flex rounded justify-between items-center text-white text-sm p-4 py-2">
+                <Link to="/investment-chat">
+                  <button className="flex items-center  rounded px-4 py-2 text-white text-sm">
+                    <img src={messenger} alt="messenger" />{" "}
+                    <span className="ml-3">Messages({lists})</span>
+                  </button>
+                </Link>
+                <FaAngleRight className="text-base" />
+              </div>
+            </Link>
+          )}
           <Link to="/investment/new-investment">
             <div className="mb-4 bg-white flex rounded justify-between items-center text-vestabs text-sm p-4 py-6">
               <div className="flex items-center ">
@@ -174,9 +202,7 @@ function Investment() {
           </Link>
         </div>
         <div className="bg-white p-10 w-full rounded-lg hidden lg:block">
-          <div className="mb-10">
-            <h1 className="text-modal text-2xl font-semibold">Investments</h1>
-          </div>
+          <InvestHeader />
           {/* {posts[0].id} */}
           {/* <InvestTabs /> */}
           <Tabs />

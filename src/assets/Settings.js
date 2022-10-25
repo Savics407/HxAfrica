@@ -18,6 +18,7 @@ import avater8 from "./images/8.svg";
 import avater9 from "./images/9.svg";
 import { useEffect, useState } from "react";
 import { stringify } from "postcss";
+import MobileProfile from "./MobileProfile";
 
 function SelectAvater({ setAvailable }) {
   const images = {
@@ -403,7 +404,7 @@ function Profile() {
               )}
               {/* <img src={userIcon} alt="Profile Picture" className="w-28 h-28" /> */}
               <button
-                className="text-blue border rounded-full lg:py-1 lg:px-4 py-2 px-6 font-bold text-tiny lg:text-sm my-3"
+                className="text-blue hidden lg:block border rounded-full lg:py-1 lg:px-4 py-2 px-6 font-bold text-tiny lg:text-sm my-3"
                 onClick={() => setAvailable(true)}
               >
                 Change Avatar
@@ -413,7 +414,8 @@ function Profile() {
               </h1> */}
             </div>
           </div>
-          <div className="my-14 text-footer">
+          <MobileProfile />
+          <div className="my-14 text-footer hidden lg:block">
             <h1 className="uppercase lg:capitalize text-footer text-xs px-3 font-medium">
               User Information
             </h1>
@@ -437,7 +439,7 @@ function Profile() {
                 </td>
               </tr>
               <tr>
-                <td className="lg:w-1/3 w-2/5 px-5 py-2">
+                <td className="lg:w-1/3 w-2/5 px-5 py-2 ">
                   <h1 className="text-footer font-semibold text-xs lg:text-base">
                     Username
                   </h1>
@@ -454,13 +456,13 @@ function Profile() {
                 </td>
               </tr>
               <tr>
-                <td className="lg:w-1/3 w-2/5 px-5 py-2">
-                  <h1 className="text-footer font-semibold text-xs lg:text-base">
+                <td className="lg:w-1/3 w-2/5 px-5 py-2 ">
+                  <h1 className="text-footer font-semibold text-xs lg:text-base  ">
                     Email Address
                   </h1>
                 </td>
                 <td
-                  className="lg:w-2/3 w-3/5 border px-5"
+                  className="lg:w-2/3 w-3/5 px-5 border"
                   onClick={() => alert("can't edit email address")}
                 >
                   {/* <h1 className="font-medium text-sm">{userEmail}</h1> */}
@@ -479,7 +481,7 @@ function Profile() {
                 </td>
               </tr>
               <tr>
-                <td className="lg:w-1/3 w-2/5 px-5 py-2">
+                <td className="lg:w-1/3 w-2/5 px-5 py-2 ">
                   <h1 className="text-footer font-semibold text-xs lg:text-base">
                     Mobile Number
                   </h1>
@@ -503,7 +505,7 @@ function Profile() {
                 </td>
               </tr>
               <tr>
-                <td className="lg:w-1/3 w-2/5 px-5 py-2">
+                <td className="lg:w-1/3 w-2/5 px-5 py-2 ">
                   <h1 className="text-footer font-semibold text-xs lg:text-base">
                     Date of Birth
                   </h1>
@@ -523,7 +525,7 @@ function Profile() {
                 </td>
               </tr>
               <tr>
-                <td className="lg:w-1/3 w-2/5 px-5 py-2">
+                <td className="lg:w-1/3 w-2/5 px-5 py-2 ">
                   <h1 className="text-footer font-semibold text-xs lg:text-base">
                     Address
                   </h1>
@@ -538,7 +540,7 @@ function Profile() {
                 </td>
               </tr>
               <tr>
-                <td className="lg:w-1/3 w-2/5 px-5 py-2">
+                <td className="lg:w-1/3 w-2/5 px-5 py-2 ">
                   <h1 className="text-footer font-semibold text-xs lg:text-base">
                     State
                   </h1>
@@ -604,7 +606,7 @@ function Profile() {
                 </td>
               </tr>
               <tr>
-                <td className="lg:w-1/3 w-2/5 px-5 py-2">
+                <td className="lg:w-1/3 w-2/5 px-5 py-2 ">
                   <h1 className="text-footer font-semibold text-xs lg:text-base">
                     City
                   </h1>
@@ -632,7 +634,7 @@ function Profile() {
               </button>
             </div>
             <button
-              className="rounded-full bg-green text-dashbg w-full lg:w-auto font-medium text-sm py-3 px-12 "
+              className="rounded-full bg-green text-dashbg hidden lg:block w-full lg:w-auto font-medium text-sm py-3 px-12 "
               onClick={update}
             >
               Update

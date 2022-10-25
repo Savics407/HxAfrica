@@ -4,13 +4,13 @@ import InvestTabs from "./InvestTabs";
 import box from "./images/Box.png";
 import moment from "moment";
 import * as CurrencyFormat from "react-currency-format";
-import messenger from "./images/Line.svg";
 import Details from "./Investment_Details";
 import crowd from "./images/crowdfund.png";
 import mine from "./images/mywallet.svg";
 import { MdClose } from "react-icons/md";
 import ScaleLoader from "react-spinners/ScaleLoader";
 import { Link, NavLink, useNavigate } from "react-router-dom";
+import InvestHeader from "./InvestHeader";
 
 function Mine() {
   const [openDetails, setOpenDetails] = useState(false);
@@ -49,6 +49,7 @@ function Mine() {
     }
   }
   const [lists, setLists] = useState(false);
+  const [length, setLength] = useState();
   async function fetchChatList() {
     const token = localStorage.getItem("user-token");
     // e.preventDefault();
@@ -66,7 +67,7 @@ function Mine() {
     const result = await response.json();
     console.log(result.data);
     // alert(result.data.name);
-    // setLists(result?.data);
+    setLength(result?.data.length);
     if (result?.data.length !== 0) {
       //  setLoading(false);
       setLists(true);
@@ -103,17 +104,18 @@ function Mine() {
           {/* <div className="mb-10 hidden lg:block">
             <h1 className="text-modal text-2xl font-semibold">Investments</h1>
           </div> */}
-          <div className="mb-10 flex justify-between items-center hidden lg:flex">
+          {/* <div className="mb-10 flex justify-between items-center hidden lg:flex">
             <h1 className="text-modal text-2xl font-semibold">Investments</h1>
             {lists && (
               <Link to="/investment-chat">
                 <button className="flex items-center bg-green rounded px-4 py-2 text-white text-sm">
                   <img src={messenger} alt="messenger" />{" "}
-                  <span className="ml-3">Messages(3)</span>
+                  <span className="ml-3">Messages({length})</span>
                 </button>
               </Link>
             )}
-          </div>
+          </div> */}
+          <InvestHeader />
           {lists && (
             <div className="absolute top-40 left-0 right-0 hidden lg:block">
               <div className=" border border-green rounded-lg w-100 m-auto flex items-center justify-between bg-white text-navbar p-5 shadow-2xl ">

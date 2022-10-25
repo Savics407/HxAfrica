@@ -14,6 +14,7 @@ import { FiArrowUp } from "react-icons/fi";
 import JoinInvestment from "./JoinOngoing";
 import ScaleLoader from "react-spinners/ScaleLoader";
 import { HiOutlineArrowRight } from "react-icons/hi";
+import InvestHeader from "./InvestHeader";
 
 function Ongoing() {
   const userID = localStorage.getItem("user-id");
@@ -99,9 +100,7 @@ function Ongoing() {
           
         */}
         <div className="bg-white h-screen lg:h-auto lg:p-10 w-full rounded-lg">
-          <div className="mb-10 hidden lg:block">
-            <h1 className="text-modal text-2xl font-semibold">Investments</h1>
-          </div>
+          <InvestHeader />
           <div className="lg:hidden py-8 px-4 bg-welcome text-dark text-lg font-semibold flex justify-between items-center">
             <h1 className="">Investments</h1>
             <button

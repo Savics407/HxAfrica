@@ -116,23 +116,26 @@ function BiddersChat() {
     setChat(result?.data);
     if (result?.status === "success") {
       setSent(false);
-    }
-    if (result?.data.length > 0) {
       setLoading(false);
-      setNone(false);
-      // setAvailable(true);
     }
-
     if (result?.data.length === 0) {
-      setLoading(false);
+      setAvailable(true);
       setNone(true);
-      // setAvailable(true);
+    } else {
+      setNone(false);
+    }
+    if (receiver === null) {
+      setAvailable(false);
     }
   }
+
+  // function remove() {
+  //   localStorage.removeItem("investment-owner")
+  // }
   useEffect(() => {
     fetchChatList();
     fetchChat(receiver);
-    setAvailable(true);
+    // setAvailable(true);
   }, []);
 
   useEffect(() => {
@@ -167,6 +170,11 @@ function BiddersChat() {
     if (result.status === "success") {
       // alert("message was sent successfully");
       fetchChat(receiver);
+      setNone(false);
+      fetchChatList();
+      // if (receiver === lists?.user.id) {
+      //   setName(lists?.user.name);
+      // }
     }
   }
   return (
@@ -198,7 +206,7 @@ function BiddersChat() {
               <>
                 {lists?.map((list) => (
                   <div
-                    className="border-b flex justify-between px-10 py-5 cursor-pointer"
+                    className="border-b flex justify-between px-10 py-5 cursor-pointer hover:bg-mine"
                     onClick={() => {
                       // setReceiver(list.receiver_id);
                       setAvailable(true);
@@ -271,7 +279,7 @@ function BiddersChat() {
                   <ScaleLoader color="#008E10" height={50} width={6} />
                 </div>
               ) : (
-                <div className="lg:p-10 p-5 lg:h-7x overflow-y-auto scroll">
+                <div className="lg:p-10 pt-20 lg:pt-auto p-5 h-screen lg:h-7x overflow-y-auto scroll">
                   {chat?.map((chat) => (
                     <>
                       {" "}
@@ -294,7 +302,8 @@ function BiddersChat() {
                                       : "text-border"
                                   }`}
                                 />{" "}
-                                {moment(chat.created_at).format("LT")}
+                                {/* {moment(chat.created_at).format("LT")} */}
+                                {moment(chat.created_at).calendar()}
                               </h1>
                             </div>
                           </div>
@@ -323,7 +332,7 @@ function BiddersChat() {
                                 {chat.message}
                               </p>
                               <h1 className="font-normal text-time text-tiny">
-                                {moment(chat.created_at).format("LT")}
+                                {moment(chat.created_at).calendar()}
                               </h1>
                             </div>
                           </div>
@@ -341,11 +350,11 @@ function BiddersChat() {
                           <h1 className="text-you font-semibold text-tiny">
                             You.
                           </h1>
-                          <p className="font-normal rtext-xs lg:text-sm text-chat">
+                          <p className="font-normal text-xs lg:text-sm text-chat">
                             {now}
                           </p>
                           <h1 className="flex items-center font-normal text-timeStamp text-tiny">
-                            <RiCheckDoubleFill /> {moment(Date()).format("LT")}
+                            <RiCheckDoubleFill /> {moment(Date()).calendar()}
                           </h1>
                         </div>
                       </div>
