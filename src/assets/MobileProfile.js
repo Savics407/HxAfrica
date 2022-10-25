@@ -4,7 +4,7 @@ import mail from "./images/sms-notification.svg";
 import call from "./images/call.svg";
 import cake from "./images/cake.svg";
 import location from "./images/location.svg";
-import address from "./images/gps.svg";
+import gps from "./images/gps.svg";
 // import { ca } from "date-fns/locale";
 
 function MobileProfile() {
@@ -73,7 +73,7 @@ function MobileProfile() {
         </div>
 
         <div className="bg-profile flex items-center p-6 rounded-lg  my-3">
-          <img src={mail} alt="User Icon" className="mr-5" />
+          <img src={mail} alt="Mail Icon" className="mr-5" />
           <div className="text-footer">
             <h1 className="font-semibold text-xs mb-1">Email Address</h1>
             <h1 className="font-normal text-xs">{posts?.email}</h1>
@@ -81,7 +81,7 @@ function MobileProfile() {
         </div>
 
         <div className="bg-profile flex items-center p-6 rounded-lg  my-3">
-          <img src={call} alt="User Icon" className="mr-5" />
+          <img src={call} alt="Phone" className="mr-5" />
           <div className="text-footer">
             <h1 className="font-semibold text-xs mb-1">Mobile Number</h1>
             <h1 className="font-normal text-xs">{phone}</h1>
@@ -89,7 +89,7 @@ function MobileProfile() {
         </div>
 
         <div className="bg-profile flex items-center p-6 rounded-lg  my-3">
-          <img src={cake} alt="User Icon" className="mr-5" />
+          <img src={cake} alt="Birthday Icon" className="mr-5" />
           <div className="text-footer">
             <h1 className="font-semibold text-xs mb-1">Date of Birth</h1>
             <h1 className="font-normal text-xs">{dob}</h1>
@@ -97,7 +97,7 @@ function MobileProfile() {
         </div>
 
         <div className="bg-profile flex items-center p-6 rounded-lg  my-3">
-          <img src={location} alt="User Icon" className="mr-5" />
+          <img src={location} alt="Location" className="mr-5" />
           <div className="text-footer">
             <h1 className="font-semibold text-xs mb-1">Location</h1>
             <h1 className="font-normal text-xs">
@@ -107,7 +107,7 @@ function MobileProfile() {
         </div>
 
         <div className="bg-profile flex items-center p-6 rounded-lg  my-3">
-          <img src={address} alt="User Icon" className="mr-5" />
+          <img src={gps} alt="Address" className="mr-5" />
           <div className="text-footer">
             <h1 className="font-semibold text-xs mb-1">Address</h1>
             <h1 className="font-normal text-xs">{address}</h1>
