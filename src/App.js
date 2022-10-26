@@ -48,6 +48,7 @@ import AdminRoutes from "./util/AdminRoutes";
 import Transactions from "./assets/admin/Transactions";
 import InvestorsTransactions from "./assets/admin/InvestorsTransactions";
 import { useEffect, useState } from "react";
+import AccountRecovery from "./assets/AccountRecovery";
 
 function App() {
   return (
@@ -57,6 +58,7 @@ function App() {
       <Routes>
         <Route path="/sign-up" element={<Auth />} />
         <Route path="/" element={<Login />} />
+        <Route path="/account-recovery" element={<AccountRecovery />} />
 
         <Route path="/status" element={<UseNetworkStatus />} />
         <Route element={<AdminRoutes />}>

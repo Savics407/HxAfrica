@@ -201,7 +201,9 @@ function Login() {
             </div>
 
             <div className=" flex items-start">
-              <p className="text-xs tracking-wide">Forgot Password?</p>
+              <Link to="/account-recovery">
+                <p className="text-xs tracking-wide">Forgot Password?</p>
+              </Link>
             </div>
 
             <div
