@@ -68,7 +68,7 @@ function AccountRecovery() {
                 Recovery Phase
               </h1>
               <p className="font-normal text-sm pt-2">
-                kindly provide the 4 digit pin sent to{" "}
+                kindly provide the 5 digit pin sent to{" "}
                 <b>youremail@gmail.com</b>
               </p>
             </div>

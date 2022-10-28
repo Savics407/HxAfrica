@@ -56,9 +56,30 @@ function Pending() {
       setLoading(false);
     }
   }
+  const [percentage, setPercentage] = useState();
+
+  async function cancelPercentage() {
+    const token = localStorage.getItem("user-token");
+    const response = await fetch(
+      "https://reic.api.simpoo.biz/api/investment/cancel_percentage",
+      {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+          Accept: "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    const result = await response.json();
+    console.log(result?.status);
+    setPercentage(result?.data);
+  }
 
   useEffect(() => {
     // activities();
+    cancelPercentage();
+
     fetchData();
   }, []);
   const [itemId, setItemID] = useState("");
@@ -287,6 +308,7 @@ function Pending() {
           warning={warning}
           processing={processing}
           completed={completed}
+          percentage={percentage}
         />
       )}
     </div>
@@ -302,6 +324,7 @@ export function Warning({
   warning,
   processing,
   completed,
+  percentage,
 }) {
   const navigate = useNavigate();
 
@@ -419,7 +442,10 @@ export function Warning({
           <div className="font-semibold text-sm lg:text-base text-neutral my-8">
             <p>
               You are about to cancel your investment <br />
-              on <span className="text-green">{title} </span>
+              on <span className="text-green">{title} </span> This action will
+              incur
+              <span className="text-green">%{percentage}</span> charges of your
+              Investment
             </p>
           </div>
           <div className="flex justify-between">
