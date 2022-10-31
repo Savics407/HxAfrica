@@ -153,8 +153,8 @@ function PullList() {
 
   return (
     <>
-      <div className="flex justify-between my-6">
-        <div className="border-2 w-44 bg-white rounded-lg px-4 py-3">
+      <div className="flex justify-end my-6 ">
+        {/* <div className="border-2 w-44 bg-white rounded-lg px-4 py-3">
           <div className="w-full flex justify-between items-center text-sm text-sort">
             <h1>
               Sort By: <span className="font-semibold text-dark">All</span>
@@ -162,8 +162,8 @@ function PullList() {
 
             <FaAngleDown />
           </div>
-        </div>
-        <div className="border-2 bg-white rounded-lg flex items-center px-5 justify-between w-411">
+        </div> */}
+        <div className="border-2 bg-white rounded-lg flex items-center py-1 px-5 justify-between w-411">
           <input
             type="search"
             placeholder="Search Merchants"
