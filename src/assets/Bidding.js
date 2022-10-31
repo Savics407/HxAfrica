@@ -62,14 +62,36 @@ function Bidding({ closeModal, itemId }) {
     setBalance(result?.data.balance);
     setToken(result?.data.token);
   }
+
+  const [percentage, setPercentage] = useState();
+  async function fetchPercentage() {
+    const token = localStorage.getItem("user-token");
+
+    const response = await fetch(
+      "https://reic.api.simpoo.biz/api/investment/exchange_percentage",
+      {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    const result = await response.json();
+    console.log(result.data);
+    setPercentage(result.data);
+  }
+
   useEffect(() => {
     wallet();
     window.scrollTo(0, 0);
     fetchData();
+    fetchPercentage();
   }, []);
 
   const [reic, setReic] = useState();
   const [title, setTitle] = useState("");
+  const [bidID, setBidID] = useState();
   // alert(amount);
   async function bid(id) {
     const payLoad = {
@@ -95,8 +117,8 @@ function Bidding({ closeModal, itemId }) {
 
     // alert(payLoad.pullout_id);
     if (result?.status === "success") {
+      setInfo(false);
       setAuthPullOut(!authPullOut);
-      setIsClick(!isClick);
     } else {
       if (result.status === "error") {
         // console.log(result.data);
@@ -113,7 +135,7 @@ function Bidding({ closeModal, itemId }) {
       }
     }
   }
-
+  const [info, setInfo] = useState(false);
   return (
     <>
       <motion.div
@@ -340,9 +362,9 @@ function Bidding({ closeModal, itemId }) {
                           onClick={() => {
                             // const token = localStorage.getItem("user-wallet");
                             // setReic(post.pullout.accumulated_amount);
-                            if (reic === 0) {
+                            if (reic === "0") {
                               alert("kindly input reic amount to invest");
-                            } else if (reic === "") {
+                            } else if (reic === undefined) {
                               alert("kindly input reic amount to invest");
                             } else if (reic > token) {
                               toast.error(
@@ -360,8 +382,12 @@ function Bidding({ closeModal, itemId }) {
                                 }
                               );
                             } else {
-                              // setTitle(post.product.title);
-                              bid(post.pullout.investment_id);
+                              setTitle(post.product.title);
+                              setIsClick(!isClick);
+                              setInfo(true);
+                              // alert(reic);
+                              setBidID(post.pullout.investment_id);
+                              // bid(post.pullout.investment_id);
                             }
                           }}
                         >
@@ -374,7 +400,61 @@ function Bidding({ closeModal, itemId }) {
             )}
           </motion.div>
         </>
-
+        {info && (
+          <div className="  fixed top-0 bottom-0 flex items-center justify-center left-0 right-0 ">
+            <motion.div
+              initial={{
+                opacity: 0,
+              }}
+              animate={{
+                opacity: 1,
+                transition: {
+                  duration: 0.3,
+                },
+              }}
+              exit={{
+                opacity: 0,
+                transition: {
+                  delay: 0.5,
+                },
+              }}
+              className={`lg:w-128 w-11/12 bg-white rounded-xl absolute border-green p-6 text-center`}
+            >
+              <div>
+                <h1 className="lg:font-bold font-semibold text-neutral text-3xl">
+                  Place Bid
+                </h1>
+              </div>
+              <div className="font-semibold lg:text-base text-sm text-neutral my-8">
+                <p>
+                  You are about to place a bid on <br />
+                  <span className="text-green">{title} </span> investment.{" "}
+                  <br /> You will be charged{" "}
+                  <span className="text-green">%{percentage}</span> of your
+                  investment if your bid is approved.
+                </p>
+              </div>
+              <div className="flex justify-between">
+                <button
+                  className="border text-sm lg:text-base rounded-full w-40 lg:w-44 h-12 text-neutral bg-dashbg"
+                  onClick={() => {
+                    closeModal(false);
+                  }}
+                >
+                  No, Cancel
+                </button>
+                <button
+                  className="rounded-full text-sm lg:text-base w-40 lg:w-44 h-12 text-dashbg bg-green"
+                  onClick={() => {
+                    bid(bidID);
+                  }}
+                >
+                  Yes, Continue
+                </button>
+              </div>
+            </motion.div>
+          </div>
+        )}
         {negotiate && (
           <div className="  fixed top-0 bottom-0 flex items-center justify-center left-0 right-0 ">
             <motion.div

@@ -8,27 +8,27 @@ import { HiOutlinePlusSm } from "react-icons/hi";
 import { toast } from "react-toastify";
 import Products from "./Products";
 
-function Create() {
-  const [merchants, setMerchants] = useState();
-  async function fetchMerchants() {
-    const token = localStorage.getItem("user-token");
-    // e.preventDefault();
-    const response = await fetch(
-      "https://reic.api.simpoo.biz/api/admin/fetch_merchants",
-      {
-        method: "POST",
-        headers: {
-          "Content-type": "application/json",
-          Accept: "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
-    const result = await response.json();
-    console.log(result.data);
-    // alert(result.data.name);
-    setMerchants(result?.data);
-  }
+function Create({ fetchMerchants, merchants }) {
+  // const [merchants, setMerchants] = useState();
+  // async function fetchMerchants() {
+  //   const token = localStorage.getItem("user-token");
+  //   // e.preventDefault();
+  //   const response = await fetch(
+  //     "https://reic.api.simpoo.biz/api/admin/fetch_merchants",
+  //     {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-type": "application/json",
+  //         Accept: "application/json",
+  //         Authorization: `Bearer ${token}`,
+  //       },
+  //     }
+  //   );
+  //   const result = await response.json();
+  //   console.log(result.data);
+  //   // alert(result.data.name);
+  //   setMerchants(result?.data);
+  // }
 
   const [product, setProduct] = useState();
   async function fetchProducts() {
@@ -51,7 +51,7 @@ function Create() {
     setProduct(result?.data);
   }
   useEffect(() => {
-    fetchMerchants();
+    // fetchMerchants();
     fetchProducts();
   }, []);
 
@@ -131,6 +131,10 @@ function Create() {
           progress: undefined,
         });
       }
+    }
+    if (result?.status === "success") {
+      setCreate(!create);
+      fetchMerchants();
     }
   }
   return (

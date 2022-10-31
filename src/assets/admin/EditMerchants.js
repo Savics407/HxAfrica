@@ -37,7 +37,7 @@ function EditMerchants({ setEdit, merchantId }) {
   }, []);
 
   const [create, setCreate] = useState(false);
-  const [image, setImage] = useState(null);
+  const [image, setImage] = useState();
   const [preview, setPreview] = useState();
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -66,11 +66,12 @@ function EditMerchants({ setEdit, merchantId }) {
     const token = localStorage.getItem("user-token");
     e.preventDefault();
     const formData = new FormData();
+    formData.append("user_id", merchantId);
     formData.append("image", image);
-    formData.append("name", details.name);
+    // formData.append("name", details.name);
     formData.append("phone", details.phone);
     formData.append("address", details.address);
-    formData.append("email", details.email);
+    // formData.append("email", details.email);
     formData.append("state_id", details.state);
     formData.append("city", details.city);
 
@@ -342,7 +343,8 @@ function EditMerchants({ setEdit, merchantId }) {
                           // style={{ backgroundImage: `url(${preview})` }}
                         >
                           <img
-                            src={preview}
+                            src={preview === null ? post.logo_path : preview}
+                            // src={post.logo_path}
                             alt="product"
                             className="object-cover w-full h-full rounded-lg"
                           />
@@ -350,6 +352,7 @@ function EditMerchants({ setEdit, merchantId }) {
                             className="text-dark shadow bg-dashbg text-xs p-2 absolute left-2 rounded cursor-pointer bottom-2"
                             onClick={() => {
                               setImage(null);
+                              // alert(preview);
                             }}
                           >
                             change image

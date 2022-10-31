@@ -63,13 +63,34 @@ function JoinInvestment({ closeModal, itemId }) {
     setBalance(result?.data.balance);
     setToken(result?.data.token);
   }
+
+  const [percentage, setPercentage] = useState();
+  async function fetchPercentage() {
+    const token = localStorage.getItem("user-token");
+
+    const response = await fetch(
+      "https://reic.api.simpoo.biz/api/investment/investment_percentage",
+      {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    const result = await response.json();
+    console.log(result.data);
+    setPercentage(result.data);
+  }
+
   useEffect(() => {
     wallet();
     window.scrollTo(0, 0);
     fetchData();
+    fetchPercentage();
   }, []);
 
-  const [reic, setReic] = useState(0);
+  const [reic, setReic] = useState("");
   const [title, setTitle] = useState("");
   // alert(amount);
 
@@ -313,7 +334,7 @@ function JoinInvestment({ closeModal, itemId }) {
                         className="border rounded-full w-full lg:w-44 h-12 text-dashbg bg-green"
                         onClick={() => {
                           // const token = localStorage.getItem("user-wallet");
-                          if (reic === 0) {
+                          if (reic === "0") {
                             alert("kindly input reic amount to invest");
                           } else if (reic === "") {
                             alert("kindly input reic amount to invest");
@@ -355,6 +376,7 @@ function JoinInvestment({ closeModal, itemId }) {
             title={title}
             productID={productID}
             closeModal={closeModal}
+            percentage={percentage}
           />
         )}
       </motion.div>
@@ -364,7 +386,14 @@ function JoinInvestment({ closeModal, itemId }) {
 
 // the close modal
 
-export function Warning({ closeWarning, closeModal, reic, title, productID }) {
+export function Warning({
+  closeWarning,
+  closeModal,
+  reic,
+  title,
+  productID,
+  percentage,
+}) {
   function redirect() {
     setProcessing(false);
     setCompleted(true);
@@ -447,7 +476,9 @@ export function Warning({ closeWarning, closeModal, reic, title, productID }) {
         <div className="font-semibold lg:text-base text-sm text-neutral my-8">
           <p>
             You are about to invest {reic} REIC to <br />{" "}
-            <span className="text-green">{title} </span>
+            <span className="text-green">{title} </span> <br /> There will be a{" "}
+            <span className="text-green">%{percentage}</span> charge for this
+            investment
           </p>
         </div>
         <div className="flex justify-between">

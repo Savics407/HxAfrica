@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "./Admin_header";
 import SideBar from "./SideBar";
 
@@ -8,7 +8,28 @@ import Products from "./Products";
 import CreateMarchant from "./CreateMerchant.js";
 
 function Marchants() {
+  const [merchants, setMerchants] = useState();
+  async function fetchMerchants() {
+    const token = localStorage.getItem("user-token");
+    // e.preventDefault();
+    const response = await fetch(
+      "https://reic.api.simpoo.biz/api/admin/fetch_merchants",
+      {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+          Accept: "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    const result = await response.json();
+    console.log(result.data);
+    // alert(result.data.name);
+    setMerchants(result?.data);
+  }
   useEffect(() => {
+    fetchMerchants();
     window.scrollTo(0, 0);
   }, []);
 
@@ -25,9 +46,15 @@ function Marchants() {
           </div>
           <div className="">
             <div className="">
-              <CreateMarchant />
+              <CreateMarchant
+                fetchMerchants={fetchMerchants}
+                merchants={merchants}
+              />
 
-              <MarchantsList />
+              <MarchantsList
+                merchants={merchants}
+                fetchMerchants={fetchMerchants}
+              />
             </div>
             {/* <div className="w-2/6 mt-5 bg-white rounded-lg">
               <Products />

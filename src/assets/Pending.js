@@ -442,10 +442,9 @@ export function Warning({
           <div className="font-semibold text-sm lg:text-base text-neutral my-8">
             <p>
               You are about to cancel your investment <br />
-              on <span className="text-green">{title} </span> This action will
-              incur
-              <span className="text-green">%{percentage}</span> charges of your
-              Investment
+              on <span className="text-green">{title} </span> <br /> This action
+              will incur <span className="text-green">%{percentage}</span>{" "}
+              charges of your Investment
             </p>
           </div>
           <div className="flex justify-between">

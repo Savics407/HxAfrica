@@ -10,28 +10,7 @@ import { toast } from "react-toastify";
 import { motion } from "framer-motion";
 import EditMerchants from "./EditMerchants";
 
-function MarchantsList() {
-  const [merchants, setMerchants] = useState();
-  async function fetchMerchants() {
-    const token = localStorage.getItem("user-token");
-    // e.preventDefault();
-    const response = await fetch(
-      "https://reic.api.simpoo.biz/api/admin/fetch_merchants",
-      {
-        method: "POST",
-        headers: {
-          "Content-type": "application/json",
-          Accept: "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
-    const result = await response.json();
-    console.log(result.data);
-    // alert(result.data.name);
-    setMerchants(result?.data);
-  }
-
+function MarchantsList({ merchants, fetchMerchants }) {
   async function removeMerchant() {
     const token = localStorage.getItem("user-token");
 
@@ -286,7 +265,7 @@ function MarchantsList() {
                       return val;
                     }
                   })
-                  .sort((a, b) => (a.name < b.name ? 1 : -1))
+                  .sort((a, b) => b.name - a.name)
 
                   .map((merchant) => (
                     <tr className="border-b font-inter" key={merchant.id}>
@@ -308,7 +287,7 @@ function MarchantsList() {
                           </div>
                         </div>
                         <div>
-                          <h1 className="font-normal truncate text-deep text-sm">
+                          <h1 className="font-normal truncate text-deep text-sm capitalize">
                             <span title={merchant.name}> {merchant.name} </span>
                           </h1>
                           <h1 className="font-normal text-statustext text-xs">

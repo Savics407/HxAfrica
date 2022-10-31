@@ -7,11 +7,14 @@ import { MdClose } from "react-icons/md";
 import { motion } from "framer-motion";
 
 import StaffList from "./StaffList";
+import { toast } from "react-toastify";
+import { set } from "date-fns";
 
 function Staffs() {
   const [create, setCreate] = useState(false);
   const [image, setImage] = useState(null);
   const [preview, setPreview] = useState();
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (image) {
@@ -36,6 +39,7 @@ function Staffs() {
   async function addStaff(e) {
     const token = localStorage.getItem("user-token");
     e.preventDefault();
+    setLoading(!loading);
     const formData = new FormData();
     formData.append("image", image);
     formData.append("name", details.name);
@@ -57,6 +61,52 @@ function Staffs() {
     const result = await response.json();
     console.log(result.data);
     // alert(result.data.name);
+    if (result?.errors) {
+      toast.error(`${result.message}`, {
+        position: "top-left",
+        autoClose: 1500,
+        hideProgressBar: true,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      setLoading(false);
+    }
+    if (result?.status === "success") {
+      setCreate(!create);
+      fetchStaffs();
+      setLoading(false);
+      toast.success(`${result.message}`, {
+        position: "top-left",
+        autoClose: 1500,
+        hideProgressBar: true,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    }
+  }
+  const [staffs, setStaffs] = useState();
+  async function fetchStaffs() {
+    const token = localStorage.getItem("user-token");
+    // e.preventDefault();
+    const response = await fetch(
+      "https://reic.api.simpoo.biz/api/admin/fetch_staffs",
+      {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+          Accept: "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    const result = await response.json();
+    console.log(result.data);
+    // alert(result.data.name);
+    setStaffs(result?.data);
   }
 
   return (
@@ -203,7 +253,7 @@ function Staffs() {
                     <input
                       type="submit"
                       className=" cursor-pointer bg-green py-3 px-8 outline-none rounded-full"
-                      value="Add Staff"
+                      value={loading ? "Processing ..." : "Add Staff"}
                       onClick={addStaff}
                     />
                   </div>
@@ -235,7 +285,7 @@ function Staffs() {
           </div>
           <div className="flex justify-between">
             <div className="w-full">
-              <StaffList />
+              <StaffList fetchStaffs={fetchStaffs} staffs={staffs} />
             </div>
           </div>
         </div>

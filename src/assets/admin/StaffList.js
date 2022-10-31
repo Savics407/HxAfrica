@@ -6,27 +6,7 @@ import { motion } from "framer-motion";
 import { toast } from "react-toastify";
 // import { MdArrowForwardIos } from "react-icons/md";
 
-function StaffList() {
-  const [staffs, setStaffs] = useState();
-  async function fetchStaffs() {
-    const token = localStorage.getItem("user-token");
-    // e.preventDefault();
-    const response = await fetch(
-      "https://reic.api.simpoo.biz/api/admin/fetch_staffs",
-      {
-        method: "POST",
-        headers: {
-          "Content-type": "application/json",
-          Accept: "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
-    const result = await response.json();
-    console.log(result.data);
-    // alert(result.data.name);
-    setStaffs(result?.data);
-  }
+function StaffList({ fetchStaffs, staffs }) {
   const [roles, setRoles] = useState();
   async function fetchRoles() {
     const token = localStorage.getItem("user-token");
@@ -277,9 +257,9 @@ function StaffList() {
                   </td>
 
                   <td className="py-3 text-center">
-                    <button className="font-medium text-xs font-inter text-blue py-2 px-2 border-r ">
+                    {/* <button className="font-medium text-xs font-inter text-blue py-2 px-2 border-r ">
                       Edit
-                    </button>
+                    </button> */}
                     <button
                       // className="font-medium text-xs font-inter text-inactive py-1 px-2"
                       className="font-medium text-xs font-inter bg-relist text-relisted rounded-full ml-2 py-1 px-3"

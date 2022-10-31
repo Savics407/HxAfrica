@@ -70,7 +70,7 @@ function AddBank({ closeToken, setVerifyBVN, setWithdraw, setBankID }) {
     accountNumber: "",
   });
   const [process, setProcess] = useState(false);
-  const [bankInfo, setBankInfo] = useState("Default, bank");
+  const [bankInfo, setBankInfo] = useState("BankCode, bankName");
   const split = bankInfo.split(",");
   const bankCode = split[0];
   const bankName = split[1];
@@ -259,7 +259,9 @@ function AddBank({ closeToken, setVerifyBVN, setWithdraw, setBankID }) {
                 placeholder="enter account name"
                 className="box"
               /> */}
-                {/* <h1>{bankName}, {bankCode}</h1> */}
+                {/* <h1>
+                  {bankName}, {bankCode}
+                </h1> */}
 
                 <select
                   className="border rounded-full lg:rounded-xl border-border bg-input p-4 lg:p-3 lg:text-sm text-xs focus-within:shadow-lg outline-none text-green cursor-pointer"
@@ -271,17 +273,18 @@ function AddBank({ closeToken, setVerifyBVN, setWithdraw, setBankID }) {
                   }
                 >
                   <option selected>--Choose Bank--</option>
-
                   {banks?.map((bank) => (
                     <option
                       key={bank.id}
                       value={
-                        bank.code === null
-                          ? ""
-                          : [bank.code.code, bank.code.name]
+                        bank.code.length === 1 && [
+                          bank.code[0].code,
+                          bank.code[0].name,
+                        ]
                       }
+                      className={`${bank.code.length === 0 && "hidden"}`}
                     >
-                      {bank.code === null ? "null" : bank.code.name}
+                      {bank.name}
                     </option>
                   ))}
                 </select>

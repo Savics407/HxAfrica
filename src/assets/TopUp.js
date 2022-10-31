@@ -72,7 +72,7 @@ function TopUp({ closeModal, itemId, productDetails, setAuthCancel, setTile }) {
     fetchData();
   }, []);
 
-  const [reic, setReic] = useState(0);
+  const [reic, setReic] = useState("");
   const [title, setTitle] = useState("");
   const [proID, setProID] = useState();
   // alert(amount);
@@ -309,7 +309,7 @@ function TopUp({ closeModal, itemId, productDetails, setAuthCancel, setTile }) {
                         className="rounded-full w-44 h-12 text-sm lg:text-base text-dashbg bg-green"
                         onClick={() => {
                           // const token = localStorage.getItem("user-wallet");
-                          if (reic === 0) {
+                          if (reic === "0") {
                             alert("kindly input reic amount to invest");
                           } else if (reic === "") {
                             alert("kindly input reic amount to invest");

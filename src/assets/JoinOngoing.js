@@ -65,9 +65,30 @@ function JoinOngoing({ closeModal, itemId, productDetails }) {
     setBalance(result?.data.balance);
     setToken(result?.data.token);
   }
+
+  const [percentage, setPercentage] = useState();
+  async function fetchPercentage() {
+    const token = localStorage.getItem("user-token");
+
+    const response = await fetch(
+      "https://reic.api.simpoo.biz/api/investment/investment_percentage",
+      {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    const result = await response.json();
+    console.log(result.data);
+    setPercentage(result.data);
+  }
+
   useEffect(() => {
     window.scrollTo(0, 0);
     wallet();
+    fetchPercentage();
     fetchData();
   }, []);
 
@@ -350,6 +371,7 @@ function JoinOngoing({ closeModal, itemId, productDetails }) {
             title={title}
             productID={proID}
             closeModal={closeModal}
+            percentage={percentage}
           />
         )}
       </motion.div>
@@ -360,7 +382,14 @@ function JoinOngoing({ closeModal, itemId, productDetails }) {
 
 // the close modal
 
-export function Warning({ closeWarning, closeModal, reic, title, productID }) {
+export function Warning({
+  closeWarning,
+  closeModal,
+  reic,
+  title,
+  productID,
+  percentage,
+}) {
   function redirect() {
     setProcessing(false);
     setCompleted(true);
@@ -443,7 +472,9 @@ export function Warning({ closeWarning, closeModal, reic, title, productID }) {
         <div className="font-semibold lg:text-base text-sm text-neutral my-8">
           <p>
             You are about to invest {reic} REIC to <br />{" "}
-            <span className="text-green">{title} </span>
+            <span className="text-green">{title} </span> <br /> There will be a{" "}
+            <span className="text-green">%{percentage}</span> charge for this
+            investment
           </p>
         </div>
         <div className="flex justify-between">

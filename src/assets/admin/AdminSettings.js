@@ -8,6 +8,8 @@ import reictoken from "../images/Reic_Token.png";
 function AdminSettings() {
   const [pullout, setPullout] = useState();
   const [accumulated, setAccumulated] = useState();
+  const [investment, setInvestment] = useState();
+  const [exchange, setExchange] = useState();
   async function fetchPulloutPercentage() {
     const token = localStorage.getItem("user-token");
     // e.preventDefault();
@@ -25,8 +27,10 @@ function AdminSettings() {
     const result = await response.json();
     console.log(result.data);
     // alert(result.data.name);
-    setPullout(result?.data.percentage);
+    setPullout(result?.data.pullout_percentage);
     setAccumulated(result?.data.cancel_percentage);
+    setInvestment(result?.data.investment_percentage);
+    setExchange(result?.data.exchange_percentage);
   }
 
   const [investAwait, setInvestAwait] = useState();
@@ -126,6 +130,8 @@ function AdminSettings() {
   const [disable, setDisable] = useState(true);
   const [disableAcc, setDisableAcc] = useState(true);
   const [disablePull, setDisablePull] = useState(true);
+  const [disableExchange, setDisableExchange] = useState(true);
+  const [disableInvestment, setDisableInvestment] = useState(true);
   const [updateCanc, setUpdateCanc] = useState();
   async function updateCancel() {
     const payLoad = {
@@ -200,6 +206,104 @@ function AdminSettings() {
     console.log(result?.status);
     if (result?.status === "success") {
       setDisablePull(true);
+
+      toast.success(`${result.message}`, {
+        position: "top-left",
+        autoClose: 1500,
+        hideProgressBar: true,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    } else {
+      if (result.status === "error") {
+        toast.error(`${result.message}`, {
+          position: "top-left",
+          autoClose: 1500,
+          hideProgressBar: true,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      }
+    }
+  }
+
+  const [cancPercentage, setCancPercentage] = useState();
+  async function investmentPercentage() {
+    const payLoad = {
+      investment_percentage: cancPercentage,
+    };
+
+    const token = localStorage.getItem("user-token");
+    const response = await fetch(
+      "https://reic.api.simpoo.biz/api/admin/update_investment_percentage",
+      {
+        method: "POST",
+        body: JSON.stringify(payLoad),
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    const result = await response.json();
+
+    console.log(result?.status);
+    if (result?.status === "success") {
+      setDisableInvestment(true);
+
+      toast.success(`${result.message}`, {
+        position: "top-left",
+        autoClose: 1500,
+        hideProgressBar: true,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    } else {
+      if (result.status === "error") {
+        toast.error(`${result.message}`, {
+          position: "top-left",
+          autoClose: 1500,
+          hideProgressBar: true,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      }
+    }
+  }
+
+  const [updateExchange, setUpdateExchange] = useState();
+  async function updateExchangePercentage() {
+    const payLoad = {
+      exchange_percentage: updateExchange,
+    };
+
+    const token = localStorage.getItem("user-token");
+    const response = await fetch(
+      "https://reic.api.simpoo.biz/api/admin/update_exchange_percentage",
+      {
+        method: "POST",
+        body: JSON.stringify(payLoad),
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    const result = await response.json();
+
+    console.log(result?.status);
+    if (result?.status === "success") {
+      setDisableExchange(true);
 
       toast.success(`${result.message}`, {
         position: "top-left",
@@ -371,6 +475,92 @@ function AdminSettings() {
                         <button
                           className="text-links text-xs"
                           onClick={updatePercentage}
+                        >
+                          Update
+                        </button>
+                      )}
+                    </div>
+                  </div>
+                </div>
+
+                <div className="p-5">
+                  <h1 className="p-5">
+                    <span className="text-grayy text-sm capitalize">
+                      Update Investment percentage
+                    </span>
+                  </h1>
+                  <div className="items-center flex">
+                    <div
+                      className={`flex items-center mx-5 my-3 w-3/5 box ${
+                        !disableInvestment && "shadow-lg"
+                      }`}
+                    >
+                      <span className="border-r-2 px-2 py-0 h-4 w-14 flex items-center font-bold text-navbar text-sm">
+                        %{" "}
+                      </span>
+                      <input
+                        type="number"
+                        className="bg-transparent w-full outline-none px-2"
+                        defaultValue={investment}
+                        disabled={disableInvestment}
+                        onChange={(e) => setCancPercentage(e.target.value)}
+                      />
+                    </div>
+                    <div>
+                      {disableInvestment ? (
+                        <button
+                          className="text-links text-xs"
+                          onClick={() => setDisableInvestment(false)}
+                        >
+                          Edit
+                        </button>
+                      ) : (
+                        <button
+                          className="text-links text-xs"
+                          onClick={investmentPercentage}
+                        >
+                          Update
+                        </button>
+                      )}
+                    </div>
+                  </div>
+                </div>
+
+                <div className="p-5">
+                  <h1 className="p-5">
+                    <span className="text-grayy text-sm capitalize">
+                      Update Exchange percentage
+                    </span>
+                  </h1>
+                  <div className="items-center flex">
+                    <div
+                      className={`flex items-center mx-5 my-3 w-3/5 box ${
+                        !disableExchange && "shadow-lg"
+                      }`}
+                    >
+                      <span className="border-r-2 px-2 py-0 h-4 w-14 flex items-center font-bold text-navbar text-sm">
+                        %{" "}
+                      </span>
+                      <input
+                        type="number"
+                        className="bg-transparent w-full outline-none px-2"
+                        defaultValue={exchange}
+                        disabled={disableExchange}
+                        onChange={(e) => setUpdateExchange(e.target.value)}
+                      />
+                    </div>
+                    <div>
+                      {disableExchange ? (
+                        <button
+                          className="text-links text-xs"
+                          onClick={() => setDisableExchange(false)}
+                        >
+                          Edit
+                        </button>
+                      ) : (
+                        <button
+                          className="text-links text-xs"
+                          onClick={updateExchangePercentage}
                         >
                           Update
                         </button>
