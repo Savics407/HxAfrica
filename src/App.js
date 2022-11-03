@@ -49,6 +49,7 @@ import Transactions from "./assets/admin/Transactions";
 import InvestorsTransactions from "./assets/admin/InvestorsTransactions";
 import { useEffect, useState } from "react";
 import AccountRecovery from "./assets/AccountRecovery";
+import WaitingList from "./assets/WaitingList";
 
 function App() {
   return (
@@ -59,6 +60,7 @@ function App() {
         <Route path="/sign-up" element={<Auth />} />
         <Route path="/" element={<Login />} />
         <Route path="/account-recovery" element={<AccountRecovery />} />
+        <Route path="/waitlist" element={<WaitingList />} />
 
         <Route path="/status" element={<UseNetworkStatus />} />
         <Route element={<AdminRoutes />}>

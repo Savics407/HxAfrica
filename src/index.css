@@ -254,6 +254,12 @@ body {
     .tab .active {
       @apply border-b-2 border-green text-green rounded-none before:hidden
     }
+    .wait {
+      background-image: url(../src/assets/images/Oval.svg), url(../src/assets/images/Oval\ 2.svg);
+        background-repeat: no-repeat, no-repeat;
+        background-size: auto, auto;
+        background-position: 5% 100%, 95% 5%;
+    }
     .welcome {
       background-image:url(../src/assets/images/frame.png), url(../src/assets/images/reicNG.svg);
       background-repeat: no-repeat, no-repeat;

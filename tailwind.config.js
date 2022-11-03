@@ -10,6 +10,7 @@ module.exports = {
       body: ['"Open Sans"'],
       family: ["Poppins"],
       inter: ["Inter"],
+      roboto: ["Roboto"],
     },
     extend: {
       skew: {
@@ -47,7 +48,9 @@ module.exports = {
         new: "#C4320A",
         newbg: "#FFF6ED",
         product: "#6D7175",
+        waiting: "#F9FAFA",
         chatHeader: "#F3F3F3",
+        soon: "#A9A9A9",
         goback: "#F161FF",
         grey: "#828282",
         sec: "#252F40",
