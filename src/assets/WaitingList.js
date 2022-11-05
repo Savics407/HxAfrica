@@ -152,9 +152,8 @@ function WaitingList() {
             Real Investment, <br /> One Community
           </h1>
           <h1 className="text-banner text-base lg:text-2xl font-normal ">
-            Be among the first to know <br className="hidden lg:block" /> when
-            <br className=" lg:hidden" />
-            we launch!
+            Be among the first to know <br className="hidden lg:block" /> when{" "}
+            <br className=" lg:hidden" /> we launch!
           </h1>
         </div>
 
