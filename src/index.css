@@ -260,6 +260,12 @@ body {
         background-size: auto, auto;
         background-position: 5% 100%, 95% 5%;
     }
+        .waitMob {
+          background-image: url(../src/assets/images/ROval.svg), url(../src/assets/images/Oval\ 2.svg), url(../src/assets/images/Oval\ 2.svg);
+          background-repeat: no-repeat, no-repeat, no-repeat;
+          background-size: 80%, 160px, auto;
+          background-position: 30% 140%, 105% 2%, -80% 50%;
+        }
     .welcome {
       background-image:url(../src/assets/images/frame.png), url(../src/assets/images/reicNG.svg);
       background-repeat: no-repeat, no-repeat;
