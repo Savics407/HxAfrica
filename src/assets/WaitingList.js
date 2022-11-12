@@ -95,12 +95,18 @@ function WaitingList() {
       </div>
       <div className="bg-waiting text-center">
         <div className="lg:p-20 py-14 px-5">
-          <h1 className="font-bold lg:text-4xl text-3xl text-center font-roboto">
+          {/* <h1 className="font-bold lg:text-4xl text-3xl text-center font-roboto">
             The largest real connection with <br className="hidden lg:block" />
             personalized service. <br />
             <span className="text-green">
               Buy with confidence, sell with dividends.
             </span>
+          </h1> */}
+          <h1 className="font-bold lg:text-4xl text-3xl text-center font-roboto">
+            Investing in Real Estate is now <br className="hidden lg:block" /> a{" "}
+            <span className="text-green">thing of choice</span>{" "}
+            <br className=" lg:hidden" />
+            not social class...
           </h1>
         </div>
         <div>
