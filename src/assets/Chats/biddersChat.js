@@ -216,7 +216,11 @@ function BiddersChat() {
                           ? list.receiver.name
                           : list.sender.name
                       );
-                      fetchChat(list.sender_id);
+                      fetchChat(
+                        list.sender_id == user_id
+                          ? list.receiver_id
+                          : list.sender_id
+                      );
                     }}
                   >
                     <div className="lg:w-2/6 w-14 mr-4 lg:mr-auto">
