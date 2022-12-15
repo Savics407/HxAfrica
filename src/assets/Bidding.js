@@ -16,6 +16,8 @@ function Bidding({ closeModal, itemId }) {
   const [loading, setLoading] = useState(true);
   const [negotiate, setNegotiate] = useState(false);
   const navigate = useNavigate();
+  const [available, setAvailable] = useState(true);
+    localStorage.setItem("available", available);
 
   const [posts, setPosts] = useState();
   const productID = itemId;
@@ -499,6 +501,7 @@ function Bidding({ closeModal, itemId }) {
                   className="rounded-full text-sm lg:text-base w-40 lg:w-44 h-12 text-dashbg bg-green"
                   onClick={() => {
                     navigate("/investment-chat");
+                    setAvailable(true);
                   }}
                 >
                   Yes, Continue

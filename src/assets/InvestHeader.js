@@ -5,6 +5,8 @@ import messenger from "./images/Line.svg";
 function InvestHeader() {
   const [lists, setLists] = useState(false);
   const [length, setLength] = useState();
+  localStorage.setItem("available", false);
+
   async function fetchChatList() {
     const token = localStorage.getItem("user-token");
     // e.preventDefault();

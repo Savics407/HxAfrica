@@ -33,6 +33,7 @@ function Investment() {
   const [posts, setPosts] = useState();
   const [itemId, setItemID] = useState("");
   const [loading, setLoading] = useState(true);
+  localStorage.setItem("available", false);
 
   async function fetchData() {
     const token = localStorage.getItem("user-token");

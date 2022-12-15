@@ -48,8 +48,9 @@ function BiddersChat() {
 
   const userIcon = localStorage.getItem("user-profile");
   const bottomRef = useRef(null);
-
-  const [available, setAvailable] = useState(false);
+  const avail = localStorage.getItem("available");
+  // alert(avail);
+  const [available, setAvailable] = useState(avail === "true" ? true : false);
   const [loading, setLoading] = useState(true);
   const [load, setLoad] = useState(true);
   const [lists, setLists] = useState();
@@ -210,8 +211,12 @@ function BiddersChat() {
                     onClick={() => {
                       // setReceiver(list.receiver_id);
                       setAvailable(true);
-                      setName(list.user.name);
-                      fetchChat(list.receiver_id);
+                      setName(
+                        list.sender_id == user_id
+                          ? list.receiver.name
+                          : list.sender.name
+                      );
+                      fetchChat(list.sender_id);
                     }}
                   >
                     <div className="lg:w-2/6 w-14 mr-4 lg:mr-auto">
@@ -220,7 +225,11 @@ function BiddersChat() {
                     <div className="flex w-full items-center lg:w-2/3 justify-between">
                       <div>
                         <h1 className="text-banner lg:font-semibold">
-                          {list.user.name}
+                          {list.sender_id == user_id
+                            ? list.receiver.name
+                            : list.sender.name}{" "}
+                          {""}
+                          {/* {list.sender_id} and {user_id} */}
                         </h1>
                         <h1 className="text-navbar text-tiny lg:text-sm">
                           Messages...
@@ -251,7 +260,7 @@ function BiddersChat() {
                 <h1 className="text-banner font-semibold text-xl">{name}</h1>
               </div> */}
               <div className="flex items-center justify-between w-full">
-                <h1 className="text-banner font-semibold text-sm lg:text-xl">
+                <h1 className="text-banner font-semibold text-sm lg:text-xl truncate">
                   {name}
                 </h1>
                 {bids ? (
@@ -279,7 +288,7 @@ function BiddersChat() {
                   <ScaleLoader color="#008E10" height={50} width={6} />
                 </div>
               ) : (
-                <div className="lg:p-10 pt-20 lg:pt-auto p-5 h-screen lg:h-7x overflow-y-auto scroll">
+                <div className="lg:p-10 pt-20 pb-20 lg:pb-auto lg:pt-auto p-5 h-screen lg:h-7x overflow-y-auto scroll">
                   {chat?.map((chat) => (
                     <>
                       {" "}
@@ -390,7 +399,7 @@ function BiddersChat() {
               )}
               <div className="lg:p-10 p-5 fixed lg:relative bottom-0 lg:bottom-auto flex justify-between font-inter z-50 w-full bg-white">
                 <div className="bg-mine flex items-center rounded-full px-4 w-11/12 mr-2 ">
-                  <FaRegSmile className="text-smiles" />
+                  <FaRegSmile className="text-smile s" />
 
                   <textarea
                     placeholder="Type message"
