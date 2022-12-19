@@ -17,7 +17,7 @@ function Bidding({ closeModal, itemId }) {
   const [negotiate, setNegotiate] = useState(false);
   const navigate = useNavigate();
   const [available, setAvailable] = useState(true);
-    localStorage.setItem("available", available);
+  localStorage.setItem("available", available);
 
   const [posts, setPosts] = useState();
   const productID = itemId;
@@ -318,7 +318,7 @@ function Bidding({ closeModal, itemId }) {
                           <input
                             type="number"
                             placeholder="0.00"
-                            className="text-neutral font-bold text-4xl w-1/2 bg-transparent  outline-0"
+                            className="text-neutral font-bold text-4xl w-1/2 bg-transparent  outline-none"
                             // value="50,000"
                             onChange={(e) => setReic(e.target.value)}
                             // defaultValue={
@@ -328,6 +328,11 @@ function Bidding({ closeModal, itemId }) {
                             // }
                             defaultValue={reic}
                             min="0"
+                            onKeyDown={(e) => {
+                              if (e.key === "-" || e.key === "+") {
+                                e.preventDefault();
+                              }
+                            }}
                           />
                         </div>
                         <div className="text-center h-1">

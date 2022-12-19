@@ -267,7 +267,7 @@ function Inherit({ closeModal, itemId }) {
                         <input
                           type="number"
                           placeholder="0.00"
-                          className="text-neutral font-bold text-3xl lg:text-4xl w-1/2 bg-transparent text-navbar outline-0"
+                          className="text-neutral font-bold text-3xl lg:text-4xl w-1/2 bg-transparent text-navbar outline-none"
                           // value="50,000"
                           disabled
                           onChange={(e) => setReic(e.target.value)}

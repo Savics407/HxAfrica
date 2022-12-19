@@ -197,7 +197,7 @@ function Withdraw({ setWithdraw, bankID, wallet }) {
                       <input
                         type="number"
                         placeholder="50,000"
-                        className="text-neutral font-bold text-4xl lg:w-3/5 w-4/6 bg-transparent outline-0"
+                        className="text-neutral font-bold text-4xl lg:w-3/5 w-4/6 bg-transparent outline-none"
                         value={amount}
                         onChange={(e) => setAmount(e.target.value)}
                       />

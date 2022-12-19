@@ -406,7 +406,7 @@ function Token() {
                         <input
                           type="number"
                           placeholder="enter amount"
-                          className="text-neutral font-bold text-4xl w-3/5 bg-transparent outline-0"
+                          className="text-neutral font-bold text-4xl w-3/5 bg-transparent outline-none"
                           onChange={(e) => setAmount(e.target.value)}
                           thousandSeparator={true}
                           defaultValue="50000"

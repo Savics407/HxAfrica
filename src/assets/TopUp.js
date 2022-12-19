@@ -271,11 +271,16 @@ function TopUp({ closeModal, itemId, productDetails, setAuthCancel, setTile }) {
                         <input
                           type="number"
                           placeholder="0.00"
-                          className="text-neutral font-bold text-3xl lg:text-4xl w-1/2 bg-transparent outline-0"
+                          className="text-neutral font-bold text-3xl lg:text-4xl w-1/2 bg-transparent outline-none"
                           // value="50,000"
                           onChange={(e) => setReic(e.target.value)}
                           defaultValue=""
                           min="0"
+                          onKeyDown={(e) => {
+                            if (e.key === "-" || e.key === "+") {
+                              e.preventDefault();
+                            }
+                          }}
                         />
                       </div>
                       <div className="text-center h-1">
@@ -311,6 +316,8 @@ function TopUp({ closeModal, itemId, productDetails, setAuthCancel, setTile }) {
                           // const token = localStorage.getItem("user-wallet");
                           if (reic === "0") {
                             alert("kindly input reic amount to invest");
+                          } else if (reic <= "0") {
+                            alert(`Sorry you cannot invest ${reic}`);
                           } else if (reic === "") {
                             alert("kindly input reic amount to invest");
                           } else if (reic > token) {

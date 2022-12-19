@@ -308,12 +308,19 @@ function JoinInvestment({ closeModal, itemId }) {
                         <input
                           type="number"
                           placeholder="0.00"
-                          className="text-neutral font-bold text-2xl lg:text-4xl w-1/2 bg-transparent outline-0"
-                          // value="50,000"
+                          className="text-neutral font-bold text-2xl lg:text-4xl w-1/2 bg-transparent outline-none"
                           onChange={(e) => setReic(e.target.value)}
                           defaultValue=""
                           min="0"
-                          oninput="this.value = !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null"
+                          // onKeyDown={return
+                          //   (event.charCode !== 8 && event.charCode === 0) ||
+                          //   (event.charCode >= 48 && event.charCode <= 57)
+                          // }
+                          onKeyDown={(e) => {
+                            if (e.key === "-" || e.key === "+") {
+                              e.preventDefault();
+                            }
+                          }}
                         />
                       </div>
                       <div className="text-center h-1">
@@ -337,6 +344,8 @@ function JoinInvestment({ closeModal, itemId }) {
                           // const token = localStorage.getItem("user-wallet");
                           if (reic === "0") {
                             alert("kindly input reic amount to invest");
+                          } else if (reic <= "0") {
+                            alert(`Sorry you cannot invest ${reic}`);
                           } else if (reic === "") {
                             alert("kindly input reic amount to invest");
                           } else if (reic > token) {
