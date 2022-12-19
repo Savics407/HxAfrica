@@ -186,7 +186,7 @@ function JoinInvestment({ closeModal, itemId }) {
                         </h1>
                         <h1 className="text-darkgray text-tiny lg:text-sm">
                           <span className="text-secondary">Created:</span>{" "}
-                          {moment(post.updated_at).format("MMM DD, yyyy")}
+                          {moment(post.created_at).format("MMM DD, yyyy")}
                         </h1>
                       </div>
                       <div className="flex items-center justify-between">
@@ -195,7 +195,7 @@ function JoinInvestment({ closeModal, itemId }) {
                         </h1>
                         <h1 className="text-darkgray text-tiny lg:text-sm">
                           <span className="text-secondary">Time:</span>{" "}
-                          {moment(post.updated_at).format("LT")}
+                          {moment(post.created_at).format("LT")}
                         </h1>
                       </div>
                     </div>
@@ -313,6 +313,7 @@ function JoinInvestment({ closeModal, itemId }) {
                           onChange={(e) => setReic(e.target.value)}
                           defaultValue=""
                           min="0"
+                          oninput="this.value = !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null"
                         />
                       </div>
                       <div className="text-center h-1">
