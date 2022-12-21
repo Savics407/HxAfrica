@@ -161,13 +161,18 @@ function InvestmentList() {
                       #{pending.id}
                     </h1>
                   </td>
-                  <td className="py-8  flex items-center">
-                    <div className="mr-2">
-                      <img src={realEstate} alt="Investment Icon" />
+                  <td className="py-8 flex items-center">
+                    <div className="mr-2 w-11 h-11">
+                      <img
+                        src={realEstate}
+                        alt="Investment Icon"
+                        className="w-full h-full rounded-lg object-cover"
+                      />
                     </div>
-                    <div>
-                      <h1 className="font-normal  text-deep text-sm">
-                        {pending.title}
+                    <div className="w-52 pr-3">
+                      <h1 className="font-normal  text-deep text-sm truncate">
+                        {/* {pending.title} */}
+                        <span title={pending.title}>{pending.title}</span>
                       </h1>
                       <h1 className="font-normal text-green text-xs">
                         {pending.category.product_category}

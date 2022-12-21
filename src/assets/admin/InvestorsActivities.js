@@ -36,6 +36,8 @@ function InvestorsActivities() {
     merchantActivities();
   }, []);
 
+  const [searchTerm, setSearchTerm] = useState("");
+
   return (
     <>
       {/* <Martabs /> */}
@@ -61,6 +63,15 @@ function InvestorsActivities() {
             See all transactions{" "}
             <FaAngleRight className="ml-2 text-blue text-sm" />
           </h1> */}
+          <div className="border-2 bg-white rounded-lg flex items-center px-5 py-1 justify-between w-411">
+            <input
+              type="search"
+              placeholder="Search by ID"
+              className="outline-none font-normal text-sm w-full py-2"
+              onChange={(event) => setSearchTerm(event.target.value)}
+            />
+            <img src={search} alt="search" />
+          </div>
         </div>
 
         <div className="py-4">
@@ -96,53 +107,61 @@ function InvestorsActivities() {
                         </th> */}
               </tr>
             </thead>
-            {activities?.map((activities) => (
-              <tr className="py-8 border-b">
-                <td className="py-3 pl-5">
-                  <h1 className="font-medium text-neutral text-xs capitalize">
-                    #{activities.id}
-                  </h1>
-                </td>
-                <td className="py-3">
-                  <h1 className="font-medium text-neutral text-xs capitalize">
-                    {activities.user.name}
-                  </h1>
-                </td>
-                <td className="py-3">
-                  <h1 className="font-medium text-neutral text-xs capitalize">
-                    {activities.type === "pullout_product_funds"
-                      ? "Pullout Funds"
-                      : activities.type}
-                  </h1>
-                </td>
-                <td className="py-3">
-                  <h1 className="font-medium text-neutral text-xs">
-                    <CurrencyFormat
-                      value={activities.amount}
-                      displayType={"text"}
-                      thousandSeparator={true}
-                    />{" "}
-                    <span className="text-currency">NGN</span>
-                  </h1>
-                </td>
-                <td className="py-3">
-                  <h1 className="font-medium text-neutral text-xs">
-                    {moment(activities.created_at).format("MMM DD, yyyy")}
-                  </h1>
-                </td>
-                <td className="py-3">
-                  <h1 className="font-medium text-neutral text-xs">
-                    {moment(activities.created_at).format("LT")}
-                  </h1>
-                </td>
+            {activities
+              ?.filter((val) => {
+                if (searchTerm == "") {
+                  return val;
+                } else if (searchTerm.includes(val.id)) {
+                  return val;
+                }
+              })
+              .map((activities) => (
+                <tr className="py-8 border-b">
+                  <td className="py-3 pl-5">
+                    <h1 className="font-medium text-neutral text-xs capitalize">
+                      #{activities.id}
+                    </h1>
+                  </td>
+                  <td className="py-3">
+                    <h1 className="font-medium text-neutral text-xs capitalize">
+                      {activities.user.name}
+                    </h1>
+                  </td>
+                  <td className="py-3">
+                    <h1 className="font-medium text-neutral text-xs capitalize">
+                      {activities.type === "pullout_product_funds"
+                        ? "Pullout Funds"
+                        : activities.type}
+                    </h1>
+                  </td>
+                  <td className="py-3">
+                    <h1 className="font-medium text-neutral text-xs">
+                      <CurrencyFormat
+                        value={activities.amount}
+                        displayType={"text"}
+                        thousandSeparator={true}
+                      />{" "}
+                      <span className="text-currency">NGN</span>
+                    </h1>
+                  </td>
+                  <td className="py-3">
+                    <h1 className="font-medium text-neutral text-xs">
+                      {moment(activities.created_at).format("MMM DD, yyyy")}
+                    </h1>
+                  </td>
+                  <td className="py-3">
+                    <h1 className="font-medium text-neutral text-xs">
+                      {moment(activities.created_at).format("LT")}
+                    </h1>
+                  </td>
 
-                <td className="py-3">
-                  <button className="font-medium text-sm font-inter bg-bgGreen text-green rounded-full py-1 px-2">
-                    {activities.status}
-                  </button>
-                </td>
-              </tr>
-            ))}
+                  <td className="py-3">
+                    <button className="font-medium text-sm font-inter bg-bgGreen text-green rounded-full py-1 px-2">
+                      {activities.status}
+                    </button>
+                  </td>
+                </tr>
+              ))}
           </table>
         </div>
         {/* </div> */}
