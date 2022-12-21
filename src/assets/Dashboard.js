@@ -249,7 +249,7 @@ function Dashboard() {
                   Total Earnings Reic
                 </p>
                 <h1 className="text-dark text-xl font-medium">
-                  {earnings?.token} reic
+                  {earnings?.token.toFixed(2)} reic
                 </h1>
               </div>
               <div className="w-1/2 px-4">
@@ -282,7 +282,7 @@ function Dashboard() {
                 Total Earnings Reic
               </p>
               <h1 className="text-dark text-2xl font-medium">
-                {earnings?.token} REIC
+                {earnings?.token.toFixed(2)} REIC
               </h1>
             </div>
             <div className="w-1/2 px-4">

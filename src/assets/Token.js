@@ -272,7 +272,7 @@ function Token() {
                   Total in Reic
                 </p>
                 <h1 className="text-dark text-2xl font-medium">
-                  {total?.token}
+                  {total?.token.toFixed(2)}
                 </h1>
               </div>
               <div className="px-4">
