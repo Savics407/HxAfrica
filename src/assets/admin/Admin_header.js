@@ -29,7 +29,7 @@ function Header() {
       draggable: true,
       progress: undefined,
     });
-    navigate("/");
+    navigate("/login");
   };
   const [auth, setAuth] = useState(false);
   async function fetchData() {
@@ -96,7 +96,7 @@ function Header() {
                 <button
                   className="rounded-full w-full p-2 text-white bg-green flex justify-around items-center"
                   onClick={() => {
-                    navigate("/");
+                    navigate("/login");
                     setAuth(false);
                     window.localStorage.removeItem("user-token");
                   }}

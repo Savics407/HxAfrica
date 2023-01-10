@@ -5,7 +5,7 @@ import SideBar from "./SideBar";
 import PullList from "./PullList";
 
 import Products from "./Products";
-import CreateMarchant from "./CreateMerchant.js";
+import CreateMarchant from "./CreateMerchant";
 import DisbursedList from "./DisbursedList";
 
 function Disbursed() {

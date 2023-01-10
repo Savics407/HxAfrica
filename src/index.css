@@ -302,6 +302,12 @@ body {
         background-position:100% 100%, 78% 100%, 65% 100%, 100% 10%;
     }
 
+    .gradient {
+     /* background-image: linear-gradient(0deg, rgba(0, 142, 16, 0.14), rgba(0, 142, 16, 0.14)), url(../src/assets/images/bg.png); */
+     background-image: url(../src/assets/images/bg.png);
+     background-size: cover;
+     background-position: top center;
+    }
     .income {
       @apply w-1/2 lg:p-3 p-1
     }

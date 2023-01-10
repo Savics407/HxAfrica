@@ -21,7 +21,7 @@ function ChangePassword() {
       draggable: true,
       progress: undefined,
     });
-    navigate("/");
+    navigate("/login");
   };
   const {
     register,

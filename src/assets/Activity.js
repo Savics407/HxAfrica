@@ -19,7 +19,7 @@ function Activity() {
       draggable: true,
       progress: undefined,
     });
-    navigate("/");
+    navigate("/login");
   };
   return (
     <div className="font-family bg-mainbg">

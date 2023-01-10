@@ -5,7 +5,7 @@ import SideBar from "./SideBar";
 import MarchantsList from "./MarchantsList";
 
 import Products from "./Products";
-import CreateMarchant from "./CreateMerchant.js";
+import CreateMarchant from "./CreateMerchant";
 
 function Marchants() {
   const [merchants, setMerchants] = useState();

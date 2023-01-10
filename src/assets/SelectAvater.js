@@ -47,9 +47,9 @@ function Congratulations() {
           },
         }}
         className="flex items-center justify-center fixed top-0 right-0 bottom-0 left-0 bg-overlay z-50 backdrop-blur-xs"
-      // onClick={() => {
-      //         closeDetails(false)
-      //     }}
+        // onClick={() => {
+        //         closeDetails(false)
+        //     }}
       >
         <motion.div
           initial={{
@@ -82,7 +82,7 @@ function Congratulations() {
             </h1>
             <button
               className="bg-green lg:px-20 py-3 w-full lg:w-auto text-white rounded-full lg:rounded-lg"
-              onClick={() => navigate("/")}
+              onClick={() => navigate("/login")}
             >
               Continue
             </button>
@@ -222,7 +222,7 @@ function SelectAvater() {
           <div className=" text-sm font-medium flex flex-wrap items-center justify-center my-10">
             <button
               className="text-green border border-green rounded-xl w-full lg:w-auto px-7 py-3 lg:mr-3 lg:mb-0 mb-5"
-              onClick={() => navigate("/")}
+              onClick={() => navigate("/login")}
             >
               Skip for now
             </button>
@@ -235,13 +235,13 @@ function SelectAvater() {
                 Set as avater
               </button>
             ) : (
-                <button
-                  className="text-white bg-green opacity-50 border-green border hover:opacity-100 w-full lg:w-auto rounded-xl px-7 py-3"
-                  onClick={() => alert("select an avater")}
-                >
-                  Set as avater
-                </button>
-              )}
+              <button
+                className="text-white bg-green opacity-50 border-green border hover:opacity-100 w-full lg:w-auto rounded-xl px-7 py-3"
+                onClick={() => alert("select an avater")}
+              >
+                Set as avater
+              </button>
+            )}
           </div>
         </div>
       </div>

@@ -51,6 +51,8 @@ module.exports = {
         waiting: "#F9FAFA",
         chatHeader: "#F3F3F3",
         soon: "#A9A9A9",
+        features: "#F0F0F0",
+        product: "#DFFFE236",
         goback: "#F161FF",
         grey: "#828282",
         sec: "#252F40",
@@ -111,7 +113,7 @@ module.exports = {
         modal: "#342D6E",
         strek: "#7281FF26",
         tokentext: "#353945",
-
+        landing: "#F8FFF9",
         payment: "#777E91",
         vestabs: "#7D8698",
         title: "#28261E",

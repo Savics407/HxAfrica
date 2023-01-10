@@ -308,7 +308,7 @@ function UserDetails({ formData, setFormData, nextPage, signup }) {
           </h1>
           <p className="text-sm font-medium text-sec mt-5 mb-48 text-center md:text-left">
             Existing user ?{" "}
-            <Link to="/">
+            <Link to="/login">
               <span className="text-green">Login</span>
             </Link>
           </p>

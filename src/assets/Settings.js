@@ -232,7 +232,7 @@ function Profile() {
       draggable: true,
       progress: undefined,
     });
-    navigate("/");
+    navigate("/login");
   };
 
   const [signOut, setSignOut] = useState(false);

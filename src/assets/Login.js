@@ -95,7 +95,7 @@ function Login() {
         draggable: true,
         progress: undefined,
       });
-      navigate("/");
+      navigate("/login");
       setProcess(false);
     } else if (result.data.role === "investor") {
       toast.success(`${result.message}`, {
