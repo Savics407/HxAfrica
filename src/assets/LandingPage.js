@@ -24,38 +24,9 @@ import mail from "./images/mail.svg";
 import whatsapp from "./images/whatsapp.svg";
 import { AiOutlineArrowRight } from "react-icons/ai";
 import { motion } from "framer-motion";
-import { Link, NavLink } from "react-router-dom";
-
+import { Link } from "react-router-dom";
 
 function LandingPage() {
-  const [email, setEmail] = useState();
-  const [success, setSuccess] = useState(false);
-  const [Subscribe, setSubscribe] = useState(false);
-  async function joinWaitList(e) {
-    setSubscribe(true);
-    e.preventDefault();
-    const payLoad = {
-      email: email,
-    };
-    const response = await fetch(
-      "https://reic.api.simpoo.biz/api/join_waitlist",
-      {
-        method: "POST",
-        body: JSON.stringify(payLoad),
-        headers: {
-          "Content-type": "application/json",
-        },
-      }
-    );
-
-    const result = await response.json();
-    console.log(result.data);
-    if (result?.status === "success") {
-      setSuccess(true);
-      setSubscribe(false);
-    }
-  }
-
   return (
     <div className="font-family bg-white">
       <div className="bg-green text-white p-2 text-center">
@@ -94,7 +65,7 @@ function LandingPage() {
             {" "}
             Start with as little as 50k
           </h1>
-          <Link to="/sign-up" >
+          <Link to="/sign-up">
             <button className="bg-green py-3 px-8 font-inter rounded-lg text-white cursor-pointer">
               Start Now
             </button>
@@ -201,7 +172,7 @@ function LandingPage() {
             </div>
           </div>
           <div>
-            <Link to="/sign-up" >
+            <Link to="/sign-up">
               <button className="bg-green text-white rounded-lg px-11 items-center py-3 flex font-inter cursor-pointer">
                 Register Now <AiOutlineArrowRight className="ml-3" />
               </button>
@@ -229,59 +200,103 @@ function LandingPage() {
           <div className="rounded-xl shadow-2xl p-10 w-128 ">
             <h1 className="font-bold text-2xl mb-8">Register Now</h1>
             <div className="font-inter font-normal mb-2 flex flex-col">
-              <input type="text" placeholder="Name" className="p-3 rounded-lg border mb-6 outline-none" />
-              <input type="email" placeholder="Email" className="p-3 rounded-lg border mb-6 outline-none" />
-              <input type="submit" value="Register" className="p-3 rounded-lg bg-green text-white" />
+              <input
+                type="text"
+                placeholder="Name"
+                className="p-3 rounded-lg border mb-6 outline-none"
+              />
+              <input
+                type="email"
+                placeholder="Email"
+                className="p-3 rounded-lg border mb-6 outline-none"
+              />
+              <input
+                type="submit"
+                value="Register"
+                className="p-3 rounded-lg bg-green text-white"
+              />
             </div>
           </div>
         </div>
       </div>
       <div className="py-20 px-36">
         <div>
-          <h1 className="text-green font-roboto text-4xl font-bold mb-3">Our Services </h1>
-          <h1 className="font-normal mb-2 text-2xl w-96">Our specialized service delivery entities</h1>
+          <h1 className="text-green font-roboto text-4xl font-bold mb-3">
+            Our Services{" "}
+          </h1>
+          <h1 className="font-normal mb-2 text-2xl w-96">
+            Our specialized service delivery entities
+          </h1>
         </div>
         <div className="flex flex-wrap justify-between py-10 text-white">
           <div className="flex items-end border rounded-2xl w-49 h-482 bg-banner p-10 mb-5">
             <div className="">
               <h1 className="font-bold text-4xl mb-3">Realtors First</h1>
-              <h1 className="font-normal mb-2 text-xl mb-4">Connecting Real Estate Buyers with Sellers</h1>
-              <button className="flex px-5 py-3 bg-pendingtext items-center rounded-lg">Visit Website <AiOutlineArrowRight className="ml-2" /> </button>
+              <h1 className="font-normal mb-2 text-xl mb-4">
+                Connecting Real Estate Buyers with Sellers
+              </h1>
+              <button className="flex px-5 py-3 bg-pendingtext items-center rounded-lg">
+                Visit Website <AiOutlineArrowRight className="ml-2" />{" "}
+              </button>
             </div>
           </div>
           <div className="flex items-end border rounded-2xl w-49 h-482 bg-banner p-10 mb-5">
             <div className="">
               <h1 className="font-bold text-4xl mb-3">Cloverhedera</h1>
-              <h1 className="font-normal mb-2 text-xl mb-4">Real Estate Consultancy Company</h1>
-              <button className="flex px-5 py-3 bg-pendingtext items-center rounded-lg">Visit Website <AiOutlineArrowRight className="ml-2" /> </button>
+              <h1 className="font-normal mb-2 text-xl mb-4">
+                Real Estate Consultancy Company
+              </h1>
+              <button className="flex px-5 py-3 bg-pendingtext items-center rounded-lg">
+                Visit Website <AiOutlineArrowRight className="ml-2" />{" "}
+              </button>
             </div>
           </div>
           <div className="flex items-end border rounded-2xl w-49 h-482 bg-banner p-10">
             <div className="">
               <h1 className="font-bold text-4xl mb-3">RayneRise</h1>
-              <h1 className="font-normal mb-2 text-xl mb-4">Unmatched Advertisng Services</h1>
-              <button className="flex px-5 py-3 bg-pendingtext items-center rounded-lg">Visit Website <AiOutlineArrowRight className="ml-2" /> </button>
+              <h1 className="font-normal mb-2 text-xl mb-4">
+                Unmatched Advertisng Services
+              </h1>
+              <button className="flex px-5 py-3 bg-pendingtext items-center rounded-lg">
+                Visit Website <AiOutlineArrowRight className="ml-2" />{" "}
+              </button>
             </div>
           </div>
           <div className="flex items-end border rounded-2xl w-49 h-482 bg-banner p-10">
             <div className="">
               <h1 className="font-bold text-4xl mb-3">Imagineering</h1>
-              <h1 className="font-normal mb-2 text-xl mb-4">Engineering Imaginations</h1>
-              <button className="flex px-5 py-3 bg-pendingtext items-center rounded-lg">Visit Website <AiOutlineArrowRight className="ml-2" /> </button>
+              <h1 className="font-normal mb-2 text-xl mb-4">
+                Engineering Imaginations
+              </h1>
+              <button className="flex px-5 py-3 bg-pendingtext items-center rounded-lg">
+                Visit Website <AiOutlineArrowRight className="ml-2" />{" "}
+              </button>
             </div>
           </div>
         </div>
       </div>
       <div className="bg-ash py-14 flex flex-col items-center">
-        <h1 className="font-inter font-semibold text-deep text-3xl mb-5">With HXafrica</h1>
-        <h1 className="font-normal mb-2 text-banner text-2xl w-9/12 text-center">With HXafrica as we say; “Investing in real estate is now a thing of choice and not social class”, anyone regardless of income level can own and get the full benefits of real estate investments
-          We are full blown end-to-end real estate service, as we take you from acquisition all the way to exit and everything in between. <br />
-          Think Real Estate, Think HXafrica.</h1>
+        <h1 className="font-inter font-semibold text-deep text-3xl mb-5">
+          With HXafrica
+        </h1>
+        <h1 className="font-normal mb-2 text-banner text-2xl w-9/12 text-center">
+          With HXafrica as we say; “Investing in real estate is now a thing of
+          choice and not social class”, anyone regardless of income level can
+          own and get the full benefits of real estate investments We are full
+          blown end-to-end real estate service, as we take you from acquisition
+          all the way to exit and everything in between. <br />
+          Think Real Estate, Think HXafrica.
+        </h1>
       </div>
       <div className="bg-white py-16 px-32">
         <div className="flex flex-col items-center font-roboto">
-          <h1 className=" font-semibold text-deep text-3xl mb-3">Board Of Directors/Advisors</h1>
-          <h1 className="font-normal mb-2 text-statustext text-xl w-3/5 text-center ">Our philosophy is simple — hire a team of diverse, passionate people and foster a culture that empowers you to do you best work.</h1>
+          <h1 className=" font-semibold text-deep text-3xl mb-3">
+            Board Of Directors/Advisors
+          </h1>
+          <h1 className="font-normal mb-2 text-statustext text-xl w-3/5 text-center ">
+            Our philosophy is simple — hire a team of diverse, passionate people
+            and foster a culture that empowers you to do you best work.
+          </h1>
         </div>
         <div className="py-10 flex flex-wrap justify-around">
           <div className="flex flex-col items-center w-1/4 py-5 font-inter">
@@ -325,13 +340,17 @@ function LandingPage() {
             <h1 className="text-lg">Drew Cano</h1>
             <h1 className="font-normal mb-2 text-green">UX Researcher</h1>
           </div>
-
         </div>
       </div>
       <div className="bg-white py-16 px-32">
         <div className="flex flex-col items-center font-roboto">
-          <h1 className=" font-semibold text-deep text-3xl mb-3">Meet Our Management Team</h1>
-          <h1 className="font-normal mb-2 text-statustext text-xl w-3/5 text-center ">Our philosophy is simple — hire a team of diverse, passionate people and foster a culture that empowers you to do you best work.</h1>
+          <h1 className=" font-semibold text-deep text-3xl mb-3">
+            Meet Our Management Team
+          </h1>
+          <h1 className="font-normal mb-2 text-statustext text-xl w-3/5 text-center ">
+            Our philosophy is simple — hire a team of diverse, passionate people
+            and foster a culture that empowers you to do you best work.
+          </h1>
         </div>
         <div className="py-10 flex flex-wrap justify-around">
           <div className="flex flex-col items-center w-1/3 py-5 font-inter">
@@ -386,13 +405,17 @@ function LandingPage() {
           </div>
           <div className=" w-1/2 flex justify-between text-white">
             <div>
-              <h1 className="text-lightgreen font-bold text-lg mb-5">Product</h1>
+              <h1 className="text-lightgreen font-bold text-lg mb-5">
+                Product
+              </h1>
               <div>
                 <h1 className="font-normal mb-2 ">REICo</h1>
               </div>
             </div>
             <div>
-              <h1 className="text-lightgreen font-bold text-lg mb-5">Services</h1>
+              <h1 className="text-lightgreen font-bold text-lg mb-5">
+                Services
+              </h1>
               <div className="">
                 <h1 className="font-normal mb-2 ">Realtors First</h1>
                 <h1 className="font-normal mb-2 ">Cloverhedera</h1>
@@ -401,11 +424,15 @@ function LandingPage() {
               </div>
             </div>
             <div>
-              <h1 className="text-lightgreen font-bold text-lg mb-5">About Us</h1>
+              <h1 className="text-lightgreen font-bold text-lg mb-5">
+                About Us
+              </h1>
               <div className="">
                 <h1 className="font-normal mb-2 ">About the company</h1>
                 <h1 className="font-normal mb-2 ">The Management team</h1>
-                <h1 className="font-normal mb-2 ">The Board of directors/ advisors</h1>
+                <h1 className="font-normal mb-2 ">
+                  The Board of directors/ advisors
+                </h1>
                 <h1 className="font-normal mb-2 ">With HXafrica</h1>
               </div>
             </div>
