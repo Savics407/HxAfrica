@@ -11,6 +11,7 @@ module.exports = {
       family: ["Poppins"],
       inter: ["Inter"],
       roboto: ["Roboto"],
+      Merriweather: ["Merriweather"],
     },
     extend: {
       skew: {
@@ -24,6 +25,9 @@ module.exports = {
       },
       colors: {
         primary: "#EDFDFD",
+        hxafrica: "#000901",
+        lightgreen: "#63C86E",
+        copyright: "#FFFFFF1A",
         timeStamp: "rgba(15, 15, 15, 0.5)",
         time: "rgba(255, 255, 255, 0.5)",
         arrow: "#5C6A77",
@@ -106,6 +110,7 @@ module.exports = {
         join: "#4B4B4B",
         footer: "#777E90",
         currency: "#72777F",
+
         bgGreen: "#ECFDF3",
         gren: "027A48",
         neutral: "#23262F",
@@ -116,6 +121,7 @@ module.exports = {
         landing: "#F8FFF9",
         payment: "#777E91",
         vestabs: "#7D8698",
+        ash: "#F9F9F9",
         title: "#28261E",
         vestabsborder: "#C6C6C6",
         more: "#E6E8EC",
@@ -154,8 +160,10 @@ module.exports = {
         per: "48%",
         53: "53%",
         27: "25.5%",
+        49: "49%",
       },
       height: {
+        482: "482px",
         128: "465px",
         "7x": "465px",
         100: "725px",

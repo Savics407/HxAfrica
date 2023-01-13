@@ -1,8 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter&family=Poppins&display=swap&family=Merriweather');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Inter&family=Poppins&display=swap');
 * {
   padding: 0;
   margin: 0;
@@ -20,9 +20,9 @@ body {
   @apply absolute py-4 text-neutral px-6 w-128 -right-4 top-20 -mt-2 rounded-xl shadow-3xl bg-dashbg text-left invisible duration-300;
   box-shadow: 0px 16px 64px 5px #1f304726;
 }
+
 .show-note {
-  @apply top-16 visible 
-  
+  @apply top-16 visible
 }
 
 .bids-shadow {
@@ -32,20 +32,22 @@ body {
 .recent span {
   @apply font-bold
 }
+
 .remove-note {
   @apply top-28 invisible duration-300 opacity-0
 }
+
 .arrow4::before {
-    content: "";
-    position: absolute;
-    right:3px;
-    width: 20px;
-    height: 20px;
-    /* border: 1px solid; */
-    background-color:#FCFCFD ;
-    border-radius: 5px;
-    top: -23px;
-    transform: rotate(-45deg);
+  content: "";
+  position: absolute;
+  right: 3px;
+  width: 20px;
+  height: 20px;
+  /* border: 1px solid; */
+  background-color: #FCFCFD;
+  border-radius: 5px;
+  top: -23px;
+  transform: rotate(-45deg);
 }
 
 .arrow2::before {
@@ -60,7 +62,7 @@ body {
   top: -10px;
   z-index: -1;
   transform: rotate(-45deg);
-  @apply hover:bg-mainbg
+  @apply hover: bg-mainbg
 }
 
 .arrow3::before {
@@ -92,6 +94,7 @@ body {
   transform: rotate(-45deg);
   /* @apply hover: bg-mainbg */
 }
+
 .rule::before {
   content: " ";
   position: absolute;
@@ -109,6 +112,7 @@ body {
   top: 20px;
   z-index: 1;
 }
+
 .create::after {
   content: "";
   position: absolute;
@@ -116,15 +120,15 @@ body {
   border-top: 2.5px solid #008E10;
   top: 20px;
   left: 0;
-  z-index:1;
+  z-index: 1;
 }
 
 /* 
 .OTP::before {
   content: " ";
   position: absolute; */
-  /* width: 230px; */
-  /* width: 200%;
+/* width: 230px; */
+/* width: 200%;
   border-top: 2.5px solid #008E10;
   top: 20px;
   left: 0;
@@ -145,181 +149,203 @@ body {
 }
 
 .avater {
-  @apply rounded-full border-4 border-transparent hover:border-4 cursor-pointer hover:border-opacity mb-3
+  @apply rounded-full border-4 border-transparent hover: border-4 cursor-pointer hover:border-opacity mb-3
 }
 
 .container {
-  @apply lg:w-10/12 w-full m-auto lg:mt-20 bg-dashbg rounded-lg lg:py-8 lg:px-4 lg:flex
+  @apply lg: w-10/12 w-full m-auto lg:mt-20 bg-dashbg rounded-lg lg:py-8 lg:px-4 lg:flex
 }
+
 .tabs {
   @apply flex flex-col text-center items-center relative z-10;
   /* z-index: 2; */
-  
+
 }
 
 .tabs p {
-  @apply text-xs lg:text-base
+  @apply text-xs lg: text-base
 }
 
 .indicator {
-  @apply mb-2 border border-2 border-ccc w-10 h-10 pt-1.5 rounded-full bg-white text-base lg:text-base
+  @apply mb-2 border border-2 border-ccc w-10 h-10 pt-1.5 rounded-full bg-white text-base lg: text-base
 }
+
 .form {
-  @apply lg:w-80 font-family
+  @apply lg: w-80 font-family
 }
+
 .page-text {
-  @apply text-green text-2xl lg:text-4xl font-semibold mb-3 text-center lg:text-left
+  @apply text-green text-2xl lg: text-4xl font-semibold mb-3 text-center lg:text-left
 }
 
 .description {
-  @apply lg:text-base text-sm mb-10 font-normal lg:w-72 text-center lg:text-left
+  @apply lg: text-base text-sm mb-10 font-normal lg:w-72 text-center lg:text-left
 }
-   .input {
-      @apply flex flex-col mb-5
-    }
-    .merchant {
-      @apply flex flex-col mb-5
-    }
-  .merchant label {
-      @apply font-normal text-base mb-2 text-footer
-  }
-    .box {
-      @apply border rounded-xl border-border bg-input p-3 text-sm focus-within:shadow-lg;
-      outline: none
-    }
-    
-    input[type="file"] {
-      display: none
-    }
-    .box option {
-      @apply bg-input
-    }
 
-    label {
-      @apply font-semibold text-sm mb-2
-    }
+.input {
+  @apply flex flex-col mb-5
+}
+
+.merchant {
+  @apply flex flex-col mb-5
+}
+
+.merchant label {
+  @apply font-normal text-base mb-2 text-footer
+}
+
+.box {
+  @apply border rounded-xl border-border bg-input p-3 text-sm focus-within: shadow-lg;
+  outline: none
+}
+
+input[type="file"] {
+  display: none
+}
+
+.box option {
+  @apply bg-input
+}
+
+label {
+  @apply font-semibold text-sm mb-2
+}
+
 /* } */
-    .acc {
-      @apply border;
-      /* width: 20px; */
-      padding: 10px;
-    }
+.acc {
+  @apply border;
+  /* width: 20px; */
+  padding: 10px;
+}
 
-    .notify {
-      @apply w-2 h-2 bg-red rounded-full absolute top-2.5 right-2.5 border border-white
-    }
+.notify {
+  @apply w-2 h-2 bg-red rounded-full absolute top-2.5 right-2.5 border border-white
+}
 
-    .online {
-        @apply w-2 h-2 bg-on rounded-full absolute bottom-0 right-0
-    }
-    .footer {
-      @apply mt-6 pb-10 text-center hidden lg:block
-    }
-    .ds-icons {
-      @apply lg:text-2xl text-xl lg:mr-2 mb-1 lg:mb-0 
-    }
+.online {
+  @apply w-2 h-2 bg-on rounded-full absolute bottom-0 right-0
+}
 
-    .s-icons {
-      @apply mr-3 mb-0 
-    }
-    .navbar {
-      @apply bg-white fixed lg:relative bottom-0 lg:px-60 lg:border flex justify-between items-center lg:text-navbar w-full z-20 border-0 px-6 text-mobile-nav 
-    }
-    .nav-items {
-      @apply flex lg:flex-row flex-col pt-3 pb-2.5 items-center rounded px-2 hover:text-green hover:cursor-pointer border-b-4 border-transparent duration-500 border lg:text-base text-xxm font-normal lg:font-semibold
-    }
+.footer {
+  @apply mt-6 pb-10 text-center hidden lg: block
+}
 
-        .sidenav-items {
-           @apply flex items-center p-3  hover:text-green hover:cursor-pointer duration-300 border-r-4 border-transparent hover:bg-sidenav text-base stroke-svg hover:stroke-green hover:fill-green
-         }
+.ds-icons {
+  @apply lg: text-2xl text-xl lg:mr-2 mb-1 lg:mb-0
+}
 
-         .side-nav{
-          @apply flex flex-col pl-5 pt-20 h-side justify-between text-sideText font-normal
-         }
-           .side-nav .active {
-      @apply text-green bg-sidenav border-green border-r-4 font-medium !fill-green stroke-green
-    }
+.s-icons {
+  @apply mr-3 mb-0
+}
 
-        .navbar .active {
-      @apply  text-green lg:rounded relative before:content-[''] before:w-full before:h-4 before:bg-green before:absolute before:rounded-t before:rounded-r before:-bottom-3 overflow-hidden lg:before:-bottom-6 lg:border-b-4 border-green
-    }
-    .vestabs {
-        @apply py-2.5 hover:text-green hover:cursor-pointer font-semibold duration-500 uppercase text-xs lg:text-base
-    }
+.navbar {
+  @apply bg-white fixed lg: relative bottom-0 lg:px-60 lg:border flex justify-between items-center lg:text-navbar w-full z-20 border-0 px-6 text-mobile-nav
+}
 
-    .mar .active {
-      @apply text-dark text-base border-b-4 border-green font-medium   
-    }
-  
-    .tab .active {
-      @apply border-b-2 border-green text-green rounded-none before:hidden
-    }
-    .wait {
-      background-image: url(../src/assets/images/Oval.svg), url(../src/assets/images/Oval\ 2.svg);
-        background-repeat: no-repeat, no-repeat;
-        background-size: auto, auto;
-        background-position: 5% 100%, 95% 5%;
-    }
-        .waitMob {
-          background-image: url(../src/assets/images/ROval.svg), url(../src/assets/images/Oval\ 2.svg), url(../src/assets/images/Oval\ 2.svg);
-          background-repeat: no-repeat, no-repeat, no-repeat;
-          background-size: 80%, 160px, auto;
-          background-position: 30% 140%, 105% 2%, -80% 50%;
-          /* @apply lg:hidden */
-        }
-    .welcome {
-      background-image:url(../src/assets/images/frame.png), url(../src/assets/images/reicNG.svg);
-      background-repeat: no-repeat, no-repeat;
-      background-size: auto, auto;
-      background-position: 100% 5px, 95% 100%;
-      /* background-clip: content; */
-      color: #FFF6ED
-    }
-    .bids {
-        background-image: url(../src/assets/images/bidsbank.svg);
-          background-repeat: no-repeat;
-          background-size: auto;
-          background-position: 0% 100%;
-    }
-    .banner {
-      background-image: url(../src/assets/images/bannerWiggle.png), url(../src/assets/images/reicCoin.png), url(../src/assets/images/reicCoin.png), url(../src/assets/images/reicCoin.png);
-        background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
-        background-size: auto, auto, auto, auto;
-        background-position: 60% -20px, 64% 60px, 100% 60px, 80% 20px;
-    }
+.nav-items {
+  @apply flex lg: flex-row flex-col pt-3 pb-2.5 items-center rounded px-2 hover:text-green hover:cursor-pointer border-b-4 border-transparent duration-500 border lg:text-base text-xxm font-normal lg:font-semibold
+}
 
-        .invest-banner {
-          background-image: url(../src/assets/images/reic-rounded.svg),url(../src/assets/images/bannerWiggle.png);
-          background-repeat: no-repeat, no-repeat;
-          background-size: contain, contain;
-          background-position: 100% 100%, 150px -10px;
-        }
+.sidenav-items {
+  @apply flex items-center p-3 hover: text-green hover:cursor-pointer duration-300 border-r-4 border-transparent hover:bg-sidenav text-base stroke-svg hover:stroke-green hover:fill-green
+}
 
-    .mobile-banner {
-      background-image:url(../src/assets/images/mobileReic.png) ,url(../src/assets/images/mobileRed.png),url(../src/assets/images/mobileGrey.png),url(../src/assets/images/mobileWiggle.png), linear-gradient(to right,#1e1e1e 30%, #008e10);
-        background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
-        background-size: auto, auto, auto, auto;
-        background-position:100% 100%, 78% 100%, 65% 100%, 100% 10%;
-    }
+.side-nav {
+  @apply flex flex-col pl-5 pt-20 h-side justify-between text-sideText font-normal
+}
 
-    .gradient {
-     /* background-image: linear-gradient(0deg, rgba(0, 142, 16, 0.14), rgba(0, 142, 16, 0.14)), url(../src/assets/images/bg.png); */
-     background-image: url(../src/assets/images/bg.png);
-     background-size: cover;
-     background-position: top center;
-    }
-    .income {
-      @apply w-1/2 lg:p-3 p-1
-    }
-    .income h1{
-      @apply font-medium lg:text-sm mb-2 text-secondary text-tiny
-    }
+.side-nav .active {
+  @apply text-green bg-sidenav border-green border-r-4 font-medium !fill-green stroke-green
+}
 
-    .income p {
-      @apply text-secondary font-normal lg:text-xs text-xxm
-    }
+.navbar .active {
+  @apply text-green lg: rounded relative before:content-[''] before:w-full before:h-4 before:bg-green before:absolute before:rounded-t before:rounded-r before:-bottom-3 overflow-hidden lg:before:-bottom-6 lg:border-b-4 border-green
+}
 
-    /* .circle {
+.vestabs {
+  @apply py-2.5 hover: text-green hover:cursor-pointer font-semibold duration-500 uppercase text-xs lg:text-base
+}
+
+.mar .active {
+  @apply text-dark text-base border-b-4 border-green font-medium
+}
+
+.tab .active {
+  @apply border-b-2 border-green text-green rounded-none before: hidden
+}
+
+.wait {
+  background-image: url(../src/assets/images/Oval.svg), url(../src/assets/images/Oval\ 2.svg);
+  background-repeat: no-repeat, no-repeat;
+  background-size: auto, auto;
+  background-position: 5% 100%, 95% 5%;
+}
+
+.waitMob {
+  background-image: url(../src/assets/images/ROval.svg), url(../src/assets/images/Oval\ 2.svg), url(../src/assets/images/Oval\ 2.svg);
+  background-repeat: no-repeat, no-repeat, no-repeat;
+  background-size: 80%, 160px, auto;
+  background-position: 30% 140%, 105% 2%, -80% 50%;
+  /* @apply lg:hidden */
+}
+
+.welcome {
+  background-image: url(../src/assets/images/frame.png), url(../src/assets/images/reicNG.svg);
+  background-repeat: no-repeat, no-repeat;
+  background-size: auto, auto;
+  background-position: 100% 5px, 95% 100%;
+  /* background-clip: content; */
+  color: #FFF6ED
+}
+
+.bids {
+  background-image: url(../src/assets/images/bidsbank.svg);
+  background-repeat: no-repeat;
+  background-size: auto;
+  background-position: 0% 100%;
+}
+
+.banner {
+  background-image: url(../src/assets/images/bannerWiggle.png), url(../src/assets/images/reicCoin.png), url(../src/assets/images/reicCoin.png), url(../src/assets/images/reicCoin.png);
+  background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
+  background-size: auto, auto, auto, auto;
+  background-position: 60% -20px, 64% 60px, 100% 60px, 80% 20px;
+}
+
+.invest-banner {
+  background-image: url(../src/assets/images/reic-rounded.svg), url(../src/assets/images/bannerWiggle.png);
+  background-repeat: no-repeat, no-repeat;
+  background-size: contain, contain;
+  background-position: 100% 100%, 150px -10px;
+}
+
+.mobile-banner {
+  background-image: url(../src/assets/images/mobileReic.png), url(../src/assets/images/mobileRed.png), url(../src/assets/images/mobileGrey.png), url(../src/assets/images/mobileWiggle.png), linear-gradient(to right, #1e1e1e 30%, #008e10);
+  background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
+  background-size: auto, auto, auto, auto;
+  background-position: 100% 100%, 78% 100%, 65% 100%, 100% 10%;
+}
+
+.gradient {
+  /* background-image: linear-gradient(0deg, rgba(0, 142, 16, 0.14), rgba(0, 142, 16, 0.14)), url(../src/assets/images/bg.png); */
+  background-image: url(../src/assets/images/bg.png);
+  background-size: cover;
+  background-position: top center;
+}
+
+.income {
+  @apply w-1/2 lg: p-3 p-1
+}
+
+.income h1 {
+  @apply font-medium lg: text-sm mb-2 text-secondary text-tiny
+}
+
+.income p {
+  @apply text-secondary font-normal lg: text-xs text-xxm
+}
+
+/* .circle {
       fill: none;
       stroke: url(#GradientColor);
       stroke-width: 25px;
@@ -359,55 +385,60 @@ body {
         stroke-dashoffset: 165;
     } */
 
-    .section {
-      @apply lg:w-1/2 w-full p-1
-    }
+.section {
+  @apply lg: w-1/2 w-full p-1
+}
 
-    .section h1 {
-      @apply text-sm font-medium text-dark mb-3
-    }
+.section h1 {
+  @apply text-sm font-medium text-dark mb-3
+}
 
-    .investlists .real-estate {
-      @apply lg:w-80 lg:mr-3 w-full
-    }
+.investlists .real-estate {
+  @apply lg: w-80 lg:mr-3 w-full
+}
 
-    .real-estate {
-      @apply p-3 mb-4 bg-mainbg rounded-2xl flex items-center justify-between
-    }
+.real-estate {
+  @apply p-3 mb-4 bg-mainbg rounded-2xl flex items-center justify-between
+}
 
 
-    .income2 {
-      @apply w-1/2 py-3
-    }
-    .income2 h1{
-      @apply lg:font-bold font-semibold lg:text-xl text-xs mb-2 text-secondary
-    }
+.income2 {
+  @apply w-1/2 py-3
+}
 
-    .income2 p {
-      @apply text-secondary font-medium lg:text-lg text-tiny
-    }
+.income2 h1 {
+  @apply lg: font-bold font-semibold lg:text-xl text-xs mb-2 text-secondary
+}
 
-    .table {
-      @apply w-6x border
-    }
-    .header {
-      @apply w-52 mr-2
-    }
+.income2 p {
+  @apply text-secondary font-medium lg: text-lg text-tiny
+}
 
-    .mine .table {
-      @apply w-7x mr-2
-    }
-    .dur {
-      @apply w-20 mr-5
-    }
-    .withd-button {
-      @apply border-2 border-more py-2 rounded-full text-sm font-bold text-footer px-4 lg:px-6 mx-1 lg:mx-5 hover:bg-neutral hover:text-dashbg hover:border-neutral duration-300
-    }
+.table {
+  @apply w-6x border
+}
 
-    .with-dark {
-      @apply bg-neutral text-dashbg border-neutral
-    }
-    /* Chrome, Safari, Edge, Opera */
+.header {
+  @apply w-52 mr-2
+}
+
+.mine .table {
+  @apply w-7x mr-2
+}
+
+.dur {
+  @apply w-20 mr-5
+}
+
+.withd-button {
+  @apply border-2 border-more py-2 rounded-full text-sm font-bold text-footer px-4 lg: px-6 mx-1 lg:mx-5 hover:bg-neutral hover:text-dashbg hover:border-neutral duration-300
+}
+
+.with-dark {
+  @apply bg-neutral text-dashbg border-neutral
+}
+
+/* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
@@ -418,7 +449,8 @@ input::-webkit-inner-spin-button {
 input[type=number] {
   -moz-appearance: textfield;
 }
-    /* .open-modal {
+
+/* .open-modal {
       @apply visible duration-300
     }
 
@@ -426,23 +458,25 @@ input[type=number] {
       @apply invisible duration-300
     } */
 
-    /* .cat {
+/* .cat {
       @apply p-3 flex flex-row relative flex-nowrap overflow-scroll justify-between w-full cursor-all-scroll border
     } */
 
-    /* .cat::-webkit-scrollbar {
+/* .cat::-webkit-scrollbar {
       display: none;
     } */
 
-    textarea::-webkit-scrollbar{
-      width: 0;
-    }
-         .cat {
-           @apply p-3 justify-between w-full 
-         }
-    .categories {
-      @apply rounded-xl mb-5 px-5 lg:px-10 py-3 w-per relative
-    }
+textarea::-webkit-scrollbar {
+  width: 0;
+}
+
+.cat {
+  @apply p-3 justify-between w-full
+}
+
+.categories {
+  @apply rounded-xl mb-5 px-5 lg: px-10 py-3 w-per relative
+}
 
 /* .cate-block {
   @apply border-2
@@ -450,21 +484,22 @@ input[type=number] {
 
 
 
-        .scroll::-webkit-scrollbar {
-          width: 5px;
-          height:5px
-        }
-    
-        .scroll::-webkit-scrollbar-track {
-          /* -webkit-box-shadow: inset 0 0 6px; */
-          background-color: #FBFFFF;
-          border-radius: 50px;
-        }
-    
-        .scroll::-webkit-scrollbar-thumb {
-          border-radius: 10px;
-          background-color:  #80CA903B;
-        }
+.scroll::-webkit-scrollbar {
+  width: 5px;
+  height: 5px
+}
+
+.scroll::-webkit-scrollbar-track {
+  /* -webkit-box-shadow: inset 0 0 6px; */
+  background-color: #FBFFFF;
+  border-radius: 50px;
+}
+
+.scroll::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: #80CA903B;
+}
+
 .cate-block p {
   @apply text-tiny font-normal
 }
@@ -472,11 +507,53 @@ input[type=number] {
 .cate-block button {
   @apply text-xs
 }
+
 .show {
   @apply flex
-  
 }
 
 .remove {
   @apply hidden
+}
+
+.clover {
+  background-image: url(../src/assets/images/cloverhedera.png);
+  background-size: cover;
+}
+
+.realtors {
+  background-image: url(../src/assets/images/realtors\ first.png);
+  background-size: cover;
+}
+
+.rayne {
+  background-image: url(../src/assets/images/RayneRise.png);
+  background-size: cover;
+}
+
+.gineer {
+  background-image: url(../src/assets/images/imagineering.png);
+  background-size: cover;
+}
+
+.content {
+  @apply max-w-[1197px] m-auto
+}
+
+.bg-two {
+  background: linear-gradient(90deg, #ffffff 50%, #F8FFF9 50%);
+}
+
+.bg-one {
+  background-image: url(../src/assets/images/dots.svg);
+  background-repeat: no-repeat;
+  background-size: auto;
+  background-position: 100% 0px;
+}
+
+.transform {
+  transform: translateX(0);
+  -webkit-transition: all 1s ease;
+  -o-transition: all 1s ease;
+  transition: all 1s ease;
 }
