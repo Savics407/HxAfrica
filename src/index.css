@@ -271,7 +271,7 @@ label {
 }
 
 .tab .active {
-  @apply border-b-2 border-green text-green rounded-none before: hidden
+  @apply border-b-2 border-green text-green rounded-none before:hidden
 }
 
 .wait {
