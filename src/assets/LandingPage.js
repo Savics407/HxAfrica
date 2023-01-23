@@ -65,13 +65,13 @@ function LandingPage() {
                 }`}
               >
                 <h1 className="px-4">Home</h1>
-                <a href="#about">
+                <a href="#about" onClick={() => setIsOpen(false)}>
                   <h1 className="px-4">About us</h1>{" "}
                 </a>
-                <a href="#products">
+                <a href="#products" onClick={() => setIsOpen(false)}>
                   <h1 className="px-4">Products</h1>{" "}
                 </a>
-                <a href="#service">
+                <a href="#service" onClick={() => setIsOpen(false)}>
                   <h1 className="px-4">Service</h1>
                 </a>
               </div>
