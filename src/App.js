@@ -51,6 +51,7 @@ import { useEffect, useState } from "react";
 import AccountRecovery from "./assets/AccountRecovery";
 import WaitingList from "./assets/WaitingList";
 import LandingPage from "./assets/LandingPage";
+import ErrorPage from "./assets/ErrorPage";
 
 function App() {
   return (
@@ -63,6 +64,7 @@ function App() {
         <Route path="/account-recovery" element={<AccountRecovery />} />
         <Route path="/waitlist" element={<WaitingList />} />
         <Route path="/" element={<LandingPage />} />
+        <Route path="*" element={<ErrorPage />} />
 
         <Route path="/status" element={<UseNetworkStatus />} />
         <Route element={<AdminRoutes />}>

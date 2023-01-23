@@ -222,23 +222,30 @@ function LandingPage() {
                 <div className="my-4">
                   <img src={rent} alt="house-building" />
                   <h1>
-                    Your rent gets paid in bulk, you pay back in instalments
-                    with our Rent-Gap-Financing (RGF) offer
+                    Opportunity to get your annual rent paid in bulk while you
+                    pay in instalment all through the year (Rent
+                    Pay-small-small)
+                  </h1>
+                </div>
+                <div className="my-4">
+                  <img src={rent} alt="house-building" />
+                  <h1>
+                    Opportunity to become a landlord easily by co-owning rental
+                    property with members (ogbonge landlord){" "}
                   </h1>
                 </div>
                 <div className="my-4">
                   <img src={check} alt="house-building" />
                   <h1>
-                    You sell off your apartments with ease, and get your cash
-                    with our Direct Property Acquisition (DPA) offer
+                    Opportunity to save-in-land with your "shikini" moni with
+                    members (Ogbonge Investor)
                   </h1>
                 </div>
                 <div className="my-4">
                   <img src={bag} alt="house-building" />
                   <h1>
-                    Your contributory down-payment for mortgage loan gets paid,
-                    and you access your loan with our Mortgage Pre-Financing
-                    (MPF) offer
+                    Opportunity to own your own house now while you pay back for
+                    up to 30 years! (Sack-your-landlord)
                   </h1>
                 </div>
               </div>
