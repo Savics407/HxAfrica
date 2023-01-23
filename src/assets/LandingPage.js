@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import logo from "./images/HXafrica Logo.svg";
 import logoWhite from "./images/HXafrica Logo 1.svg";
 import barrier from "./images/barrier.svg";
-import headerPic from "./images/header picture.svg";
+import headerPic from "./images/Home image.png";
 import vector from "./images/Vector.svg";
 import ceo from "./images/CEO.svg";
 import liquidity from "./images/liquidity.svg";
 import access from "./images/access.svg";
-import shot from "./images/Appshot.svg";
+import shot from "./images/mobileDash.png";
 import rent from "./images/Rent.svg";
 import check from "./images/money-check.svg";
 import bag from "./images/moneybag.svg";
@@ -65,9 +65,15 @@ function LandingPage() {
                 }`}
               >
                 <h1 className="px-4">Home</h1>
-                <h1 className="px-4">About us</h1>
-                <h1 className="px-4">Products</h1>
-                <h1 className="px-4">Service</h1>
+                <a href="#about">
+                  <h1 className="px-4">About us</h1>{" "}
+                </a>
+                <a href="#products">
+                  <h1 className="px-4">Products</h1>{" "}
+                </a>
+                <a href="#service">
+                  <h1 className="px-4">Service</h1>
+                </a>
               </div>
               <div className={`${isOpen && "p-5"} p-5 lg:p-0`}>
                 <button className="border border-green font-inter capitalize text-green rounded-lg px-5 py-3 hover:bg-green hover:text-white transition">
@@ -96,7 +102,8 @@ function LandingPage() {
             </h1>
             <h1 className="font-normal lg:text-2xl text-xl my-6">
               {" "}
-              Start with as little as 50k
+              Start with as low as 50k, get cash back from your investment
+              anytime.
             </h1>
             <Link to="/sign-up">
               <button className="bg-green py-3 px-8 font-inter rounded-lg text-white cursor-pointer w-full lg:w-auto">
@@ -115,7 +122,8 @@ function LandingPage() {
             </h1>
             <h1 className="font-normal lg:text-2xl text-xl my-6">
               {" "}
-              Start with as little as 50k
+              Start with as low as 50k, get cash back from your investment
+              anytime.
             </h1>
             <Link to="/sign-up">
               <button className="bg-green py-3 px-8 font-inter rounded-lg text-white cursor-pointer w-full lg:w-auto">
@@ -123,8 +131,8 @@ function LandingPage() {
               </button>
             </Link>
           </div>
-          <div className="pt-20 pr-36 w-1/2 lg:block hidden">
-            <img src={headerPic} alt="header-picture" />
+          <div className="pt-20 w-1/2 lg:block hidden">
+            <img src={headerPic} alt="header-picture" className="" />
           </div>
         </div>
       </div>
@@ -149,7 +157,7 @@ function LandingPage() {
         </div>
       </div>
 
-      <div className="text-center py-20 bg-white">
+      <div className="text-center py-20 bg-white" id="about">
         <div className="content">
           <div>
             <h1 className="text-green font-roboto font-bold text-3xl lg:text-4xl">
@@ -195,7 +203,7 @@ function LandingPage() {
         </div>
       </div>
 
-      <div className="bg-product lg:px-48 px-5 py-20 relative ">
+      <div className="bg-product lg:px-48 px-5 py-20 relative " id="products">
         <div className="absolute top-0 bottom-0 right-0 left-0 waitMob lg:hidden"></div>
         <div className="absolute top-0 bottom-0 right-0 left-0 wait hidden lg:block z-10"></div>
         {/* <div className="w-full lg:w-auto text-center lg:text-left mb-20 lg:mb-auto border"> */}
@@ -289,7 +297,7 @@ function LandingPage() {
         </div>
       </div>
 
-      <div className="py-20 lg:px-36 px-5 ">
+      <div className="py-20 lg:px-36 px-5 " id="service">
         <div className="content">
           <div>
             <h1 className="text-green font-roboto text-3xl lg:text-4xl font-bold mb-3">
