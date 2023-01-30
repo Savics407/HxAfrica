@@ -160,10 +160,12 @@ function LandingPage() {
               <h1 className="font-semibold mt-6">It's that simple!</h1>
             </div>
             <div className="mt-10 lg:mt-0">
-              <button className="bg-white rounded-lg font-inter text-appText flex px-4 lg:py-2 py-3 items-center justify-center text-base w-full lg:w-auto">
-                Learn More{" "}
-                <img src={vector} alt="angle-arrow" className="ml-3" />
-              </button>
+              <a href="#products">
+                <button className="bg-white rounded-lg font-inter text-appText flex px-4 lg:py-2 py-3 items-center justify-center text-base w-full lg:w-auto">
+                  Learn More{" "}
+                  <img src={vector} alt="angle-arrow" className="ml-3" />
+                </button>
+              </a>
             </div>
           </div>
         </div>
