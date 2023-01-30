@@ -4,7 +4,19 @@ import logoWhite from "./images/HXafrica Logo 1.svg";
 import barrier from "./images/barrier.svg";
 import headerPic from "./images/Home image.png";
 import vector from "./images/Vector.svg";
-import ceo from "./images/CEO.svg";
+import ceo from "./images/boards/Ugo Peters.png";
+import gov from "./images/boards/Justice Emmanuel.png";
+import prof from "./images/boards/Prof Ndubuisi Ekekwe.png";
+import pascal from "./images/boards/paschal Okwundu.png";
+import francis from "./images/boards/Mr. Francis Okumagba.png";
+import alhaji from "./images/boards/Alhaji Ibraheem Yelwa.png";
+import amby from "./images/boards/Amby Uche.png";
+import aca from "./images/boards/Chidinma Queen Alfred.png";
+import linus from "./images/boards/Linus Caleb.png";
+import Akinjide from "./images/boards/Akinjide Fagbemi.png";
+import tayo from "./images/boards/Temitayo Gbadebo..png";
+import Austin from "./images/boards/Austin Igwe.png";
+
 import liquidity from "./images/liquidity.svg";
 import access from "./images/access.svg";
 import shot from "./images/mobileDash.png";
@@ -323,9 +335,11 @@ function LandingPage() {
                 <h1 className="font-normal mb-2 text-xs lg:text-xl mb-4">
                   Connecting Real Estate Buyers with Sellers
                 </h1>
-                <button className="flex px-3 lg:px-5 py-3 bg-pendingtext items-center rounded-lg text-xs lg:text-base">
-                  Visit Website <AiOutlineArrowRight className="ml-2" />{" "}
-                </button>
+                <a href="https://realtorsfirst.com" target="_blank">
+                  <button className="flex px-3 lg:px-5 py-3 bg-pendingtext items-center rounded-lg text-xs lg:text-base">
+                    Visit Website <AiOutlineArrowRight className="ml-2" />{" "}
+                  </button>
+                </a>
               </div>
             </div>
             <div className="flex items-end border rounded-2xl w-full h-[263px] lg:w-49 lg:h-482 clover p-5 lg:p-10 mb-5">
@@ -336,9 +350,11 @@ function LandingPage() {
                 <h1 className="font-normal mb-2 text-xs lg:text-xl mb-4">
                   Real Estate Consultancy Company
                 </h1>
-                <button className="flex px-3 lg:px-5 py-3 bg-pendingtext items-center rounded-lg text-xs lg:text-base">
-                  Visit Website <AiOutlineArrowRight className="ml-2" />{" "}
-                </button>
+                <a href="https://cloverhedera.com.ng " target="_blank">
+                  <button className="flex px-3 lg:px-5 py-3 bg-pendingtext items-center rounded-lg text-xs lg:text-base">
+                    Visit Website <AiOutlineArrowRight className="ml-2" />{" "}
+                  </button>
+                </a>
               </div>
             </div>
             <div className="flex items-end border rounded-2xl w-full h-[263px] lg:w-49 lg:h-482 rayne p-5 lg:p-10 mb-5">
@@ -349,9 +365,11 @@ function LandingPage() {
                 <h1 className="font-normal mb-2 text-xs lg:text-xl mb-4">
                   Unmatched Advertisng Services
                 </h1>
-                <button className="flex px-3 lg:px-5 py-3 bg-pendingtext items-center rounded-lg text-xs lg:text-base">
-                  Visit Website <AiOutlineArrowRight className="ml-2" />{" "}
-                </button>
+                <a href="https://raynerise.com" target="_blank">
+                  <button className="flex px-3 lg:px-5 py-3 bg-pendingtext items-center rounded-lg text-xs lg:text-base">
+                    Visit Website <AiOutlineArrowRight className="ml-2" />{" "}
+                  </button>
+                </a>
               </div>
             </div>
             <div className="flex items-end border rounded-2xl w-full h-[263px] lg:w-49 lg:h-482 gineer p-5 lg:p-10 mb-5">
@@ -362,9 +380,11 @@ function LandingPage() {
                 <h1 className="font-normal mb-2 text-xs lg:text-xl mb-4">
                   Engineering Imaginations
                 </h1>
-                <button className="flex px-3 lg:px-5 py-3 bg-pendingtext items-center rounded-lg text-xs lg:text-base">
-                  Visit Website <AiOutlineArrowRight className="ml-2" />{" "}
-                </button>
+                <a href="https://Imagineering.ng" target="_blank">
+                  <button className="flex px-3 lg:px-5 py-3 bg-pendingtext items-center rounded-lg text-xs lg:text-base">
+                    Visit Website <AiOutlineArrowRight className="ml-2" />{" "}
+                  </button>
+                </a>
               </div>
             </div>
           </div>
@@ -399,50 +419,87 @@ function LandingPage() {
             </h1>
           </div>
           <div className="py-10 flex flex-wrap justify-around">
-            <div className="flex flex-col items-center w-full lg:w-1/4 py-5 font-inter">
-              <img src={ceo} alt="Board of Directors" className="mb-3" />
-              <h1 className="text-lg">Olivia Rhye</h1>
-              <h1 className="font-normal mb-2 text-green">Founder & CEO</h1>
+            <div className="flex flex-col items-center w-full lg:w-1/3 py-5 font-inter">
+              <div className="border-5 mb-3 w-24 h-24 shadow-xl rounded-full bg-white">
+                <img
+                  src={ceo}
+                  alt="Board of Directors"
+                  className="w-full h-full object-cover rounded-full bg-white"
+                />
+              </div>
+              <h1 className="text-lg">Ugo Peters</h1>
+              <h1 className="font-normal mb-2 text-green">CEO</h1>
             </div>
-
-            <div className="flex flex-col items-center w-full lg:w-1/4 py-5 font-inter">
-              <img src={Phoenix} alt="Board of Directors" className="mb-3" />
-              <h1 className="text-lg">Phoenix Baker</h1>
-              <h1 className="font-normal mb-2 text-green">
-                Engineering Manager
+            <div className="flex flex-col items-center w-full lg:w-1/3 py-5 font-inter">
+              <div className="border-5 mb-3 w-24 h-24 shadow-xl rounded-full bg-white">
+                <img
+                  src={gov}
+                  alt="Board of Directors"
+                  className="w-full h-full object-cover rounded-full bg-white"
+                />
+              </div>
+              <h1 className="text-lg text-center">
+                Justice Emmanuel Fagbenle (rtd)
+              </h1>
+              <h1 className="font-normal mb-2 text-green text-center">
+                Chairman - Corporate Governance/Legal Advisory
               </h1>
             </div>
 
-            <div className="flex flex-col items-center w-full lg:w-1/4 py-5 font-inter">
-              <img src={Lana} alt="Board of Directors" className="mb-3" />
-              <h1 className="text-lg">Lana Steiner</h1>
-              <h1 className="font-normal mb-2 text-green">Product Manager</h1>
-            </div>
-
-            <div className="flex flex-col items-center w-full lg:w-1/4 py-5 font-inter">
-              <img src={Demi} alt="Board of Directors" className="mb-3" />
-              <h1 className="text-lg">Demi Wilkinson</h1>
-              <h1 className="font-normal mb-2 text-green">
-                Frontend Developer
+            <div className="flex flex-col items-center w-full lg:w-1/3 py-5 font-inter">
+              <div className="border-5 mb-3 w-24 h-24 shadow-xl rounded-full bg-white">
+                <img
+                  src={prof}
+                  alt="Board of Directors"
+                  className="w-full h-full object-cover rounded-full bg-white"
+                />
+              </div>
+              <h1 className="text-lg text-center">Prof Ndubuisi Ekekwe</h1>
+              <h1 className="font-normal mb-2 text-green text-center">
+                Technical & Entrepreneurship Advisory
               </h1>
             </div>
 
-            <div className="flex flex-col items-center w-full lg:w-1/4 py-5 font-inter">
-              <img src={Candice} alt="Board of Directors" className="mb-3" />
-              <h1 className="text-lg">Candice Wu</h1>
-              <h1 className="font-normal mb-2 text-green">Backend Developer</h1>
+            <div className="flex flex-col items-center w-full lg:w-1/3 py-5 font-inter">
+              <div className="border-5 mb-3 w-24 h-24 shadow-xl rounded-full bg-white">
+                <img
+                  src={pascal}
+                  alt="Board of Directors"
+                  className="w-full h-full object-cover rounded-full bg-white"
+                />
+              </div>
+              <h1 className="text-lg text-center">Paschal Okwundu</h1>
+              <h1 className="font-normal mb-2 text-green text-center">
+                Growth-Hacking Advisory
+              </h1>
             </div>
 
-            <div className="flex flex-col items-center w-full lg:w-1/4 py-5 font-inter">
-              <img src={Natali} alt="Board of Directors" className="mb-3" />
-              <h1 className="text-lg">Natali Craig</h1>
-              <h1 className="font-normal mb-2 text-green">Product Designer</h1>
+            <div className="flex flex-col items-center w-full lg:w-1/3 py-5 font-inter">
+              <div className="border-5 mb-3 w-24 h-24 shadow-xl rounded-full bg-white">
+                <img
+                  src={alhaji}
+                  alt="Board of Directors"
+                  className="w-full h-full object-cover rounded-full bg-white"
+                />
+              </div>
+              <h1 className="text-lg text-center">Alhaji Ibraheem Yelwa</h1>
+              <h1 className="font-normal mb-2 text-green text-center">
+                Finance (Microfinance & Compliance)
+              </h1>
             </div>
 
-            <div className="flex flex-col items-center w-full lg:w-1/4 py-5 font-inter">
-              <img src={Drew} alt="Board of Directors" className="mb-3" />
-              <h1 className="text-lg">Drew Cano</h1>
-              <h1 className="font-normal mb-2 text-green">UX Researcher</h1>
+            <div className="flex flex-col items-center w-full lg:w-1/3 py-5 font-inter">
+              <div className="border-5 mb-3 w-24 h-24 shadow-xl rounded-full bg-white">
+                <img
+                  src={francis}
+                  alt="Board of Directors"
+                  className="w-full h-full object-cover rounded-full bg-white"
+                />
+              </div>
+              <h1 className="text-lg text-center">Mr. Francis Okumagba</h1>
+              <h1 className="font-normal mb-2 text-green text-center">
+                Finance (SEC & Banking) and Business Development Advisory
+              </h1>
             </div>
           </div>
         </div>
@@ -459,44 +516,100 @@ function LandingPage() {
             </h1>
           </div>
           <div className="py-10 flex flex-wrap justify-around">
-            <div className="flex flex-col items-center w-full lg:w-1/3 py-5 font-inter">
-              <img src={ceo} alt="Board of Directors" className="mb-3" />
-              <h1 className="text-lg">Olivia Rhye</h1>
-              <h1 className="font-normal mb-2 text-green">Founder & CEO</h1>
+            <div className="flex flex-col items-center w-full lg:w-1/4 py-5 font-inter">
+              <div className="border-5 mb-3 w-24 h-24 shadow-xl rounded-full bg-white">
+                <img
+                  src={ceo}
+                  alt="Board of Directors"
+                  className="w-full h-full object-cover rounded-full bg-white"
+                />
+              </div>
+              <h1 className="text-lg text-center">Ugo Peters</h1>
+              <h1 className="font-normal mb-2 text-green text-center">CEO</h1>
             </div>
 
-            <div className="flex flex-col items-center w-full lg:w-1/3 py-5 font-inter">
-              <img src={Phoenix} alt="Board of Directors" className="mb-3" />
-              <h1 className="text-lg">Phoenix Baker</h1>
-              <h1 className="font-normal mb-2 text-green">
-                Engineering Manager
+            <div className="flex flex-col items-center w-full lg:w-1/4 py-5 font-inter">
+              <div className="border-5 mb-3 w-24 h-24 shadow-xl rounded-full bg-white">
+                <img
+                  src={Akinjide}
+                  alt="Board of Directors"
+                  className="w-full h-full object-cover rounded-full bg-white"
+                />
+              </div>
+              <h1 className="text-lg text-center">Akinjide Fagbemi</h1>
+              <h1 className="font-normal mb-2 text-green text-center">
+                Real Estate Operations
               </h1>
             </div>
 
-            <div className="flex flex-col items-center w-full lg:w-1/3 py-5 font-inter">
-              <img src={Lana} alt="Board of Directors" className="mb-3" />
-              <h1 className="text-lg">Lana Steiner</h1>
-              <h1 className="font-normal mb-2 text-green">Product Manager</h1>
-            </div>
-
-            <div className="flex flex-col items-center w-full lg:w-1/3 py-5 font-inter">
-              <img src={Demi} alt="Board of Directors" className="mb-3" />
-              <h1 className="text-lg">Demi Wilkinson</h1>
-              <h1 className="font-normal mb-2 text-green">
-                Frontend Developer
+            <div className="flex flex-col items-center w-full lg:w-1/4 py-5 font-inter">
+              <div className="border-5 mb-3 w-24 h-24 shadow-xl rounded-full bg-white">
+                <img
+                  src={Austin}
+                  alt="Board of Directors"
+                  className="w-full h-full object-cover rounded-full bg-white"
+                />
+              </div>
+              <h1 className="text-lg text-center">Austin Igwe</h1>
+              <h1 className="font-normal mb-2 text-green text-center">
+                Go-to-Market Advisory
               </h1>
             </div>
 
-            <div className="flex flex-col items-center w-full lg:w-1/3 py-5 font-inter">
-              <img src={Candice} alt="Board of Directors" className="mb-3" />
-              <h1 className="text-lg">Candice Wu</h1>
-              <h1 className="font-normal mb-2 text-green">Backend Developer</h1>
+            <div className="flex flex-col items-center w-full lg:w-1/4 py-5 font-inter">
+              <div className="border-5 mb-3 w-24 h-24 shadow-xl rounded-full bg-white">
+                <img
+                  src={amby}
+                  alt="Board of Directors"
+                  className="w-full h-full object-cover rounded-full bg-white"
+                />
+              </div>
+              <h1 className="text-lg text-center">Amby Uche</h1>
+              <h1 className="font-normal mb-2 text-green text-center">
+                Admin & Project Management
+              </h1>
             </div>
 
-            <div className="flex flex-col items-center w-full lg:w-1/3 py-5 font-inter">
-              <img src={Natali} alt="Board of Directors" className="mb-3" />
-              <h1 className="text-lg">Natali Craig</h1>
-              <h1 className="font-normal mb-2 text-green">Product Designer</h1>
+            <div className="flex flex-col items-center w-full lg:w-1/4 py-5 font-inter">
+              <div className="border-5 mb-3 w-24 h-24 shadow-xl rounded-full bg-white">
+                <img
+                  src={linus}
+                  alt="Board of Directors"
+                  className="w-full h-full object-cover rounded-full bg-white"
+                />
+              </div>
+              <h1 className="text-lg text-center">Linus Caleb</h1>
+              <h1 className="font-normal mb-2 text-green text-center">
+                Brand & Web Consultant
+              </h1>
+            </div>
+
+            <div className="flex flex-col items-center w-full lg:w-1/4 py-5 font-inter">
+              <div className="border-5 mb-3 w-24 h-24 shadow-xl rounded-full bg-white">
+                <img
+                  src={tayo}
+                  alt="Board of Directors"
+                  className="w-full h-full object-cover rounded-full bg-white"
+                />
+              </div>
+              <h1 className="text-lg text-center">Temitope Gbadebo</h1>
+              <h1 className="font-normal mb-2 text-green text-center">CTO</h1>
+            </div>
+
+            <div className="flex flex-col items-center w-full lg:w-1/4 py-5 font-inter">
+              <div className="border-5 mb-3 w-24 h-24 shadow-xl rounded-full bg-white">
+                <img
+                  src={aca}
+                  alt="Board of Directors"
+                  className="w-full h-full object-cover rounded-full bg-white"
+                />
+              </div>
+              <h1 className="text-lg text-center">
+                Chidinma Queen Alfred, ACA
+              </h1>
+              <h1 className="font-normal mb-2 text-green text-center">
+                Accountant
+              </h1>
             </div>
           </div>
         </div>
