@@ -29,7 +29,7 @@ function JoinOngoing({ closeModal, itemId, productDetails }) {
     const token = localStorage.getItem("user-token");
 
     const response = await fetch(
-      "https://reic.api.simpoo.biz/api/investment/fetch_ongoing_investment",
+      `${process.env.REACT_APP_MY_API_ENDPOINT}investment/fetch_ongoing_investment`,
       {
         method: "POST",
         headers: {
@@ -51,7 +51,7 @@ function JoinOngoing({ closeModal, itemId, productDetails }) {
   async function wallet() {
     const token = localStorage.getItem("user-token");
     const response = await fetch(
-      "https://reic.api.simpoo.biz/api/wallet/fetch_wallet",
+      `${process.env.REACT_APP_MY_API_ENDPOINT}wallet/fetch_wallet`,
       {
         method: "POST",
         headers: {
@@ -71,7 +71,7 @@ function JoinOngoing({ closeModal, itemId, productDetails }) {
     const token = localStorage.getItem("user-token");
 
     const response = await fetch(
-      "https://reic.api.simpoo.biz/api/investment/investment_percentage",
+      `${process.env.REACT_APP_MY_API_ENDPOINT}investment/investment_percentage`,
       {
         method: "POST",
         headers: {
@@ -415,7 +415,7 @@ export function Warning({
     };
     const token = localStorage.getItem("user-token");
     const response = await fetch(
-      "https://reic.api.simpoo.biz/api/investment/join_ongoing_investment",
+      `${process.env.REACT_APP_MY_API_ENDPOINT}investment/join_ongoing_investment`,
       {
         method: "POST",
         body: JSON.stringify(payLoad),

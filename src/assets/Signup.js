@@ -21,6 +21,8 @@ function Tab() {
 }
 
 function Auth() {
+  // console.log(process.env.REACT_APP_MY_API_ENDPOINT);
+
   const [step, setStep] = useState(0);
   const [formData, setFormData] = useState({
     email: "",
@@ -45,7 +47,7 @@ function Auth() {
   //       terms: formData.terms,
   //     };
   //     try {
-  //       const response = await fetch("https://reic.api.simpoo.biz/api/register", {
+  //       const response = await fetch(`${process.env.REACT_APP_MY_API_ENDPOINT}register", {
   //         method: "POST",
   //         body: JSON.stringify(payload),
   //         headers: {
@@ -67,7 +69,7 @@ function Auth() {
   //       email: formData.email,
   //       otp: formData.otp,
   //     };
-  //     const response = await fetch("https://reic.api.simpoo.biz/api/verify-otp", {
+  //     const response = await fetch(`${process.env.REACT_APP_MY_API_ENDPOINT}verify-otp", {
   //       method: "POST",
   //       body: JSON.stringify(otpLoad),
   //       headers: {

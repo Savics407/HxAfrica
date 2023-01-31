@@ -23,7 +23,7 @@ function Admin_Dashboard() {
     const token = localStorage.getItem("user-token");
     // e.preventDefault();
     const response = await fetch(
-      "https://reic.api.simpoo.biz/api/admin/fetch_dashboard_total",
+      `${process.env.REACT_APP_MY_API_ENDPOINT}admin/fetch_dashboard_total`,
       {
         method: "POST",
         headers: {
@@ -44,7 +44,7 @@ function Admin_Dashboard() {
     const token = localStorage.getItem("user-token");
     // e.preventDefault();
     const response = await fetch(
-      "https://reic.api.simpoo.biz/api/admin/fetch_top_investment",
+      `${process.env.REACT_APP_MY_API_ENDPOINT}admin/fetch_top_investment`,
       {
         method: "POST",
         headers: {
@@ -67,7 +67,7 @@ function Admin_Dashboard() {
     const token = localStorage.getItem("user-token");
     // e.preventDefault();
     const response = await fetch(
-      "https://reic.api.simpoo.biz/api/admin/fetch_merchant_activities",
+      `${process.env.REACT_APP_MY_API_ENDPOINT}admin/fetch_merchant_activities`,
       {
         method: "POST",
         headers: {

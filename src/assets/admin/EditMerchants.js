@@ -13,7 +13,7 @@ function EditMerchants({ setEdit, merchantId }) {
     const token = localStorage.getItem("user-token");
     // e.preventDefault();
     const response = await fetch(
-      "https://reic.api.simpoo.biz/api/admin/fetch_merchants",
+      `${process.env.REACT_APP_MY_API_ENDPOINT}admin/fetch_merchants`,
       {
         method: "POST",
         headers: {
@@ -76,7 +76,7 @@ function EditMerchants({ setEdit, merchantId }) {
     formData.append("city", details.city);
 
     const response = await fetch(
-      "https://reic.api.simpoo.biz/api/admin/update_merchant",
+      `${process.env.REACT_APP_MY_API_ENDPOINT}admin/update_merchant`,
       {
         method: "POST",
         body: formData,

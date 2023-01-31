@@ -17,7 +17,7 @@ function Products() {
     const token = localStorage.getItem("user-token");
     // e.preventDefault();
     const response = await fetch(
-      "https://reic.api.simpoo.biz/api/admin/fetch_products",
+      `${process.env.REACT_APP_MY_API_ENDPOINT}admin/fetch_products`,
       {
         method: "POST",
         headers: {

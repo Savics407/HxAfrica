@@ -18,7 +18,7 @@ function PullList() {
     const token = localStorage.getItem("user-token");
     // e.preventDefault();
     const response = await fetch(
-      "https://reic.api.simpoo.biz/api/admin/fetch_pullout_funds_request",
+      `${process.env.REACT_APP_MY_API_ENDPOINT}admin/fetch_pullout_funds_request`,
       {
         method: "POST",
         headers: {
@@ -42,7 +42,7 @@ function PullList() {
     };
     // alert(payLoad.id);
     const response = await fetch(
-      "https://reic.api.simpoo.biz/api/admin/approve_merchant_pullout_product_funds",
+      `${process.env.REACT_APP_MY_API_ENDPOINT}admin/approve_merchant_pullout_product_funds`,
       {
         method: "POST",
         body: JSON.stringify(payLoad),
@@ -86,7 +86,7 @@ function PullList() {
     };
     // alert(payLoad.id);
     const response = await fetch(
-      "https://reic.api.simpoo.biz/api/admin/update_sent",
+      `${process.env.REACT_APP_MY_API_ENDPOINT}admin/update_sent`,
       {
         method: "POST",
         body: JSON.stringify(payLoad),
@@ -128,7 +128,7 @@ function PullList() {
     const token = localStorage.getItem("user-token");
     // e.preventDefault();
     const response = await fetch(
-      "https://reic.api.simpoo.biz/api/admin/check_sent",
+      `${process.env.REACT_APP_MY_API_ENDPOINT}admin/check_sent`,
       {
         method: "POST",
         headers: {

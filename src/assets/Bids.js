@@ -24,7 +24,7 @@ function Bids() {
     const token = localStorage.getItem("user-token");
     // e.preventDefault();
     const response = await fetch(
-      "https://reic.api.simpoo.biz/api/exchange/fetch_investment_bids",
+      `${process.env.REACT_APP_MY_API_ENDPOINT}exchange/fetch_investment_bids`,
       {
         method: "POST",
         headers: {
@@ -56,7 +56,7 @@ function Bids() {
 
     const token = localStorage.getItem("user-token");
     const response = await fetch(
-      "https://reic.api.simpoo.biz/api/exchange/approve_bid",
+      `${process.env.REACT_APP_MY_API_ENDPOINT}exchange/approve_bid`,
       {
         method: "POST",
         body: JSON.stringify(payLoad),
@@ -108,7 +108,7 @@ function Bids() {
 
     const token = localStorage.getItem("user-token");
     const response = await fetch(
-      "https://reic.api.simpoo.biz/api/exchange/decline_bid",
+      `${process.env.REACT_APP_MY_API_ENDPOINT}exchange/decline_bid`,
       {
         method: "POST",
         body: JSON.stringify(payLoad),

@@ -17,7 +17,7 @@ function Owner() {
     const token = localStorage.getItem("user-token");
     // e.preventDefault();
     const response = await fetch(
-      "https://reic.api.simpoo.biz/api/chat/chat_list",
+      `${process.env.REACT_APP_MY_API_ENDPOINT}chat/chat_list`,
       {
         method: "POST",
         headers: {
@@ -46,7 +46,7 @@ function Owner() {
       sender_id: user_id,
     };
     const response = await fetch(
-      "https://reic.api.simpoo.biz/api/chat/fetch_chat",
+      `${process.env.REACT_APP_MY_API_ENDPOINT}chat/fetch_chat`,
       {
         method: "POST",
         body: JSON.stringify(payLoad),
@@ -76,7 +76,7 @@ function Owner() {
     setMessage("");
     const token = localStorage.getItem("user-token");
     const response = await fetch(
-      "https://reic.api.simpoo.biz/api/chat/send_message",
+      `${process.env.REACT_APP_MY_API_ENDPOINT}chat/send_message`,
       {
         method: "POST",
         body: JSON.stringify(payLoad),

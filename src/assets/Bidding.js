@@ -27,7 +27,7 @@ function Bidding({ closeModal, itemId }) {
     const token = localStorage.getItem("user-token");
 
     const response = await fetch(
-      "https://reic.api.simpoo.biz/api/investment/fetch_relisted_investment",
+      `${process.env.REACT_APP_MY_API_ENDPOINT}investment/fetch_relisted_investment`,
       {
         method: "POST",
         headers: {
@@ -50,7 +50,7 @@ function Bidding({ closeModal, itemId }) {
   async function wallet() {
     const token = localStorage.getItem("user-token");
     const response = await fetch(
-      "https://reic.api.simpoo.biz/api/wallet/fetch_wallet",
+      `${process.env.REACT_APP_MY_API_ENDPOINT}wallet/fetch_wallet`,
       {
         method: "POST",
         headers: {
@@ -70,7 +70,7 @@ function Bidding({ closeModal, itemId }) {
     const token = localStorage.getItem("user-token");
 
     const response = await fetch(
-      "https://reic.api.simpoo.biz/api/investment/exchange_percentage",
+      `${process.env.REACT_APP_MY_API_ENDPOINT}investment/exchange_percentage`,
       {
         method: "POST",
         headers: {
@@ -103,7 +103,7 @@ function Bidding({ closeModal, itemId }) {
     // alert(reic);
     const token = localStorage.getItem("user-token");
     const response = await fetch(
-      "https://reic.api.simpoo.biz/api/exchange/bid_investment",
+      `${process.env.REACT_APP_MY_API_ENDPOINT}exchange/bid_investment`,
       {
         method: "POST",
         body: JSON.stringify(payLoad),

@@ -14,7 +14,7 @@ function AdminSettings() {
     const token = localStorage.getItem("user-token");
     // e.preventDefault();
     const response = await fetch(
-      "https://reic.api.simpoo.biz/api/admin/fetch_pullout_percentage",
+      `${process.env.REACT_APP_MY_API_ENDPOINT}admin/fetch_pullout_percentage`,
       {
         method: "POST",
         headers: {
@@ -38,7 +38,7 @@ function AdminSettings() {
     const token = localStorage.getItem("user-token");
     // e.preventDefault();
     const response = await fetch(
-      "https://reic.api.simpoo.biz/api/admin/fetch_investment_awaiting_time",
+      `${process.env.REACT_APP_MY_API_ENDPOINT}admin/fetch_investment_awaiting_time`,
       {
         method: "POST",
         headers: {
@@ -84,7 +84,7 @@ function AdminSettings() {
 
     const token = localStorage.getItem("user-token");
     const response = await fetch(
-      "https://reic.api.simpoo.biz/api/investor/change_password",
+      `${process.env.REACT_APP_MY_API_ENDPOINT}investor/change_password`,
       {
         method: "POST",
         body: JSON.stringify(payLoad),
@@ -140,7 +140,7 @@ function AdminSettings() {
 
     const token = localStorage.getItem("user-token");
     const response = await fetch(
-      "https://reic.api.simpoo.biz/api/admin/update_cancel_percentage",
+      `${process.env.REACT_APP_MY_API_ENDPOINT}admin/update_cancel_percentage`,
       {
         method: "POST",
         body: JSON.stringify(payLoad),
@@ -190,7 +190,7 @@ function AdminSettings() {
 
     const token = localStorage.getItem("user-token");
     const response = await fetch(
-      "https://reic.api.simpoo.biz/api/admin/update_pullout_percentage",
+      `${process.env.REACT_APP_MY_API_ENDPOINT}admin/update_pullout_percentage`,
       {
         method: "POST",
         body: JSON.stringify(payLoad),
@@ -239,7 +239,7 @@ function AdminSettings() {
 
     const token = localStorage.getItem("user-token");
     const response = await fetch(
-      "https://reic.api.simpoo.biz/api/admin/update_investment_percentage",
+      `${process.env.REACT_APP_MY_API_ENDPOINT}admin/update_investment_percentage`,
       {
         method: "POST",
         body: JSON.stringify(payLoad),
@@ -288,7 +288,7 @@ function AdminSettings() {
 
     const token = localStorage.getItem("user-token");
     const response = await fetch(
-      "https://reic.api.simpoo.biz/api/admin/update_exchange_percentage",
+      `${process.env.REACT_APP_MY_API_ENDPOINT}admin/update_exchange_percentage`,
       {
         method: "POST",
         body: JSON.stringify(payLoad),
@@ -337,7 +337,7 @@ function AdminSettings() {
 
     const token = localStorage.getItem("user-token");
     const response = await fetch(
-      "https://reic.api.simpoo.biz/api/admin/update_investment_awaiting_time",
+      `${process.env.REACT_APP_MY_API_ENDPOINT}admin/update_investment_awaiting_time`,
       {
         method: "POST",
         body: JSON.stringify(payLoad),

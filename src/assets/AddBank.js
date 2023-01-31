@@ -23,7 +23,7 @@ function AddBank({ closeToken, setVerifyBVN, setWithdraw, setBankID }) {
     const token = localStorage.getItem("user-token");
     // e.preventDefault();
     const response = await fetch(
-      "https://reic.api.simpoo.biz/api/investor/list_of_banks",
+      `${process.env.REACT_APP_MY_API_ENDPOINT}investor/list_of_banks`,
       {
         method: "POST",
         headers: {
@@ -45,7 +45,7 @@ function AddBank({ closeToken, setVerifyBVN, setWithdraw, setBankID }) {
     const token = localStorage.getItem("user-token");
     // e.preventDefault();
     const response = await fetch(
-      "https://reic.api.simpoo.biz/api/investor/fetch_user_bank",
+      `${process.env.REACT_APP_MY_API_ENDPOINT}investor/fetch_user_bank`,
       {
         method: "POST",
         headers: {
@@ -69,7 +69,7 @@ function AddBank({ closeToken, setVerifyBVN, setWithdraw, setBankID }) {
     bankCode: "",
     accountNumber: "",
   });
-  const [process, setProcess] = useState(false);
+  // const [loading, setLoading] = useState(false);
   const [bankInfo, setBankInfo] = useState("BankCode, bankName");
   const split = bankInfo.split(",");
   const bankCode = split[0];
@@ -86,7 +86,7 @@ function AddBank({ closeToken, setVerifyBVN, setWithdraw, setBankID }) {
     };
     // alert(bankName[0  ])
     const response = await fetch(
-      "https://reic.api.simpoo.biz/api/investor/resolve_bank_info",
+      `${process.env.REACT_APP_MY_API_ENDPOINT}investor/resolve_bank_info`,
       {
         method: "POST",
         body: JSON.stringify(payLoad),
@@ -110,14 +110,14 @@ function AddBank({ closeToken, setVerifyBVN, setWithdraw, setBankID }) {
       // });
       // setChooseBank(true)
       setAddAccount(false);
-      setProcess(false);
+      setLoading(false);
       // setMain(true)
       setVerifyBVN(true);
       closeToken(false);
       // addBank()
     } else {
       if (result.status === "error") {
-        setProcess(false);
+        setLoading(false);
         toast.error(`${result.message}`, {
           position: "top-left",
           autoClose: 1500,
@@ -311,11 +311,11 @@ function AddBank({ closeToken, setVerifyBVN, setWithdraw, setBankID }) {
                 <button
                   className="rounded-full lg:rounded-xl w-full h-12 mt-3 text-dashbg bg-green"
                   onClick={() => {
-                    setProcess(true);
+                    setLoading(true);
                     resolveBank();
                   }}
                 >
-                  {process ? "processing ..." : "Save"}
+                  {loading ? "processing ..." : "Save"}
                 </button>
               </div>
               {/* <div className=" flex items-center pt-10 pb-5">

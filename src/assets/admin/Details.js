@@ -22,7 +22,7 @@ function Details({ setDetails, itemId, fetchInvestment }) {
     const token = localStorage.getItem("user-token");
 
     const response = await fetch(
-      "https://reic.api.simpoo.biz/api/admin/fetch_pending_investments",
+      `${process.env.REACT_APP_MY_API_ENDPOINT}admin/fetch_pending_investments`,
       {
         method: "POST",
         headers: {
@@ -325,7 +325,7 @@ function Warning({ closeWarning, title, productId, fetchInvestment }) {
 
     const token = localStorage.getItem("user-token");
     const response = await fetch(
-      "https://reic.api.simpoo.biz/api/admin/approve_product",
+      `${process.env.REACT_APP_MY_API_ENDPOINT}admin/approve_product`,
       {
         method: "POST",
         body: JSON.stringify(payLoad),
@@ -439,7 +439,7 @@ function Processing({ productId, status, fetchInvestment, setDetails }) {
 
     const token = localStorage.getItem("user-token");
     const response = await fetch(
-      "https://reic.api.simpoo.biz/api/admin/approve_product",
+      `${process.env.REACT_APP_MY_API_ENDPOINT}admin/approve_product`,
       {
         method: "POST",
         body: JSON.stringify(payLoad),

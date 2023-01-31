@@ -31,7 +31,7 @@ function Details({ closeToken }) {
     };
     const token = localStorage.getItem("user-token");
     const response = await fetch(
-      "https://reic.api.simpoo.biz/api/paystack/initialize_paystack",
+      `${process.env.REACT_APP_MY_API_ENDPOINT}paystack/initialize_paystack`,
       {
         method: "POST",
         body: JSON.stringify(payLoad),
@@ -231,7 +231,7 @@ export function BankTransfer({ closeToken, setBank, bank }) {
   async function fetchKuda() {
     const token = localStorage.getItem("user-token");
     const response = await fetch(
-      "https://reic.api.simpoo.biz/api/kuda/fetch_mykuda_account",
+      `${process.env.REACT_APP_MY_API_ENDPOINT}kuda/fetch_mykuda_account`,
       {
         method: "POST",
         headers: {
@@ -250,7 +250,7 @@ export function BankTransfer({ closeToken, setBank, bank }) {
   async function initializeKuda() {
     const token = localStorage.getItem("user-token");
     const response = await fetch(
-      "https://reic.api.simpoo.biz/api/kuda/initialize_kuda",
+      `${process.env.REACT_APP_MY_API_ENDPOINT}kuda/initialize_kuda`,
       {
         method: "POST",
         headers: {
@@ -278,7 +278,7 @@ export function BankTransfer({ closeToken, setBank, bank }) {
       tracking_reference: initialize,
     };
     const response = await fetch(
-      "https://reic.api.simpoo.biz/api/kuda/check_webhook_payment",
+      `${process.env.REACT_APP_MY_API_ENDPOINT}kuda/check_webhook_payment`,
       {
         method: "POST",
         body: JSON.stringify(payLoad),

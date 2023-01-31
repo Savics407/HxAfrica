@@ -18,7 +18,7 @@ function BiddersChat() {
     const token = localStorage.getItem("user-token");
     // e.preventDefault();
     const response = await fetch(
-      "https://reic.api.simpoo.biz/api/exchange/fetch_investment_bids",
+      `${process.env.REACT_APP_MY_API_ENDPOINT}exchange/fetch_investment_bids`,
       {
         method: "POST",
         headers: {
@@ -58,7 +58,7 @@ function BiddersChat() {
     const token = localStorage.getItem("user-token");
     // e.preventDefault();
     const response = await fetch(
-      "https://reic.api.simpoo.biz/api/chat/chat_list",
+      `${process.env.REACT_APP_MY_API_ENDPOINT}chat/chat_list`,
       {
         method: "POST",
         headers: {
@@ -100,7 +100,7 @@ function BiddersChat() {
       sender_id: user_id,
     };
     const response = await fetch(
-      "https://reic.api.simpoo.biz/api/chat/fetch_chat",
+      `${process.env.REACT_APP_MY_API_ENDPOINT}chat/fetch_chat`,
       {
         method: "POST",
         body: JSON.stringify(payLoad),
@@ -155,7 +155,7 @@ function BiddersChat() {
     setMessage("");
     const token = localStorage.getItem("user-token");
     const response = await fetch(
-      "https://reic.api.simpoo.biz/api/chat/send_message",
+      `${process.env.REACT_APP_MY_API_ENDPOINT}chat/send_message`,
       {
         method: "POST",
         body: JSON.stringify(payLoad),

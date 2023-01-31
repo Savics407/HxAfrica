@@ -11,7 +11,7 @@ function InvestHeader() {
     const token = localStorage.getItem("user-token");
     // e.preventDefault();
     const response = await fetch(
-      "https://reic.api.simpoo.biz/api/chat/chat_list",
+      `${process.env.REACT_APP_MY_API_ENDPOINT}chat/chat_list`,
       {
         method: "POST",
         headers: {

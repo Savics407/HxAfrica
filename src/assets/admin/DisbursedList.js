@@ -16,7 +16,7 @@ function DisbursedList() {
     const token = localStorage.getItem("user-token");
     // e.preventDefault();
     const response = await fetch(
-      "https://reic.api.simpoo.biz/api/admin/fetch_disburse_funds_request",
+      `${process.env.REACT_APP_MY_API_ENDPOINT}admin/fetch_disburse_funds_request`,
       {
         method: "POST",
         headers: {
@@ -42,7 +42,7 @@ function DisbursedList() {
     };
     // alert(payLoad.id);
     const response = await fetch(
-      "https://reic.api.simpoo.biz/api/admin/approve_merchant_disburse_product_funds",
+      `${process.env.REACT_APP_MY_API_ENDPOINT}admin/approve_merchant_disburse_product_funds`,
       {
         method: "POST",
         body: JSON.stringify(payLoad),

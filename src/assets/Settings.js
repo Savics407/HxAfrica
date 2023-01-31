@@ -251,7 +251,7 @@ function Profile() {
     const token = localStorage.getItem("user-token");
     // e.preventDefault();
     const response = await fetch(
-      "https://reic.api.simpoo.biz/api/investor/fetch_user_profile",
+      `${process.env.REACT_APP_MY_API_ENDPOINT}investor/fetch_user_profile`,
       {
         method: "POST",
         headers: {
@@ -304,7 +304,7 @@ function Profile() {
 
     const token = localStorage.getItem("user-token");
     const response = await fetch(
-      "https://reic.api.simpoo.biz/api/investor/update_profile_info",
+      `${process.env.REACT_APP_MY_API_ENDPOINT}investor/update_profile_info`,
       {
         method: "POST",
         body: JSON.stringify(payLoad),

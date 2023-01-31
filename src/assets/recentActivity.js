@@ -22,7 +22,7 @@ function RecentActivity() {
     const token = localStorage.getItem("user-token");
     // e.preventDefault();
     const response = await fetch(
-      "https://reic.api.simpoo.biz/api/wallet/fetch_wallet_activity",
+      `${process.env.REACT_APP_MY_API_ENDPOINT}wallet/fetch_wallet_activity`,
       {
         method: "POST",
         headers: {

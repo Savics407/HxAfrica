@@ -15,7 +15,7 @@ function BannedList() {
     const token = localStorage.getItem("user-token");
     // e.preventDefault();
     const response = await fetch(
-      "https://reic.api.simpoo.biz/api/admin/ban_list",
+      `${process.env.REACT_APP_MY_API_ENDPOINT}admin/ban_list`,
       {
         method: "POST",
         headers: {

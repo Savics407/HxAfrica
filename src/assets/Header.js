@@ -35,7 +35,7 @@ function Header() {
     const token = localStorage.getItem("user-token");
     // e.preventDefault();
     const response = await fetch(
-      "https://reic.api.simpoo.biz/api/investor/fetch_user_profile",
+      `${process.env.REACT_APP_MY_API_ENDPOINT}investor/fetch_user_profile`,
       {
         method: "POST",
         headers: {
@@ -60,7 +60,7 @@ function Header() {
     const token = localStorage.getItem("user-token");
     // e.preventDefault();
     const response = await fetch(
-      "https://reic.api.simpoo.biz/api/investor/fetch_notifications",
+      `${process.env.REACT_APP_MY_API_ENDPOINT}investor/fetch_notifications`,
       {
         method: "POST",
         headers: {
@@ -82,7 +82,7 @@ function Header() {
     const token = localStorage.getItem("user-token");
     // e.preventDefault();
     const response = await fetch(
-      "https://reic.api.simpoo.biz/api/investor/clear_notifications",
+      `${process.env.REACT_APP_MY_API_ENDPOINT}investor/clear_notifications`,
       {
         method: "POST",
         headers: {

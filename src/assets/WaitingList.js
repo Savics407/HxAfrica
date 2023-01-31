@@ -18,7 +18,7 @@ function WaitingList() {
       email: email,
     };
     const response = await fetch(
-      "https://reic.api.simpoo.biz/api/join_waitlist",
+      `${process.env.REACT_APP_MY_API_ENDPOINT}join_waitlist`,
       {
         method: "POST",
         body: JSON.stringify(payLoad),

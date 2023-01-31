@@ -9,7 +9,7 @@ function OngoingInvestments() {
     const token = localStorage.getItem("user-token");
     // e.preventDefault();
     const response = await fetch(
-      "https://reic.api.simpoo.biz/api/admin/fetch_ongoing_investments",
+      `${process.env.REACT_APP_MY_API_ENDPOINT}admin/fetch_ongoing_investments`,
       {
         method: "POST",
         headers: {

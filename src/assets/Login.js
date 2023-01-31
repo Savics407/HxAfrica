@@ -23,6 +23,8 @@ function Tab() {
 }
 
 function Login() {
+  // console.log(loading.env.REACT_APP_MY_API_ENDPOINT);
+
   const {
     register,
     handleSubmit,
@@ -30,21 +32,22 @@ function Login() {
     formState: { errors },
   } = useForm();
   const navigate = useNavigate();
-  const [process, setProcess] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [loginData, setLoginData] = useState({
     email: "",
     password: "",
   });
+  const endPoint = process.env.REACT_APP_MY_API_ENDPOINT;
   async function login(e) {
     // console.log(formData);
     // e.preventDefault();
-    setProcess(true);
+    setLoading(true);
 
     const loginLoad = {
       email: loginData.email,
       password: loginData.password,
     };
-    const response = await fetch("https://reic.api.simpoo.biz/api/login", {
+    const response = await fetch(`${endPoint}login`, {
       method: "POST",
       body: JSON.stringify(loginLoad),
       headers: {
@@ -71,7 +74,7 @@ function Login() {
       if (result.status === "error") {
         // setError(result.data);
         console.log(result);
-        setProcess(false);
+        setLoading(false);
         // alert(result.message);
         toast.error(`${result.message}`, {
           position: "top-left",
@@ -96,7 +99,7 @@ function Login() {
         progress: undefined,
       });
       navigate("/login");
-      setProcess(false);
+      setLoading(false);
     } else if (result.data.role === "investor") {
       toast.success(`${result.message}`, {
         position: "top-left",
@@ -121,6 +124,9 @@ function Login() {
       navigate("/admin/dashboard");
     }
   }
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <div className="font-family bg-white">
@@ -210,12 +216,12 @@ function Login() {
               className="lg:w-80 bg-green text-white flex justify-center items-center w-full rounded-xl mt-6 font-medium cursor-pointer"
               // onClick={login}
             >
-              {/* value={process ? <TbLoader className="animate-spin" /> : "Log in"} */}
+              {/* value={loading ? <TbLoader className="animate-spin" /> : "Log in"} */}
 
               <input
                 type="submit"
                 className=" cursor-pointer w-full p-3 outline-none"
-                value={process ? `Processing ...` : "Log in"}
+                value={loading ? `Processing ...` : "Log in"}
               />
             </div>
           </form>

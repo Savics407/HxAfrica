@@ -39,7 +39,7 @@ function UserDetails({ formData, setFormData, nextPage, signup }) {
         phone: formData.phone,
         terms: formData.terms,
       };
-      const response = await fetch("https://reic.api.simpoo.biz/api/register", {
+      const response = await fetch(`${process.env.REACT_APP_MY_API_ENDPOINT}register`, {
         method: "POST",
         body: JSON.stringify(payload),
         headers: {

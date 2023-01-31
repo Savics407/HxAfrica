@@ -23,7 +23,7 @@ function Mine() {
     const token = localStorage.getItem("user-token");
     // e.preventDefault();
     const response = await fetch(
-      "https://reic.api.simpoo.biz/api/investment/fetch_my_investment",
+      `${process.env.REACT_APP_MY_API_ENDPOINT}investment/fetch_my_investment`,
       {
         method: "POST",
         headers: {
@@ -54,7 +54,7 @@ function Mine() {
     const token = localStorage.getItem("user-token");
     // e.preventDefault();
     const response = await fetch(
-      "https://reic.api.simpoo.biz/api/chat/chat_list",
+      `${process.env.REACT_APP_MY_API_ENDPOINT}chat/chat_list`,
       {
         method: "POST",
         headers: {

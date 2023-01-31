@@ -27,7 +27,7 @@ function Investments() {
     const token = localStorage.getItem("user-token");
 
     const response = await fetch(
-      "https://reic.api.simpoo.biz/api/investment/fetch_new_investment",
+      `${process.env.REACT_APP_MY_API_ENDPOINT}investment/fetch_new_investment`,
       {
         method: "POST",
         headers: {
@@ -53,7 +53,7 @@ function Investments() {
     const token = localStorage.getItem("user-token");
     // e.preventDefault();
     const response = await fetch(
-      "https://reic.api.simpoo.biz/api/investment/fetch_ongoing_investment",
+      `${process.env.REACT_APP_MY_API_ENDPOINT}investment/fetch_ongoing_investment`,
       {
         method: "POST",
         headers: {
@@ -84,7 +84,7 @@ function Investments() {
     const token = localStorage.getItem("user-token");
     // e.preventDefault();
     const response = await fetch(
-      "https://reic.api.simpoo.biz/api/products/fetch_product_category",
+      `${process.env.REACT_APP_MY_API_ENDPOINT}products/fetch_product_category`,
       {
         method: "POST",
         headers: {

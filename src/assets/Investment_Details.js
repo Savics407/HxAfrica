@@ -22,7 +22,7 @@ function Details({ closeDetails, itemId, ongoing }) {
     const token = localStorage.getItem("user-token");
 
     const response = await fetch(
-      "https://reic.api.simpoo.biz/api/investment/fetch_my_investment",
+      `${process.env.REACT_APP_MY_API_ENDPOINT}investment/fetch_my_investment`,
       {
         method: "POST",
         headers: {
@@ -240,7 +240,7 @@ function Warning({ closeWarning, title, productId, closeDetails, ongoing }) {
 
     const token = localStorage.getItem("user-token");
     const response = await fetch(
-      "https://reic.api.simpoo.biz/api/exchange/relist_market",
+      `${process.env.REACT_APP_MY_API_ENDPOINT}exchange/relist_market`,
       {
         method: "POST",
         body: JSON.stringify(payLoad),
@@ -289,7 +289,7 @@ function Warning({ closeWarning, title, productId, closeDetails, ongoing }) {
   async function percentage() {
     const token = localStorage.getItem("user-token");
     const response = await fetch(
-      "https://reic.api.simpoo.biz/api/investment/pullout_percentage",
+      `${process.env.REACT_APP_MY_API_ENDPOINT}investment/pullout_percentage`,
       {
         method: "POST",
         // body: JSON.stringify(payLoad),
@@ -480,7 +480,7 @@ function Processing({ productId }) {
 
     const token = localStorage.getItem("user-token");
     const response = await fetch(
-      "https://reic.api.simpoo.biz/api/investment/pullout_investment",
+      `${process.env.REACT_APP_MY_API_ENDPOINT}investment/pullout_investment`,
       {
         method: "POST",
         body: JSON.stringify(payLoad),
