@@ -39,14 +39,17 @@ function UserDetails({ formData, setFormData, nextPage, signup }) {
         phone: formData.phone,
         terms: formData.terms,
       };
-      const response = await fetch(`${process.env.REACT_APP_MY_API_ENDPOINT}register`, {
-        method: "POST",
-        body: JSON.stringify(payload),
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-      });
+      const response = await fetch(
+        `${process.env.REACT_APP_MY_API_ENDPOINT}register`,
+        {
+          method: "POST",
+          body: JSON.stringify(payload),
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+        }
+      );
       const result = await response.json();
       console.log(result.data.api_token);
 
@@ -121,7 +124,7 @@ function UserDetails({ formData, setFormData, nextPage, signup }) {
         <div>
           <h1 className="page-text">Create Account</h1>
           <p className="description">
-            Create an account with REIC, this would only take few minutes.
+            Create an account with REICo, this would only take few minutes.
           </p>
         </div>
         <div className="input">
@@ -283,7 +286,7 @@ function UserDetails({ formData, setFormData, nextPage, signup }) {
             // checked
           />
           <p className="text-xs tracking-wide">
-            I agree with REIC{" "}
+            I agree with REICo{" "}
             <span
               className="text-green cursor-pointer"
               onClick={() => setTerms(true)}
@@ -400,7 +403,7 @@ function UserDetails({ formData, setFormData, nextPage, signup }) {
                     checked={check}
                   />
                   <p className="text-xs tracking-wide">
-                    I agree with REIC{" "}
+                    I agree with REICo{" "}
                     <span className="text-green">Terms & Conditions </span> and{" "}
                     <br />
                     <span className="text-green">Privacy Policy</span>

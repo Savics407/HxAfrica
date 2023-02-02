@@ -128,7 +128,7 @@ function RecentActivity() {
                           <div>
                             <h1 className="text-mobile-nav text-xs lg:text-lg font-semibold capitalize">
                               {post.type === "buytoken"
-                                ? "Purchase REIC Token"
+                                ? "Purchase REICo Token"
                                 : post.type === "pullout"
                                 ? "Pullout Investment"
                                 : post.type === "withdrawal"
@@ -163,7 +163,7 @@ function RecentActivity() {
                                 />
                               </span>{" "}
                               worth of{" "}
-                              <span> {post.amount / 50000} REIC Token</span>,
+                              <span> {post.amount / 50000} REICo Token</span>,
                               Transaction ID: <span>{post.transaction_id}</span>
                             </p>
                           ) : post.type === "withdrawal" ? (
@@ -178,7 +178,7 @@ function RecentActivity() {
                                 />
                               </span>{" "}
                               worth of{" "}
-                              <span> {post.amount / 50000} REIC Token</span> to
+                              <span> {post.amount / 50000} REICo Token</span> to
                               your bank, Transaction ID:{" "}
                               <span>{post.transaction_id}</span>
                             </p>
@@ -194,7 +194,7 @@ function RecentActivity() {
                                 />
                               </span>{" "}
                               worth of{" "}
-                              <span> {post.amount / 50000} REIC Token</span>,
+                              <span> {post.amount / 50000} REICo Token</span>,
                               Transaction ID: <span>{post.transaction_id}</span>
                             </p>
                           ) : post.type === "reversal" ? (
@@ -209,8 +209,8 @@ function RecentActivity() {
                                 />
                               </span>{" "}
                               worth of{" "}
-                              <span> {post.amount / 50000} REIC Token</span> was
-                              reversed back to your wallet, Transaction ID:{" "}
+                              <span> {post.amount / 50000} REICo Token</span>{" "}
+                              was reversed back to your wallet, Transaction ID:{" "}
                               <span>{post.transaction_id}</span>
                             </p>
                           ) : post.type === "pullout" ? (
@@ -227,7 +227,7 @@ function RecentActivity() {
                               worth of{" "}
                               <span>
                                 {" "}
-                                {post.amount / 50000} REIC Investment
+                                {post.amount / 50000} REICo Investment
                               </span>
                               , Transaction ID:{" "}
                               <span>{post.transaction_id}</span>
@@ -246,7 +246,7 @@ function RecentActivity() {
                               worth of{" "}
                               <span>
                                 {" "}
-                                {post.amount / 50000} REIC Investment
+                                {post.amount / 50000} REICo Investment
                               </span>
                               , Transaction ID:{" "}
                               <span>{post.transaction_id}</span>
@@ -263,7 +263,7 @@ function RecentActivity() {
                                 />
                               </span>{" "}
                               worth of{" "}
-                              <span> {post.amount / 50000} REIC Token</span>{" "}
+                              <span> {post.amount / 50000} REICo Token</span>{" "}
                               failed, Transaction ID:{" "}
                               <span>{post.transaction_id}</span>
                             </p>
@@ -271,7 +271,7 @@ function RecentActivity() {
                         </div>
                         <div className="lg:hidden text-right">
                           <h1 className="text-xs text-dark">
-                            {post.token} Reic
+                            {post.token} Reico
                           </h1>
                           <h1
                             className={`font-normal text-tiny ${

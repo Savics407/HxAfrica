@@ -119,7 +119,7 @@ function MarchantsList({ merchants, fetchMerchants }) {
             <div className="font-semibold lg:text-base text-xs text-neutral my-8">
               <p>
                 Are you sure you want to remove <br />
-                <span className="text-green"> {name}</span> from REIC ?
+                <span className="text-green"> {name}</span> from REICo ?
               </p>
             </div>
             <div className="flex justify-between">

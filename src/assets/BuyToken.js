@@ -173,7 +173,7 @@ function Details({ closeToken }) {
                   defaultValue="50000"
                 />
               </div>
-              <span className="text-green text-xs">{amount / 50000} REIC</span>
+              <span className="text-green text-xs">{amount / 50000} REICo</span>
             </div>
             <div className="text-right pt-5 pb-8 flex justify-between items-center">
               <div className=" flex items-center lg:flex hidden">

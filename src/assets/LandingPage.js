@@ -9,6 +9,7 @@ import gov from "./images/boards/Justice Emmanuel.png";
 import prof from "./images/boards/Prof Ndubuisi Ekekwe.png";
 import pascal from "./images/boards/paschal Okwundu.png";
 import francis from "./images/boards/Mr. Francis Okumagba.png";
+import sufian from "./images/boards/default.jpg";
 import alhaji from "./images/boards/Alhaji Ibraheem Yelwa.png";
 import amby from "./images/boards/Amby Uche.png";
 import aca from "./images/boards/Chidinma Queen Alfred.png";
@@ -38,17 +39,35 @@ import { AiOutlineArrowRight } from "react-icons/ai";
 import { CgMenuRight, CgClose } from "react-icons/cg";
 import { motion } from "framer-motion";
 import { Link, NavLink } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 function LandingPage() {
   const [isOpen, setIsOpen] = useState(false);
+  const [fix, setFix] = useState(false);
+  function sideBarFixed() {
+    if (window.scrollY >= 100) {
+      setFix(true);
+    } else {
+      setFix(false);
+    }
+  }
+  window.addEventListener("scroll", sideBarFixed);
+
   return (
     <div className="font-family bg-white">
+      <Helmet>
+        <title>HXAfrica | Home</title>
+      </Helmet>
       <div className="bg-green text-white lg:py-2 p-3 text-center ">
         <h1 className="font-normal mb-2 lg:text-base text-sm ">
           Be among the first to know when we launch!
         </h1>
       </div>
-      <div className="bg-white py-5 px-5">
+      <div
+        className={`bg-white py-5 px-5 ${
+          fix && "fixed top-0 left-0 right-0 z-30"
+        }`}
+      >
         <div className="content">
           <div className=" flex justify-between items-center">
             <div className="w-[130px] lg:w-auto">
@@ -59,7 +78,7 @@ function LandingPage() {
                 isOpen && "!left-0 z-30 transform"
               }`}
             >
-              <div className="lg:hidden flex justify-between items-center px-5 py-10">
+              <div className="lg:hidden flex justify-between items-center px-5 py-5">
                 <div className="w-[130px] lg:w-auto">
                   <img src={logo} alt="HXAfrica Logo" />
                 </div>
@@ -76,7 +95,9 @@ function LandingPage() {
                   isOpen && "px-1"
                 }`}
               >
-                <h1 className="px-4">Home</h1>
+                <a href="#home" onClick={() => setIsOpen(false)}>
+                  <h1 className="px-4">Home</h1>
+                </a>
                 <a href="#about" onClick={() => setIsOpen(false)}>
                   <h1 className="px-4">About us</h1>{" "}
                 </a>
@@ -88,9 +109,11 @@ function LandingPage() {
                 </a>
               </div>
               <div className={`${isOpen && "p-5"} p-5 lg:p-0`}>
-                <button className="border border-green font-inter capitalize text-green rounded-lg px-5 py-3 hover:bg-green hover:text-white transition">
-                  Contact us
-                </button>
+                <Link to="/login">
+                  <button className="border border-green font-inter capitalize text-green rounded-lg px-5 py-3 hover:bg-green hover:text-white transition">
+                    Launch App
+                  </button>
+                </Link>
               </div>
             </div>
             <div
@@ -102,7 +125,7 @@ function LandingPage() {
           </div>
         </div>
       </div>
-      <div className="bg-two">
+      <div className="bg-two" id="home">
         <div className="content block lg:flex items-center">
           <div className="lg:w-1/2 lg:pl-28 px-5 lg:px-auto py-10 lg:py-auto z-20 lg:hidden bg-one">
             <h1 className="font-bold lg:text-4xl text-[34px] font-Merriweather">
@@ -409,7 +432,7 @@ function LandingPage() {
           </div>
         </div>
       </div>
-      <div className="bg-white py-16 px-5 lg:px-32">
+      <div className="bg-white py-16 px-5 lg:px-32" id="board">
         <div className="content">
           <div className="flex flex-col items-center font-roboto">
             <h1 className=" font-semibold text-deep text-3xl mb-3 text-center">
@@ -424,17 +447,6 @@ function LandingPage() {
             <div className="flex flex-col items-center w-full lg:w-1/3 py-5 font-inter">
               <div className="border-5 mb-3 w-24 h-24 shadow-xl rounded-full bg-white">
                 <img
-                  src={ceo}
-                  alt="Board of Directors"
-                  className="w-full h-full object-cover rounded-full bg-white"
-                />
-              </div>
-              <h1 className="text-lg">Ugo Peters</h1>
-              <h1 className="font-normal mb-2 text-green">CEO</h1>
-            </div>
-            <div className="flex flex-col items-center w-full lg:w-1/3 py-5 font-inter">
-              <div className="border-5 mb-3 w-24 h-24 shadow-xl rounded-full bg-white">
-                <img
                   src={gov}
                   alt="Board of Directors"
                   className="w-full h-full object-cover rounded-full bg-white"
@@ -446,6 +458,17 @@ function LandingPage() {
               <h1 className="font-normal mb-2 text-green text-center">
                 Chairman - Corporate Governance/Legal Advisory
               </h1>
+            </div>
+            <div className="flex flex-col items-center w-full lg:w-1/3 py-5 font-inter">
+              <div className="border-5 mb-3 w-24 h-24 shadow-xl rounded-full bg-white">
+                <img
+                  src={sufian}
+                  alt="Board of Directors"
+                  className="w-full h-full object-cover rounded-full bg-white"
+                />
+              </div>
+              <h1 className="text-lg">Mr Sufian Owolabi Abdulkarim</h1>
+              <h1 className="font-normal mb-2 text-green">SEC Advisor</h1>
             </div>
 
             <div className="flex flex-col items-center w-full lg:w-1/3 py-5 font-inter">
@@ -506,7 +529,7 @@ function LandingPage() {
           </div>
         </div>
       </div>
-      <div className="bg-white py-16 lg:px-32 px-5">
+      <div className="bg-white py-16 lg:px-32 px-5" id="management">
         <div className="content">
           <div className="flex flex-col items-center font-roboto">
             <h1 className=" font-semibold text-deep text-3xl text-center mb-3">
@@ -594,7 +617,7 @@ function LandingPage() {
                   className="w-full h-full object-cover rounded-full bg-white"
                 />
               </div>
-              <h1 className="text-lg text-center">Temitope Gbadebo</h1>
+              <h1 className="text-lg text-center">Temitayo Gbadebo</h1>
               <h1 className="font-normal mb-2 text-green text-center">CTO</h1>
             </div>
 
@@ -623,9 +646,16 @@ function LandingPage() {
             <div className=" w-full lg:w-1/2 mb-10 lg:mb-0">
               <img src={logoWhite} alt="HXafrica" />
               <div className="flex justify-between w-60 pt-4">
-                <img src={facebook} alt="facebook" />
-                <img src={twitter} alt="twitter" />
-                <img src={whatsapp} alt="whatsapp" />
+                <a
+                  href="https://www.facebook.com/housingexchange.ng?mibextid=ZbWKwL"
+                  target="_blank"
+                >
+                  <img src={facebook} alt="facebook" />
+                </a>
+                <a href="" target="_blank">
+                  <img src={twitter} alt="twitter" />
+                </a>
+                {/* <img src={whatsapp} alt="whatsapp" /> */}
                 <img src={phone} alt="phone" />
                 <img src={mail} alt="mail" />
               </div>
@@ -636,7 +666,9 @@ function LandingPage() {
                   Product
                 </h1>
                 <div>
-                  <h1 className="font-normal mb-2 ">REICo</h1>
+                  <a href="#products">
+                    <h1 className="font-normal mb-2 ">REICo</h1>
+                  </a>
                 </div>
               </div>
               <div>
@@ -644,10 +676,18 @@ function LandingPage() {
                   Services
                 </h1>
                 <div className="">
-                  <h1 className="font-normal mb-2 ">Realtors First</h1>
-                  <h1 className="font-normal mb-2 ">Cloverhedera</h1>
-                  <h1 className="font-normal mb-2 ">RayneRise</h1>
-                  <h1 className="font-normal mb-2 ">Imagineering</h1>
+                  <a href="https://realtorsfirst.com" target="_blank">
+                    <h1 className="font-normal mb-2 ">Realtors First</h1>{" "}
+                  </a>
+                  <a href="https://cloverhedera.com.ng " target="_blank">
+                    <h1 className="font-normal mb-2 ">Cloverhedera</h1>
+                  </a>
+                  <a href="https://raynerise.com" target="_blank">
+                    <h1 className="font-normal mb-2 ">RayneRise</h1>
+                  </a>
+                  <a href="https://Imagineering.ng" target="_blank">
+                    <h1 className="font-normal mb-2 ">Imagineering</h1>
+                  </a>
                 </div>
               </div>
               <div className="my-10 lg:my-0">
@@ -655,12 +695,18 @@ function LandingPage() {
                   About Us
                 </h1>
                 <div className="">
-                  <h1 className="font-normal mb-2 ">About the company</h1>
-                  <h1 className="font-normal mb-2 ">The Management team</h1>
-                  <h1 className="font-normal mb-2 ">
-                    The Board of directors/ advisors
-                  </h1>
-                  <h1 className="font-normal mb-2 ">With HXafrica</h1>
+                  <a href="#about">
+                    <h1 className="font-normal mb-2 ">About the company</h1>
+                  </a>
+                  <a href="#management">
+                    <h1 className="font-normal mb-2 ">The Management team</h1>{" "}
+                  </a>
+                  <a href="#board">
+                    <h1 className="font-normal mb-2 ">
+                      The Board of directors/ advisors <br />
+                      With HXafrica
+                    </h1>
+                  </a>
                 </div>
               </div>
             </div>

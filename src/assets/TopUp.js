@@ -267,7 +267,7 @@ function TopUp({ closeModal, itemId, productDetails, setAuthCancel, setTile }) {
                         </span>
                       </p>
                       <div className="text-nuetral font-bold lg:text-lg text-base flex items-center justify-center py-6 rounded-lg bg-mainbg relative">
-                        <sup className="w-2/5 text-right">REIC</sup>
+                        <sup className="w-2/5 text-right">REICo</sup>
                         <input
                           type="number"
                           placeholder="0.00"
@@ -450,7 +450,7 @@ export function Warning({ closeWarning, closeModal, reic, title, productID }) {
         </div>
         <div className="font-semibold lg:text-base text-sm text-neutral my-8">
           <p>
-            You are about to invest {reic} REIC to <br />{" "}
+            You are about to invest {reic} REICo to <br />{" "}
             <span className="text-green">{title} </span>
           </p>
         </div>
@@ -554,7 +554,7 @@ export function Warning({ closeWarning, closeModal, reic, title, productID }) {
                   thousandSeparator={true}
                 />
               </span>{" "}
-              worth of <br /> <span className="text-green">{reic} Reic </span>{" "}
+              worth of <br /> <span className="text-green">{reic} Reico </span>{" "}
               to the {title} Project.
             </p>
           </div>

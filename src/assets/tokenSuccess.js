@@ -28,7 +28,7 @@ function tokenSuccess({ tokenOnClose }) {
         <div className="font-medium text-base text-neutral my-8">
           <p>
             You successfully made a payment of{" "}
-            <span className="text-green">N50,000</span> to purchase REIC Token
+            <span className="text-green">N50,000</span> to purchase REICo Token
           </p>
         </div>
         <div className="text-neutral text-xs text-center">

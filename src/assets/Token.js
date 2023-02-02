@@ -188,9 +188,9 @@ function Token() {
           <div className="lg:p-10 px-4 py-5 bg-white rounded-lg mb-5 flex flex-wrap ">
             <div className="lg:w-2/5 w-full">
               <div className="flex items-center hidden lg:flex">
-                <img src={reictoken} alt="REIC TOKEN" />
+                <img src={reictoken} alt="REICo TOKEN" />
                 <h1 className="text-base text-token font-semibold ml-2">
-                  REIC TOKEN
+                  REICo TOKEN
                 </h1>
               </div>
               <div className="flex items-center lg:mt-8 justify-between">
@@ -198,7 +198,7 @@ function Token() {
                   <div className="flex items-center">
                     <img
                       src={reictoken}
-                      alt="REIC TOKEN"
+                      alt="REICo TOKEN"
                       className="lg:hidden mr-2"
                     />
 
@@ -208,7 +208,11 @@ function Token() {
                       </h1>
                       <h1 className="font-medium mr-4 text-dark lg:text-3xl text-4l">
                         {reic ? (
-                          <span>{JSON.stringify(token)}</span>
+                          <span>
+                            {parseFloat(token) === "NaN"
+                              ? "0.00"
+                              : parseFloat(token).toFixed(2)}
+                          </span>
                         ) : (
                           <span>
                             N
@@ -219,7 +223,7 @@ function Token() {
                             />
                           </span>
                         )}{" "}
-                        {reic && "REIC"}
+                        {reic && "REICo"}
                       </h1>
                     </div>
                   </div>
@@ -229,7 +233,7 @@ function Token() {
                     onClick={() => setDrop(!drop)}
                   >
                     <span className="mr-1 lg:text-xs text-xxm">
-                      {reic ? "REIC Coin" : "NGN"}
+                      {reic ? "REICo Coin" : "NGN"}
                     </span>
                     <FaAngleDown />
                     <div
@@ -241,7 +245,7 @@ function Token() {
                         className="arrow2 relative border-b px-4 py-2 hover:bg-mainbg rounded-t-xl "
                         onClick={() => setReic(true)}
                       >
-                        <h1 className="text-base font-normal">REIC</h1>
+                        <h1 className="text-base font-normal">REICo</h1>
                       </div>
 
                       <div
@@ -269,7 +273,7 @@ function Token() {
               <div className="px-4 border-strokegrey ">
                 <img src={dollar} alt="dollar-icon" className="mb-4 h-6 w-6" />
                 <p className="text-earnings font-medium text-xs mb-1">
-                  Total in Reic
+                  Total in Reico
                 </p>
                 <h1 className="text-dark text-2xl font-medium">
                   {total?.token.toFixed(2)}
@@ -413,7 +417,7 @@ function Token() {
                         />
                       </div>
                       <span className="text-green text-xs">
-                        {amount / 50000} REIC
+                        {amount / 50000} REICo
                       </span>
                     </div>
 
@@ -491,7 +495,7 @@ function Token() {
       </div>
       <div className="mt-6 pb-10 text-center hidden lg:block">
         <h1 className="text-base font-semibold text-footer">
-          © 2022 REIC. All rights reserved.
+          © 2022 REICo. All rights reserved.
         </h1>
       </div>
     </div>

@@ -122,9 +122,9 @@ function Dashboard() {
           </div>
           <div className="lg:p-10 px-5 pt-10 pb-4 bg-white rounded-lg lg:my-5">
             <div className="flex items-center hidden lg:flex">
-              <img src={reictoken} alt="REIC TOKEN" />
+              <img src={reictoken} alt="REICo TOKEN" />
               <h1 className="text-base text-token font-semibold ml-2">
-                REIC TOKEN
+                REICo TOKEN
               </h1>
             </div>
             <div className="flex items-center lg:mt-8 lg:justify-between">
@@ -133,18 +133,20 @@ function Dashboard() {
                   <div>
                     <img
                       src={reictoken}
-                      alt="REIC TOKEN"
+                      alt="REICo TOKEN"
                       className="lg:hidden mr-2"
                     />
                   </div>
                   <div>
                     <h1 className="text-tiny text-token font-semibold mb-1.5 lg:hidden">
-                      REIC TOKEN
+                      REICo TOKEN
                     </h1>
                     <h1 className="lg:text-4xl font-medium mr-4 text-dark text-4l">
                       {reic ? (
-                        <span>{JSON.stringify(token)}</span>
+                        <span>{parseFloat(token).toFixed(2)}</span>
                       ) : (
+                        // <span>{Number.parseFloat(token)}</span>
+                        //
                         <span>
                           N
                           <CurrencyFormat
@@ -155,7 +157,7 @@ function Dashboard() {
                           {/* {JSON.stringify(ngn)} */}
                         </span>
                       )}{" "}
-                      {reic && "REIC"}
+                      {reic && "REICo"}
                     </h1>
                   </div>
                 </div>
@@ -170,7 +172,7 @@ function Dashboard() {
                     //   setTokenSuccess(true);
                     // }}
                   >
-                    {reic ? "REIC Coin" : "NGN"}
+                    {reic ? "REICo Coin" : "NGN"}
                   </span>
                   <FaAngleDown />
                   <div
@@ -182,7 +184,7 @@ function Dashboard() {
                       className="arrow2 relative border-b px-4 py-2 hover:bg-mainbg rounded-t-xl "
                       onClick={() => setReic(true)}
                     >
-                      <h1 className="text-base font-normal">REIC</h1>
+                      <h1 className="text-base font-normal">REICo</h1>
                     </div>
 
                     <div
@@ -246,7 +248,7 @@ function Dashboard() {
               <div className="w-1/2 px-4 border-r border-border-grey ">
                 <img src={dollar} alt="dollar-icon" className="mb-4 h-6 w-6" />
                 <p className="text-earnings font-medium text-xs mb-1">
-                  Total Earnings Reic
+                  Total Earnings Reico
                 </p>
                 <h1 className="text-dark text-xl font-medium">
                   {earnings?.token.toFixed(2)} reic
@@ -279,10 +281,10 @@ function Dashboard() {
             <div className="w-1/2 px-4 border-r border-light-blue">
               <img src={dollar} alt="dollar-icon" className="mb-4 h-6 w-6" />
               <p className="text-earnings font-medium text-xs mb-1">
-                Total Earnings Reic
+                Total Earnings Reico
               </p>
               <h1 className="text-dark text-2xl font-medium">
-                {earnings?.token.toFixed(2)} REIC
+                {earnings?.token.toFixed(2)} REICo
               </h1>
             </div>
             <div className="w-1/2 px-4">
@@ -306,7 +308,7 @@ function Dashboard() {
               NEW INVESTMENTS
             </h1>
             <p className="text-sm text-dark font-semibold">
-              Make profitable ROI's in Reic as you buy more token
+              Make profitable ROI's in Reico as you buy more token
             </p>
           </div>
           <Myinvests />
@@ -325,7 +327,7 @@ function Dashboard() {
       </div>
       <div className="footer">
         <h1 className="text-base font-semibold text-footer">
-          © 2022 REIC. All rights reserved.
+          © 2022 REICo. All rights reserved.
         </h1>
       </div>
     </div>

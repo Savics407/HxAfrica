@@ -112,7 +112,7 @@ function Header() {
         <div className="pr-10 pl-0 flex items-center justify-between">
           <Link to="/dashboard">
             <div className="w-48 h-12">
-              <img src={logo} alt="REIC Logo" />
+              <img src={logo} alt="REICo Logo" />
             </div>
           </Link>
           <div className=" border-white flex items-center relative">

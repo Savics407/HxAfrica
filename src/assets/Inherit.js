@@ -263,7 +263,7 @@ function Inherit({ closeModal, itemId }) {
                         </span>
                       </p>
                       <div className="text-nuetral font-bold text-base lg:text-lg flex items-center justify-center py-6 rounded-lg bg-mainbg relative">
-                        <sup className="w-2/5 text-right">REIC</sup>
+                        <sup className="w-2/5 text-right">REICo</sup>
                         <input
                           type="number"
                           placeholder="0.00"
@@ -430,7 +430,7 @@ export function Processing({
             <p>
               You inherited an investment of{" "}
               <span className="text-green">{reic}</span> worth <br /> of{" "}
-              <span className="text-green">Reic </span> to the {title} Project.
+              <span className="text-green">Reico </span> to the {title} Project.
             </p>
           </div>
           <div className=" text-center w-11/12 mb-2 m-auto">

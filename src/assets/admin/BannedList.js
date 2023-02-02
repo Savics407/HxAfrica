@@ -110,7 +110,7 @@ function BannedList() {
                   Phone number
                 </th>
                 <th className="py-3 text-mobile-nav font-medium text-xs">
-                  Reic Balance
+                  Reico Balance
                 </th>
                 <th className="py-3 text-mobile-nav font-medium text-xs w-32 text-center">
                   Status

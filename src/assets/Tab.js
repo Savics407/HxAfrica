@@ -21,7 +21,7 @@ function Tabs() {
           </h1>
           <Link to="/token">
             <button className="bg-white text-green text-tiny font-normal rounded-full py-1 px-3">
-              Buy REIC Token
+              Buy REICo Token
             </button>
           </Link>
         </div>

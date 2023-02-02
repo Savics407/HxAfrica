@@ -100,6 +100,7 @@ function Header() {
   useEffect(() => {
     fetchData();
     fetchNotifications();
+    window.scrollTo(0, 0);
   }, []);
 
   const logOut = () => {
@@ -192,7 +193,7 @@ function Header() {
         <div className="w-10/12 m-auto flex items-center justify-between hidden md:flex">
           <Link to="/dashboard">
             <div className="w-48 h-12">
-              <img src={logo} alt="REIC Logo" />
+              <img src={logo} alt="REICo Logo" />
             </div>
           </Link>
           <div className=" border-white flex items-center relative">
