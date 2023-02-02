@@ -5,7 +5,8 @@ import logo from "./images/reicTagline.png";
 import Verification from "./Verification";
 import Setup from "./Setup";
 import UserDetails from "./UserDetails";
-import { useState } from "react";
+import { Helmet } from "react-helmet";
+import { useEffect, useState } from "react";
 
 function Tab() {
   return (
@@ -117,8 +118,14 @@ function Auth() {
   const nextPage = () => {
     setStep((currentPage) => currentPage + 1);
   };
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <div className="font-family">
+      <Helmet>
+        <title>REICo</title>
+      </Helmet>
       <Tab />
       <div className="lg:flex justify-between bg-white">
         <div className="lg:px-24 md:px-24 px-10 lg:pt-20 pt-14 pb-24 w-full lg:w-1/2">

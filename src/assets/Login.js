@@ -7,6 +7,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useForm } from "react-hook-form";
 import { TbLoader } from "react-icons/tb";
+import { Helmet } from "react-helmet";
 import axios from "axios";
 
 function Tab() {
@@ -130,6 +131,9 @@ function Login() {
 
   return (
     <div className="font-family bg-white">
+      <Helmet>
+        <title>REICo</title>
+      </Helmet>
       <Tab />
       <div className="lg:flex h-screen justify-between">
         <div className="lg:px-24 md:px-24 px-10 lg:pt-20 pt-14 pb-5 w-full lg:w-1/2">
