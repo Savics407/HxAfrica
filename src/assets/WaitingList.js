@@ -90,7 +90,7 @@ function WaitingList() {
       )}
       <div className="bg-green text-white lg:px-28 px-4 py-4">
         <div className="lg:w-48 w-28 h-12">
-          <img src={logo} alt="REICo Logo" />
+          <img src={logo} alt="Hx Logo" />
         </div>
       </div>
       <div className="bg-waiting text-center">
@@ -180,11 +180,11 @@ function WaitingList() {
       <div className="bg-primary py-10 lg:px-28 flex flex-wrap items-center justify-between">
         <div className="flex items-center">
           <div className="lg:w-48 w-28 mr-10 -ml-2 pl-5 lg:pl-0">
-            <img src={reic} alt="REICo Logo with tagline" />
+            <img src={reic} alt="Hx Logo with tagline" />
           </div>
           <div>
             <h1 className="font-semibold text-base lg:text-2xl">
-              <span className="text-green">REICo</span> is a product of{" "}
+              <span className="text-green">Hx</span> is a product of{" "}
               <span className="text-green">HX</span>
               <span className="text-media font-medium">africa</span>
             </h1>

@@ -128,7 +128,7 @@ function RecentActivity() {
                           <div>
                             <h1 className="text-mobile-nav text-xs lg:text-lg font-semibold capitalize">
                               {post.type === "buytoken"
-                                ? "Purchase REICo Token"
+                                ? "Purchase Hx Token"
                                 : post.type === "pullout"
                                 ? "Pullout Investment"
                                 : post.type === "withdrawal"
@@ -163,7 +163,7 @@ function RecentActivity() {
                                 />
                               </span>{" "}
                               worth of{" "}
-                              <span> {post.amount / 50000} REICo Token</span>,
+                              <span> {post.amount / 50000} Hx Token</span>,
                               Transaction ID: <span>{post.transaction_id}</span>
                             </p>
                           ) : post.type === "withdrawal" ? (
@@ -178,7 +178,7 @@ function RecentActivity() {
                                 />
                               </span>{" "}
                               worth of{" "}
-                              <span> {post.amount / 50000} REICo Token</span> to
+                              <span> {post.amount / 50000} Hx Token</span> to
                               your bank, Transaction ID:{" "}
                               <span>{post.transaction_id}</span>
                             </p>
@@ -194,7 +194,7 @@ function RecentActivity() {
                                 />
                               </span>{" "}
                               worth of{" "}
-                              <span> {post.amount / 50000} REICo Token</span>,
+                              <span> {post.amount / 50000} Hx Token</span>,
                               Transaction ID: <span>{post.transaction_id}</span>
                             </p>
                           ) : post.type === "reversal" ? (
@@ -209,8 +209,8 @@ function RecentActivity() {
                                 />
                               </span>{" "}
                               worth of{" "}
-                              <span> {post.amount / 50000} REICo Token</span>{" "}
-                              was reversed back to your wallet, Transaction ID:{" "}
+                              <span> {post.amount / 50000} Hx Token</span> was
+                              reversed back to your wallet, Transaction ID:{" "}
                               <span>{post.transaction_id}</span>
                             </p>
                           ) : post.type === "pullout" ? (
@@ -225,12 +225,8 @@ function RecentActivity() {
                                 />
                               </span>{" "}
                               worth of{" "}
-                              <span>
-                                {" "}
-                                {post.amount / 50000} REICo Investment
-                              </span>
-                              , Transaction ID:{" "}
-                              <span>{post.transaction_id}</span>
+                              <span> {post.amount / 50000} Hx Investment</span>,
+                              Transaction ID: <span>{post.transaction_id}</span>
                             </p>
                           ) : post.type === "inherited" ? (
                             <p className="font-normal text-sm text-footer">
@@ -244,12 +240,8 @@ function RecentActivity() {
                                 />
                               </span>{" "}
                               worth of{" "}
-                              <span>
-                                {" "}
-                                {post.amount / 50000} REICo Investment
-                              </span>
-                              , Transaction ID:{" "}
-                              <span>{post.transaction_id}</span>
+                              <span> {post.amount / 50000} Hx Investment</span>,
+                              Transaction ID: <span>{post.transaction_id}</span>
                             </p>
                           ) : (
                             <p className="font-normal text-sm text-footer">
@@ -263,7 +255,7 @@ function RecentActivity() {
                                 />
                               </span>{" "}
                               worth of{" "}
-                              <span> {post.amount / 50000} REICo Token</span>{" "}
+                              <span> {post.amount / 50000} Hx Token</span>{" "}
                               failed, Transaction ID:{" "}
                               <span>{post.transaction_id}</span>
                             </p>
@@ -271,7 +263,7 @@ function RecentActivity() {
                         </div>
                         <div className="lg:hidden text-right">
                           <h1 className="text-xs text-dark">
-                            {post.token} Reico
+                            {post.token} Hx Token
                           </h1>
                           <h1
                             className={`font-normal text-tiny ${

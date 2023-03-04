@@ -332,7 +332,7 @@ function Bids() {
                                 </div>
                                 <div>
                                   <h1 className="text-svg lg:text-xs text-tiny">
-                                    {bid.investment.amount / 50000} REICo
+                                    {bid.investment.amount / 50000} Hx
                                   </h1>
 
                                   <h1 className="font-semibold lg:text-2xl text-lg text-white">
@@ -556,7 +556,7 @@ function Bids() {
       </div>
       <div className="footer">
         <h1 className="text-base font-semibold text-footer">
-          © 2022 REICo. All rights reserved.
+          © 2022 HxAfrica. All rights reserved.
         </h1>
       </div>
     </div>

@@ -14,14 +14,12 @@ function Tabs() {
         <div className="flex">
           <h1 className="text-xs font-extrabold bg-green w-fit px-4 py-1 mr-5">
             1{" "}
-            <span className="uppercase font-semibold text-tiny">
-              reic token{" "}
-            </span>{" "}
+            <span className="uppercase font-semibold text-tiny">Hx token </span>{" "}
             = N50,000
           </h1>
           <Link to="/token">
             <button className="bg-white text-green text-tiny font-normal rounded-full py-1 px-3">
-              Buy REICo Token
+              Buy Hx Token
             </button>
           </Link>
         </div>

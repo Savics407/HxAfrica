@@ -2,13 +2,14 @@ import user from "../images/default_profile.svg";
 import { FaAngleDown } from "react-icons/fa";
 import { FaBell } from "react-icons/fa";
 import { useState } from "react";
-import logo from "../images/logo.svg";
+// import logo from "../images/logo.svg";
+import logo from "../images/HXafrica Logo 1.svg";
 import { BiLogOut } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 // import { toast } from "react-toastify";
 import { motion } from "framer-motion";
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useEffect } from "react";
 
 function Header() {
@@ -112,7 +113,7 @@ function Header() {
         <div className="pr-10 pl-0 flex items-center justify-between">
           <Link to="/dashboard">
             <div className="w-48 h-12">
-              <img src={logo} alt="REICo Logo" />
+              <img src={logo} alt="Hx Logo" />
             </div>
           </Link>
           <div className=" border-white flex items-center relative">
@@ -135,37 +136,37 @@ function Header() {
                   <h1 className="text-2xl font-semibold">Notifications</h1>
                 </div>
 
-                <div className="text-sm  my-4">
+                <div className="text-sm my-4">
                   <h1>Login attempted from new IP</h1>
                   <p className="text-footer text-xs mt-1">
                     2021-03-10 20:19:15
                   </p>
                 </div>
-                <div className="text-sm  my-4">
+                <div className="text-sm my-4">
                   <h1>Login attempted from new IP</h1>
                   <p className="text-footer text-xs mt-1">
                     2021-03-10 20:19:15
                   </p>
                 </div>
-                <div className="text-sm  my-4">
+                <div className="text-sm my-4">
                   <h1>Request to reset security</h1>
                   <p className="text-footer text-xs mt-1">
                     2021-03-10 20:19:15
                   </p>
                 </div>
-                <div className="text-sm  my-4">
+                <div className="text-sm my-4">
                   <h1>Login attempted from new IP</h1>
                   <p className="text-footer text-xs mt-1">
                     2021-03-10 20:19:15
                   </p>
                 </div>
-                <div className="text-sm  my-4">
+                <div className="text-sm my-4">
                   <h1>Request to reset security</h1>
                   <p className="text-footer text-xs mt-1">
                     2021-03-10 20:19:15
                   </p>
                 </div>
-                <div className="text-sm  my-4">
+                <div className="text-sm my-4">
                   <h1>Login attempted from new IP</h1>
                   <p className="text-footer text-xs mt-1">
                     2021-03-10 20:19:15

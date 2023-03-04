@@ -8,7 +8,7 @@ function Tab() {
         {/* <div className="w-40 h-20 border"> */}
         <img src={logo} alt="logo icon" className="w-36" />
         {/* </div> */}
-        {/* <h1 className="text-sm font-bold font-family ml-4">REICo</h1> */}
+        {/* <h1 className="text-sm font-bold font-family ml-4">Hx</h1> */}
       </div>
     </>
   );

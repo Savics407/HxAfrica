@@ -18,7 +18,7 @@ function Tab() {
     <>
       <div className="bg-primary text-center text-green p-4 flex items-center hidden md:flex">
         <img src={logo} alt="logo icon" />
-        <h1 className="text-sm font-bold font-family ml-4">REICo</h1>
+        <h1 className="text-sm font-bold font-family ml-4">Hx</h1>
       </div>
     </>
   );

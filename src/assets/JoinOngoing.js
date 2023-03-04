@@ -285,7 +285,7 @@ function JoinOngoing({ closeModal, itemId, productDetails }) {
                         </span>
                       </p>
                       <div className="text-nuetral font-bold text-sm lg:text-lg flex items-center justify-center py-6 rounded-lg bg-mainbg relative">
-                        <sup className="w-2/5 text-right">REICo</sup>
+                        <sup className="w-2/5 text-right">Hx</sup>
                         <input
                           type="number"
                           placeholder="0.00"
@@ -478,7 +478,7 @@ export function Warning({
         </div>
         <div className="font-semibold lg:text-base text-sm text-neutral my-8">
           <p>
-            You are about to invest {reic} REICo to <br />{" "}
+            You are about to invest {reic} Hx to <br />{" "}
             <span className="text-green">{title} </span> <br /> There will be a{" "}
             <span className="text-green">%{percentage}</span> charge for this
             investment
@@ -584,8 +584,9 @@ export function Warning({
                   thousandSeparator={true}
                 />
               </span>{" "}
-              worth of <br /> <span className="text-green">{reic} Reico </span>{" "}
-              to the {title} Project.
+              worth of <br />{" "}
+              <span className="text-green">{reic} Hx Token </span> to the{" "}
+              {title} Project.
             </p>
           </div>
           <div className=" text-center w-11/12 mb-2 m-auto">

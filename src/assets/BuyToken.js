@@ -114,7 +114,7 @@ function Details({ closeToken }) {
                 </span>
                 <span className="text-token uppercase lg:text-base text-xs font-semibold mr-2">
                   {" "}
-                  reic token
+                  Hx token
                 </span>
                 <span className="text-tokentext text-base lg:text-2xl font-semibold">
                   {" "}
@@ -173,7 +173,7 @@ function Details({ closeToken }) {
                   defaultValue="50000"
                 />
               </div>
-              <span className="text-green text-xs">{amount / 50000} REICo</span>
+              <span className="text-green text-xs">{amount / 50000} Hx</span>
             </div>
             <div className="text-right pt-5 pb-8 flex justify-between items-center">
               <div className=" flex items-center lg:flex hidden">

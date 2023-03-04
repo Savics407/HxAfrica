@@ -9,10 +9,10 @@ import widthdraw from "./images/withdraw-token.svg";
 import send from "./images/moneysend.svg";
 import status from "./images/status-up.png";
 // import reictoken from './images/Reic_Token.png'
-import { MdClose } from "react-icons/md";
+// import { MdClose } from "react-icons/md";
 import { motion } from "framer-motion";
 import AddBank from "./AddBank";
-import BuyToken, { BankTransfer } from "./BuyToken";
+import { BankTransfer } from "./BuyToken";
 import Withdraw from "./WithdrawToken";
 import RecentActivity from "./recentActivity";
 import * as CurrencyFormat from "react-currency-format";
@@ -188,9 +188,9 @@ function Token() {
           <div className="lg:p-10 px-4 py-5 bg-white rounded-lg mb-5 flex flex-wrap ">
             <div className="lg:w-2/5 w-full">
               <div className="flex items-center hidden lg:flex">
-                <img src={reictoken} alt="REICo TOKEN" />
+                <img src={reictoken} alt="Hx TOKEN" />
                 <h1 className="text-base text-token font-semibold ml-2">
-                  REICo TOKEN
+                  Hx TOKEN
                 </h1>
               </div>
               <div className="flex items-center lg:mt-8 justify-between">
@@ -198,13 +198,13 @@ function Token() {
                   <div className="flex items-center">
                     <img
                       src={reictoken}
-                      alt="REICo TOKEN"
+                      alt="Hx TOKEN"
                       className="lg:hidden mr-2"
                     />
 
                     <div className="">
                       <h1 className="text-token uppercase text-tiny font-semibold lg:hidden">
-                        reic token
+                        Hx token
                       </h1>
                       <h1 className="font-medium mr-4 text-dark lg:text-3xl text-4l">
                         {reic ? (
@@ -223,7 +223,7 @@ function Token() {
                             />
                           </span>
                         )}{" "}
-                        {reic && "REICo"}
+                        {reic && "Hx"}
                       </h1>
                     </div>
                   </div>
@@ -233,7 +233,7 @@ function Token() {
                     onClick={() => setDrop(!drop)}
                   >
                     <span className="mr-1 lg:text-xs text-xxm">
-                      {reic ? "REICo Coin" : "NGN"}
+                      {reic ? "Hx Coin" : "NGN"}
                     </span>
                     <FaAngleDown />
                     <div
@@ -245,7 +245,7 @@ function Token() {
                         className="arrow2 relative border-b px-4 py-2 hover:bg-mainbg rounded-t-xl "
                         onClick={() => setReic(true)}
                       >
-                        <h1 className="text-base font-normal">REICo</h1>
+                        <h1 className="text-base font-normal">Hx</h1>
                       </div>
 
                       <div
@@ -273,7 +273,7 @@ function Token() {
               <div className="px-4 border-strokegrey ">
                 <img src={dollar} alt="dollar-icon" className="mb-4 h-6 w-6" />
                 <p className="text-earnings font-medium text-xs mb-1">
-                  Total in Reico
+                  Total in Hx Token
                 </p>
                 <h1 className="text-dark text-2xl font-medium">
                   {total?.token.toFixed(2)}
@@ -298,7 +298,7 @@ function Token() {
               <h1 className="text-xs font-semibold text-black w-fit py-1">
                 1{" "}
                 <span className="uppercase font-semibold text-tiny">
-                  reic token{" "}
+                  Hx token{" "}
                 </span>{" "}
                 = N50,000
               </h1>
@@ -356,7 +356,7 @@ function Token() {
                         </span>
                         <span className="text-token uppercase text-sm font-semibold mr-2">
                           {" "}
-                          reic token
+                          Hx token
                         </span>
                         <span className="text-tokentext text-xl font-semibold">
                           {" "}
@@ -417,7 +417,7 @@ function Token() {
                         />
                       </div>
                       <span className="text-green text-xs">
-                        {amount / 50000} REICo
+                        {amount / 50000} Hx
                       </span>
                     </div>
 
@@ -495,7 +495,7 @@ function Token() {
       </div>
       <div className="mt-6 pb-10 text-center hidden lg:block">
         <h1 className="text-base font-semibold text-footer">
-          © 2022 REICo. All rights reserved.
+          © 2022 HxAfrica. All rights reserved.
         </h1>
       </div>
     </div>

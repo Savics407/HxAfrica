@@ -62,8 +62,6 @@ function AdminSettings() {
 
   const {
     register,
-    handleSubmit,
-    reset,
     watch,
     formState: { errors },
   } = useForm({
@@ -732,7 +730,7 @@ function AdminSettings() {
                       </span>
                       <span className="text-token uppercase text-sm font-semibold mr-4">
                         {" "}
-                        reic token
+                        Hx token
                       </span>
                       <span className="text-tokentext text-xl font-semibold">
                         {" "}

@@ -12,6 +12,7 @@ module.exports = {
       inter: ["Inter"],
       roboto: ["Roboto"],
       Merriweather: ["Merriweather"],
+      Helvetica: ["Helvetica"],
     },
     extend: {
       skew: {
@@ -27,6 +28,7 @@ module.exports = {
         primary: "#EDFDFD",
         hxafrica: "#000901",
         lightgreen: "#63C86E",
+        skywhite: "#E0E0E0",
         copyright: "#FFFFFF1A",
         timeStamp: "rgba(15, 15, 15, 0.5)",
         time: "rgba(255, 255, 255, 0.5)",

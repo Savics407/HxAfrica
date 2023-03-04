@@ -124,7 +124,7 @@ function UserDetails({ formData, setFormData, nextPage, signup }) {
         <div>
           <h1 className="page-text">Create Account</h1>
           <p className="description">
-            Create an account with REICo, this would only take few minutes.
+            Create an account with Hx, this would only take few minutes.
           </p>
         </div>
         <div className="input">
@@ -286,7 +286,7 @@ function UserDetails({ formData, setFormData, nextPage, signup }) {
             // checked
           />
           <p className="text-xs tracking-wide">
-            I agree with REICo{" "}
+            I agree with Hx{" "}
             <span
               className="text-green cursor-pointer"
               onClick={() => setTerms(true)}
@@ -403,7 +403,7 @@ function UserDetails({ formData, setFormData, nextPage, signup }) {
                     checked={check}
                   />
                   <p className="text-xs tracking-wide">
-                    I agree with REICo{" "}
+                    I agree with Hx{" "}
                     <span className="text-green">Terms & Conditions </span> and{" "}
                     <br />
                     <span className="text-green">Privacy Policy</span>

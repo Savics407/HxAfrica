@@ -1,4 +1,5 @@
-import logo from "./images/reicTagline.png";
+import logo from "./images/HXafrica Logo.svg";
+
 // import logo from "./images/reic_with_tagline.png";
 // import bg from "./images/build.jpeg";
 // import Form from "./UserDetails";
@@ -11,11 +12,11 @@ import { useEffect, useState } from "react";
 function Tab() {
   return (
     <>
-      <div className="bg-primary text-center text-green p-3 hidden md:flex">
+      <div className="bg-primary text-center text-green p-5 hidden md:flex">
         {/* <div className="w-40 h-20 border"> */}
         <img src={logo} alt="logo icon" className="w-36" />
         {/* </div> */}
-        {/* <h1 className="text-sm font-bold font-family ml-4">REICo</h1> */}
+        {/* <h1 className="text-sm font-bold font-family ml-4">Hx</h1> */}
       </div>
     </>
   );
@@ -124,7 +125,7 @@ function Auth() {
   return (
     <div className="font-family">
       <Helmet>
-        <title>REICo</title>
+        <title>Hx</title>
       </Helmet>
       <Tab />
       <div className="lg:flex justify-between bg-white">

@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { FaAngleDown } from "react-icons/fa";
+// import { FaAngleDown } from "react-icons/fa";
 import search from "../images/Small.svg";
 import avater from "../images/Avatar.svg";
-import Martabs from "./Martabs";
-import { MdArrowBackIosNew } from "react-icons/md";
-import { NavLink, Link } from "react-router-dom";
-import { MdArrowForwardIos } from "react-icons/md";
-import Banuser from "./Banuser";
+// import Martabs from "./Martabs";
+// import { MdArrowBackIosNew } from "react-icons/md";
+import { Link } from "react-router-dom";
+// import { MdArrowForwardIos } from "react-icons/md";
+// import Banuser from "./Banuser";
 import Unban from "./Unban";
 
 function BannedList() {
@@ -110,7 +110,7 @@ function BannedList() {
                   Phone number
                 </th>
                 <th className="py-3 text-mobile-nav font-medium text-xs">
-                  Reico Balance
+                  Token Balance
                 </th>
                 <th className="py-3 text-mobile-nav font-medium text-xs w-32 text-center">
                   Status

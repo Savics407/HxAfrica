@@ -121,7 +121,7 @@ function Investment() {
               <h1 className="text-xs font-extrabold text-mobile-banner w-fit py-1 mr-6">
                 1{" "}
                 <span className="uppercase font-semibold text-tiny">
-                  reic token{" "}
+                  Hx token{" "}
                 </span>{" "}
                 = N50,000
               </h1>
@@ -311,7 +311,7 @@ function Investment() {
       </div>
       <div className="mt-6 pb-10 text-center hidden lg:block">
         <h1 className="text-base font-semibold text-footer">
-          © 2022 REICo. All rights reserved.
+          © 2022 HxAfrica. All rights reserved.
         </h1>
       </div>
     </div>

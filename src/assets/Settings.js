@@ -653,7 +653,7 @@ function Profile() {
       </div>
       <div className="mt-6 hidden lg:block pb-10 text-center">
         <h1 className="text-base font-semibold text-footer">
-          © 2022 REICo. All rights reserved.
+          © 2022 HxAfrica. All rights reserved.
         </h1>
       </div>
     </div>

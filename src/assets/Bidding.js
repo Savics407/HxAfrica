@@ -314,7 +314,7 @@ function Bidding({ closeModal, itemId }) {
                           </span>
                         </p>
                         <div className="text-nuetral font-bold text-base lg:text-lg flex items-center justify-center py-6 rounded-lg bg-mainbg relative">
-                          <sup className="w-2/5 text-right">REICo</sup>
+                          <sup className="w-2/5 text-right">Hx</sup>
                           <input
                             type="number"
                             placeholder="0.00"

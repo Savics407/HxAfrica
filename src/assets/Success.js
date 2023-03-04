@@ -71,7 +71,7 @@ function Success() {
                   thousandSeparator={true}
                 />
               </span>{" "}
-              to purchase REICo Token
+              to purchase Hx Token
             </p>
           </div>
           <div>

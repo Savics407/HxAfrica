@@ -3,7 +3,10 @@ import { FaAngleDown } from "react-icons/fa";
 import { FaBell } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import noNote from "./images/notifications.svg";
-import logo from "./images/logo.svg";
+import logo from "./images/HXafrica Logo 1.svg";
+// import logo from "./images/logo.svg";
+// import logo from "./images/HXafrica Logo.svg";
+
 import status from "./images/status.png";
 import { MdDashboard } from "react-icons/md";
 import { MdInsertChart } from "react-icons/md";
@@ -193,7 +196,7 @@ function Header() {
         <div className="w-10/12 m-auto flex items-center justify-between hidden md:flex">
           <Link to="/dashboard">
             <div className="w-48 h-12">
-              <img src={logo} alt="REICo Logo" />
+              <img src={logo} alt="HxAfrica Logo" />
             </div>
           </Link>
           <div className=" border-white flex items-center relative">

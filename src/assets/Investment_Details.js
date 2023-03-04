@@ -160,8 +160,8 @@ function Details({ closeDetails, itemId, ongoing }) {
                         </div>
                         <div className="flex justify-between">
                           <div className="income2">
-                            <h1>Amount in Reico Token</h1>
-                            <p>{post.amount / 50000} REICo</p>
+                            <h1>Amount in Hx Token</h1>
+                            <p>{post.amount / 50000} Hx</p>
                           </div>
                           <div className="income2">
                             <h1>Invested Amount</h1>

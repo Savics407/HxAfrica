@@ -50,7 +50,7 @@ import InvestorsTransactions from "./assets/admin/InvestorsTransactions";
 import { useEffect, useState } from "react";
 import AccountRecovery from "./assets/AccountRecovery";
 import WaitingList from "./assets/WaitingList";
-import LandingPage from "./assets/LandingPage";
+import LandingPage from "./website";
 import ErrorPage from "./assets/ErrorPage";
 
 function App() {

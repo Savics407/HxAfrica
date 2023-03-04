@@ -83,10 +83,9 @@ function IncomingROI() {
                       </p>
                     </div>
                     <div className="income">
-                      <h1>Amount in Reico Token</h1>
+                      <h1>Amount in Hx Token</h1>
                       <p>
-                        {((posts.amount / 100) * 10 + posts.amount) / 50000}{" "}
-                        REICo
+                        {((posts.amount / 100) * 10 + posts.amount) / 50000} Hx
                       </p>
                     </div>
                   </div>
