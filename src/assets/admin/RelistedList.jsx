@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { FaAngleDown } from "react-icons/fa";
-import avater from "../images/Avatar.svg";
-import { MdArrowBackIosNew } from "react-icons/md";
-import { MdArrowForwardIos } from "react-icons/md";
-import { AiOutlineArrowUp } from "react-icons/ai";
+// import { FaAngleDown } from "react-icons/fa";
+// import avater from "../images/Avatar.svg";
+// import { MdArrowBackIosNew } from "react-icons/md";
+// import { MdArrowForwardIos } from "react-icons/md";
+// import { AiOutlineArrowUp } from "react-icons/ai";
 import InvestmentTabs from "./InvestmentTabs";
 import realEstate from "../images/realEstate.svg";
 import * as CurrencyFormat from "react-currency-format";
