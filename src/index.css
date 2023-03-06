@@ -517,25 +517,7 @@ textarea::-webkit-scrollbar {
   @apply hidden
 }
 
-.clover {
-  background-image: url(../src/assets/images/cloverhedera.png);
-  background-size: cover;
-}
 
-.realtors {
-  background-image: url(../src/assets/images/realtors\ first.png);
-  background-size: cover;
-}
-
-.rayne {
-  background-image: url(../src/assets/images/RayneRise.png);
-  background-size: cover;
-}
-
-.gineer {
-  background-image: url(../src/assets/images/imagineering.png);
-  background-size: cover;
-}
 
 .content {
   @apply max-w-[1197px] m-auto
@@ -557,4 +539,70 @@ textarea::-webkit-scrollbar {
   -webkit-transition: all 1s ease;
   -o-transition: all 1s ease;
   transition: all 1s ease;
+}
+
+.turn {
+  /* animation-direction: ; */
+  animation-name: rotate;
+    animation-duration: 10s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.appleIcon {
+  background-image: url(/src/assets/images/appleIcon.svg);
+  background-repeat: no-repeat;
+    background-size: auto;
+    background-position: center center;
+}
+
+.apple {
+    background-image: url(/src/assets/images/appleIcon.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: left center;
+  }
+
+.side::before {
+  content: url(/src/assets/images/sideRight.svg);
+  position: absolute;
+  right: -22px;
+  top: -17px;
+}
+
+.side::after {
+    content: url(/src/assets/images/sideLeft.svg);
+  position: absolute;
+  left: -22px;
+  bottom: -22px;
+}
+
+.vector1 {
+      background-image: url(../src/assets/images/vector1.svg);
+      background-repeat: no-repeat;
+      background-size: auto;
+      background-position: 85% 15%;
+}
+.vector2 {
+  background-image: url(../src/assets/images/vector2.svg);
+  background-repeat: no-repeat;
+  background-size: auto;
+  background-position: 100% 0%;
+}
+
+.vector3 {
+  background-image: url(../src/assets/images/vector3.svg);
+  background-repeat: no-repeat;
+  background-size: auto;
+  background-position: 100% 100%;
 }

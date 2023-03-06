@@ -13,6 +13,7 @@ module.exports = {
       roboto: ["Roboto"],
       Merriweather: ["Merriweather"],
       Helvetica: ["Helvetica"],
+      Segoe: ["Segoe UI"]
     },
     extend: {
       skew: {
