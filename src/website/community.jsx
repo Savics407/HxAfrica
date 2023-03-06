@@ -8,7 +8,7 @@ import commune5 from "./../assets/images/commune5.svg";
 function Community() {
   return (
     <div>
-          <div className="bg-black py-36">
+          <div className="commune py-36">
               <div className="content px-20">
                   <div className="px-52 text-center mb-20">
                       <h1 className="font-semibold text-xs text-[#F8FFF9] text-center mb-4">Join Our community</h1>

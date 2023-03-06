@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import logo from "./../assets/images/HXafrica Logo.svg";
 import { CgMenuRight, CgClose } from "react-icons/cg";
 import { motion } from "framer-motion";
@@ -17,6 +17,10 @@ function Header() {
     }
   }
   window.addEventListener("scroll", sideBarFixed);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+
+  }, [])
   return (
     <div>
       {" "}
@@ -55,25 +59,25 @@ function Header() {
               </div>
 
               <div
-                className={`flex lg:flex-row font-normal items-center h-[200px] lg:h-auto justify-around flex-col  ${
+                className={`flex lg:flex-row font-normal items-center h-[200px] lg:h-auto justify-around flex-col link  ${
                   isOpen && "px-1"
                 }`}
               >
-                <Link to="/" onClick={() => setIsOpen(false)}>
-                  <h1 className="px-4 border-b-4 border-green py-8">Home</h1>
-                </Link>
-                <Link to="/team" onClick={() => setIsOpen(false)}>
-                  <h1 className="px-4">Team</h1>{" "}
-                </Link>
-                <Link to="/services" onClick={() => setIsOpen(false)}>
-                  <h1 className="px-4 flex items-center">
+                <NavLink to="/" onClick={() => setIsOpen(false)}>
+                  <h1 className="px-4 py-8">Home</h1>
+                </NavLink>
+                <NavLink to="/team" onClick={() => setIsOpen(false)}>
+                  <h1 className="px-4 py-8">Team</h1>{" "}
+                </NavLink>
+                <NavLink to="/services" onClick={() => setIsOpen(false)}>
+                  <h1 className="px-4 py-8 flex items-center">
                     <span className="mr-2">Services </span>{" "}
                     {/* <MdOutlineKeyboardArrowDown /> */}
                   </h1>{" "}
-                </Link>
-                <Link to="/about" onClick={() => setIsOpen(false)}>
-                  <h1 className="px-4">About us</h1>
-                </Link>
+                </NavLink>
+                <NavLink to="/about" onClick={() => setIsOpen(false)}>
+                  <h1 className="px-4 py-8">About us</h1>
+                </NavLink>
               </div>
               <div className={`${isOpen && "p-5"} p-5 lg:p-0`}>
                 <Link to="/login">

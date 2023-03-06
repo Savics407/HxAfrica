@@ -123,7 +123,7 @@ function LandingPage() {
         </div>
       </div>
 
-      <div className="bg-gray-100 py-20 " id="products">
+      <div className="trust py-20 " id="products">
         
         {/* <div className="w-full lg:w-auto text-center lg:text-left mb-20 lg:mb-auto border"> */}
         <div className="content">

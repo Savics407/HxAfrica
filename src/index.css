@@ -566,6 +566,20 @@ textarea::-webkit-scrollbar {
     background-position: center center;
 }
 
+.trust {
+  background-image: url(/src/assets/images/trustBg.svg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+}
+
+.commune {
+  background-image: url(/src/assets/images/communityBg.svg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+}
+
 .apple {
     background-image: url(/src/assets/images/appleIcon.svg);
     background-repeat: no-repeat;
@@ -605,4 +619,8 @@ textarea::-webkit-scrollbar {
   background-repeat: no-repeat;
   background-size: auto;
   background-position: 100% 100%;
+}
+
+.link .active {
+  @apply border-b-4 border-green
 }
