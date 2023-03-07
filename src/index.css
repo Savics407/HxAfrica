@@ -592,6 +592,7 @@ textarea::-webkit-scrollbar {
   position: absolute;
   right: -22px;
   top: -17px;
+  
 }
 
 .side::after {
@@ -599,6 +600,30 @@ textarea::-webkit-scrollbar {
   position: absolute;
   left: -22px;
   bottom: -22px;
+}
+
+@media only screen and (max-width: 600px) {
+  .side::before {
+      content: url(/src/assets/images/sideRightMobile.svg);
+      position: absolute;
+      right: -12px;
+      top: -10px;
+  
+    }
+  
+    .side::after {
+      content: url(/src/assets/images/sideLeftMobile.svg);
+      position: absolute;
+      left: -10px;
+      bottom: -17px;
+    }
+
+        .apple {
+          background-image: url(/src/assets/images/appleIcon.svg);
+          background-repeat: no-repeat;
+          background-size: 100% 100%;
+          background-position: center center;
+        }
 }
 
 .vector1 {
@@ -622,5 +647,5 @@ textarea::-webkit-scrollbar {
 }
 
 .link .active {
-  @apply border-b-4 border-green
+  @apply lg:border-b-4 lg:border-green
 }

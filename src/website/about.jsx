@@ -14,13 +14,13 @@ function About() {
     return (
         <div className='font-family bg-white'>
             <Header />
-            <div className='bg-[#111920] text-white py-20'>
-                <div className='content flex justify-between items-center'>
-                    <div className='w-[60%] font-medium text-4xl leading-[60px]'>
+            <div className='bg-[#111920] text-white overflow-hidden px-5 lg:px-0 py-20'>
+                <div className='content flex justify-between relative items-center'>
+                    <div className='lg:w-[60%] font-medium lg:text-4xl text-2xl lg:leading-[60px] mb-2'>
                         <h1>About Our Company</h1>
-                        <h1 className='font-normal text-2xl'>Get to know who we are</h1>
+                        <h1 className='font-normal lg:text-2xl text-sm'>Get to know who we are</h1>
                     </div>
-                    <div className='w-[40%] justify-center items-center flex'>
+                    <div className='lg:w-[40%] w-[20%] absolute lg:relative -right-8 justify-center items-center flex'>
                         <div className="flex justify-center items-center">
 
                             <img src={longArrow} alt="arrow" className="absolute" />
@@ -34,17 +34,17 @@ function About() {
             </div>
 
 
-            <div className='bg-[#FDFDFD] py-24'>
-                <div className='content text-center px-40'>
-                    <h1 className='text-6xl font-normal mb-10'>About HXAFRICA</h1>
-                    <h1 className='text-2xl font-normal'>We have positioned to solve the perennial problems that plagues the real estate industry; With our block-chain powered technology, we are presenting lasting solutions to;</h1>
+            <div className='bg-[#FDFDFD] lg:py-24 py-10'>
+                <div className='content text-center px-5 lg:px-40'>
+                    <h1 className='lg:text-6xl text-3xl font-normal mb-5 lg:mb-10'>About HXAFRICA</h1>
+                    <h1 className='lg:text-2xl text-sm font-normal'>We have positioned to solve the perennial problems that plagues the real estate industry; With our block-chain powered technology, we are presenting lasting solutions to;</h1>
                 </div>
             </div>
 
             <div>
-                <div className="content p-24">
-                    <div className='flex justify-between'>
-                        <div className='bg-[#373737] rounded-[60px] vector1 w-[293px] h-[287px] py-7 px-9 flex flex-col justify-between'>
+                <div className="content lg:p-24 p-10">
+                    <div className='flex flex-wrap justify-between'>
+                        <div className='bg-[#373737] rounded-[60px] vector1 w-full lg:w-[293px] mb-5 h-[287px] py-7 px-9 flex flex-col justify-between'>
                             <div>
                                 <img src={highEntry} alt="High Entry Barrier" />
 
@@ -53,7 +53,7 @@ function About() {
 
                         </div>
 
-                        <div className='bg-[#B5E2C9] rounded-[60px] vector2 w-[293px] h-[287px] py-7 px-9 flex flex-col justify-between'>
+                        <div className='bg-[#B5E2C9] rounded-[60px] vector2 w-full lg:w-[293px] mb-5 h-[287px] py-7 px-9 flex flex-col justify-between'>
                             <div>
                                 <img src={illiquidity} alt="Illiquidity" />
 
@@ -62,7 +62,7 @@ function About() {
 
                         </div>
 
-                        <div className='bg-[#F7C0B5] rounded-[60px] vector3 w-[293px] h-[287px] py-7 px-9 flex flex-col justify-between'>
+                        <div className='bg-[#F7C0B5] rounded-[60px] vector3 w-full lg:w-[293px] mb-5 h-[287px] py-7 px-9 flex flex-col justify-between'>
                             <div>
                                 <img src={access} alt="Access to Finance" />
 
@@ -71,23 +71,23 @@ function About() {
 
                         </div>
                     </div>
-                    <div className='text-[#1E1E1E] font-normal text-2xl py-10 text-center'>
-                        <h1 className='mb-10'>Our approach opens up the industry for the low-to-middle income earners to participate in the real estate industry</h1>
+                    <div className='text-[#1E1E1E] font-normal lg:text-2xl text-sm py-10 text-center'>
+                        <h1 className='lg:mb-10 mb-5'>Our approach opens up the industry for the low-to-middle income earners to participate in the real estate industry</h1>
                         <h1>What we have built is a real estate community.</h1>
                     </div>
                 </div>
                
             </div>
-
             <div className="bg-[#6060D8] py-20 relative apple">
-                <div className="content xl:pl-10 ">
+                <div className="content xl:pl-10 px-5">
                     <div className="flex flex-wrap items-center justify-between">
-                        <div className="w-1/2 lg:pr-20 mb-10 lg:mb-0">
+                        <h1 className="font-normal text-[#F8FFF9] text-4xl mb-14 lg:hidden">It is more exciting with you</h1>
+                        <div className="lg:w-1/2 w-full lg:pr-20 mb-10 lg:mb-0">
                             <img src={group} alt="group" />
                         </div>
-                        <div className="w-1/2 flex items-center justify-center">
-                            <div className="rounded-xl p-5">
-                                <h1 className="font-normal text-[#F8FFF9] leading-[70px] text-6xl mb-14">It is more exciting with you</h1>
+                        <div className="lg:w-1/2 w-full flex items-center justify-center">
+                            <div className="rounded-xl lg:p-5">
+                                <h1 className="font-normal text-[#F8FFF9] leading-[70px] text-6xl mb-14 hidden lg:block">It is more exciting with you</h1>
                                 <div className="font-inter font-normal mb-2 flex flex-col">
 
                                     <input
@@ -107,6 +107,7 @@ function About() {
                     </div>
                 </div>
             </div>
+           
             <Footer />
         </div>
     )

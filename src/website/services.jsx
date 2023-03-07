@@ -32,16 +32,16 @@ function Services() {
                                 <img src={realtors} alt="realtors" className='w-full h-full object-cover' />
                             </div>
                             <div className="text-[#1E1E1E]">
-                                <h1 className="font-bold font-roboto text-xl lg:text-4xl my-3">
+                                <h1 className="font-bold font-roboto text-3xl lg:text-4xl my-3">
                                     Realtors First
                                 </h1>
-                                <h1 className="font-normal text-xs lg:text-xl mb-4">
+                                <h1 className="font-normal text-base lg:text-xl mb-4">
                                     Connecting Real Estate Buyers with Sellers
                                 </h1>
                                 
                             </div>
                             <a href="https://realtorsfirst.com" target="_blank">
-                                <button className="flex px-3 lg:px-7 my-7 py-3 font-inter bg-[#1E1E1E] items-center rounded-full text-xs lg:text-base">
+                                <button className="flex px-7 my-7 py-3 font-inter bg-[#1E1E1E] items-center rounded-full text-xs lg:text-base">
                                     Visit Website <AiOutlineArrowRight className="ml-2" />{" "}
                                 </button>
                             </a>
@@ -51,16 +51,16 @@ function Services() {
                                 <img src={cloverhedera} alt="cloverhedera" className='w-full h-full object-cover' />
                             </div>
                             <div className="text-[#1E1E1E]">
-                                <h1 className="font-bold font-roboto text-xl lg:text-4xl my-3">
+                                <h1 className="font-bold font-roboto text-3xl lg:text-4xl my-3">
                                     Cloverhedera
                                 </h1>
-                                <h1 className="font-normal text-xs lg:text-xl mb-4">
+                                <h1 className="font-normal text-base lg:text-xl mb-4">
                                     Real Estate Consultancy Company
                                 </h1>
 
                             </div>
                             <a href="https://cloverhedera.com.ng" target="_blank">
-                                <button className="flex px-3 lg:px-7 my-7 py-3 font-inter bg-[#1E1E1E] items-center rounded-full text-xs lg:text-base">
+                                <button className="flex px-7 my-7 py-3 font-inter bg-[#1E1E1E] items-center rounded-full text-xs lg:text-base">
                                     Visit Website <AiOutlineArrowRight className="ml-2" />{" "}
                                 </button>
                             </a>
@@ -70,16 +70,16 @@ function Services() {
                                 <img src={RayneRise} alt="RayneRise" className='w-full h-full object-cover' />
                             </div>
                             <div className="text-[#1E1E1E]">
-                                <h1 className="font-bold font-roboto text-xl lg:text-4xl my-3">
+                                <h1 className="font-bold font-roboto text-3xl lg:text-4xl my-3">
                                     RayneRise
                                 </h1>
-                                <h1 className="font-normal text-xs lg:text-xl mb-4">
+                                <h1 className="font-normal text-base lg:text-xl mb-4">
                                     Unmatched Advertisng Services
                                 </h1>
 
                             </div>
                             <a href="https://raynerise.com" target="_blank">
-                                <button className="flex px-3 lg:px-7 my-7 py-3 font-inter bg-[#1E1E1E] items-center rounded-full text-xs lg:text-base">
+                                <button className="flex px-7 my-7 py-3 font-inter bg-[#1E1E1E] items-center rounded-full text-xs lg:text-base">
                                     Visit Website <AiOutlineArrowRight className="ml-2" />{" "}
                                 </button>
                             </a>
@@ -89,16 +89,16 @@ function Services() {
                                 <img src={imagineering} alt="imagineering" className='w-full h-full object-cover' />
                             </div>
                             <div className="text-[#1E1E1E]">
-                                <h1 className="font-bold font-roboto text-xl lg:text-4xl my-3">
+                                <h1 className="font-bold font-roboto text-3xl lg:text-4xl my-3">
                                     Imagineering
                                 </h1>
-                                <h1 className="font-normal text-xs lg:text-xl mb-4">
+                                <h1 className="font-normal text-base lg:text-xl mb-4">
                                     Engineering Imaginations
                                 </h1>
 
                             </div>
                             <a href="https://Imagineering.ng" target="_blank">
-                                <button className="flex px-3 lg:px-7 my-7 py-3 font-inter bg-[#1E1E1E] items-center rounded-full text-xs lg:text-base">
+                                <button className="flex px-7 my-7 py-3 font-inter bg-[#1E1E1E] items-center rounded-full text-xs lg:text-base">
                                     Visit Website <AiOutlineArrowRight className="ml-2" />{" "}
                                 </button>
                             </a>

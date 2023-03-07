@@ -27,12 +27,12 @@ function Team() {
         <div className="font-family bg-white">
             <Header />
 
-            <div className='bg-[#111920] text-white py-20'>
-                <div className='content flex justify-between items-center'>
-                    <div className='w-[60%] font-medium text-4xl leading-[60px]'>
+            <div className='bg-[#111920] text-white lg:py-20 py-16 overflow-hidden px-5 lg:px-0'>
+                <div className='content flex justify-between items-center relative'>
+                    <div className='lg:w-[60%] w-[80%] font-medium lg:text-4xl text-2xl lg:leading-[60px]'>
                         <h1>HXAFRICA is managed by an amazing group of professionals.</h1>
                     </div>
-                    <div className='w-[40%] justify-center items-center flex'>
+                    <div className='lg:w-[40%] w-[20%] absolute lg:relative -right-8 justify-center items-center flex'>
                         <div className="flex justify-center items-center">
 
                             <img src={longArrow} alt="arrow" className="absolute" />
@@ -42,6 +42,7 @@ function Team() {
                             </div>
                         </div>
                     </div>
+                    
                 </div>
             </div>
 
@@ -49,7 +50,7 @@ function Team() {
                 <div className="bg-white py-16 px-5 lg:px-32" id="board">
                     <div className="content">
                         <div className="flex flex-col items-center font-roboto">
-                            <h1 className=" font-normal text-[#111920] text-4xl mb-3 text-center">
+                            <h1 className=" font-normal text-[#111920] text-3xl lg:text-4xl mb-3 text-center">
                                 Meet Our Board Of <br /> Directors/Advisors
                             </h1>
                             
@@ -141,10 +142,10 @@ function Team() {
                         </div>
                     </div>
                 </div>
-                <div className="bg-white py-16 lg:px-32 px-5" id="management">
+                <div className="bg-white lg:py-16 lg:px-32 px-5" id="management">
                     <div className="content">
                         <div className="flex flex-col items-center font-roboto">
-                            <h1 className=" font-normal text-[#111920] text-4xl mb-3 text-center">
+                            <h1 className=" font-normal text-[#111920] lg:text-4xl text-3xl mb-3 text-center">
                                 Meet Our <br /> Management Team 
                             </h1>
                         </div>
