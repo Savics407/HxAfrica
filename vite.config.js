@@ -3,14 +3,18 @@ import react from '@vitejs/plugin-react'
 import svgrPlugin from 'vite-plugin-svgr'
 import envCompatible from 'vite-plugin-env-compatible'
 
+
+// Without it dynamic require is not possible in config file
+import { createRequire } from "module";
+const require = createRequire(import.meta.url);
 // https://vitejs.dev/config/
 export default defineConfig({
-    envPrefix: 'REACT_APP_',
-    // resolve: {
-    //   alias: {
-    //     './runtimeConfig' : './runtimeConfig.browser',
-    //   },
-    // },
+  envPrefix: "REACT_APP_",
+  // resolve: {
+  //   alias: {
+  //     './runtimeConfig' : './runtimeConfig.browser',
+  //   },
+  // },
 
   // optimizeDeps: {
   //   esbuildOptions: {
@@ -31,6 +35,17 @@ export default defineConfig({
   // build: {
   //   outDir: 'build',
   // },
+  build: {
+    commonjsOptions: {
+      defaultIsModuleExports(id) {
+        const module = require(id);
+        if (module?.default) {
+          return false;
+        }
+        return "auto";
+      },
+    },
+  },
   plugins: [
     react(),
     envCompatible(),
@@ -41,4 +56,4 @@ export default defineConfig({
     //   },
     // }),
   ],
-})
+});
