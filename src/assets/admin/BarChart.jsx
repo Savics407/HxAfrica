@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { FaAngleDown } from "react-icons/fa";
 import { Bar, Line } from "react-chartjs-2";
 // import { Chart as chartjs } from "chart.js/auto";
+import Chart from 'chart.js/auto';
 
 function BarChart() {
   const data = [];

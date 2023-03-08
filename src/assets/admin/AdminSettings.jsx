@@ -3,7 +3,7 @@ import Header from "./Admin_header";
 import SideBar from "./SideBar";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
-import reictoken from "../images/Reic_Token.png";
+import reictoken from "../images/HX Token.svg";
 
 function AdminSettings() {
   const [pullout, setPullout] = useState();

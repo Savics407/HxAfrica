@@ -307,7 +307,7 @@ label {
 }
 
 .banner {
-  background-image: url(../src/assets/images/bannerWiggle.png), url(../src/assets/images/reicCoin.png), url(../src/assets/images/reicCoin.png), url(../src/assets/images/reicCoin.png);
+  background-image: url(../src/assets/images/bannerWiggle.png), url(../src/assets/images/hxMock.svg), url(../src/assets/images/hxMock.svg), url(../src/assets/images/hxMock.svg);
   background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
   background-size: auto, auto, auto, auto;
   background-position: 60% -20px, 64% 60px, 100% 60px, 80% 20px;
@@ -321,7 +321,7 @@ label {
 }
 
 .mobile-banner {
-  background-image: url(../src/assets/images/mobileReic.png), url(../src/assets/images/mobileRed.png), url(../src/assets/images/mobileGrey.png), url(../src/assets/images/mobileWiggle.png), linear-gradient(to right, #1e1e1e 30%, #008e10);
+  background-image: url(../src/assets/images/mobileHx.svg), url(../src/assets/images/mobileRed.svg), url(../src/assets/images/mobileGrey.svg), url(../src/assets/images/mobileWiggle.png), linear-gradient(to right, #1e1e1e 30%, #008e10);
   background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
   background-size: auto, auto, auto, auto;
   background-position: 100% 100%, 78% 100%, 65% 100%, 100% 10%;

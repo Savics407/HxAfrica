@@ -174,7 +174,9 @@ function JoinInvestment({ closeModal, itemId }) {
                   <div className="lg:px-10 px-5 ">
                     <img
                       // src={hdimage}
-                      src={post.image_path}
+                      // src={post.image_path}
+                      src={post.image_path === "" ? hdimage : post.image_path}
+
                       alt="my-investment-image"
                       className="w-full lg:h-40 h-36 object-cover"
                     />

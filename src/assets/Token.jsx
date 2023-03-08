@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 // import logo from "./images/polygon.png";
 import { FaAngleDown } from "react-icons/fa";
-import reictoken from "./images/Reic_Token.png";
+import reictoken from "./images/HX Token.svg";
 import Header from "./Header";
 import dollar from "./images/Vector.png";
 import coin from "./images/coin.png";
