@@ -25,7 +25,7 @@ function Login() {
     email: "",
     password: "",
   });
-  const endPoint = import.meta.env.REACT_APP_MY_API_ENDPOINT;
+  const endPoint = process.env.REACT_APP_MY_API_ENDPOINT;
   async function login(e) {
     // console.log(formData);
     // e.preventDefault();

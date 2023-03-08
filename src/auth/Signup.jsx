@@ -13,7 +13,7 @@ import Tab from "./tab";
 
 
 function Auth() {
-  // console.log(import.meta.env.REACT_APP_MY_API_ENDPOINT);
+  // console.log(process.env.REACT_APP_MY_API_ENDPOINT);
 
   const [step, setStep] = useState(0);
   const [formData, setFormData] = useState({
@@ -39,7 +39,7 @@ function Auth() {
   //       terms: formData.terms,
   //     };
   //     try {
-  //       const response = await fetch(`${import.meta.env.REACT_APP_MY_API_ENDPOINT}register", {
+  //       const response = await fetch(`${process.env.REACT_APP_MY_API_ENDPOINT}register", {
   //         method: "POST",
   //         body: JSON.stringify(payload),
   //         headers: {
@@ -61,7 +61,7 @@ function Auth() {
   //       email: formData.email,
   //       otp: formData.otp,
   //     };
-  //     const response = await fetch(`${import.meta.env.REACT_APP_MY_API_ENDPOINT}verify-otp", {
+  //     const response = await fetch(`${process.env.REACT_APP_MY_API_ENDPOINT}verify-otp", {
   //       method: "POST",
   //       body: JSON.stringify(otpLoad),
   //       headers: {

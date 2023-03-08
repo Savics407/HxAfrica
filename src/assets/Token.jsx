@@ -68,7 +68,7 @@ function Token() {
     };
     const token = localStorage.getItem("user-token");
     const response = await fetch(
-      `${import.meta.env.REACT_APP_MY_API_ENDPOINT}paystack/initialize_paystack`,
+      `${process.env.REACT_APP_MY_API_ENDPOINT}paystack/initialize_paystack`,
       {
         method: "POST",
         body: JSON.stringify(payLoad),
@@ -102,7 +102,7 @@ function Token() {
     const token = localStorage.getItem("user-token");
     // e.preventDefault();
     const response = await fetch(
-      `${import.meta.env.REACT_APP_MY_API_ENDPOINT}wallet/fetch_wallet`,
+      `${process.env.REACT_APP_MY_API_ENDPOINT}wallet/fetch_wallet`,
       {
         method: "POST",
         headers: {
@@ -123,7 +123,7 @@ function Token() {
     const token = localStorage.getItem("user-token");
     // e.preventDefault();
     const response = await fetch(
-      `${import.meta.env.REACT_APP_MY_API_ENDPOINT}wallet/total_investment`,
+      `${process.env.REACT_APP_MY_API_ENDPOINT}wallet/total_investment`,
       {
         method: "POST",
         headers: {

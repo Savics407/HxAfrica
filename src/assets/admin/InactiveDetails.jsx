@@ -22,7 +22,7 @@ function InactiveDetails({ setDetails, itemId, fetchInActive }) {
     const token = localStorage.getItem("user-token");
 
     const response = await fetch(
-      `${import.meta.env.REACT_APP_MY_API_ENDPOINT}admin/fetch_invactive_product`,
+      `${process.env.REACT_APP_MY_API_ENDPOINT}admin/fetch_invactive_product`,
       {
         method: "POST",
         headers: {
@@ -309,7 +309,7 @@ function Processing({ fetchInActive, setDetails, itemId }) {
 
     const token = localStorage.getItem("user-token");
     const response = await fetch(
-      `${import.meta.env.REACT_APP_MY_API_ENDPOINT}admin/activate_product`,
+      `${process.env.REACT_APP_MY_API_ENDPOINT}admin/activate_product`,
       {
         method: "POST",
         body: JSON.stringify(payLoad),

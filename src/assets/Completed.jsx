@@ -20,7 +20,7 @@ function Completed() {
     const token = localStorage.getItem("user-token");
     // e.preventDefault();
     const response = await fetch(
-      `${import.meta.env.REACT_APP_MY_API_ENDPOINT}investment/fetch_completed_investment`,
+      `${process.env.REACT_APP_MY_API_ENDPOINT}investment/fetch_completed_investment`,
       {
         method: "POST",
         headers: {

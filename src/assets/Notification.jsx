@@ -18,7 +18,7 @@ function Notification() {
     const token = localStorage.getItem("user-token");
     // e.preventDefault();
     const response = await fetch(
-      `${import.meta.env.REACT_APP_MY_API_ENDPOINT}investor/fetch_notifications`,
+      `${process.env.REACT_APP_MY_API_ENDPOINT}investor/fetch_notifications`,
       {
         method: "POST",
         headers: {
@@ -41,7 +41,7 @@ function Notification() {
     const token = localStorage.getItem("user-token");
     // e.preventDefault();
     const response = await fetch(
-      `${import.meta.env.REACT_APP_MY_API_ENDPOINT}investor/clear_notifications`,
+      `${process.env.REACT_APP_MY_API_ENDPOINT}investor/clear_notifications`,
       {
         method: "POST",
         headers: {

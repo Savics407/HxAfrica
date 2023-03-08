@@ -31,7 +31,7 @@ function Dashboard() {
   //   const token = localStorage.getItem("user-token");
   //   // e.preventDefault();
   //   const response = await fetch(
-  //     `${import.meta.env.REACT_APP_MY_API_ENDPOINT}investor/fetch_user_profile",
+  //     `${process.env.REACT_APP_MY_API_ENDPOINT}investor/fetch_user_profile",
   //     {
   //       method: "POST",
   //       headers: {
@@ -50,7 +50,7 @@ function Dashboard() {
     const token = localStorage.getItem("user-token");
     // e.preventDefault();
     const response = await fetch(
-      `${import.meta.env.REACT_APP_MY_API_ENDPOINT}wallet/fetch_wallet`,
+      `${process.env.REACT_APP_MY_API_ENDPOINT}wallet/fetch_wallet`,
       {
         method: "POST",
         headers: {
@@ -71,7 +71,7 @@ function Dashboard() {
   async function totalEarnings() {
     const token = localStorage.getItem("user-token");
     const response = await fetch(
-      `${import.meta.env.REACT_APP_MY_API_ENDPOINT}wallet/total_earning`,
+      `${process.env.REACT_APP_MY_API_ENDPOINT}wallet/total_earning`,
       {
         method: "POST",
         headers: {

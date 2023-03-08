@@ -47,7 +47,7 @@ function ChangePassword() {
 
     const token = localStorage.getItem("user-token");
     const response = await fetch(
-      `${import.meta.env.REACT_APP_MY_API_ENDPOINT}investor/change_password`,
+      `${process.env.REACT_APP_MY_API_ENDPOINT}investor/change_password`,
       {
         method: "POST",
         body: JSON.stringify(payLoad),

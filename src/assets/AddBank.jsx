@@ -23,7 +23,7 @@ function AddBank({ closeToken, setVerifyBVN, setWithdraw, setBankID }) {
     const token = localStorage.getItem("user-token");
     // e.preventDefault();
     const response = await fetch(
-      `${import.meta.env.REACT_APP_MY_API_ENDPOINT}investor/list_of_banks`,
+      `${process.env.REACT_APP_MY_API_ENDPOINT}investor/list_of_banks`,
       {
         method: "POST",
         headers: {
@@ -45,7 +45,7 @@ function AddBank({ closeToken, setVerifyBVN, setWithdraw, setBankID }) {
     const token = localStorage.getItem("user-token");
     // e.preventDefault();
     const response = await fetch(
-      `${import.meta.env.REACT_APP_MY_API_ENDPOINT}investor/fetch_user_bank`,
+      `${process.env.REACT_APP_MY_API_ENDPOINT}investor/fetch_user_bank`,
       {
         method: "POST",
         headers: {
@@ -86,7 +86,7 @@ function AddBank({ closeToken, setVerifyBVN, setWithdraw, setBankID }) {
     };
     // alert(bankName[0  ])
     const response = await fetch(
-      `${import.meta.env.REACT_APP_MY_API_ENDPOINT}investor/resolve_bank_info`,
+      `${process.env.REACT_APP_MY_API_ENDPOINT}investor/resolve_bank_info`,
       {
         method: "POST",
         body: JSON.stringify(payLoad),
@@ -130,7 +130,7 @@ function AddBank({ closeToken, setVerifyBVN, setWithdraw, setBankID }) {
       }
     }
   }
-  const save = () => {};
+  const save = () => { };
 
   return (
     <>
@@ -151,9 +151,9 @@ function AddBank({ closeToken, setVerifyBVN, setWithdraw, setBankID }) {
           },
         }}
         className="flex items-center justify-center fixed top-0 right-0 bottom-0 left-0 bg-overlay z-50 backdrop-blur-xs"
-        // onClick={() => {
-        //         closeDetails(false)
-        //     }}
+      // onClick={() => {
+      //         closeDetails(false)
+      //     }}
       >
         {main && userBank?.length === 0 ? (
           <motion.div
@@ -172,9 +172,8 @@ function AddBank({ closeToken, setVerifyBVN, setWithdraw, setBankID }) {
                 delay: 0.5,
               },
             }}
-            className={`bg-white rounded-xl border lg:w-2/5 w-11/12 ${
-              !registered && "hidden"
-            }`}
+            className={`bg-white rounded-xl border lg:w-2/5 w-11/12 ${!registered && "hidden"
+              }`}
           >
             <div className="border-b border-stroke Capitalize lg:uppercase px-10 py-5 lg:text-2xl font-semibold flex justify-between items-center text-modal text-base">
               <h1 className="font-iter">Add Bank</h1>
@@ -374,9 +373,8 @@ function MyBanks({
             delay: 0.5,
           },
         }}
-        className={`bg-white rounded-xl border w-11/12 lg:w-1/2 ${
-          addAccount && "hidden"
-        }`}
+        className={`bg-white rounded-xl border w-11/12 lg:w-1/2 ${addAccount && "hidden"
+          }`}
       >
         <div className="border-b border-stroke px-5 lg:px-10 py-5 text-base lg:text-2xl font-semibold flex justify-between items-center text-modal">
           <h1 className="font-iter lg:uppercase capitalize">

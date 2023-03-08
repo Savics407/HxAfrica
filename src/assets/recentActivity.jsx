@@ -22,7 +22,7 @@ function RecentActivity() {
     const token = localStorage.getItem("user-token");
     // e.preventDefault();
     const response = await fetch(
-      `${import.meta.env.REACT_APP_MY_API_ENDPOINT}wallet/fetch_wallet_activity`,
+      `${process.env.REACT_APP_MY_API_ENDPOINT}wallet/fetch_wallet_activity`,
       {
         method: "POST",
         headers: {
@@ -267,20 +267,20 @@ function RecentActivity() {
                           </h1>
                           <h1
                             className={`font-normal text-tiny ${post.type === "buytoken"
+                              ? "text-green"
+                              : post.type === "deposit"
                                 ? "text-green"
-                                : post.type === "deposit"
-                                  ? "text-green"
-                                  : post.type === "withdrawal"
-                                    ? "text-yellow"
-                                    : post.type === "investment"
-                                      ? "text-green"
-                                      : post.type === "reversal"
-                                        ? "text-yellow"
-                                        : post.type === "pullout"
-                                          ? "text-red"
-                                          : post.type === "inherited"
-                                            ? "text-yellow"
-                                            : "text-red"
+                                : post.type === "withdrawal"
+                                  ? "text-yellow"
+                                  : post.type === "investment"
+                                    ? "text-green"
+                                    : post.type === "reversal"
+                                      ? "text-yellow"
+                                      : post.type === "pullout"
+                                        ? "text-red"
+                                        : post.type === "inherited"
+                                          ? "text-yellow"
+                                          : "text-red"
                               }`}
                           >
                             N

@@ -29,7 +29,7 @@ function Ongoing() {
     const token = localStorage.getItem("user-token");
     // e.preventDefault();
     const response = await fetch(
-      `${import.meta.env.REACT_APP_MY_API_ENDPOINT}investment/fetch_ongoing_investment`,
+      `${process.env.REACT_APP_MY_API_ENDPOINT}investment/fetch_ongoing_investment`,
       {
         method: "POST",
         headers: {

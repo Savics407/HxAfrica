@@ -18,7 +18,7 @@ function MarchantsList({ merchants, fetchMerchants }) {
       user_id: merchantId,
     };
     const response = await fetch(
-      `${import.meta.env.REACT_APP_MY_API_ENDPOINT}admin/remove_merchant`,
+      `${process.env.REACT_APP_MY_API_ENDPOINT}admin/remove_merchant`,
       {
         method: "POST",
         body: JSON.stringify(payLoad),

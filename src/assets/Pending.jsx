@@ -31,7 +31,7 @@ function Pending() {
     const token = localStorage.getItem("user-token");
     // e.preventDefault();
     const response = await fetch(
-      `${import.meta.env.REACT_APP_MY_API_ENDPOINT}investment/fetch_pending_investment`,
+      `${process.env.REACT_APP_MY_API_ENDPOINT}investment/fetch_pending_investment`,
       {
         method: "POST",
         headers: {
@@ -61,7 +61,7 @@ function Pending() {
   async function cancelPercentage() {
     const token = localStorage.getItem("user-token");
     const response = await fetch(
-      `${import.meta.env.REACT_APP_MY_API_ENDPOINT}investment/cancel_percentage`,
+      `${process.env.REACT_APP_MY_API_ENDPOINT}investment/cancel_percentage`,
       {
         method: "POST",
         headers: {
@@ -105,7 +105,7 @@ function Pending() {
     };
     const token = localStorage.getItem("user-token");
     const response = await fetch(
-      `${import.meta.env.REACT_APP_MY_API_ENDPOINT}investment/cancel_investment`,
+      `${process.env.REACT_APP_MY_API_ENDPOINT}investment/cancel_investment`,
       {
         method: "POST",
         body: JSON.stringify(payLoad),
@@ -333,7 +333,7 @@ export function Warning({
   //       investment_id: productID,
   //     };
   //     const token = localStorage.getItem("user-token");
-  //     fetch(`${import.meta.env.REACT_APP_MY_API_ENDPOINT}investment/cancel_investment", {
+  //     fetch(`${process.env.REACT_APP_MY_API_ENDPOINT}investment/cancel_investment", {
   //       method: "POST",
   //       body: JSON.stringify(payLoad),
   //       headers: {
@@ -352,7 +352,7 @@ export function Warning({
     };
     const token = localStorage.getItem("user-token");
     const response = await fetch(
-      `${import.meta.env.REACT_APP_MY_API_ENDPOINT}investment/cancel_investment`,
+      `${process.env.REACT_APP_MY_API_ENDPOINT}investment/cancel_investment`,
       {
         method: "POST",
         body: JSON.stringify(payLoad),

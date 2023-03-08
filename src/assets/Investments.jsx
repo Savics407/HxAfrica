@@ -27,7 +27,7 @@ function Investments() {
     const token = localStorage.getItem("user-token");
 
     const response = await fetch(
-      `${import.meta.env.REACT_APP_MY_API_ENDPOINT}investment/fetch_new_investment`,
+      `${process.env.REACT_APP_MY_API_ENDPOINT}investment/fetch_new_investment`,
       {
         method: "POST",
         headers: {
@@ -53,7 +53,7 @@ function Investments() {
     const token = localStorage.getItem("user-token");
     // e.preventDefault();
     const response = await fetch(
-      `${import.meta.env.REACT_APP_MY_API_ENDPOINT}investment/fetch_ongoing_investment`,
+      `${process.env.REACT_APP_MY_API_ENDPOINT}investment/fetch_ongoing_investment`,
       {
         method: "POST",
         headers: {
@@ -84,7 +84,7 @@ function Investments() {
     const token = localStorage.getItem("user-token");
     // e.preventDefault();
     const response = await fetch(
-      `${import.meta.env.REACT_APP_MY_API_ENDPOINT}products/fetch_product_category`,
+      `${process.env.REACT_APP_MY_API_ENDPOINT}products/fetch_product_category`,
       {
         method: "POST",
         headers: {
@@ -130,12 +130,12 @@ function Investments() {
               {categories?.map((post) => (
                 <div
                   className={`categories bg-light-purple ${post.product_category === "renovate"
-                      ? "bg-light-orange"
-                      : post.product_category === "mortgage"
-                        ? "bg-light-blue"
-                        : post.product_category === "sales"
-                          ? "bg-sky-blue"
-                          : "bg-light-purple"
+                    ? "bg-light-orange"
+                    : post.product_category === "mortgage"
+                      ? "bg-light-blue"
+                      : post.product_category === "sales"
+                        ? "bg-sky-blue"
+                        : "bg-light-purple"
                     }`}
                 >
                   <div className="cate-block">
