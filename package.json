@@ -32,7 +32,7 @@
     "dev": "vite",
     "build": "vite build",
     "test": "vite test",
-    "serve": "vite preview",
+    "preview": "vite preview",
     "host": "vite --host"
   },
   "eslintConfig": {
