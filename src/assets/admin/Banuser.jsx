@@ -13,7 +13,7 @@ function Banuser({ setBan, userID, fetchInvestors }) {
       comment: comment,
     };
     const response = await fetch(
-      `${import.meta.env.REACT_APP_MY_API_ENDPOINT}admin/ban_user`,
+      `${process.env.REACT_APP_MY_API_ENDPOINT}admin/ban_user`,
       {
         method: "POST",
         body: JSON.stringify(payLoad),

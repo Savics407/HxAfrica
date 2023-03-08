@@ -40,7 +40,7 @@ function UserDetails({ formData, setFormData, nextPage, signup }) {
         terms: formData.terms,
       };
       const response = await fetch(
-        `${import.meta.env.REACT_APP_MY_API_ENDPOINT}register`,
+        `${process.env.REACT_APP_MY_API_ENDPOINT}register`,
         {
           method: "POST",
           body: JSON.stringify(payload),

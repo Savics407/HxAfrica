@@ -16,7 +16,7 @@ function AccountRecovery() {
   const [resent, setResent] = useState(false);
   const [loading, setLoading] = useState(false)
 
-  const endPoint = import.meta.env.REACT_APP_MY_API_ENDPOINT;
+  const endPoint = process.env.REACT_APP_MY_API_ENDPOINT;
   async function recovery() {
     const payLoad = {
       email: email,
@@ -119,11 +119,11 @@ function AccountRecovery() {
   const [otp, setOtp] = useState(new Array(5).fill(""));
 
   const handleChange = (element, index) => {
-    if(isNaN(element.value)) return false
-    setOtp([...otp.map((d,idx) => (idx === index) ? element.value : d )])
+    if (isNaN(element.value)) return false
+    setOtp([...otp.map((d, idx) => (idx === index) ? element.value : d)])
 
     //focus next input 
-    if(element.nextSibling) {
+    if (element.nextSibling) {
       element.nextSibling.focus()
     }
   }
@@ -131,7 +131,7 @@ function AccountRecovery() {
   const [password, setPassword] = useState()
   const [confirm, setConfirm] = useState("password")
   const [notEquals, setNotEquals] = useState(false)
-  const [success, setSuccess] = useState(false)  
+  const [success, setSuccess] = useState(false)
 
   async function createNewPassword() {
     const payLoad = {
@@ -170,7 +170,7 @@ recovery/create_recovery_password`, {
       navigate("/login")
     }, 7000);
   }
-  
+
   return (
     <div className="font-family h-screen bg-white">
       <div className="relative z-20">
@@ -221,7 +221,7 @@ recovery/create_recovery_password`, {
               You successfully created a new password
               <br />
               You'll be redirected to login.
-              
+
             </p>
           </div>
           <div>
@@ -230,7 +230,7 @@ recovery/create_recovery_password`, {
         </motion.div>
       </motion.div>}
       <div className="flex justify-center lg:items-center absolute top-0 left-0 right-0 bottom-0 z-10">
-        
+
         {phase1 && (
           <div className=" lg:p-10 p-5 lg:w-128 w-full rounded-2xl lg:shadow-2xl">
             <div className="lg:text-center pr-10 lg:pr-0 pt-10 lg:pt-0 ">
@@ -293,19 +293,21 @@ recovery/create_recovery_password`, {
             </div>
             <div className="pt-10 font-inter flex justify-between">
               {
-              otp.map((data, index) => {
-                return <input
-                key={index}
-                  type="text"
-                  className={`border w-14 text-center mr-2 rounded-lg border-green bg-input p-3 text-neutral focus-within:shadow-lg ${error && "border-red"}`}
-                  maxLength="1"
-                  value={data}
-                  onChange={(e) =>  {handleChange(e.target, index)
-                  setError(false)}}
-                  onFocus={(e) => e.target.select()}
-                />
-              })}
-              
+                otp.map((data, index) => {
+                  return <input
+                    key={index}
+                    type="text"
+                    className={`border w-14 text-center mr-2 rounded-lg border-green bg-input p-3 text-neutral focus-within:shadow-lg ${error && "border-red"}`}
+                    maxLength="1"
+                    value={data}
+                    onChange={(e) => {
+                      handleChange(e.target, index)
+                      setError(false)
+                    }}
+                    onFocus={(e) => e.target.select()}
+                  />
+                })}
+
 
             </div>
             <div className="py-5 flex justify-center text-red items-center">
@@ -313,20 +315,20 @@ recovery/create_recovery_password`, {
                 <MdClose />
                 <h1 className="text-xs ml-1">
                   wrong pin! check pin and try again</h1>
-                  </>
+              </>
               }
             </div>
-            
+
 
             <p className="text-sm py-6 font-medium text-sec lg:text-center text-left ">
               {error ? <>
                 <h1 onClick={resendRecovery} className="flex items-center justify-center cursor-pointer">Resend code <span className="ml-2"><HiArrowRight /></span></h1>
               </> : <>
-                  {resent ? <div className="flex justify-center items-center text-green">Email sent successfully <span className="ml-2">   <MdCheck /></span></div>: <div>
-                    Didn't get an email? {/* <Link to="/sign-up"> */}
-                    <b className="cursor-pointer" onClick={resendRecovery}>Resend</b>
-                  </div>}
-               
+                {resent ? <div className="flex justify-center items-center text-green">Email sent successfully <span className="ml-2">   <MdCheck /></span></div> : <div>
+                  Didn't get an email? {/* <Link to="/sign-up"> */}
+                  <b className="cursor-pointer" onClick={resendRecovery}>Resend</b>
+                </div>}
+
               </>}
 
             </p>
@@ -339,7 +341,7 @@ recovery/create_recovery_password`, {
               <input
                 type="submit"
                 className=" cursor-pointer w-full p-3 outline-none"
-                value={loading ? "Processing..." :"Confirm"}
+                value={loading ? "Processing..." : "Confirm"}
 
               />
             </div>
@@ -376,8 +378,10 @@ recovery/create_recovery_password`, {
                 type="text"
                 placeholder="confirm new Password"
                 className={`box ${notEquals && "!border-red"}`}
-                onChange={(e) => {setConfirm(e.target.value)
-                setNotEquals(false)}}
+                onChange={(e) => {
+                  setConfirm(e.target.value)
+                  setNotEquals(false)
+                }}
               // value={loginData.email}
               />
             </div>
@@ -395,7 +399,7 @@ recovery/create_recovery_password`, {
                 if (password === confirm) { createNewPassword() } else {
                   setNotEquals(true)
                 }
-               
+
               }}
             >
               {/* value={process ? <TbLoader className="animate-spin" /> : "Log in"} */}

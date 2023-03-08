@@ -22,7 +22,7 @@ function ApprovedDetails({ setDetails, itemId, fetchApproved }) {
     const token = localStorage.getItem("user-token");
 
     const response = await fetch(
-      `${import.meta.env.REACT_APP_MY_API_ENDPOINT}admin/fetch_approved_investments`,
+      `${process.env.REACT_APP_MY_API_ENDPOINT}admin/fetch_approved_investments`,
       {
         method: "POST",
         headers: {
@@ -389,7 +389,7 @@ function Processing({ fetchApproved, setDetails, itemId }) {
 
     const token = localStorage.getItem("user-token");
     const response = await fetch(
-      `${import.meta.env.REACT_APP_MY_API_ENDPOINT}admin/deactivate_product`,
+      `${process.env.REACT_APP_MY_API_ENDPOINT}admin/deactivate_product`,
       {
         method: "POST",
         body: JSON.stringify(payLoad),

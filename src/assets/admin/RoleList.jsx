@@ -17,7 +17,7 @@ function RoleList({ fetchRoles, roles }) {
       id: ID,
     };
     const response = await fetch(
-      `${import.meta.env.REACT_APP_MY_API_ENDPOINT}admin/delete_role`,
+      `${process.env.REACT_APP_MY_API_ENDPOINT}admin/delete_role`,
       {
         method: "POST",
         body: JSON.stringify(payLoad),
@@ -62,7 +62,7 @@ function RoleList({ fetchRoles, roles }) {
     const token = localStorage.getItem("user-token");
     // e.preventDefault();
     const response = await fetch(
-      `${import.meta.env.REACT_APP_MY_API_ENDPOINT}admin/get_permissions`,
+      `${process.env.REACT_APP_MY_API_ENDPOINT}admin/get_permissions`,
       {
         method: "POST",
         headers: {
@@ -95,7 +95,7 @@ function RoleList({ fetchRoles, roles }) {
       permissions: [permission1, permission2, permission3, permission4],
     };
     const response = await fetch(
-      `${import.meta.env.REACT_APP_MY_API_ENDPOINT}admin/update_role`,
+      `${process.env.REACT_APP_MY_API_ENDPOINT}admin/update_role`,
       {
         method: "POST",
         body: JSON.stringify(payLoad),

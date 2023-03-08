@@ -12,7 +12,7 @@ function StaffList({ fetchStaffs, staffs }) {
     const token = localStorage.getItem("user-token");
     // e.preventDefault();
     const response = await fetch(
-      `${import.meta.env.REACT_APP_MY_API_ENDPOINT}admin/get_roles`,
+      `${process.env.REACT_APP_MY_API_ENDPOINT}admin/get_roles`,
       {
         method: "POST",
         headers: {
@@ -45,7 +45,7 @@ function StaffList({ fetchStaffs, staffs }) {
       role: roleName,
     };
     const response = await fetch(
-      `${import.meta.env.REACT_APP_MY_API_ENDPOINT}admin/assignRole`,
+      `${process.env.REACT_APP_MY_API_ENDPOINT}admin/assignRole`,
       {
         method: "POST",
         body: JSON.stringify(payLoad),

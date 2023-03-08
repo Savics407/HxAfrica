@@ -12,7 +12,7 @@ function Unban({ setUnban, userID, name, fetchBanned }) {
       user_id: userID,
     };
     const response = await fetch(
-      `${import.meta.env.REACT_APP_MY_API_ENDPOINT}admin/unban_user`,
+      `${process.env.REACT_APP_MY_API_ENDPOINT}admin/unban_user`,
       {
         method: "POST",
         body: JSON.stringify(payLoad),

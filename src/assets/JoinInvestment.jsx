@@ -27,7 +27,7 @@ function JoinInvestment({ closeModal, itemId }) {
     const token = localStorage.getItem("user-token");
 
     const response = await fetch(
-      `${import.meta.env.REACT_APP_MY_API_ENDPOINT}investment/fetch_new_investment`,
+      `${process.env.REACT_APP_MY_API_ENDPOINT}investment/fetch_new_investment`,
       {
         method: "POST",
         headers: {
@@ -49,7 +49,7 @@ function JoinInvestment({ closeModal, itemId }) {
   async function wallet() {
     const token = localStorage.getItem("user-token");
     const response = await fetch(
-      `${import.meta.env.REACT_APP_MY_API_ENDPOINT}wallet/fetch_wallet`,
+      `${process.env.REACT_APP_MY_API_ENDPOINT}wallet/fetch_wallet`,
       {
         method: "POST",
         headers: {
@@ -69,7 +69,7 @@ function JoinInvestment({ closeModal, itemId }) {
     const token = localStorage.getItem("user-token");
 
     const response = await fetch(
-      `${import.meta.env.REACT_APP_MY_API_ENDPOINT}investment/investment_percentage`,
+      `${process.env.REACT_APP_MY_API_ENDPOINT}investment/investment_percentage`,
       {
         method: "POST",
         headers: {
@@ -422,7 +422,7 @@ export function Warning({
     };
     const token = localStorage.getItem("user-token");
     const response = await fetch(
-      `${import.meta.env.REACT_APP_MY_API_ENDPOINT}investment/join_investment`,
+      `${process.env.REACT_APP_MY_API_ENDPOINT}investment/join_investment`,
       {
         method: "POST",
         body: JSON.stringify(payLoad),

@@ -28,7 +28,7 @@ function Setup({ formData, setFormData }) {
     // const token = JSON.parse(sessionStorage.getItem("data"));
     const token = localStorage.getItem("user-token");
     const response = await fetch(
-      `${import.meta.env.REACT_APP_MY_API_ENDPOINT}investor/setup`,
+      `${process.env.REACT_APP_MY_API_ENDPOINT}investor/setup`,
       {
         method: "POST",
         body: JSON.stringify(setupLoad),
@@ -73,7 +73,7 @@ function Setup({ formData, setFormData }) {
   // const [st, setSt] = useState([]);
   // useEffect(() => {
   //   const getState = async () => {
-  //     const responseSt = await fetch(`${import.meta.env.REACT_APP_MY_API_ENDPOINT}states", {
+  //     const responseSt = await fetch(`${process.env.REACT_APP_MY_API_ENDPOINT}states", {
   //       method: "POST",
   //       // body: JSON.stringify(setupLoad),
   //       headers: {

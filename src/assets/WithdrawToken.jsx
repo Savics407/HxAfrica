@@ -26,7 +26,7 @@ function Withdraw({ setWithdraw, bankID, wallet }) {
     };
     const token = localStorage.getItem("user-token");
     const response = await fetch(
-      `${import.meta.env.REACT_APP_MY_API_ENDPOINT}payment/withdraw`,
+      `${process.env.REACT_APP_MY_API_ENDPOINT}payment/withdraw`,
       {
         method: "POST",
         body: JSON.stringify(payLoad),
@@ -59,7 +59,7 @@ function Withdraw({ setWithdraw, bankID, wallet }) {
   async function wallet() {
     const token = localStorage.getItem("user-token");
     const response = await fetch(
-      `${import.meta.env.REACT_APP_MY_API_ENDPOINT}wallet/fetch_wallet`,
+      `${process.env.REACT_APP_MY_API_ENDPOINT}wallet/fetch_wallet`,
       {
         method: "POST",
         headers: {
@@ -76,7 +76,7 @@ function Withdraw({ setWithdraw, bankID, wallet }) {
   async function fetchUserBank() {
     const token = localStorage.getItem("user-token");
     const response = await fetch(
-      `${import.meta.env.REACT_APP_MY_API_ENDPOINT}investor/fetch_user_bank`,
+      `${process.env.REACT_APP_MY_API_ENDPOINT}investor/fetch_user_bank`,
       {
         method: "POST",
         headers: {

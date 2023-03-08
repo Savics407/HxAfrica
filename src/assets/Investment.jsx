@@ -39,7 +39,7 @@ function Investment() {
     const token = localStorage.getItem("user-token");
     // e.preventDefault();
     const response = await fetch(
-      `${import.meta.env.REACT_APP_MY_API_ENDPOINT}investment/fetch_new_investment`,
+      `${process.env.REACT_APP_MY_API_ENDPOINT}investment/fetch_new_investment`,
       {
         method: "POST",
         headers: {
@@ -63,7 +63,7 @@ function Investment() {
     const token = localStorage.getItem("user-token");
     // e.preventDefault();
     const response = await fetch(
-      `${import.meta.env.REACT_APP_MY_API_ENDPOINT}chat/chat_list`,
+      `${process.env.REACT_APP_MY_API_ENDPOINT}chat/chat_list`,
       {
         method: "POST",
         headers: {

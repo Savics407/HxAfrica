@@ -11,7 +11,7 @@ function Verification({ formData, setFormData, nextPage }) {
       email: formData.email,
       otp: formData.otp,
     };
-    const response = await fetch(`${import.meta.env.REACT_APP_MY_API_ENDPOINT}verify-otp`, {
+    const response = await fetch(`${process.env.REACT_APP_MY_API_ENDPOINT}verify-otp`, {
       method: "POST",
       body: JSON.stringify(otpLoad),
       headers: {
@@ -57,7 +57,7 @@ function Verification({ formData, setFormData, nextPage }) {
       email: formData.email,
       user_id: id,
     };
-    const response = await fetch(`${import.meta.env.REACT_APP_MY_API_ENDPOINT}resend-otp`, {
+    const response = await fetch(`${process.env.REACT_APP_MY_API_ENDPOINT}resend-otp`, {
       method: "POST",
       body: JSON.stringify(resendLoad),
       headers: {

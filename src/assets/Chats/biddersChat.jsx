@@ -18,7 +18,7 @@ function BiddersChat() {
     const token = localStorage.getItem("user-token");
     // e.preventDefault();
     const response = await fetch(
-      `${import.meta.env.REACT_APP_MY_API_ENDPOINT}exchange/fetch_investment_bids`,
+      `${process.env.REACT_APP_MY_API_ENDPOINT}exchange/fetch_investment_bids`,
       {
         method: "POST",
         headers: {
@@ -58,7 +58,7 @@ function BiddersChat() {
     const token = localStorage.getItem("user-token");
     // e.preventDefault();
     const response = await fetch(
-      `${import.meta.env.REACT_APP_MY_API_ENDPOINT}chat/chat_list`,
+      `${process.env.REACT_APP_MY_API_ENDPOINT}chat/chat_list`,
       {
         method: "POST",
         headers: {
@@ -100,7 +100,7 @@ function BiddersChat() {
       sender_id: user_id,
     };
     const response = await fetch(
-      `${import.meta.env.REACT_APP_MY_API_ENDPOINT}chat/fetch_chat`,
+      `${process.env.REACT_APP_MY_API_ENDPOINT}chat/fetch_chat`,
       {
         method: "POST",
         body: JSON.stringify(payLoad),
@@ -155,7 +155,7 @@ function BiddersChat() {
     setMessage("");
     const token = localStorage.getItem("user-token");
     const response = await fetch(
-      `${import.meta.env.REACT_APP_MY_API_ENDPOINT}chat/send_message`,
+      `${process.env.REACT_APP_MY_API_ENDPOINT}chat/send_message`,
       {
         method: "POST",
         body: JSON.stringify(payLoad),
@@ -310,8 +310,8 @@ function BiddersChat() {
                               <h1 className="flex items-center font-normal text-timeStamp text-tiny">
                                 <RiCheckDoubleFill
                                   className={`${chat.status === "unread"
-                                      ? "text-timeStamp"
-                                      : "text-border"
+                                    ? "text-timeStamp"
+                                    : "text-border"
                                     }`}
                                 />{" "}
                                 {/* {moment(chat.created_at).format("LT")} */}

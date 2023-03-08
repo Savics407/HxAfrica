@@ -15,7 +15,7 @@ function RolesPermission() {
     const token = localStorage.getItem("user-token");
     // e.preventDefault();
     const response = await fetch(
-      `${import.meta.env.REACT_APP_MY_API_ENDPOINT}admin/get_roles`,
+      `${process.env.REACT_APP_MY_API_ENDPOINT}admin/get_roles`,
       {
         method: "POST",
         headers: {
@@ -38,7 +38,7 @@ function RolesPermission() {
     const token = localStorage.getItem("user-token");
     // e.preventDefault();
     const response = await fetch(
-      `${import.meta.env.REACT_APP_MY_API_ENDPOINT}admin/get_permissions`,
+      `${process.env.REACT_APP_MY_API_ENDPOINT}admin/get_permissions`,
       {
         method: "POST",
         headers: {
@@ -70,7 +70,7 @@ function RolesPermission() {
       // "permissions[2]": "Assign Staff Role",
     };
     const response = await fetch(
-      `${import.meta.env.REACT_APP_MY_API_ENDPOINT}admin/create_role`,
+      `${process.env.REACT_APP_MY_API_ENDPOINT}admin/create_role`,
       {
         method: "POST",
         body: JSON.stringify(payLoad),
