@@ -3,7 +3,7 @@ import headerPic from "./../assets/images/appMock.svg";
 
 import HxToken from "./../assets/images/HxToken.svg";
 
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import Header from "./header";
 import Rotate from "./rotate";
@@ -25,7 +25,7 @@ import Footer from "./footer";
 
 function LandingPage() {
     const [color, setColor] = useState("#000")
-
+const navigate = useNavigate()
   return (
     <div className="font-family bg-white">
       <Helmet>
@@ -198,6 +198,7 @@ function LandingPage() {
                     type="submit"
                     value="Register Now"
                     className="p-3 rounded-full text-lg font-normal bg-green text-white"
+                    onClick={() => navigate("/sign-up")}
                   />
                   <h1 className="text-white font-normal text-[10px] font-segoe text-center py-5">By using this website you agree to our <span className="underline">Terms of Use</span> and <span className="underline">Privacy Policy</span>.</h1>
                 </div>

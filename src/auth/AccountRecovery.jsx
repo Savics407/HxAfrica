@@ -218,7 +218,7 @@ recovery/create_recovery_password`, {
           </div>
           <div className="font-medium text-base text-neutral my-8">
             <p>
-              You successfully created a new password
+              You've successfully created a new password
               <br />
               You'll be redirected to login.
 

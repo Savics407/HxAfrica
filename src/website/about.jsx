@@ -7,9 +7,11 @@ import illiquidity from "./../assets/images/illiquidity.svg";
 import group from "./../assets/images/groupPic.svg";
 import access from "./../assets/images/accessTo.svg";
 import Rotate from './rotate'
+import { useNavigate } from 'react-router';
 
 function About() {
     const [color, setColor] = useState("#fff")
+const navigate = useNavigate()
 
     return (
         <div className='font-family bg-white'>
@@ -101,7 +103,7 @@ function About() {
                                         type="submit"
                                         value="Register Now"
                                         className="p-3 rounded-full text-lg font-normal bg-green text-white"
-                                    />
+                                   onClick={() => navigate("/sign-up")} />
                                     <h1 className="text-white font-normal text-[10px] font-segoe text-center py-5">By using this website you agree to our <span className="underline">Terms of Use</span> and <span className="underline">Privacy Policy</span>.</h1>
                                 </div>
                             </div>
