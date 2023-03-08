@@ -1,5 +1,5 @@
 import { MdClose } from "react-icons/md";
-import reictoken from "./images/HX Token.svg";
+import reictoken from "./images/HXsToken.svg";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";

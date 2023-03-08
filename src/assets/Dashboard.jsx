@@ -1,7 +1,7 @@
 import { FaAngleDown } from "react-icons/fa";
 import dollar from "./images/money-recive.svg";
 import coin from "./images/coin.svg";
-import reictoken from "./images/HX Token.svg";
+import reictoken from "./images/HXsToken.svg";
 import media from "./images/media container.svg";
 import Investments from "./Investments";
 import Myinvests from "./Myinvestments";
