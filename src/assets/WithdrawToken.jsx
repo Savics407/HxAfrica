@@ -1,6 +1,6 @@
 import { MdClose } from "react-icons/md";
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import ScaleLoader from "react-spinners/ScaleLoader";

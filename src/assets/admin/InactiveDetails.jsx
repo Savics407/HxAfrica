@@ -1,7 +1,7 @@
 import { MdClose } from "react-icons/md";
 import hdimage from "../images/invest_image.png";
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import moment from "moment";
 import { TbLoader } from "react-icons/tb";
 import { toast } from "react-toastify";

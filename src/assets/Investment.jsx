@@ -1,5 +1,5 @@
 import Header from "./Header";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import banner from "./images/banner.png";
 import { NavLink, Link } from "react-router-dom";
 import InvestTabs from "./InvestTabs";

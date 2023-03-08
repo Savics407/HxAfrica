@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Tab from "./tab";
+import { toast } from "react-toastify";
 import { MdClose, MdCheck } from "react-icons/md"
 import { HiArrowRight } from "react-icons/hi"
-
+import { motion } from "framer-motion";
 
 function AccountRecovery() {
   const navigate = useNavigate()
@@ -96,6 +97,16 @@ function AccountRecovery() {
       console.log(result.message);
       setPhase2(!phase2);
       setReset(true)
+      setLoading(false)
+      toast.success(`${result.message}`, {
+        position: "top-left",
+        autoClose: 500,
+        hideProgressBar: true,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
 
     } else {
       if (result.status === "error") {
@@ -141,7 +152,7 @@ recovery/create_recovery_password`, {
     if (result?.status === "success") {
       // localStorage.setItem("user-token", result?.data.api_token);
       setError(false);
-        setLoading("completed")
+      setLoading(false)
       console.log(result.message);
       setSuccess(true)
       redirect()
@@ -166,6 +177,58 @@ recovery/create_recovery_password`, {
         <Tab />
 
       </div>
+      {success && <motion.div
+        initial={{
+          opacity: 0,
+        }}
+        animate={{
+          opacity: 1,
+          transition: {
+            duration: 0.3,
+          },
+        }}
+        exit={{
+          opacity: 0,
+          transition: {
+            delay: 0.5,
+          },
+        }}
+        className="flex items-center justify-center fixed top-0 right-0 bottom-0 left-0 bg-overlay z-50 backdrop-blur-xs"
+      >
+        <motion.div
+          initial={{
+            opacity: 0,
+          }}
+          animate={{
+            opacity: 1,
+            transition: {
+              duration: 0.3,
+            },
+          }}
+          exit={{
+            opacity: 0,
+            transition: {
+              delay: 0.5,
+            },
+          }}
+          className="w-128 bg-white rounded-xl px-6 py-10 text-center"
+        >
+          <div>
+            <h1 className="font-bold text-neutral text-4xl">Success!</h1>
+          </div>
+          <div className="font-medium text-base text-neutral my-8">
+            <p>
+              You successfully created a new password
+              <br />
+              You'll be redirected to login.
+              
+            </p>
+          </div>
+          <div>
+            <p className="font-semibold text-xs">Redirecting ...</p>
+          </div>
+        </motion.div>
+      </motion.div>}
       <div className="flex justify-center lg:items-center absolute top-0 left-0 right-0 bottom-0 z-10">
         
         {phase1 && (
@@ -276,7 +339,7 @@ recovery/create_recovery_password`, {
               <input
                 type="submit"
                 className=" cursor-pointer w-full p-3 outline-none"
-                value={loading ? "Processing..." : "Confirm"}
+                value={loading ? "Processing..." :"Confirm"}
 
               />
             </div>
@@ -313,7 +376,7 @@ recovery/create_recovery_password`, {
                 type="text"
                 placeholder="confirm new Password"
                 className={`box ${notEquals && "!border-red"}`}
-                onChange={(e) => {setPassword(e.target.value)
+                onChange={(e) => {setConfirm(e.target.value)
                 setNotEquals(false)}}
               // value={loginData.email}
               />
@@ -340,7 +403,7 @@ recovery/create_recovery_password`, {
               <input
                 type="submit"
                 className=" cursor-pointer w-full p-3 outline-none"
-                value={loading ? "Processing..." : loading === "completed" ? "Successful! redirecting..." : "Confirm"}
+                value={loading ? "Processing..." : "Confirm"}
               />
             </div>
           </div>

@@ -3,7 +3,7 @@ import invest1 from "./images/invest1.png";
 import invest2 from "./images/invest2.png";
 import box from "./images/Box.png";
 
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Details from "./Investment_Details";
 import { Link } from "react-router-dom";
 import ScaleLoader from "react-spinners/ScaleLoader";

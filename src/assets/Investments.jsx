@@ -10,7 +10,7 @@ import users3 from "./images/Frame 19.png";
 import users4 from "./images/Frame 20.png";
 import { FaInfoCircle } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import moment from "moment";
 // import crowd from "./images/crowdfund.png";
 import * as CurrencyFormat from "react-currency-format";

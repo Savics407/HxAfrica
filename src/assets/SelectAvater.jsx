@@ -12,17 +12,8 @@ import avater8 from "./images/8.svg";
 import avater9 from "./images/9.svg";
 import { motion } from "framer-motion";
 import { useNavigate, Link } from "react-router-dom";
+import Tab from "../auth/tab";
 
-function Tab() {
-  return (
-    <>
-      <div className="bg-primary text-center text-green p-4 flex items-center hidden md:flex">
-        <img src={logo} alt="logo icon" />
-        <h1 className="text-sm font-bold font-family ml-4">Hx</h1>
-      </div>
-    </>
-  );
-}
 
 function Congratulations() {
   const userIcon = localStorage.getItem("user-profile");

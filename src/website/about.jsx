@@ -13,7 +13,9 @@ function About() {
 
     return (
         <div className='font-family bg-white'>
+            <div className='relative z-20'>
             <Header />
+            </div>
             <div className='bg-[#111920] text-white overflow-hidden px-5 lg:px-0 py-20'>
                 <div className='content flex justify-between relative items-center'>
                     <div className='lg:w-[60%] font-medium lg:text-4xl text-2xl lg:leading-[60px] mb-2'>

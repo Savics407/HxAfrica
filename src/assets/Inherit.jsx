@@ -2,7 +2,7 @@ import { MdClose } from "react-icons/md";
 import hdimage from "./images/invest_image.png";
 import success from "./images/Success Icon.svg";
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import ScaleLoader from "react-spinners/ScaleLoader";
 
 import { useNavigate } from "react-router-dom";

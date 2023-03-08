@@ -124,7 +124,7 @@ function UserDetails({ formData, setFormData, nextPage, signup }) {
         <div>
           <h1 className="page-text">Create Account</h1>
           <p className="description">
-            Create an account with Hx, this would only take few minutes.
+            Create an account with HxAfrica, this would only take few minutes.
           </p>
         </div>
         <div className="input">
@@ -283,7 +283,7 @@ function UserDetails({ formData, setFormData, nextPage, signup }) {
           // checked
           />
           <p className="text-xs tracking-wide">
-            I agree with Hx{" "}
+            I agree with HxAfrica
             <span
               className="text-green cursor-pointer"
               onClick={() => setTerms(true)}

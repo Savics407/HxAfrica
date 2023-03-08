@@ -1,11 +1,13 @@
+
 import { MdClose } from "react-icons/md";
 import bank from "./images/bank.svg";
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { HiPlus } from "react-icons/hi";
 import * as CurrencyFormat from "react-currency-format";
 import { toast } from "react-toastify";
 import ScaleLoader from "react-spinners/ScaleLoader";
+
 
 function AddBank({ closeToken, setVerifyBVN, setWithdraw, setBankID }) {
   // const [authPullOut, setAuthPullOut] = useState(false)

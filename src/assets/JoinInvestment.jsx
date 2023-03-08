@@ -4,7 +4,7 @@ import success from "./images/Success Icon.svg";
 import { TbLoader } from "react-icons/tb";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 // import { TbLoader } from 'react-icons/tb'
 import users1 from "./images/Frame 14.png";
 import users2 from "./images/Frame 18.png";
