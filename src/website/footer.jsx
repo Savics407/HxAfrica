@@ -20,7 +20,7 @@ function Footer() {
             <div className="bg-hxafrica lg:px-24 px-5 pt-20 pb-10">
                 <div className="content">
                     <div className="flex flex-wrap">
-                        <div className=" flex lg:block items-center justify-between w-full lg:w-1/2 mb-20 lg:mb-0 ">
+                        <div className=" flex lg:block items-center justify-between w-full lg:w-1/2 mb-20 lg:mb-0">
                             <img src={logoWhite} alt="HXafrica" />
                             <div className="flex justify-between items-center lg:w-36 lg:pt-4">
                                 <a
@@ -34,14 +34,14 @@ function Footer() {
                                 <img src={instagram} alt="instagram" className='px-1.5' />
                             </div>
                         </div>
-                        <div className=" lg:w-1/2 w-full flex flex-wrap lg:justify-between text-white">
+                        <div className=" lg:w-1/2 w-full flex flex-wrap md:justify-between text-white">
                             <div className='mr-10 lg:mr-0'>
                                 <h1 className="text-lightgreen font-bold text-lg mb-5">
                                     Product
                                 </h1>
                                 <div>
                                     <Link to="/login">
-                                        <h1 className="font-normal mb-2 ">Hx</h1>
+                                        <h1 className="font-normal mb-2 ">HxAfrica</h1>
                                     </Link>
                                 </div>
                             </div>
@@ -64,7 +64,7 @@ function Footer() {
                                     </a>
                                 </div>
                             </div>
-                            <div className="my-10 lg:my-0">
+                            <div className="my-10 md:my-0 w-full md:w-auto">
                                 <h1 className="text-lightgreen font-bold text-lg mb-5">
                                     About Us
                                 </h1>

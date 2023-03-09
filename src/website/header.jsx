@@ -34,7 +34,23 @@ function Header() {
           fix && "fixed top-0 left-0 right-0"
         }`}
       >
-        {isOpen && <div className="fixed top-0 bottom-0 left-0 right-0 bg-[#00000069] transform duration-2000" onClick={() => setIsOpen(!isOpen)}></div>}
+        {isOpen && <motion.div 
+          initial={{
+            opacity: 0,
+          }}
+          animate={{
+            opacity: 1,
+            transition: {
+              duration: 0.3,
+            },
+          }}
+          exit={{
+            opacity: 0,
+            transition: {
+              delay: 0.5,
+            },
+          }}
+             className="fixed top-0 bottom-0 left-0 right-0 bg-[#00000069] transform duration-2000" onClick={() => setIsOpen(!isOpen)}></motion.div>}
         <div className="content">
           <div className="flex justify-between items-center">
             <Link to="/">
@@ -43,7 +59,7 @@ function Header() {
             </div>
             </Link>
             <div
-              className={`lg:justify-between items-center lg:w-1/2 bg-white fixed top-0 -right-full lg:right-auto bottom-0 w-3/4 transition-all duration-1000 lg:!relative lg:!flex  ${
+              className={`lg:justify-between items-center lg:w-1/2 bg-white fixed top-0 -right-full lg:right-auto bottom-0 w-3/4 transition-all duration-500 lg:!relative lg:!flex  ${
                 isOpen && "!right-0 z-30 transform flex flex-col "
               }`}
             >

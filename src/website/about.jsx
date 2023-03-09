@@ -47,8 +47,8 @@ const navigate = useNavigate()
 
             <div>
                 <div className="content lg:p-24 p-10">
-                    <div className='flex flex-wrap justify-between'>
-                        <div className='bg-[#373737] rounded-[60px] vector1 w-full lg:w-[293px] mb-5 h-[287px] py-7 px-9 flex flex-col justify-between'>
+                    <div className='flex flex-wrap justify-around'>
+                        <div className='bg-[#373737] rounded-[60px] vector1 w-full md:w-[293px] mb-5 h-[287px] py-7 px-9 flex flex-col justify-between'>
                             <div>
                                 <img src={highEntry} alt="High Entry Barrier" />
 
@@ -57,7 +57,7 @@ const navigate = useNavigate()
 
                         </div>
 
-                        <div className='bg-[#B5E2C9] rounded-[60px] vector2 w-full lg:w-[293px] mb-5 h-[287px] py-7 px-9 flex flex-col justify-between'>
+                        <div className='bg-[#B5E2C9] rounded-[60px] vector2 w-full md:w-[293px] mb-5 h-[287px] py-7 px-9 flex flex-col justify-between'>
                             <div>
                                 <img src={illiquidity} alt="Illiquidity" />
 
@@ -66,7 +66,7 @@ const navigate = useNavigate()
 
                         </div>
 
-                        <div className='bg-[#F7C0B5] rounded-[60px] vector3 w-full lg:w-[293px] mb-5 h-[287px] py-7 px-9 flex flex-col justify-between'>
+                        <div className='bg-[#F7C0B5] rounded-[60px] vector3 w-full md:w-[293px] mb-5 h-[287px] py-7 px-9 flex flex-col justify-between'>
                             <div>
                                 <img src={access} alt="Access to Finance" />
 
@@ -85,13 +85,13 @@ const navigate = useNavigate()
             <div className="bg-[#6060D8] py-20 relative apple">
                 <div className="content xl:pl-10 px-5">
                     <div className="flex flex-wrap items-center justify-between">
-                        <h1 className="font-normal text-[#F8FFF9] text-4xl mb-14 lg:hidden">It is more exciting with you</h1>
-                        <div className="lg:w-1/2 w-full lg:pr-20 mb-10 lg:mb-0">
+                        <h1 className="font-normal text-[#F8FFF9] text-4xl mb-14 md:hidden">It is more exciting with you</h1>
+                        <div className="md:w-1/2 w-full lg:pr-20 mb-10 lg:mb-0">
                             <img src={group} alt="group" />
                         </div>
-                        <div className="lg:w-1/2 w-full flex items-center justify-center">
+                        <div className="md:w-1/2 w-full flex items-center justify-center md:px-5 lg:px-0">
                             <div className="rounded-xl lg:p-5">
-                                <h1 className="font-normal text-[#F8FFF9] leading-[70px] text-6xl mb-14 hidden lg:block">It is more exciting with you</h1>
+                                <h1 className="font-normal text-[#F8FFF9] leading-[70px] text-4xl lg:text-6xl mb-14 hidden md:block">It is more exciting with you</h1>
                                 <div className="font-inter font-normal mb-2 flex flex-col">
 
                                     <input

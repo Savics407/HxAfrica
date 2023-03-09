@@ -37,24 +37,25 @@ const navigate = useNavigate()
       </div>
       <div className="bg-[#FDFDFD] lg:pt-20 py-10 overflow-hidden" id="home">
         <div className="flex justify-between relative">
-          <div className="absolute lg:-top-48 -top-40 bottom-0 left-0 -right-[90px] lg:right-0 flex lg:justify-center justify-end items-center border">
-            <div className="justify-center items-center flex">
-              <img src={longArrow} alt="arrow" className="absolute" />
-              <div className=" turn">
-                <Rotate color={color} />
+          
+          <div className="lg:w-[50%] md:w-[70%] xl:ml-20 2xl:ml-40 lg:py-auto z-20 px-5 relative">
+            <div className="absolute lg:top-24 md:top-5 -top-16 lg:-right-20 -right-20 md:-right-40">
+              <div className="justify-center items-center flex">
+                <img src={longArrow} alt="arrow" className="absolute" />
+                <div className=" turn">
+                  <Rotate color={color} />
 
+                </div>
               </div>
+
             </div>
-            
-          </div>
-          <div className="lg:w-[50%] xl:ml-20 2xl:ml-40 lg:py-auto z-20 px-5 ">
             <h1
-              className={`lg:font-normal font-medium lg:!leading-[70px] lg:text-5xl text-xl`}
+              className={`lg:font-normal font-medium lg:!leading-[70px] lg:text-5xl md:text-3xl text-xl`}
             >
-              Empowering your financial future through Smart Real Estate
+              Empowering your financial <br className="lg:hidden" /> future through Smart Real <br className="md:hidden" />Estate
               Investments
             </h1>
-            <h1 className="font-normal text-xs lg:text-xl my-6 xl:pr-20 ">
+            <h1 className="font-normal text-xs md:text-lg lg:text-xl md:mt-6 md:mb-12 mt-2 mb-10 xl:pr-20 ">
               {" "}
               Save or Fund Wallet Directly, select an Investment, Invest. Get
               Returns. Trade Investment for Cash anytime
@@ -65,10 +66,10 @@ const navigate = useNavigate()
 
               </div>
               <div className="font-Helvetica w-[55%] lg:w-[66%]">
-                <h1 className="font-normal lg:text-base text-sm  mb-1">
+                <h1 className="font-normal md:text-base text-sm  mb-1">
                   HX Token shaping world’s investment Strategy{" "}
                 </h1>
-                <h1 className="font-normal lg:text-xs text-[10px] text-skywhite ">
+                <h1 className="font-normal md:text-xs text-[11px] text-skywhite ">
                   Join millions who signed up
                 </h1>
               </div>
@@ -101,40 +102,40 @@ const navigate = useNavigate()
           <h1 className="font-normal text-3xl lg:text-[60px]">Investing made easy.</h1>
         </div>
         <div className="content lg:py-32 py-16">
-          <div className="flex justify-between items-center px-10 lg:px-40 py-10 flex-wrap">
+          <div className="flex justify-between items-center px-10 md:px-40 py-10 flex-wrap">
             <div className="px-10 mb-10 lg:mb-0">
               <div className="side relative">
                 <img src={tradingMockup} alt="appleIcon" />
               </div>
             </div>
            
-            <div className="lg:w-[350px] font-normal text-sm lg:text-lg text-center lg:text-left">
+            <div className="lg:w-[350px] font-normal text-sm md:text-lg text-center lg:text-left">
               <img src={houseIcon} alt="houseIcon" className="mb-2 hidden lg:block" />
               <h1>Your rent gets paid in bulk, you pay back in installments with our Rent-Gap-Financing (RGF) offer</h1>
             </div>
           </div>
-          <div className="flex flex-row-reverse justify-between items-center px-10 lg:px-40 py-10 flex-wrap">
+          <div className="flex flex-row-reverse justify-between items-center px-10 md:px-40 py-10 flex-wrap">
             <div className="px-10 mb-10 lg:mb-0">
 
               <div className="side relative">
                 <img src={bankBuilding} alt="building" />
               </div>
             </div>
-            <div className="lg:w-[350px] font-normal text-sm lg:text-lg text-center lg:text-left">
+            <div className="lg:w-[350px] font-normal text-sm md:text-lg text-center lg:text-left">
               <img src={briefcase} alt="briefcaseIcon" className="mb-2 hidden lg:block" />
               <h1>Your contributory down-payment for mortgage loan gets paid, and you access your loan with our Mortgage Pre-Financing (MPF) offer</h1>
             </div>
             
             
           </div>
-          <div className="flex justify-between items-center px-10 lg:px-40 py-10 flex-wrap">
+          <div className="flex justify-between items-center px-10 md:px-40 py-10 flex-wrap">
             <div className="px-10 mb-10 lg:mb-0">
 
             <div className="side relative">
               <img src={exchange} alt="exchange" />
             </div>
             </div>
-            <div className="w-[350px] font-normal text-sm lg:text-lg text-center lg:text-left">
+            <div className="lg:w-[350px] font-normal text-sm md:text-lg text-center lg:text-left">
               <img src={cash} alt="cashIcon" className="mb-2 hidden lg:block" />
               <h1>You sell off your property with ease, and get your cash with our Direct Property Acquisition (DPA) offer</h1>
             </div>
@@ -148,7 +149,7 @@ const navigate = useNavigate()
         {/* <div className="w-full lg:w-auto text-center lg:text-left mb-20 lg:mb-auto border"> */}
         <div className="content">
           <div className="flex flex-wrap items-center justify-between px-5 lg:pl-20">
-            <div className="lg:w-1/2 mb-10">
+            <div className="lg:w-1/2 flex justify-center lg:block mb-10">
               <img src={invest} alt="HxAfrica Mobile UI" />
             </div>
             <div className="text-left lg:w-1/2">
@@ -180,13 +181,13 @@ const navigate = useNavigate()
       <div className="bg-[#191919] py-20 relative apple">
         <div className="content xl:pl-10 px-5">
           <div className="flex flex-wrap items-center justify-between">
-            <h1 className="font-normal text-[#F8FFF9] text-4xl mb-14 lg:hidden">It is more exciting with you</h1>
-            <div className="lg:w-1/2 w-full lg:pr-20 mb-10 lg:mb-0">
+            <h1 className="font-normal text-[#F8FFF9] text-4xl mb-14 md:hidden">It is more exciting with you</h1>
+            <div className="md:w-1/2 w-full lg:pr-20 mb-10 lg:mb-0">
               <img src={group} alt="group" />
             </div>
-            <div className="lg:w-1/2 w-full flex items-center justify-center">
+            <div className="md:w-1/2 w-full flex items-center justify-center md:px-5 lg:px-0">
               <div className="rounded-xl lg:p-5">
-                <h1 className="font-normal text-[#F8FFF9] leading-[70px] text-6xl mb-14 hidden lg:block">It is more exciting with you</h1>
+                <h1 className="font-normal text-[#F8FFF9] leading-[70px] md:text-4xl lg:text-6xl mb-14 hidden md:block">It is more exciting with you</h1>
                 <div className="font-inter font-normal mb-2 flex flex-col">
                   
                   <input
@@ -225,7 +226,7 @@ const navigate = useNavigate()
                 <img src={googlePlay} alt="googlePlay button" />
               </div>
             </div>
-            <div className="lg:w-1/2 px-5 lg:px-0">
+            <div className="lg:w-1/2 flex justify-center lg:block w-full px-5 lg:px-0">
               <img src={appPreview} alt="appPreview" />
             </div>
            
